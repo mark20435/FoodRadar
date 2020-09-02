@@ -1,17 +1,24 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--使用ActionBarMenu文字尺寸-->
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/mainPink</item>
         <item name="colorPrimaryDark">@color/colorTextDark</item>
         <item name="colorAccent">@color/colorTextDark</item>
-
-        <!--返回鍵icon-->
+        <!--appBar返回鍵icon-->
         <item name="navigationIcon">@drawable/ic_baseline_arrow_back_24</item>
-        <!--Title顏色-->
+        <!--Title文字顏色-->
         <item name="titleTextColor">@color/colorTextDark</item>
-        <!--Menu顏色-->
+        <!--ActionBarMenu文字顏色-->
         <item name="actionMenuTextColor">@color/colorTextDark</item>
+
+    </style>
+
+    <!--定義ActionBarMenu文字尺寸-->
+    <style name="MenuTextStyle">
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

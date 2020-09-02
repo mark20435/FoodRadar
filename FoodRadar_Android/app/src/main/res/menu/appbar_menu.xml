@@ -4,5 +4,9 @@
     <item
         android:id="@+id/Finish"
         android:title="@string/appbar"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:textSize="30sp"
+        />
+
+
 </menu>
