@@ -2,9 +2,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/mainPink</item>
+        <item name="colorPrimaryDark">@color/colorTextDark</item>
+        <item name="colorAccent">@color/colorTextDark</item>
+
+        <!--返回鍵icon-->
+        <item name="navigationIcon">@drawable/ic_baseline_arrow_back_24</item>
+        <!--Title顏色-->
+        <item name="titleTextColor">@color/colorTextDark</item>
+        <!--Menu顏色-->
+        <item name="actionMenuTextColor">@color/colorTextDark</item>
     </style>
 
 </resources>

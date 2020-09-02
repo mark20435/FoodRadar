@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FoodRadar_Android</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">首頁</string>
+    <string name="map">餐廳地圖</string>
+    <string name="coupon">優惠活動</string>
+    <string name="comment">討論區</string>
+    <string name="user">會員管理</string>
+    <string name="appbar">完成</string>
 </resources>

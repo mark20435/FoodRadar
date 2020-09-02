@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/Map"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/map" />
+    <item
+        android:id="@+id/CouPon"
+        android:icon="@drawable/ic_baseline_card_giftcard_24"
+        android:title="@string/coupon" />
+    <item
+        android:id="@+id/Comment"
+        android:icon="@drawable/ic_baseline_comment_24"
+        android:title="@string/comment" />
+    <item
+        android:id="@+id/User"
+        android:icon="@drawable/ic_baseline_user_24"
+        android:title="@string/user" />
+</menu>
