@@ -5,7 +5,9 @@
     <string name="home">首頁</string>
     <string name="map">餐廳地圖</string>
     <string name="coupon">優惠活動</string>
-    <string name="comment">討論區</string>
-    <string name="user">會員管理</string>
-    <string name="appbar">完成</string>
+    <string name="comment">食客棧</string>
+    <string name="user">會員專區</string>
+    <string name="title_of_home">首頁</string><string name="appbar">完成</string>
+    <string name="title_of_user">會員專區</string>
+    <string name="user_syssetup">系統設定</string>
 </resources>

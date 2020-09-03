@@ -8,7 +8,7 @@
         <item name="colorPrimaryDark">@color/colorTextDark</item>
         <item name="colorAccent">@color/colorTextDark</item>
         <!--appBar返回鍵icon-->
-        <item name="navigationIcon">@drawable/ic_baseline_arrow_back_24</item>
+<!--        <item name="navigationIcon">@drawable/ic_baseline_arrow_back_24</item>-->
         <!--Title文字顏色-->
         <item name="titleTextColor">@color/colorTextDark</item>
         <!--ActionBarMenu文字顏色-->
