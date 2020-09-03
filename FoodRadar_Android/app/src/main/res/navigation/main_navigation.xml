@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="com.example.foodradar_android.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_resMapFragment"
+            app:destination="@id/resMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resMapFragment"
+        android:name="com.example.foodradar_android.ResMapFragment"
+        android:label="fragment_res_map"
+        tools:layout="@layout/fragment_res_map" />
 </navigation>
