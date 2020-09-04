@@ -21,4 +21,8 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="SearchViewIcon" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/ic_baseline_arrow_back_24</item>
+    </style>
+
 </resources>
