@@ -34,14 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater(); //inflater載入器
-        inflater.inflate(R.menu.appbar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
+    
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
