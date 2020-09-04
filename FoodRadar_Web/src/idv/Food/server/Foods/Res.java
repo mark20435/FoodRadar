@@ -24,8 +24,6 @@ public class Res {
 	        this.userId = userId;
 	        this.resCategoryInfo = resCategoryInfo;
 	    }
-	    
-	   
 
 	    
 
