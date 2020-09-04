@@ -2,9 +2,9 @@
     <shape xmlns:android="http://schemas.android.com/apk/res/android" >
         <!-- 圓角角度 -->
         <corners android:radius="16dp"/>
-        <!-- 填充色 -->
+        <!-- 背景色 -->
         <solid android:color="@color/colorText"/>
-        <!-- 描边 设置线宽及颜色 -->
+        <!-- 線匡及顏色 -->
         <stroke android:color="@color/mainPink"
-                android:width="0.5dp"/>
+                android:width="2dp"/>
     </shape>

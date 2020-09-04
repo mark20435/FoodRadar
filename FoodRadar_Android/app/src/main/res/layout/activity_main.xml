@@ -20,27 +20,25 @@
     <SearchView
         android:id="@+id/SearchView"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:maxWidth="396dp"
+        android:layout_height="0dp"
         android:iconifiedByDefault="false"
+        android:paddingTop="4dp"
         android:queryBackground="@xml/searchviewstlye"
+        android:queryHint="輸入內容"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:queryHint="輸入內容"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="56dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/BottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@+id/SearchView"
         app:navGraph="@navigation/main_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
