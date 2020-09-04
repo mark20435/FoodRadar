@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CouponFragment extends Fragment {
+public class ArticleFragment extends Fragment {
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,7 +21,7 @@ public class CouponFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.coupon);
-        return inflater.inflate(R.layout.fragment_coupon, container, false);
+       getActivity().setTitle(R.string.comment);
+        return inflater.inflate(R.layout.fragment_article, container, false);
     }
 }
