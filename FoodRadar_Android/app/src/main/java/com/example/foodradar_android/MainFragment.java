@@ -6,14 +6,25 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 
 public class MainFragment extends Fragment {
-    Activity activity;
+    private static final String TAG = "TAG_ResListFragment";
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView rvRes;
+    private Activity activity;
+    private CommonTask resGetAllTask;
+    private CommonTask resDeleteTask;
+    private List<ImageTask> imageTasks;
+    private List<Res> resList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
