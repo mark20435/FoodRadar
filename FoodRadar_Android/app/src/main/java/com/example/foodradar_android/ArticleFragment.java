@@ -45,7 +45,7 @@ public class ArticleFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+public class ArticleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +59,7 @@ public class ArticleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+       getActivity().setTitle(R.string.comment);
         return inflater.inflate(R.layout.fragment_article, container, false);
     }
 }

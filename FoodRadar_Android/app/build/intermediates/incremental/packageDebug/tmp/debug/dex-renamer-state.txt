@@ -1,0 +1,4 @@
+#Sat Sep 05 00:18:43 CST 2020
+base.0=/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
