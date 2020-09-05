@@ -40,8 +40,16 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_baseline_search_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-ldpi/ic_baseline_search_24.png"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_baseline_arrow_back_24.xml.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_baseline_arrow_back_24.xml"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/xml_searchviewstlye.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/xml/searchviewstlye.xml"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
@@ -58,6 +66,14 @@
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_baseline_map_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-ldpi/ic_baseline_map_24.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_baseline_search_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-hdpi/ic_baseline_search_24.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_user_area.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_user_area.xml"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_baseline_card_giftcard_24.png.flat",
@@ -112,6 +128,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_baseline_user_24.xml"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_baseline_location_on_24.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_baseline_location_on_24.xml"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_baseline_card_giftcard_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-hdpi/ic_baseline_card_giftcard_24.png"
     },
@@ -120,8 +140,16 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-mdpi/ic_baseline_home_24.png"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_baseline_location_on_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-hdpi/ic_baseline_location_on_24.png"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_baseline_location_on_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-ldpi/ic_baseline_location_on_24.png"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_baseline_comment_24.png.flat",
@@ -132,8 +160,16 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/drawable/button.xml"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_baseline_location_on_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_baseline_location_on_24.png"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_baseline_user_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_user_24.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_location_on_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_baseline_location_on_24.png"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_user_24.png.flat",
@@ -144,8 +180,16 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_launcher_background.png"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_baseline_location_on_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_location_on_24.png"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_baseline_map_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-mdpi/ic_baseline_map_24.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_search_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_baseline_search_24.png"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_baseline_card_giftcard_24.png.flat",
@@ -180,6 +224,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_arrow_back_24.png"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_baseline_search_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_search_24.png"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_card_giftcard_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_baseline_card_giftcard_24.png"
     },
@@ -196,6 +244,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_launcher_background.png"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_user_sys_setup.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_user_sys_setup.xml"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_baseline_card_giftcard_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_card_giftcard_24.png"
     },
@@ -208,6 +260,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_launcher_background.xml"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_baseline_location_on_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-mdpi/ic_baseline_location_on_24.png"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/color_item_select.xml.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/color/item_select.xml"
     },
@@ -218,6 +274,10 @@
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_baseline_home_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_home_24.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_baseline_search_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_baseline_search_24.png"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher_background.png.flat",
@@ -244,6 +304,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_user_area_item_view.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/layout/user_area_item_view.xml"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_baseline_user_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-ldpi/ic_baseline_user_24.png"
     },
@@ -258,6 +322,10 @@
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_baseline_search_24.png.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-mdpi/ic_baseline_search_24.png"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_map_24.png.flat",
@@ -282,6 +350,10 @@
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_comment_24.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_baseline_comment_24.png"
+    },
+    {
+        "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_baseline_search_24.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_baseline_search_24.xml"
     },
     {
         "merged": "/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_baseline_comment_24.png.flat",
