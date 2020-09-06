@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_userAreaFragment_to_userSysSetupFragment"
             app:destination="@id/userSysSetupFragment" />
+        <action
+            android:id="@+id/action_userAreaFragment_to_userMyResFragment"
+            app:destination="@id/userMyResFragment" />
     </fragment>
     <fragment
         android:id="@+id/userSysSetupFragment"
@@ -52,4 +55,9 @@
         android:name="com.example.foodradar_android.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/userMyResFragment"
+        android:name="com.example.foodradar_android.user.UserMyResFragment"
+        android:label="fragment_user_my_res"
+        tools:layout="@layout/fragment_user_my_res" />
 </navigation>
