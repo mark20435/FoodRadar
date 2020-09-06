@@ -3,17 +3,17 @@ package com.example.foodradar_android;
 import android.app.Activity;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.foodradar_android.res.Res;
+import com.example.foodradar_android.task.CommonTask;
+import com.example.foodradar_android.task.ImageTask;
 
 import java.util.List;
 

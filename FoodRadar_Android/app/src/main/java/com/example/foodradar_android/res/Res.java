@@ -1,4 +1,4 @@
-package com.example.foodradar_android;
+package com.example.foodradar_android.res;
 
 import java.io.Serializable;
 
@@ -6,17 +6,17 @@ public class Res implements Serializable {
 
     private int resId;
     private String resName;
-    private String resAdress;
+    private String resAddress;
     private String resTel;
     private int categoryId;
     private boolean resEnable;
     private int userId;
     private String resCategoryInfo;
 
-    public Res(int resId, String resName, String resAdress, String resTel, int categoryId, boolean resEnable, int userId) {
+    public Res(int resId, String resName, String resAddress, String resTel, int categoryId, boolean resEnable, int userId) {
         this.resId = resId;
         this.resName = resName;
-        this.resAdress = resAdress;
+        this.resAddress = resAddress;
         this.resTel = resTel;
         this.categoryId = categoryId;
         this.resEnable = resEnable;
@@ -40,12 +40,12 @@ public class Res implements Serializable {
         this.resName = resName;
     }
 
-    public String getResAdress() {
-        return resAdress;
+    public String getResAddress() {
+        return resAddress;
     }
 
-    public void setResAdress(String resAdress) {
-        this.resAdress = resAdress;
+    public void setResAddress(String resAddress) {
+        this.resAddress = resAddress;
     }
 
     public String getResTel() {
