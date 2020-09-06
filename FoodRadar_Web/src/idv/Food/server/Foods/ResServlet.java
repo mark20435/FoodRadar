@@ -38,7 +38,7 @@ public class ResServlet extends HttpServlet {
 
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		if (resDao == null) {
-			resDao = new ResDaoMySqlmpl();
+			resDao = new ResDaoMySqlImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
 
@@ -97,7 +97,7 @@ public class ResServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (resDao == null) {
-			resDao = new ResDaoMySqlmpl();
+			resDao = new ResDaoMySqlImpl();
 		}
 		List<Res> ress = resDao.getAll();
 		writeText(response, new Gson().toJson(ress));

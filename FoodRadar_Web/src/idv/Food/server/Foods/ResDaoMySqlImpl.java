@@ -13,10 +13,10 @@ import idv.Food.server.main.ServiceLocator;
 
 
 
-public class ResDaoMySqlmpl implements ResDao{
+public class ResDaoMySqlImpl implements ResDao{
 	DataSource dataSource;
 	
-	 public ResDaoMySqlmpl() {
+	 public ResDaoMySqlImpl() {
 		dataSource = ServiceLocator.getInstance().getDataSource();
 	}
 	 public void setDataSource(DataSource dataSource) {
