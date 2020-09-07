@@ -1829,6 +1829,7 @@ string rankArticle
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
+string textNoNetwork
 string title_of_myres
 string user
 style AlertDialog_AppCompat

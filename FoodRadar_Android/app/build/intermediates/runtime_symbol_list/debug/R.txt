@@ -1828,8 +1828,9 @@ int string rankArticle 0x7f0f0045
 int string search_menu_title 0x7f0f0046
 int string status_bar_notification_info_overflow 0x7f0f0047
 int string textEatWhat 0x7f0f0048
-int string title_of_myres 0x7f0f0049
-int string user 0x7f0f004a
+int string textNoNetwork 0x7f0f0049
+int string title_of_myres 0x7f0f004a
+int string user 0x7f0f004b
 int style AlertDialog_AppCompat 0x7f100000
 int style AlertDialog_AppCompat_Light 0x7f100001
 int style Animation_AppCompat_Dialog 0x7f100002
