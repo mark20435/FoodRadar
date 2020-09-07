@@ -285,7 +285,7 @@ DROP TABLE IF EXISTS `Res`;
 CREATE TABLE `Res` (
   `resId` int NOT NULL AUTO_INCREMENT,
   `resName` varchar(50) NOT NULL,
-  `resAdress` varchar(200) NOT NULL,
+  `resAddress` varchar(200) NOT NULL,
   `resLat` decimal(10,7) NOT NULL,
   `resLon` decimal(10,7) NOT NULL,
   `resTel` varchar(20) NOT NULL,
@@ -374,4 +374,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-01 16:04:23
+-- Dump completed on 2020-09-06 18:43:58

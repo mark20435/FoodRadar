@@ -13,10 +13,10 @@ import idv.Food.server.main.ServiceLocator;
 
 
 
-public class ResDaoMySqlmpl implements ResDao{
+public class ResDaoMySqlImpl implements ResDao{
 	DataSource dataSource;
 	
-	 public ResDaoMySqlmpl() {
+	 public ResDaoMySqlImpl() {
 		dataSource = ServiceLocator.getInstance().getDataSource();
 	}
 	 public void setDataSource(DataSource dataSource) {
@@ -27,13 +27,13 @@ public class ResDaoMySqlmpl implements ResDao{
 	public int insert(Res res, byte[] image) {
 		int count = 0;
 		String sql = "INSERT INTO Res" + 
-				"(resName, resAdress, resLat, resLon, resTel) "	+ 
+				"(resName, resAddress, resLat, resLon, resTel) "	+ 
 				"VALUES(?, ?, ?, ?, ?);";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			
 			ps.setString(1, res.getResName());
-			ps.setString(2, res.getResAdress());
+			ps.setString(2, res.getResAddress());
 			ps.setString(3, res.getResLat());
 			ps.setString(4, res.getResLon());
 			ps.setString(5, res.getResTel());
@@ -51,17 +51,17 @@ public class ResDaoMySqlmpl implements ResDao{
 		String sql = "";
 		
 		if (image != null) {
-			sql = "UPDATE Res SET resName = ?, resAdress = ?, resLat = ?, resLon = ?, "
+			sql = "UPDATE Res SET resName = ?, resAddress = ?, resLat = ?, resLon = ?, "
 					+ "resTel = ?, image = ? WHERE resId = ?;";
 		} else {
-			sql = "UPDATE Res SET resName = ?, resAdress = ?, resLat = ?, resLon = ?, "
+			sql = "UPDATE Res SET resName = ?, resAddress = ?, resLat = ?, resLon = ?, "
 					+ "resTel = ?, image = ? WHERE resId = ?;";
 		}
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			
 			ps.setString(1, res.getResName());
-			ps.setString(2, res.getResAdress());
+			ps.setString(2, res.getResAddress());
 			ps.setString(3, res.getResLat());
 			ps.setString(4, res.getResLon());
 			ps.setString(5, res.getResTel());
@@ -96,7 +96,7 @@ public class ResDaoMySqlmpl implements ResDao{
 
 	@Override
 	public Res findById(int resId) {
-		String sql = "SELECT resId, resName, resAdress, resLat, resLon, resTel, FROM Res WHERE resId = ?;";
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, FROM Res WHERE resId = ?;";
 		Res res = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -105,11 +105,11 @@ public class ResDaoMySqlmpl implements ResDao{
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				String resName = rs.getString(1);
-				String resAdress = rs.getString(2);
+				String resAddress = rs.getString(2);
 				String resTel = rs.getString(5);
 				String resLat = rs.getString(3);
 				String resLon = rs.getString(4);
-				res = new Res(resId, resName, resAdress, resLat, resLon, resTel);
+				res = new Res(resId, resName, resAddress, resLat, resLon, resTel);
 				
 			}
 		} catch (SQLException e) {
@@ -120,7 +120,7 @@ public class ResDaoMySqlmpl implements ResDao{
 
 	@Override
 	public List<Res> getAll() {
-		String sql = "SELECT resId, resName, resAdress, resTel, resLat, resLon " 
+		String sql = "SELECT resId, resName, resAddress, resTel, resLat, resLon " 
 				+ "FROM Res ORDER BY modifyDate DESC;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
@@ -129,11 +129,11 @@ public class ResDaoMySqlmpl implements ResDao{
 			while (rs.next()) {
 				int resId = rs.getInt(1);
 				String resName = rs.getString(2);
-				String resAdress = rs.getString(3);
+				String resAddress = rs.getString(3);
 				String resTel = rs.getString(4);
 				String resLat = rs.getString(5);
 				String resLon = rs.getString(6);
-				Res res = new Res(resId, resName, resAdress, resTel, resLat, resLon);
+				Res res = new Res(resId, resName, resAddress, resTel, resLat, resLon);
 				ressList.add(res);
 			}
 			return ressList;

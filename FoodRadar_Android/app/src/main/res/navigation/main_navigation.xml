@@ -9,26 +9,26 @@
         android:id="@+id/mainFragment"
         android:name="com.example.foodradar_android.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_resMapFragment"
             app:destination="@id/resMapFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_userAreaFragment"
-            app:destination="@id/userAreaFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_couponFragment"
             app:destination="@id/couponFragment" />
+<<<<<<< HEAD
         <action
             android:id="@+id/action_mainFragment_to_articleFragment3"/>
         <action
             android:id="@+id/action_mainFragment_to_newArticleFragment"
             app:destination="@id/newArticleFragment" />
 
+=======
+>>>>>>> 24a66fb53fed7eefdba017cf1de0b2d97ae49310
     </fragment>
     <fragment
         android:id="@+id/resMapFragment"
-        android:name="com.example.foodradar_android.ResMapFragment"
+        android:name="com.example.foodradar_android.res.ResMapFragment"
         android:label="fragment_res_map"
         tools:layout="@layout/fragment_res_map" />
     <fragment
@@ -36,21 +36,30 @@
         android:name="com.example.foodradar_android.user.UserAreaFragment"
         android:label="fragment_user_area"
         tools:layout="@layout/fragment_user_area">
+<!--        <action-->
+<!--            android:id="@+id/action_userAreaFragment_to_userSysSetupFragment"-->
+<!--            app:destination="@id/userSysSetupFragment" />-->
         <action
-            android:id="@+id/action_userAreaFragment_to_userSysSetupFragment"
-            app:destination="@id/userSysSetupFragment" />
+            android:id="@+id/action_userAreaFragment_to_userMyResFragment"
+            app:destination="@id/userMyResFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/userSysSetupFragment"
-        android:name="com.example.foodradar_android.user.UserSysSetupFragment"
-        android:label="fragment_user_sys_setup"
-        tools:layout="@layout/fragment_user_sys_setup" />
+<!--    <fragment-->
+<!--        android:id="@+id/userSysSetupFragment"-->
+<!--        android:name="com.example.foodradar_android.user.UserSysSetupFragment"-->
+<!--        android:label="fragment_user_sys_setup"-->
+<!--        tools:layout="@layout/fragment_user_sys_setup" />-->
     <fragment
         android:id="@+id/couponFragment"
         android:name="com.example.foodradar_android.CouponFragment"
         android:label="fragment_coupon"
         tools:layout="@layout/fragment_coupon" />
+<!--    <fragment-->
+<!--        android:id="@+id/articleFragment"-->
+<!--        android:name="com.example.foodradar_android.ArticleFragment"-->
+<!--        android:label="fragment_article"-->
+<!--        tools:layout="@layout/fragment_article" />-->
     <fragment
+<<<<<<< HEAD
         android:id="@+id/newArticleFragment"
         android:name="com.example.foodradar_android.NewArticleFragment"
         android:label="fragment_new_article"
@@ -72,4 +81,10 @@
         android:name="com.example.foodradar_android.FavoriteArticleFragment"
         android:label="fragment_favorite_article"
         tools:layout="@layout/fragment_favorite_article" />
+=======
+        android:id="@+id/userMyResFragment"
+        android:name="com.example.foodradar_android.user.UserMyResFragment"
+        android:label="fragment_user_my_res"
+        tools:layout="@layout/fragment_user_my_res" />
+>>>>>>> 24a66fb53fed7eefdba017cf1de0b2d97ae49310
 </navigation>

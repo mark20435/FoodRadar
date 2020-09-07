@@ -1,4 +1,4 @@
-package com.example.foodradar_android;
+package com.example.foodradar_android.res;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodradar_android.R;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;

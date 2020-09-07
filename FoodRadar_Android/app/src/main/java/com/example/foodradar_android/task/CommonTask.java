@@ -1,4 +1,4 @@
-package com.example.foodradar_android;
+package com.example.foodradar_android.task;
 
 import android.os.AsyncTask;
 import android.os.Build;
