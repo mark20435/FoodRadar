@@ -19,12 +19,10 @@
         <action
             android:id="@+id/action_mainFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
-<<<<<<< HEAD
-=======
+
         <action
             android:id="@+id/action_mainFragment_to_userAreaFragment"
             app:destination="@id/userAreaFragment" />
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 
     </fragment>
     <fragment

@@ -1377,10 +1377,7 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_text
-<<<<<<< HEAD
-=======
 id action_userAreaFragment_to_resMaintainFragment
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
@@ -1496,21 +1493,14 @@ id icon
 id icon_group
 id icon_only
 id id_btResMaintain
-<<<<<<< HEAD
 id id_rcvMyRes
-=======
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id ifRoom
 id ignore
 id ignoreRequest
 id imResImg
 id image
-<<<<<<< HEAD
-id imageView3
-id img
-=======
 id imageView
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
+id img
 id info
 id invisible
 id italic
@@ -1573,11 +1563,8 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
-<<<<<<< HEAD
 id resCategoryInfo
-=======
 id resMaintainFragment
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id resMapFragment
 id resName
 id reverseSawtooth
@@ -1682,33 +1669,24 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-<<<<<<< HEAD
 id tvArticleTime
 id tvCommentCount
 id tvFavoriteArticle
-id tvgoodCount
-=======
 id tvResAddress
 id tvResHours
 id tvResName
 id tvResTel
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
+id tvgoodCount
 id unchecked
 id uniform
 id unlabeled
 id up
 id useLogo
-<<<<<<< HEAD
-id userIcon
-id userName
-=======
 id userAreaFragment
-<<<<<<< HEAD
+id userIcon
 id userMyResFragment
-=======
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
+id userName
 id userSysSetupFragment
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1798,10 +1776,7 @@ layout fragment_rank_article
 layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_user_area
-<<<<<<< HEAD
 layout fragment_user_my_res
-=======
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 layout fragment_user_sys_setup
 layout item_view_user_myres
 layout mtrl_layout_snackbar
@@ -1906,9 +1881,6 @@ string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
-<<<<<<< HEAD
-string textNoNetwork
-=======
 string textEnable
 string textNoNetwork
 string textResAddress
@@ -1917,7 +1889,6 @@ string textResEnable
 string textResHours
 string textResName
 string textResPhone
->>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 string title_of_myres
 string user
 style AlertDialog_AppCompat

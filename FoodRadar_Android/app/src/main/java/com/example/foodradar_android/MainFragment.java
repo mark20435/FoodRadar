@@ -41,24 +41,17 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-<<<<<<< HEAD
+
         getActivity().setTitle(R.string.home);
 
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
-
-
-
-=======
-        activity.setTitle(R.string.home);
-        return inflater.inflate(R.layout.fragment_main, container, false);
-    }
     // 首頁不顯示返回箭頭
     @Override
     public void onResume() {
         super.onResume();
         new Common().setBackArrow(false, activity);
     }
->>>>>>> a674d43011731ac5b9268816536b73c1059804d6
+
 }
