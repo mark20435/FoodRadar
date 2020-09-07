@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
+
 public class UserAreaFragment extends Fragment {
     private Activity activity;
     private NavController navController;
@@ -42,8 +43,8 @@ public class UserAreaFragment extends Fragment {
     // 顯示右上角的OptionMenu選單
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
-//        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
+        super.onCreateOptionsMenu(menu, inflater);
     }
     // 顯示右上角的OptionMenu選單
     @Override
