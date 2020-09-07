@@ -9,8 +9,11 @@
     <string name="user">會員管理</string>
     <string name="appbar">完成</string>
     <string name="textEatWhat">今天吃什麼</string>
+<<<<<<< HEAD
     <string name="title_of_myres">我的餐廳收藏</string>
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
+=======
+>>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 </resources>

@@ -1,4 +1,4 @@
-package com.example.foodradar_android.res;
+package ress;
 
 import java.sql.Timestamp;
 
