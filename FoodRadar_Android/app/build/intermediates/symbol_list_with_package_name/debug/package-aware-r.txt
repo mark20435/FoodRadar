@@ -1362,6 +1362,7 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
+id action_mainFragment_to_articleFragment
 id action_mainFragment_to_articleFragment3
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
