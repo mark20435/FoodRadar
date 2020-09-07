@@ -8,56 +8,17 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="couponFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="62" />
-                            <option name="y" value="-393" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="favoriteArticleFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="347" />
-                            <option name="y" value="-649" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="mainFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-457" />
-                            <option name="y" value="-310" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainFragment_to_articleFragment3">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_mainFragment_to_couponFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_mainFragment_to_newArticleFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_mainFragment_to_resMapFragment">
                               <value>
                                 <LayoutPositions />
@@ -68,51 +29,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="newArticleFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-54" />
-                            <option name="y" value="-758" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_newArticleFragment_to_favoriteArticleFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_newArticleFragment_to_rankArticleFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="rankArticleFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="328" />
-                            <option name="y" value="-1025" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="resMapFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
+<<<<<<< HEAD
+                            <option name="x" value="291" />
+                            <option name="y" value="13" />
+=======
                             <option name="x" value="68" />
                             <option name="y" value="-29" />
+<<<<<<< HEAD
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -135,6 +63,21 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userMyResFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+=======
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
