@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FoodRadar-FoodRadar_Android.iml" filepath="$PROJECT_DIR$/.idea/modules/FoodRadar-FoodRadar_Android.iml" group="FoodRadar_Android" />
       <module fileurl="file://$PROJECT_DIR$/.idea/FoodRadar_Android.iml" filepath="$PROJECT_DIR$/.idea/FoodRadar_Android.iml" group="FoodRadar_Android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FoodRadar_Android-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FoodRadar_Android-app.iml" group="FoodRadar_Android/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="FoodRadar_Android/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ricky-FoodRadar-FoodRadar_Android.iml" filepath="$PROJECT_DIR$/.idea/modules/ricky-FoodRadar-FoodRadar_Android.iml" group="FoodRadar_Android" />
     </modules>
   </component>
 </project>
