@@ -1,4 +1,4 @@
-package ress;
+package server.ress;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import idv.Food.server.main.ImageUtil;
+import server.main.ImageUtil;
 
 
 @WebServlet("/ResServlet")

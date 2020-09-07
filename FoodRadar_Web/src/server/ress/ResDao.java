@@ -1,4 +1,4 @@
-package ress;
+package server.ress;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package idv.Food.server.Article;
+package server.Article;
 
 public interface ArticleDao {
 
