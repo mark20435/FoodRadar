@@ -1315,7 +1315,6 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
-id User
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -1366,12 +1365,14 @@ id action_mainFragment_to_articleFragment
 id action_mainFragment_to_articleFragment3
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
+id action_mainFragment_to_userAreaFragment
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_text
+id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -1479,6 +1480,7 @@ id hybrid
 id icon
 id icon_group
 id icon_only
+id id_btResMaintain
 id ifRoom
 id ignore
 id ignoreRequest
@@ -1642,6 +1644,8 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id userAreaFragment
+id userSysSetupFragment
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1728,6 +1732,8 @@ layout fragment_main
 layout fragment_new_article
 layout fragment_rank_article
 layout fragment_res_map
+layout fragment_user_area
+layout fragment_user_sys_setup
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
