@@ -13,4 +13,5 @@
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
+    <string name="textNoNetwork">No Network</string>
 </resources>
