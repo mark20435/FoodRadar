@@ -1,15 +1,11 @@
 package com.example.foodradar_android;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavigation);
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        NavController navController = Navigation.findNavController(this, R.id.mainFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 

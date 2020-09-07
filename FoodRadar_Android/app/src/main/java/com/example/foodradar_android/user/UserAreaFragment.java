@@ -16,8 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -37,7 +35,7 @@ public class UserAreaFragment extends Fragment {
         setHasOptionsMenu(true);
 
         navController =
-                Navigation.findNavController(activity, R.id.fragment);
+                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     // 顯示右上角的OptionMenu選單

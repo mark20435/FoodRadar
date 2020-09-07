@@ -33,7 +33,7 @@ public class ResMaintainFragment extends Fragment {
         setHasOptionsMenu(true);
 
         navController =
-                Navigation.findNavController(activity, R.id.fragment);
+                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override

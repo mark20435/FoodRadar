@@ -1367,7 +1367,6 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
-id action_mainFragment_to_articleFragment
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
 id action_mainFragment_to_userAreaFragment
@@ -1390,7 +1389,9 @@ id all
 id always
 id animateToEnd
 id animateToStart
+id articleConstraintLayout
 id articleFragment
+id articleNavigation
 id articleTitle
 id article_navigation
 id asConfigured
@@ -1405,7 +1406,6 @@ id beginOnFirstDraw
 id beginning
 id blocking
 id bottom
-id bottomNavigationView
 id bounce
 id button
 id buttonPanel
