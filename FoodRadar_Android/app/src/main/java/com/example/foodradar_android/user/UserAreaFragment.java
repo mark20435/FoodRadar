@@ -78,7 +78,7 @@ public class UserAreaFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
+                navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
 
             }
         });

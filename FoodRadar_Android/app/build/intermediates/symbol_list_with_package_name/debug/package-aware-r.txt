@@ -1372,6 +1372,10 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_text
+<<<<<<< HEAD
+=======
+id action_userAreaFragment_to_resMaintainFragment
+>>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
@@ -1453,6 +1457,10 @@ id end
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id etResAddress
+id etResHours
+id etResName
+id etResPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -1481,12 +1489,16 @@ id icon
 id icon_group
 id icon_only
 id id_btResMaintain
+<<<<<<< HEAD
 id id_rcvMyRes
+=======
+>>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id ifRoom
 id ignore
 id ignoreRequest
 id imResImg
 id image
+id imageView
 id info
 id invisible
 id italic
@@ -1546,6 +1558,7 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
+id resMaintainFragment
 id resMapFragment
 id reverseSawtooth
 id right
@@ -1585,6 +1598,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id spCategory
 id spacer
 id spline
 id split_action_bar
@@ -1605,6 +1619,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id swResEnable
 id swipeRefreshLayout
 id tabMode
 id tag_accessibility_actions
@@ -1621,6 +1636,12 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
+id textView2
+id textView3
+id textView4
+id textView5
+id textView6
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1651,7 +1672,10 @@ id unlabeled
 id up
 id useLogo
 id userAreaFragment
+<<<<<<< HEAD
 id userMyResFragment
+=======
+>>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 id userSysSetupFragment
 id view_offset_helper
 id visible
@@ -1738,9 +1762,13 @@ layout fragment_favorite_article
 layout fragment_main
 layout fragment_new_article
 layout fragment_rank_article
+layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_user_area
+<<<<<<< HEAD
 layout fragment_user_my_res
+=======
+>>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 layout fragment_user_sys_setup
 layout item_view_user_myres
 layout mtrl_layout_snackbar
@@ -1841,10 +1869,22 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string rankArticle
+string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
+<<<<<<< HEAD
 string textNoNetwork
+=======
+string textEnable
+string textNoNetwork
+string textResAddress
+string textResCategory
+string textResEnable
+string textResHours
+string textResName
+string textResPhone
+>>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 string title_of_myres
 string user
 style AlertDialog_AppCompat
