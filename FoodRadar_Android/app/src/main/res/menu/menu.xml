@@ -17,11 +17,7 @@
 <!--    <HEAD:FoodRadar_Android/app/src/main/res/menu/buttom_navigation_menu.xml-->
 <!--        android:id="@+id/newArticleFragment"-->
     <item
-<<<<<<< HEAD
         android:id="@+id/articleFragment"
-=======
-        android:id="@+id/Comment"
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
         android:icon="@drawable/ic_baseline_comment_24"
         android:title="@string/article" />
     <item

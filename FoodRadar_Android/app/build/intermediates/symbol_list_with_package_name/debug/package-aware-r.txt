@@ -1286,7 +1286,6 @@ drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
-drawable logo_foodradar
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1307,8 +1306,6 @@ drawable tooltip_frame_light
 id ALT
 id BottomNavigation
 id CTRL
-id Comment
-id CouPon
 id FUNCTION
 id Finish
 id META
@@ -1365,6 +1362,7 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
+id action_mainFragment_to_articleFragment3
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
 id action_menu_divider
@@ -1373,17 +1371,6 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_text
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-id action_userAreaFragment_to_userMyResFragment
-=======
-id action_userAreaFragment_to_userSysSetupFragment
->>>>>>> parent of 138b931... 測試整合
->>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 id actions
 id activity_chooser_view_content
 id add
@@ -1395,12 +1382,8 @@ id all
 id always
 id animateToEnd
 id animateToStart
-<<<<<<< HEAD
-id appBarLayout
 id articleFragment
 id article_navigation
-=======
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 id asConfigured
 id async
 id auto
@@ -1413,20 +1396,8 @@ id beginOnFirstDraw
 id beginning
 id blocking
 id bottom
+id bottomNavigationView
 id bounce
-<<<<<<< HEAD
-id btMyRes
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-id btMyRes
-=======
-id brResMaintain
->>>>>>> parent of 138b931... 測試整合
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
-id btSysSetup
->>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 id button
 id buttonPanel
 id cancel_action
@@ -1483,6 +1454,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id favoriteArticleFragment
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1509,7 +1481,6 @@ id icon_only
 id ifRoom
 id ignore
 id ignoreRequest
-id imResImg
 id image
 id info
 id invisible
@@ -1543,6 +1514,7 @@ id nav_controller_view_tag
 id nav_host_fragment_container
 id navigation_header_container
 id never
+id newArticleFragment
 id none
 id normal
 id notification_background
@@ -1566,8 +1538,8 @@ id postLayout
 id progress_circular
 id progress_horizontal
 id radio
+id rankArticleFragment
 id ratio
-id rcvMyRes
 id rectangles
 id resMapFragment
 id reverseSawtooth
@@ -1664,44 +1636,11 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-<<<<<<< HEAD
-id tvFoodRadarColor
-id tvResAddress
-id tvResHours
-id tvResName
-id tvResTel
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-id tvFoodRadarColor
-id tvResAddress
-id tvResHours
-id tvResName
-id tvResTel
-=======
-id tv56dp
-id tvFoodRadarColor
->>>>>>> parent of 138b931... 測試整合
->>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 id unchecked
 id uniform
 id unlabeled
 id up
 id useLogo
-<<<<<<< HEAD
-=======
-id userAreaFragment
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-id userMyResFragment
-=======
-id userSysSetupFragment
->>>>>>> parent of 138b931... 測試整合
->>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1783,23 +1722,11 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_article
 layout fragment_coupon
+layout fragment_favorite_article
 layout fragment_main
+layout fragment_new_article
+layout fragment_rank_article
 layout fragment_res_map
-<<<<<<< HEAD
-=======
-layout fragment_user_area
-<<<<<<< HEAD
-layout fragment_user_my_res
-layout item_view_user_myres
-=======
-<<<<<<< HEAD
-layout fragment_user_my_res
-layout item_view_user_myres
-=======
-layout fragment_user_sys_setup
->>>>>>> parent of 138b931... 測試整合
->>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1822,6 +1749,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu appbar_menu
+menu article_menu
 menu menu
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -1882,6 +1810,7 @@ string common_signin_button_text_long
 string coupon
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string favoriteArticle
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string home
@@ -1889,27 +1818,17 @@ string map
 string mtrl_chip_close_icon_content_description
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
+string newArticle
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string rankArticle
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
-<<<<<<< HEAD
 string title_of_myres
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-string title_of_myres
-=======
-string title_of_home
-string title_of_user
->>>>>>> parent of 138b931... 測試整合
->>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
->>>>>>> 5eb74ed99d6846d52424b0f7aea15e062e059c8e
 string user
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
