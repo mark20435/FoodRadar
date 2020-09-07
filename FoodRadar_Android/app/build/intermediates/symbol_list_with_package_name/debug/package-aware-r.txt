@@ -1286,6 +1286,7 @@ drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable logo_foodradar
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1372,6 +1373,14 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_text
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+id action_userAreaFragment_to_userMyResFragment
+=======
+id action_userAreaFragment_to_userSysSetupFragment
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 id actions
 id activity_chooser_view_content
 id add
@@ -1396,6 +1405,15 @@ id beginning
 id blocking
 id bottom
 id bounce
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+id btMyRes
+=======
+id brResMaintain
+>>>>>>> parent of 138b931... 測試整合
+id btSysSetup
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 id button
 id buttonPanel
 id cancel_action
@@ -1478,6 +1496,7 @@ id icon_only
 id ifRoom
 id ignore
 id ignoreRequest
+id imResImg
 id image
 id info
 id invisible
@@ -1535,6 +1554,7 @@ id progress_circular
 id progress_horizontal
 id radio
 id ratio
+id rcvMyRes
 id rectangles
 id resMapFragment
 id reverseSawtooth
@@ -1631,11 +1651,33 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+id tvFoodRadarColor
+id tvResAddress
+id tvResHours
+id tvResName
+id tvResTel
+=======
+id tv56dp
+id tvFoodRadarColor
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 id unchecked
 id uniform
 id unlabeled
 id up
 id useLogo
+<<<<<<< HEAD
+=======
+id userAreaFragment
+<<<<<<< HEAD
+id userMyResFragment
+=======
+id userSysSetupFragment
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1718,6 +1760,16 @@ layout design_text_input_password_icon
 layout fragment_coupon
 layout fragment_main
 layout fragment_res_map
+<<<<<<< HEAD
+=======
+layout fragment_user_area
+<<<<<<< HEAD
+layout fragment_user_my_res
+layout item_view_user_myres
+=======
+layout fragment_user_sys_setup
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1814,6 +1866,15 @@ string path_password_strike_through
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+string title_of_myres
+=======
+string title_of_home
+string title_of_user
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 string user
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

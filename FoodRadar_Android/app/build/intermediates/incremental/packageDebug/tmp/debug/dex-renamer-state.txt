@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 #Mon Sep 07 10:50:50 CST 2020
 base.0=/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+=======
+<<<<<<< HEAD
+#Mon Sep 07 10:45:27 CST 2020
+base.0=/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+=======
+#Mon Sep 07 02:46:37 CST 2020
+base.0=/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
 path.0=classes.dex
 renamed.0=classes.dex

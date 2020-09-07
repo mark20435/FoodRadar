@@ -34,8 +34,49 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
+<<<<<<< HEAD
                             <option name="x" value="291" />
                             <option name="y" value="13" />
+=======
+                            <option name="x" value="68" />
+                            <option name="y" value="-29" />
+<<<<<<< HEAD
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userAreaFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-161" />
+                            <option name="y" value="343" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_userAreaFragment_to_userMyResFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userMyResFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+=======
+>>>>>>> parent of 138b931... 測試整合
+>>>>>>> 0fc1b6c34531381734db8a011f11745569847e0b
                           </Point>
                         </option>
                       </LayoutPositions>

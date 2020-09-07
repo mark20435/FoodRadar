@@ -13,6 +13,9 @@
         android:id="@+id/CouPon"
         android:icon="@drawable/ic_baseline_card_giftcard_24"
         android:title="@string/coupon" />
+<!--    <item-->
+<!--    <HEAD:FoodRadar_Android/app/src/main/res/menu/buttom_navigation_menu.xml-->
+<!--        android:id="@+id/newArticleFragment"-->
     <item
         android:id="@+id/Comment"
         android:icon="@drawable/ic_baseline_comment_24"
