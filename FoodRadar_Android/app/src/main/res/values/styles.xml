@@ -13,7 +13,6 @@
         <item name="titleTextColor">@color/colorTextDark</item>
         <!--ActionBarMenu文字顏色-->
         <item name="actionMenuTextColor">@color/colorTextDark</item>
-
     </style>
 
     <!--定義ActionBarMenu文字尺寸-->
@@ -22,4 +21,4 @@
     </style>
 
 
-</resources>
+    </resources>

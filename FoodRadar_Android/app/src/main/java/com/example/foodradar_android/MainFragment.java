@@ -1,5 +1,6 @@
 package com.example.foodradar_android;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -32,14 +33,18 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle(R.string.home);
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
+
+
 
 
 }

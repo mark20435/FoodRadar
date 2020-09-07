@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9e9bd6583db63b2d0743f1824466b07c/constraintlayout-2.0.0/AndroidManifest.xml:2:1-11:12
+ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/12c3ae384a8de2484709228873cd2fcd/navigation-ui-2.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/bcaf2f38bd0e6ffe04a17e5f685cbed4/material-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3a4bf45ee1cd2799bf6d0559eb3917d7/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
@@ -12,6 +12,7 @@ MERGED from [androidx.navigation:navigation-fragment:2.3.0] /Users/gn0987123/.gr
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/2fb8103c62e3ee1e6e4cc337dd696441/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/e0f9d0522c6656d32a32dab2b78a95a2/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/c53a1cf06eec9ec8e2c1fa79d76edf7f/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/8493bed2e63cf9e02dc8d3487927010c/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/51c4c178afaeff173cfa265953a5c82e/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/28174e475fcfd6ae966ed5772f6694ac/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -42,7 +43,6 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/gn09
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/76ad8784f7775ee085a507499a94a7b5/jetified-lifecycle-viewmodel-savedstate-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/4f5d76a0bab1f8f190523edd3e5489e3/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/8a52da53b02a83b08615debb9b2e109c/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/c53a1cf06eec9ec8e2c1fa79d76edf7f/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3b42a536ebf513f3936a66975b947a3a/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/275bb0cd718ded38eec8234e7513c16c/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/fc12b1d7b1a887a81ff1f750b0b473c7/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -51,20 +51,20 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/gn0987123/.gradle/
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/ed8cc0ac00b11c0234ef1e5a578c70c1/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3b280e712fa64b7564c60c94f2d493e6/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/de7b0c2f4705e3cb372b76d33c6f36f6/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
 	package
 		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:3:5-44
 		INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
+		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
 		INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-41:12
+		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-42:12
 		INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:11-69
@@ -97,9 +97,9 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/
 	android:required
 		ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:9-32
 application
-ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-39:19
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9e9bd6583db63b2d0743f1824466b07c/constraintlayout-2.0.0/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9e9bd6583db63b2d0743f1824466b07c/constraintlayout-2.0.0/AndroidManifest.xml:9:5-20
+ADDED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-40:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/bcaf2f38bd0e6ffe04a17e5f685cbed4/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/bcaf2f38bd0e6ffe04a17e5f685cbed4/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
@@ -164,8 +164,8 @@ uses-sdk
 INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9e9bd6583db63b2d0743f1824466b07c/constraintlayout-2.0.0/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9e9bd6583db63b2d0743f1824466b07c/constraintlayout-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/12c3ae384a8de2484709228873cd2fcd/navigation-ui-2.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/12c3ae384a8de2484709228873cd2fcd/navigation-ui-2.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/bcaf2f38bd0e6ffe04a17e5f685cbed4/material-1.0.0/AndroidManifest.xml:20:5-44
@@ -180,6 +180,8 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/e0f9d0522c6656d32a32dab2b78a95a2/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/e0f9d0522c6656d32a32dab2b78a95a2/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/c53a1cf06eec9ec8e2c1fa79d76edf7f/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/c53a1cf06eec9ec8e2c1fa79d76edf7f/cardview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/8493bed2e63cf9e02dc8d3487927010c/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/8493bed2e63cf9e02dc8d3487927010c/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/51c4c178afaeff173cfa265953a5c82e/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
@@ -240,8 +242,6 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/gn0987123/.gra
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/4f5d76a0bab1f8f190523edd3e5489e3/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/8a52da53b02a83b08615debb9b2e109c/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/8a52da53b02a83b08615debb9b2e109c/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/c53a1cf06eec9ec8e2c1fa79d76edf7f/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/c53a1cf06eec9ec8e2c1fa79d76edf7f/cardview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3b42a536ebf513f3936a66975b947a3a/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/3b42a536ebf513f3936a66975b947a3a/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/275bb0cd718ded38eec8234e7513c16c/documentfile-1.0.0/AndroidManifest.xml:20:5-44

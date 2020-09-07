@@ -5,7 +5,7 @@
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="17"
+8        android:minSdkVersion="19"
 8-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
 9-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
@@ -34,7 +34,7 @@
 19-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:9-32
 20
 21    <application
-21-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-39:19
+21-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-40:19
 22        android:allowBackup="true"
 22-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-35
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -78,22 +78,23 @@
 42-->/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:27-74
 43            </intent-filter>
 44        </activity>
-45        <!-- Needs to be explicitly declared on P+ -->
-46        <uses-library
-46-->[com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-47            android:name="org.apache.http.legacy"
-47-->[com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-48            android:required="false" />
-48-->[com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-49
-50        <activity
-50-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-51            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-51-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-52            android:exported="false"
-52-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-53            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-53-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-54    </application>
-55
-56</manifest>
+45
+46        <!-- Needs to be explicitly declared on P+ -->
+47        <uses-library
+47-->[com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+48            android:name="org.apache.http.legacy"
+48-->[com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+49            android:required="false" />
+49-->[com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+50
+51        <activity
+51-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+52            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+52-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+53            android:exported="false"
+53-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+54            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+54-->[com.google.android.gms:play-services-base:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+55    </application>
+56
+57</manifest>
