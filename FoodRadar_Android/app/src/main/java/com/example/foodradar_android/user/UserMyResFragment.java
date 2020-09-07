@@ -15,14 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
-public class UserAreaFragment extends Fragment {
+public class UserMyResFragment extends Fragment {
     private Activity activity;
     private NavController navController;
 
@@ -50,9 +47,9 @@ public class UserAreaFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.Finish:
-                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
-                break;
+//            case R.id.Finish:
+//                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
+//                break;
             case android.R.id.home:
                 navController.popBackStack();
                 break;
@@ -65,24 +62,17 @@ public class UserAreaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.user);
-        return inflater.inflate(R.layout.fragment_user_area, container, false);
+        activity.setTitle(R.string.title_of_myres);
+        return inflater.inflate(R.layout.fragment_user_my_res, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button button;
-        button = view.findViewById(R.id.id_btResMaintain);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
 
-            }
-        });
+
+
+
     }
-
-
 }
