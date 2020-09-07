@@ -13,11 +13,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+<<<<<<< HEAD
+=======
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false" />
+
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+>>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF" />
+<<<<<<< HEAD
 
     </LinearLayout>
+=======
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+>>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
 </androidx.constraintlayout.widget.ConstraintLayout>

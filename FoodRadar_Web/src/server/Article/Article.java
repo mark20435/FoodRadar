@@ -1,11 +1,11 @@
-package server.Article;
+package server.article;
 
 public class Article {
 	
 	private int articleId;
 	private String articleTitle;
-	private String artitleTime ;
-	private String artitleText ;
+	private String articleTime ;
+	private String articleText ;
 	private String modifyTime ;
 	private int resId;
 	private int userId;
@@ -18,13 +18,13 @@ public class Article {
 	}
 
 
-	public Article(int articleId, String articleTitle, String artitleTime, String artitleText, String modifyTime,
+	public Article(int articleId, String articleTitle, String articleTime, String articleText, String modifyTime,
 			int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
 		super();
 		this.articleId = articleId;
 		this.articleTitle = articleTitle;
-		this.artitleTime = artitleTime;
-		this.artitleText = artitleText;
+		this.articleTime = articleTime;
+		this.articleText = articleText;
 		this.modifyTime = modifyTime;
 		this.resId = resId;
 		this.userId = userId;
@@ -54,23 +54,23 @@ public class Article {
 	}
 
 
-	public String getArtitleTime() {
-		return artitleTime;
+	public String getArticleTime() {
+		return articleTime;
 	}
 
 
-	public void setArtitleTime(String artitleTime) {
-		this.artitleTime = artitleTime;
+	public void setArticleTime(String articleTime) {
+		this.articleTime = articleTime;
 	}
 
 
-	public String getArtitleText() {
-		return artitleText;
+	public String getArticleText() {
+		return articleText;
 	}
 
 
-	public void setArtitleText(String artitleText) {
-		this.artitleText = artitleText;
+	public void setArticleText(String articleText) {
+		this.articleText = articleText;
 	}
 
 

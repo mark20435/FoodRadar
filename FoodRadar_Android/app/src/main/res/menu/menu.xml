@@ -21,7 +21,7 @@
         android:icon="@drawable/ic_baseline_comment_24"
         android:title="@string/article" />
     <item
-        android:id="@+id/User"
+        android:id="@+id/userAreaFragment"
         android:icon="@drawable/ic_baseline_user_24"
         android:title="@string/user" />
 </menu>

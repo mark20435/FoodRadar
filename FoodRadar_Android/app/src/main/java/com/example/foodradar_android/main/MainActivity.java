@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
+<<<<<<< HEAD:FoodRadar_Android/app/src/main/java/com/example/foodradar_android/main/MainActivity.java
 
 
 
@@ -48,3 +49,19 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+=======
+      // Main Activity右上角選單
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater(); //inflater載入器
+//        inflater.inflate(R.menu.appbar_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//
+//        return super.onContextItemSelected(item);
+//    }
+}
+>>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64:FoodRadar_Android/app/src/main/java/com/example/foodradar_android/MainActivity.java
