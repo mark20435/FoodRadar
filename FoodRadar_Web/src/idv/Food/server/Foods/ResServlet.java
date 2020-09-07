@@ -1,4 +1,4 @@
-package ress;
+package idv.Food.server.Foods;
 
 import java.io.BufferedReader;
 import java.io.IOException;

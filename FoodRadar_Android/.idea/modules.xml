@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FoodRadar_Android.iml" filepath="$PROJECT_DIR$/.idea/modules/FoodRadar_Android.iml" group="FoodRadar_Android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FoodRadar_Android.iml" filepath="$PROJECT_DIR$/.idea/FoodRadar_Android.iml" group="FoodRadar_Android" />
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FoodRadar_Android-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FoodRadar_Android-app.iml" group="FoodRadar_Android/app" />
+=======
+>>>>>>> parent of 138b931... 測試整合
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="FoodRadar_Android/app" />
     </modules>
   </component>
