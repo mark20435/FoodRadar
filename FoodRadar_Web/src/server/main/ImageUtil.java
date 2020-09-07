@@ -1,4 +1,4 @@
-package idv.Food.server.main;
+package server.main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

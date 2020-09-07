@@ -1,4 +1,4 @@
-package ress;
+package server.ress;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import idv.Food.server.main.ServiceLocator;
+import server.main.ServiceLocator;
 
 public class ResDaoMySqlImpl implements ResDao {
 	DataSource dataSource;

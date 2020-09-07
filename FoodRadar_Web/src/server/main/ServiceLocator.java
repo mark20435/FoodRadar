@@ -1,4 +1,4 @@
-package idv.Food.server.main;
+package server.main;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
