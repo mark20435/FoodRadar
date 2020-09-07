@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-<<<<<<< HEAD
             "outputFile": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
                     "source": "/Users/ricky/.gradle/caches/transforms-2/files-2.1/bcaf2f38bd0e6ffe04a17e5f685cbed4/material-1.0.0/res/values-land/values-land.xml",
-=======
-            "outputFile": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
-            "map": [
-                {
-                    "source": "/Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3a4bf45ee1cd2799bf6d0559eb3917d7/appcompat-1.2.0/res/values-land/values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,125,196",
-                        "endColumns": "69,70,67",
-                        "endOffsets": "120,191,259"
-                    }
-                },
-                {
-                    "source": "/Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/bcaf2f38bd0e6ffe04a17e5f685cbed4/material-1.0.0/res/values-land/values-land.xml",
->>>>>>> 1a5d4eb40ee20cf7f70008405e11b572a5d35289
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,7 +21,6 @@
                         "endColumns": "10",
                         "endOffsets": "431"
                     }
-<<<<<<< HEAD
                 },
                 {
                     "source": "/Users/ricky/.gradle/caches/transforms-2/files-2.1/3a4bf45ee1cd2799bf6d0559eb3917d7/appcompat-1.2.0/res/values-land/values-land.xml",
@@ -49,8 +31,6 @@
                         "endColumns": "69,70,67",
                         "endOffsets": "120,191,259"
                     }
-=======
->>>>>>> 1a5d4eb40ee20cf7f70008405e11b572a5d35289
                 }
             ]
         }

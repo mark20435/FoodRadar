@@ -1,17 +1,10 @@
 {
     "logs": [
         {
-<<<<<<< HEAD
             "outputFile": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
                     "source": "/Users/ricky/.gradle/caches/transforms-2/files-2.1/3a4bf45ee1cd2799bf6d0559eb3917d7/appcompat-1.2.0/res/values-watch-v20/values-watch-v20.xml",
-=======
-            "outputFile": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
-            "map": [
-                {
-                    "source": "/Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3a4bf45ee1cd2799bf6d0559eb3917d7/appcompat-1.2.0/res/values-watch-v20/values-watch-v20.xml",
->>>>>>> 1a5d4eb40ee20cf7f70008405e11b572a5d35289
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

@@ -18,6 +18,9 @@
             app:destination="@id/couponFragment" />
         <action
             android:id="@+id/action_mainFragment_to_articleFragment3"/>
+        <action
+            android:id="@+id/action_mainFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
 
     </fragment>
     <fragment
