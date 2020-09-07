@@ -5,9 +5,12 @@
     <string name="home">首頁</string>
     <string name="map">餐廳地圖</string>
     <string name="coupon">優惠活動</string>
-    <string name="comment">討論區</string>
+    <string name="article">討論區</string>
     <string name="user">會員管理</string>
     <string name="appbar">完成</string>
     <string name="textEatWhat">今天吃什麼</string>
     <string name="title_of_myres">我的餐廳收藏</string>
+    <string name="newArticle">新進榜</string>
+    <string name="rankArticle">排行榜</string>
+    <string name="favoriteArticle">收藏榜</string>
 </resources>

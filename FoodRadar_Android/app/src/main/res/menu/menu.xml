@@ -10,17 +10,13 @@
         android:icon="@drawable/ic_baseline_map_24"
         android:title="@string/map" />
     <item
-        android:id="@+id/CouPon"
+        android:id="@+id/couponFragment"
         android:icon="@drawable/ic_baseline_card_giftcard_24"
         android:title="@string/coupon" />
     <item
-<<<<<<< HEAD:FoodRadar_Android/app/src/main/res/menu/buttom_navigation_menu.xml
-        android:id="@+id/newArticleFragment"
-=======
-        android:id="@+id/Comment"
->>>>>>> 24a66fb53fed7eefdba017cf1de0b2d97ae49310:FoodRadar_Android/app/src/main/res/menu/menu.xml
+        android:id="@+id/articleFragment"
         android:icon="@drawable/ic_baseline_comment_24"
-        android:title="@string/comment" />
+        android:title="@string/article" />
     <item
         android:id="@+id/User"
         android:icon="@drawable/ic_baseline_user_24"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/article_navigation"
+    app:startDestination="@id/newArticleFragment">
+
+    <fragment
+        android:id="@+id/newArticleFragment"
+        android:name="com.example.foodradar_android.article.NewArticleFragment"
+        android:label="fragment_new_article"
+        tools:layout="@layout/fragment_new_article" />
+    <fragment
+        android:id="@+id/rankArticleFragment"
+        android:name="com.example.foodradar_android.article.RankArticleFragment"
+        android:label="fragment_rank_article"
+        tools:layout="@layout/fragment_rank_article" />
+    <fragment
+        android:id="@+id/favoriteArticleFragment"
+        android:name="com.example.foodradar_android.article.FavoriteArticleFragment"
+        android:label="fragment_favorite_article"
+        tools:layout="@layout/fragment_favorite_article" />
+</navigation>

@@ -3,5 +3,10 @@
     "name": "main_navigation",
     "navigationXmlIds": [],
     "deepLinks": []
+  },
+  {
+    "name": "article_navigation",
+    "navigationXmlIds": [],
+    "deepLinks": []
   }
 ]

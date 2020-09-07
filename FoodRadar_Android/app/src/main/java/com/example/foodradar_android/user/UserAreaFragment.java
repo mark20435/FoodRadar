@@ -83,13 +83,13 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btMyRes:
-                Navigation.findNavController(v).navigate(R.id.action_userAreaFragment_to_userMyResFragment);
-                break;
-            case R.id.btSysSetup:
+                case R.id.btMyRes:
+//                    Navigation.findNavController(v).navigate(R.id.action_userAreaFragment_to_userMyResFragment);
+                    break;
+                case R.id.btSysSetup:
 //                Navigation.findNavController(v).navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
-                break;
-            default:
+                    break;
+                default:
                 break;
         }
 

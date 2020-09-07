@@ -1279,15 +1279,14 @@ drawable ic_baseline_arrow_back_24
 drawable ic_baseline_card_giftcard_24
 drawable ic_baseline_comment_24
 drawable ic_baseline_home_24
-drawable ic_baseline_location_on_24
 drawable ic_baseline_map_24
-drawable ic_baseline_search_24
 drawable ic_baseline_user_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable logo_foodradar
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1317,6 +1316,7 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id User
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -1365,18 +1365,13 @@ id action_divider
 id action_image
 id action_mainFragment_to_articleFragment3
 id action_mainFragment_to_couponFragment
-id action_mainFragment_to_newArticleFragment
 id action_mainFragment_to_resMapFragment
-id action_mainFragment_to_userAreaFragment
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
-id action_newArticleFragment_to_favoriteArticleFragment
-id action_newArticleFragment_to_rankArticleFragment
 id action_text
-id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -1389,6 +1384,8 @@ id always
 id animateToEnd
 id animateToStart
 id appBarLayout
+id articleFragment
+id article_navigation
 id asConfigured
 id async
 id auto
@@ -1402,10 +1399,9 @@ id beginning
 id blocking
 id bottom
 id bounce
-id brResMaintain
+id btMyRes
 id btSysSetup
 id button
-id button3
 id buttonPanel
 id cancel_action
 id center
@@ -1488,8 +1484,8 @@ id icon_only
 id ifRoom
 id ignore
 id ignoreRequest
+id imResImg
 id image
-id imageButton
 id info
 id invisible
 id italic
@@ -1548,6 +1544,7 @@ id progress_horizontal
 id radio
 id rankArticleFragment
 id ratio
+id rcvMyRes
 id rectangles
 id resMapFragment
 id reverseSawtooth
@@ -1644,15 +1641,17 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-id tv56dp
 id tvFoodRadarColor
+id tvResAddress
+id tvResHours
+id tvResName
+id tvResTel
 id unchecked
 id uniform
 id unlabeled
 id up
 id useLogo
 id userAreaFragment
-id userSysSetupFragment
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1732,6 +1731,7 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout fragment_article
 layout fragment_coupon
 layout fragment_favorite_article
 layout fragment_main
@@ -1739,7 +1739,8 @@ layout fragment_new_article
 layout fragment_rank_article
 layout fragment_res_map
 layout fragment_user_area
-layout fragment_user_sys_setup
+layout fragment_user_my_res
+layout item_view_user_myres
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1761,11 +1762,11 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
-layout user_area_item_view
 menu appbar_menu
-menu buttom_navigation_menu
+menu menu
 mipmap ic_launcher
 mipmap ic_launcher_round
+navigation article_navigation
 navigation main_navigation
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -1797,10 +1798,10 @@ string abc_toolbar_collapse_description
 string app_name
 string appbar
 string appbar_scrolling_view_behavior
+string article
 string bottom_sheet_behavior
 string character_counter_content_description
 string character_counter_pattern
-string comment
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1837,10 +1838,8 @@ string path_password_strike_through
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
-string title_of_home
-string title_of_user
+string title_of_myres
 string user
-string user_syssetup
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -2072,7 +2071,6 @@ style RtlOverlay_Widget_AppCompat_Search_DropDown_Text
 style RtlOverlay_Widget_AppCompat_SearchView_MagIcon
 style RtlUnderlay_Widget_AppCompat_ActionButton
 style RtlUnderlay_Widget_AppCompat_ActionButton_Overflow
-style SearchViewIcon
 style TextAppearance_AppCompat
 style TextAppearance_AppCompat_Body1
 style TextAppearance_AppCompat_Body2
@@ -2469,4 +2467,3 @@ styleable Variant constraints region_heightLessThan region_heightMoreThan region
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
-xml searchviewstlye
