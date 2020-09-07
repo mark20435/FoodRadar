@@ -64,9 +64,9 @@
 36            android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
 36-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:13-68
 37
-38        <activity android:name="com.example.foodradar_android.MainActivity" >
+38        <activity android:name="com.example.foodradar_android.main.MainActivity" >
 38-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:33:9-38:20
-38-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:33:19-47
+38-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:33:19-52
 39            <intent-filter>
 39-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:13-37:29
 40                <action android:name="android.intent.action.MAIN" />

@@ -1248,6 +1248,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable button
+drawable chinacate
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1267,6 +1268,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable cucate
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1286,9 +1288,12 @@ drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable japancate
+drawable koreacate
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable no_image
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1303,6 +1308,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable wecate
 id ALT
 id BottomNavigation
 id CTRL
@@ -1402,6 +1408,8 @@ id bounce
 id button
 id buttonPanel
 id cancel_action
+id cardview
+id cateName
 id center
 id center_horizontal
 id center_vertical
@@ -1487,6 +1495,7 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id ivImage
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -1547,7 +1556,7 @@ id reverseSawtooth
 id right
 id right_icon
 id right_side
-id rvRes
+id rvMain
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -1601,7 +1610,6 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
-id swipeRefreshLayout
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -1728,6 +1736,7 @@ layout fragment_main
 layout fragment_new_article
 layout fragment_rank_article
 layout fragment_res_map
+layout item_view_main
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1829,6 +1838,8 @@ string rankArticle
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
+string textNoMainFound
+string textNoNetwork
 string title_of_myres
 string user
 style AlertDialog_AppCompat
