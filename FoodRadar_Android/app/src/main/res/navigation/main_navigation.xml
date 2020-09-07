@@ -23,33 +23,35 @@
         android:label="fragment_res_map"
         tools:layout="@layout/fragment_res_map" />
     <fragment
-<<<<<<< HEAD
-=======
         android:id="@+id/userAreaFragment"
         android:name="com.example.foodradar_android.user.UserAreaFragment"
         android:label="fragment_user_area"
         tools:layout="@layout/fragment_user_area">
+<!--        <action-->
+<!--            android:id="@+id/action_userAreaFragment_to_userSysSetupFragment"-->
+<!--            app:destination="@id/userSysSetupFragment" />-->
         <action
-            android:id="@+id/action_userAreaFragment_to_userSysSetupFragment"
-            app:destination="@id/userSysSetupFragment" />
+            android:id="@+id/action_userAreaFragment_to_userMyResFragment"
+            app:destination="@id/userMyResFragment" />
     </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/userSysSetupFragment"-->
+<!--        android:name="com.example.foodradar_android.user.UserSysSetupFragment"-->
+<!--        android:label="fragment_user_sys_setup"-->
+<!--        tools:layout="@layout/fragment_user_sys_setup" />-->
     <fragment
-        android:id="@+id/userSysSetupFragment"
-        android:name="com.example.foodradar_android.user.UserSysSetupFragment"
-        android:label="fragment_user_sys_setup"
-        tools:layout="@layout/fragment_user_sys_setup" />
-    <fragment
->>>>>>> parent of d594014... no message
         android:id="@+id/couponFragment"
         android:name="com.example.foodradar_android.CouponFragment"
         android:label="fragment_coupon"
         tools:layout="@layout/fragment_coupon" />
-<<<<<<< HEAD
-=======
+<!--    <fragment-->
+<!--        android:id="@+id/articleFragment"-->
+<!--        android:name="com.example.foodradar_android.ArticleFragment"-->
+<!--        android:label="fragment_article"-->
+<!--        tools:layout="@layout/fragment_article" />-->
     <fragment
-        android:id="@+id/articleFragment"
-        android:name="com.example.foodradar_android.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
->>>>>>> parent of d594014... no message
+        android:id="@+id/userMyResFragment"
+        android:name="com.example.foodradar_android.user.UserMyResFragment"
+        android:label="fragment_user_my_res"
+        tools:layout="@layout/fragment_user_my_res" />
 </navigation>
