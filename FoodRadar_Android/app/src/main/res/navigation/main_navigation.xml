@@ -22,8 +22,8 @@
         <action
             android:id="@+id/action_mainFragment_to_articleFragment3"/>
         <action
-            android:id="@+id/action_mainFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            android:id="@+id/action_mainFragment_to_newArticleFragment"
+            app:destination="@id/newArticleFragment" />
 
     </fragment>
     <fragment
@@ -51,8 +51,25 @@
         android:label="fragment_coupon"
         tools:layout="@layout/fragment_coupon" />
     <fragment
-        android:id="@+id/articleFragment"
-        android:name="com.example.foodradar_android.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        android:id="@+id/newArticleFragment"
+        android:name="com.example.foodradar_android.NewArticleFragment"
+        android:label="fragment_new_article"
+        tools:layout="@layout/fragment_new_article" >
+        <action
+            android:id="@+id/action_newArticleFragment_to_rankArticleFragment"
+            app:destination="@id/rankArticleFragment" />
+        <action
+            android:id="@+id/action_newArticleFragment_to_favoriteArticleFragment"
+            app:destination="@id/favoriteArticleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rankArticleFragment"
+        android:name="com.example.foodradar_android.RankArticleFragment"
+        android:label="fragment_rank_article"
+        tools:layout="@layout/fragment_rank_article" />
+    <fragment
+        android:id="@+id/favoriteArticleFragment"
+        android:name="com.example.foodradar_android.FavoriteArticleFragment"
+        android:label="fragment_favorite_article"
+        tools:layout="@layout/fragment_favorite_article" />
 </navigation>

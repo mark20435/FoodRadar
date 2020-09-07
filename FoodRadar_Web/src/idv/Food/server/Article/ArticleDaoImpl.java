@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -24,20 +25,23 @@ public class ArticleDaoImpl implements ArticleDao {
 	}
 
 	@Override
-	public int insert(Article article, byte[] image) {
+	public int insert(Article article) {
 		int count = 0; // insert的時候時影響的筆數
-		String sql = "INSERT INTO Article"
-				+ "(articleTitle, articleTime, articleText, resId, userId, conAmount, conNum)"
+		String sql = "";
+		// 沒修改，不用insert > modifyTime
+		sql = "INSERT INTO Article"
+				+ "(articleTitle, articleTime, articleText, resId, userId, conAmount, conNum, articleStatus)"
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setString(1, article.getArticleTitle());
-			ps.setString(2, article.getArtitleTime());
-			ps.setString(3, article.getArtitleText());
+			ps.setString(2, article.getArticleTime());
+			ps.setString(3, article.getArticleText());
 			ps.setInt(4, article.getResId());
 			ps.setInt(5, article.getUserId());
 			ps.setInt(6, article.getConAmount());
 			ps.setInt(7, article.getConNum());
+			ps.setBoolean(8, article.isArticleStatus());
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,56 +50,124 @@ public class ArticleDaoImpl implements ArticleDao {
 	}
 
 	@Override
-	//更新資料
-	public int update(Article article, byte[] image) {
+	// 更新資料(包含刪除文章 > 將articleStatus改為false)
+	public int update(Article article) {
 		int count = 0;
 		String sql = "";
-		// 更新圖片
-		if (image != null) {
-			sql = "UPDATE Article SET articleTitle = ?, articleText = ?, modifyTime = ?, resId = ?, "
-					+ "conAmount = ?, img = ? WHERE articleId = ?;";
-		} else {
-			sql = "UPDATE Res SET resName = ?, resAdress = ?, resLat = ?, resLon = ?, "
-					+ "resTel = ?, image = ? WHERE resId = ?;";
+		sql = "UPDATE Article SET articleTitle = ?, articleText = ?, modifyTime = ?, resId = ?,"
+				+ "userId = ?, conAmount = ?, conNum = ?, articleStatus = ?  WHERE articleId = ?; ";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setString(1, article.getArticleTitle());
+			ps.setString(2, article.getArticleText());
+			ps.setString(3, article.getModifyTime());
+			ps.setInt(4, article.getResId());
+			ps.setInt(5, article.getUserId());
+			ps.setInt(6, article.getConAmount());
+			ps.setInt(7, article.getConNum());
+			ps.setBoolean(8, article.isArticleStatus());
+			ps.setInt(9, article.getArticleId());
+			// executeUpdate > 回傳int，更新資訊影響資料的筆數
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
 		return count;
 	}
 
 	@Override
+	// 此專案Delete方法很少用
 	public int delete(int articleId) {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = 0;
+		String sql = "DELETE FROM Article WHERE articleId = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, articleId);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	@Override
+	// 查詢(單一)資料
 	public Article findById(int articleId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Article> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	//取得圖片方法
-	public byte[] getImage(int articleId) { 
-		String sql = " SELECT img FROM Img WHERE articleId = ?; ";
-		byte[] image = null;
+		String sql = "SELECT articleTitle, articleTime, articleText, modifyTime, resId,"
+				+ " userId, conAmount, conNum, articleStatus FROM Article WHERE articleId = ?; ";
+		Article article = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, articleId);
 			ResultSet rs = ps.executeQuery(sql);
+			// 假如有下一個欄位的話，取得其資料
 			if (rs.next()) {
-				image = rs.getBytes(1);
+				String articleTitle = rs.getString("articleTitle");
+				String articleTime = rs.getString("articleTime");
+				String articleText = rs.getString("articleText");
+				String modifyTime = rs.getString("modifyTime");
+				int resId = rs.getInt("resId");
+				int userId = rs.getInt("userId");
+				int conAmount = rs.getInt("conAmount");
+				int conNum = rs.getInt("conNum");
+				boolean articleStatus = rs.getBoolean("articleStatus");
+				article = new Article(articleId, articleTitle, articleTime, articleText, modifyTime, resId, userId,
+						conAmount, conNum, articleStatus);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return image;
+		return article;
 	}
+
+	@Override
+	// 取得(資料庫)欄位資料，並排序方法
+	public List<Article> getAll() {
+		String sql = "SELECT articleId, articleTitle, articleText, modifyTime, resId, userId, conAmount, conNum, articleStatus "
+				+ " FROM Article ORDER BY articleTime DESC;";
+		List<Article> articleList = new ArrayList<Article>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int articleId = rs.getInt("articleId");
+				String articleTitle = rs.getString("articleTitle");
+				String articleTime = rs.getString("articleTime");
+				String articleText = rs.getString("articleText");
+				String modifyTime = rs.getString("modifyTime");
+				int resId = rs.getInt("resId");
+				int userId = rs.getInt("userId");
+				int conAmount = rs.getInt("conAmount");
+				int conNum = rs.getInt("conNum");
+				boolean articleStatus = rs.getBoolean("articleStatus");
+				Article article = new Article(articleId, articleTitle, articleTime, articleText, modifyTime, resId,
+						userId, conAmount, conNum, articleStatus);
+				articleList.add(article);
+			}
+			return articleList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return articleList;
+	}
+
+
+//	@Override
+//	// 取得圖片方法
+//	public byte[] getImage(int articleId) {
+//		String sql = " SELECT img FROM Img WHERE articleId = ?; ";
+//		byte[] image = null;
+//		try (Connection connection = dataSource.getConnection();
+//				PreparedStatement ps = connection.prepareStatement(sql);) {
+//			ps.setInt(1, articleId);
+//			ResultSet rs = ps.executeUpdate(sql);
+//			if (rs.next()) {
+//				image = rs.getBytes(1);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null ;
+//	}
 
 }

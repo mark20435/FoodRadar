@@ -14,7 +14,7 @@
         android:icon="@drawable/ic_baseline_card_giftcard_24"
         android:title="@string/coupon" />
     <item
-        android:id="@+id/articleFragment"
+        android:id="@+id/newArticleFragment"
         android:icon="@drawable/ic_baseline_comment_24"
         android:title="@string/comment" />
     <item
