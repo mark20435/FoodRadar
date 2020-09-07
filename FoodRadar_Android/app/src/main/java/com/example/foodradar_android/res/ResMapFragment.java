@@ -12,11 +12,15 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.task.CommonTask;
+import com.example.foodradar_android.task.ImageTask;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -35,6 +39,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class ResMapFragment extends Fragment {
     private static final int PER_ACCESS_LOCATION = 0;
@@ -47,7 +57,10 @@ public class ResMapFragment extends Fragment {
     private Activity activity;
     private MapView mapView;
     private GoogleMap map;
-
+    private CommonTask resGetAllTask;
+    private CommonTask resDeleteTask;
+    private List<ImageTask> imageTasks;
+    private List<Res> ress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,6 +98,30 @@ public class ResMapFragment extends Fragment {
             checkLocationSettings();
 
         });
+
+        ress = getRess();
+    }
+
+    private List<Res> getRess() {
+        List<Res> ress = null;
+        if (Common.networkConnected(activity)) {
+            String url = Common.URL_SERVER + "ResServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "getAll");
+            String jsonOut = jsonObject.toString();
+            resGetAllTask = new CommonTask(url, jsonOut);
+            try {
+                String jsonIn = resGetAllTask.execute().get();
+                Type listType = new TypeToken<List<Res>>() {
+                }.getType();
+                ress = new Gson().fromJson(jsonIn, listType);
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Common.showToast(activity, R.string.textNoNetwork);
+        }
+        return ress;
     }
 
     @Override
