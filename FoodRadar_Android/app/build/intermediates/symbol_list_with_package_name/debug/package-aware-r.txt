@@ -1455,6 +1455,10 @@ id end
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id etResAddress
+id etResHours
+id etResName
+id etResPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -1488,6 +1492,7 @@ id ignore
 id ignoreRequest
 id imResImg
 id image
+id imageView
 id info
 id invisible
 id italic
@@ -1587,6 +1592,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id spCategory
 id spacer
 id spline
 id split_action_bar
@@ -1607,6 +1613,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id swResEnable
 id swipeRefreshLayout
 id tabMode
 id tag_accessibility_actions
@@ -1623,6 +1630,12 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
+id textView2
+id textView3
+id textView4
+id textView5
+id textView6
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1846,7 +1859,14 @@ string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
+string textEnable
 string textNoNetwork
+string textResAddress
+string textResCategory
+string textResEnable
+string textResHours
+string textResName
+string textResPhone
 string title_of_myres
 string user
 style AlertDialog_AppCompat
