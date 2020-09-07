@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Mon Sep 07 14:18:37 CST 2020
 base.0=/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+=======
+#Mon Sep 07 13:48:52 CST 2020
+base.0=/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+>>>>>>> 033e4a756ee3e1c77b6d270ddac4979e6e100643
 path.0=classes.dex
 renamed.0=classes.dex
