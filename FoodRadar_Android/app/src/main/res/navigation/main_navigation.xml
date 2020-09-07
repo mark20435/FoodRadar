@@ -17,8 +17,6 @@
             android:id="@+id/action_mainFragment_to_couponFragment"
             app:destination="@id/couponFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_articleFragment3"/>
-        <action
             android:id="@+id/action_mainFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
         <action
@@ -56,5 +54,10 @@
         android:name="com.example.foodradar_android.user.UserSysSetupFragment"
         android:label="fragment_user_sys_setup"
         tools:layout="@layout/fragment_user_sys_setup" />
+    <fragment
+        android:id="@+id/userMyResFragment"
+        android:name="com.example.foodradar_android.user.UserMyResFragment"
+        android:label="fragment_user_my_res"
+        tools:layout="@layout/fragment_user_my_res" />
 
 </navigation>

@@ -21,8 +21,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
 public class UserSysSetupFragment extends Fragment {
-
-    Activity activity;
+    private Activity activity;
     private NavController navController;
 
     @Override

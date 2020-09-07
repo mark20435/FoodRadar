@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -31,15 +32,20 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = getActivity();
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.home);
+        activity.setTitle(R.string.home);
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
-
-
+    // 首頁不顯示返回箭頭
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Common().setBackArrow(false, activity);
+    }
 }
