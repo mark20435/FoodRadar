@@ -4,8 +4,8 @@ public class Article {
 	
 	private int articleId;
 	private String articleTitle;
-	private String articleTime ;
-	private String articleText ;
+	private String artitleTime ;
+	private String artitleText ;
 	private String modifyTime ;
 	private int resId;
 	private int userId;
@@ -18,13 +18,13 @@ public class Article {
 	}
 
 
-	public Article(int articleId, String articleTitle, String articleTime, String articleText, String modifyTime,
+	public Article(int articleId, String articleTitle, String artitleTime, String artitleText, String modifyTime,
 			int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
 		super();
 		this.articleId = articleId;
 		this.articleTitle = articleTitle;
-		this.articleTime = articleTime;
-		this.articleText = articleText;
+		this.artitleTime = artitleTime;
+		this.artitleText = artitleText;
 		this.modifyTime = modifyTime;
 		this.resId = resId;
 		this.userId = userId;
@@ -54,23 +54,23 @@ public class Article {
 	}
 
 
-	public String getArticleTime() {
-		return articleTime;
+	public String getArtitleTime() {
+		return artitleTime;
 	}
 
 
-	public void setArticleTime(String articleTime) {
-		this.articleTime = articleTime;
+	public void setArtitleTime(String artitleTime) {
+		this.artitleTime = artitleTime;
 	}
 
 
-	public String getArticleText() {
-		return articleText;
+	public String getArtitleText() {
+		return artitleText;
 	}
 
 
-	public void setArticleText(String articleText) {
-		this.articleText = articleText;
+	public void setArtitleText(String artitleText) {
+		this.artitleText = artitleText;
 	}
 
 

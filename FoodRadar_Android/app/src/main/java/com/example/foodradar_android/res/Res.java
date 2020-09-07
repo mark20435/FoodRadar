@@ -1,95 +1,124 @@
 package com.example.foodradar_android.res;
 
-import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class Res implements Serializable {
+public class Res {
+	private int resId;
+	private String resName;
+	private String resAddress;
+	private String resLat;
+	private String resLon;
+	private String resTel;
+	private String resHours;
+	private int resCategoryId;
+	private boolean resEnable;
+	private int userId;
+	private Timestamp modifyDate;
+	
+	public Res(int resId, String resName, String resAddress, String resLat, String resLon, String resTel,
+			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
+		super();
+		this.resId = resId;
+		this.resName = resName;
+		this.resAddress = resAddress;
+		this.resLat = resLat;
+		this.resLon = resLon;
+		this.resTel = resTel;
+		this.resHours = resHours;
+		this.resCategoryId = resCategoryId;
+		this.resEnable = resEnable;
+		this.userId = userId;
+		this.modifyDate = modifyDate;
+	}
 
-    private int resId;
-    private String resName;
-    private String resAddress;
-    private String resTel;
-    private int categoryId;
-    private boolean resEnable;
-    private int userId;
-    private String resCategoryInfo;
+	public int getResId() {
+		return resId;
+	}
 
-    public Res(int resId, String resName, String resAddress, String resTel, int categoryId, boolean resEnable, int userId) {
-        this.resId = resId;
-        this.resName = resName;
-        this.resAddress = resAddress;
-        this.resTel = resTel;
-        this.categoryId = categoryId;
-        this.resEnable = resEnable;
-        this.userId = userId;
-        this.resCategoryInfo = resCategoryInfo;
-    }
+	public void setResId(int resId) {
+		this.resId = resId;
+	}
 
-    public int getResId() {
-        return resId;
-    }
+	public String getResName() {
+		return resName;
+	}
 
-    public void setResId(int resId) {
-        this.resId = resId;
-    }
+	public void setResName(String resName) {
+		this.resName = resName;
+	}
 
-    public String getResName() {
-        return resName;
-    }
+	public String getResAddress() {
+		return resAddress;
+	}
 
-    public void setResName(String resName) {
-        this.resName = resName;
-    }
+	public void setResAddress(String resAddress) {
+		this.resAddress = resAddress;
+	}
 
-    public String getResAddress() {
-        return resAddress;
-    }
+	public String getResLat() {
+		return resLat;
+	}
 
-    public void setResAddress(String resAddress) {
-        this.resAddress = resAddress;
-    }
+	public void setResLat(String resLat) {
+		this.resLat = resLat;
+	}
 
-    public String getResTel() {
-        return resTel;
-    }
+	public String getResLon() {
+		return resLon;
+	}
 
-    public void setResTel(String resTel) {
-        this.resTel = resTel;
-    }
+	public void setResLon(String resLon) {
+		this.resLon = resLon;
+	}
 
-    public int getCategoryId() {
-        return categoryId;
-    }
+	public String getResTel() {
+		return resTel;
+	}
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
+	public void setResTel(String resTel) {
+		this.resTel = resTel;
+	}
 
-    public boolean isResEnable() {
-        return resEnable;
-    }
+	public String getResHours() {
+		return resHours;
+	}
 
-    public void setResEnable(boolean resEnable) {
-        this.resEnable = resEnable;
-    }
+	public void setResHours(String resHours) {
+		this.resHours = resHours;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	public int getResCategoryId() {
+		return resCategoryId;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setResCategoryId(int resCategoryId) {
+		this.resCategoryId = resCategoryId;
+	}
 
-    public String getResCategoryInfo() {
-        return resCategoryInfo;
-    }
+	public boolean isResEnable() {
+		return resEnable;
+	}
 
-    public void setResCategoryInfo(String resCategoryInfo) {
-        this.resCategoryInfo = resCategoryInfo;
-    }
+	public void setResEnable(boolean resEnable) {
+		this.resEnable = resEnable;
+	}
 
+	public int getUserId() {
+		return userId;
+	}
 
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
+	public Timestamp getModifyDate() {
+		return modifyDate;
+	}
 
-
+	public void setModifyDate(Timestamp modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+	
+	
+	
 }
