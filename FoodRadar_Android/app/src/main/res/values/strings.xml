@@ -13,4 +13,13 @@
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
+    <string name="textNoNetwork">No Network</string>
+    <string name="resMaintain">餐廳資訊維護</string>
+    <string name="textResName">餐廳名稱</string>
+    <string name="textResPhone">聯絡電話</string>
+    <string name="textResAddress">餐廳地址</string>
+    <string name="textResHours">營業時間</string>
+    <string name="textResCategory">餐廳分類</string>
+    <string name="textResEnable">上架狀態</string>
+    <string name="textEnable">上架</string>
 </resources>

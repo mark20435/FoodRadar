@@ -21,6 +21,12 @@
         <action
             android:id="@+id/action_mainFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
+<<<<<<< HEAD
+=======
+        <action
+            android:id="@+id/action_mainFragment_to_userAreaFragment"
+            app:destination="@id/userAreaFragment" />
+>>>>>>> 190fabdf43e0c2ff499cae74b112a632c93d603a
 
     </fragment>
     <fragment
@@ -39,5 +45,27 @@
         android:name="com.example.foodradar_android.article.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/userAreaFragment"
+        android:name="com.example.foodradar_android.user.UserAreaFragment"
+        android:label="fragment_user_area"
+        tools:layout="@layout/fragment_user_area" >
+        <action
+            android:id="@+id/action_userAreaFragment_to_userSysSetupFragment"
+            app:destination="@id/userSysSetupFragment" />
+        <action
+            android:id="@+id/action_userAreaFragment_to_resMaintainFragment"
+            app:destination="@id/resMaintainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userSysSetupFragment"
+        android:name="com.example.foodradar_android.user.UserSysSetupFragment"
+        android:label="fragment_user_sys_setup"
+        tools:layout="@layout/fragment_user_sys_setup" />
+    <fragment
+        android:id="@+id/resMaintainFragment"
+        android:name="com.example.foodradar_android.user.ResMaintainFragment"
+        android:label="fragment_res_maintain"
+        tools:layout="@layout/fragment_res_maintain" />
 
 </navigation>
