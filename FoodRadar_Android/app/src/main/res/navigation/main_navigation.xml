@@ -9,16 +9,13 @@
         android:id="@+id/mainFragment"
         android:name="com.example.foodradar_android.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_resMapFragment"
             app:destination="@id/resMapFragment" />
         <action
             android:id="@+id/action_mainFragment_to_couponFragment"
             app:destination="@id/couponFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
 
         <action
             android:id="@+id/action_mainFragment_to_userAreaFragment"
@@ -36,11 +33,6 @@
         android:name="com.example.foodradar_android.CouponFragment"
         android:label="fragment_coupon"
         tools:layout="@layout/fragment_coupon" />
-    <fragment
-        android:id="@+id/articleFragment"
-        android:name="com.example.foodradar_android.article.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/userAreaFragment"
         android:name="com.example.foodradar_android.user.UserAreaFragment"
@@ -67,5 +59,19 @@
         android:id="@+id/resMaintainFragment"
         android:name="com.example.foodradar_android.user.ResMaintainFragment"
         android:label="fragment_res_maintain"
-        tools:layout="@layout/fragment_res_maintain" />
+        tools:layout="@layout/fragment_res_maintain" >
+        <action
+            android:id="@+id/action_resMaintainFragment_to_resInsertFragment"
+            app:destination="@id/resInsertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.foodradar_android.article.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/resInsertFragment"
+        android:name="com.example.foodradar_android.user.ResInsertFragment"
+        android:label="fragment_res_insert"
+        tools:layout="@layout/fragment_res_insert" />
 </navigation>

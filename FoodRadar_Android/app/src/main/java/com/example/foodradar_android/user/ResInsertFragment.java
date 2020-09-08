@@ -16,10 +16,8 @@ import android.view.ViewGroup;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-
-public class ResMaintainFragment extends Fragment {
+public class ResInsertFragment extends Fragment {
 
     Activity activity;
     private NavController navController;
@@ -56,21 +54,7 @@ public class ResMaintainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.resMaintain);
+        activity.setTitle(R.string.titleResInsert);
         return inflater.inflate(R.layout.fragment_res_maintain, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        FloatingActionButton btAdd = view.findViewById(R.id.btAdd);
-        btAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_resMaintainFragment_to_resInsertFragment);
-            }
-        });
     }
 }
