@@ -12,12 +12,12 @@
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_baseline_comment_24.png.flat",
-        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-hdpi/ic_baseline_comment_24.png"
-    },
-    {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_baseline_broken_image_24.xml.flat",
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_baseline_broken_image_24.xml"
+    },
+    {
+        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_baseline_comment_24.png.flat",
+        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/generated/res/pngs/debug/drawable-hdpi/ic_baseline_comment_24.png"
     },
     {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",

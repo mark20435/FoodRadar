@@ -1882,6 +1882,8 @@ id blocking
 id bottom
 id bounce
 id btAdd
+id btPickPicture
+id btTakePicture
 id button
 id buttonPanel
 id cancel_action
@@ -1992,7 +1994,6 @@ id ignore
 id ignoreRequest
 id imResImg
 id image
-id imageView
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2020,6 +2021,7 @@ id light
 id line1
 id line3
 id linear
+id linearLayout
 id listMode
 id list_item
 id mainFragment
@@ -2559,6 +2561,7 @@ string textEnable
 string textNoArticleFound
 string textNoNetwork
 string textNoRessFound
+string textPickPicture
 string textResAddress
 string textResCategory
 string textResEnable
@@ -2567,6 +2570,7 @@ string textResIsEnable
 string textResIsNotEnable
 string textResName
 string textResPhone
+string textTakePicture
 string titleResInsert
 string title_of_myres
 string ucrop_crop
