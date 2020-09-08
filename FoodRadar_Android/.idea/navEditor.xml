@@ -109,13 +109,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="resInsertFragment">
+                  <entry key="resInsertFragment2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="159" />
-                            <option name="y" value="881" />
+                            <option name="x" value="150" />
+                            <option name="y" value="878" />
                           </Point>
                         </option>
                       </LayoutPositions>

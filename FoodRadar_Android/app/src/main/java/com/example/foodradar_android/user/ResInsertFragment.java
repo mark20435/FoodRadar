@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,13 +17,14 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
 public class ResInsertFragment extends Fragment {
-
     Activity activity;
     private NavController navController;
 
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
@@ -38,7 +38,7 @@ public class ResInsertFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 //            case R.id.Finish:
 //                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
 //                break;
@@ -56,6 +56,6 @@ public class ResInsertFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         activity.setTitle(R.string.titleResInsert);
-        return inflater.inflate(R.layout.fragment_res_maintain, container, false);
+        return inflater.inflate(R.layout.fragment_res_insert, container, false);
     }
 }
