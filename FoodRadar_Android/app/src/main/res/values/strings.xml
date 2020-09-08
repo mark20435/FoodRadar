@@ -23,5 +23,6 @@
     <string name="textResEnable">上架狀態</string>
     <string name="textEnable">上架</string>
     <string name="textNoArticleFound">找不到文章</string>
+    <string name="titleResInsert">新增餐廳</string>
 
 </resources>
