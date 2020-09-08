@@ -1,8 +1,9 @@
 package com.example.foodradar_android.res;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Res {
+public class Res implements Serializable {
 	private int resId;
 	private String resName;
 	private String resAddress;

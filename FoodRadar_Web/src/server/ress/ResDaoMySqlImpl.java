@@ -131,7 +131,7 @@ public class ResDaoMySqlImpl implements ResDao {
 
 	@Override
 	public List<Res> getAll() {
-		String sql = "SELECT resId, resName, resAddress, resTel, resLat, resLon "
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate "
 				+ "FROM Res ORDER BY modifyDate DESC;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
