@@ -18,10 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
 public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
     private final static String TAG = "TAG_ImageTask";
     private String url;

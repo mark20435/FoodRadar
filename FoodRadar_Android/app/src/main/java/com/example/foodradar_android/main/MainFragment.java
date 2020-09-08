@@ -1,6 +1,5 @@
 package com.example.foodradar_android.main;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -55,9 +54,6 @@ public class MainFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    private List<Main> getMains() {
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,9 +64,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setTitle("首頁");
-        activity.setSupportActionBar(toolbar);
+//        Toolbar toolbar = view.findViewById(R.id.toolbar);
+//        toolbar.setTitle("首頁");
+//        activity.setSupportActionBar(toolbar);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         List<Main> mains = getMains();
@@ -81,15 +77,18 @@ public class MainFragment extends Fragment {
     private class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
         Context context;
         List<Main> mains;
+
         public MainAdapter(Context context, List<Main> mains) {
             this.context = context;
             this.mains = mains;
         }
+
         @Override
         public int getItemCount() {
             return mains.size();
         }
-        public class MyViewHolder extends RecyclerView.ViewHolder{
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
             TextView caName;
 
@@ -102,18 +101,36 @@ public class MainFragment extends Fragment {
 
         @NonNull
         @Override
-        public MainAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return null;
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View itemView = LayoutInflater.from(context).inflate(R.layout.item_view_main, viewGroup, false);
+            return new MyViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MainAdapter.MyViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int index) {
+            final Main main = mains.get(index);
+            viewHolder.imageView.setImageResource(main.getImageId());
+            viewHolder.caName.setText(main.getCateName());
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("main", main);
+                    Navigation.findNavController(recyclerView).navigate(R.id.action_mainFragment_to_couponFragment, bundle);
+                }
+            });
 
         }
+    }
 
-
-
-
+    private List<Main> getMains() {
+        List<Main> mains = new ArrayList<>();
+        mains.add(new Main(R.drawable.chinacate, "中式料理餐廳"));
+        mains.add(new Main(R.drawable.wecate, "西式料理餐廳"));
+        mains.add(new Main(R.drawable.japancate, "日式料理餐廳"));
+        mains.add(new Main(R.drawable.koreacate, "韓式料理餐廳"));
+        mains.add(new Main(R.drawable.cucate, "異式料理餐廳"));
+        return mains;
     }
 }
 

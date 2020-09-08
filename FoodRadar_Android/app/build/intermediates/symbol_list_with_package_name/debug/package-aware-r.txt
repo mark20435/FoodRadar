@@ -1763,9 +1763,6 @@ drawable notify_panel_notification_icon_bg
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
-<<<<<<< HEAD
-drawable wecate
-=======
 drawable ucrop_crop
 drawable ucrop_ic_angle
 drawable ucrop_ic_crop
@@ -1785,7 +1782,7 @@ drawable ucrop_vector_ic_crop
 drawable ucrop_vector_loader
 drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
+drawable wecate
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -1894,12 +1891,9 @@ id button
 id buttonPanel
 id caName
 id cancel_action
-<<<<<<< HEAD
-id cardview
-=======
 id cancel_button
 id cardView
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
+id cardview
 id center
 id center_horizontal
 id center_vertical
@@ -1917,11 +1911,8 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
-<<<<<<< HEAD
-id constraintLayout
-=======
 id confirm_button
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
+id constraintLayout
 id container
 id content
 id contentPanel
@@ -1985,6 +1976,7 @@ id fixed
 id flip
 id floating
 id forever
+id fragment
 id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
@@ -2022,11 +2014,8 @@ id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
 id ivArticleFavoriteIcon
 id ivArticleGoodIcon
-<<<<<<< HEAD
 id ivImage
-=======
 id ivRes
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2115,6 +2104,7 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
+id recyclerView
 id resCategoryInfo
 id resInsertFragment
 id resMaintainFragment
@@ -2124,18 +2114,11 @@ id reverseSawtooth
 id right
 id right_icon
 id right_side
-<<<<<<< HEAD
-<<<<<<< HEAD
-id rvMain
-=======
-=======
 id rotate_scroll_wheel
 id rounded
 id row_index_key
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
 id rvArticle
 id rvRes
->>>>>>> b6f1a61e847862e0603c27bcbc0578ace17d5e86
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -2386,11 +2369,8 @@ layout fragment_res_map
 layout fragment_user_area
 layout fragment_user_my_res
 layout fragment_user_sys_setup
-<<<<<<< HEAD
 layout item_view_main
-=======
 layout item_view_res
->>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
 layout item_view_user_myres
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2587,11 +2567,8 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
 string textEnable
-<<<<<<< HEAD
-string textNoMainFound
-=======
 string textNoArticleFound
->>>>>>> b6f1a61e847862e0603c27bcbc0578ace17d5e86
+string textNoMainFound
 string textNoNetwork
 string textNoRessFound
 string textResAddress
