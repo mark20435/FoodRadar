@@ -1,4 +1,4 @@
-package server.article;
+package server.Article;
 
 public class Article {
 	

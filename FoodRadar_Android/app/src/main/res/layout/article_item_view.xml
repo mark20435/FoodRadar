@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/articleTitle" />
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/imgView"
             android:layout_width="380dp"
             android:layout_height="239.5dp"
             android:layout_marginTop="4dp"

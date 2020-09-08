@@ -1275,6 +1275,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_add
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_broken_image_24
 drawable ic_baseline_card_giftcard_24
@@ -1367,7 +1368,6 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
-id action_mainFragment_to_articleFragment
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
 id action_mainFragment_to_userAreaFragment
@@ -1376,8 +1376,10 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_resMaintainFragment_to_resInsertFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
+id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
@@ -1390,7 +1392,9 @@ id all
 id always
 id animateToEnd
 id animateToStart
+id articleConstraintLayout
 id articleFragment
+id articleNavigation
 id articleTitle
 id article_navigation
 id asConfigured
@@ -1405,8 +1409,8 @@ id beginOnFirstDraw
 id beginning
 id blocking
 id bottom
-id bottomNavigationView
 id bounce
+id btAdd
 id button
 id buttonPanel
 id cancel_action
@@ -1492,6 +1496,7 @@ id hybrid
 id icon
 id icon_group
 id icon_only
+id id_btMyRes
 id id_btResMaintain
 id id_rcvMyRes
 id ifRoom
@@ -1500,7 +1505,7 @@ id ignoreRequest
 id imResImg
 id image
 id imageView
-id img
+id imgView
 id info
 id invisible
 id italic
@@ -1564,6 +1569,7 @@ id rankArticleFragment
 id ratio
 id rectangles
 id resCategoryInfo
+id resInsertFragment
 id resMaintainFragment
 id resMapFragment
 id resName
@@ -1571,6 +1577,7 @@ id reverseSawtooth
 id right
 id right_icon
 id right_side
+id rvArticle
 id rvRes
 id satellite
 id save_non_transition_alpha
@@ -1773,6 +1780,7 @@ layout fragment_favorite_article
 layout fragment_main
 layout fragment_new_article
 layout fragment_rank_article
+layout fragment_res_insert
 layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_user_area
@@ -1882,6 +1890,7 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
 string textEnable
+string textNoArticleFound
 string textNoNetwork
 string textResAddress
 string textResCategory
@@ -1889,6 +1898,7 @@ string textResEnable
 string textResHours
 string textResName
 string textResPhone
+string titleResInsert
 string title_of_myres
 string user
 style AlertDialog_AppCompat

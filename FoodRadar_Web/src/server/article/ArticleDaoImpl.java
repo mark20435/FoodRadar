@@ -1,4 +1,4 @@
-package server.article;
+package server.Article;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
