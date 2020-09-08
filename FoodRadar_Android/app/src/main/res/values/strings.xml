@@ -13,6 +13,8 @@
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
+    <!--    <string name="textNoNetwork">no network connection available</string>-->
+    <string name="textNoMainFound">no Main found</string>
     <string name="textNoNetwork">No Network</string>
     <string name="resMaintain">餐廳資訊維護</string>
     <string name="textResName">餐廳名稱</string>
@@ -22,12 +24,18 @@
     <string name="textResCategory">餐廳分類</string>
     <string name="textResEnable">上架狀態</string>
     <string name="textEnable">上架</string>
+
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
+
+
     <string name="textNoRessFound">找不到餐廳</string>
     <string name="textResIsEnable">已上架</string>
     <string name="textResIsNotEnable">未上架</string>
     <string name="textTakePicture">拍照</string>
     <string name="textPickPicture">挑選照片</string>
+    <string name="textInsert">確定新增</string>
+    <string name="textInsertCancel">取消新增</string>
+    <string name="textNoCameraApp">沒有拍照程式</string>
 
 </resources>

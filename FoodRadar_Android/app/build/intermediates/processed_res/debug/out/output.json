@@ -21,7 +21,7 @@
       "properties": {
         "packageId": "com.example.foodradar_android",
         "split": "",
-        "minSdkVersion": "19"
+        "minSdkVersion": "21"
       }
     }
   ]

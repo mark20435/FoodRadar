@@ -1,13 +1,29 @@
-package com.example.foodradar_android;
+package com.example.foodradar_android.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
+
+import com.example.foodradar_android.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.mainFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
+
+
+}
+
+
+
+
+
 
       // Main Activity右上角選單
 //    @Override
@@ -34,4 +58,5 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return super.onContextItemSelected(item);
 //    }
-}
+
+

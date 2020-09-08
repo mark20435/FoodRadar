@@ -23,7 +23,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="0dp"
+=======
+        android:layout_height="200dp"
+>>>>>>> f59c75269f5b33f9ddeaf43ffe15289a5343385e
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

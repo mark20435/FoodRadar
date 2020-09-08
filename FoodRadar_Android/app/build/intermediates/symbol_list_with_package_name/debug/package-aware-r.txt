@@ -1697,6 +1697,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable button
+drawable chinacate
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1716,6 +1717,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable cucate
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1742,6 +1744,8 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable japancate
+drawable koreacate
 drawable logo_foodradar
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -1795,6 +1799,7 @@ drawable ucrop_vector_ic_crop
 drawable ucrop_vector_loader
 drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
+drawable wecate
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -1857,6 +1862,7 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
+id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
 id action_mainFragment_to_userAreaFragment
@@ -1869,6 +1875,7 @@ id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
+id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
@@ -1903,11 +1910,15 @@ id bounce
 id btAdd
 id btPickPicture
 id btTakePicture
+id btnCancel
+id btnInsert
 id button
 id buttonPanel
+id caName
 id cancel_action
 id cancel_button
 id cardView
+id cardview
 id center
 id center_horizontal
 id center_vertical
@@ -1915,6 +1926,7 @@ id chain
 id chains
 id checkbox
 id checked
+id chinaRestaurantFragment
 id chip
 id chip1
 id chip2
@@ -1927,6 +1939,7 @@ id clip_horizontal
 id clip_vertical
 id collapseActionView
 id confirm_button
+id constraintLayout
 id container
 id content
 id contentPanel
@@ -1975,7 +1988,7 @@ id enterAlwaysCollapsed
 id etResAddress
 id etResHours
 id etResName
-id etResPhone
+id etResTel
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2006,6 +2019,7 @@ id hybrid
 id icon
 id icon_group
 id icon_only
+id id_btMyRes
 id id_btResMaintain
 id id_rcvMyRes
 id ifRoom
@@ -2027,6 +2041,7 @@ id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
 id ivArticleFavoriteIcon
 id ivArticleGoodIcon
+id ivImage
 id ivRes
 id jumpToEnd
 id jumpToStart
@@ -2118,6 +2133,7 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
+id recyclerView
 id resCategoryInfo
 id resInsertFragment
 id resMaintainFragment
@@ -2215,12 +2231,16 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+<<<<<<< HEAD
 id textView
 id textView2
 id textView3
 id textView4
 id textView5
 id textView6
+id textView7
+=======
+>>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop
@@ -2371,6 +2391,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_article
+layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_favorite_article
 layout fragment_main
@@ -2382,6 +2403,7 @@ layout fragment_res_map
 layout fragment_user_area
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout item_view_main
 layout item_view_res
 layout item_view_user_myres
 layout mtrl_alert_dialog
@@ -2578,7 +2600,14 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
 string textEnable
+string textInsert
+string textInsertCancel
 string textNoArticleFound
+<<<<<<< HEAD
+string textNoMainFound
+=======
+string textNoCameraApp
+>>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
 string textNoNetwork
 string textNoRessFound
 string textPickPicture
@@ -3458,6 +3487,7 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ucrop_AspectRatioTextView ucrop_artv_ratio_title ucrop_artv_ratio_x ucrop_artv_ratio_y
 styleable ucrop_UCropView ucrop_aspect_ratio_x ucrop_aspect_ratio_y ucrop_circle_dimmed_layer ucrop_dimmed_color ucrop_frame_color ucrop_frame_stroke_size ucrop_grid_color ucrop_grid_column_count ucrop_grid_row_count ucrop_grid_stroke_size ucrop_show_frame ucrop_show_grid ucrop_show_oval_crop_frame
+xml provider_paths
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start
