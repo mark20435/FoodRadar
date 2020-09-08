@@ -34,7 +34,7 @@
 19-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:9-32
 20
 21    <application
-21-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-40:19
+21-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-41:19
 22        android:allowBackup="true"
 22-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-35
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -49,52 +49,54 @@
 28        android:supportsRtl="true"
 28-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:21:9-35
 29        android:testOnly="true"
-30        android:theme="@style/AppTheme" >
+30        android:theme="@style/AppTheme"
 30-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:22:9-40
-31        <meta-data
-31-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:25:9-27:69
-32            android:name="com.google.android.gms.version"
-32-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:26:13-58
-33            android:value="@integer/google_play_services_version" />
-33-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:27:13-66
-34        <meta-data
-34-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:29:9-31:71
-35            android:name="com.google.android.geo.API_KEY"
-35-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:13-58
-36            android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
-36-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:13-68
-37
-38        <activity android:name="com.example.foodradar_android.MainActivity" >
-38-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:33:9-38:20
-38-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:33:19-47
-39            <intent-filter>
-39-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:13-37:29
-40                <action android:name="android.intent.action.MAIN" />
-40-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:35:17-69
-40-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:35:25-66
-41
-42                <category android:name="android.intent.category.LAUNCHER" />
-42-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:17-77
-42-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:27-74
-43            </intent-filter>
-44        </activity>
-45
-46        <!-- Needs to be explicitly declared on P+ -->
-47        <uses-library
-47-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-48            android:name="org.apache.http.legacy"
-48-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-49            android:required="false" />
-49-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-50
-51        <activity
-51-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-52            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-52-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-53            android:exported="false"
-53-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-54            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-54-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-55    </application>
-56
-57</manifest>
+31        android:usesCleartextTraffic="true" >
+31-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:23:9-44
+32        <meta-data
+32-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:26:9-28:69
+33            android:name="com.google.android.gms.version"
+33-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:27:13-58
+34            android:value="@integer/google_play_services_version" />
+34-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:13-66
+35        <meta-data
+35-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:9-32:71
+36            android:name="com.google.android.geo.API_KEY"
+36-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:13-58
+37            android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
+37-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:13-68
+38
+39        <activity android:name="com.example.foodradar_android.MainActivity" >
+39-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:9-39:20
+39-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:19-47
+40            <intent-filter>
+40-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:35:13-38:29
+41                <action android:name="android.intent.action.MAIN" />
+41-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:17-69
+41-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:25-66
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:17-77
+43-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:27-74
+44            </intent-filter>
+45        </activity>
+46
+47        <!-- Needs to be explicitly declared on P+ -->
+48        <uses-library
+48-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+49            android:name="org.apache.http.legacy"
+49-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+50            android:required="false" />
+50-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+51
+52        <activity
+52-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+53            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+53-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+54            android:exported="false"
+54-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+55            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+55-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+56    </application>
+57
+58</manifest>

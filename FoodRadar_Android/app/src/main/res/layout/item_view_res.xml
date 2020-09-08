@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:padding="6dp"
+    card_view:cardBackgroundColor="#ffdddddd"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivRes"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/no_image"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvResName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/ivRes"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivRes"
+            card_view:layout_constraintTop_toTopOf="@+id/ivRes" />
+
+        <TextView
+            android:id="@+id/tvResAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvResName"
+            android:layout_alignStart="@id/tvResName"
+            android:layout_marginStart="8dp"
+            android:text="Address"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivRes"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResName" />
+
+        <TextView
+            android:id="@+id/tvResTel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvResAddress"
+            android:layout_alignStart="@id/ivRes"
+            android:layout_marginStart="8dp"
+            android:text="Tel"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivRes"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResAddress" />
+
+        <TextView
+            android:id="@+id/tvResHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hours"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="@+id/tvResTel"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResTel" />
+
+        <TextView
+            android:id="@+id/tvResCategoryInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="@+id/tvResHours"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResHours" />
+
+        <TextView
+            android:id="@+id/tvResEnable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="@+id/tvResCategoryInfo"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResCategoryInfo" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最後修改者Name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="@+id/tvResEnable"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResEnable" />
+
+        <TextView
+            android:id="@+id/tvModifyDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最後修改時間"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="@+id/tvUserName"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

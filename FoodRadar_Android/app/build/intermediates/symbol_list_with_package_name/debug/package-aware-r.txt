@@ -1296,6 +1296,7 @@ drawable logo_foodradar
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable no_image
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1413,6 +1414,7 @@ id btAdd
 id button
 id buttonPanel
 id cancel_action
+id cardView
 id center
 id center_horizontal
 id center_vertical
@@ -1511,6 +1513,7 @@ id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
 id ivArticleFavoriteIcon
 id ivArticleGoodIcon
+id ivRes
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -1677,10 +1680,14 @@ id triangle
 id tvArticleTime
 id tvCommentCount
 id tvFavoriteArticle
+id tvModifyDate
 id tvResAddress
+id tvResCategoryInfo
+id tvResEnable
 id tvResHours
 id tvResName
 id tvResTel
+id tvUserName
 id tvgoodCount
 id unchecked
 id uniform
@@ -1784,6 +1791,7 @@ layout fragment_res_map
 layout fragment_user_area
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout item_view_res
 layout item_view_user_myres
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
@@ -1890,10 +1898,13 @@ string textEatWhat
 string textEnable
 string textNoArticleFound
 string textNoNetwork
+string textNoRessFound
 string textResAddress
 string textResCategory
 string textResEnable
 string textResHours
+string textResIsEnable
+string textResIsNotEnable
 string textResName
 string textResPhone
 string titleResInsert
