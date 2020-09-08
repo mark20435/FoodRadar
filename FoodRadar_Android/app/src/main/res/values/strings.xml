@@ -34,5 +34,8 @@
     <string name="textResIsNotEnable">未上架</string>
     <string name="textTakePicture">拍照</string>
     <string name="textPickPicture">挑選照片</string>
+    <string name="textInsert">確定新增</string>
+    <string name="textInsertCancel">取消新增</string>
+    <string name="textNoCameraApp">沒有拍照程式</string>
 
 </resources>

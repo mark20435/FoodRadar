@@ -1857,6 +1857,7 @@ id action_mode_close_button
 id action_resMaintainFragment_to_resInsertFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
+id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
 id actions
 id activity_chooser_view_content
@@ -1890,6 +1891,8 @@ id bounce
 id btAdd
 id btPickPicture
 id btTakePicture
+id btnCancel
+id btnInsert
 id button
 id buttonPanel
 id caName
@@ -1965,7 +1968,7 @@ id enterAlwaysCollapsed
 id etResAddress
 id etResHours
 id etResName
-id etResPhone
+id etResTel
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -1997,6 +2000,7 @@ id hybrid
 id icon
 id icon_group
 id icon_only
+id id_btMyRes
 id id_btResMaintain
 id id_rcvMyRes
 id ifRoom
@@ -2206,6 +2210,7 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+<<<<<<< HEAD
 id textView
 id textView2
 id textView3
@@ -2213,6 +2218,8 @@ id textView4
 id textView5
 id textView6
 id textView7
+=======
+>>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop
@@ -2573,8 +2580,14 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
 string textEnable
+string textInsert
+string textInsertCancel
 string textNoArticleFound
+<<<<<<< HEAD
 string textNoMainFound
+=======
+string textNoCameraApp
+>>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
 string textNoNetwork
 string textNoRessFound
 string textPickPicture
@@ -3446,6 +3459,7 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ucrop_AspectRatioTextView ucrop_artv_ratio_title ucrop_artv_ratio_x ucrop_artv_ratio_y
 styleable ucrop_UCropView ucrop_aspect_ratio_x ucrop_aspect_ratio_y ucrop_circle_dimmed_layer ucrop_dimmed_color ucrop_frame_color ucrop_frame_stroke_size ucrop_grid_color ucrop_grid_column_count ucrop_grid_row_count ucrop_grid_stroke_size ucrop_show_frame ucrop_show_grid ucrop_show_oval_crop_frame
+xml provider_paths
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start

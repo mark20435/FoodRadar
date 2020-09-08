@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_userAreaFragment_to_resMaintainFragment"
             app:destination="@id/resMaintainFragment" />
+        <action
+            android:id="@+id/action_userAreaFragment_to_userMyResFragment"
+            app:destination="@id/userMyResFragment" />
     </fragment>
     <fragment
         android:id="@+id/userSysSetupFragment"

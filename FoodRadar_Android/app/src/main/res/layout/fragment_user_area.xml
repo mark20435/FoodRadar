@@ -10,7 +10,18 @@
         android:id="@+id/id_btResMaintain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="餐廳資訊維護"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_btMyRes" />
+
+    <Button
+        android:id="@+id/id_btMyRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的餐廳收藏"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
