@@ -33,7 +33,7 @@ public class UserMyResFragment extends Fragment {
         setHasOptionsMenu(true);
 
         navController =
-                Navigation.findNavController(activity, R.id.fragment);
+                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     // 顯示右上角的OptionMenu選單

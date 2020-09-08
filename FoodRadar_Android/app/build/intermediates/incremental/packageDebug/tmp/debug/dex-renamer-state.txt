@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-#Mon Sep 07 19:19:53 CST 2020
+#Tue Sep 08 11:18:16 CST 2020
 base.0=/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
-=======
-#Mon Sep 07 18:55:23 CST 2020
-base.0=/Users/gn0987123/Downloads/Tibame/report/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
 path.0=classes.dex
 renamed.0=classes.dex

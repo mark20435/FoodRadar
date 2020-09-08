@@ -17,22 +17,82 @@
         android:layout_height="match_parent"
         android:background="#9A9B9C">
 
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivImage3"-->
+        <!--            android:layout_width="fill_parent"-->
+        <!--            android:layout_height="fill_parent"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginBottom="32dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:src="@drawable/wecate"-->
+        <!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            card_view:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivImage4"-->
+        <!--            android:layout_width="fill_parent"-->
+        <!--            android:layout_height="fill_parent"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginBottom="32dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:src="@drawable/koreacate"-->
+        <!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            card_view:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivImage5"-->
+        <!--            android:layout_width="fill_parent"-->
+        <!--            android:layout_height="fill_parent"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginBottom="32dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:src="@drawable/cucate"-->
+        <!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            card_view:layout_constraintStart_toStartOf="parent" />-->
+
         <ImageView
             android:id="@+id/ivImage"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:srcCompat="@drawable/chinacate" />
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/chinacate"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent" />
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivImage2"-->
+        <!--            android:layout_width="fill_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:scaleType="fitXY"-->
+        <!--            android:src="@drawable/japancate"-->
+        <!--            card_view:layout_constraintEnd_toEndOf="parent"-->
+        <!--            card_view:layout_constraintStart_toStartOf="parent"-->
+        <!--            card_view:layout_constraintTop_toBottomOf="@+id/ivImage" />-->
 
         <TextView
-            android:id="@+id/cateName"
+            android:id="@+id/caName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="cateName"
+            android:layout_toEndOf="@id/ivImage"
+            android:text="Name"
             android:textColor="#000000"
             android:textSize="16sp"
             card_view:layout_constraintBottom_toBottomOf="parent"

@@ -1293,12 +1293,9 @@ drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
-<<<<<<< HEAD
 drawable japancate
 drawable koreacate
-=======
 drawable logo_foodradar
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1418,9 +1415,9 @@ id bottomNavigationView
 id bounce
 id button
 id buttonPanel
+id caName
 id cancel_action
 id cardview
-id cateName
 id center
 id center_horizontal
 id center_vertical
@@ -1432,6 +1429,7 @@ id chronometer
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id constraintLayout
 id container
 id content
 id contentPanel
@@ -1487,7 +1485,6 @@ id filled
 id fixed
 id flip
 id forever
-id fragment
 id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
@@ -1516,13 +1513,10 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
-<<<<<<< HEAD
-id ivImage
-=======
 id ivArticleCommentIcon
 id ivArticleFavoriteIcon
 id ivArticleGoodIcon
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
+id ivImage
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -1641,11 +1635,8 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
-<<<<<<< HEAD
-=======
 id swResEnable
 id swipeRefreshLayout
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -1793,14 +1784,11 @@ layout fragment_new_article
 layout fragment_rank_article
 layout fragment_res_maintain
 layout fragment_res_map
-<<<<<<< HEAD
-layout item_view_main
-=======
 layout fragment_user_area
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout item_view_main
 layout item_view_user_myres
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1903,11 +1891,8 @@ string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
 string textEatWhat
-<<<<<<< HEAD
-string textNoMainFound
-string textNoNetwork
-=======
 string textEnable
+string textNoMainFound
 string textNoNetwork
 string textResAddress
 string textResCategory
@@ -1915,7 +1900,6 @@ string textResEnable
 string textResHours
 string textResName
 string textResPhone
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64
 string title_of_myres
 string user
 style AlertDialog_AppCompat

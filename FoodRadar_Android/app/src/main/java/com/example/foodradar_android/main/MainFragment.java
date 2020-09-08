@@ -2,30 +2,36 @@ package com.example.foodradar_android.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -41,31 +47,35 @@ public class MainFragment extends Fragment {
     private CommonTask mainDeleteTask;
     private List<ImageTask> imageTasks;
     private List<Main> mains;
-    private ImageView ivImage;
+
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         activity = getActivity();
         imageTasks = new ArrayList<>();
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         rvMain = view.findViewById(R.id.rvMain);
-
-
         rvMain.setLayoutManager(new LinearLayoutManager(activity));
-        mains = getmans();
+        List<Main> mains = getMains();
+        rvMain.setAdapter(new MainAdapter(activity,mains));
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+
+
+
+        mains = getMains();
         showMains(mains);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
@@ -78,11 +88,11 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private List<Main> getmans() {
+    private List<Main> getMains() {
         List<Main> mains = null;
         if (Common.networkConnected(activity)) {
 
-            String url = Common.URL_SERVER + "MainServlet";
+            String url = Common.URL_SERVER + "ImgServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getAll");
             String jsonOut = jsonObject.toString();
@@ -101,7 +111,6 @@ public class MainFragment extends Fragment {
         return mains;
     }
 
-
     private void showMains(List<Main> mains) {
         if (mains == null || mains.isEmpty()) {
             Common.showToast(activity, R.string.textNoMainFound);
@@ -117,6 +126,7 @@ public class MainFragment extends Fragment {
 
 
     private class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
+
         private LayoutInflater layoutInflater;
         private List<Main> mains;
         private int imageSize;
@@ -138,7 +148,7 @@ public class MainFragment extends Fragment {
             MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.ivImage);
-                ctName = itemView.findViewById(R.id.cateName);
+                ctName = itemView.findViewById(R.id.caName);
             }
         }
 
@@ -146,7 +156,6 @@ public class MainFragment extends Fragment {
         public int getItemCount() {
             return mains == null ? 0 : mains.size();
         }
-
 
         @NonNull
         @Override
@@ -156,22 +165,21 @@ public class MainFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MainAdapter.MyViewHolder myViewHolder, int position) {
+        public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
             final Main main = mains.get(position);
 
-            String url = Common.URL_SERVER + "MainServlet";
+            String url = Common.URL_SERVER + "ImgServlet";
             int id = main.getImageId();
             ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imageView);
             imageTask.execute();
             imageTasks.add(imageTask);
             myViewHolder.ctName.setText(main.getCateName());
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("main", main);
-                    Navigation.findNavController(v)
+                    Navigation.findNavController(view)
                             .navigate(R.id.action_mainFragment_to_couponFragment, bundle);
                 }
             });
@@ -197,6 +205,8 @@ public class MainFragment extends Fragment {
             mainDeleteTask.cancel(true);
             mainDeleteTask = null;
         }
-
     }
 }
+
+
+

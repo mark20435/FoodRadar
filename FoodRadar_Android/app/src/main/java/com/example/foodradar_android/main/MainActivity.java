@@ -31,25 +31,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavigation);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //List<MainFragment> mainFragments = getMainFragments();
-        //recyclerView.setAdapter(new MainFragmentAdapter(this, mainFragments));
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
-
-<<<<<<< HEAD:FoodRadar_Android/app/src/main/java/com/example/foodradar_android/main/MainActivity.java
-
-
-
-        }
+}
 
 
 
 
 
-=======
+
       // Main Activity右上角選單
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,5 +52,5 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return super.onContextItemSelected(item);
 //    }
-}
->>>>>>> b679b4860bd6a67c974087044b42a3a70b981f64:FoodRadar_Android/app/src/main/java/com/example/foodradar_android/MainActivity.java
+
+
