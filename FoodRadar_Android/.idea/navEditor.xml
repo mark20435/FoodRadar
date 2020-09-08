@@ -66,6 +66,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="chinaRestaurantFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-695" />
+                            <option name="y" value="-286" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="couponFragment">
                     <value>
                       <LayoutPositions>
@@ -109,13 +121,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="resInsertFragment2">
+                  <entry key="resInsertFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="150" />
-                            <option name="y" value="878" />
+                            <option name="x" value="-182" />
+                            <option name="y" value="433" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -129,6 +141,15 @@
                             <option name="x" value="138" />
                             <option name="y" value="434" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_resMaintainFragment_to_resInsertFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

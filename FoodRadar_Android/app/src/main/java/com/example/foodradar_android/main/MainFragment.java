@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,7 @@ public class MainFragment extends Fragment {
     private MainActivity activity;
     private RecyclerView recyclerView;
     private List<Main> mains;
+    private NavController navController;
 
 
     @Override
@@ -52,6 +54,7 @@ public class MainFragment extends Fragment {
         activity = (MainActivity) getActivity();
         mains = getMains();
         setHasOptionsMenu(true);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Nullable
@@ -114,9 +117,15 @@ public class MainFragment extends Fragment {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//                    ImageView imageView = new ImageView(context);
+//                    imageView.setImageResource(main.getImageId());
+//                    Toast toast = new Toast(context);
+//                    toast.setView(imageView);
+//                    toast.setDuration(Toast.LENGTH_SHORT);
+//                    toast.show();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("main", main);
-                    Navigation.findNavController(recyclerView).navigate(R.id.action_mainFragment_to_couponFragment, bundle);
+                    Navigation.findNavController(recyclerView).navigate(R.id.action_mainFragment_to_chinaRestaurantFragment);
                 }
             });
 

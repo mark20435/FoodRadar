@@ -1845,6 +1845,7 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
+id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
 id action_mainFragment_to_userAreaFragment
@@ -1887,6 +1888,8 @@ id blocking
 id bottom
 id bounce
 id btAdd
+id btPickPicture
+id btTakePicture
 id button
 id buttonPanel
 id caName
@@ -1901,6 +1904,7 @@ id chain
 id chains
 id checkbox
 id checked
+id chinaRestaurantFragment
 id chip
 id chip1
 id chip2
@@ -2000,7 +2004,6 @@ id ignore
 id ignoreRequest
 id imResImg
 id image
-id imageView
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2029,6 +2032,7 @@ id light
 id line1
 id line3
 id linear
+id linearLayout
 id listMode
 id list_item
 id mainFragment
@@ -2208,6 +2212,7 @@ id textView3
 id textView4
 id textView5
 id textView6
+id textView7
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop
@@ -2358,6 +2363,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_article
+layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_favorite_article
 layout fragment_main
@@ -2571,6 +2577,7 @@ string textNoArticleFound
 string textNoMainFound
 string textNoNetwork
 string textNoRessFound
+string textPickPicture
 string textResAddress
 string textResCategory
 string textResEnable
@@ -2579,6 +2586,7 @@ string textResIsEnable
 string textResIsNotEnable
 string textResName
 string textResPhone
+string textTakePicture
 string titleResInsert
 string title_of_myres
 string ucrop_crop
