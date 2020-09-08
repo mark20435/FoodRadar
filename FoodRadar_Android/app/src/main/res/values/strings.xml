@@ -28,6 +28,12 @@
 =======
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
+<<<<<<< HEAD
 >>>>>>> b6f1a61e847862e0603c27bcbc0578ace17d5e86
+=======
+    <string name="textNoRessFound">找不到餐廳</string>
+    <string name="textResIsEnable">已上架</string>
+    <string name="textResIsNotEnable">未上架</string>
+>>>>>>> b4df44396e2ff4a5829e5bd8f3b7019be2482bb3
 
 </resources>
