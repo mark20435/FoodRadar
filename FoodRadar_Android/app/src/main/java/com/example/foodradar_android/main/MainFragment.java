@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,24 +38,24 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.foodradar_android.R.id.toolbar;
+
 
 public class MainFragment extends Fragment {
-    private static final String TAG = "TAG_MainFragment";
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private RecyclerView rvMain;
-    private Activity activity;
-    private CommonTask mainGetAllTask;
-    private CommonTask mainDeleteTask;
-    private List<ImageTask> imageTasks;
+    private MainActivity activity;
+    private RecyclerView recyclerView;
     private List<Main> mains;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = (MainActivity) getActivity();
+        mains = getMains();
+        setHasOptionsMenu(true);
+    }
 
-        activity = getActivity();
-        imageTasks = new ArrayList<>();
+    private List<Main> getMains() {
     }
 
     @Nullable
@@ -67,144 +68,52 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvMain = view.findViewById(R.id.rvMain);
-        rvMain.setLayoutManager(new LinearLayoutManager(activity));
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle("首頁");
+        activity.setSupportActionBar(toolbar);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         List<Main> mains = getMains();
-        rvMain.setAdapter(new MainAdapter(activity,mains));
-        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-
-
-
-        mains = getMains();
-        showMains(mains);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
-                showMains(mains);
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-    }
-
-    private List<Main> getMains() {
-        List<Main> mains = null;
-        if (Common.networkConnected(activity)) {
-
-            String url = Common.URL_SERVER + "ImgServlet";
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("action", "getAll");
-            String jsonOut = jsonObject.toString();
-            mainGetAllTask = new CommonTask(url, jsonOut);
-            try {
-                String jsonIn = mainGetAllTask.execute().get();
-                Type listType = new TypeToken<List<Main>>() {
-                }.getType();
-                mains = new Gson().fromJson(jsonIn, listType);
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-        } else {
-            Common.showToast(activity, R.string.textNoNetwork);
-        }
-        return mains;
-    }
-
-    private void showMains(List<Main> mains) {
-        if (mains == null || mains.isEmpty()) {
-            Common.showToast(activity, R.string.textNoMainFound);
-        }
-        MainAdapter mainAdapter = (MainAdapter) rvMain.getAdapter();
-        if (mainAdapter == null) {
-            rvMain.setAdapter(new MainAdapter(activity, mains));
-        } else {
-            mainAdapter.setMains(mains);
-            mainAdapter.notifyDataSetChanged();
-        }
+        recyclerView.setAdapter(new MainAdapter(activity, mains));
     }
 
 
     private class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
-
-        private LayoutInflater layoutInflater;
-        private List<Main> mains;
-        private int imageSize;
-
-        MainAdapter(Context context, List<Main> mains) {
-            layoutInflater = LayoutInflater.from(context);
-            this.mains = mains;
-            imageSize = getResources().getDisplayMetrics().widthPixels;
-        }
-
-        public void setMains(List<Main> mains) {
+        Context context;
+        List<Main> mains;
+        public MainAdapter(Context context, List<Main> mains) {
+            this.context = context;
             this.mains = mains;
         }
-
-        class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView imageView;
-            TextView ctName;
-
-            MyViewHolder(@NonNull View itemView) {
-                super(itemView);
-                imageView = itemView.findViewById(R.id.ivImage);
-                ctName = itemView.findViewById(R.id.caName);
-            }
-        }
-
         @Override
         public int getItemCount() {
-            return mains == null ? 0 : mains.size();
+            return mains.size();
+        }
+        public class MyViewHolder extends RecyclerView.ViewHolder{
+            ImageView imageView;
+            TextView caName;
+
+            public MyViewHolder(@NonNull View itemView) {
+                super(itemView);
+                imageView = itemView.findViewById(R.id.ivImage);
+                caName = itemView.findViewById(R.id.caName);
+            }
         }
 
         @NonNull
         @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = layoutInflater.inflate(R.layout.item_view_main, parent, false);
-            return new MyViewHolder(itemView);
+        public MainAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return null;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
-            final Main main = mains.get(position);
-
-            String url = Common.URL_SERVER + "ImgServlet";
-            int id = main.getImageId();
-            ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imageView);
-            imageTask.execute();
-            imageTasks.add(imageTask);
-            myViewHolder.ctName.setText(main.getCateName());
-            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("main", main);
-                    Navigation.findNavController(view)
-                            .navigate(R.id.action_mainFragment_to_couponFragment, bundle);
-                }
-            });
+        public void onBindViewHolder(@NonNull MainAdapter.MyViewHolder holder, int position) {
 
         }
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mainGetAllTask != null) {
-            mainGetAllTask.cancel(true);
-            mainGetAllTask = null;
-        }
 
-        if (imageTasks != null && imageTasks.size() > 0) {
-            for (ImageTask imageTask : imageTasks) {
-                imageTask.cancel(true);
-            }
-            imageTasks.clear();
-        }
 
-        if (mainDeleteTask != null) {
-            mainDeleteTask.cancel(true);
-            mainDeleteTask = null;
-        }
+
+
     }
 }
 
