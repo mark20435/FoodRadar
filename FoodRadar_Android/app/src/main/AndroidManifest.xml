@@ -46,11 +46,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity android:name=".main.MainActivity">
-<<<<<<< HEAD
-        <intent-filter>
-=======
             <intent-filter>
->>>>>>> 60dc600d2a9f182fe60e4f9bb3b137861bfaac9d
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

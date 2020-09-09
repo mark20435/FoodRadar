@@ -83,28 +83,19 @@
         android:id="@+id/resInsertFragment"
         android:name="com.example.foodradar_android.user.ResInsertFragment"
         android:label="fragment_res_insert"
-<<<<<<< HEAD
-
-        tools:layout="@layout/fragment_res_insert" />
-<fragment
-=======
         tools:layout="@layout/fragment_res_insert" >
         <action
             android:id="@+id/action_resInsertFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
     <fragment
->>>>>>> 60dc600d2a9f182fe60e4f9bb3b137861bfaac9d
         android:id="@+id/chinaRestaurantFragment"
         android:name="com.example.foodradar_android.main.ChinaRestaurantFragment"
         android:label="fragment_china_restaurant"
         tools:layout="@layout/fragment_china_restaurant" />
-<<<<<<< HEAD
     <fragment
         android:id="@+id/articleDetailFragment"
         android:name="com.example.foodradar_android.ArticleDetailFragment"
         android:label="fragment_article_detail"
         tools:layout="@layout/fragment_article_detail" />
-=======
->>>>>>> 60dc600d2a9f182fe60e4f9bb3b137861bfaac9d
 </navigation>
