@@ -66,6 +66,7 @@
             android:layout_width="380dp"
             android:layout_height="239.5dp"
             android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/resName"
             tools:srcCompat="@drawable/ic_baseline_broken_image_24" />
@@ -88,18 +89,8 @@
             android:text="TextView"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/resName"
-            app:layout_constraintEnd_toStartOf="@+id/ivArticleGoodIcon"
+            app:layout_constraintEnd_toStartOf="@+id/cbGood"
             tools:text="10" />
-
-        <ImageView
-            android:id="@+id/ivArticleGoodIcon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/tvCommentCount"
-            app:layout_constraintTop_toTopOf="@+id/tvgoodCount"
-            app:srcCompat="@drawable/ic_baseline_thumb_up_24"
-            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/tvCommentCount"
@@ -109,7 +100,7 @@
             android:text="10"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/ivArticleCommentIcon"
-            app:layout_constraintTop_toTopOf="@+id/ivArticleGoodIcon" />
+            tools:layout_editor_absoluteY="74dp" />
 
         <ImageView
             android:id="@+id/ivArticleCommentIcon"
@@ -118,7 +109,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/tvFavoriteArticle"
             app:layout_constraintTop_toTopOf="@+id/tvCommentCount"
-            app:srcCompat="@drawable/ic_baseline_chat_bubble_24"
+            app:srcCompat="@drawable/ic_baseline_chat_bubble_outline_24"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
@@ -128,18 +119,28 @@
             android:layout_marginEnd="4dp"
             android:text="10"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/ivArticleFavoriteIcon"
+            app:layout_constraintEnd_toStartOf="@+id/cbFavorite"
             app:layout_constraintTop_toTopOf="@+id/ivArticleCommentIcon" />
 
-        <ImageView
-            android:id="@+id/ivArticleFavoriteIcon"
+        <CheckBox
+            android:id="@+id/cbGood"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginEnd="8dp"
+            android:button="@drawable/ic_baseline_thumb_up_24"
+            android:buttonTint="@color/mainPink"
+            app:layout_constraintEnd_toStartOf="@+id/tvCommentCount"
+            app:layout_constraintTop_toTopOf="@+id/tvgoodCount" />
+
+        <CheckBox
+            android:id="@+id/cbFavorite"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:button="@drawable/ic_baseline_turned_in_24"
+            android:buttonTint="@color/mainPink"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvFavoriteArticle"
-            app:srcCompat="@drawable/ic_baseline_turned_in_24"
-            tools:ignore="VectorDrawableCompat" />
+            app:layout_constraintTop_toTopOf="@+id/tvFavoriteArticle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

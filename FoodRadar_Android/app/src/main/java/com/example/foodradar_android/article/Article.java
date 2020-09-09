@@ -4,35 +4,64 @@ public class Article {
 
     private int articleId;
     private String articleTitle;
-    private String articleTime ;
-    private String articleText ;
-    private String modifyTime ;
+    private String articleTime;
+    private String articleText;
+    private String modifyTime;
+    private String resCategoryInfo;
     private int resId;
     private int userId;
     private int conAmount;
     private int conNum;
     private boolean articleStatus;
+    private byte[] articleImg;
+
+    private byte[] userIcon;
+
 
     public Article() {
         super();
     }
 
-
-    public Article(int articleId, String articleTitle, String articleTime, String articleText, String modifyTime,
-                   int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
-        super();
+    //ArticleList頁面
+    public Article(int articleId, String articleTitle, String articleTime, String articleText, String resCategoryInfo, int resId, int userId, int conAmount, int conNum,
+                   boolean articleStatus, byte[] articleImg, byte[] userIcon) {
         this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
         this.articleText = articleText;
-        this.modifyTime = modifyTime;
+        this.resCategoryInfo = resCategoryInfo;
         this.resId = resId;
         this.userId = userId;
         this.conAmount = conAmount;
         this.conNum = conNum;
         this.articleStatus = articleStatus;
+        this.articleImg = articleImg;
+        this.userIcon = userIcon;
     }
 
+    public byte[] getUserIcon() {
+        return userIcon;
+    }
+
+    public void setUserIcon(byte[] userIcon) {
+        this.userIcon = userIcon;
+    }
+
+    public String getResCategoryInfo() {
+        return resCategoryInfo;
+    }
+
+    public void setResCategoryInfo(String resCategoryInfo) {
+        this.resCategoryInfo = resCategoryInfo;
+    }
+
+    public byte[] getArticleImg() {
+        return articleImg;
+    }
+
+    public void setArticleImg(byte[] articleImg) {
+        this.articleImg = articleImg;
+    }
 
     public int getArticleId() {
         return articleId;

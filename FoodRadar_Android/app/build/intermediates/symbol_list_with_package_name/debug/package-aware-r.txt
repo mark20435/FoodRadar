@@ -46,6 +46,10 @@ anim ucrop_loader_circle_scale
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
+animator linear_indeterminate_line1_head_interpolator
+animator linear_indeterminate_line1_tail_interpolator
+animator linear_indeterminate_line2_head_interpolator
+animator linear_indeterminate_line2_tail_interpolator
 animator mtrl_btn_state_list_anim
 animator mtrl_btn_unelevated_state_list_anim
 animator mtrl_card_state_list_anim
@@ -226,6 +230,8 @@ attr chipStyle
 attr chipSurfaceColor
 attr circleCrop
 attr circleRadius
+attr circularInset
+attr circularRadius
 attr clickAction
 attr closeIcon
 attr closeIconEnabled
@@ -439,6 +445,7 @@ attr gapBetweenBars
 attr gestureInsetBottomIgnored
 attr goIcon
 attr graph
+attr growMode
 attr haloColor
 attr haloRadius
 attr headerLayout
@@ -471,8 +478,13 @@ attr imageAspectRatio
 attr imageAspectRatioAdjust
 attr imageButtonStyle
 attr indeterminateProgressStyle
+attr indicatorColor
+attr indicatorColors
+attr indicatorType
+attr indicatorWidth
 attr initialActivityCount
 attr insetForeground
+attr inverse
 attr isLightTheme
 attr isMaterialTheme
 attr itemBackground
@@ -580,6 +592,7 @@ attr liftOnScrollTargetViewId
 attr limitBoundsTo
 attr lineHeight
 attr lineSpacing
+attr linearSeamless
 attr listChoiceBackgroundIndicator
 attr listChoiceIndicatorMultipleAnimated
 attr listChoiceIndicatorSingleAnimated
@@ -709,6 +722,7 @@ attr preserveIconSpacing
 attr pressedTranslationZ
 attr progressBarPadding
 attr progressBarStyle
+attr progressIndicatorStyle
 attr queryBackground
 attr queryHint
 attr radioButtonStyle
@@ -1499,6 +1513,9 @@ dimen mtrl_navigation_item_icon_padding
 dimen mtrl_navigation_item_icon_size
 dimen mtrl_navigation_item_shape_horizontal_margin
 dimen mtrl_navigation_item_shape_vertical_margin
+dimen mtrl_progress_circular_inset
+dimen mtrl_progress_circular_radius
+dimen mtrl_progress_indicator_width
 dimen mtrl_shape_corner_size_large_component
 dimen mtrl_shape_corner_size_medium_component
 dimen mtrl_shape_corner_size_small_component
@@ -1714,11 +1731,13 @@ drawable ic_baseline_arrow_back_24
 drawable ic_baseline_broken_image_24
 drawable ic_baseline_card_giftcard_24
 drawable ic_baseline_chat_bubble_24
+drawable ic_baseline_chat_bubble_outline_24
 drawable ic_baseline_comment_24
 drawable ic_baseline_home_24
 drawable ic_baseline_map_24
 drawable ic_baseline_person_pin_24
 drawable ic_baseline_thumb_up_24
+drawable ic_baseline_thumb_up_alt_24
 drawable ic_baseline_turned_in_24
 drawable ic_baseline_user_24
 drawable ic_launcher_background
@@ -1834,6 +1853,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+id action_articleFragment_to_articleDetailFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1854,6 +1874,7 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
@@ -1871,8 +1892,10 @@ id always
 id animateToEnd
 id animateToStart
 id articleConstraintLayout
+id articleDetailFragment
 id articleFragment
 id articleNavigation
+id articleSearchView
 id articleTitle
 id article_navigation
 id asConfigured
@@ -1885,6 +1908,7 @@ id barrier
 id baseline
 id beginOnFirstDraw
 id beginning
+id bidirectional
 id blocking
 id bottom
 id bounce
@@ -1900,6 +1924,8 @@ id cancel_action
 id cancel_button
 id cardView
 id cardview
+id cbFavorite
+id cbGood
 id center
 id center_horizontal
 id center_vertical
@@ -1914,6 +1940,7 @@ id chip2
 id chip3
 id chip_group
 id chronometer
+id circular
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -1983,7 +2010,6 @@ id fixed
 id flip
 id floating
 id forever
-id fragment
 id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
@@ -2014,13 +2040,12 @@ id image_view_state_aspect_ratio
 id image_view_state_rotate
 id image_view_state_scale
 id imgView
+id incoming
 id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
-id ivArticleFavoriteIcon
-id ivArticleGoodIcon
 id ivImage
 id ivRes
 id jumpToEnd
@@ -2091,6 +2116,7 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id outgoing
 id outline
 id packed
 id parallax
@@ -2361,6 +2387,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_article
+layout fragment_article_detail
 layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_favorite_article
@@ -2520,8 +2547,6 @@ string home
 string icon_content_description
 string item_view_role_description
 string map
-string material_slider_range_end
-string material_slider_range_start
 string mtrl_badge_numberless_content_description
 string mtrl_chip_close_icon_content_description
 string mtrl_exceed_max_badge_number_content_description
@@ -2557,6 +2582,7 @@ string mtrl_picker_toggle_to_calendar_input_mode
 string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
+string mtrl_slider_range_content_description
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
 string newArticle
@@ -2820,6 +2846,9 @@ style Base_Widget_MaterialComponents_PopupMenu
 style Base_Widget_MaterialComponents_PopupMenu_ContextMenu
 style Base_Widget_MaterialComponents_PopupMenu_ListPopupWindow
 style Base_Widget_MaterialComponents_PopupMenu_Overflow
+style Base_Widget_MaterialComponents_ProgressIndicator
+style Base_Widget_MaterialComponents_ProgressIndicator_Circular
+style Base_Widget_MaterialComponents_ProgressIndicator_Linear
 style Base_Widget_MaterialComponents_Slider
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
@@ -3271,6 +3300,10 @@ style Widget_MaterialComponents_PopupMenu
 style Widget_MaterialComponents_PopupMenu_ContextMenu
 style Widget_MaterialComponents_PopupMenu_ListPopupWindow
 style Widget_MaterialComponents_PopupMenu_Overflow
+style Widget_MaterialComponents_ProgressIndicator_Circular_Determinate
+style Widget_MaterialComponents_ProgressIndicator_Circular_Indeterminate
+style Widget_MaterialComponents_ProgressIndicator_Linear_Determinate
+style Widget_MaterialComponents_ProgressIndicator_Linear_Indeterminate
 style Widget_MaterialComponents_ShapeableImageView
 style Widget_MaterialComponents_Slider
 style Widget_MaterialComponents_Snackbar
@@ -3410,6 +3443,7 @@ styleable OnClick clickAction targetId
 styleable OnSwipe dragDirection dragScale dragThreshold limitBoundsTo maxAcceleration maxVelocity moveWhenScrollAtTop nestedScrollFlags onTouchUp touchAnchorId touchAnchorSide touchRegionId
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
+styleable ProgressIndicator android_indeterminate circularInset circularRadius growMode indicatorColor indicatorColors indicatorType indicatorWidth inverse linearSeamless trackColor
 styleable PropertySet android_visibility android_alpha layout_constraintTag motionProgress visibilityMode
 styleable RangeSlider values
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
@@ -3420,7 +3454,7 @@ styleable SearchView android_focusable android_maxWidth android_inputType androi
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
 styleable ShapeableImageView shapeAppearance shapeAppearanceOverlay strokeColor strokeWidth
 styleable SignInButton buttonSize colorScheme scopeUris
-styleable Slider android_enabled android_value android_stepSize android_valueFrom android_valueTo haloColor haloRadius labelBehavior labelStyle thumbColor thumbElevation thumbRadius tickColor tickColorActive tickColorInactive trackColor trackColorActive trackColorInactive trackHeight
+styleable Slider android_value android_stepSize android_valueFrom android_valueTo haloColor haloRadius labelBehavior labelStyle thumbColor thumbElevation thumbRadius tickColor tickColorActive tickColorInactive trackColor trackColorActive trackColorInactive trackHeight
 styleable Snackbar snackbarButtonStyle snackbarStyle snackbarTextViewStyle
 styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode backgroundOverlayColorAlpha backgroundTint backgroundTintMode elevation maxActionInlineWidth
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme

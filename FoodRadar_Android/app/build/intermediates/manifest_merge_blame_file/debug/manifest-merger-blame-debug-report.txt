@@ -34,7 +34,7 @@
 19-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:9-32
 20
 21    <application
-21-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-59:19
+21-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-56:19
 22        android:allowBackup="true"
 22-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-35
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -84,23 +84,23 @@
 47-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:42:13-68
 48
 49        <activity
-49-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:47:9-49:72
+49-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:44:9-46:72
 50            android:name="com.yalantis.ucrop.UCropActivity"
-50-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:13-60
+50-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:45:13-60
 51            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-51-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:49:13-69
+51-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:46:13-69
 52        <activity android:name="com.example.foodradar_android.main.MainActivity" >
-52-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:9-57:20
-52-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:19-52
+52-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:9-54:20
+52-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:19-52
 53            <intent-filter>
-53-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:53:13-56:29
+53-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:50:13-53:29
 54                <action android:name="android.intent.action.MAIN" />
-54-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:54:17-69
-54-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:54:25-66
+54-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:17-69
+54-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:25-66
 55
 56                <category android:name="android.intent.category.LAUNCHER" />
-56-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:55:17-77
-56-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:55:27-74
+56-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:52:17-77
+56-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:52:27-74
 57            </intent-filter>
 58        </activity>
 59

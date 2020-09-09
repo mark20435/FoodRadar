@@ -41,9 +41,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
 
-
-
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
