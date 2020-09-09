@@ -7,15 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".article.ArticleFragment" >
 
+    <SearchView
+        android:id="@+id/articleSearchView"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/colorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/articleNavigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/colorText"
         app:labelVisibilityMode="labeled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/articleSearchView"
         app:menu="@menu/article_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
@@ -40,4 +49,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/article_navigation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -100,6 +100,7 @@ public class MyResDaoImpl implements MyResDao{
 	public List<MyRes> getAllById(int userId) {
 		MyRes myres = null;
 		List<MyRes> myResList = new ArrayList<MyRes>();
+		System.out.println("userId: " + userId);
 		
 	    try (
 	    	Connection connection = dataSource.getConnection();	    		
@@ -158,8 +159,19 @@ public class MyResDaoImpl implements MyResDao{
 	
 	@Override
 	public byte[] getImage(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT resImg FROM Res WHERE resId = ?;";
+		byte[] image = null;
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				image = rs.getBytes(1); // BLOB用byes陣列接收
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return image;
 	}
 
 }

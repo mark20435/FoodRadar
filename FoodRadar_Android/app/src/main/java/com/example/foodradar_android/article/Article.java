@@ -13,10 +13,11 @@ public class Article {
     private int conAmount;
     private int conNum;
     private boolean articleStatus;
-
     private byte[] articleImg;
 
     private byte[] userIcon;
+
+
 
     public Article() {
         super();
@@ -39,8 +40,32 @@ public class Article {
         this.articleStatus = articleStatus;
         this.articleImg = articleImg;
         this.userIcon = userIcon;
+
     }
 
+    public byte[] getUserIcon() {
+        return userIcon;
+    }
+
+    public void setUserIcon(byte[] userIcon) {
+        this.userIcon = userIcon;
+    }
+
+    public String getResCategoryInfo() {
+        return resCategoryInfo;
+    }
+
+    public void setResCategoryInfo(String resCategoryInfo) {
+        this.resCategoryInfo = resCategoryInfo;
+    }
+
+    public byte[] getArticleImg() {
+        return articleImg;
+    }
+
+    public void setArticleImg(byte[] articleImg) {
+        this.articleImg = articleImg;
+    }
 
     public int getArticleId() {
         return articleId;

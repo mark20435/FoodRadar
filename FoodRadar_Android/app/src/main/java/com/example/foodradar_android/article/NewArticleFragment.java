@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -50,7 +52,6 @@ public class NewArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.newArticle);
         return inflater.inflate(R.layout.fragment_new_article, container, false);
     }
 
@@ -58,6 +59,7 @@ public class NewArticleFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SearchView articleSearchView = view.findViewById(R.id.articleSearchView);
         rvArticle = view.findViewById(R.id.rvArticle);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
@@ -75,6 +77,31 @@ public class NewArticleFragment extends Fragment {
             }
         });
 
+
+        //searchView
+//        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String nextText) {
+//                // 如果searchView為空字串，就顯示全部資料；否則就顯示搜尋後結果
+//                if (nextText.isEmpty()) {
+//                    showArticle(articleList);
+//                } else {
+//                    List<Article> searchArticle = new ArrayList<>();
+//                    for (Article article : articleList) {
+//                        if ((article.getArticleTitle().toUpperCase().contains(nextText.toUpperCase())) ||
+//                                (article.getResCategoryInfo().toUpperCase().contains(nextText.toUpperCase()))) {
+//                            searchArticle.add(article);
+//                        }
+//                    }
+//                    showArticle(searchArticle);
+//                }
+//                return true;
+//            }
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
     }
 
 
@@ -84,6 +111,7 @@ public class NewArticleFragment extends Fragment {
         if (Common.networkConnected(activity)) {
             String url = Common.URL_SERVER + "ArticleServlet";
             JsonObject jsonObject = new JsonObject();
+            //？？
             jsonObject.addProperty("action", "getAll");
             String jsonOut = jsonObject.toString();
             articleGetAllTask = new CommonTask(url, jsonOut);
@@ -111,7 +139,7 @@ public class NewArticleFragment extends Fragment {
             Log.e(TAG, "article:" + articleList);
         } else {
             ArticleAdapter articleAdapter = (ArticleAdapter) rvArticle.getAdapter();
-            if (articleAdapter == null){
+            if (articleAdapter == null) {
                 rvArticle.setAdapter(new ArticleAdapter(activity, articleList));
             }
         }
@@ -124,11 +152,14 @@ public class NewArticleFragment extends Fragment {
         private int imageSize;
 
         //取得圖片並設定顯示圖片尺寸設定，ArticleAdapter建構方法
-        ArticleAdapter(Context context, List<Article> articleList){
+        ArticleAdapter(Context context, List<Article> articleList) {
             layoutInflater = LayoutInflater.from(context);
             this.ArticleList = articleList;
+
+            //螢幕寬度當作將圖的尺寸
             imageSize = getResources().getDisplayMetrics().widthPixels;
         }
+
         //List<Article> 建構方法
         public List<Article> getArticleList() {
             return ArticleList;
@@ -138,13 +169,6 @@ public class NewArticleFragment extends Fragment {
             ArticleList = articleList;
         }
 
-        @NonNull
-        @Override
-        public ArticleAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = layoutInflater.inflate(R.layout.article_item_view, parent, false);
-            return new MyViewHolder(itemView);
-        }
-
         @Override
         public int getItemCount() {
 //            return articleList == null ? 0 : articleList.size();
@@ -152,16 +176,15 @@ public class NewArticleFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView userIcon, ivArticleGoodIcon, ivArticleCommentIcon, ivArticleFavoriteIcon, imgView ;
+            ImageView userIcon, ivArticleCommentIcon, imgView;
             TextView userName, resCategoryInfo, articleTitle, resName, tvArticleTime;
             TextView tvGoodCount, tvCommentCount, tvFavoriteArticle;
+            CheckBox cbGood, cbFavorite;
 
             MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 userIcon = itemView.findViewById(R.id.userIcon);
-                ivArticleGoodIcon = itemView.findViewById(R.id.ivArticleGoodIcon);
                 ivArticleCommentIcon = itemView.findViewById(R.id.ivArticleCommentIcon);
-                ivArticleFavoriteIcon = itemView.findViewById(R.id.ivArticleFavoriteIcon);
                 imgView = itemView.findViewById(R.id.imgView);
                 userName = itemView.findViewById(R.id.userName);
                 resCategoryInfo = itemView.findViewById(R.id.resCategoryInfo);
@@ -169,9 +192,19 @@ public class NewArticleFragment extends Fragment {
                 resName = itemView.findViewById(R.id.resName);
                 tvArticleTime = itemView.findViewById(R.id.tvArticleTime);
                 tvGoodCount = itemView.findViewById(R.id.tvCommentCount);
-                tvCommentCount = itemView.findViewById(R.id.tvCommentCount);
+                tvCommentCount = itemView.findViewById(R.id.tvgoodCount);
+                tvFavoriteArticle = itemView.findViewById(R.id.tvFavoriteArticle);
+                cbGood = itemView.findViewById(R.id.cbGood);
+                cbFavorite = itemView.findViewById(R.id.cbFavorite);
 
             }
+        }
+
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = layoutInflater.inflate(R.layout.article_item_view, parent, false);
+            return new MyViewHolder(itemView);
         }
 
         @Override
@@ -185,6 +218,7 @@ public class NewArticleFragment extends Fragment {
             imageTask.execute();
             imageTasks.add(imageTask);
             myViewHolder.userIcon.setImageResource(article.getUserId());
+
         }
     }
 }
