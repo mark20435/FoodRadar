@@ -79,7 +79,11 @@
         android:id="@+id/resInsertFragment"
         android:name="com.example.foodradar_android.user.ResInsertFragment"
         android:label="fragment_res_insert"
-        tools:layout="@layout/fragment_res_insert" />
+        tools:layout="@layout/fragment_res_insert" >
+        <action
+            android:id="@+id/action_resInsertFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chinaRestaurantFragment"
         android:name="com.example.foodradar_android.main.ChinaRestaurantFragment"

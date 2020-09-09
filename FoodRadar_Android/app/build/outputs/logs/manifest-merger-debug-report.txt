@@ -16,7 +16,7 @@ INJECTED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_An
 INJECTED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-57:12
 INJECTED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-57:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/12c3ae384a8de2484709228873cd2fcd/navigation-ui-2.3.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.material:material:1.2.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/56cd1674d1ba042c3ed5b8d93134fc80/material-1.2.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/96a2d35781ebbc4b005c4784cd9527ac/material-1.3.0-alpha01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.yalantis:ucrop:2.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/b508ff58359befd0b9920d6a176884e3/jetified-ucrop-2.2.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3a4bf45ee1cd2799bf6d0559eb3917d7/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
@@ -33,6 +33,7 @@ MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/blueschien/.gr
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/6cac2e40aaad7d17efd78ef41d825d1b/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3cf213e33fb5a76421a4e937ff33f07e/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/bde687302d742df89f7d227a2e48b0d9/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e21faa684d0620c208274df0e88cb687/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/1a4a3955ef7b638f0453b1f9721c84bf/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a1c359c9f8972219e4d7de4d481645a8/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
@@ -113,8 +114,8 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/blueschien
 		ADDED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:9-32
 application
 ADDED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-55:19
-MERGED from [com.google.android.material:material:1.2.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/56cd1674d1ba042c3ed5b8d93134fc80/material-1.2.1/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.2.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/56cd1674d1ba042c3ed5b8d93134fc80/material-1.2.1/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/96a2d35781ebbc4b005c4784cd9527ac/material-1.3.0-alpha01/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/96a2d35781ebbc4b005c4784cd9527ac/material-1.3.0-alpha01/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
@@ -189,8 +190,8 @@ INJECTED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_An
 INJECTED from /Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/12c3ae384a8de2484709228873cd2fcd/navigation-ui-2.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/12c3ae384a8de2484709228873cd2fcd/navigation-ui-2.3.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.material:material:1.2.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/56cd1674d1ba042c3ed5b8d93134fc80/material-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.2.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/56cd1674d1ba042c3ed5b8d93134fc80/material-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/96a2d35781ebbc4b005c4784cd9527ac/material-1.3.0-alpha01/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/96a2d35781ebbc4b005c4784cd9527ac/material-1.3.0-alpha01/AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3fb084916beca5dd31dcf33bed719b10/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.yalantis:ucrop:2.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/b508ff58359befd0b9920d6a176884e3/jetified-ucrop-2.2.4/AndroidManifest.xml:7:5-9:41
@@ -223,6 +224,8 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/blues
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3cf213e33fb5a76421a4e937ff33f07e/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/bde687302d742df89f7d227a2e48b0d9/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/bde687302d742df89f7d227a2e48b0d9/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e21faa684d0620c208274df0e88cb687/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e21faa684d0620c208274df0e88cb687/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/1a4a3955ef7b638f0453b1f9721c84bf/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44

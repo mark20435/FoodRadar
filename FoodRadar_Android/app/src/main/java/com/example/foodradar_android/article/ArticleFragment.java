@@ -23,14 +23,15 @@ public class ArticleFragment extends Fragment {
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@Nullable LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_article, container, false);
     }
@@ -38,7 +39,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BottomNavigationView bottomNavigationView = view.findViewById(R.id.article_navigation);
+        BottomNavigationView bottomNavigationView = view.findViewById(R.id.articleNavigation);
         NavController navController = Navigation.findNavController(activity, R.id.articleFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }

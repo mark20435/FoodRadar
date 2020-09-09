@@ -1,6 +1,7 @@
 package com.example.foodradar_android.article;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -99,6 +100,9 @@ public class NewArticleFragment extends Fragment {
             Log.e(TAG, "article:" + articleList);
         } else {
             ArticleAdapter articleAdapter = (ArticleAdapter) rvArticle.getAdapter();
+            if (articleAdapter == null){
+                rvArticle.setAdapter(new ArticleAdapter(activity, articleList));
+            }
         }
     }
 
@@ -107,6 +111,22 @@ public class NewArticleFragment extends Fragment {
         private LayoutInflater layoutInflater;
         private List<Article> ArticleList;
         private int imageSize;
+
+        //取得圖片並設定顯示圖片尺寸設定，ArticleAdapter建構方法
+        ArticleAdapter(Context context, List<Article> articleList){
+            layoutInflater = LayoutInflater.from(context);
+            this.ArticleList = articleList;
+            imageSize = getResources().getDisplayMetrics().widthPixels / 2;
+        }
+        //List<Article> 建構方法
+        public List<Article> getArticleList() {
+            return ArticleList;
+        }
+
+        public void setArticleList(List<Article> articleList) {
+            ArticleList = articleList;
+        }
+
         @NonNull
         @Override
         public ArticleAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -115,13 +135,8 @@ public class NewArticleFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder holder, int position) {
-
-        }
-
-        @Override
         public int getItemCount() {
-            return 0;
+            return articleList == null ? 0 : articleList.size();
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -131,8 +146,25 @@ public class NewArticleFragment extends Fragment {
 
             MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                //到這邊開始
+                userIcon = itemView.findViewById(R.id.userIcon);
+                ivArticleGoodIcon = itemView.findViewById(R.id.ivArticleGoodIcon);
+                ivArticleCommentIcon = itemView.findViewById(R.id.ivArticleCommentIcon);
+                ivArticleFavoriteIcon = itemView.findViewById(R.id.ivArticleFavoriteIcon);
+                imgView = itemView.findViewById(R.id.imgView);
+                userName = itemView.findViewById(R.id.userName);
+                resCategoryInfo = itemView.findViewById(R.id.resCategoryInfo);
+                articleTitle = itemView.findViewById(R.id.articleTitle);
+                resName = itemView.findViewById(R.id.resName);
+                tvArticleTime = itemView.findViewById(R.id.tvArticleTime);
+                tvGoodCount = itemView.findViewById(R.id.tvCommentCount);
+                tvCommentCount = itemView.findViewById(R.id.tvCommentCount);
+
             }
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder holder, int position) {
+
         }
     }
 }
