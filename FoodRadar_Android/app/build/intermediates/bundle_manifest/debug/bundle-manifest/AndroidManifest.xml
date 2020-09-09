@@ -46,14 +46,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
 
-<<<<<<< HEAD
-        <activity android:name="com.example.foodradar_android.main.MainActivity" >
-=======
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name="com.example.foodradar_android.MainActivity" >
->>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
+        <activity android:name="com.example.foodradar_android.main.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

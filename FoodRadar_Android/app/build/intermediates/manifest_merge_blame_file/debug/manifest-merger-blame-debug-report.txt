@@ -5,104 +5,7 @@
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
-<<<<<<< HEAD
 8        android:minSdkVersion="21"
-8-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-9        android:targetSdkVersion="29" />
-9-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-10
-11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-11-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:5:5-79
-11-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:5:22-76
-12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:7:5-67
-12-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:7:22-64
-13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:5:5-79
-13-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:5:22-76
-14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-14-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:9:5-81
-14-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:9:22-78
-15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-15-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:10:5-79
-15-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:10:22-76
-16
-17    <uses-feature
-17-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:12:5-14:35
-18        android:glEsVersion="0x00020000"
-18-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:13:9-41
-19        android:required="true" />
-19-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:9-32
-20
-21    <application
-21-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:5-41:19
-22        android:allowBackup="true"
-22-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-35
-23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-23-->[androidx.core:core:1.3.1] /Users/ricky/.gradle/caches/transforms-2/files-2.1/905808b10bc47511b6c6896a37787f2b/core-1.3.1/AndroidManifest.xml:24:18-86
-24        android:debuggable="true"
-25        android:icon="@mipmap/ic_launcher"
-25-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:18:9-43
-26        android:label="@string/app_name"
-26-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:9-41
-27        android:roundIcon="@mipmap/ic_launcher_round"
-27-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:20:9-54
-28        android:supportsRtl="true"
-28-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:21:9-35
-29        android:testOnly="true"
-30        android:theme="@style/AppTheme"
-30-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:22:9-40
-31        android:usesCleartextTraffic="true" >
-31-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:23:9-44
-32        <meta-data
-32-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:26:9-28:69
-33            android:name="com.google.android.gms.version"
-33-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:27:13-58
-34            android:value="@integer/google_play_services_version" />
-34-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:13-66
-35        <meta-data
-35-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:9-32:71
-36            android:name="com.google.android.geo.API_KEY"
-36-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:13-58
-37            android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
-37-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:13-68
-38
-39        <activity android:name="com.example.foodradar_android.main.MainActivity" >
-39-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:9-39:20
-39-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:19-52
-40            <intent-filter>
-40-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:35:13-38:29
-41                <action android:name="android.intent.action.MAIN" />
-41-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:17-69
-41-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:25-66
-42
-43                <category android:name="android.intent.category.LAUNCHER" />
-43-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:17-77
-43-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:27-74
-44            </intent-filter>
-45        </activity>
-46
-47        <!-- Needs to be explicitly declared on P+ -->
-48        <uses-library
-48-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-49            android:name="org.apache.http.legacy"
-49-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-50            android:required="false" />
-50-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/a839635d2d496b87b8285f48671776f3/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-51
-52        <activity
-52-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-53            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-53-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-54            android:exported="false"
-54-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-55            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-55-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/6a27f052584ba14e1bf3f0754d910342/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-56    </application>
-57
-58</manifest>
-=======
-8        android:minSdkVersion="19"
 8-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
 9-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml
@@ -186,9 +89,9 @@
 50-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:45:13-60
 51            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 51-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:46:13-69
-52        <activity android:name="com.example.foodradar_android.MainActivity" >
+52        <activity android:name="com.example.foodradar_android.main.MainActivity" >
 52-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:9-53:20
-52-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:19-47
+52-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:19-52
 53            <intent-filter>
 53-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:49:13-52:29
 54                <action android:name="android.intent.action.MAIN" />
@@ -220,4 +123,3 @@
 69    </application>
 70
 71</manifest>
->>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe

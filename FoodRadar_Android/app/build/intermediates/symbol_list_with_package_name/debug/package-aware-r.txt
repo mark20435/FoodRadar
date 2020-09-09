@@ -2126,6 +2126,7 @@ id rotate_scroll_wheel
 id rounded
 id row_index_key
 id rvArticle
+id rvChinaRest
 id rvRes
 id satellite
 id save_non_transition_alpha
@@ -2210,16 +2211,6 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-<<<<<<< HEAD
-id textView
-id textView2
-id textView3
-id textView4
-id textView5
-id textView6
-id textView7
-=======
->>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop
@@ -2583,11 +2574,8 @@ string textEnable
 string textInsert
 string textInsertCancel
 string textNoArticleFound
-<<<<<<< HEAD
-string textNoMainFound
-=======
 string textNoCameraApp
->>>>>>> 1d5af09af86c2cdfb1c98bdea52b86c9a1c6a5fe
+string textNoMainFound
 string textNoNetwork
 string textNoRessFound
 string textPickPicture
