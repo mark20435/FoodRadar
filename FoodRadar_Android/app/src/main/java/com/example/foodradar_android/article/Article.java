@@ -7,30 +7,38 @@ public class Article {
     private String articleTime ;
     private String articleText ;
     private String modifyTime ;
+    private String resCategoryInfo;
     private int resId;
     private int userId;
     private int conAmount;
     private int conNum;
     private boolean articleStatus;
 
+    private byte[] articleImg;
+
+    private byte[] userIcon;
+
     public Article() {
         super();
     }
 
-
-    public Article(int articleId, String articleTitle, String articleTime, String articleText, String modifyTime,
-                   int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
+    //ArticleList頁面
+    public Article(int articleId, String articleTitle, String articleTime, String articleText, String resCategoryInfo, String modifyTime,
+                   int resId, int userId, int conAmount, int conNum, boolean articleStatus, byte[] articleImg, byte[] userIcon) {
         super();
         this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
         this.articleText = articleText;
+        this.resCategoryInfo = resCategoryInfo;
         this.modifyTime = modifyTime;
         this.resId = resId;
         this.userId = userId;
         this.conAmount = conAmount;
         this.conNum = conNum;
         this.articleStatus = articleStatus;
+        this.articleImg = articleImg;
+        this.userIcon = userIcon;
     }
 
 

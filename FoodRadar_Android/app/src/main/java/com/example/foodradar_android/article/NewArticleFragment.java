@@ -64,6 +64,17 @@ public class NewArticleFragment extends Fragment {
         rvArticle.setLayoutManager(new LinearLayoutManager(activity));
         articleList = getArticle();
         showArticle(articleList);
+
+        //swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showArticle(articleList);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
     }
 
 
@@ -116,7 +127,7 @@ public class NewArticleFragment extends Fragment {
         ArticleAdapter(Context context, List<Article> articleList){
             layoutInflater = LayoutInflater.from(context);
             this.ArticleList = articleList;
-            imageSize = getResources().getDisplayMetrics().widthPixels / 2;
+            imageSize = getResources().getDisplayMetrics().widthPixels;
         }
         //List<Article> 建構方法
         public List<Article> getArticleList() {
@@ -136,7 +147,8 @@ public class NewArticleFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return articleList == null ? 0 : articleList.size();
+//            return articleList == null ? 0 : articleList.size();
+            return 10;
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -163,8 +175,16 @@ public class NewArticleFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder holder, int position) {
-
+        public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder myViewHolder, int position) {
+            //article物件 > 包裝要呈現在畫面的資料
+            final Article article = articleList.get(position);
+            String url = Common.URL_SERVER + "ImgServlet";
+            //透過文章Id取得圖片
+            int id = article.getArticleId();
+            ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imgView);
+            imageTask.execute();
+            imageTasks.add(imageTask);
+            myViewHolder.userIcon.setImageResource(article.getUserId());
         }
     }
 }
