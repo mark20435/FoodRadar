@@ -1086,6 +1086,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color earthBackground
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
@@ -1093,7 +1094,9 @@ color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color item_select
+color mainBlue
 color mainPink
+color mainYellow
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1733,6 +1736,7 @@ drawable ic_baseline_card_giftcard_24
 drawable ic_baseline_chat_bubble_24
 drawable ic_baseline_chat_bubble_outline_24
 drawable ic_baseline_comment_24
+drawable ic_baseline_favorite_24
 drawable ic_baseline_home_24
 drawable ic_baseline_map_24
 drawable ic_baseline_person_pin_24

@@ -2,10 +2,13 @@ package com.example.foodradar_android.article;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +16,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -35,7 +37,7 @@ import java.util.List;
 public class NewArticleFragment extends Fragment {
     private static final String TAG = "TAG_ArticleFragment";
     private RecyclerView rvArticle;
-    private List<Article> articleList;
+    private List<Article> articles;
     private Activity activity;
     private List<ImageTask> imageTasks;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -59,22 +61,19 @@ public class NewArticleFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SearchView articleSearchView = view.findViewById(R.id.articleSearchView);
+//        SearchView articleSearchView = view.findViewById(R.id.articleSearchView);
         rvArticle = view.findViewById(R.id.rvArticle);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
         rvArticle.setLayoutManager(new LinearLayoutManager(activity));
-        articleList = getArticle();
-        showArticle(articleList);
+        articles = getArticle();
+        showArticle(articles);
 
         //swipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
-                showArticle(articleList);
-                swipeRefreshLayout.setRefreshing(false);
-            }
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            swipeRefreshLayout.setRefreshing(true);
+            showArticle(articles);
+            swipeRefreshLayout.setRefreshing(false);
         });
 
 
@@ -107,7 +106,7 @@ public class NewArticleFragment extends Fragment {
 
     //向server端取得Article資料
     private List<Article> getArticle() {
-        List<Article> articleList = null;
+        List<Article> articles = null;
         if (Common.networkConnected(activity)) {
             String url = Common.URL_SERVER + "ArticleServlet";
             JsonObject jsonObject = new JsonObject();
@@ -119,7 +118,7 @@ public class NewArticleFragment extends Fragment {
                 String jsonIn = articleGetAllTask.execute().get();
                 Type listType = new TypeToken<List<Article>>() {
                 }.getType();
-                articleList = new Gson().fromJson(jsonIn, listType);
+                articles = new Gson().fromJson(jsonIn, listType);
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
@@ -128,20 +127,23 @@ public class NewArticleFragment extends Fragment {
             Common.showToast(activity, R.string.textNoNetwork);
         }
 
-        return articleList;
+        return articles;
     }
 
 
     private void showArticle(List<Article> articleList) {
+
         if (articleList == null || articleList.isEmpty()) {
             //暫定Toast，須修改錯誤時執行的動作
             Common.showToast(activity, R.string.textNoArticleFound);
             Log.e(TAG, "article:" + articleList);
+        }
+        ArticleAdapter articleAdapter = (ArticleAdapter) rvArticle.getAdapter();
+        if (articleAdapter == null) {
+            rvArticle.setAdapter(new ArticleAdapter(activity, articleList));
         } else {
-            ArticleAdapter articleAdapter = (ArticleAdapter) rvArticle.getAdapter();
-            if (articleAdapter == null) {
-                rvArticle.setAdapter(new ArticleAdapter(activity, articleList));
-            }
+            articleAdapter.setArticleList(articleList);
+            articleAdapter.notifyDataSetChanged();
         }
     }
 
@@ -171,8 +173,8 @@ public class NewArticleFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return articleList == null ? 0 : articleList.size();
-//            return 10;
+            return articles == null ? 0 : articles.size();
+//               return 0;
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -195,7 +197,8 @@ public class NewArticleFragment extends Fragment {
                 tvCommentCount = itemView.findViewById(R.id.tvgoodCount);
                 tvFavoriteArticle = itemView.findViewById(R.id.tvFavoriteArticle);
                 ivGoodIcon = itemView.findViewById(R.id.ivGoodIcon);
-                ivFavoriteIcon = itemView.findViewById(R.id.tvFavoriteArticle);
+                ivFavoriteIcon = itemView.findViewById(R.id.ivFavoriteIcon);
+
             }
         }
 
@@ -209,35 +212,76 @@ public class NewArticleFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder myViewHolder, int position) {
             //article物件 > 包裝要呈現在畫面的資料
-            final Article article = articleList.get(position);
+            final Article article = ArticleList.get(position);
             //onBindViewHolder才會向後端發出請求取得圖片
             //取得大圖
             String url = Common.URL_SERVER + "ImgServlet";
-            int id = article.getArticleId();
-            ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imgView);
+            int articleId = article.getArticleId();
+            ImageTask imageTask = new ImageTask(url, articleId, imageSize, myViewHolder.imgView);
             imageTask.execute();
             imageTasks.add(imageTask);
 
             //取得使用者小圖
-            String urlIcon = Common.URL_SERVER + "UserServlet";
+            String urlIcon = Common.URL_SERVER + "MyResServlet";
             int userId = article.getArticleId();
             ImageTask imageTaskIcon = new ImageTask(urlIcon, userId, imageSize, myViewHolder.userIcon);
             imageTaskIcon.execute();
             imageTasks.add(imageTaskIcon);
+
+            String goodCount = article.getGoodCount() + "";
+            String commentCount = article.getCommentCount() + "";
+            String favoriteCount = article.getFavoriteCount() + "";
 
             myViewHolder.userName.setText(article.getUserName());
             myViewHolder.resCategoryInfo.setText(article.getResCategoryInfo());
             myViewHolder.articleTitle.setText(article.getArticleTitle());
             myViewHolder.resName.setText(article.getResName());
             myViewHolder.tvArticleTime.setText(article.getArticleTime());
-            myViewHolder.tvGoodCount.setText(article.getGoodCount());
-            myViewHolder.tvCommentCount.setText(article.getCommentCount());
-            myViewHolder.tvFavoriteArticle.setText(article.getFavoriteCount());
+            myViewHolder.tvGoodCount.setText(goodCount);
+            myViewHolder.tvCommentCount.setText(commentCount);
+            myViewHolder.tvFavoriteArticle.setText(favoriteCount);
             myViewHolder.ivGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
             myViewHolder.ivArticleCommentIcon.setImageResource(R.drawable.ic_baseline_chat_bubble_24);
             myViewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_baseline_turned_in_24);
 
+            //設定點讚功能，1.會員登入判斷還沒寫，要候補    2.判斷是否已點讚
+            myViewHolder.ivGoodIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                final ImageView goodIcon = v.findViewById(R.id.ivGoodIcon);
+                        goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                }
+            });
 
+            //設定收藏功能，1.會員登入判斷還沒寫，要候補    2.判斷是否已收藏
+            myViewHolder.ivFavoriteIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   final ImageView favoriteIcon = v.findViewById(R.id.ivFavoriteIcon);
+                   favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
+                }
+            });
+
+        }
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (articleGetAllTask != null) {
+            articleGetAllTask.cancel(true);
+            articleGetAllTask = null;
+        }
+
+        if (imageTasks != null && imageTasks.size() > 0) {
+            for (ImageTask imageTask : imageTasks) {
+                imageTask.cancel(true);
+            }
+            imageTasks.clear();
+        }
+
+        if (articleGetAllTask != null) {
+            articleGetAllTask.cancel(true);
+            articleGetAllTask = null;
         }
     }
 }
