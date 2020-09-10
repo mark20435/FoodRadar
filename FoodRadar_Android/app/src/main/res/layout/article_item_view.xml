@@ -89,7 +89,7 @@
             android:text="TextView"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/resName"
-            app:layout_constraintEnd_toStartOf="@+id/cbGood"
+            app:layout_constraintEnd_toStartOf="@+id/ivGoodIcon"
             tools:text="10" />
 
         <TextView
@@ -100,7 +100,7 @@
             android:text="10"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/ivArticleCommentIcon"
-            app:layout_constraintTop_toTopOf="@+id/cbGood" />
+            app:layout_constraintTop_toTopOf="@+id/ivGoodIcon" />
 
         <ImageView
             android:id="@+id/ivArticleCommentIcon"
@@ -109,7 +109,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/tvFavoriteArticle"
             app:layout_constraintTop_toTopOf="@+id/tvCommentCount"
-            app:srcCompat="@drawable/ic_baseline_chat_bubble_outline_24"
+            app:srcCompat="@drawable/ic_baseline_chat_bubble_24"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
@@ -119,28 +119,26 @@
             android:layout_marginEnd="4dp"
             android:text="10"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/cbFavorite"
+            app:layout_constraintEnd_toStartOf="@+id/ivFavoriteIcon"
             app:layout_constraintTop_toTopOf="@+id/ivArticleCommentIcon" />
 
-        <CheckBox
-            android:id="@+id/cbGood"
+        <ImageView
+            android:id="@+id/ivGoodIcon"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginEnd="8dp"
-            android:button="@drawable/ic_baseline_thumb_up_24"
-            android:buttonTint="@color/mainPink"
             app:layout_constraintEnd_toStartOf="@+id/tvCommentCount"
-            app:layout_constraintTop_toTopOf="@+id/tvgoodCount" />
+            app:layout_constraintTop_toTopOf="@+id/tvgoodCount"
+            app:srcCompat="@drawable/ic_baseline_thumb_up_24" />
 
-        <CheckBox
-            android:id="@+id/cbFavorite"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="4dp"
-            android:button="@drawable/ic_baseline_turned_in_24"
-            android:buttonTint="@color/mainPink"
+        <ImageView
+            android:id="@+id/ivFavoriteIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvFavoriteArticle" />
+            app:layout_constraintTop_toTopOf="@+id/tvFavoriteArticle"
+            app:srcCompat="@drawable/ic_baseline_turned_in_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

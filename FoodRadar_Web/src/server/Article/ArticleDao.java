@@ -1,4 +1,4 @@
-package server.Article;
+package server.article;
 
 import java.util.List;
 
@@ -10,9 +10,11 @@ public interface ArticleDao {
 
 	Article findById(int articleId);
 	
-//	byte[] getImage(int articleId);
+	byte[] getImage(int imgId);
 
 	List<Article> getAll();
+	
+	List<Article> getAllById();
 
 
 }

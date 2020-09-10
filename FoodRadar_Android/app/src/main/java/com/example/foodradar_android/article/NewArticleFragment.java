@@ -112,7 +112,7 @@ public class NewArticleFragment extends Fragment {
             String url = Common.URL_SERVER + "ArticleServlet";
             JsonObject jsonObject = new JsonObject();
             //？？
-            jsonObject.addProperty("action", "getAll");
+            jsonObject.addProperty("action", "getAllById");
             String jsonOut = jsonObject.toString();
             articleGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -171,15 +171,15 @@ public class NewArticleFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-//            return articleList == null ? 0 : articleList.size();
-            return 10;
+            return articleList == null ? 0 : articleList.size();
+//            return 10;
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView userIcon, ivArticleCommentIcon, imgView;
+            ImageView ivGoodIcon, ivFavoriteIcon;
             TextView userName, resCategoryInfo, articleTitle, resName, tvArticleTime;
             TextView tvGoodCount, tvCommentCount, tvFavoriteArticle;
-            CheckBox cbGood, cbFavorite;
 
             MyViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -194,9 +194,8 @@ public class NewArticleFragment extends Fragment {
                 tvGoodCount = itemView.findViewById(R.id.tvCommentCount);
                 tvCommentCount = itemView.findViewById(R.id.tvgoodCount);
                 tvFavoriteArticle = itemView.findViewById(R.id.tvFavoriteArticle);
-                cbGood = itemView.findViewById(R.id.cbGood);
-                cbFavorite = itemView.findViewById(R.id.cbFavorite);
-
+                ivGoodIcon = itemView.findViewById(R.id.ivGoodIcon);
+                ivFavoriteIcon = itemView.findViewById(R.id.tvFavoriteArticle);
             }
         }
 
@@ -211,13 +210,33 @@ public class NewArticleFragment extends Fragment {
         public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder myViewHolder, int position) {
             //article物件 > 包裝要呈現在畫面的資料
             final Article article = articleList.get(position);
+            //onBindViewHolder才會向後端發出請求取得圖片
+            //取得大圖
             String url = Common.URL_SERVER + "ImgServlet";
-            //透過文章Id取得圖片
             int id = article.getArticleId();
             ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imgView);
             imageTask.execute();
             imageTasks.add(imageTask);
-            myViewHolder.userIcon.setImageResource(article.getUserId());
+
+            //取得使用者小圖
+            String urlIcon = Common.URL_SERVER + "UserServlet";
+            int userId = article.getArticleId();
+            ImageTask imageTaskIcon = new ImageTask(urlIcon, userId, imageSize, myViewHolder.userIcon);
+            imageTaskIcon.execute();
+            imageTasks.add(imageTaskIcon);
+
+            myViewHolder.userName.setText(article.getUserName());
+            myViewHolder.resCategoryInfo.setText(article.getResCategoryInfo());
+            myViewHolder.articleTitle.setText(article.getArticleTitle());
+            myViewHolder.resName.setText(article.getResName());
+            myViewHolder.tvArticleTime.setText(article.getArticleTime());
+            myViewHolder.tvGoodCount.setText(article.getGoodCount());
+            myViewHolder.tvCommentCount.setText(article.getCommentCount());
+            myViewHolder.tvFavoriteArticle.setText(article.getFavoriteCount());
+            myViewHolder.ivGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
+            myViewHolder.ivArticleCommentIcon.setImageResource(R.drawable.ic_baseline_chat_bubble_24);
+            myViewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_baseline_turned_in_24);
+
 
         }
     }

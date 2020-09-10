@@ -1,5 +1,6 @@
-package server.Article;
+package server.article;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -111,8 +112,8 @@ public class ArticleDaoImpl implements ArticleDao {
 				int conAmount = rs.getInt("conAmount");
 				int conNum = rs.getInt("conNum");
 				boolean articleStatus = rs.getBoolean("articleStatus");
-				article = new Article(articleId, articleTitle, articleTime, articleText, modifyTime, resId, userId,
-						conAmount, conNum, articleStatus);
+//				article = new Article(articleId, articleTitle, articleTime, articleText, modifyTime, resId, userId,
+//						conAmount, conNum, articleStatus);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,26 +123,29 @@ public class ArticleDaoImpl implements ArticleDao {
 
 	@Override
 	// 取得(資料庫)欄位資料，並排序方法
-	public List<Article> getAll() {
-		String sql = "SELECT articleId, articleTitle, articleText, modifyTime, resId, userId, conAmount, conNum, articleStatus "
-				+ " FROM Article ORDER BY articleTime DESC;";
+	public List<Article> getAllById() {
+//		String sql = "SELECT articleId, articleTitle, articleText, modifyTime, resId, userId, conAmount, conNum, articleStatus "
+//				+ " FROM Article ORDER BY articleTime DESC;";
+		String sql = "{call sp_GetArticle(?)}";
 		List<Article> articleList = new ArrayList<Article>();
 		try (Connection connection = dataSource.getConnection();
-				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ResultSet rs = ps.executeQuery();
+				CallableStatement cs = connection.prepareCall(sql);
+				) {
+			ResultSet rs = cs.executeQuery();
 			while (rs.next()) {
 				int articleId = rs.getInt("articleId");
 				String articleTitle = rs.getString("articleTitle");
 				String articleTime = rs.getString("articleTime");
 				String articleText = rs.getString("articleText");
-				String modifyTime = rs.getString("modifyTime");
-				int resId = rs.getInt("resId");
-				int userId = rs.getInt("userId");
-				int conAmount = rs.getInt("conAmount");
-				int conNum = rs.getInt("conNum");
+				String resCategoryInfo = rs.getString("resCategoryInfo");
+				String resName = rs.getString("resName");
+				String userName = rs.getString("userName");
 				boolean articleStatus = rs.getBoolean("articleStatus");
-				Article article = new Article(articleId, articleTitle, articleTime, articleText, modifyTime, resId,
-						userId, conAmount, conNum, articleStatus);
+				int goodCount = rs.getInt("goodCount");
+				int commentCount = rs.getInt("commentCount");
+				int favoriteCount = rs.getInt("favoriteCount");
+				Article article = new Article(articleId, articleTitle, articleTime, articleText, resCategoryInfo, resName,
+						userName, articleStatus, goodCount, commentCount, favoriteCount);
 				articleList.add(article);
 			}
 			return articleList;
@@ -151,15 +155,37 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articleList;
 	}
 
+	@Override
+	public byte[] getImage(int imgId) {
+		String sql = " SELECT img FROM Img WHERE imgId = ?; ";
+		byte[] image = null;
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, imgId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				image = rs.getBytes(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return image;
+	}
+
+	@Override
+	public List<Article> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 //	@Override
 //	// 取得圖片方法
 //	public byte[] getImage(int articleId) {
-//		String sql = " SELECT img FROM Img WHERE articleId = ?; ";
+//		String sql = " SELECT img FROM Img WHERE imgId = ?; ";
 //		byte[] image = null;
 //		try (Connection connection = dataSource.getConnection();
 //				PreparedStatement ps = connection.prepareStatement(sql);) {
-//			ps.setInt(1, articleId);
+//			ps.setInt(1, Id);
 //			ResultSet rs = ps.executeUpdate(sql);
 //			if (rs.next()) {
 //				image = rs.getBytes(1);

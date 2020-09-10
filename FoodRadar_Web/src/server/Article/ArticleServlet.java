@@ -1,4 +1,4 @@
-package server.Article;
+package server.article;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,8 +42,9 @@ public class ArticleServlet extends HttpServlet {
 		String action = jsonObject.get("action").getAsString();
 
 		// 判斷client端行為1 > 取得資料庫資料
-		if (action.equals("getAll")) {
-			List<Article> articles = articleDao.getAll();
+		if (action.equals("getAllById")) {
+//			int articleId = jsonObject.get("articleId").getAsInt();
+			List<Article> articles = articleDao.getAllById();
 			writeText(response, gson.toJson(articles));
 			// 判斷client端行為2 > insert或Update
 		} else if (action.equals("articleInsert") || action.equals("articleUpdate")) { 

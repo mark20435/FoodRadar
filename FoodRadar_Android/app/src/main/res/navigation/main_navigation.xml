@@ -76,7 +76,7 @@
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" >
         <action
-            android:id="@+id/action_articleFragment_to_articleDetailFragment"
+            android:id="@+id/action_articleFragment_to_articleDetailFragment2"
             app:destination="@id/articleDetailFragment" />
     </fragment>
     <fragment
@@ -95,7 +95,7 @@
         tools:layout="@layout/fragment_china_restaurant" />
     <fragment
         android:id="@+id/articleDetailFragment"
-        android:name="com.example.foodradar_android.ArticleDetailFragment"
+        android:name="com.example.foodradar_android.article.ArticleDetailFragment"
         android:label="fragment_article_detail"
         tools:layout="@layout/fragment_article_detail" />
 </navigation>

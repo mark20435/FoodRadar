@@ -1853,7 +1853,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
-id action_articleFragment_to_articleDetailFragment
+id action_articleFragment_to_articleDetailFragment2
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1924,8 +1924,6 @@ id cancel_action
 id cancel_button
 id cardView
 id cardview
-id cbFavorite
-id cbGood
 id center
 id center_horizontal
 id center_vertical
@@ -2046,6 +2044,8 @@ id invisible
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
+id ivFavoriteIcon
+id ivGoodIcon
 id ivImage
 id ivRes
 id jumpToEnd
