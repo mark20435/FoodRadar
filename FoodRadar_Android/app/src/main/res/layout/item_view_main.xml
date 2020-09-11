@@ -18,34 +18,44 @@
         android:background="@color/design_default_color_background">
 
 
-        <ImageView
-            android:id="@+id/ivImage"
+<!--        <ImageView-->
+<!--            android:id="@+id/ivImage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginBottom="40dp"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/chinacate"-->
+<!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
+<!--            card_view:layout_constraintStart_toStartOf="parent" />-->
+
+        <ImageButton
+            android:id="@+id/ibchina"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="40dp"
-            android:adjustViewBounds="true"
+            android:layout_height="230dp"
             android:scaleType="fitXY"
-            android:src="@drawable/chinacate"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="0.0"
+            card_view:srcCompat="@drawable/chinacate" />
 
         <TextView
             android:id="@+id/caName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:layout_toEndOf="@id/ivImage"
             android:text="Name"
             android:textColor="#000000"
             android:textSize="24sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/ivImage" />
+            card_view:layout_constraintTop_toBottomOf="@+id/ibchina" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

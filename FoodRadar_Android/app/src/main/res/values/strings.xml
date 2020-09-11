@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">首頁</string>
     <string name="map">餐廳地圖</string>
+    <string name="chinacategory">中式料理餐廳</string>
     <string name="coupon">優惠活動</string>
     <string name="article">討論區</string>
     <string name="user">會員管理</string>

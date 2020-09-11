@@ -2023,6 +2023,7 @@ id home
 id homeAsUp
 id honorRequest
 id hybrid
+id ibchina
 id icon
 id icon_group
 id icon_only
@@ -2139,6 +2140,7 @@ id rankArticleFragment
 id ratio
 id rectangles
 id recyclerView
+id resCategoryImg
 id resCategoryInfo
 id resInsertFragment
 id resMaintainFragment
@@ -2400,6 +2402,7 @@ layout fragment_res_map
 layout fragment_user_area
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout item_view_chinaresturant
 layout item_view_main
 layout item_view_res
 layout item_view_user_myres
@@ -2515,6 +2518,7 @@ string bottom_sheet_behavior
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string chinacategory
 string chip_text
 string clear_text_end_icon_content_description
 string common_google_play_services_enable_button

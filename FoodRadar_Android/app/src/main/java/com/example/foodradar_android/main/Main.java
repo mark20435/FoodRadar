@@ -6,6 +6,7 @@ public class Main implements Serializable {
     private int imageId;
     private String cateName;
 
+
     public Main(int imageId, String cateName) {
         this.imageId = imageId;
         this.cateName = cateName;

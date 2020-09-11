@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -47,7 +48,6 @@ public class MainFragment extends Fragment {
     private List<Main> mains;
     private NavController navController;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -72,6 +73,7 @@ public class MainFragment extends Fragment {
 //        activity.setSupportActionBar(toolbar);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+
         List<Main> mains = getMains();
         recyclerView.setAdapter(new MainAdapter(activity, mains));
     }
@@ -92,12 +94,12 @@ public class MainFragment extends Fragment {
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView imageView;
+            ImageButton imageButton;
             TextView caName;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                imageView = itemView.findViewById(R.id.ivImage);
+                imageButton = itemView.findViewById(R.id.ibchina);
                 caName = itemView.findViewById(R.id.caName);
             }
         }
@@ -112,20 +114,20 @@ public class MainFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int index) {
             final Main main = mains.get(index);
-            viewHolder.imageView.setImageResource(main.getImageId());
+            viewHolder.imageButton.setImageResource(main.getImageId());
             viewHolder.caName.setText(main.getCateName());
-            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            viewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    ImageView imageView = new ImageView(context);
-//                    imageView.setImageResource(main.getImageId());
+                    ImageButton imageButton = new ImageButton(context);
+                    imageButton.setImageResource(main.getImageId());
 //                    Toast toast = new Toast(context);
 //                    toast.setView(imageView);
 //                    toast.setDuration(Toast.LENGTH_SHORT);
 //                    toast.show();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("main", main);
-                    Navigation.findNavController(recyclerView).navigate(R.id.action_mainFragment_to_chinaRestaurantFragment);
+                    Navigation.findNavController(recyclerView).navigate(R.id.action_mainFragment_to_chinaRestaurantFragment, bundle);
                 }
             });
 
