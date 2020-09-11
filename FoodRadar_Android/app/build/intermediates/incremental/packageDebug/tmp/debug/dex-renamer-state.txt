@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-#Fri Sep 11 17:06:00 CST 2020
+#Sat Sep 12 00:44:19 CST 2020
 base.0=/Users/gn0987123/Downloads/Tibame/FoodRadar0908/FoodRadar_Android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-=======
-#Fri Sep 11 15:45:51 CST 2020
-base.0=/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
->>>>>>> f1c3871386ba360f28e191a65c7b1b96cd033bf8
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+base.1=/Users/gn0987123/Downloads/Tibame/FoodRadar0908/FoodRadar_Android/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
