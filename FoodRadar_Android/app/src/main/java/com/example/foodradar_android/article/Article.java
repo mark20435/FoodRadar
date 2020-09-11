@@ -1,6 +1,8 @@
 package com.example.foodradar_android.article;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable {
 
     private int articleId;
     private String articleTitle;
@@ -8,6 +10,7 @@ public class Article {
     private String articleText ;
     private String modifyTime ;
     private String resCategoryInfo;
+    private int imgId;
     private int resId;
     private int userId;
     private String resName;
@@ -30,17 +33,16 @@ public class Article {
     }
 
     //ArticleList頁面(新進榜，排行榜，收藏榜)
-    public Article(int articleId, String articleTitle, String articleTime, String articleText, String resCategoryInfo,
-                   String resName, String userName, boolean articleStatus, int goodCount, int commentCount, int favoriteCount) {
+    public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
+                   String resName, int goodCount, int commentCount, int favoriteCount) {
         super();
-        this.articleId = articleId;
+//        this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
         this.articleText = articleText;
         this.resCategoryInfo = resCategoryInfo;
         this.resName = resName;
         this.userName = userName;
-        this.articleStatus = articleStatus;
         this.goodCount = goodCount;
         this.commentCount = commentCount;
         this.favoriteCount = favoriteCount;
@@ -209,6 +211,13 @@ public class Article {
         this.favoriteCount = favoriteCount;
     }
 
+    public int getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
+    }
 
     @Override   //覆寫方法，取得articleId > 透過id 取得article
     public boolean equals(Object obj) {

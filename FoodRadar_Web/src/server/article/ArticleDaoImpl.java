@@ -124,14 +124,35 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	// 取得(資料庫)欄位資料，並排序方法
 	public List<Article> getAllById() {
+		Article article = null;
 //		String sql = "SELECT articleId, articleTitle, articleText, modifyTime, resId, userId, conAmount, conNum, articleStatus "
 //				+ " FROM Article ORDER BY articleTime DESC;";
-		String sql = "{call sp_GetArticle(?)}";
+		String sql = "select\n" + 
+				"case when UA.userName = '' Then '無名的食客' Else UA.userName end as 'userName'\n" + 
+				",C.resCategoryInfo as 'resCategoryInfo'\n" + 
+				",A.articleTime as 'articleTime'\n" + 
+				",A.articleTitle as 'articleTitle'\n" + 
+				",A.articleText as 'articleText'\n" + 
+				",R.resName as 'resName'\n" + 
+				",(select count(*) from ArticleGood AC where AC.articleId = A.articleId) as 'goodCount'\n" + 
+				",(select count(*) from Comment CO where CO.commentStatus=1 and CO.articleId = A.articleId) as 'commentCount'\n" + 
+				",(select count(*) from MyArticle MA where MA.articleId = A.articleId) as 'favoriteCount'\n" + 
+				",A.articleId as 'articleId'\n" + 
+				",A.resId as 'resId'\n" + 
+				",A.userId as 'userId'\n" + 
+				",A.conAmount as 'conAmount'\n" + 
+				",A.conNum as 'conNum'\n" + 
+				",A.articleStatus as 'articleStatus'\n" + 
+				" FROM Article A\n" + 
+				" join UserAccount UA on A.userId = UA.userId\n" + 
+				" join Res R on A.resId = R.resId\n" + 
+				" join Img I on A.articleId = I.articleId\n" + 
+				" join Category C on R.resCategoryId = C.resCategoryId;";
 		List<Article> articleList = new ArrayList<Article>();
 		try (Connection connection = dataSource.getConnection();
-				CallableStatement cs = connection.prepareCall(sql);
+				PreparedStatement ps = connection.prepareStatement(sql);
 				) {
-			ResultSet rs = cs.executeQuery();
+			ResultSet rs = ps.executeQuery(sql);
 			while (rs.next()) {
 				int articleId = rs.getInt("articleId");
 				String articleTitle = rs.getString("articleTitle");
@@ -140,12 +161,16 @@ public class ArticleDaoImpl implements ArticleDao {
 				String resCategoryInfo = rs.getString("resCategoryInfo");
 				String resName = rs.getString("resName");
 				String userName = rs.getString("userName");
+				int userId = rs.getInt("userId");
+				int resId = rs.getInt("resId");
+				int conAmount = rs.getInt("conAmount");
+				int conNum = rs.getInt("conNum");
 				boolean articleStatus = rs.getBoolean("articleStatus");
 				int goodCount = rs.getInt("goodCount");
 				int commentCount = rs.getInt("commentCount");
 				int favoriteCount = rs.getInt("favoriteCount");
-				Article article = new Article(articleId, articleTitle, articleTime, articleText, resCategoryInfo, resName,
-						userName, articleStatus, goodCount, commentCount, favoriteCount);
+				article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
+						  goodCount, commentCount, favoriteCount, articleId, resId, userId, conAmount, conNum, articleStatus);
 				articleList.add(article);
 			}
 			return articleList;

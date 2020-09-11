@@ -29,20 +29,25 @@ public class Article {
 	}
 
 	//ArticleList頁面(新進榜，排行榜，收藏榜)
-	public Article(int articleId, String articleTitle, String articleTime, String articleText, String resCategoryInfo,
-			String resName, String userName, boolean articleStatus, int goodCount, int commentCount, int favoriteCount) {
+	public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
+			String resName, int goodCount, int commentCount, int favoriteCount, int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
 		super();
-//		this.articleId = articleId;
+		this.articleId = articleId;
 		this.articleTitle = articleTitle;
 		this.articleTime = articleTime;
 		this.articleText = articleText;
 		this.resCategoryInfo = resCategoryInfo;
 		this.resName = resName;
 		this.userName = userName;
-		this.articleStatus = articleStatus;
         this.goodCount = goodCount;
         this.commentCount = commentCount;
         this.favoriteCount = favoriteCount;
+        this.articleId = articleId;
+        this.resId = resId;
+        this.userId = userId;
+        this.conAmount = conAmount;
+        this.conNum = conNum;
+        this.articleStatus = articleStatus;
 	}
 
 

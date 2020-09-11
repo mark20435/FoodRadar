@@ -18,7 +18,7 @@ import com.google.gson.JsonObject;
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L; // 序列化標籤
 	private final static String CONTENT_TYPE = "text/html; charset=utf-8"; // 編碼
-	ArticleDao articleDao;
+	ArticleDao articleDao = null;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class ArticleServlet extends HttpServlet {
 		// 宣告jsonObject
 		JsonObject jsonObject = gson.fromJson(jsonInput.toString(), JsonObject.class);
 		// Dao不為空值的話，取得實作方法內容
-		if (articleDao != null) {
+		if (articleDao == null) {
 			articleDao = new ArticleDaoImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
@@ -95,7 +95,7 @@ public class ArticleServlet extends HttpServlet {
 		if (articleDao == null) {
 			articleDao = new ArticleDaoImpl();
 		}
-		List<Article> articles = articleDao.getAll();
+		List<Article> articles = articleDao.getAllById();
 		writeText(response, new Gson().toJson(articles));
 	}
 

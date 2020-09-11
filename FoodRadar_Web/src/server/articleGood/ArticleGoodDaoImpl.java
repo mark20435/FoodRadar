@@ -70,15 +70,15 @@ public class ArticleGoodDaoImpl implements ArticleGoodDao {
 	}
 
 	@Override
-	public ArticleGood findById(int articleId) {
+	public ArticleGood findById(int articleGoodId) {
 		ArticleGood articleGood = null;
-		String sql = "SELECT articleGoodId, userId WHERE articleId = ?; ";
+		String sql = "SELECT articleId, userId FROM ArticleGood WHERE articleGoodId = ? ; ";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setInt(1, articleId);
+			ps.setInt(1, articleGoodId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				int articleGoodId = rs.getInt("rticleGoodId");
+				int articleId = rs.getInt("articleId");
 				int userId = rs.getInt("userId");
 				articleGood = new ArticleGood(articleGoodId, articleId, userId);
 			}
@@ -97,7 +97,7 @@ public class ArticleGoodDaoImpl implements ArticleGoodDao {
 
 	@Override
 	public List<ArticleGood> getAll() {
-		String sql = "SELECT  articleGoodId, userId " + "FROM ArticleGood ORDER BY articleId DESC;";
+		String sql = "SELECT articleGoodId, userId FROM ArticleGood ORDER BY articleId DESC;";
 		List<ArticleGood> articleGoodList = new ArrayList<ArticleGood>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {

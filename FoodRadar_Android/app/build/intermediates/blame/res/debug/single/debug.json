@@ -196,6 +196,10 @@
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/activity_main.xml"
     },
     {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_favorite_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_favorite_24.xml"
+    },
+    {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/xml_provider_paths.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/xml/provider_paths.xml"
     },

@@ -25,7 +25,6 @@ import android.widget.TextView;
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
-import com.example.foodradar_android.task.ImageTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -38,7 +37,7 @@ public class UserMyResFragment extends Fragment {
     private Activity activity;
     private NavController navController;
     private List<MyRes> myResList = new ArrayList<>();
-    private List<ImageTask> imageTasks= new ArrayList<>();
+    private List<UserMyResImage> imageTasks= new ArrayList<>();
     private RecyclerView rcvMyRes;
     private Integer userId;
     private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
@@ -153,9 +152,9 @@ public class UserMyResFragment extends Fragment {
 //            final MyRes bookOnBVH = books.get(position);
             Log.d(TAG,"resId: " + resId);
             Log.d(TAG,"MYRES_SERVLET: " + MYRES_SERVLET);
-            ImageTask imageTask = new ImageTask(MYRES_SERVLET,resId,imageSize,holder.imResImg);
-            imageTask.execute(); // .execute() => ImageTask.doInBackground
-            imageTasks.add(imageTask);
+            UserMyResImage userMyResImage = new UserMyResImage(MYRES_SERVLET,resId,imageSize,holder.imResImg);
+            userMyResImage.execute(); // .execute() => UserImage.doInBackground
+            imageTasks.add(userMyResImage);
         }
 
         @Override
