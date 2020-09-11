@@ -76,7 +76,6 @@ public class NewArticleFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
         });
 
-
         //searchView
 //        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //            @Override
@@ -103,7 +102,6 @@ public class NewArticleFragment extends Fragment {
 //        });
     }
 
-
     //向server端取得Article資料
     private List<Article> getArticle() {
         List<Article> articles = null;
@@ -126,13 +124,11 @@ public class NewArticleFragment extends Fragment {
             //暫定Toast，須修改錯誤時執行的動作
             Common.showToast(activity, R.string.textNoNetwork);
         }
-
         return articles;
     }
 
 
     private void showArticle(List<Article> articleList) {
-
         if (articleList == null || articleList.isEmpty()) {
             //暫定Toast，須修改錯誤時執行的動作
             Common.showToast(activity, R.string.textNoArticleFound);
@@ -141,6 +137,8 @@ public class NewArticleFragment extends Fragment {
         ArticleAdapter articleAdapter = (ArticleAdapter) rvArticle.getAdapter();
         if (articleAdapter == null) {
             rvArticle.setAdapter(new ArticleAdapter(activity, articleList));
+
+
         } else {
             articleAdapter.setArticleList(articleList);
             articleAdapter.notifyDataSetChanged();
@@ -248,8 +246,11 @@ public class NewArticleFragment extends Fragment {
             myViewHolder.ivGoodIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                final ImageView goodIcon = v.findViewById(R.id.ivGoodIcon);
-                        goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                    final ImageView goodIcon = v.findViewById(R.id.ivGoodIcon);
+
+
+//                        goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+
                 }
             });
 
@@ -257,13 +258,14 @@ public class NewArticleFragment extends Fragment {
             myViewHolder.ivFavoriteIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   final ImageView favoriteIcon = v.findViewById(R.id.ivFavoriteIcon);
-                   favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
+                    final ImageView favoriteIcon = v.findViewById(R.id.ivFavoriteIcon);
+                    favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
                 }
             });
 
         }
     }
+
     @Override
     public void onStop() {
         super.onStop();

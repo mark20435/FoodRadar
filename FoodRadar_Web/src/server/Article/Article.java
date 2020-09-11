@@ -15,11 +15,10 @@ public class Article {
 	private int conAmount;
 	private int conNum;
 	private boolean articleStatus;
-	
     private int goodCount;
     private int commentCount;
     private int favoriteCount;
-
+    private int articleIdGoodStatus;
     private byte[] articleImg;
 
     private byte[] userIcon;

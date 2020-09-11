@@ -22,6 +22,9 @@ public class Article implements Serializable {
     private int commentCount;
     private int favoriteCount;
 
+    private boolean goodStatus;
+
+
     private byte[] articleImg;
 
     private byte[] userIcon;
