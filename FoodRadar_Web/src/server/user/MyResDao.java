@@ -9,7 +9,7 @@ public interface MyResDao {
 
 	int update(MyRes myres);
 
-	int delete(int id);
+	int delete(int userId, int resId);
 
 	MyRes findById(int id);
 
