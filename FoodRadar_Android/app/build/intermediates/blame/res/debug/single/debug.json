@@ -88,6 +88,10 @@
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_photo_camera_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml"
+    },
+    {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/color_item_select.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/color/item_select.xml"
     },
@@ -96,8 +100,16 @@
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_launcher_background.xml"
     },
     {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_button_circle_camera.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/button_circle_camera.xml"
+    },
+    {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_new_article.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/fragment_new_article.xml"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_face_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_face_24.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -106,6 +118,10 @@
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_person_pin_24.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_person_pin_24.xml"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_camera_alt_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable-v24_no_image.jpg.flat",
@@ -138,6 +154,10 @@
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_res_insert.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/fragment_res_insert.xml"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_star_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_star_24.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_turned_in_24.xml.flat",
@@ -196,6 +216,10 @@
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/activity_main.xml"
     },
     {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_user_data_setup.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/fragment_user_data_setup.xml"
+    },
+    {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_favorite_24.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_favorite_24.xml"
     },
@@ -242,6 +266,10 @@
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_res_maintain.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/fragment_res_maintain.xml"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_account_circle_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_account_circle_24.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_comment_24.xml.flat",
