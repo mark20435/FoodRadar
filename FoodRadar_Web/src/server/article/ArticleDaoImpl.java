@@ -158,6 +158,9 @@ public class ArticleDaoImpl implements ArticleDao {
 				) {
 			ResultSet rs = ps.executeQuery(sql);
 			while (rs.next()) {
+				boolean articleStatus = rs.getBoolean("articleStatus");
+				//發文狀態為0的資料不抓取，不會顯示在前端	
+				if(articleStatus) {
 				int articleId = rs.getInt("articleId");
 				String articleTitle = rs.getString("articleTitle");
 				String articleTime = rs.getString("articleTime");
@@ -169,14 +172,17 @@ public class ArticleDaoImpl implements ArticleDao {
 				int resId = rs.getInt("resId");
 				int conAmount = rs.getInt("conAmount");
 				int conNum = rs.getInt("conNum");
-				boolean articleStatus = rs.getBoolean("articleStatus");
 				int goodCount = rs.getInt("goodCount");
 				int commentCount = rs.getInt("commentCount");
 				int favoriteCount = rs.getInt("favoriteCount");
+//				int articleGoodStatus = rs.getInt("articleGoodStatus");
 				article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
-						  goodCount, commentCount, favoriteCount, articleId, resId, userId, conAmount, conNum, articleStatus);
+						  goodCount, commentCount, favoriteCount ,articleId, resId, userId, conAmount, conNum, articleStatus);
 				articleList.add(article);
-			}
+				} else {
+					return null ;
+				}
+				}
 			return articleList;
 		} catch (SQLException e) {
 			e.printStackTrace();

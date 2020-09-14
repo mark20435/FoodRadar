@@ -1739,7 +1739,9 @@ drawable ic_baseline_comment_24
 drawable ic_baseline_favorite_24
 drawable ic_baseline_home_24
 drawable ic_baseline_map_24
+drawable ic_baseline_more_vert_24
 drawable ic_baseline_person_pin_24
+drawable ic_baseline_supervised_user_circle_24
 drawable ic_baseline_thumb_up_24
 drawable ic_baseline_thumb_up_alt_24
 drawable ic_baseline_turned_in_24
@@ -1857,7 +1859,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
-id action_articleFragment_to_articleDetailFragment2
+id action_articleFragment_to_articleDetailFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1898,6 +1900,7 @@ id animateToStart
 id articleConstraintLayout
 id articleDetailFragment
 id articleFragment
+id articleInsertFragment
 id articleNavigation
 id articleTitle
 id article_navigation
@@ -1916,6 +1919,7 @@ id blocking
 id bottom
 id bounce
 id btAdd
+id btCommentSend
 id btPickPicture
 id btTakePicture
 id btnCancel
@@ -1988,6 +1992,8 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editComment
+id editTextTextPersonName
 id edit_query
 id end
 id end_padder
@@ -2035,6 +2041,7 @@ id ignore
 id ignoreRequest
 id imResImg
 id image
+id imageView3
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2047,6 +2054,11 @@ id invisible
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
+id ivArticleImage
+id ivCommentGoodIcon
+id ivCommentUserAvatar
+id ivDetailSetting
+id ivDetailUserIcon
 id ivFavoriteIcon
 id ivGoodIcon
 id ivImage
@@ -2056,6 +2068,7 @@ id jumpToStart
 id labeled
 id largeLabel
 id layout
+id layoutComment
 id layout_aspect_ratio
 id layout_rotate_wheel
 id layout_scale_wheel
@@ -2155,6 +2168,9 @@ id rotate_scroll_wheel
 id rounded
 id row_index_key
 id rvArticle
+id rvArticleFavorite
+id rvArticleImage
+id rvArticleRank
 id rvChinaRest
 id rvRes
 id satellite
@@ -2218,8 +2234,11 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id svArticleDetail
 id swResEnable
 id swipeRefreshLayout
+id swipeRefreshLayoutFavorite
+id swipeRefreshLayoutRank
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -2269,8 +2288,19 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvArticleText
 id tvArticleTime
 id tvCommentCount
+id tvCommentGood
+id tvCommentText
+id tvCommentTime
+id tvCommentUserName
+id tvDetailArticleTime
+id tvDetailArticleTitle
+id tvDetailAvgCon
+id tvDetailResName
+id tvDetailUserName
+id tvDtdailResCategoryInfo
 id tvFavoriteArticle
 id tvModifyDate
 id tvResAddress
@@ -2289,6 +2319,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id user
 id userAreaFragment
 id userIcon
 id userMyResFragment
@@ -2372,6 +2403,8 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout article_comment_view
+layout article_image_view
 layout article_item_view
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -2391,6 +2424,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_article
 layout fragment_article_detail
+layout fragment_article_insert
 layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_favorite_article
