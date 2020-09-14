@@ -739,7 +739,7 @@ public class ResInsertFragment extends Fragment {
                 spSunEndTime3.setVisibility(View.GONE);
             }
         });
-        
+
 
 
         spCategory = view.findViewById(R.id.spCategory);

@@ -1922,7 +1922,7 @@ id blocking
 id bottom
 id bounce
 id btAdd
-<<<<<<< HEAD
+id btCommentSend
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -1931,9 +1931,6 @@ id btMonAddHours
 id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
-=======
-id btCommentSend
->>>>>>> 556e69fe6cef2c1d6d847de1f62ecdffb10698e9
 id btPickPicture
 id btSatAddHours
 id btSatAddHours2
