@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    tools:context=".user.UserDataSetupFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:layout_gravity="center"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+
+        app:cardBackgroundColor="#36FDC6C6"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EADDAB"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="256dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:ems="10"
+                android:hint="姓名"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="18sp"
+                android:textSize="16sp"
+                android:theme="@style/EditTextHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPasswordConfirm" />
+
+            <EditText
+                android:id="@+id/etUserBirth"
+                android:layout_width="256dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:ems="10"
+                android:hint="出生日期"
+                android:inputType="date"
+                android:lineSpacingExtra="18sp"
+                android:textSize="16sp"
+                android:theme="@style/EditTextHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etUserName" />
+
+            <EditText
+                android:id="@+id/etPasswordConfirm"
+                android:layout_width="256dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:ems="10"
+                android:hint="確認密碼"
+                android:inputType="textPassword"
+                android:lineSpacingExtra="18sp"
+                android:textSize="16sp"
+                android:theme="@style/EditTextHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+            <TextView
+                android:id="@+id/tvPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="密碼"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/etPassword"
+                app:layout_constraintEnd_toStartOf="@+id/etPassword"
+                app:layout_constraintTop_toTopOf="@+id/etPassword" />
+
+            <TextView
+                android:id="@+id/tvPasswordConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="確認密碼"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/etPasswordConfirm"
+                app:layout_constraintEnd_toStartOf="@+id/etPasswordConfirm"
+                app:layout_constraintTop_toTopOf="@+id/etPasswordConfirm" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="姓名"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/etUserName"
+                app:layout_constraintEnd_toStartOf="@+id/etUserName"
+                app:layout_constraintTop_toTopOf="@+id/etUserName" />
+
+            <TextView
+                android:id="@+id/tvUserBirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="出生日期"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/etUserBirth"
+                app:layout_constraintEnd_toStartOf="@+id/etUserBirth"
+                app:layout_constraintTop_toTopOf="@+id/etUserBirth" />
+
+            <!--                app:cardElevation="0dp" 框線-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewAvatar"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#EADDAB"
+                app:cardCornerRadius="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/id_ivAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#EADDAB"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_baseline_account_circle_24" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <Button
+                android:id="@+id/btnLogInOut"
+                style="@style/styleButton"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button"
+                android:text="@string/textLogin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
+
+            <Button
+                android:id="@+id/btnChangPassword"
+                style="@style/styleButton"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/button"
+                android:text="@string/textChangPassword"
+                app:layout_constraintBottom_toBottomOf="@+id/btnLogInOut"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnLogInOut" />
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="手機號碼"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/etUserPhone"
+                app:layout_constraintEnd_toStartOf="@+id/etUserPhone"
+                app:layout_constraintTop_toTopOf="@+id/etUserPhone"
+                app:layout_constraintVertical_bias="0.466" />
+
+            <EditText
+                android:id="@+id/etUserPhone"
+                android:layout_width="256dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="12dp"
+                android:ems="10"
+                android:hint="手機號碼"
+                android:inputType="phone"
+                android:lineSpacingExtra="18sp"
+                android:textSize="16sp"
+                android:theme="@style/EditTextHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewAvatar" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="256dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:ems="10"
+                android:hint="密碼"
+                android:inputType="textPassword"
+                android:lineSpacingExtra="18sp"
+                android:textSize="16sp"
+                android:theme="@style/EditTextHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etUserPhone" />
+
+            <ImageView
+                android:id="@+id/ivRedStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_baseline_star_24"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPhone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvPhone" />
+
+            <ImageView
+                android:id="@+id/ivRedStar4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_baseline_star_24"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvPassword" />
+
+            <ImageView
+                android:id="@+id/ivRedStar5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_baseline_star_24"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPasswordConfirm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvPasswordConfirm" />
+
+            <ImageButton
+                android:id="@+id/btImgCamera"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/button_circle_camera"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                app:layout_constraintBottom_toBottomOf="@+id/cardViewAvatar"
+                app:layout_constraintStart_toEndOf="@+id/cardViewAvatar" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

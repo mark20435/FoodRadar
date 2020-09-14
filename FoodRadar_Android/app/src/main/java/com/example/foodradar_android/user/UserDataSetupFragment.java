@@ -15,13 +15,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
-public class UserSysSetupFragment extends Fragment {
+public class UserDataSetupFragment extends Fragment {
     private Activity activity;
     private NavController navController;
+    private Integer UserId = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,26 +60,33 @@ public class UserSysSetupFragment extends Fragment {
         }
         return true;
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.title_of_sys_setup);
-        return inflater.inflate(R.layout.fragment_user_sys_setup, container, false);
+        activity.setTitle(R.string.title_of_userdata);
+        return inflater.inflate(R.layout.fragment_user_data_setup, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        Button button;
-//        button = view.findViewById(R.id.id_btResMaintain);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
-//
-//            }
-//        });
+        // 預設無資料的頭像
+        ImageView imageAvatar = view.findViewById(R.id.id_ivAvatar);
+        imageAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
+
+        // vvvvvv臨時寫的，用來模擬使用者登入
+        // String userPhone = "0900123456";
+        // String userPwd = "P@ssw0rd";
+        // Integer userId = 3;
+        UserId= new Common().getUserLoin(activity);
+        if(UserId > 0){
+            new Common().showToast(activity, "會員資料設定，登入成功，UserId: " + UserId);
+        } else {
+            new Common().showToast(activity, "會員資料設定，登入失敗，UserId: " + UserId);
+        }
+        // ^^^^^^臨時寫的，用來模擬使用者登入
+
     }
+
 }
