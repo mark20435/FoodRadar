@@ -33,8 +33,8 @@ public class ResDaoMySqlImpl implements ResDao {
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setString(1, res.getResName());
 			ps.setString(2, res.getResAddress());
-			ps.setString(3, res.getResLat());
-			ps.setString(4, res.getResLon());
+			ps.setDouble(3, res.getResLat());
+			ps.setDouble(4, res.getResLon());
 			ps.setString(5, res.getResTel());
 			ps.setString(6, res.getResHours());
 			ps.setInt(7, res.getResCategoryId());
@@ -64,8 +64,8 @@ public class ResDaoMySqlImpl implements ResDao {
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setString(1, res.getResName());
 			ps.setString(2, res.getResAddress());
-			ps.setString(3, res.getResLat());
-			ps.setString(4, res.getResLon());
+			ps.setDouble(3, res.getResLat());
+			ps.setDouble(4, res.getResLon());
 			ps.setString(5, res.getResTel());
 			ps.setString(6, res.getResHours());
 			ps.setInt(7, res.getResCategoryId());
@@ -112,8 +112,8 @@ public class ResDaoMySqlImpl implements ResDao {
 			if (rs.next()) {
 				String resName = rs.getString(1);
 				String resAddress = rs.getString(2);
-				String resLat = rs.getString(3);
-				String resLon = rs.getString(4);
+				Double resLat = rs.getDouble(3);
+				Double resLon = rs.getDouble(4);
 				String resTel = rs.getString(5);
 				String resHours = rs.getString(6);
 				Integer resCategoryId = rs.getInt(7);
@@ -141,8 +141,8 @@ public class ResDaoMySqlImpl implements ResDao {
 				int resId = rs.getInt(1);
 				String resName = rs.getString(2);
 				String resAddress = rs.getString(3);
-				String resLat = rs.getString(4);
-				String resLon = rs.getString(5);
+				Double resLat = rs.getDouble(4);
+				Double resLon = rs.getDouble(5);
 				String resTel = rs.getString(6);
 				String resHours = rs.getString(7);
 				Integer resCategoryId = rs.getInt(8);
