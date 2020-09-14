@@ -1,4 +1,4 @@
-package server.Article;
+package server.article;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import com.google.gson.JsonObject;
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L; // 序列化標籤
 	private final static String CONTENT_TYPE = "text/html; charset=utf-8"; // 編碼
-	ArticleDao articleDao;
+	ArticleDao articleDao = null;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,14 +36,15 @@ public class ArticleServlet extends HttpServlet {
 		// 宣告jsonObject
 		JsonObject jsonObject = gson.fromJson(jsonInput.toString(), JsonObject.class);
 		// Dao不為空值的話，取得實作方法內容
-		if (articleDao != null) {
+		if (articleDao == null) {
 			articleDao = new ArticleDaoImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
 
 		// 判斷client端行為1 > 取得資料庫資料
-		if (action.equals("getAll")) {
-			List<Article> articles = articleDao.getAll();
+		if (action.equals("getAllById")) {
+//			int articleId = jsonObject.get("articleId").getAsInt();
+			List<Article> articles = articleDao.getAllById();
 			writeText(response, gson.toJson(articles));
 			// 判斷client端行為2 > insert或Update
 		} else if (action.equals("articleInsert") || action.equals("articleUpdate")) { 
@@ -94,7 +95,7 @@ public class ArticleServlet extends HttpServlet {
 		if (articleDao == null) {
 			articleDao = new ArticleDaoImpl();
 		}
-		List<Article> articles = articleDao.getAll();
+		List<Article> articles = articleDao.getAllById();
 		writeText(response, new Gson().toJson(articles));
 	}
 

@@ -4,6 +4,8 @@ public class ArticleGood {
 	private int articleGoodId;
 	private int articleId;
 	private int userId;
+	private int articleGoodCount;
+	private int articleGoodStatus ;
 	
 	
 	public ArticleGood() {
@@ -11,12 +13,24 @@ public class ArticleGood {
 	}
 
 
-	public ArticleGood(int articleGoodId, int articleId, int userId) {
+	public ArticleGood(int articleGoodCount,int articleGoodStatus , int articleGoodId, int articleId, int userId) {
 		super();
 		this.articleGoodId = articleGoodId;
 		this.articleId = articleId;
 		this.userId = userId;
+		this.articleGoodCount = articleGoodCount;
+		this.articleGoodStatus = articleGoodStatus;
 	}
+	
+	
+	
+//	public ArticleGood(int articleGoodCount, int articleGoodStatus  ,int articleGoodId, int articleId, int userId) {
+//		super();
+//		this.articleId = articleId;
+//		this.userId = userId;
+//		this.articleGoodCount = articleGoodCount;
+//		this.articleGoodStatus = articleGoodStatus;
+//	}
 
 
 	public int getArticleGoodId() {
@@ -46,6 +60,26 @@ public class ArticleGood {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+
+	public int getArticleGoodCount() {
+		return articleGoodCount;
+	}
+
+
+	public void setArticleGoodCount(int articleGoodCount) {
+		this.articleGoodCount = articleGoodCount;
+	}
+
+
+	public int getArticleGoodStatus() {
+		return articleGoodStatus;
+	}
+
+
+	public void setArticleGoodStatus(int articleGoodStatus) {
+		this.articleGoodStatus = articleGoodStatus;
 	}
 	
 	

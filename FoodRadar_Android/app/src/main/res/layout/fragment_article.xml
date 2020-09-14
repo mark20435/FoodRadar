@@ -9,7 +9,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/articleNavigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/colorText"
         app:labelVisibilityMode="labeled"
@@ -40,4 +40,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/article_navigation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

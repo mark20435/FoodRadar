@@ -32,7 +32,7 @@ public class ArticleFragment extends Fragment {
     public View onCreateView(@Nullable LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        // Inflate the layout for this fragment
+       activity.setTitle(R.string.article);
         return inflater.inflate(R.layout.fragment_article, container, false);
     }
 

@@ -1,4 +1,4 @@
-package com.example.foodradar_android.task;
+package com.example.foodradar_android.user;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,24 +18,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-
-public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
+public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
     private final static String TAG = "TAG_ImageTask";
     private String url;
     private int id, imageSize;
-    /* ImageTask的屬性strong參照到SpotListFragment內的imageView不好，
-        會導致SpotListFragment進入背景時imageView被參照而無法被釋放，
-        而且imageView會參照到Context，也會導致Activity無法被回收。
-        改採weak參照就不會阻止imageView被回收 */
     private WeakReference<ImageView> imageViewWeakReference;
 
     // 取單張圖片
-    public ImageTask(String url, int id, int imageSize) {
+    public UserMyResImage(String url, int id, int imageSize) {
         this(url, id, imageSize, null);
     }
 
     // 取完圖片後使用傳入的ImageView顯示，適用於顯示多張圖片
-    public ImageTask(String url, int id, int imageSize, ImageView imageView) {
+    public UserMyResImage(String url, int id, int imageSize, ImageView imageView) {
         this.url = url;
         this.id = id;
         this.imageSize = imageSize;
@@ -59,8 +54,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         }
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
-        }
-        else {
+        } else {
             imageView.setImageResource(R.drawable.no_image);
         }
     }
