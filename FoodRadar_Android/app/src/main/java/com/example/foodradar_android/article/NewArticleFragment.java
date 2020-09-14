@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -42,6 +43,7 @@ public class NewArticleFragment extends Fragment {
     private List<ImageTask> imageTasks;
     private SwipeRefreshLayout swipeRefreshLayout;
     private CommonTask articleGetAllTask;
+    private List<ArticleGood> articleGoods;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class NewArticleFragment extends Fragment {
         rvArticle.setLayoutManager(new LinearLayoutManager(activity));
         articles = getArticle();
         showArticle(articles);
+        articleGoods = getArticleGood();
 
         //swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -75,7 +78,6 @@ public class NewArticleFragment extends Fragment {
             showArticle(articles);
             swipeRefreshLayout.setRefreshing(false);
         });
-
 
         //searchView
 //        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -103,6 +105,29 @@ public class NewArticleFragment extends Fragment {
 //        });
     }
 
+    private List<ArticleGood> getArticleGood() {
+        List<ArticleGood> articleGoods = null ;
+        if (Common.networkConnected(activity)) {
+            String url = Common.URL_SERVER + "ArticleGoodServlet";
+            JsonObject jsonObject = new JsonObject();
+            //？？
+            jsonObject.addProperty("action", "findById");
+            String jsonOut = jsonObject.toString();
+            articleGetAllTask = new CommonTask(url, jsonOut);
+            try {
+                String jsonIn = articleGetAllTask.execute().get();
+                Type listType = new TypeToken<List<ArticleGood>>() {
+                }.getType();
+                articleGoods = new Gson().fromJson(jsonIn, listType);
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            //暫定Toast，須修改錯誤時執行的動作
+            Common.showToast(activity, R.string.textNoNetwork);
+        }
+        return articleGoods;
+    }
 
     //向server端取得Article資料
     private List<Article> getArticle() {
@@ -126,13 +151,11 @@ public class NewArticleFragment extends Fragment {
             //暫定Toast，須修改錯誤時執行的動作
             Common.showToast(activity, R.string.textNoNetwork);
         }
-
         return articles;
     }
 
 
     private void showArticle(List<Article> articleList) {
-
         if (articleList == null || articleList.isEmpty()) {
             //暫定Toast，須修改錯誤時執行的動作
             Common.showToast(activity, R.string.textNoArticleFound);
@@ -151,6 +174,7 @@ public class NewArticleFragment extends Fragment {
     private class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
         private List<Article> ArticleList;
+        private List<ArticleGood> ArticleGoodList;
         private int imageSize;
 
         //取得圖片並設定顯示圖片尺寸設定，ArticleAdapter建構方法
@@ -159,16 +183,19 @@ public class NewArticleFragment extends Fragment {
             this.ArticleList = articleList;
 
             //螢幕寬度當作將圖的尺寸
-            imageSize = getResources().getDisplayMetrics().widthPixels;
+            imageSize = getResources().getDisplayMetrics().heightPixels;
         }
 
-        //List<Article> 建構方法
         public List<Article> getArticleList() {
             return ArticleList;
         }
 
         public void setArticleList(List<Article> articleList) {
             ArticleList = articleList;
+        }
+
+        public ArticleAdapter(List<ArticleGood> articleGoodList) {
+            ArticleGoodList = articleGoodList;
         }
 
         @Override
@@ -213,8 +240,11 @@ public class NewArticleFragment extends Fragment {
         public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder myViewHolder, int position) {
             //article物件 > 包裝要呈現在畫面的資料
             final Article article = ArticleList.get(position);
+            //尚未完成前須先註解，不然會閃退
+//            final ArticleGood articleGood = ArticleGoodList.get(position);
+
             //onBindViewHolder才會向後端發出請求取得圖片
-            //取得大圖
+            //取得餐廳大圖
             String url = Common.URL_SERVER + "ImgServlet";
             int articleId = article.getArticleId();
             ImageTask imageTask = new ImageTask(url, articleId, imageSize, myViewHolder.imgView);
@@ -222,8 +252,8 @@ public class NewArticleFragment extends Fragment {
             imageTasks.add(imageTask);
 
             //取得使用者小圖
-            String urlIcon = Common.URL_SERVER + "MyResServlet";
-            int userId = article.getArticleId();
+            String urlIcon = Common.URL_SERVER + "UserAccountServlet";
+            int userId = article.getUserId();
             ImageTask imageTaskIcon = new ImageTask(urlIcon, userId, imageSize, myViewHolder.userIcon);
             imageTaskIcon.execute();
             imageTasks.add(imageTaskIcon);
@@ -242,28 +272,45 @@ public class NewArticleFragment extends Fragment {
             myViewHolder.tvFavoriteArticle.setText(favoriteCount);
             myViewHolder.ivGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
             myViewHolder.ivArticleCommentIcon.setImageResource(R.drawable.ic_baseline_chat_bubble_24);
-            myViewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_baseline_turned_in_24);
+            myViewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_baseline_favorite_24);
+
+//              點擊跳轉至Detail
+//            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Navigation.findNavController(view).navigate(R.id.action_articleFragment_to_articleDetailFragment);
+//                }
+//            });
+
 
             //設定點讚功能，1.會員登入判斷還沒寫，要候補    2.判斷是否已點讚
-            myViewHolder.ivGoodIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                final ImageView goodIcon = v.findViewById(R.id.ivGoodIcon);
-                        goodIcon.setColorFilter(Color.parseColor("#4599A6"));
-                }
-            });
+//             int articleGoodStatus = articleGoods.getArticleGoodStatus();
+//            final ImageView goodIcon = myViewHolder.ivGoodIcon;
+//             if (articleGoodStatus != 0 ){
+//                 goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+//             }
+//
+//            myViewHolder.ivGoodIcon.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    final ImageView goodIcon = v.findViewById(R.id.ivGoodIcon);
+//                        goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+//
+//                }
+//            });
 
             //設定收藏功能，1.會員登入判斷還沒寫，要候補    2.判斷是否已收藏
             myViewHolder.ivFavoriteIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   final ImageView favoriteIcon = v.findViewById(R.id.ivFavoriteIcon);
-                   favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
+                    final ImageView favoriteIcon = v.findViewById(R.id.ivFavoriteIcon);
+                    favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
                 }
             });
 
         }
     }
+
     @Override
     public void onStop() {
         super.onStop();

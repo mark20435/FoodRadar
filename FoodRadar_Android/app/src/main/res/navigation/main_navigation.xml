@@ -79,7 +79,7 @@
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" >
         <action
-            android:id="@+id/action_articleFragment_to_articleDetailFragment2"
+            android:id="@+id/action_articleFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
     </fragment>
     <fragment
@@ -106,4 +106,9 @@
         android:name="com.example.foodradar_android.user.UserDataSetupFragment"
         android:label="fragment_user_data_setup"
         tools:layout="@layout/fragment_user_data_setup" />
+    <fragment
+        android:id="@+id/articleInsertFragment"
+        android:name="com.example.foodradar_android.ArticleInsertFragment"
+        android:label="fragment_article_insert"
+        tools:layout="@layout/fragment_article_insert" />
 </navigation>

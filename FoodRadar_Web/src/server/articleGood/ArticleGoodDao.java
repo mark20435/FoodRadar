@@ -8,10 +8,9 @@ public interface ArticleGoodDao {
 	int update(ArticleGood articleGood);
 	int delete(int articleGoodId);
 	
-	ArticleGood findById(int articleGoodId);
-	
-	//計算點讚數量
-	ArticleGood articleGoodCount(ArticleGood articleGood);
+//	ArticleGood findById(int articleGoodId);
+	ArticleGood findById(int userId);
 	
 	List<ArticleGood> getAll();
+	List<ArticleGood> getAllCount();
 }

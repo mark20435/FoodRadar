@@ -15,11 +15,10 @@ public class Article {
 	private int conAmount;
 	private int conNum;
 	private boolean articleStatus;
-	
     private int goodCount;
     private int commentCount;
     private int favoriteCount;
-
+    private int articleGoodStatus;
     private byte[] articleImg;
 
     private byte[] userIcon;
@@ -32,7 +31,6 @@ public class Article {
 	public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
 			String resName, int goodCount, int commentCount, int favoriteCount, int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
 		super();
-		this.articleId = articleId;
 		this.articleTitle = articleTitle;
 		this.articleTime = articleTime;
 		this.articleText = articleText;
@@ -48,6 +46,7 @@ public class Article {
         this.conAmount = conAmount;
         this.conNum = conNum;
         this.articleStatus = articleStatus;
+//        this.articleGoodStatus = articleGoodStatus;
 	}
 
 
@@ -224,6 +223,14 @@ public class Article {
 
 	public void setResName(String resName) {
 		this.resName = resName;
+	}
+
+	public int getArticleGoodStatus() {
+		return articleGoodStatus;
+	}
+
+	public void setArticleIdGoodStatus(int articleGoodStatus) {
+		this.articleGoodStatus = articleGoodStatus;
 	}
 	
 	

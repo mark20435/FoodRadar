@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -33,8 +36,11 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +49,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -96,10 +103,15 @@ public class ResMapFragment extends Fragment {
         mapView.getMapAsync((googleMap) -> {
             map = googleMap;
             checkLocationSettings();
-
+            ress = getRess();
+            if(ress != null) {
+                for (Res res : ress) {
+                    addMarker(new LatLng(res.getResLat(), res.getResLon()));
+                }
+            }
         });
 
-        ress = getRess();
+
     }
 
     private List<Res> getRess() {
@@ -217,5 +229,40 @@ public class ResMapFragment extends Fragment {
         CameraUpdate cameraUpdate = CameraUpdateFactory
                 .newCameraPosition(cameraPosition);
         map.animateCamera(cameraUpdate);
+    }
+
+    // 打標記
+    private void addMarker(LatLng latLng) {
+        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.pin);
+        Address address = reverseGeocode(latLng.latitude, latLng.longitude);
+        if (address == null) {
+            //Toast.makeText(activity, R.string.textLocationNotFound, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // 取得道路名稱當做標題
+        String title = address.getThoroughfare();
+        // 取得地址當作說明文字
+        String snippet = address.getAddressLine(0);
+        map.addMarker(new MarkerOptions()
+                .position(latLng)
+                .title(title)
+                .snippet(snippet));
+        //        .icon(icon));
+    }
+
+    private Address reverseGeocode(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(activity);
+        List<Address> addressList = null;
+        try {
+            addressList = geocoder.getFromLocation(latitude, longitude, 1);
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
+
+        if (addressList == null || addressList.isEmpty()) {
+            return null;
+        } else {
+            return addressList.get(0);
+        }
     }
 }

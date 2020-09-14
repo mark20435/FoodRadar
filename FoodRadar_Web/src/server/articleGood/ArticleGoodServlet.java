@@ -42,6 +42,9 @@ public class ArticleGoodServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<ArticleGood> articleGoods = articleGoodDao.getAll();
 			writeText(response, gson.toJson(articleGoods));
+		} else if (action.equals("getAllCount")) {
+			List<ArticleGood> articleGoods = articleGoodDao.getAllCount();
+			writeText(response, gson.toJson(articleGoods));
 		} else if (action.equals("articleGoodInsert") || action.equals("articleGoodUpdate")) {
 			// 取得Json字串
 			String articleGoodJson = jsonObject.get("articleGood").getAsString();

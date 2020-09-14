@@ -22,6 +22,8 @@ public class Article implements Serializable {
     private int commentCount;
     private int favoriteCount;
 
+    private int articleGoodStatus;
+
     private byte[] articleImg;
 
     private byte[] userIcon;
@@ -218,6 +220,15 @@ public class Article implements Serializable {
     public void setImgId(int imgId) {
         this.imgId = imgId;
     }
+
+    public int getArticleGoodStatus() {
+        return articleGoodStatus;
+    }
+
+    public void setArticleGoodStatus(int articleGoodStatus) {
+        this.articleGoodStatus = articleGoodStatus;
+    }
+
 
     @Override   //覆寫方法，取得articleId > 透過id 取得article
     public boolean equals(Object obj) {

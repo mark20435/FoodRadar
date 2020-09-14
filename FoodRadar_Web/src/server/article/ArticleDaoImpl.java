@@ -128,7 +128,8 @@ public class ArticleDaoImpl implements ArticleDao {
 //		String sql = "SELECT articleId, articleTitle, articleText, modifyTime, resId, userId, conAmount, conNum, articleStatus "
 //				+ " FROM Article ORDER BY articleTime DESC;";
 		String sql = "select\n" + 
-				"case when UA.userName = '' Then '無名的食客' Else UA.userName end as 'userName'\n" + 
+				"case when UA.userAvatar is null Then NULL Else UA.userAvatar end as 'userAvatar'\n" + 
+				",case when UA.userName = '' Then '無名的食客' Else UA.userName end as 'userName'\n" + 
 				",C.resCategoryInfo as 'resCategoryInfo'\n" + 
 				",A.articleTime as 'articleTime'\n" + 
 				",A.articleTitle as 'articleTitle'\n" + 
@@ -137,6 +138,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				",(select count(*) from ArticleGood AC where AC.articleId = A.articleId) as 'goodCount'\n" + 
 				",(select count(*) from Comment CO where CO.commentStatus=1 and CO.articleId = A.articleId) as 'commentCount'\n" + 
 				",(select count(*) from MyArticle MA where MA.articleId = A.articleId) as 'favoriteCount'\n" + 
+				",(select case count(*) when 0 then 0 else 1 end from ArticleGood AG where AG.articleId = A.articleId and AG.userId = 3 ) as '是否按了讚'\n" + 
 				",A.articleId as 'articleId'\n" + 
 				",A.resId as 'resId'\n" + 
 				",A.userId as 'userId'\n" + 
@@ -147,13 +149,18 @@ public class ArticleDaoImpl implements ArticleDao {
 				" join UserAccount UA on A.userId = UA.userId\n" + 
 				" join Res R on A.resId = R.resId\n" + 
 				" join Img I on A.articleId = I.articleId\n" + 
-				" join Category C on R.resCategoryId = C.resCategoryId;";
+				" join Category C on R.resCategoryId = C.resCategoryId\n" + 
+				"where A.articleStatus = 1\n" + 
+				"order by A.articleTime;";
 		List<Article> articleList = new ArrayList<Article>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);
 				) {
 			ResultSet rs = ps.executeQuery(sql);
 			while (rs.next()) {
+				boolean articleStatus = rs.getBoolean("articleStatus");
+				//發文狀態為0的資料不抓取，不會顯示在前端	
+				if(articleStatus) {
 				int articleId = rs.getInt("articleId");
 				String articleTitle = rs.getString("articleTitle");
 				String articleTime = rs.getString("articleTime");
@@ -165,14 +172,17 @@ public class ArticleDaoImpl implements ArticleDao {
 				int resId = rs.getInt("resId");
 				int conAmount = rs.getInt("conAmount");
 				int conNum = rs.getInt("conNum");
-				boolean articleStatus = rs.getBoolean("articleStatus");
 				int goodCount = rs.getInt("goodCount");
 				int commentCount = rs.getInt("commentCount");
 				int favoriteCount = rs.getInt("favoriteCount");
+//				int articleGoodStatus = rs.getInt("articleGoodStatus");
 				article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
-						  goodCount, commentCount, favoriteCount, articleId, resId, userId, conAmount, conNum, articleStatus);
+						  goodCount, commentCount, favoriteCount ,articleId, resId, userId, conAmount, conNum, articleStatus);
 				articleList.add(article);
-			}
+				} else {
+					return null ;
+				}
+				}
 			return articleList;
 		} catch (SQLException e) {
 			e.printStackTrace();
