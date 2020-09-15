@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_userAreaFragment_to_userMyResFragment"
             app:destination="@id/userMyResFragment" />
+        <action
+            android:id="@+id/action_userAreaFragment_to_userDataSetupFragment"
+            app:destination="@id/userDataSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/userSysSetupFragment"
@@ -95,7 +98,17 @@
         tools:layout="@layout/fragment_china_restaurant" />
     <fragment
         android:id="@+id/articleDetailFragment"
-        android:name="com.example.foodradar_android.ArticleDetailFragment"
+        android:name="com.example.foodradar_android.article.ArticleDetailFragment"
         android:label="fragment_article_detail"
         tools:layout="@layout/fragment_article_detail" />
+    <fragment
+        android:id="@+id/userDataSetupFragment"
+        android:name="com.example.foodradar_android.user.UserDataSetupFragment"
+        android:label="fragment_user_data_setup"
+        tools:layout="@layout/fragment_user_data_setup" />
+    <fragment
+        android:id="@+id/articleInsertFragment"
+        android:name="com.example.foodradar_android.ArticleInsertFragment"
+        android:label="fragment_article_insert"
+        tools:layout="@layout/fragment_article_insert" />
 </navigation>

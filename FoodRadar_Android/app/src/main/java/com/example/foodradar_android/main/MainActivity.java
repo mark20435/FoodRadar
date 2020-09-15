@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
       // Main Activity右上角選單
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

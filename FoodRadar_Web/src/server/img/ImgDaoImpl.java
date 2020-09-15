@@ -80,7 +80,7 @@ public class ImgDaoImpl implements ImgDao {
 
 	@Override
 	public Img findById(int imgId) {
-		String sql = "SELECT articleId FROM Img WHERE imgId = ?;";
+		String sql = "SELECT articleId, img FROM Img WHERE imgId = ?;";
 		Img img = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -96,14 +96,14 @@ public class ImgDaoImpl implements ImgDao {
 
 	@Override
 	public byte[] getImage(int imgId) {
-		String sql = "SELECT img FROM Img WHERE imgId = ?;";
+		String sql = "SELECT imgId, articleId, img FROM Img WHERE articleId = ? ;";
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, imgId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				image = rs.getBytes("imgId");
+				image = rs.getBytes("img");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

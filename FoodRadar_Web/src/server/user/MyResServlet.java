@@ -1,9 +1,9 @@
 package server.user;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +17,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import server.category.ImageUtil;
+import server.user.PubTools;
 
 @WebServlet("/MyResServlet")
 public class MyResServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final static String CONTENT_TYPE = "text/html; charset=utf-8";
-	MyResDao myResDao = null;
+//	private String CONTENT_TYPE = PubTools.CONTENT_TYPE;
+	private MyResDao myResDao = null;
+	private PubTools pubTools = new PubTools();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fromName = this.getClass().getName() + "." + Thread.currentThread().getStackTrace()[1].getMethodName();
+		pubTools.showConsoleMsg(fromName, "[START]");
 		request.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
 		BufferedReader br = request.getReader();
@@ -38,24 +42,21 @@ public class MyResServlet extends HttpServlet {
 		if (myResDao == null) {
 			myResDao = new MyResDaoImpl();
 		}
-		
+				
 		String action = jsonObject.get("action").getAsString();
 		Integer id = jsonObject.get("id").getAsInt();
-		System.out.println("doPost.action: " + action);
-		System.out.println("doPost.id: " + id);
+		pubTools.showConsoleMsg("doPost.action" , action);
+		pubTools.showConsoleMsg("doPost.id" , id.toString());
+		
 		if (action.equals("getAll")) {
 			List<MyRes> myResList = myResDao.getAll(); // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
-//			System.out.println("doPost.books: " + books);
-			writeText(response, gson.toJson(myResList));
+			pubTools.writeText(response, gson.toJson(myResList));
 			
 		} else if (action.equals("getAllById")) {
-			System.out.println("getAllById.id: " + id);
 			List<MyRes> myResList = myResDao.getAllById(id);
-//			System.out.println("doPost.books: " + books);
-			writeText(response, gson.toJson(myResList));
+			pubTools.writeText(response, gson.toJson(myResList));
 			
 		} else if (action.equals("getImage")) {
-			System.out.println("getImage.id: " + id);
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			OutputStream os = response.getOutputStream();
 			byte[] image = myResDao.getImage(id);
@@ -65,10 +66,21 @@ public class MyResServlet extends HttpServlet {
 				response.setContentLength(image.length);
 				os.write(image);
 			}
+		} else if (action.equals("myResInsert")) {
+			// MyRes myres
+			String myResJson = jsonObject.get("myres").getAsString();
+			pubTools.showConsoleMsg("myResJson", myResJson);
+			MyRes myres = gson.fromJson(myResJson, MyRes.class);			
+			int count = 0;
+			count = myResDao.insert(myres);
+			pubTools.writeText(response, String.valueOf(count));
+			
+		} else if (action.equals("myResDelete")) {
+			Integer userId = jsonObject.get("userId").getAsInt();
+			Integer resId = jsonObject.get("resId").getAsInt();int count = 0;
+			count = myResDao.delete(userId, resId);
+			pubTools.writeText(response, String.valueOf(count));			
 		}
-		
-		
-
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -76,26 +88,24 @@ public class MyResServlet extends HttpServlet {
 			myResDao = new MyResDaoImpl();
 		}
 		List<MyRes> myResList = myResDao.getAll();
-//		System.out.println("doGet.books: " + myResList);
-		writeText(response, new Gson().toJson(myResList));
+		pubTools.writeText(response, new Gson().toJson(myResList));
 		
 		List<String> strList = new ArrayList<String>();
 		strList.add("3");
 		strList.add("6");
-		writeText(response, new Gson().toJson(strList));
+		pubTools.writeText(response, new Gson().toJson(strList));
 		
 		List<MyRes> myResListById = myResDao.getAllById(3);
-		writeText(response, new Gson().toJson(myResListById));
+		pubTools.writeText(response, new Gson().toJson(myResListById));
 	}
 	
 	
-	private void writeText(HttpServletResponse response, String outText) throws IOException {
-		response.setContentType(CONTENT_TYPE);
-		PrintWriter out = response.getWriter();
-		out.print(outText);
-		// 將輸出資料列印出來除錯用
-		// System.out.println("output: " + outText);
-	}
-
+//	private void writeText(HttpServletResponse response, String outText) throws IOException {
+//		response.setContentType(CONTENT_TYPE);
+//		PrintWriter out = response.getWriter();
+//		out.print(outText);
+//		// 將輸出資料列印出來除錯用
+//		// System.out.println("output: " + outText);
+//	}
 
 }

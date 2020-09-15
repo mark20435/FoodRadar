@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import idv.ron.server.main.ImageUtil;
-import idv.ron.server.spots.Spot;
-
 @WebServlet("/CategoryServlet")
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

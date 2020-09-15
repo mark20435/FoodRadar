@@ -11,6 +11,11 @@
     <string name="appbar">完成</string>
     <string name="textEatWhat">今天吃什麼</string>
     <string name="title_of_myres">我的餐廳收藏</string>
+    <string name="title_of_mycoupon">我的優惠券收藏</string>
+    <string name="title_of_myarticle">我的社群活動</string>
+    <string name="title_of_userdata">會員資料設定</string>
+    <string name="title_of_sys_setup">系統設定</string>
+    <string name="title_of_contact_us">聯繫我們</string>
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
@@ -25,6 +30,9 @@
     <string name="textResCategory">餐廳分類</string>
     <string name="textResEnable">上架狀態</string>
     <string name="textEnable">上架</string>
+    <string name="textLogin">登入</string>
+    <string name="textLogout">登出</string>
+    <string name="textChangPassword">修改密碼</string>
 
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
@@ -38,5 +46,181 @@
     <string name="textInsert">確定新增</string>
     <string name="textInsertCancel">取消新增</string>
     <string name="textNoCameraApp">沒有拍照程式</string>
+    <string name="textTo">至</string>
+    <string name="textEveryWeek">每週</string>
+    <string name="textMonday">星期一</string>
+    <string name="textAddHours">加時段</string>
+    <string name="textDeleteHours">刪時段</string>
+    <string name="textTuesDay">星期二</string>
+    <string name="textAdd">＋</string>
+    <string name="textDelete">–</string>
+    <string name="textWednesday">星期三</string>
+    <string name="textThursday">星期四</string>
+    <string name="textFriday">星期五</string>
+    <string name="textSaturday">星期六</string>
+    <string name="textSunday">星期日</string>
+
+    <!--定義營業時間字串陣列內容-->
+    <string-array name="textHoursArray">
+        <item>00:00</item>
+        <item>00:30</item>
+        <item>01:00</item>
+        <item>01:30</item>
+        <item>02:00</item>
+        <item>02:30</item>
+        <item>03:00</item>
+        <item>03:30</item>
+        <item>04:00</item>
+        <item>04:30</item>
+        <item>05:00</item>
+        <item>05:30</item>
+        <item>06:00</item>
+        <item>06:30</item>
+        <item>07:00</item>
+        <item>07:30</item>
+        <item>08:00</item>
+        <item>08:30</item>
+        <item>09:00</item>
+        <item>09:30</item>
+
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+        <item>19:00</item>
+        <item>19:30</item>
+
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+        <item>23:00</item>
+        <item>23:30</item>
+    </string-array>
+
+    <string-array name="textHoursArrayWithRest">
+        <item>休息</item>
+        <item>00:00</item>
+        <item>00:30</item>
+        <item>01:00</item>
+        <item>01:30</item>
+        <item>02:00</item>
+        <item>02:30</item>
+        <item>03:00</item>
+        <item>03:30</item>
+        <item>04:00</item>
+        <item>04:30</item>
+        <item>05:00</item>
+        <item>05:30</item>
+        <item>06:00</item>
+        <item>06:30</item>
+        <item>07:00</item>
+        <item>07:30</item>
+        <item>08:00</item>
+        <item>08:30</item>
+        <item>09:00</item>
+        <item>09:30</item>
+
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+        <item>19:00</item>
+        <item>19:30</item>
+
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+        <item>23:00</item>
+        <item>23:30</item>
+    </string-array>
+
+    <string-array name="textHoursArrayWithSame">
+        <item>同上</item>
+        <item>休息</item>
+        <item>00:00</item>
+        <item>00:30</item>
+        <item>01:00</item>
+        <item>01:30</item>
+        <item>02:00</item>
+        <item>02:30</item>
+        <item>03:00</item>
+        <item>03:30</item>
+        <item>04:00</item>
+        <item>04:30</item>
+        <item>05:00</item>
+        <item>05:30</item>
+        <item>06:00</item>
+        <item>06:30</item>
+        <item>07:00</item>
+        <item>07:30</item>
+        <item>08:00</item>
+        <item>08:30</item>
+        <item>09:00</item>
+        <item>09:30</item>
+
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+        <item>19:00</item>
+        <item>19:30</item>
+
+        <item>20:00</item>
+        <item>20:30</item>
+        <item>21:00</item>
+        <item>21:30</item>
+        <item>22:00</item>
+        <item>22:30</item>
+        <item>23:00</item>
+        <item>23:30</item>
+    </string-array>
 
 </resources>

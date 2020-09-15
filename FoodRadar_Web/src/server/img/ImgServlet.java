@@ -40,7 +40,7 @@ public class ImgServlet extends HttpServlet {
 		// 宣告jsonObject
 		JsonObject jsonObject = gson.fromJson(jsonInput.toString(), JsonObject.class);
 		// Dao不為空值的話，取得實作方法內容
-		if (imgDao != null) {
+		if (imgDao == null) {
 			imgDao = new ImgDaoImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
@@ -50,9 +50,9 @@ public class ImgServlet extends HttpServlet {
 			writeText(response, gson.toJson(imgs));
 		} else if (action.equals("getImage")) { // 使用getImage方法
 			OutputStream os = response.getOutputStream();
-			int id = jsonObject.get("imgId").getAsInt();
+			int imgId = jsonObject.get("id").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt(); // image物件 > 縮小的圖片尺寸數字，client會呼叫此物件的KEY(imageSize)
-			byte[] image = imgDao.getImage(id);
+			byte[] image = imgDao.getImage(imgId);
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize); // 將取得的圖片縮小
 				response.setContentType("image/*"); // 取得資料庫圖片

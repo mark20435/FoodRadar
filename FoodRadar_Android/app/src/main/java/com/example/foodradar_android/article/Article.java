@@ -1,42 +1,61 @@
 package com.example.foodradar_android.article;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable {
 
     private int articleId;
     private String articleTitle;
-    private String articleTime;
-    private String articleText;
-    private String modifyTime;
+    private String articleTime ;
+    private String articleText ;
+    private String modifyTime ;
     private String resCategoryInfo;
+    private int imgId;
     private int resId;
     private int userId;
+    private String resName;
+    private String userName;
     private int conAmount;
     private int conNum;
     private boolean articleStatus;
+    private int goodCount;
+    private int commentCount;
+    private int favoriteCount;
+
+    private int articleGoodStatus;
+
     private byte[] articleImg;
 
     private byte[] userIcon;
+
 
 
     public Article() {
         super();
     }
 
-    //ArticleList頁面
-    public Article(int articleId, String articleTitle, String articleTime, String articleText, String resCategoryInfo, int resId, int userId, int conAmount, int conNum,
-                   boolean articleStatus, byte[] articleImg, byte[] userIcon) {
-        this.articleId = articleId;
+    //ArticleList頁面(新進榜，排行榜，收藏榜)
+    public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
+                   String resName, int goodCount, int commentCount, int favoriteCount) {
+        super();
+//        this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
         this.articleText = articleText;
         this.resCategoryInfo = resCategoryInfo;
-        this.resId = resId;
-        this.userId = userId;
-        this.conAmount = conAmount;
-        this.conNum = conNum;
-        this.articleStatus = articleStatus;
-        this.articleImg = articleImg;
-        this.userIcon = userIcon;
+        this.resName = resName;
+        this.userName = userName;
+        this.goodCount = goodCount;
+        this.commentCount = commentCount;
+        this.favoriteCount = favoriteCount;
+    }
+
+    public String getResName() {
+        return resName;
+    }
+
+    public void setResName(String resName) {
+        this.resName = resName;
     }
 
     public byte[] getUserIcon() {
@@ -161,6 +180,55 @@ public class Article {
     public void setArticleStatus(boolean articleStatus) {
         this.articleStatus = articleStatus;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getGoodCount() {
+        return goodCount;
+    }
+
+    public void setGoodCount(int goodCount) {
+        this.goodCount = goodCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public int getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    public void setFavoriteCount(int favoriteCount) {
+        this.favoriteCount = favoriteCount;
+    }
+
+    public int getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
+    }
+
+    public int getArticleGoodStatus() {
+        return articleGoodStatus;
+    }
+
+    public void setArticleGoodStatus(int articleGoodStatus) {
+        this.articleGoodStatus = articleGoodStatus;
+    }
+
 
     @Override   //覆寫方法，取得articleId > 透過id 取得article
     public boolean equals(Object obj) {
