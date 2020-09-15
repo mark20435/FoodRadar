@@ -224,10 +224,6 @@
         "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_item_view_chinaresturant.xml.flat",
-        "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/layout/item_view_chinaresturant.xml"
-    },
-    {
         "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_user_sys_setup.xml.flat",
         "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_user_sys_setup.xml"
     },

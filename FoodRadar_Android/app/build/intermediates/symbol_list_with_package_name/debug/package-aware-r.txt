@@ -1809,6 +1809,7 @@ id BottomNavigation
 id CTRL
 id FUNCTION
 id Finish
+id LinearLayout
 id META
 id NO_DEBUG
 id SHIFT
@@ -2023,7 +2024,7 @@ id home
 id homeAsUp
 id honorRequest
 id hybrid
-id ibchina
+id ibcate
 id icon
 id icon_group
 id icon_only
@@ -2047,7 +2048,6 @@ id invisible
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
-id ivImage
 id ivRes
 id jumpToEnd
 id jumpToStart
@@ -2139,8 +2139,6 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
-id recyclerView
-id resCategoryImg
 id resCategoryInfo
 id resInsertFragment
 id resMaintainFragment
@@ -2154,7 +2152,7 @@ id rotate_scroll_wheel
 id rounded
 id row_index_key
 id rvArticle
-id rvChinaRest
+id rvMain
 id rvRes
 id satellite
 id save_non_transition_alpha
@@ -2402,7 +2400,6 @@ layout fragment_res_map
 layout fragment_user_area
 layout fragment_user_my_res
 layout fragment_user_sys_setup
-layout item_view_chinaresturant
 layout item_view_main
 layout item_view_res
 layout item_view_user_myres
