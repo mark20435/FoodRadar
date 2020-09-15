@@ -1036,6 +1036,7 @@ color colorPrimary
 color colorPrimaryDark
 color colorText
 color colorTextDark
+color colorTextHint
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -1100,6 +1101,7 @@ color item_select
 color mainBlue
 color mainPink
 color mainYellow
+color mainYellowLight
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1703,6 +1705,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable button
+drawable button_circle_camera
 drawable chinacate
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
@@ -1733,17 +1736,22 @@ drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_add
+drawable ic_baseline_account_circle_24
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_broken_image_24
+drawable ic_baseline_camera_alt_24
 drawable ic_baseline_card_giftcard_24
 drawable ic_baseline_chat_bubble_24
 drawable ic_baseline_chat_bubble_outline_24
 drawable ic_baseline_comment_24
+drawable ic_baseline_face_24
 drawable ic_baseline_favorite_24
 drawable ic_baseline_home_24
 drawable ic_baseline_map_24
 drawable ic_baseline_more_vert_24
 drawable ic_baseline_person_pin_24
+drawable ic_baseline_photo_camera_24
+drawable ic_baseline_star_24
 drawable ic_baseline_supervised_user_circle_24
 drawable ic_baseline_thumb_up_24
 drawable ic_baseline_thumb_up_alt_24
@@ -1887,6 +1895,7 @@ id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
+id action_userAreaFragment_to_userDataSetupFragment
 id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
 id actions
@@ -1927,6 +1936,7 @@ id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
 id btFriDeleteHours3
+id btImgCamera
 id btMonAddHours
 id btMonAddHours2
 id btMonDeleteHours2
@@ -1954,13 +1964,16 @@ id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btnCancel
+id btnChangPassword
 id btnInsert
+id btnLogInOut
 id button
 id buttonPanel
 id caName
 id cancel_action
 id cancel_button
 id cardView
+id cardViewAvatar
 id cardview
 id center
 id center_horizontal
@@ -2037,9 +2050,14 @@ id end
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id etPassword
+id etPasswordConfirm
 id etResAddress
 id etResName
 id etResTel
+id etUserBirth
+id etUserName
+id etUserPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2072,6 +2090,7 @@ id icon_group
 id icon_only
 id id_btMyRes
 id id_btResMaintain
+id id_ivAvatar
 id id_rcvMyRes
 id ifRoom
 id ignore
@@ -2099,6 +2118,9 @@ id ivDetailUserIcon
 id ivFavoriteIcon
 id ivGoodIcon
 id ivImage
+id ivRedStar
+id ivRedStar4
+id ivRedStar5
 id ivRes
 id jumpToEnd
 id jumpToStart
@@ -2384,6 +2406,9 @@ id tvFavoriteArticle
 id tvFriday
 id tvModifyDate
 id tvMonday
+id tvPassword
+id tvPasswordConfirm
+id tvPhone
 id tvResAddress
 id tvResCategoryInfo
 id tvResEnable
@@ -2415,6 +2440,7 @@ id tvTo7
 id tvTo8
 id tvTo9
 id tvTuesDay
+id tvUserBirth
 id tvUserName
 id tvWednesday
 id tvgoodCount
@@ -2428,6 +2454,7 @@ id up
 id useLogo
 id user
 id userAreaFragment
+id userDataSetupFragment
 id userIcon
 id userMyResFragment
 id userName
@@ -2542,6 +2569,7 @@ layout fragment_res_insert
 layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_user_area
+layout fragment_user_data_setup
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_main
@@ -2741,6 +2769,7 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
+string textChangPassword
 string textDelete
 string textDeleteHours
 string textEatWhat
@@ -2749,6 +2778,8 @@ string textEveryWeek
 string textFriday
 string textInsert
 string textInsertCancel
+string textLogin
+string textLogout
 string textMonday
 string textNoArticleFound
 string textNoCameraApp
@@ -2772,7 +2803,12 @@ string textTo
 string textTuesDay
 string textWednesday
 string titleResInsert
+string title_of_contact_us
+string title_of_myarticle
+string title_of_mycoupon
 string title_of_myres
+string title_of_sys_setup
+string title_of_userdata
 string ucrop_crop
 string ucrop_error_input_data_is_absent
 string ucrop_label_edit_photo
@@ -3013,6 +3049,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style EditTextHint
 style EmptyTheme
 style MaterialAlertDialog_MaterialComponents
 style MaterialAlertDialog_MaterialComponents_Body_Text

@@ -62,7 +62,7 @@ public class UserSysSetupFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        activity.setTitle(R.string.title_of_myres);
+        activity.setTitle(R.string.title_of_sys_setup);
         return inflater.inflate(R.layout.fragment_user_sys_setup, container, false);
     }
 
