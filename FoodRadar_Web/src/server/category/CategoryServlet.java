@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import server.main.ImageUtil;
+
 @WebServlet("/CategoryServlet")
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package server.category;
+package server.main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
