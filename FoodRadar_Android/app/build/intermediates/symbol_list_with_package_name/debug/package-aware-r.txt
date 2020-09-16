@@ -1859,7 +1859,6 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
-id action_articleFragment_to_articleDetailFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1870,6 +1869,7 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_favoriteArticleFragment_to_articleDetailFragment
 id action_image
 id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
@@ -1880,6 +1880,8 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_newArticleFragment_to_articleDetailFragment
+id action_rankArticleFragment_to_articleDetailFragment
 id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_text

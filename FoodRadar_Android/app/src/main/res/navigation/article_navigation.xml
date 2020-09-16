@@ -9,15 +9,32 @@
         android:id="@+id/newArticleFragment"
         android:name="com.example.foodradar_android.article.NewArticleFragment"
         android:label="fragment_new_article"
-        tools:layout="@layout/fragment_new_article" />
+        tools:layout="@layout/fragment_new_article" >
+        <action
+            android:id="@+id/action_newArticleFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rankArticleFragment"
         android:name="com.example.foodradar_android.article.RankArticleFragment"
         android:label="fragment_rank_article"
-        tools:layout="@layout/fragment_rank_article" />
+        tools:layout="@layout/fragment_rank_article" >
+        <action
+            android:id="@+id/action_rankArticleFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteArticleFragment"
         android:name="com.example.foodradar_android.article.FavoriteArticleFragment"
         android:label="fragment_favorite_article"
-        tools:layout="@layout/fragment_favorite_article" />
+        tools:layout="@layout/fragment_favorite_article" >
+        <action
+            android:id="@+id/action_favoriteArticleFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.example.foodradar_android.article.ArticleDetailFragment"
+        android:label="fragment_article_detail"
+        tools:layout="@layout/fragment_article_detail" />
 </navigation>

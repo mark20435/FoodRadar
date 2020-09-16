@@ -15,13 +15,15 @@ public class Article {
 	private int conAmount;
 	private int conNum;
 	private boolean articleStatus;
-    private int goodCount;
+    private int articleGoodCount;
     private int commentCount;
     private int favoriteCount;
-    private int articleGoodStatus;
+    private int articleGoodId;
+    private boolean articleGoodStatus;
+    private boolean articleFavoriteStatus;
     private byte[] articleImg;
-
     private byte[] userIcon;
+    private int articleFavoriteId;
 	
 	public Article() {
 		super();
@@ -29,7 +31,8 @@ public class Article {
 
 	//ArticleList頁面(新進榜，排行榜，收藏榜)
 	public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
-			String resName, int goodCount, int commentCount, int favoriteCount, int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
+			String resName,int articleGoodCount, int commentCount, int favoriteCount,boolean articleGoodStatus ,boolean articleFavoriteStatus , 
+			int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
 		super();
 		this.articleTitle = articleTitle;
 		this.articleTime = articleTime;
@@ -37,7 +40,7 @@ public class Article {
 		this.resCategoryInfo = resCategoryInfo;
 		this.resName = resName;
 		this.userName = userName;
-        this.goodCount = goodCount;
+		this.articleGoodCount = articleGoodCount;
         this.commentCount = commentCount;
         this.favoriteCount = favoriteCount;
         this.articleId = articleId;
@@ -46,9 +49,23 @@ public class Article {
         this.conAmount = conAmount;
         this.conNum = conNum;
         this.articleStatus = articleStatus;
-//        this.articleGoodStatus = articleGoodStatus;
+        this.articleGoodStatus = articleGoodStatus;
+        this.articleFavoriteStatus = articleFavoriteStatus;
 	}
-
+	
+	//點讚
+    public Article(int articleGoodId,int userId , int articleId) {
+        super();
+        this.articleGoodId = articleGoodId;
+        this.articleId = articleId;
+        this.userId = userId;
+    }
+    //收藏
+    public Article(int userId , int articleId) {
+        super();
+        this.articleId = articleId;
+        this.userId = userId;
+    }
 
 	public int getArticleId() {
 		return articleId;
@@ -160,15 +177,13 @@ public class Article {
 	}
 
 
-	public int getGoodCount() {
-		return goodCount;
+	public int getArticleGoodId() {
+		return articleGoodId;
 	}
 
-
-	public void setGoodCount(int goodCount) {
-		this.goodCount = goodCount;
+	public void setArticleGoodId(int articleGoodId) {
+		this.articleGoodId = articleGoodId;
 	}
-
 
 	public int getCommentCount() {
 		return commentCount;
@@ -225,13 +240,38 @@ public class Article {
 		this.resName = resName;
 	}
 
-	public int getArticleGoodStatus() {
+	public boolean isArticleGoodStatus() {
 		return articleGoodStatus;
 	}
 
-	public void setArticleIdGoodStatus(int articleGoodStatus) {
+	public void setArticleGoodStatus(boolean articleGoodStatus) {
 		this.articleGoodStatus = articleGoodStatus;
 	}
+
+	public int getArticleGoodCount() {
+		return articleGoodCount;
+	}
+
+	public void setArticleGoodCount(int articleGoodCount) {
+		this.articleGoodCount = articleGoodCount;
+	}
+
+	public boolean isArticleFavoriteStatus() {
+		return articleFavoriteStatus;
+	}
+
+	public void setArticleFavoriteStatus(boolean articleFavoriteStatus) {
+		this.articleFavoriteStatus = articleFavoriteStatus;
+	}
+
+	public int getArticleFavoriteId() {
+		return articleFavoriteId;
+	}
+
+	public void setArticleFavoriteId(int articleFavoriteId) {
+		this.articleFavoriteId = articleFavoriteId;
+	}
+
 	
 	
 }

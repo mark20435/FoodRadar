@@ -193,7 +193,7 @@ public class FavoriteArticleFragment extends Fragment {
             imageTaskIcon.execute();
             imageTasks.add(imageTaskIcon);
 
-            String goodCount = article.getGoodCount() + "";
+            String goodCount = article.getArticleGoodCount() + "";
             String commentCount = article.getCommentCount() + "";
             String favoriteCount = article.getFavoriteCount() + "";
 
