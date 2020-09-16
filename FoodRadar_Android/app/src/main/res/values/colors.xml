@@ -9,5 +9,7 @@
     <color name="earthBackground">#F2F0EC</color>
     <color name="mainBlue">#4599A6</color>
     <color name="mainYellow">#EADDAB</color>
+    <color name="mainYellowLight">#F2F0EC</color>
+    <color name="colorTextHint">#AAAAAA</color>
 
 </resources>

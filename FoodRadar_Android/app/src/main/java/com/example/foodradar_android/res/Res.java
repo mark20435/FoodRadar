@@ -1,14 +1,13 @@
 package com.example.foodradar_android.res;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Res implements Serializable {
+public class Res {
 	private int resId;
 	private String resName;
 	private String resAddress;
-	private String resLat;
-	private String resLon;
+	private Double resLat;
+	private Double resLon;
 	private String resTel;
 	private String resHours;
 	private int resCategoryId;
@@ -16,7 +15,7 @@ public class Res implements Serializable {
 	private int userId;
 	private Timestamp modifyDate;
 	
-	public Res(int resId, String resName, String resAddress, String resLat, String resLon, String resTel,
+	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
 		super();
 		this.resId = resId;
@@ -56,19 +55,19 @@ public class Res implements Serializable {
 		this.resAddress = resAddress;
 	}
 
-	public String getResLat() {
+	public Double getResLat() {
 		return resLat;
 	}
 
-	public void setResLat(String resLat) {
+	public void setResLat(Double resLat) {
 		this.resLat = resLat;
 	}
 
-	public String getResLon() {
+	public Double getResLon() {
 		return resLon;
 	}
 
-	public void setResLon(String resLon) {
+	public void setResLon(Double resLon) {
 		this.resLon = resLon;
 	}
 

@@ -56,8 +56,30 @@ public class UserAccountDaoImpl implements UserAccountDao {
 
 	@Override
 	public int update(UserAccount useraccount, byte[] image) {
-		// TODO Auto-generated method stub
-		return 0;
+		// Date Time: 2020-09-11 16:52:47
+		// update statements : UserAccount
+		int count = 0;
+		String sqlStmt = "UPDATE UserAccount ";
+		sqlStmt += " SET userId = ?, userPhone = ?, userPwd = ?, userBirth = ?, userName = ?, allowNotifi = ?, isEnable = ?, isAdmin = ?, userAvatar = ?, createDate = ?, modifyDate = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setInt(1, useraccount.getUserId());
+			ps.setString(2, useraccount.getUserPhone());
+			ps.setString(3, useraccount.getUserPwd());
+			ps.setTimestamp(4, useraccount.getUserBirth());
+			ps.setString(5, useraccount.getUserName());
+			ps.setBoolean(6, useraccount.getAllowNotifi());
+			ps.setBoolean(7, useraccount.getIsEnable());
+			ps.setBoolean(8, useraccount.getIsAdmin());
+			ps.setBytes(9, useraccount.getUserAvatar());
+			ps.setTimestamp(10, useraccount.getCreateDate());
+			ps.setTimestamp(11, useraccount.getModifyDate());
+
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	@Override

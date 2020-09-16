@@ -162,11 +162,13 @@ public class MyResDaoImpl implements MyResDao{
 	@Override
 	public byte[] getImage(int id) {
 		String sql = "SELECT resImg FROM Res WHERE resId = ?;";
+		System.out.println("getImage.id: " + id);
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
+			System.out.println("getImage.rs: " + rs);
 			if (rs.next()) {
 				image = rs.getBytes(1); // BLOB用byes陣列接收
 			}

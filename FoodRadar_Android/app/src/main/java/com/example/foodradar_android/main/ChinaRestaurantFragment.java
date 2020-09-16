@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
 public class ChinaRestaurantFragment extends Fragment {
@@ -34,6 +35,15 @@ public class ChinaRestaurantFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 設定畫面到首頁一律不顯示返回鍵
+        new Common().setBackArrow(false,activity);
+        // 設定首頁AppBar(ActionBar)的Title(抬頭)
+        activity.setTitle(R.string.chinacategory);
 
     }
 }
