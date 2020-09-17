@@ -1962,12 +1962,12 @@ id btTueAddHours
 id btTueAddHours2
 id btTueDeleteHours2
 id btTueDeleteHours3
+id btUserChangConfrim
 id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btnCancel
-id btnChangPassword
 id btnInsert
 id btnLogInOut
 id button
@@ -2772,7 +2772,6 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
-string textChangPassword
 string textDelete
 string textDeleteHours
 string textEatWhat
@@ -2799,11 +2798,13 @@ string textResIsNotEnable
 string textResName
 string textResPhone
 string textSaturday
+string textSignUp
 string textSunday
 string textTakePicture
 string textThursday
 string textTo
 string textTuesDay
+string textUserChangConfrim
 string textWednesday
 string titleResInsert
 string title_of_contact_us
