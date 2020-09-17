@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import server.category.Category;
 import server.main.ServiceLocator;
 
 public class ResDaoMySqlImpl implements ResDao {
@@ -158,6 +159,36 @@ public class ResDaoMySqlImpl implements ResDao {
 			e.printStackTrace();
 		}
 		return ressList;
+	}
+	
+	@Override
+	public List<Category> getCategories() {
+		// Date Time: 2020-09-11 18:35:24
+		// select statements : Category
+		String sql = "SELECT resCategoryId, resCategoryInfo, resCategorySn" 
+		        + " FROM Category;";
+		
+
+		List<Category> categoryList  = new ArrayList<Category>();
+		try (Connection connection = dataSource.getConnection();
+			PreparedStatement ps = connection.prepareStatement(sql);) {			
+			ResultSet rs = ps.executeQuery(sql);
+			// 假如有下一個欄位的話，取得其資料
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String info = rs.getString(2);
+				int cateSn = rs.getInt(3);
+				
+
+				Category category = new Category(id, info, cateSn);
+				categoryList.add(category);
+			}
+			return categoryList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return categoryList;
+
 	}
 
 	@Override

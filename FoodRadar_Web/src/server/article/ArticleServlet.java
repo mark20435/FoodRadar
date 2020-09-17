@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import server.articleGood.ArticleGood;
+
 @WebServlet("/ArticleServlet")
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L; // 序列化標籤
@@ -22,7 +24,7 @@ public class ArticleServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); //解碼
+		request.setCharacterEncoding("UTF-8"); // 解碼
 		Gson gson = new Gson();
 		BufferedReader br = request.getReader();
 		StringBuilder jsonInput = new StringBuilder();
@@ -30,8 +32,6 @@ public class ArticleServlet extends HttpServlet {
 		while ((line = br.readLine()) != null) {
 			jsonInput.append(line);
 		}
-		// 印出資料 > Debug用
-		// System.out.println("input: " + jsonInput);
 
 		// 宣告jsonObject
 		JsonObject jsonObject = gson.fromJson(jsonInput.toString(), JsonObject.class);
@@ -40,45 +40,90 @@ public class ArticleServlet extends HttpServlet {
 			articleDao = new ArticleDaoImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
+		System.out.println("action: " + action);
 
-		// 判斷client端行為1 > 取得資料庫資料
+		// 判斷client端行為1 > 取得所有資料庫資料
 		if (action.equals("getAllById")) {
-//			int articleId = jsonObject.get("articleId").getAsInt();
+			// int articleId = jsonObject.get("articleId").getAsInt();
 			List<Article> articles = articleDao.getAllById();
 			writeText(response, gson.toJson(articles));
-			// 判斷client端行為2 > insert或Update
-		} else if (action.equals("articleInsert") || action.equals("articleUpdate")) { 
-			// 取得article內的Json字串
-			String articleJson = jsonObject.get("article").getAsString();
-			System.out.println("articleJson = " + articleJson);
 
-			// 將Json轉為article型態
-			Article article = gson.fromJson(articleJson, Article.class);
+		// 判斷client端行為2 > insert點讚
+		} else if (action.equals("articleGoodInsert")) {
+			String articleGoodJson = jsonObject.get("articleGood").getAsString(); // 取得jsonObject
+			System.out.println("articleGoodJson = " + articleGoodJson);
+			Article articleGood = gson.fromJson(articleGoodJson, Article.class); // 將Json轉為commentGood型態
+			int count = 0;
+			if (action.equals("articleGoodInsert")) {
+				count = articleDao.articleGoodInsert(articleGood);
+			}
+			writeText(response, String.valueOf(count));
+
+		// 判斷client端行為3 > 取消點讚
+		} else if (action.equals("articleGoodDelete")) {
+			System.out.println("articleGoodDelete: " + action);
+			int articleId = jsonObject.get("articleId").getAsInt();
+			int userId = jsonObject.get("userId").getAsInt();
+			int count = articleDao.articleGoodDelete(articleId, userId);
+			writeText(response, String.valueOf(count));
+		}
+		
+		//判斷client端行為4 > insert收藏
+		else if (action.equals("articleFavoriteInsert")) {
+			String articleFavoriteJson = jsonObject.get("articleFavorite").getAsString(); // 取得jsonObject
+			System.out.println("articleFavoriteJson = " + articleFavoriteJson);
+			Article articleFavorite = gson.fromJson(articleFavoriteJson, Article.class); // 將Json轉為javaBean型態
+			int count = 0;
+			if (action.equals("articleFavoriteInsert")) {
+				count = articleDao.articleFavoriteInsert(articleFavorite);
+			}
+			writeText(response, String.valueOf(count));
+		}
+		
+		//判斷client端行為5 > 取消收藏
+		else if (action.equals("articleFavoriteDelete")) {
+			System.out.println("articleFavoriteDelete: " + action);
+			int userId = jsonObject.get("userId").getAsInt();
+			int articleId = jsonObject.get("articleId").getAsInt();
+			int count = articleDao.articleFavoriteDelete(userId, articleId);
+			writeText(response, String.valueOf(count));
+		}
+		
+		// 判斷client端行為6 > 判斷insert或Update(文章)
+		else if (action.equals("articleInsert") || action.equals("articleUpdate")) {
+			String articleJson = jsonObject.get("article").getAsString(); // 取得article內的Json字串
+			System.out.println("articleJson = " + articleJson);
+			Article article = gson.fromJson(articleJson, Article.class); // 將Json轉為article型態
 
 			int count = 0;
-			// insert
+			// insert(寫文章)
 			if (action.equals("articleInsert")) {
 				count = articleDao.insert(article);
-			// Update
+				// Update(更新文章)
 			} else if (action.equals("articleUpdate")) {
 				count = articleDao.update(article);
 			}
 			writeText(response, String.valueOf(count));
-			// 判斷client端行為3 > Delete
-		} else if (action.equals("articleDelete")) {
+		}
+		// 判斷client端行為7 > Delete(刪除文章)
+		else if (action.equals("articleDelete")) {
 			int articleId = jsonObject.get("articleId").getAsInt();
 			int count = articleDao.delete(articleId);
 			writeText(response, String.valueOf(count));
-			// 判斷client端行為4 > 查詢findById
-		} else if (action.equals("findById")) {
+		}
+		// 判斷client端行為8 > 查詢findById
+		else if (action.equals("findById")) {
 			int id = jsonObject.get("articleId").getAsInt();
 			Article article = articleDao.findById(id);
 			writeText(response, gson.toJson(article));
-			// 判斷client端行為5 > 其他
-		} else {
+		}
+		
+		// 判斷client端行為9 > 其他
+		else {
 			writeText(response, "");
 		}
 	}
+	
 
 	// 將response轉成字串並寫出
 	private void writeText(HttpServletResponse response, String outText) throws IOException {

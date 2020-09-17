@@ -301,7 +301,7 @@
                 android:id="@+id/spTueStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/textHoursArrayWithSame"
+                android:entries="@array/textHoursArrayWithRest"
                 app:layout_constraintStart_toEndOf="@+id/tvTuesDay"
                 app:layout_constraintTop_toTopOf="@+id/tvTuesDay" />
 
@@ -449,7 +449,7 @@
                 android:id="@+id/spWedStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/textHoursArrayWithSame"
+                android:entries="@array/textHoursArrayWithRest"
                 app:layout_constraintStart_toEndOf="@+id/tvWednesday"
                 app:layout_constraintTop_toTopOf="@+id/tvWednesday" />
 
@@ -597,7 +597,7 @@
                 android:id="@+id/spThuStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/textHoursArrayWithSame"
+                android:entries="@array/textHoursArrayWithRest"
                 app:layout_constraintStart_toEndOf="@+id/tvThursday"
                 app:layout_constraintTop_toTopOf="@+id/tvThursday" />
 
@@ -745,7 +745,7 @@
                 android:id="@+id/spFriStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/textHoursArrayWithSame"
+                android:entries="@array/textHoursArrayWithRest"
                 app:layout_constraintStart_toEndOf="@+id/tvFriday"
                 app:layout_constraintTop_toTopOf="@+id/tvFriday" />
 
@@ -893,9 +893,9 @@
                 android:id="@+id/spSatStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/textHoursArrayWithSame"
+                android:entries="@array/textHoursArrayWithRest"
                 app:layout_constraintStart_toEndOf="@+id/tvSaturday"
-                app:layout_constraintTop_toTopOf="@+id/tvSaturday" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvTo16"
@@ -1040,7 +1040,7 @@
                 android:id="@+id/spSunStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/textHoursArrayWithSame"
+                android:entries="@array/textHoursArrayWithRest"
                 app:layout_constraintStart_toEndOf="@+id/tvSunday"
                 app:layout_constraintTop_toTopOf="@+id/tvSunday" />
 
@@ -1199,12 +1199,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
-            android:text="@string/textEnable"
+            android:checked="false"
+            android:showText="false"
+            android:splitTrack="false"
+            android:text="@string/textResIsNotEnable"
+            android:textOff="@string/textResIsNotEnable"
+            android:textOn="@string/textResIsEnable"
             app:layout_constraintStart_toEndOf="@+id/tvResEnable"
             app:layout_constraintTop_toBottomOf="@+id/spCategory" />
 
         <Button
-            android:id="@+id/btnInsert"
+            android:id="@+id/btInsert"
             style="@style/styleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -1214,20 +1219,20 @@
             android:background="@drawable/button"
             android:text="@string/textInsert"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintEnd_toStartOf="@+id/btCancel"
             app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
 
         <Button
-            android:id="@+id/btnCancel"
+            android:id="@+id/btCancel"
             style="@style/styleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:background="@drawable/button"
             android:text="@string/textInsertCancel"
-            app:layout_constraintBottom_toBottomOf="@+id/btnInsert"
+            app:layout_constraintBottom_toBottomOf="@+id/btInsert"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnInsert" />
+            app:layout_constraintTop_toTopOf="@+id/btInsert" />
 
 
 

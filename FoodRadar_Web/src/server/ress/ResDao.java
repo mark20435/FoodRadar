@@ -2,6 +2,8 @@ package server.ress;
 
 import java.util.List;
 
+import server.category.Category;
+
 public interface ResDao {
 	int insert(Res res, byte[] image);
 	int update(Res res, byte[] image);
@@ -12,5 +14,7 @@ public interface ResDao {
 	List<Res> getAll();
 
 	byte[] getImage(int resId);
+	
+	List<Category> getCategories();
 
 }

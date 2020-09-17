@@ -1826,6 +1826,7 @@ id BottomNavigation
 id CTRL
 id FUNCTION
 id Finish
+id LinearLayout
 id META
 id NO_DEBUG
 id SHIFT
@@ -1870,7 +1871,6 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
-id action_articleFragment_to_articleDetailFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1881,6 +1881,7 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_favoriteArticleFragment_to_articleDetailFragment
 id action_image
 id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
@@ -1891,6 +1892,8 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_newArticleFragment_to_articleDetailFragment
+id action_rankArticleFragment_to_articleDetailFragment
 id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_text
@@ -1931,12 +1934,14 @@ id blocking
 id bottom
 id bounce
 id btAdd
+id btCancel
 id btCommentSend
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
 id btFriDeleteHours3
 id btImgCamera
+id btInsert
 id btMonAddHours
 id btMonAddHours2
 id btMonDeleteHours2
@@ -1963,9 +1968,7 @@ id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
-id btnCancel
 id btnChangPassword
-id btnInsert
 id btnLogInOut
 id button
 id buttonPanel
@@ -2085,6 +2088,7 @@ id home
 id homeAsUp
 id honorRequest
 id hybrid
+id ibcate
 id icon
 id icon_group
 id icon_only
@@ -2117,7 +2121,6 @@ id ivDetailSetting
 id ivDetailUserIcon
 id ivFavoriteIcon
 id ivGoodIcon
-id ivImage
 id ivRedStar
 id ivRedStar4
 id ivRedStar5
@@ -2213,7 +2216,6 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
-id recyclerView
 id resCategoryInfo
 id resInsertFragment
 id resMaintainFragment
@@ -2230,7 +2232,7 @@ id rvArticle
 id rvArticleFavorite
 id rvArticleImage
 id rvArticleRank
-id rvChinaRest
+id rvMain
 id rvRes
 id satellite
 id save_non_transition_alpha
@@ -2687,6 +2689,7 @@ string bottom_sheet_behavior
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string chinacategory
 string chip_text
 string clear_text_end_icon_content_description
 string common_google_play_services_enable_button
@@ -2778,6 +2781,8 @@ string textEveryWeek
 string textFriday
 string textInsert
 string textInsertCancel
+string textInsertFail
+string textInsertSuccess
 string textLogin
 string textLogout
 string textMonday

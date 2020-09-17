@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,13 +21,16 @@ import androidx.navigation.Navigation;
 
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -34,11 +39,20 @@ import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.main.Category;
+import com.example.foodradar_android.res.Res;
+import com.example.foodradar_android.task.CommonTask;
+import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +102,7 @@ public class ResInsertFragment extends Fragment {
     private static final int REQ_PICK_PICTURE = 1;
     private static final int REQ_CROP_PICTURE = 2;
     private Uri contentUri;
+    private CommonTask resGetCategoriesTask;
 
 
     @Override
@@ -171,6 +186,19 @@ public class ResInsertFragment extends Fragment {
                     spMonEndTime.setVisibility(View.GONE);
                     tvTo.setVisibility(View.GONE);
                     btMonAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("MonHours2", false);
+                    btMonDeleteHours2.setVisibility(View.GONE);
+                    spMonStartTime2.setVisibility(View.GONE);
+                    tvTo2.setVisibility(View.GONE);
+                    spMonEndTime2.setVisibility(View.GONE);
+                    btMonAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("MonHours3", false);
+                    btMonDeleteHours3.setVisibility(View.GONE);
+                    spMonStartTime3.setVisibility(View.GONE);
+                    tvTo3.setVisibility(View.GONE);
+                    spMonEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -249,7 +277,7 @@ public class ResInsertFragment extends Fragment {
         spTueStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0 && position != 1){
+                if(position != 0){
                     spTueEndTime.setVisibility(View.VISIBLE);
                     tvTo4.setVisibility(View.VISIBLE);
                     btTueAddHours.setVisibility(View.VISIBLE);
@@ -257,6 +285,19 @@ public class ResInsertFragment extends Fragment {
                     spTueEndTime.setVisibility(View.GONE);
                     tvTo4.setVisibility(View.GONE);
                     btTueAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("TueHours2", false);
+                    btTueDeleteHours2.setVisibility(View.GONE);
+                    spTueStartTime2.setVisibility(View.GONE);
+                    tvTo5.setVisibility(View.GONE);
+                    spTueEndTime2.setVisibility(View.GONE);
+                    btTueAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("TueHours3", false);
+                    btTueDeleteHours3.setVisibility(View.GONE);
+                    spTueStartTime3.setVisibility(View.GONE);
+                    tvTo6.setVisibility(View.GONE);
+                    spTueEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -335,7 +376,7 @@ public class ResInsertFragment extends Fragment {
         spWedStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0 && position != 1){
+                if(position != 0){
                     spWedEndTime.setVisibility(View.VISIBLE);
                     tvTo7.setVisibility(View.VISIBLE);
                     btWedAddHours.setVisibility(View.VISIBLE);
@@ -343,6 +384,19 @@ public class ResInsertFragment extends Fragment {
                     spWedEndTime.setVisibility(View.GONE);
                     tvTo7.setVisibility(View.GONE);
                     btWedAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("WedHours2", false);
+                    btWedDeleteHours2.setVisibility(View.GONE);
+                    spWedStartTime2.setVisibility(View.GONE);
+                    tvTo8.setVisibility(View.GONE);
+                    spWedEndTime2.setVisibility(View.GONE);
+                    btWedAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("WedHours3", false);
+                    btWedDeleteHours3.setVisibility(View.GONE);
+                    spWedStartTime3.setVisibility(View.GONE);
+                    tvTo9.setVisibility(View.GONE);
+                    spWedEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -421,7 +475,7 @@ public class ResInsertFragment extends Fragment {
         spThuStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0 && position != 1){
+                if(position != 0){
                     spThuEndTime.setVisibility(View.VISIBLE);
                     tvTo10.setVisibility(View.VISIBLE);
                     btThuAddHours.setVisibility(View.VISIBLE);
@@ -429,6 +483,19 @@ public class ResInsertFragment extends Fragment {
                     spThuEndTime.setVisibility(View.GONE);
                     tvTo10.setVisibility(View.GONE);
                     btThuAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("ThuHours2", false);
+                    btThuDeleteHours2.setVisibility(View.GONE);
+                    spThuStartTime2.setVisibility(View.GONE);
+                    tvTo11.setVisibility(View.GONE);
+                    spThuEndTime2.setVisibility(View.GONE);
+                    btThuAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("ThuHours3", false);
+                    btThuDeleteHours3.setVisibility(View.GONE);
+                    spThuStartTime3.setVisibility(View.GONE);
+                    tvTo12.setVisibility(View.GONE);
+                    spThuEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -507,7 +574,7 @@ public class ResInsertFragment extends Fragment {
         spFriStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0 && position != 1){
+                if(position != 0){
                     spFriEndTime.setVisibility(View.VISIBLE);
                     tvTo13.setVisibility(View.VISIBLE);
                     btFriAddHours.setVisibility(View.VISIBLE);
@@ -515,6 +582,19 @@ public class ResInsertFragment extends Fragment {
                     spFriEndTime.setVisibility(View.GONE);
                     tvTo13.setVisibility(View.GONE);
                     btFriAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("FriHours2", false);
+                    btFriDeleteHours2.setVisibility(View.GONE);
+                    spFriStartTime2.setVisibility(View.GONE);
+                    tvTo14.setVisibility(View.GONE);
+                    spFriEndTime2.setVisibility(View.GONE);
+                    btFriAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("FriHours3", false);
+                    btFriDeleteHours3.setVisibility(View.GONE);
+                    spFriStartTime3.setVisibility(View.GONE);
+                    tvTo15.setVisibility(View.GONE);
+                    spFriEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -593,7 +673,7 @@ public class ResInsertFragment extends Fragment {
         spSatStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0 && position != 1){
+                if(position != 0){
                     spSatEndTime.setVisibility(View.VISIBLE);
                     tvTo16.setVisibility(View.VISIBLE);
                     btSatAddHours.setVisibility(View.VISIBLE);
@@ -601,6 +681,19 @@ public class ResInsertFragment extends Fragment {
                     spSatEndTime.setVisibility(View.GONE);
                     tvTo16.setVisibility(View.GONE);
                     btSatAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SatHours2", false);
+                    btSatDeleteHours2.setVisibility(View.GONE);
+                    spSatStartTime2.setVisibility(View.GONE);
+                    tvTo17.setVisibility(View.GONE);
+                    spSatEndTime2.setVisibility(View.GONE);
+                    btSatAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SatHours3", false);
+                    btSatDeleteHours3.setVisibility(View.GONE);
+                    spSatStartTime3.setVisibility(View.GONE);
+                    tvTo18.setVisibility(View.GONE);
+                    spSatEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -679,7 +772,7 @@ public class ResInsertFragment extends Fragment {
         spSunStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0 && position != 1){
+                if(position != 0){
                     spSunEndTime.setVisibility(View.VISIBLE);
                     tvTo19.setVisibility(View.VISIBLE);
                     btSunAddHours.setVisibility(View.VISIBLE);
@@ -687,6 +780,19 @@ public class ResInsertFragment extends Fragment {
                     spSunEndTime.setVisibility(View.GONE);
                     tvTo19.setVisibility(View.GONE);
                     btSunAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SunHours2", false);
+                    btSunDeleteHours2.setVisibility(View.GONE);
+                    spSunStartTime2.setVisibility(View.GONE);
+                    tvTo20.setVisibility(View.GONE);
+                    spSunEndTime2.setVisibility(View.GONE);
+                    btSunAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SunHours3", false);
+                    btSunDeleteHours3.setVisibility(View.GONE);
+                    spSunStartTime3.setVisibility(View.GONE);
+                    tvTo21.setVisibility(View.GONE);
+                    spSunEndTime3.setVisibility(View.GONE);
                 }
             }
 
@@ -740,10 +846,35 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
-
+        //餐廳分類
+        List<Category> categoryList = getCategories();
 
         spCategory = view.findViewById(R.id.spCategory);
+
+        String[] categories = new String[categoryList.size()];
+        for (int i = 0; i < categoryList.size(); i++) {
+            categories[i] = categoryList.get(i).getInfo();
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity,
+                android.R.layout.simple_spinner_item, categories);
+        /* 指定點選時彈出來的選單樣式 */
+        arrayAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+        spCategory.setAdapter(arrayAdapter);
+        spCategory.setSelection(0, true);
+
+        //上架狀態
         swResEnable = view.findViewById(R.id.swResEnable);
+        swResEnable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setText(R.string.textResIsEnable);
+                } else {
+                    buttonView.setText(R.string.textResIsNotEnable);
+                }
+            }
+        });
 
         Button btTakePicture = view.findViewById(R.id.btTakePicture);
         btTakePicture.setOnClickListener(new View.OnClickListener() {
@@ -775,7 +906,235 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        Button btInsert = view.findViewById(R.id.btInsert);
+        btInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String resName = etResName.getText().toString().trim();
+                String resAddress = etResAddress.getText().toString().trim();
 
+                List<Address> addressList;
+                // 如果地址無法解析成經緯度，就設為-181，因為經度為-180~+180
+                double resLat = -181.0;
+                double resLon = -181.0;
+                try {
+                    addressList = new Geocoder(activity).getFromLocationName(resAddress, 1);
+                    if (addressList != null && addressList.size() > 0) {
+                        resLat = addressList.get(0).getLatitude();
+                        resLon = addressList.get(0).getLongitude();
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString());
+                }
+
+                String resTel = etResTel.getText().toString().trim();
+
+                StringBuilder resHours = new StringBuilder("{");
+                //星期一
+                if (!spMonStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"11\": \"");
+                    resHours.append(spMonStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spMonEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("MonHours2") == true) {
+                    resHours.append("\"12\": \"");
+                    resHours.append(spMonStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spMonEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("MonHours3") == true) {
+                    resHours.append("\"13\": \"");
+                    resHours.append(spMonStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spMonEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期二
+                if (!spTueStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"21\": \"");
+                    resHours.append(spTueStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spTueEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("TueHours2") == true) {
+                    resHours.append("\"22\": \"");
+                    resHours.append(spTueStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spTueEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("TueHours3") == true) {
+                    resHours.append("\"23\": \"");
+                    resHours.append(spTueStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spTueEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期三
+                if (!spWedStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"31\": \"");
+                    resHours.append(spWedStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spWedEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("WedHours2") == true) {
+                    resHours.append("\"32\": \"");
+                    resHours.append(spWedStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spWedEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("WedHours3") == true) {
+                    resHours.append("\"33\": \"");
+                    resHours.append(spWedStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spWedEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期四
+                if (!spThuStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"41\": \"");
+                    resHours.append(spThuStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spThuEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("ThuHours2") == true) {
+                    resHours.append("\"42\": \"");
+                    resHours.append(spThuStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spThuEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("ThuHours3") == true) {
+                    resHours.append("\"43\": \"");
+                    resHours.append(spThuStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spThuEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期五
+                if (!spFriStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"51\": \"");
+                    resHours.append(spFriStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spFriEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("FriHours2") == true) {
+                    resHours.append("\"52\": \"");
+                    resHours.append(spFriStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spFriEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("FriHours3") == true) {
+                    resHours.append("\"53\": \"");
+                    resHours.append(spFriStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spFriEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期六
+                if (!spSatStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"61\": \"");
+                    resHours.append(spSatStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSatEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SatHours2") == true) {
+                    resHours.append("\"62\": \"");
+                    resHours.append(spSatStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSatEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SatHours3") == true) {
+                    resHours.append("\"63\": \"");
+                    resHours.append(spSatStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSatEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期日
+                if (!spSunStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    resHours.append("\"71\": \"");
+                    resHours.append(spSunStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSunEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SunHours2") == true) {
+                    resHours.append("\"72\": \"");
+                    resHours.append(spSunStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSunEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SunHours3") == true) {
+                    resHours.append("\"73\": \"");
+                    resHours.append(spSunStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSunEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+
+                resHours.deleteCharAt(resHours.length() - 1);
+                resHours.append("}");
+
+                int resCategoryId = categoryList.get(spCategory.getSelectedItemPosition()).getId();
+
+                boolean resEnable = swResEnable.isChecked();
+
+                //todo userId
+                int userId = 1;
+
+                Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
+                if (Common.networkConnected(activity)) {
+                    String url = Common.URL_SERVER + "ResServlet";
+                    Res res = new Res(0, resName, resAddress, resLat, resLon, resTel, resHours.toString(),
+                            resCategoryId, resEnable, userId, modifyDate);
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("action", "resInsert");
+                    jsonObject.addProperty("res", new Gson().toJson(res));
+                    // 有圖才上傳
+                    if (image != null) {
+                        jsonObject.addProperty("imageBase64", Base64.encodeToString(image, Base64.DEFAULT));
+                    }
+                    int count = 0;
+                    try {
+                        String result = new CommonTask(url, jsonObject.toString()).execute().get();
+                        count = Integer.parseInt(result);
+                    } catch (Exception e) {
+                        Log.e(TAG, e.toString());
+                    }
+                    if (count == 0) {
+                        Common.showToast(activity, R.string.textInsertFail);
+                    } else {
+                        Common.showToast(activity, R.string.textInsertSuccess);
+                    }
+                } else {
+                    Common.showToast(activity, R.string.textNoNetwork);
+                }
+                /* 回前一個Fragment */
+                navController.popBackStack();
+            }
+        });
+
+        Button btCancel = view.findViewById(R.id.btCancel);
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* 回前一個Fragment */
+                navController.popBackStack();
+            }
+        });
     }
 
     private Map<String, Boolean> getHoursVisibility() {
@@ -852,5 +1211,27 @@ public class ResInsertFragment extends Fragment {
         } else {
             ivRes.setImageResource(R.drawable.no_image);
         }
+    }
+
+    private List<Category> getCategories() {
+        List<Category> categories = null;
+        if (Common.networkConnected(activity)) {
+            String url = Common.URL_SERVER + "ResServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "getCategories");
+            String jsonOut = jsonObject.toString();
+            resGetCategoriesTask = new CommonTask(url, jsonOut);
+            try {
+                String jsonIn = resGetCategoriesTask.execute().get();
+                Type listType = new TypeToken<List<Category>>() {
+                }.getType();
+                categories = new Gson().fromJson(jsonIn, listType);
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Common.showToast(activity, R.string.textNoNetwork);
+        }
+        return categories;
     }
 }

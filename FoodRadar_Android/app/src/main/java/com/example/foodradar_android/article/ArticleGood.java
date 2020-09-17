@@ -9,6 +9,17 @@ public class ArticleGood implements Serializable {
     private int articleGoodCount;
     private int articleGoodStatus;
 
+    public ArticleGood(int userId) {
+        this.userId = userId;
+    }
+
+    public ArticleGood(int userId , int articleGoodId, int articleId) {
+        super();
+        this.articleGoodId = articleGoodId;
+        this.articleId = articleId;
+        this.userId = userId;
+    }
+
     public ArticleGood(int articleGoodId, int articleId, int userId, int articleGoodCount, int articleGoodStatus) {
         this.articleGoodId = articleGoodId;
         this.articleId = articleId;
