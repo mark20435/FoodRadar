@@ -24,7 +24,6 @@ import com.example.foodradar_android.R;
 public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
-    private Integer UserId = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
+        Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
 
         navController =
@@ -76,31 +75,13 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
         view.findViewById(R.id.id_btMyRes).setOnClickListener(this);
 
-        // vvvvvv臨時寫的，用來模擬使用者登入
-        String userPhone = "0900123456";
-        String userPwd = "P@ssw0rd";
-        // Integer userId = 3;
-        Integer UserId = new Common().userLogin(activity,userPhone,userPwd);
-        if(UserId > 0){
-            UserId= new Common().getUserLoin(activity);
-            new Common().showToast(activity, "會員專區，\n登入成功，userId: "  + UserId);
-        } else {
-            switch (UserId){
-                case 0: // 0=>登入失敗(原因不明)
-                    new Common().showToast(activity, "會員專區，\n登入失敗(原因不明)，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-                case -1: // -1=>使用者帳號(手機號碼)不存在
-                    new Common().showToast(activity, "會員專區，\n使用者帳號(手機號碼)不存在，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-                case -2: // -2=>使用者密碼錯誤
-                    new Common().showToast(activity, "會員專區，\n使用者密碼錯誤，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-                default:
-                    new Common().showToast(activity, "會員專區，\n登入失敗，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-            }
-        }
-        // ^^^^^^臨時寫的，用來模擬使用者登入
+        // vvvvvv 臨時加的
+        UserAccount userAccount = new Common().getUserLoin(activity);
+        Common.USER_ID = userAccount.getUserId();
+        Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
+        // ^^^^^^^ 臨時加的
+
+
 
 
 //        Button button;
@@ -112,6 +93,10 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 //
 //            }
 //        });
+    }
+
+    private int getUserId(){
+        return Common.USER_ID;
     }
 
 
