@@ -132,8 +132,11 @@ public class ResDaoMySqlImpl implements ResDao {
 
 	@Override
 	public List<Res> getAll() {
-		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate "
-				+ "FROM Res ORDER BY modifyDate DESC;";
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName \n" + 
+				"FROM Res R\n" + 
+				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
+				"left join UserAccount U on R.userId = U.userId\n" + 
+				"ORDER BY modifyDate DESC;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -150,8 +153,12 @@ public class ResDaoMySqlImpl implements ResDao {
 				Boolean resEnable = rs.getBoolean(9);
 				Integer userId = rs.getInt(10);
 				Timestamp modifyDate = rs.getTimestamp(11);
+				String resCategoryInfo = rs.getString(12);
+				String userName = rs.getString(13);
 				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
 						resEnable, userId, modifyDate);
+				res.setResCategoryInfo(resCategoryInfo);
+				res.setUserName(userName);
 				ressList.add(res);
 			}
 			return ressList;

@@ -1936,6 +1936,7 @@ id bounce
 id btAdd
 id btCancel
 id btCommentSend
+id btDelete
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -1964,6 +1965,7 @@ id btTueAddHours
 id btTueAddHours2
 id btTueDeleteHours2
 id btTueDeleteHours3
+id btUpdate
 id btUserChangConfrim
 id btWedAddHours
 id btWedAddHours2
@@ -1993,6 +1995,7 @@ id chip3
 id chip_group
 id chronometer
 id circular
+id clDetail
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -2415,6 +2418,7 @@ id tvResAddress
 id tvResCategoryInfo
 id tvResEnable
 id tvResHours
+id tvResHoursDetail
 id tvResName
 id tvResTel
 id tvSaturday
@@ -2774,6 +2778,7 @@ string textAdd
 string textAddHours
 string textDelete
 string textDeleteHours
+string textDeleteRes
 string textEatWhat
 string textEnable
 string textEveryWeek
@@ -2784,6 +2789,8 @@ string textInsertFail
 string textInsertSuccess
 string textLogin
 string textLogout
+string textModifyDate
+string textModifyUserName
 string textMonday
 string textNoArticleFound
 string textNoCameraApp
@@ -2798,7 +2805,7 @@ string textResHours
 string textResIsEnable
 string textResIsNotEnable
 string textResName
-string textResPhone
+string textResTel
 string textSaturday
 string textSignUp
 string textSunday
@@ -2806,6 +2813,7 @@ string textTakePicture
 string textThursday
 string textTo
 string textTuesDay
+string textUpdateRes
 string textUserChangConfrim
 string textWednesday
 string titleResInsert

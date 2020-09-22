@@ -1093,7 +1093,7 @@ public class ResInsertFragment extends Fragment {
                 boolean resEnable = swResEnable.isChecked();
 
                 //todo userId
-                int userId = 1;
+                int userId = 3;
 
                 Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
                 if (Common.networkConnected(activity)) {

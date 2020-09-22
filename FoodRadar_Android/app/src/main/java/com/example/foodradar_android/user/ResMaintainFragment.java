@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -32,7 +33,10 @@ import com.example.foodradar_android.task.ImageTask;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -173,6 +177,7 @@ public class ResMaintainFragment extends Fragment {
         private LayoutInflater layoutInflater;
         private List<Res> ress;
         private int imageSize;
+        private View visibleView;
 
         ResAdapter(Context context, List<Res> ress) {
             layoutInflater = LayoutInflater.from(context);
@@ -187,7 +192,9 @@ public class ResMaintainFragment extends Fragment {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView tvResName, tvResAddress, tvResTel, tvResHours, tvResCategoryInfo, tvResEnable, tvUserName, tvModifyDate;
+            TextView tvResName, tvResAddress, tvResTel, tvResHoursDetail,
+                    tvResCategoryInfo, tvResEnable, tvUserName, tvModifyDate;
+            ConstraintLayout clDetail;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -195,9 +202,11 @@ public class ResMaintainFragment extends Fragment {
                 tvResName = itemView.findViewById(R.id.tvResName);
                 tvResAddress = itemView.findViewById(R.id.tvResAddress);
                 tvResTel = itemView.findViewById(R.id.tvResTel);
-                tvResHours = itemView.findViewById(R.id.tvResHours);
                 tvResCategoryInfo = itemView.findViewById(R.id.tvResCategoryInfo);
                 tvResEnable = itemView.findViewById(R.id.tvResEnable);
+
+                clDetail =itemView.findViewById(R.id.clDetail);
+                tvResHoursDetail = itemView.findViewById(R.id.tvResHoursDetail);
                 tvUserName = itemView.findViewById(R.id.tvUserName);
                 tvModifyDate = itemView.findViewById(R.id.tvModifyDate);
             }
@@ -226,15 +235,170 @@ public class ResMaintainFragment extends Fragment {
             myViewHolder.tvResName.setText(res.getResName());
             myViewHolder.tvResAddress.setText(res.getResAddress());
             myViewHolder.tvResTel.setText(res.getResTel());
-            myViewHolder.tvResHours.setText(res.getResHours());
-            myViewHolder.tvResCategoryInfo.setText(String.valueOf(res.getResCategoryId()));
+            myViewHolder.tvResCategoryInfo.setText(String.valueOf(res.getResCategoryInfo()));
             if(res.isResEnable()){
                 myViewHolder.tvResEnable.setText(R.string.textResIsEnable);
             }else {
                 myViewHolder.tvResEnable.setText(R.string.textResIsNotEnable);
             }
-            myViewHolder.tvUserName.setText(String.valueOf(res.getUserId()));
+            myViewHolder.tvUserName.setText(String.valueOf(res.getUserName()));
             myViewHolder.tvModifyDate.setText(res.getModifyDate().toString());
+
+            StringBuilder resHoursDetail = new StringBuilder("星期一：");
+            JsonObject jsonHours = JsonParser.parseString(res.getResHours()).getAsJsonObject();
+            if (jsonHours.get("11") == null
+                    && jsonHours.get("12") == null
+                    && jsonHours.get("13") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("11") != null) {
+                    resHoursDetail.append(jsonHours.get("11").getAsString() + "\n");
+                }
+                if (jsonHours.get("12") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("12").getAsString() + "\n");
+                }
+                if (jsonHours.get("13") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("13").getAsString() + "\n");
+                }
+            }
+
+            resHoursDetail.append("星期二：");
+            if (jsonHours.get("21") == null
+                    && jsonHours.get("22") == null
+                    && jsonHours.get("23") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("21") != null) {
+                    resHoursDetail.append(jsonHours.get("21").getAsString() + "\n");
+                }
+                if (jsonHours.get("22") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("22").getAsString() + "\n");
+                }
+                if (jsonHours.get("23") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("23").getAsString() + "\n");
+                }
+            }
+
+            resHoursDetail.append("星期三：");
+            if (jsonHours.get("31") == null
+                    && jsonHours.get("32") == null
+                    && jsonHours.get("33") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("31") != null) {
+                    resHoursDetail.append(jsonHours.get("31").getAsString() + "\n");
+                }
+                if (jsonHours.get("32") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("32").getAsString() + "\n");
+                }
+                if (jsonHours.get("33") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("33").getAsString() + "\n");
+                }
+            }
+
+            resHoursDetail.append("星期四：");
+            if (jsonHours.get("41") == null
+                    && jsonHours.get("42") == null
+                    && jsonHours.get("43") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("41") != null) {
+                    resHoursDetail.append(jsonHours.get("41").getAsString() + "\n");
+                }
+                if (jsonHours.get("42") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("42").getAsString() + "\n");
+                }
+                if (jsonHours.get("43") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("43").getAsString() + "\n");
+                }
+            }
+
+            resHoursDetail.append("星期五：");
+            if (jsonHours.get("51") == null
+                    && jsonHours.get("52") == null
+                    && jsonHours.get("53") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("51") != null) {
+                    resHoursDetail.append(jsonHours.get("51").getAsString() + "\n");
+                }
+                if (jsonHours.get("52") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("52").getAsString() + "\n");
+                }
+                if (jsonHours.get("53") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("53").getAsString() + "\n");
+                }
+            }
+
+            resHoursDetail.append("星期六：");
+            if (jsonHours.get("61") == null
+                    && jsonHours.get("62") == null
+                    && jsonHours.get("63") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("61") != null) {
+                    resHoursDetail.append(jsonHours.get("61").getAsString() + "\n");
+                }
+                if (jsonHours.get("62") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("62").getAsString() + "\n");
+                }
+                if (jsonHours.get("63") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("63").getAsString() + "\n");
+                }
+            }
+
+            resHoursDetail.append("星期日：");
+            if (jsonHours.get("71") == null
+                    && jsonHours.get("72") == null
+                    && jsonHours.get("73") == null) {
+                resHoursDetail.append("休息\n");
+            } else {
+                if (jsonHours.get("71") != null) {
+                    resHoursDetail.append(jsonHours.get("71").getAsString() + "\n");
+                }
+                if (jsonHours.get("72") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("72").getAsString() + "\n");
+                }
+                if (jsonHours.get("73") != null) {
+                    resHoursDetail.append("\t\t\t\t\t\t\t\t");
+                    resHoursDetail.append(jsonHours.get("73").getAsString() + "\n");
+                }
+            }
+
+            myViewHolder.tvResHoursDetail.setText(resHoursDetail);
+
+            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (myViewHolder.clDetail.getVisibility()) {
+                        case View.VISIBLE:
+                            myViewHolder.clDetail.setVisibility(View.GONE);
+                            break;
+                        case View.GONE:
+                            if (visibleView != null) {
+                                visibleView.setVisibility(View.GONE);
+                            }
+                            myViewHolder.clDetail.setVisibility(View.VISIBLE);
+                            visibleView = myViewHolder.clDetail;
+                            break;
+                        case View.INVISIBLE:
+                            break;
+                    }
+                }
+            });
 
 //            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 //                @Override
