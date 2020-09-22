@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_resMaintainFragment_to_resInsertFragment"
             app:destination="@id/resInsertFragment" />
+        <action
+            android:id="@+id/action_resMaintainFragment_to_resUpdateFragment"
+            app:destination="@id/resUpdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
@@ -107,4 +110,9 @@
         android:name="com.example.foodradar_android.ArticleInsertFragment"
         android:label="fragment_article_insert"
         tools:layout="@layout/fragment_article_insert" />
+    <fragment
+        android:id="@+id/resUpdateFragment"
+        android:name="com.example.foodradar_android.user.ResUpdateFragment"
+        android:label="fragment_res_update"
+        tools:layout="@layout/fragment_res_update" />
 </navigation>

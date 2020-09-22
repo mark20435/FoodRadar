@@ -66,6 +66,7 @@
     <string name="textModifyDate">最後修改時間</string>
     <string name="textDeleteRes">刪除</string>
     <string name="textUpdateRes">修改</string>
+    <string name="titleResUpdate">修改餐廳資訊</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">

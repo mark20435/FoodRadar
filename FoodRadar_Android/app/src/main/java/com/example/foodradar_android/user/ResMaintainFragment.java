@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
@@ -195,6 +196,7 @@ public class ResMaintainFragment extends Fragment {
             TextView tvResName, tvResAddress, tvResTel, tvResHoursDetail,
                     tvResCategoryInfo, tvResEnable, tvUserName, tvModifyDate;
             ConstraintLayout clDetail;
+            Button btUpdate, btDelete;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -205,10 +207,13 @@ public class ResMaintainFragment extends Fragment {
                 tvResCategoryInfo = itemView.findViewById(R.id.tvResCategoryInfo);
                 tvResEnable = itemView.findViewById(R.id.tvResEnable);
 
-                clDetail =itemView.findViewById(R.id.clDetail);
+                clDetail = itemView.findViewById(R.id.clDetail);
                 tvResHoursDetail = itemView.findViewById(R.id.tvResHoursDetail);
                 tvUserName = itemView.findViewById(R.id.tvUserName);
                 tvModifyDate = itemView.findViewById(R.id.tvModifyDate);
+
+                btUpdate = itemView.findViewById(R.id.btUpdate);
+                btDelete = itemView.findViewById(R.id.btDelete);
             }
         }
 
@@ -400,15 +405,15 @@ public class ResMaintainFragment extends Fragment {
                 }
             });
 
-//            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("res", res);
-//                    Navigation.findNavController(view)
-//                            .navigate(R.id.action_resListFragment_to_resDetailFragment, bundle);
-//                }
-//            });
+            myViewHolder.btUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("res", res);
+                    Navigation.findNavController(view)
+                            .navigate(R.id.action_resMaintainFragment_to_resUpdateFragment, bundle);
+                }
+            });
 //            myViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 //                @Override
 //                public boolean onLongClick(final View view) {

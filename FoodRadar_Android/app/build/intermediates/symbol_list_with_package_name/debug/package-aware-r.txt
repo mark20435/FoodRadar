@@ -1896,6 +1896,7 @@ id action_newArticleFragment_to_articleDetailFragment
 id action_rankArticleFragment_to_articleDetailFragment
 id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
+id action_resMaintainFragment_to_resUpdateFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
@@ -2224,6 +2225,7 @@ id resInsertFragment
 id resMaintainFragment
 id resMapFragment
 id resName
+id resUpdateFragment
 id reverseSawtooth
 id right
 id right_icon
@@ -2574,6 +2576,7 @@ layout fragment_rank_article
 layout fragment_res_insert
 layout fragment_res_maintain
 layout fragment_res_map
+layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
 layout fragment_user_my_res
@@ -2817,6 +2820,7 @@ string textUpdateRes
 string textUserChangConfrim
 string textWednesday
 string titleResInsert
+string titleResUpdate
 string title_of_contact_us
 string title_of_myarticle
 string title_of_mycoupon
