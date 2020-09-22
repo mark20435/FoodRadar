@@ -24,7 +24,7 @@
     <string name="textNoNetwork">No Network</string>
     <string name="resMaintain">餐廳資訊維護</string>
     <string name="textResName">餐廳名稱</string>
-    <string name="textResPhone">聯絡電話</string>
+    <string name="textResTel">聯絡電話</string>
     <string name="textResAddress">餐廳地址</string>
     <string name="textResHours">營業時間</string>
     <string name="textResCategory">餐廳分類</string>
@@ -62,6 +62,7 @@
     <string name="textFriday">星期五</string>
     <string name="textSaturday">星期六</string>
     <string name="textSunday">星期日</string>
+
     <string name="textNetworkConnectedFail">沒有網路連線</string>
     <string name="textSignUpSend">送出註冊</string>
     <string name="textSignUpCancel">取消註冊</string>
@@ -69,6 +70,13 @@
     <string name="textUserPassword">密碼</string>
     <string name="textPasswordConfirm">確認密碼</string>
     <string name="textPlsInpup">請輸入</string>
+
+    <string name="textInsertFail">新增失敗</string>
+    <string name="textInsertSuccess">新增成功</string>
+    <string name="textModifyUserName">最後修改者Name</string>
+    <string name="textModifyDate">最後修改時間</string>
+    <string name="textDeleteRes">刪除</string>
+    <string name="textUpdateRes">修改</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">
