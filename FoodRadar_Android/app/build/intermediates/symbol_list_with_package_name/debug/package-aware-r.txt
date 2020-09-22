@@ -2782,13 +2782,19 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
+string textAddressError
+string textCancel
 string textDelete
+string textDeleteFail
 string textDeleteHours
 string textDeleteRes
+string textDeleteSuccess
 string textEatWhat
 string textEnable
 string textEveryWeek
 string textFriday
+string textImageEmpty
+string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
@@ -2805,6 +2811,7 @@ string textNoImagePickerApp
 string textNoMainFound
 string textNoNetwork
 string textNoRessFound
+string textOK
 string textPasswordConfirm
 string textPickPicture
 string textPlsInpup
@@ -2825,6 +2832,8 @@ string textTakePicture
 string textThursday
 string textTo
 string textTuesDay
+string textUpdate
+string textUpdateCancel
 string textUpdateRes
 string textUserChangConfrim
 string textUserPassword

@@ -42,7 +42,6 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.main.Category;
 import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
-import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -178,11 +177,11 @@ public class ResInsertFragment extends Fragment {
         spMonStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spMonEndTime.setVisibility(View.VISIBLE);
                     tvTo.setVisibility(View.VISIBLE);
                     btMonAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spMonEndTime.setVisibility(View.GONE);
                     tvTo.setVisibility(View.GONE);
                     btMonAddHours.setVisibility(View.GONE);
@@ -210,7 +209,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btMonAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("MonHours2") == false){
+            if (hoursVisibility.get("MonHours2") == false) {
                 hoursVisibility.put("MonHours2", true);
                 btMonDeleteHours2.setVisibility(View.VISIBLE);
                 spMonStartTime2.setVisibility(View.VISIBLE);
@@ -222,7 +221,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btMonDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("MonHours2") == true){
+            if (hoursVisibility.get("MonHours2") == true) {
                 hoursVisibility.put("MonHours2", false);
                 btMonDeleteHours2.setVisibility(View.GONE);
                 spMonStartTime2.setVisibility(View.GONE);
@@ -233,7 +232,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btMonAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("MonHours3") == false){
+            if (hoursVisibility.get("MonHours3") == false) {
                 hoursVisibility.put("MonHours3", true);
                 btMonDeleteHours3.setVisibility(View.VISIBLE);
                 spMonStartTime3.setVisibility(View.VISIBLE);
@@ -243,7 +242,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btMonDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("MonHours3") == true){
+            if (hoursVisibility.get("MonHours3") == true) {
                 hoursVisibility.put("MonHours3", false);
                 btMonDeleteHours3.setVisibility(View.GONE);
                 spMonStartTime3.setVisibility(View.GONE);
@@ -277,11 +276,11 @@ public class ResInsertFragment extends Fragment {
         spTueStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spTueEndTime.setVisibility(View.VISIBLE);
                     tvTo4.setVisibility(View.VISIBLE);
                     btTueAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spTueEndTime.setVisibility(View.GONE);
                     tvTo4.setVisibility(View.GONE);
                     btTueAddHours.setVisibility(View.GONE);
@@ -309,7 +308,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btTueAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("TueHours2") == false){
+            if (hoursVisibility.get("TueHours2") == false) {
                 hoursVisibility.put("TueHours2", true);
                 btTueDeleteHours2.setVisibility(View.VISIBLE);
                 spTueStartTime2.setVisibility(View.VISIBLE);
@@ -321,7 +320,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btTueDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("TueHours2") == true){
+            if (hoursVisibility.get("TueHours2") == true) {
                 hoursVisibility.put("TueHours2", false);
                 btTueDeleteHours2.setVisibility(View.GONE);
                 spTueStartTime2.setVisibility(View.GONE);
@@ -332,7 +331,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btTueAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("TueHours3") == false){
+            if (hoursVisibility.get("TueHours3") == false) {
                 hoursVisibility.put("TueHours3", true);
                 btTueDeleteHours3.setVisibility(View.VISIBLE);
                 spTueStartTime3.setVisibility(View.VISIBLE);
@@ -342,7 +341,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btTueDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("TueHours3") == true){
+            if (hoursVisibility.get("TueHours3") == true) {
                 hoursVisibility.put("TueHours3", false);
                 btTueDeleteHours3.setVisibility(View.GONE);
                 spTueStartTime3.setVisibility(View.GONE);
@@ -376,11 +375,11 @@ public class ResInsertFragment extends Fragment {
         spWedStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spWedEndTime.setVisibility(View.VISIBLE);
                     tvTo7.setVisibility(View.VISIBLE);
                     btWedAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spWedEndTime.setVisibility(View.GONE);
                     tvTo7.setVisibility(View.GONE);
                     btWedAddHours.setVisibility(View.GONE);
@@ -408,7 +407,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btWedAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("WedHours2") == false){
+            if (hoursVisibility.get("WedHours2") == false) {
                 hoursVisibility.put("WedHours2", true);
                 btWedDeleteHours2.setVisibility(View.VISIBLE);
                 spWedStartTime2.setVisibility(View.VISIBLE);
@@ -420,7 +419,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btWedDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("WedHours2") == true){
+            if (hoursVisibility.get("WedHours2") == true) {
                 hoursVisibility.put("WedHours2", false);
                 btWedDeleteHours2.setVisibility(View.GONE);
                 spWedStartTime2.setVisibility(View.GONE);
@@ -431,7 +430,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btWedAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("WedHours3") == false){
+            if (hoursVisibility.get("WedHours3") == false) {
                 hoursVisibility.put("WedHours3", true);
                 btWedDeleteHours3.setVisibility(View.VISIBLE);
                 spWedStartTime3.setVisibility(View.VISIBLE);
@@ -441,7 +440,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btWedDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("WedHours3") == true){
+            if (hoursVisibility.get("WedHours3") == true) {
                 hoursVisibility.put("WedHours3", false);
                 btWedDeleteHours3.setVisibility(View.GONE);
                 spWedStartTime3.setVisibility(View.GONE);
@@ -475,11 +474,11 @@ public class ResInsertFragment extends Fragment {
         spThuStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spThuEndTime.setVisibility(View.VISIBLE);
                     tvTo10.setVisibility(View.VISIBLE);
                     btThuAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spThuEndTime.setVisibility(View.GONE);
                     tvTo10.setVisibility(View.GONE);
                     btThuAddHours.setVisibility(View.GONE);
@@ -507,7 +506,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btThuAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("ThuHours2") == false){
+            if (hoursVisibility.get("ThuHours2") == false) {
                 hoursVisibility.put("ThuHours2", true);
                 btThuDeleteHours2.setVisibility(View.VISIBLE);
                 spThuStartTime2.setVisibility(View.VISIBLE);
@@ -519,7 +518,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btThuDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("ThuHours2") == true){
+            if (hoursVisibility.get("ThuHours2") == true) {
                 hoursVisibility.put("ThuHours2", false);
                 btThuDeleteHours2.setVisibility(View.GONE);
                 spThuStartTime2.setVisibility(View.GONE);
@@ -530,7 +529,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btThuAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("ThuHours3") == false){
+            if (hoursVisibility.get("ThuHours3") == false) {
                 hoursVisibility.put("ThuHours3", true);
                 btThuDeleteHours3.setVisibility(View.VISIBLE);
                 spThuStartTime3.setVisibility(View.VISIBLE);
@@ -540,7 +539,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btThuDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("ThuHours3") == true){
+            if (hoursVisibility.get("ThuHours3") == true) {
                 hoursVisibility.put("ThuHours3", false);
                 btThuDeleteHours3.setVisibility(View.GONE);
                 spThuStartTime3.setVisibility(View.GONE);
@@ -574,11 +573,11 @@ public class ResInsertFragment extends Fragment {
         spFriStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spFriEndTime.setVisibility(View.VISIBLE);
                     tvTo13.setVisibility(View.VISIBLE);
                     btFriAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spFriEndTime.setVisibility(View.GONE);
                     tvTo13.setVisibility(View.GONE);
                     btFriAddHours.setVisibility(View.GONE);
@@ -606,7 +605,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btFriAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("FriHours2") == false){
+            if (hoursVisibility.get("FriHours2") == false) {
                 hoursVisibility.put("FriHours2", true);
                 btFriDeleteHours2.setVisibility(View.VISIBLE);
                 spFriStartTime2.setVisibility(View.VISIBLE);
@@ -618,7 +617,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btFriDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("FriHours2") == true){
+            if (hoursVisibility.get("FriHours2") == true) {
                 hoursVisibility.put("FriHours2", false);
                 btFriDeleteHours2.setVisibility(View.GONE);
                 spFriStartTime2.setVisibility(View.GONE);
@@ -629,7 +628,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btFriAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("FriHours3") == false){
+            if (hoursVisibility.get("FriHours3") == false) {
                 hoursVisibility.put("FriHours3", true);
                 btFriDeleteHours3.setVisibility(View.VISIBLE);
                 spFriStartTime3.setVisibility(View.VISIBLE);
@@ -639,7 +638,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btFriDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("FriHours3") == true){
+            if (hoursVisibility.get("FriHours3") == true) {
                 hoursVisibility.put("FriHours3", false);
                 btFriDeleteHours3.setVisibility(View.GONE);
                 spFriStartTime3.setVisibility(View.GONE);
@@ -673,11 +672,11 @@ public class ResInsertFragment extends Fragment {
         spSatStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spSatEndTime.setVisibility(View.VISIBLE);
                     tvTo16.setVisibility(View.VISIBLE);
                     btSatAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spSatEndTime.setVisibility(View.GONE);
                     tvTo16.setVisibility(View.GONE);
                     btSatAddHours.setVisibility(View.GONE);
@@ -705,7 +704,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btSatAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("SatHours2") == false){
+            if (hoursVisibility.get("SatHours2") == false) {
                 hoursVisibility.put("SatHours2", true);
                 btSatDeleteHours2.setVisibility(View.VISIBLE);
                 spSatStartTime2.setVisibility(View.VISIBLE);
@@ -717,7 +716,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btSatDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("SatHours2") == true){
+            if (hoursVisibility.get("SatHours2") == true) {
                 hoursVisibility.put("SatHours2", false);
                 btSatDeleteHours2.setVisibility(View.GONE);
                 spSatStartTime2.setVisibility(View.GONE);
@@ -728,7 +727,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btSatAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("SatHours3") == false){
+            if (hoursVisibility.get("SatHours3") == false) {
                 hoursVisibility.put("SatHours3", true);
                 btSatDeleteHours3.setVisibility(View.VISIBLE);
                 spSatStartTime3.setVisibility(View.VISIBLE);
@@ -738,7 +737,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btSatDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("SatHours3") == true){
+            if (hoursVisibility.get("SatHours3") == true) {
                 hoursVisibility.put("SatHours3", false);
                 btSatDeleteHours3.setVisibility(View.GONE);
                 spSatStartTime3.setVisibility(View.GONE);
@@ -772,11 +771,11 @@ public class ResInsertFragment extends Fragment {
         spSunStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
+                if (position != 0) {
                     spSunEndTime.setVisibility(View.VISIBLE);
                     tvTo19.setVisibility(View.VISIBLE);
                     btSunAddHours.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     spSunEndTime.setVisibility(View.GONE);
                     tvTo19.setVisibility(View.GONE);
                     btSunAddHours.setVisibility(View.GONE);
@@ -804,7 +803,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊加時段出現第二列
         btSunAddHours.setOnClickListener(v -> {
-            if(hoursVisibility.get("SunHours2") == false){
+            if (hoursVisibility.get("SunHours2") == false) {
                 hoursVisibility.put("SunHours2", true);
                 btSunDeleteHours2.setVisibility(View.VISIBLE);
                 spSunStartTime2.setVisibility(View.VISIBLE);
@@ -816,7 +815,7 @@ public class ResInsertFragment extends Fragment {
 
         //點擊刪時段，隱藏該列
         btSunDeleteHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("SunHours2") == true){
+            if (hoursVisibility.get("SunHours2") == true) {
                 hoursVisibility.put("SunHours2", false);
                 btSunDeleteHours2.setVisibility(View.GONE);
                 spSunStartTime2.setVisibility(View.GONE);
@@ -827,7 +826,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btSunAddHours2.setOnClickListener(v -> {
-            if(hoursVisibility.get("SunHours3") == false){
+            if (hoursVisibility.get("SunHours3") == false) {
                 hoursVisibility.put("SunHours3", true);
                 btSunDeleteHours3.setVisibility(View.VISIBLE);
                 spSunStartTime3.setVisibility(View.VISIBLE);
@@ -837,7 +836,7 @@ public class ResInsertFragment extends Fragment {
         });
 
         btSunDeleteHours3.setOnClickListener(v -> {
-            if(hoursVisibility.get("SunHours3") == true){
+            if (hoursVisibility.get("SunHours3") == true) {
                 hoursVisibility.put("SunHours3", false);
                 btSunDeleteHours3.setVisibility(View.GONE);
                 spSunStartTime3.setVisibility(View.GONE);
@@ -910,6 +909,11 @@ public class ResInsertFragment extends Fragment {
         btInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (image == null) {
+                    Common.showToast(activity, R.string.textImageEmpty);
+                    return;
+                }
+
                 String resName = etResName.getText().toString().trim();
                 String resAddress = etResAddress.getText().toString().trim();
 
@@ -926,8 +930,16 @@ public class ResInsertFragment extends Fragment {
                 } catch (Exception e) {
                     Log.e(TAG, e.toString());
                 }
+                if (resLat == -181.0) {
+                    Common.showToast(activity, R.string.textAddressError);
+                    return;
+                }
 
                 String resTel = etResTel.getText().toString().trim();
+                if (resName.isEmpty() || resAddress.isEmpty() || resTel.isEmpty()) {
+                    Common.showToast(activity, R.string.textInputEmpty);
+                    return;
+                }
 
                 StringBuilder resHours = new StringBuilder("{");
                 //星期一
@@ -1084,8 +1096,9 @@ public class ResInsertFragment extends Fragment {
                     resHours.append(spSunEndTime3.getSelectedItem().toString());
                     resHours.append("\",");
                 }
-
-                resHours.deleteCharAt(resHours.length() - 1);
+                if (resHours.length() != 1) {
+                    resHours.deleteCharAt(resHours.length() - 1);
+                }
                 resHours.append("}");
 
                 int resCategoryId = categoryList.get(spCategory.getSelectedItemPosition()).getId();

@@ -78,6 +78,15 @@
     <string name="textDeleteRes">刪除</string>
     <string name="textUpdateRes">修改</string>
     <string name="titleResUpdate">修改餐廳資訊</string>
+    <string name="textDeleteFail">刪除失敗</string>
+    <string name="textDeleteSuccess">刪除成功</string>
+    <string name="textOK">確定</string>
+    <string name="textCancel">取消</string>
+    <string name="textInputEmpty">所有欄位皆不可空白</string>
+    <string name="textAddressError">輸入地址錯誤</string>
+    <string name="textImageEmpty">請上傳照片</string>
+    <string name="textUpdate">確定修改</string>
+    <string name="textUpdateCancel">取消修改</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">
