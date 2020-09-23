@@ -4,18 +4,23 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -46,6 +52,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -746,7 +753,837 @@ public class ResUpdateFragment extends Fragment {
             spThuEndTime3.setSelection(spinnerPosition);
         }
 
+        //星期五
+        spFriStartTime = view.findViewById(R.id.spFriStartTime);
+        spFriEndTime = view.findViewById(R.id.spFriEndTime);
+        spFriStartTime2 = view.findViewById(R.id.spFriStartTime2);
+        spFriEndTime2 = view.findViewById(R.id.spFriEndTime2);
+        spFriStartTime3 = view.findViewById(R.id.spFriStartTime3);
+        spFriEndTime3 = view.findViewById(R.id.spFriEndTime3);
+
+        tvTo13 = view.findViewById(R.id.tvTo13);
+        tvTo14 = view.findViewById(R.id.tvTo14);
+        tvTo15 = view.findViewById(R.id.tvTo15);
+
+        btFriAddHours = view.findViewById(R.id.btFriAddHours);
+        btFriDeleteHours2 = view.findViewById(R.id.btFriDeleteHours2);
+        btFriAddHours2 = view.findViewById(R.id.btFriAddHours2);
+        btFriDeleteHours3 = view.findViewById(R.id.btFriDeleteHours3);
+
+        if (jsonHours.get("51") != null) {
+            compareValue = jsonHours.get("51").getAsString().split("~")[0];
+            spFriStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spFriStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("51").getAsString().split("~")[1];
+            spFriEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime.setSelection(spinnerPosition);
+        } else {
+            spFriStartTime.setSelection(0, true);
+            spFriEndTime.setVisibility(View.GONE);
+            tvTo13.setVisibility(View.GONE);
+            btFriAddHours.setVisibility(View.GONE);
+        }
+
+        spFriStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    spFriEndTime.setVisibility(View.VISIBLE);
+                    tvTo13.setVisibility(View.VISIBLE);
+                    btFriAddHours.setVisibility(View.VISIBLE);
+                } else {
+                    spFriEndTime.setVisibility(View.GONE);
+                    tvTo13.setVisibility(View.GONE);
+                    btFriAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("FriHours2", false);
+                    btFriDeleteHours2.setVisibility(View.GONE);
+                    spFriStartTime2.setVisibility(View.GONE);
+                    tvTo14.setVisibility(View.GONE);
+                    spFriEndTime2.setVisibility(View.GONE);
+                    btFriAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("FriHours3", false);
+                    btFriDeleteHours3.setVisibility(View.GONE);
+                    spFriStartTime3.setVisibility(View.GONE);
+                    tvTo15.setVisibility(View.GONE);
+                    spFriEndTime3.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //點擊加時段出現第二列
+        btFriAddHours.setOnClickListener(v -> {
+            if (hoursVisibility.get("FriHours2") == false) {
+                hoursVisibility.put("FriHours2", true);
+                btFriDeleteHours2.setVisibility(View.VISIBLE);
+                spFriStartTime2.setVisibility(View.VISIBLE);
+                tvTo14.setVisibility(View.VISIBLE);
+                spFriEndTime2.setVisibility(View.VISIBLE);
+                btFriAddHours2.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //點擊刪時段，隱藏該列
+        btFriDeleteHours2.setOnClickListener(v -> {
+            if (hoursVisibility.get("FriHours2") == true) {
+                hoursVisibility.put("FriHours2", false);
+                btFriDeleteHours2.setVisibility(View.GONE);
+                spFriStartTime2.setVisibility(View.GONE);
+                tvTo14.setVisibility(View.GONE);
+                spFriEndTime2.setVisibility(View.GONE);
+                btFriAddHours2.setVisibility(View.GONE);
+            }
+        });
+
+        btFriAddHours2.setOnClickListener(v -> {
+            if (hoursVisibility.get("FriHours3") == false) {
+                hoursVisibility.put("FriHours3", true);
+                btFriDeleteHours3.setVisibility(View.VISIBLE);
+                spFriStartTime3.setVisibility(View.VISIBLE);
+                tvTo15.setVisibility(View.VISIBLE);
+                spFriEndTime3.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btFriDeleteHours3.setOnClickListener(v -> {
+            if (hoursVisibility.get("FriHours3") == true) {
+                hoursVisibility.put("FriHours3", false);
+                btFriDeleteHours3.setVisibility(View.GONE);
+                spFriStartTime3.setVisibility(View.GONE);
+                tvTo15.setVisibility(View.GONE);
+                spFriEndTime3.setVisibility(View.GONE);
+            }
+        });
+
+        if (jsonHours.get("52") != null) {
+            btFriDeleteHours2.setVisibility(View.VISIBLE);
+            spFriStartTime2.setVisibility(View.VISIBLE);
+            tvTo14.setVisibility(View.VISIBLE);
+            spFriEndTime2.setVisibility(View.VISIBLE);
+            btFriAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("52").getAsString().split("~")[0];
+            spFriStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("52").getAsString().split("~")[1];
+            spFriEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("53") != null) {
+            btFriDeleteHours3.setVisibility(View.VISIBLE);
+            spFriStartTime3.setVisibility(View.VISIBLE);
+            tvTo15.setVisibility(View.VISIBLE);
+            spFriEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("53").getAsString().split("~")[0];
+            spFriStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("53").getAsString().split("~")[1];
+            spFriEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime3.setSelection(spinnerPosition);
+        }
+
+        //星期六
+        spSatStartTime = view.findViewById(R.id.spSatStartTime);
+        spSatEndTime = view.findViewById(R.id.spSatEndTime);
+        spSatStartTime2 = view.findViewById(R.id.spSatStartTime2);
+        spSatEndTime2 = view.findViewById(R.id.spSatEndTime2);
+        spSatStartTime3 = view.findViewById(R.id.spSatStartTime3);
+        spSatEndTime3 = view.findViewById(R.id.spSatEndTime3);
+
+        tvTo16 = view.findViewById(R.id.tvTo16);
+        tvTo17 = view.findViewById(R.id.tvTo17);
+        tvTo18 = view.findViewById(R.id.tvTo18);
+
+        btSatAddHours = view.findViewById(R.id.btSatAddHours);
+        btSatDeleteHours2 = view.findViewById(R.id.btSatDeleteHours2);
+        btSatAddHours2 = view.findViewById(R.id.btSatAddHours2);
+        btSatDeleteHours3 = view.findViewById(R.id.btSatDeleteHours3);
+
+        if (jsonHours.get("61") != null) {
+            compareValue = jsonHours.get("61").getAsString().split("~")[0];
+            spSatStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spSatStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("61").getAsString().split("~")[1];
+            spSatEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime.setSelection(spinnerPosition);
+        } else {
+            spSatStartTime.setSelection(0, true);
+            spSatEndTime.setVisibility(View.GONE);
+            tvTo16.setVisibility(View.GONE);
+            btSatAddHours.setVisibility(View.GONE);
+        }
+
+        spSatStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    spSatEndTime.setVisibility(View.VISIBLE);
+                    tvTo16.setVisibility(View.VISIBLE);
+                    btSatAddHours.setVisibility(View.VISIBLE);
+                } else {
+                    spSatEndTime.setVisibility(View.GONE);
+                    tvTo16.setVisibility(View.GONE);
+                    btSatAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SatHours2", false);
+                    btSatDeleteHours2.setVisibility(View.GONE);
+                    spSatStartTime2.setVisibility(View.GONE);
+                    tvTo17.setVisibility(View.GONE);
+                    spSatEndTime2.setVisibility(View.GONE);
+                    btSatAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SatHours3", false);
+                    btSatDeleteHours3.setVisibility(View.GONE);
+                    spSatStartTime3.setVisibility(View.GONE);
+                    tvTo18.setVisibility(View.GONE);
+                    spSatEndTime3.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //點擊加時段出現第二列
+        btSatAddHours.setOnClickListener(v -> {
+            if (hoursVisibility.get("SatHours2") == false) {
+                hoursVisibility.put("SatHours2", true);
+                btSatDeleteHours2.setVisibility(View.VISIBLE);
+                spSatStartTime2.setVisibility(View.VISIBLE);
+                tvTo17.setVisibility(View.VISIBLE);
+                spSatEndTime2.setVisibility(View.VISIBLE);
+                btSatAddHours2.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //點擊刪時段，隱藏該列
+        btSatDeleteHours2.setOnClickListener(v -> {
+            if (hoursVisibility.get("SatHours2") == true) {
+                hoursVisibility.put("SatHours2", false);
+                btSatDeleteHours2.setVisibility(View.GONE);
+                spSatStartTime2.setVisibility(View.GONE);
+                tvTo17.setVisibility(View.GONE);
+                spSatEndTime2.setVisibility(View.GONE);
+                btSatAddHours2.setVisibility(View.GONE);
+            }
+        });
+
+        btSatAddHours2.setOnClickListener(v -> {
+            if (hoursVisibility.get("SatHours3") == false) {
+                hoursVisibility.put("SatHours3", true);
+                btSatDeleteHours3.setVisibility(View.VISIBLE);
+                spSatStartTime3.setVisibility(View.VISIBLE);
+                tvTo18.setVisibility(View.VISIBLE);
+                spSatEndTime3.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btSatDeleteHours3.setOnClickListener(v -> {
+            if (hoursVisibility.get("SatHours3") == true) {
+                hoursVisibility.put("SatHours3", false);
+                btSatDeleteHours3.setVisibility(View.GONE);
+                spSatStartTime3.setVisibility(View.GONE);
+                tvTo18.setVisibility(View.GONE);
+                spSatEndTime3.setVisibility(View.GONE);
+            }
+        });
+
+        if (jsonHours.get("62") != null) {
+            btSatDeleteHours2.setVisibility(View.VISIBLE);
+            spSatStartTime2.setVisibility(View.VISIBLE);
+            tvTo17.setVisibility(View.VISIBLE);
+            spSatEndTime2.setVisibility(View.VISIBLE);
+            btSatAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("62").getAsString().split("~")[0];
+            spSatStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("62").getAsString().split("~")[1];
+            spSatEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("63") != null) {
+            btSatDeleteHours3.setVisibility(View.VISIBLE);
+            spSatStartTime3.setVisibility(View.VISIBLE);
+            tvTo18.setVisibility(View.VISIBLE);
+            spSatEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("63").getAsString().split("~")[0];
+            spSatStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("63").getAsString().split("~")[1];
+            spSatEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime3.setSelection(spinnerPosition);
+        }
+
+        //星期日
+        spSunStartTime = view.findViewById(R.id.spSunStartTime);
+        spSunEndTime = view.findViewById(R.id.spSunEndTime);
+        spSunStartTime2 = view.findViewById(R.id.spSunStartTime2);
+        spSunEndTime2 = view.findViewById(R.id.spSunEndTime2);
+        spSunStartTime3 = view.findViewById(R.id.spSunStartTime3);
+        spSunEndTime3 = view.findViewById(R.id.spSunEndTime3);
+
+        tvTo19 = view.findViewById(R.id.tvTo19);
+        tvTo20 = view.findViewById(R.id.tvTo20);
+        tvTo21 = view.findViewById(R.id.tvTo21);
+
+        btSunAddHours = view.findViewById(R.id.btSunAddHours);
+        btSunDeleteHours2 = view.findViewById(R.id.btSunDeleteHours2);
+        btSunAddHours2 = view.findViewById(R.id.btSunAddHours2);
+        btSunDeleteHours3 = view.findViewById(R.id.btSunDeleteHours3);
+
+        if (jsonHours.get("71") != null) {
+            compareValue = jsonHours.get("71").getAsString().split("~")[0];
+            spSunStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spSunStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("71").getAsString().split("~")[1];
+            spSunEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime.setSelection(spinnerPosition);
+        } else {
+            spSunStartTime.setSelection(0, true);
+            spSunEndTime.setVisibility(View.GONE);
+            tvTo19.setVisibility(View.GONE);
+            btSunAddHours.setVisibility(View.GONE);
+        }
+
+        spSunStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    spSunEndTime.setVisibility(View.VISIBLE);
+                    tvTo19.setVisibility(View.VISIBLE);
+                    btSunAddHours.setVisibility(View.VISIBLE);
+                } else {
+                    spSunEndTime.setVisibility(View.GONE);
+                    tvTo19.setVisibility(View.GONE);
+                    btSunAddHours.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SunHours2", false);
+                    btSunDeleteHours2.setVisibility(View.GONE);
+                    spSunStartTime2.setVisibility(View.GONE);
+                    tvTo20.setVisibility(View.GONE);
+                    spSunEndTime2.setVisibility(View.GONE);
+                    btSunAddHours2.setVisibility(View.GONE);
+
+                    hoursVisibility.put("SunHours3", false);
+                    btSunDeleteHours3.setVisibility(View.GONE);
+                    spSunStartTime3.setVisibility(View.GONE);
+                    tvTo21.setVisibility(View.GONE);
+                    spSunEndTime3.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //點擊加時段出現第二列
+        btSunAddHours.setOnClickListener(v -> {
+            if (hoursVisibility.get("SunHours2") == false) {
+                hoursVisibility.put("SunHours2", true);
+                btSunDeleteHours2.setVisibility(View.VISIBLE);
+                spSunStartTime2.setVisibility(View.VISIBLE);
+                tvTo20.setVisibility(View.VISIBLE);
+                spSunEndTime2.setVisibility(View.VISIBLE);
+                btSunAddHours2.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //點擊刪時段，隱藏該列
+        btSunDeleteHours2.setOnClickListener(v -> {
+            if (hoursVisibility.get("SunHours2") == true) {
+                hoursVisibility.put("SunHours2", false);
+                btSunDeleteHours2.setVisibility(View.GONE);
+                spSunStartTime2.setVisibility(View.GONE);
+                tvTo20.setVisibility(View.GONE);
+                spSunEndTime2.setVisibility(View.GONE);
+                btSunAddHours2.setVisibility(View.GONE);
+            }
+        });
+
+        btSunAddHours2.setOnClickListener(v -> {
+            if (hoursVisibility.get("SunHours3") == false) {
+                hoursVisibility.put("SunHours3", true);
+                btSunDeleteHours3.setVisibility(View.VISIBLE);
+                spSunStartTime3.setVisibility(View.VISIBLE);
+                tvTo21.setVisibility(View.VISIBLE);
+                spSunEndTime3.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btSunDeleteHours3.setOnClickListener(v -> {
+            if (hoursVisibility.get("SunHours3") == true) {
+                hoursVisibility.put("SunHours3", false);
+                btSunDeleteHours3.setVisibility(View.GONE);
+                spSunStartTime3.setVisibility(View.GONE);
+                tvTo21.setVisibility(View.GONE);
+                spSunEndTime3.setVisibility(View.GONE);
+            }
+        });
+
+        if (jsonHours.get("72") != null) {
+            btSunDeleteHours2.setVisibility(View.VISIBLE);
+            spSunStartTime2.setVisibility(View.VISIBLE);
+            tvTo20.setVisibility(View.VISIBLE);
+            spSunEndTime2.setVisibility(View.VISIBLE);
+            btSunAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("72").getAsString().split("~")[0];
+            spSunStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("72").getAsString().split("~")[1];
+            spSunEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("73") != null) {
+            btSunDeleteHours3.setVisibility(View.VISIBLE);
+            spSunStartTime3.setVisibility(View.VISIBLE);
+            tvTo21.setVisibility(View.VISIBLE);
+            spSunEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("73").getAsString().split("~")[0];
+            spSunStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("73").getAsString().split("~")[1];
+            spSunEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime3.setSelection(spinnerPosition);
+        }
+
+        //餐廳分類
+        List<Category> categoryList = getCategories();
+
+        spCategory = view.findViewById(R.id.spCategory);
+
+        String[] categories = new String[categoryList.size()];
+        for (int i = 0; i < categoryList.size(); i++) {
+            categories[i] = categoryList.get(i).getInfo();
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity,
+                android.R.layout.simple_spinner_item, categories);
+        /* 指定點選時彈出來的選單樣式 */
+        arrayAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+        spCategory.setAdapter(arrayAdapter);
+        compareValue = res.getResCategoryInfo();
+        spinnerPosition = arrayAdapter.getPosition(compareValue);
+        spCategory.setSelection(spinnerPosition);
+
+        //上架狀態
+        swResEnable = view.findViewById(R.id.swResEnable);
+        swResEnable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setText(R.string.textResIsEnable);
+                } else {
+                    buttonView.setText(R.string.textResIsNotEnable);
+                }
+            }
+        });
+        swResEnable.setChecked(res.isResEnable());
+
         showRes();
+
+        Button btTakePicture = view.findViewById(R.id.btTakePicture);
+        btTakePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // 指定存檔路徑
+                File file = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                file = new File(file, "picture.jpg");
+                contentUri = FileProvider.getUriForFile(
+                        activity, activity.getPackageName() + ".provider", file);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+
+                if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                    startActivityForResult(intent, REQ_TAKE_PICTURE);
+                } else {
+                    Common.showToast(activity, R.string.textNoCameraApp);
+                }
+            }
+        });
+
+        Button btPickPicture = view.findViewById(R.id.btPickPicture);
+        btPickPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, REQ_PICK_PICTURE);
+            }
+        });
+
+        Button btUpdate = view.findViewById(R.id.btUpdate);
+        btUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (image == null) {
+                    Common.showToast(activity, R.string.textImageEmpty);
+                    return;
+                }
+
+                String resName = etResName.getText().toString().trim();
+                String resAddress = etResAddress.getText().toString().trim();
+
+                List<Address> addressList;
+                // 如果地址無法解析成經緯度，就設為-181，因為經度為-180~+180
+                double resLat = -181.0;
+                double resLon = -181.0;
+                try {
+                    addressList = new Geocoder(activity).getFromLocationName(resAddress, 1);
+                    if (addressList != null && addressList.size() > 0) {
+                        resLat = addressList.get(0).getLatitude();
+                        resLon = addressList.get(0).getLongitude();
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString());
+                }
+                if (resLat == -181.0) {
+                    Common.showToast(activity, R.string.textAddressError);
+                    return;
+                }
+
+                String resTel = etResTel.getText().toString().trim();
+                if (resName.isEmpty() || resAddress.isEmpty() || resTel.isEmpty()) {
+                    Common.showToast(activity, R.string.textInputEmpty);
+                    return;
+                }
+
+                StringBuilder resHours = new StringBuilder("{");
+                //星期一
+                if (!spMonStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spMonStartTime.getSelectedItemPosition() > spMonEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"11\": \"");
+                    resHours.append(spMonStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spMonEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("MonHours2") == true) {
+                    if(spMonStartTime2.getSelectedItemPosition() >= spMonEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"12\": \"");
+                    resHours.append(spMonStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spMonEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("MonHours3") == true) {
+                    if(spMonStartTime3.getSelectedItemPosition() >= spMonEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"13\": \"");
+                    resHours.append(spMonStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spMonEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期二
+                if (!spTueStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spTueStartTime.getSelectedItemPosition() > spTueEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"21\": \"");
+                    resHours.append(spTueStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spTueEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("TueHours2") == true) {
+                    if(spTueStartTime2.getSelectedItemPosition() >= spTueEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"22\": \"");
+                    resHours.append(spTueStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spTueEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("TueHours3") == true) {
+                    if(spTueStartTime3.getSelectedItemPosition() >= spTueEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"23\": \"");
+                    resHours.append(spTueStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spTueEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期三
+                if (!spWedStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spWedStartTime.getSelectedItemPosition() > spWedEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"31\": \"");
+                    resHours.append(spWedStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spWedEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("WedHours2") == true) {
+                    if(spWedStartTime2.getSelectedItemPosition() >= spWedEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"32\": \"");
+                    resHours.append(spWedStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spWedEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("WedHours3") == true) {
+                    if(spWedStartTime3.getSelectedItemPosition() >= spWedEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"33\": \"");
+                    resHours.append(spWedStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spWedEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期四
+                if (!spThuStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spThuStartTime.getSelectedItemPosition() > spThuEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"41\": \"");
+                    resHours.append(spThuStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spThuEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("ThuHours2") == true) {
+                    if(spThuStartTime2.getSelectedItemPosition() >= spThuEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"42\": \"");
+                    resHours.append(spThuStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spThuEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("ThuHours3") == true) {
+                    if(spThuStartTime3.getSelectedItemPosition() >= spThuEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"43\": \"");
+                    resHours.append(spThuStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spThuEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期五
+                if (!spFriStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spFriStartTime.getSelectedItemPosition() > spFriEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"51\": \"");
+                    resHours.append(spFriStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spFriEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("FriHours2") == true) {
+                    if(spFriStartTime2.getSelectedItemPosition() >= spFriEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"52\": \"");
+                    resHours.append(spFriStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spFriEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("FriHours3") == true) {
+                    if(spFriStartTime3.getSelectedItemPosition() >= spFriEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"53\": \"");
+                    resHours.append(spFriStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spFriEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期六
+                if (!spSatStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spSatStartTime.getSelectedItemPosition() > spSatEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"61\": \"");
+                    resHours.append(spSatStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSatEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SatHours2") == true) {
+                    if(spSatStartTime2.getSelectedItemPosition() >= spSatEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"62\": \"");
+                    resHours.append(spSatStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSatEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SatHours3") == true) {
+                    if(spSatStartTime3.getSelectedItemPosition() >= spSatEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"63\": \"");
+                    resHours.append(spSatStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSatEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                //星期日
+                if (!spSunStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spSunStartTime.getSelectedItemPosition() > spSunEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"71\": \"");
+                    resHours.append(spSunStartTime.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSunEndTime.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SunHours2") == true) {
+                    if(spSunStartTime2.getSelectedItemPosition() >= spSunEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"72\": \"");
+                    resHours.append(spSunStartTime2.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSunEndTime2.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (hoursVisibility.get("SunHours3") == true) {
+                    if(spSunStartTime3.getSelectedItemPosition() >= spSunEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
+                    resHours.append("\"73\": \"");
+                    resHours.append(spSunStartTime3.getSelectedItem().toString());
+                    resHours.append("~");
+                    resHours.append(spSunEndTime3.getSelectedItem().toString());
+                    resHours.append("\",");
+                }
+                if (resHours.length() != 1) {
+                    resHours.deleteCharAt(resHours.length() - 1);
+                }
+                resHours.append("}");
+
+                int resCategoryId = categoryList.get(spCategory.getSelectedItemPosition()).getId();
+
+                boolean resEnable = swResEnable.isChecked();
+
+                //todo userId
+                int userId = 3;
+                //int userId = Common.USER_ID;
+
+                Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
+                if (Common.networkConnected(activity)) {
+                    String url = Common.URL_SERVER + "ResServlet";
+                    Res resUpdate = new Res(res.getResId(), resName, resAddress, resLat, resLon, resTel, resHours.toString(),
+                            resCategoryId, resEnable, userId, modifyDate);
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("action", "resUpdate");
+                    jsonObject.addProperty("res", new Gson().toJson(resUpdate));
+                    // 有圖才上傳
+                    if (image != null) {
+                        jsonObject.addProperty("imageBase64", Base64.encodeToString(image, Base64.DEFAULT));
+                    }
+                    int count = 0;
+                    try {
+                        String result = new CommonTask(url, jsonObject.toString()).execute().get();
+                        count = Integer.parseInt(result);
+                    } catch (Exception e) {
+                        Log.e(TAG, e.toString());
+                    }
+                    if (count == 0) {
+                        Common.showToast(activity, R.string.textUpdateFail);
+                    } else {
+                        Common.showToast(activity, R.string.textUpdateSuccess);
+                    }
+                } else {
+                    Common.showToast(activity, R.string.textNoNetwork);
+                }
+                /* 回前一個Fragment */
+                navController.popBackStack();
+            }
+        });
+
+        Button btCancel = view.findViewById(R.id.btCancel);
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* 回前一個Fragment */
+                navController.popBackStack();
+            }
+        });
     }
 
     private void showRes() {
@@ -756,6 +1593,9 @@ public class ResUpdateFragment extends Fragment {
         Bitmap bitmap = null;
         try {
             bitmap = new ImageTask(url, id, imageSize).execute().get();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            image = out.toByteArray();
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
@@ -768,7 +1608,6 @@ public class ResUpdateFragment extends Fragment {
         etResName.setText(res.getResName());
         etResAddress.setText(res.getResAddress());
         etResTel.setText(res.getResTel());
-
 
     }
 

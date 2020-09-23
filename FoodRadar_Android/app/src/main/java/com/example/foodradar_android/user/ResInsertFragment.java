@@ -944,6 +944,10 @@ public class ResInsertFragment extends Fragment {
                 StringBuilder resHours = new StringBuilder("{");
                 //星期一
                 if (!spMonStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spMonStartTime.getSelectedItemPosition() > spMonEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"11\": \"");
                     resHours.append(spMonStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -951,6 +955,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("MonHours2") == true) {
+                    if(spMonStartTime2.getSelectedItemPosition() >= spMonEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"12\": \"");
                     resHours.append(spMonStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -958,6 +966,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("MonHours3") == true) {
+                    if(spMonStartTime3.getSelectedItemPosition() >= spMonEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"13\": \"");
                     resHours.append(spMonStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -966,6 +978,10 @@ public class ResInsertFragment extends Fragment {
                 }
                 //星期二
                 if (!spTueStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spTueStartTime.getSelectedItemPosition() > spTueEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"21\": \"");
                     resHours.append(spTueStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -973,6 +989,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("TueHours2") == true) {
+                    if(spTueStartTime2.getSelectedItemPosition() >= spTueEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"22\": \"");
                     resHours.append(spTueStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -980,6 +1000,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("TueHours3") == true) {
+                    if(spTueStartTime3.getSelectedItemPosition() >= spTueEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"23\": \"");
                     resHours.append(spTueStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -988,6 +1012,10 @@ public class ResInsertFragment extends Fragment {
                 }
                 //星期三
                 if (!spWedStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spWedStartTime.getSelectedItemPosition() > spWedEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"31\": \"");
                     resHours.append(spWedStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -995,6 +1023,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("WedHours2") == true) {
+                    if(spWedStartTime2.getSelectedItemPosition() >= spWedEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"32\": \"");
                     resHours.append(spWedStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -1002,6 +1034,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("WedHours3") == true) {
+                    if(spWedStartTime3.getSelectedItemPosition() >= spWedEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"33\": \"");
                     resHours.append(spWedStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -1010,6 +1046,10 @@ public class ResInsertFragment extends Fragment {
                 }
                 //星期四
                 if (!spThuStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spThuStartTime.getSelectedItemPosition() > spThuEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"41\": \"");
                     resHours.append(spThuStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -1017,6 +1057,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("ThuHours2") == true) {
+                    if(spThuStartTime2.getSelectedItemPosition() >= spThuEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"42\": \"");
                     resHours.append(spThuStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -1024,6 +1068,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("ThuHours3") == true) {
+                    if(spThuStartTime3.getSelectedItemPosition() >= spThuEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"43\": \"");
                     resHours.append(spThuStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -1032,6 +1080,10 @@ public class ResInsertFragment extends Fragment {
                 }
                 //星期五
                 if (!spFriStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spFriStartTime.getSelectedItemPosition() > spFriEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"51\": \"");
                     resHours.append(spFriStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -1039,6 +1091,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("FriHours2") == true) {
+                    if(spFriStartTime2.getSelectedItemPosition() >= spFriEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"52\": \"");
                     resHours.append(spFriStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -1046,6 +1102,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("FriHours3") == true) {
+                    if(spFriStartTime3.getSelectedItemPosition() >= spFriEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"53\": \"");
                     resHours.append(spFriStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -1054,6 +1114,10 @@ public class ResInsertFragment extends Fragment {
                 }
                 //星期六
                 if (!spSatStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spSatStartTime.getSelectedItemPosition() > spSatEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"61\": \"");
                     resHours.append(spSatStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -1061,6 +1125,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("SatHours2") == true) {
+                    if(spSatStartTime2.getSelectedItemPosition() >= spSatEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"62\": \"");
                     resHours.append(spSatStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -1068,6 +1136,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("SatHours3") == true) {
+                    if(spSatStartTime3.getSelectedItemPosition() >= spSatEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"63\": \"");
                     resHours.append(spSatStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -1076,6 +1148,10 @@ public class ResInsertFragment extends Fragment {
                 }
                 //星期日
                 if (!spSunStartTime.getSelectedItem().toString().trim().equals("休息")) {
+                    if(spSunStartTime.getSelectedItemPosition() > spSunEndTime.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"71\": \"");
                     resHours.append(spSunStartTime.getSelectedItem().toString());
                     resHours.append("~");
@@ -1083,6 +1159,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("SunHours2") == true) {
+                    if(spSunStartTime2.getSelectedItemPosition() >= spSunEndTime2.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"72\": \"");
                     resHours.append(spSunStartTime2.getSelectedItem().toString());
                     resHours.append("~");
@@ -1090,6 +1170,10 @@ public class ResInsertFragment extends Fragment {
                     resHours.append("\",");
                 }
                 if (hoursVisibility.get("SunHours3") == true) {
+                    if(spSunStartTime3.getSelectedItemPosition() >= spSunEndTime3.getSelectedItemPosition()){
+                        Common.showToast(activity, R.string.textHoursError);
+                        return;
+                    }
                     resHours.append("\"73\": \"");
                     resHours.append(spSunStartTime3.getSelectedItem().toString());
                     resHours.append("~");
@@ -1107,6 +1191,7 @@ public class ResInsertFragment extends Fragment {
 
                 //todo userId
                 int userId = 3;
+                //int userId = Common.USER_ID;
 
                 Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
                 if (Common.networkConnected(activity)) {

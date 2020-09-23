@@ -87,6 +87,9 @@
     <string name="textImageEmpty">請上傳照片</string>
     <string name="textUpdate">確定修改</string>
     <string name="textUpdateCancel">取消修改</string>
+    <string name="textHoursError">營業時間輸入錯誤</string>
+    <string name="textUpdateFail">修改失敗</string>
+    <string name="textUpdateSuccess">修改成功</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">

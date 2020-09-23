@@ -2793,6 +2793,7 @@ string textEatWhat
 string textEnable
 string textEveryWeek
 string textFriday
+string textHoursError
 string textImageEmpty
 string textInputEmpty
 string textInsert
@@ -2834,7 +2835,9 @@ string textTo
 string textTuesDay
 string textUpdate
 string textUpdateCancel
+string textUpdateFail
 string textUpdateRes
+string textUpdateSuccess
 string textUserChangConfrim
 string textUserPassword
 string textUserPhone
