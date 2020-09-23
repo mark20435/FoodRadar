@@ -45,9 +45,13 @@ public class ResServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<Res> ress = resDao.getAll();
 			writeText(response, gson.toJson(ress));
-		} else if (action.equals("getImage")) {
+		} 
+		else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
 			int id = jsonObject.get("id").getAsInt();
+			
+			System.out.println("id: " + id);
+			
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			byte[] image = resDao.getImage(id);
 			if (image != null) {
@@ -56,7 +60,8 @@ public class ResServlet extends HttpServlet {
 				response.setContentLength(image.length);
 				os.write(image);
 			}
-		} else if (action.equals("resInsert") || action.equals("resUpdate")) {
+		} 
+		else if (action.equals("resInsert") || action.equals("resUpdate")) {
 			String resJson = jsonObject.get("res").getAsString();
 			System.out.println("resJson = " + resJson);
 			Res res = gson.fromJson(resJson, Res.class);
@@ -79,11 +84,18 @@ public class ResServlet extends HttpServlet {
 			int resId = jsonObject.get("resId").getAsInt();
 			int count = resDao.delete(resId);
 			writeText(response, String.valueOf(count));
-		} else if (action.equals("findById")) {
+		}
+		
+		else if (action.equals("categoryfindById")) {
+			int id = jsonObject.get("id").getAsInt();
+			List<Res> ress = resDao.CategoryfindById(id);	
+			writeText(response, gson.toJson(ress));
+		} 
+		else if (action.equals("findById")) {
 			int id = jsonObject.get("id").getAsInt();
 			Res res = resDao.findById(id);
 			writeText(response, gson.toJson(res));
-		} else {
+		}else {
 			writeText(response, "");
 		}
 	}
@@ -92,6 +104,7 @@ public class ResServlet extends HttpServlet {
 		response.setContentType(CONTENT_TYPE);
 		PrintWriter out = response.getWriter();
 		out.print(outText);
+		System.out.println(outText);
 		
 	}
     

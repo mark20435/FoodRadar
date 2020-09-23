@@ -24,7 +24,7 @@ import com.example.foodradar_android.R;
 public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
-    private Integer UserId = 0;
+    private Integer UserId = 3;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,10 +79,10 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         // vvvvvv臨時寫的，用來模擬使用者登入
         String userPhone = "0900123456";
         String userPwd = "P@ssw0rd";
-        // Integer userId = 3;
-        Integer UserId = new Common().userLogin(activity,userPhone,userPwd);
+//         Integer userId = 3;
+//        Integer UserId = new Common().userLogin(activity,userPhone,userPwd);
         if(UserId > 0){
-            UserId= new Common().getUserLoin(activity);
+            UserId = Common.USER_ID; //new Common().getUserLoin(activity);
             new Common().showToast(activity, "會員專區，\n登入成功，userId: "  + UserId);
         } else {
             switch (UserId){

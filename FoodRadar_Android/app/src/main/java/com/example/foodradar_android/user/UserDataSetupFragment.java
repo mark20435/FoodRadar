@@ -72,7 +72,7 @@ public class UserDataSetupFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // 預設無資料的頭像
-        ImageView imageAvatar = view.findViewById(R.id.id_ivAvatar);
+        ImageView imageAvatar = view.findViewById(R.id.ivAvatar);
         imageAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
 
         // vvvvvv臨時寫的，用來模擬使用者登入

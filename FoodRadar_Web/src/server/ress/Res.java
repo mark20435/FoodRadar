@@ -15,6 +15,8 @@ public class Res {
 	private int userId;
 	private Timestamp modifyDate;
 	
+	
+	
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
 		super();

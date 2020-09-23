@@ -7,10 +7,14 @@ public interface ResDao {
 	int update(Res res, byte[] image);
 	int delete(int resId);
 
+	List<Res> CategoryfindById(int resId);
+	
 	Res findById(int resId);
 
 	List<Res> getAll();
 
 	byte[] getImage(int resId);
+	
+	
 
 }

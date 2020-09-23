@@ -22,6 +22,7 @@ public class Common{
     private final static String PREFERENCES_NAME = "foodradar_preference";
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
+    public static Integer USER_ID = 0;
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -75,8 +76,11 @@ public class Common{
     public int userLogin(Activity activity, String userPhone, String userPwd){
         SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+        //String userphone = preferences.getString("userphone", "0900123456");
 
-        Integer userId = 0;
+        //String userpwd = preferences.getString("userpwd", "P@ssw0rd");
+
+        Integer userId = 3;
 
         // vvvvvv臨時寫的，用來模擬使用者登入
         String fromDB_userPhone = "0900123456";
@@ -84,9 +88,10 @@ public class Common{
         Integer fromDB_userId = 3;
 
         if (fromDB_userPhone == userPhone && fromDB_userPwd == userPwd) {
-            userId = fromDB_userId;
+            USER_ID = fromDB_userId;
             preferences.edit()
                     .putString("userPhone", userPhone)
+
                     .putString("userPwd", userPwd)
                     .putString("userId", String.valueOf(userId))
                     .apply();
@@ -102,13 +107,17 @@ public class Common{
     // 取得已登入的使用者ＩＤ (userId)
     // 若未登入或登入狀態不明，則回傳0
     public int getUserLoin(Activity activity){
+
         SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+
         String userId = preferences.getString("userId", "0");
+
         if (userId == "" || userId == null){
             userId = "0";
         }
         return Integer.parseInt(userId);
+
     }
 
 }

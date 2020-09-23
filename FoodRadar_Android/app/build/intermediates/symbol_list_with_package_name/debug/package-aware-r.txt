@@ -1377,6 +1377,8 @@ dimen disabled_alpha_material_light
 dimen fastscroll_default_thickness
 dimen fastscroll_margin
 dimen fastscroll_minimum_range
+dimen fragment_horizontal_margin
+dimen fragment_vertical_margin
 dimen highlight_alpha_material_colored
 dimen highlight_alpha_material_dark
 dimen highlight_alpha_material_light
@@ -1824,6 +1826,7 @@ id BOTTOM_END
 id BOTTOM_START
 id BottomNavigation
 id CTRL
+id CategoryTypeFragment
 id FUNCTION
 id Finish
 id LinearLayout
@@ -1879,10 +1882,14 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
+id action_category_Detail_Fragment_to_loginFragment
+id action_chinaRestaurantFragment_to_category_Detail_Fragment
 id action_container
 id action_context_bar
 id action_divider
 id action_image
+id action_loginFragment_to_mainFragment
+id action_loginFragment_to_register_Fragment
 id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
@@ -1932,7 +1939,9 @@ id blocking
 id bottom
 id bounce
 id btAdd
+id btBack
 id btCommentSend
+id btDatePicker
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -1970,12 +1979,12 @@ id btnInsert
 id btnLogInOut
 id button
 id buttonPanel
-id caName
 id cancel_action
 id cancel_button
 id cardView
 id cardViewAvatar
 id cardview
+id category_Detail_Fragment
 id center
 id center_horizontal
 id center_vertical
@@ -1983,7 +1992,6 @@ id chain
 id chains
 id checkbox
 id checked
-id chinaRestaurantFragment
 id chip
 id chip1
 id chip2
@@ -2092,7 +2100,6 @@ id icon_group
 id icon_only
 id id_btMyRes
 id id_btResMaintain
-id id_ivAvatar
 id id_rcvMyRes
 id ifRoom
 id ignore
@@ -2113,6 +2120,7 @@ id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
 id ivArticleImage
+id ivAvatar
 id ivCommentGoodIcon
 id ivCommentUserAvatar
 id ivDetailSetting
@@ -2140,6 +2148,8 @@ id linear
 id linearLayout
 id listMode
 id list_item
+id login
+id loginFragment
 id mainFragment
 id main_navigation
 id mapView
@@ -2214,11 +2224,17 @@ id radio
 id rankArticleFragment
 id ratio
 id rectangles
+id regcancel
+id register_Fragment
+id registerok
+id resAddress
 id resCategoryInfo
 id resInsertFragment
 id resMaintainFragment
 id resMapFragment
 id resName
+id resPhone
+id resSecName
 id reverseSawtooth
 id right
 id right_icon
@@ -2230,8 +2246,8 @@ id rvArticle
 id rvArticleFavorite
 id rvArticleImage
 id rvArticleRank
-id rvMain
 id rvRes
+id rvSec
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -2396,6 +2412,7 @@ id tvCommentGood
 id tvCommentText
 id tvCommentTime
 id tvCommentUserName
+id tvDateTime
 id tvDetailArticleTime
 id tvDetailArticleTitle
 id tvDetailAvgCon
@@ -2458,7 +2475,11 @@ id userDataSetupFragment
 id userIcon
 id userMyResFragment
 id userName
+id userPhone
 id userSysSetupFragment
+id userid
+id username
+id userpwd
 id view_offset_helper
 id view_overlay
 id visible
@@ -2559,12 +2580,15 @@ layout design_text_input_start_icon
 layout fragment_article
 layout fragment_article_detail
 layout fragment_article_insert
+layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_favorite_article
+layout fragment_login
 layout fragment_main
 layout fragment_new_article
 layout fragment_rank_article
+layout fragment_register
 layout fragment_res_insert
 layout fragment_res_maintain
 layout fragment_res_map
@@ -2572,6 +2596,7 @@ layout fragment_user_area
 layout fragment_user_data_setup
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout item_view_category
 layout item_view_main
 layout item_view_res
 layout item_view_user_myres
@@ -2679,6 +2704,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string action_register
+string action_sign_in
 string app_name
 string appbar
 string appbar_scrolling_view_behavior
@@ -2718,7 +2745,10 @@ string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string home
 string icon_content_description
+string invalid_password
+string invalid_username
 string item_view_role_description
+string login_failed
 string map
 string mtrl_badge_numberless_content_description
 string mtrl_chip_close_icon_content_description
@@ -2764,6 +2794,9 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string phone
+string prompt_email
+string prompt_password
 string rankArticle
 string resMaintain
 string search_menu_title
@@ -2771,6 +2804,8 @@ string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
 string textChangPassword
+string textDatePicker
+string textDateTime
 string textDelete
 string textDeleteHours
 string textEatWhat
@@ -2779,6 +2814,8 @@ string textEveryWeek
 string textFriday
 string textInsert
 string textInsertCancel
+string textInsertFail
+string textInsertSuccess
 string textLogin
 string textLogout
 string textMonday
@@ -2819,6 +2856,8 @@ string ucrop_mutate_exception_hint
 string ucrop_rotate
 string ucrop_scale
 string user
+string userId
+string welcome
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow

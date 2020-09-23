@@ -44,9 +44,9 @@ public class UserAccountServlet extends HttpServlet {
 		}
 		
 		String action = jsonObject.get("action").getAsString();
-		Integer id = jsonObject.get("id").getAsInt();
+		
 		pubTools.showConsoleMsg("doPost.action" , action);
-		pubTools.showConsoleMsg("doPost.id" , id.toString());
+//		pubTools.showConsoleMsg("doPost.id" , id.toString());
 		
 		if (action.equals("getAll")) {
 			List<UserAccount> userAccountList = userAccountDao.getAll(); // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
@@ -54,6 +54,7 @@ public class UserAccountServlet extends HttpServlet {
 			
 		} else if (action.equals("getImage")) {
 			int imageSize = jsonObject.get("imageSize").getAsInt();
+			Integer id = jsonObject.get("id").getAsInt();
 			OutputStream os = response.getOutputStream();
 			byte[] image = userAccountDao.getImage(id);
 			if (image != null) {
@@ -62,13 +63,22 @@ public class UserAccountServlet extends HttpServlet {
 				response.setContentLength(image.length);
 				os.write(image);
 			}
-		} else if (action.equals("userAccountInsert")) {
+//		} else if (action.equals("userAccountSignup")) {
+//			// userAccount userAccount
+//			String userAccountJson = jsonObject.get("userAccount").getAsString();
+//			pubTools.showConsoleMsg("userAccountJson", userAccountJson);
+//			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);			
+//			int count = 0;
+////			count = userAccountDao.insert(userAccount);
+//			pubTools.writeText(response, String.valueOf(count));
+			
+		} else if (action.equals("userAccountRegister")) {
 			// userAccount userAccount
 			String userAccountJson = jsonObject.get("userAccount").getAsString();
 			pubTools.showConsoleMsg("userAccountJson", userAccountJson);
 			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);			
 			int count = 0;
-//			count = userAccountDao.insert(userAccount);
+			count = userAccountDao.registerinsert(userAccount);
 			pubTools.writeText(response, String.valueOf(count));
 			
 		} else if (action.equals("userAccountDelete")) {

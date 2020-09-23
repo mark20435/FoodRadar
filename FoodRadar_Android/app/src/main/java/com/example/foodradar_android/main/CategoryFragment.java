@@ -2,27 +2,17 @@ package com.example.foodradar_android.main;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,10 +28,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static com.example.foodradar_android.R.id.toolbar;
 
 
 public class CategoryFragment extends Fragment {
@@ -53,6 +40,7 @@ public class CategoryFragment extends Fragment {
     private CommonTask CategoryDeleteTask;
     private List<ImageTask> imageTasks;
     private List<Category> categorys;
+    private String categoryType;
 
 
     @Override
@@ -77,7 +65,7 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-        rvMain = view.findViewById(R.id.rvMain);
+        rvMain = view.findViewById(R.id.rvRes);
         rvMain.setLayoutManager(new LinearLayoutManager(activity));
         categorys = getCategorys();
         showCategorys(categorys);
@@ -194,18 +182,19 @@ public class CategoryFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myviewHolder, int position) {
             final Category category = categorys.get(position);
-
             String url = Common.URL_SERVER + "CategoryServlet";
             int id = category.getId();
             ImageTask imageTask = new ImageTask(url, id, imageSize, myviewHolder.imageView);
             imageTask.execute();
             imageTasks.add(imageTask);
             //viewHolder.imageButton.setImageResource(main.getImageId());
+            categoryType = category.getInfo();
             myviewHolder.resCategoryInfo.setText(category.getInfo());
             myviewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
+                    bundle.putInt("resId",id);
                     bundle.putSerializable("category", category);
 //                    ImageButton imageButton = new ImageButton(context);
 //                    imageButton.setImageResource(main.getImageId());
@@ -213,21 +202,22 @@ public class CategoryFragment extends Fragment {
 //                    toast.setView(imageView);
 //                    toast.setDuration(Toast.LENGTH_SHORT);
 //                    toast.show();
+                    bundle.putString("categoryType", categoryType);
                     Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_chinaRestaurantFragment, bundle);
                 }
             });
 
         }
     }
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        // 設定畫面到首頁一律不顯示返回鍵
-//        new Common().setBackArrow(false,activity);
-//        // 設定首頁AppBar(ActionBar)的Title(抬頭)
-//        activity.setTitle(R.string.home);
-//
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 設定畫面到首頁一律不顯示返回鍵
+        new Common().setBackArrow(false,activity);
+        // 設定首頁AppBar(ActionBar)的Title(抬頭)
+        activity.setTitle(R.string.home);
+
+    }
     @Override
     public void onStop() {
         super.onStop();
