@@ -156,11 +156,11 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
 
         // 預設無資料的頭像
-<<<<<<< HEAD
+
         ImageView imageAvatar = view.findViewById(R.id.ivAvatar);
         imageAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
-=======
-        ivAvatar = view.findViewById(R.id.id_ivAvatar);
+
+        ivAvatar = view.findViewById(R.id.ivAvatar);
         ivAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
         btImgCamera = view.findViewById(R.id.btImgCamera);
         btImgPickPhoto = view.findViewById(R.id.btImgPickPhoto);
@@ -198,7 +198,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         // 變更密碼功能
         view.findViewById(R.id.btSignupOrChang).setOnClickListener(this);
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 
         // vvvvvv臨時寫的，用來模擬使用者登入
         view.findViewById(R.id.btTestData).setOnClickListener(new View.OnClickListener() {

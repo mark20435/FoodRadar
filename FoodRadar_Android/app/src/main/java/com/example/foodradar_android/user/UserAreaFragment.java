@@ -24,10 +24,7 @@ import com.example.foodradar_android.R;
 public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
-<<<<<<< HEAD
-    private Integer UserId = 3;
-=======
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,33 +76,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
         view.findViewById(R.id.id_btMyRes).setOnClickListener(this);
 
-<<<<<<< HEAD
-        // vvvvvv臨時寫的，用來模擬使用者登入
-        String userPhone = "0900123456";
-        String userPwd = "P@ssw0rd";
-//         Integer userId = 3;
-//        Integer UserId = new Common().userLogin(activity,userPhone,userPwd);
-        if(UserId > 0){
-            UserId = Common.USER_ID; //new Common().getUserLoin(activity);
-            new Common().showToast(activity, "會員專區，\n登入成功，userId: "  + UserId);
-        } else {
-            switch (UserId){
-                case 0: // 0=>登入失敗(原因不明)
-                    new Common().showToast(activity, "會員專區，\n登入失敗(原因不明)，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-                case -1: // -1=>使用者帳號(手機號碼)不存在
-                    new Common().showToast(activity, "會員專區，\n使用者帳號(手機號碼)不存在，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-                case -2: // -2=>使用者密碼錯誤
-                    new Common().showToast(activity, "會員專區，\n使用者密碼錯誤，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-                default:
-                    new Common().showToast(activity, "會員專區，\n登入失敗，\nuserId: " + UserId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-                    break;
-            }
-        }
-        // ^^^^^^臨時寫的，用來模擬使用者登入
-=======
+
         // vvvvvv 臨時加的
         UserAccount userAccount = new Common().getUserLoin(activity);
         Common.USER_ID = userAccount.getUserId();
@@ -113,7 +84,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         // ^^^^^^^ 臨時加的
 
 
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 
 
 //        Button button;

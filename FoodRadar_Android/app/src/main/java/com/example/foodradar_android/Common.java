@@ -35,14 +35,12 @@ public class Common{
     private static final String PREFERENCES_NAME = "foodradar_preference";
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
-<<<<<<< HEAD
-    public static Integer USER_ID = 0;
-=======
+
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.bitmap";
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -98,14 +96,14 @@ public class Common{
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
         //String userphone = preferences.getString("userphone", "0900123456");
 
-<<<<<<< HEAD
+
         //String userpwd = preferences.getString("userpwd", "P@ssw0rd");
 
         Integer userId = 3;
-=======
+
         Log.d(TAG,"userLogin.userPhone: " + userPhone);
         Log.d(TAG,"userLogin.userPwd: " + userPwd);
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 
         // vvvvvv臨時寫的，用來模擬使用者登入
         Integer fromDB_userId = 3;
@@ -123,14 +121,9 @@ public class Common{
         Timestamp fromDB_modifyDate = new Timestamp(System.currentTimeMillis());
         // ^^^^^^臨時寫的，用來模擬使用者登入
 
-<<<<<<< HEAD
-        if (fromDB_userPhone == userPhone && fromDB_userPwd == userPwd) {
-            USER_ID = fromDB_userId;
-=======
         if (fromDB_userPhone.equals(userPhone) && fromDB_userPwd.equals(userPwd)) {
             USER_ID = fromDB_userId;
             Log.d(TAG,"userLogin.USER_ID: " + USER_ID);
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
             preferences.edit()
                     .putString("userId", String.valueOf(USER_ID))
                     .putString("userPhone", userPhone)
@@ -154,24 +147,11 @@ public class Common{
 
     // 取得已登入的使用者ＩＤ (userId)
     // 若未登入或登入狀態不明，則回傳0
-<<<<<<< HEAD
-    public int getUserLoin(Activity activity){
-
-=======
     public static UserAccount getUserLoin(Activity activity){
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
         SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
 
         String userId = preferences.getString("userId", "0");
-<<<<<<< HEAD
-
-        if (userId == "" || userId == null){
-            userId = "0";
-        }
-        return Integer.parseInt(userId);
-
-=======
         String userPhone = preferences.getString("userPhone", "");
         String userBirth = preferences.getString("userBirth", "");
         String userName = preferences.getString("userName", "");
@@ -249,7 +229,6 @@ public class Common{
         Resources res = activity.getResources();
         Bitmap account_circle_bitmap = BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
         new Common().setUserAvatra(activity, account_circle_bitmap);
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
     }
 
 }

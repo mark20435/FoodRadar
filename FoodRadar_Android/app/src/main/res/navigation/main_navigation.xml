@@ -115,7 +115,6 @@
         android:label="fragment_article_insert"
         tools:layout="@layout/fragment_article_insert" />
     <fragment
-<<<<<<< HEAD
         android:id="@+id/category_Detail_Fragment"
         android:name="com.example.foodradar_android.main.Category_Detail_Fragment"
         android:label="fragment_category__detail_"
@@ -141,10 +140,10 @@
         android:name="com.example.foodradar_android.main.Register_Fragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
-=======
+    <fragment
         android:id="@+id/resUpdateFragment"
         android:name="com.example.foodradar_android.user.ResUpdateFragment"
         android:label="fragment_res_update"
         tools:layout="@layout/fragment_res_update" />
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 </navigation>

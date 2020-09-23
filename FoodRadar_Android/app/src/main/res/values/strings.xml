@@ -33,23 +33,20 @@
 
     <string name="textLogin">登入</string>
     <string name="textLogout">登出</string>
-<<<<<<< HEAD
+
     <string name="textChangPassword">修改密碼</string>
     <string name="textDateTime">請選擇生日</string>
     <string name="textDatePicker">Date picker</string>
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
-    <string name="textInsertSuccess">insert successfully</string>
-    <string name="textInsertFail">insert fail</string>
-=======
+
+
     <string name="textSignUp">註冊</string>
     <string name="textUserChangConfrim">確認修改</string>
     <string name="textNoImagePickerApp">手機裡沒有選取照片程式</string>
 
 
-    <string name="textNoArticleFound">找不到文章</string>
-    <string name="titleResInsert">新增餐廳</string>
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
+
 
     <string name="textNoRessFound">找不到餐廳</string>
     <string name="textResIsEnable">已上架</string>

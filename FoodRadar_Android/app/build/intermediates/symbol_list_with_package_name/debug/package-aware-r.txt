@@ -1943,15 +1943,11 @@ id blocking
 id bottom
 id bounce
 id btAdd
-<<<<<<< HEAD
 id btBack
-id btCommentSend
-id btDatePicker
-=======
 id btCancel
 id btCommentSend
+id btDatePicker
 id btDelete
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -2246,12 +2242,9 @@ id resInsertFragment
 id resMaintainFragment
 id resMapFragment
 id resName
-<<<<<<< HEAD
 id resPhone
 id resSecName
-=======
 id resUpdateFragment
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
 id reverseSawtooth
 id right
 id right_icon
@@ -2822,14 +2815,11 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
-<<<<<<< HEAD
+string textAddressError
+string textCancel
 string textChangPassword
 string textDatePicker
 string textDateTime
-=======
-string textAddressError
-string textCancel
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
 string textDelete
 string textDeleteFail
 string textDeleteHours

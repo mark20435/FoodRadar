@@ -1,10 +1,6 @@
 package com.example.foodradar_android.user;
 
-<<<<<<< HEAD
-import android.widget.TextView;
-=======
 import android.graphics.Bitmap;
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
 
 import java.sql.Timestamp;
 
@@ -43,16 +39,13 @@ public class UserAccount {
         this.modifyDate = modifyDate;
     }
 
-<<<<<<< HEAD
     // For Register
     public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName) {
         super();
-//        this.userId = userId;
         this.userPhone = userPhone;
         this.userPwd = userPwd;
         this.userBirth = userBirth;
         this.userName = userName;
-//        this.allowNotifi = allowNotifi;
     }
 
     public Boolean getEnable() {
@@ -69,7 +62,8 @@ public class UserAccount {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
-=======
+    }
+
     // For get UserAccount
     public UserAccount(int userId, String userPhone, Timestamp userBirth, String userName,
                        Boolean allowNotifi, Bitmap userAvatarBitmap, Timestamp createDate,
@@ -99,15 +93,6 @@ public class UserAccount {
 
     public int getUserId() {
         return userId;
->>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
-    }
-
-    public static int getUserId() {
-        return UserId();
-    }
-
-    private static int UserId() {
-        return 0;
     }
 
     public void setUserId(int userId) {
