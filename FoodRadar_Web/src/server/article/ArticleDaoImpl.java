@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import server.articleGood.ArticleGood;
 import server.main.ServiceLocator;
 
 public class ArticleDaoImpl implements ArticleDao {
@@ -94,30 +95,30 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	// 查詢(單一)資料
 	public Article findById(int articleId) {
-		String sql = "SELECT articleTitle, articleTime, articleText, modifyTime, resId,"
-				+ " userId, conAmount, conNum, articleStatus FROM Article WHERE articleId = ?; ";
 		Article article = null;
-		try (Connection connection = dataSource.getConnection();
-				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setInt(1, articleId);
-			ResultSet rs = ps.executeQuery(sql);
-			// 假如有下一個欄位的話，取得其資料
-			if (rs.next()) {
-				String articleTitle = rs.getString("articleTitle");
-				String articleTime = rs.getString("articleTime");
-				String articleText = rs.getString("articleText");
-				String modifyTime = rs.getString("modifyTime");
-				int resId = rs.getInt("resId");
-				int userId = rs.getInt("userId");
-				int conAmount = rs.getInt("conAmount");
-				int conNum = rs.getInt("conNum");
-				boolean articleStatus = rs.getBoolean("articleStatus");
+//		String sql = "SELECT articleTitle, articleTime, articleText, modifyTime, resId,"
+//				+ " userId, conAmount, conNum, articleStatus FROM Article WHERE articleId = ?; ";
+//		try (Connection connection = dataSource.getConnection();
+//				PreparedStatement ps = connection.prepareStatement(sql);) {
+//			ps.setInt(1, articleId);
+//			ResultSet rs = ps.executeQuery(sql);
+//			// 假如有下一個欄位的話，取得其資料
+//			if (rs.next()) {
+//				String articleTitle = rs.getString("articleTitle");
+//				String articleTime = rs.getString("articleTime");
+//				String articleText = rs.getString("articleText");
+//				String modifyTime = rs.getString("modifyTime");
+//				int resId = rs.getInt("resId");
+//				int userId = rs.getInt("userId");
+//				int conAmount = rs.getInt("conAmount");
+//				int conNum = rs.getInt("conNum");
+//				boolean articleStatus = rs.getBoolean("articleStatus");
 //				article = new Article(articleId, articleTitle, articleTime, articleText, modifyTime, resId, userId,
 //						conAmount, conNum, articleStatus);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		return article;
 	}
 
@@ -135,10 +136,11 @@ public class ArticleDaoImpl implements ArticleDao {
 				",A.articleTitle as 'articleTitle'\n" + 
 				",A.articleText as 'articleText'\n" + 
 				",R.resName as 'resName'\n" + 
-				",(select count(*) from ArticleGood AC where AC.articleId = A.articleId) as 'goodCount'\n" + 
+				",(select count(*) from ArticleGood AC where AC.articleId = A.articleId) as 'articleGoodCount'\n" + 
 				",(select count(*) from Comment CO where CO.commentStatus=1 and CO.articleId = A.articleId) as 'commentCount'\n" + 
 				",(select count(*) from MyArticle MA where MA.articleId = A.articleId) as 'favoriteCount'\n" + 
-				",(select case count(*) when 0 then 0 else 1 end from ArticleGood AG where AG.articleId = A.articleId and AG.userId = 3 ) as '是否按了讚'\n" + 
+				",(select case count(*) when 0 then 0 else 1 end from ArticleGood AG where AG.articleId = A.articleId and AG.userId = A.userId ) as 'articleGoodStatus'\n" + 
+				",(select case count(*) when 0 then 0 else 1 end from MyArticle MA where MA.articleId = A.articleId and MA.userId = A.userId) as 'articleFavoriteStatus'\n" + 
 				",A.articleId as 'articleId'\n" + 
 				",A.resId as 'resId'\n" + 
 				",A.userId as 'userId'\n" + 
@@ -151,7 +153,8 @@ public class ArticleDaoImpl implements ArticleDao {
 				" join Img I on A.articleId = I.articleId\n" + 
 				" join Category C on R.resCategoryId = C.resCategoryId\n" + 
 				"where A.articleStatus = 1\n" + 
-				"order by A.articleTime;";
+				"order by A.articleTime DESC;\n" + 
+				"";
 		List<Article> articleList = new ArrayList<Article>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);
@@ -160,24 +163,25 @@ public class ArticleDaoImpl implements ArticleDao {
 			while (rs.next()) {
 				boolean articleStatus = rs.getBoolean("articleStatus");
 				//發文狀態為0的資料不抓取，不會顯示在前端	
-				if(articleStatus) {
-				int articleId = rs.getInt("articleId");
-				String articleTitle = rs.getString("articleTitle");
-				String articleTime = rs.getString("articleTime");
-				String articleText = rs.getString("articleText");
-				String resCategoryInfo = rs.getString("resCategoryInfo");
-				String resName = rs.getString("resName");
+				if(articleStatus == true) {
 				String userName = rs.getString("userName");
-				int userId = rs.getInt("userId");
-				int resId = rs.getInt("resId");
-				int conAmount = rs.getInt("conAmount");
-				int conNum = rs.getInt("conNum");
-				int goodCount = rs.getInt("goodCount");
+				String resCategoryInfo = rs.getString("resCategoryInfo");
+				String articleTime = rs.getString("articleTime");
+				String articleTitle = rs.getString("articleTitle");
+				String articleText = rs.getString("articleText");
+				String resName = rs.getString("resName");
+				int articleGoodCount = rs.getInt("articleGoodCount");
 				int commentCount = rs.getInt("commentCount");
 				int favoriteCount = rs.getInt("favoriteCount");
-//				int articleGoodStatus = rs.getInt("articleGoodStatus");
+				boolean articleGoodStatus = rs.getBoolean("articleGoodStatus");
+				boolean aritcleFavoriteStatus = rs.getBoolean("articleFavoriteStatus");
+				int articleId = rs.getInt("articleId");
+				int resId = rs.getInt("resId");
+				int userId = rs.getInt("userId");
+				int conAmount = rs.getInt("conAmount");
+				int conNum = rs.getInt("conNum");
 				article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
-						  goodCount, commentCount, favoriteCount ,articleId, resId, userId, conAmount, conNum, articleStatus);
+						articleGoodCount, commentCount, favoriteCount ,articleGoodStatus ,aritcleFavoriteStatus  , articleId, resId, userId, conAmount, conNum, articleStatus);
 				articleList.add(article);
 				} else {
 					return null ;
@@ -213,22 +217,91 @@ public class ArticleDaoImpl implements ArticleDao {
 		return null;
 	}
 
-//	@Override
-//	// 取得圖片方法
-//	public byte[] getImage(int articleId) {
-//		String sql = " SELECT img FROM Img WHERE imgId = ?; ";
-//		byte[] image = null;
-//		try (Connection connection = dataSource.getConnection();
-//				PreparedStatement ps = connection.prepareStatement(sql);) {
-//			ps.setInt(1, Id);
-//			ResultSet rs = ps.executeUpdate(sql);
-//			if (rs.next()) {
-//				image = rs.getBytes(1);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null ;
-//	}
+	//點讚功能
+	@Override
+	public int articleGoodInsert(Article articleGood) {
+		int count = 0;
+		String sql = "INSERT INTO ArticleGood (articleId, userId)\n" + 
+				"(SELECT ? ,? FROM ArticleGood\n" + 
+				" WHERE NOT EXISTS(SELECT * FROM ArticleGood WHERE articleId = ? AND userId = ?) LIMIT 1\n" + 
+				");";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, articleGood.getArticleId());
+			ps.setInt(2, articleGood.getUserId());
+			ps.setInt(3, articleGood.getArticleId());
+			ps.setInt(4, articleGood.getUserId());
+			count = ps.executeUpdate();
+			System.out.println("count: " + count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	//取消點讚
+	@Override
+	public int articleGoodDelete(int articleId, int userId) {
+		int count = 0;
+		String sql = "DELETE FROM ArticleGood WHERE articleId = ? AND userId = ? ;";
+//		System.out.println("articleId: " + articleId);
+		System.out.println("sql: " + sql);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, articleId);
+			ps.setInt(2, userId);
+			count = ps.executeUpdate();
+			System.out.println("count: " + count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	//收藏功能
+	@Override
+	public int articleFavoriteInsert(Article articleFavorite) {
+		int count = 0;
+		String sql = "INSERT INTO MyArticle (userId, articleId)\n" + 
+				"(SELECT ? ,? FROM MyArticle\n" + 
+				"WHERE NOT EXISTS(SELECT * FROM MyArticle WHERE userId = ? AND articleId = ?) LIMIT 1\n" + 
+				");";
+		System.out.println("SQL:" + sql);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, articleFavorite.getUserId());
+			System.out.println("USERID:" + articleFavorite.getUserId());
+			ps.setInt(2, articleFavorite.getArticleId());
+			System.out.println("ARTICLEID:" + articleFavorite.getArticleId());
+			ps.setInt(3, articleFavorite.getUserId());
+			System.out.println("USERID:" + articleFavorite.getUserId());
+			ps.setInt(4, articleFavorite.getArticleId());
+			System.out.println("ARTICLEID:" + articleFavorite.getArticleId());
+			count = ps.executeUpdate();
+			System.out.println("count: " + count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	//取消收藏
+	@Override
+	public int articleFavoriteDelete(int userId, int articleId) {
+		int count = 0;
+		String sql = "DELETE FROM MyArticle WHERE userId = ? AND articleId = ? ;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, userId);
+			ps.setInt(2, articleId);
+			count = ps.executeUpdate();
+			System.out.println("count: " + count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+
 
 }

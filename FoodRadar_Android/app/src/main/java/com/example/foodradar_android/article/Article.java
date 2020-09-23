@@ -10,7 +10,6 @@ public class Article implements Serializable {
     private String articleText ;
     private String modifyTime ;
     private String resCategoryInfo;
-    private int imgId;
     private int resId;
     private int userId;
     private String resName;
@@ -18,17 +17,15 @@ public class Article implements Serializable {
     private int conAmount;
     private int conNum;
     private boolean articleStatus;
-    private int goodCount;
+    private int articleGoodCount;
     private int commentCount;
     private int favoriteCount;
-
-    private int articleGoodStatus;
-
+    private int articleGoodId;
+    private boolean articleGoodStatus;
+    private boolean articleFavoriteStatus;
     private byte[] articleImg;
-
     private byte[] userIcon;
-
-
+    private int articleFavoriteId;
 
     public Article() {
         super();
@@ -36,50 +33,39 @@ public class Article implements Serializable {
 
     //ArticleList頁面(新進榜，排行榜，收藏榜)
     public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
-                   String resName, int goodCount, int commentCount, int favoriteCount) {
+                   String resName,int articleGoodCount, int commentCount, int favoriteCount,boolean articleGoodStatus ,boolean articleFavoriteStatus,
+                   int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
         super();
-//        this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
         this.articleText = articleText;
         this.resCategoryInfo = resCategoryInfo;
         this.resName = resName;
         this.userName = userName;
-        this.goodCount = goodCount;
+        this.articleGoodCount = articleGoodCount;
         this.commentCount = commentCount;
         this.favoriteCount = favoriteCount;
+        this.articleId = articleId;
+        this.resId = resId;
+        this.userId = userId;
+        this.conAmount = conAmount;
+        this.conNum = conNum;
+        this.articleStatus = articleStatus;
+        this.articleGoodStatus = articleGoodStatus;
+        this.articleFavoriteStatus = articleFavoriteStatus;
     }
 
-    public String getResName() {
-        return resName;
+    public Article(int articleGoodId, int userId , int articleId) {
+        super();
+        this.articleGoodId = articleGoodId;
+        this.articleId = articleId;
+        this.userId = userId;
     }
 
-    public void setResName(String resName) {
-        this.resName = resName;
-    }
-
-    public byte[] getUserIcon() {
-        return userIcon;
-    }
-
-    public void setUserIcon(byte[] userIcon) {
-        this.userIcon = userIcon;
-    }
-
-    public String getResCategoryInfo() {
-        return resCategoryInfo;
-    }
-
-    public void setResCategoryInfo(String resCategoryInfo) {
-        this.resCategoryInfo = resCategoryInfo;
-    }
-
-    public byte[] getArticleImg() {
-        return articleImg;
-    }
-
-    public void setArticleImg(byte[] articleImg) {
-        this.articleImg = articleImg;
+    public Article(int userId , int articleId) {
+        super();
+        this.articleId = articleId;
+        this.userId = userId;
     }
 
     public int getArticleId() {
@@ -181,54 +167,111 @@ public class Article implements Serializable {
         this.articleStatus = articleStatus;
     }
 
+
     public String getUserName() {
         return userName;
     }
+
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public int getGoodCount() {
-        return goodCount;
+
+    public int getArticleGoodId() {
+        return articleGoodId;
     }
 
-    public void setGoodCount(int goodCount) {
-        this.goodCount = goodCount;
+    public void setArticleGoodId(int articleGoodId) {
+        this.articleGoodId = articleGoodId;
     }
 
     public int getCommentCount() {
         return commentCount;
     }
 
+
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
+
 
     public int getFavoriteCount() {
         return favoriteCount;
     }
 
+
     public void setFavoriteCount(int favoriteCount) {
         this.favoriteCount = favoriteCount;
     }
 
-    public int getImgId() {
-        return imgId;
+
+    public byte[] getArticleImg() {
+        return articleImg;
     }
 
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
+
+    public void setArticleImg(byte[] articleImg) {
+        this.articleImg = articleImg;
     }
 
-    public int getArticleGoodStatus() {
+
+    public byte[] getUserIcon() {
+        return userIcon;
+    }
+
+
+    public void setUserIcon(byte[] userIcon) {
+        this.userIcon = userIcon;
+    }
+
+    public String getResCategoryInfo() {
+        return resCategoryInfo;
+    }
+
+    public void setResCategoryInfo(String resCategoryInfo) {
+        this.resCategoryInfo = resCategoryInfo;
+    }
+
+    public String getResName() {
+        return resName;
+    }
+
+    public void setResName(String resName) {
+        this.resName = resName;
+    }
+
+    public boolean isArticleGoodStatus() {
         return articleGoodStatus;
     }
 
-    public void setArticleGoodStatus(int articleGoodStatus) {
+    public void setArticleGoodStatus(boolean articleGoodStatus) {
         this.articleGoodStatus = articleGoodStatus;
     }
 
+    public int getArticleGoodCount() {
+        return articleGoodCount;
+    }
+
+    public void setArticleGoodCount(int articleGoodCount) {
+        this.articleGoodCount = articleGoodCount;
+    }
+
+    public boolean isArticleFavoriteStatus() {
+        return articleFavoriteStatus;
+    }
+
+    public void setArticleFavoriteStatus(boolean articleFavoriteStatus) {
+        this.articleFavoriteStatus = articleFavoriteStatus;
+    }
+
+    public int getArticleFavoriteId() {
+        return articleFavoriteId;
+    }
+
+    public void setArticleFavoriteId(int articleFavoriteId) {
+        this.articleFavoriteId = articleFavoriteId;
+    }
 
     @Override   //覆寫方法，取得articleId > 透過id 取得article
     public boolean equals(Object obj) {

@@ -94,11 +94,13 @@ public class ArticleGoodDaoImpl implements ArticleGoodDao {
 	public ArticleGood findById(int userId) {
 		ArticleGood articleGood = null;
 		String sql = "select\n" + 
-				"(select count(*) from ArticleGood AC where AC.articleId = A.articleId) as 'articleGoodCount'\n" + 
-				",(select case count(*) when 0 then 0 else 1 end from ArticleGood AG where AG.articleId = A.articleId and AG.userId = 3 ) as 'articleGoodStatus'\n" + 
+				"(select count(*) from ArticleGood AG where AG.articleId = A.articleId) as 'articleGoodCount'\n" + 
+				",(select case count(*) when 0 then 0 else 1 end from ArticleGood AG where AG.articleId = A.articleId and AG.userId = ? ) as 'articleGoodStatus'\n" + 
+				",AG.ArticleGoodId as 'articleGoodId'\n" + 
 				",A.articleId as 'articleId'\n" + 
 				",A.userId as 'userId'\n" + 
 				" FROM Article A\n" + 
+				" join ArticleGood AG on A.articleId = AG.articleId\n" + 
 				" join UserAccount UA on A.userId = UA.userId\n" + 
 				" join Res R on A.resId = R.resId\n" + 
 				" join Img I on A.articleId = I.articleId\n" + 
@@ -109,11 +111,12 @@ public class ArticleGoodDaoImpl implements ArticleGoodDao {
 			ps.setInt(1, userId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				int articleGoodId = rs.getInt("articleGoodId");
-				int articleId = rs.getInt("articleId");
+//				int userId = rs.getInt("userId");
 				int articleGoodCount = rs.getInt("articleGoodCount");
 				int articleGoodStatus = rs.getInt("articleGoodStatus");
-				articleGood = new ArticleGood(articleGoodCount, articleGoodStatus ,articleGoodId, articleId, userId);
+				int articleGoodId = rs.getInt("articleGoodId");
+				int articleId = rs.getInt("articleId");
+				articleGood = new ArticleGood(userId, articleGoodCount, articleGoodStatus ,articleGoodId, articleId);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

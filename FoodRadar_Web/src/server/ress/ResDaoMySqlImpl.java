@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import server.category.Category;
 import server.main.ServiceLocator;
 
 public class ResDaoMySqlImpl implements ResDao {
@@ -164,8 +165,11 @@ public class ResDaoMySqlImpl implements ResDao {
 
 	@Override
 	public List<Res> getAll() {
-		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate "
-				+ "FROM Res ORDER BY modifyDate DESC;";
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName \n" + 
+				"FROM Res R\n" + 
+				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
+				"left join UserAccount U on R.userId = U.userId\n" + 
+				"ORDER BY modifyDate DESC;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -182,8 +186,12 @@ public class ResDaoMySqlImpl implements ResDao {
 				Boolean resEnable = rs.getBoolean(9);
 				Integer userId = rs.getInt(10);
 				Timestamp modifyDate = rs.getTimestamp(11);
+				String resCategoryInfo = rs.getString(12);
+				String userName = rs.getString(13);
 				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
 						resEnable, userId, modifyDate);
+				res.setResCategoryInfo(resCategoryInfo);
+				res.setUserName(userName);
 				ressList.add(res);
 			}
 			return ressList;
@@ -191,6 +199,36 @@ public class ResDaoMySqlImpl implements ResDao {
 			e.printStackTrace();
 		}
 		return ressList;
+	}
+	
+	@Override
+	public List<Category> getCategories() {
+		// Date Time: 2020-09-11 18:35:24
+		// select statements : Category
+		String sql = "SELECT resCategoryId, resCategoryInfo, resCategorySn" 
+		        + " FROM Category;";
+		
+
+		List<Category> categoryList  = new ArrayList<Category>();
+		try (Connection connection = dataSource.getConnection();
+			PreparedStatement ps = connection.prepareStatement(sql);) {			
+			ResultSet rs = ps.executeQuery(sql);
+			// 假如有下一個欄位的話，取得其資料
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String info = rs.getString(2);
+				int cateSn = rs.getInt(3);
+				
+
+				Category category = new Category(id, info, cateSn);
+				categoryList.add(category);
+			}
+			return categoryList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return categoryList;
+
 	}
 
 	@Override

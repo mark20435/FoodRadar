@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import server.category.Category;
 import server.main.ImageUtil;
 
 
@@ -60,8 +61,15 @@ public class ResServlet extends HttpServlet {
 				response.setContentLength(image.length);
 				os.write(image);
 			}
+<<<<<<< HEAD
 		} 
 		else if (action.equals("resInsert") || action.equals("resUpdate")) {
+=======
+		} else if (action.equals("getCategories")) {
+			List<Category> Categories = resDao.getCategories();
+			writeText(response, gson.toJson(Categories));
+		} else if (action.equals("resInsert") || action.equals("resUpdate")) {
+>>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
 			String resJson = jsonObject.get("res").getAsString();
 			System.out.println("resJson = " + resJson);
 			Res res = gson.fromJson(resJson, Res.class);

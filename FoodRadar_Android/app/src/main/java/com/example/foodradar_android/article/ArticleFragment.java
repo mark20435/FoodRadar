@@ -14,18 +14,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class ArticleFragment extends Fragment {
     private Activity activity;
+    private NavController navController;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
+
+        // 顯示左上角的返回箭頭
+        new Common().setBackArrow(true, activity);
+        setHasOptionsMenu(true);
+
+        navController =
+                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override

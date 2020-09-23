@@ -1,6 +1,5 @@
 package com.example.foodradar_android.user;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -42,8 +41,10 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.main.Category;
 import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
+import com.example.foodradar_android.task.ImageTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.yalantis.ucrop.UCrop;
 
@@ -58,9 +59,10 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ResInsertFragment extends Fragment {
+
+public class ResUpdateFragment extends Fragment {
     private NavController navController;
-    private final static String TAG = "TAG_ResInsertFragment";
+    private final static String TAG = "TAG_ResUpdateFragment";
     private FragmentActivity activity;
     private ImageView ivRes;
     private EditText etResName, etResAddress, etResTel;
@@ -93,16 +95,18 @@ public class ResInsertFragment extends Fragment {
     private TextView tvTo19, tvTo20, tvTo21;
     private Button btSunAddHours, btSunDeleteHours2, btSunAddHours2, btSunDeleteHours3;
 
+    private Res res;
     private Map<String, Boolean> hoursVisibility;
+    private JsonObject jsonHours;
     private Spinner spCategory;
     private Switch swResEnable;
+
     private byte[] image;
     private static final int REQ_TAKE_PICTURE = 0;
     private static final int REQ_PICK_PICTURE = 1;
     private static final int REQ_CROP_PICTURE = 2;
     private Uri contentUri;
     private CommonTask resGetCategoriesTask;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -138,8 +142,8 @@ public class ResInsertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        activity.setTitle(R.string.titleResInsert);
-        return inflater.inflate(R.layout.fragment_res_insert, container, false);
+        activity.setTitle(R.string.titleResUpdate);
+        return inflater.inflate(R.layout.fragment_res_update, container, false);
     }
 
     @Override
@@ -150,8 +154,20 @@ public class ResInsertFragment extends Fragment {
         etResName = view.findViewById(R.id.etResName);
         etResAddress = view.findViewById(R.id.etResAddress);
         etResTel = view.findViewById(R.id.etResTel);
-
+        Bundle bundle = getArguments();
+        if (bundle == null || bundle.getSerializable("res") == null) {
+            Common.showToast(activity, R.string.textNoRessFound);
+            navController.popBackStack();
+            return;
+        }
+        res = (Res) bundle.getSerializable("res");
+        jsonHours = JsonParser.parseString(res.getResHours()).getAsJsonObject();
         hoursVisibility = getHoursVisibility();
+
+        ArrayAdapter<CharSequence> adapterWithRest = ArrayAdapter.createFromResource(activity, R.array.textHoursArrayWithRest, android.R.layout.simple_spinner_item);
+        adapterWithRest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity, R.array.textHoursArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spMonStartTime = view.findViewById(R.id.spMonStartTime);
         spMonEndTime = view.findViewById(R.id.spMonEndTime);
@@ -169,11 +185,24 @@ public class ResInsertFragment extends Fragment {
         btMonAddHours2 = view.findViewById(R.id.btMonAddHours2);
         btMonDeleteHours3 = view.findViewById(R.id.btMonDeleteHours3);
 
-        spMonStartTime.setSelection(0, true);
-        spMonEndTime.setVisibility(View.GONE);
-        tvTo.setVisibility(View.GONE);
-        btMonAddHours.setVisibility(View.GONE);
+        String compareValue;
+        int spinnerPosition;
+        if (jsonHours.get("11") != null) {
+            compareValue = jsonHours.get("11").getAsString().split("~")[0];
+            spMonStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spMonStartTime.setSelection(spinnerPosition);
 
+            compareValue = jsonHours.get("11").getAsString().split("~")[1];
+            spMonEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonEndTime.setSelection(spinnerPosition);
+        } else {
+            spMonStartTime.setSelection(0, true);
+            spMonEndTime.setVisibility(View.GONE);
+            tvTo.setVisibility(View.GONE);
+            btMonAddHours.setVisibility(View.GONE);
+        }
         spMonStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -251,6 +280,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("12") != null) {
+            btMonDeleteHours2.setVisibility(View.VISIBLE);
+            spMonStartTime2.setVisibility(View.VISIBLE);
+            tvTo2.setVisibility(View.VISIBLE);
+            spMonEndTime2.setVisibility(View.VISIBLE);
+            btMonAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("12").getAsString().split("~")[0];
+            spMonStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("12").getAsString().split("~")[1];
+            spMonEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("13") != null) {
+            btMonDeleteHours3.setVisibility(View.VISIBLE);
+            spMonStartTime3.setVisibility(View.VISIBLE);
+            tvTo3.setVisibility(View.VISIBLE);
+            spMonEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("13").getAsString().split("~")[0];
+            spMonStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("13").getAsString().split("~")[1];
+            spMonEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonEndTime3.setSelection(spinnerPosition);
+        }
+
         //星期二
         spTueStartTime = view.findViewById(R.id.spTueStartTime);
         spTueEndTime = view.findViewById(R.id.spTueEndTime);
@@ -268,10 +332,22 @@ public class ResInsertFragment extends Fragment {
         btTueAddHours2 = view.findViewById(R.id.btTueAddHours2);
         btTueDeleteHours3 = view.findViewById(R.id.btTueDeleteHours3);
 
-        spTueStartTime.setSelection(0, true);
-        spTueEndTime.setVisibility(View.GONE);
-        tvTo4.setVisibility(View.GONE);
-        btTueAddHours.setVisibility(View.GONE);
+        if (jsonHours.get("21") != null) {
+            compareValue = jsonHours.get("21").getAsString().split("~")[0];
+            spTueStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spTueStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("21").getAsString().split("~")[1];
+            spTueEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueEndTime.setSelection(spinnerPosition);
+        } else {
+            spTueStartTime.setSelection(0, true);
+            spTueEndTime.setVisibility(View.GONE);
+            tvTo4.setVisibility(View.GONE);
+            btTueAddHours.setVisibility(View.GONE);
+        }
 
         spTueStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
@@ -350,6 +426,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("22") != null) {
+            btTueDeleteHours2.setVisibility(View.VISIBLE);
+            spTueStartTime2.setVisibility(View.VISIBLE);
+            tvTo5.setVisibility(View.VISIBLE);
+            spTueEndTime2.setVisibility(View.VISIBLE);
+            btTueAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("22").getAsString().split("~")[0];
+            spTueStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("22").getAsString().split("~")[1];
+            spTueEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("23") != null) {
+            btTueDeleteHours3.setVisibility(View.VISIBLE);
+            spTueStartTime3.setVisibility(View.VISIBLE);
+            tvTo6.setVisibility(View.VISIBLE);
+            spTueEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("23").getAsString().split("~")[0];
+            spTueStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("23").getAsString().split("~")[1];
+            spTueEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueEndTime3.setSelection(spinnerPosition);
+        }
+
         //星期三
         spWedStartTime = view.findViewById(R.id.spWedStartTime);
         spWedEndTime = view.findViewById(R.id.spWedEndTime);
@@ -367,10 +478,22 @@ public class ResInsertFragment extends Fragment {
         btWedAddHours2 = view.findViewById(R.id.btWedAddHours2);
         btWedDeleteHours3 = view.findViewById(R.id.btWedDeleteHours3);
 
-        spWedStartTime.setSelection(0, true);
-        spWedEndTime.setVisibility(View.GONE);
-        tvTo7.setVisibility(View.GONE);
-        btWedAddHours.setVisibility(View.GONE);
+        if (jsonHours.get("31") != null) {
+            compareValue = jsonHours.get("31").getAsString().split("~")[0];
+            spWedStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spWedStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("31").getAsString().split("~")[1];
+            spWedEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedEndTime.setSelection(spinnerPosition);
+        } else {
+            spWedStartTime.setSelection(0, true);
+            spWedEndTime.setVisibility(View.GONE);
+            tvTo7.setVisibility(View.GONE);
+            btWedAddHours.setVisibility(View.GONE);
+        }
 
         spWedStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
@@ -449,6 +572,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("32") != null) {
+            btWedDeleteHours2.setVisibility(View.VISIBLE);
+            spWedStartTime2.setVisibility(View.VISIBLE);
+            tvTo8.setVisibility(View.VISIBLE);
+            spWedEndTime2.setVisibility(View.VISIBLE);
+            btWedAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("32").getAsString().split("~")[0];
+            spWedStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("32").getAsString().split("~")[1];
+            spWedEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("33") != null) {
+            btWedDeleteHours3.setVisibility(View.VISIBLE);
+            spWedStartTime3.setVisibility(View.VISIBLE);
+            tvTo9.setVisibility(View.VISIBLE);
+            spWedEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("33").getAsString().split("~")[0];
+            spWedStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("33").getAsString().split("~")[1];
+            spWedEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedEndTime3.setSelection(spinnerPosition);
+        }
+
         //星期四
         spThuStartTime = view.findViewById(R.id.spThuStartTime);
         spThuEndTime = view.findViewById(R.id.spThuEndTime);
@@ -466,10 +624,22 @@ public class ResInsertFragment extends Fragment {
         btThuAddHours2 = view.findViewById(R.id.btThuAddHours2);
         btThuDeleteHours3 = view.findViewById(R.id.btThuDeleteHours3);
 
-        spThuStartTime.setSelection(0, true);
-        spThuEndTime.setVisibility(View.GONE);
-        tvTo10.setVisibility(View.GONE);
-        btThuAddHours.setVisibility(View.GONE);
+        if (jsonHours.get("41") != null) {
+            compareValue = jsonHours.get("41").getAsString().split("~")[0];
+            spThuStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spThuStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("41").getAsString().split("~")[1];
+            spThuEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuEndTime.setSelection(spinnerPosition);
+        } else {
+            spThuStartTime.setSelection(0, true);
+            spThuEndTime.setVisibility(View.GONE);
+            tvTo10.setVisibility(View.GONE);
+            btThuAddHours.setVisibility(View.GONE);
+        }
 
         spThuStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
@@ -548,6 +718,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("42") != null) {
+            btThuDeleteHours2.setVisibility(View.VISIBLE);
+            spThuStartTime2.setVisibility(View.VISIBLE);
+            tvTo11.setVisibility(View.VISIBLE);
+            spThuEndTime2.setVisibility(View.VISIBLE);
+            btThuAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("42").getAsString().split("~")[0];
+            spThuStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("42").getAsString().split("~")[1];
+            spThuEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("43") != null) {
+            btThuDeleteHours3.setVisibility(View.VISIBLE);
+            spThuStartTime3.setVisibility(View.VISIBLE);
+            tvTo12.setVisibility(View.VISIBLE);
+            spThuEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("43").getAsString().split("~")[0];
+            spThuStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("43").getAsString().split("~")[1];
+            spThuEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuEndTime3.setSelection(spinnerPosition);
+        }
+
         //星期五
         spFriStartTime = view.findViewById(R.id.spFriStartTime);
         spFriEndTime = view.findViewById(R.id.spFriEndTime);
@@ -565,10 +770,22 @@ public class ResInsertFragment extends Fragment {
         btFriAddHours2 = view.findViewById(R.id.btFriAddHours2);
         btFriDeleteHours3 = view.findViewById(R.id.btFriDeleteHours3);
 
-        spFriStartTime.setSelection(0, true);
-        spFriEndTime.setVisibility(View.GONE);
-        tvTo13.setVisibility(View.GONE);
-        btFriAddHours.setVisibility(View.GONE);
+        if (jsonHours.get("51") != null) {
+            compareValue = jsonHours.get("51").getAsString().split("~")[0];
+            spFriStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spFriStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("51").getAsString().split("~")[1];
+            spFriEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime.setSelection(spinnerPosition);
+        } else {
+            spFriStartTime.setSelection(0, true);
+            spFriEndTime.setVisibility(View.GONE);
+            tvTo13.setVisibility(View.GONE);
+            btFriAddHours.setVisibility(View.GONE);
+        }
 
         spFriStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
@@ -647,6 +864,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("52") != null) {
+            btFriDeleteHours2.setVisibility(View.VISIBLE);
+            spFriStartTime2.setVisibility(View.VISIBLE);
+            tvTo14.setVisibility(View.VISIBLE);
+            spFriEndTime2.setVisibility(View.VISIBLE);
+            btFriAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("52").getAsString().split("~")[0];
+            spFriStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("52").getAsString().split("~")[1];
+            spFriEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("53") != null) {
+            btFriDeleteHours3.setVisibility(View.VISIBLE);
+            spFriStartTime3.setVisibility(View.VISIBLE);
+            tvTo15.setVisibility(View.VISIBLE);
+            spFriEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("53").getAsString().split("~")[0];
+            spFriStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("53").getAsString().split("~")[1];
+            spFriEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime3.setSelection(spinnerPosition);
+        }
+
         //星期六
         spSatStartTime = view.findViewById(R.id.spSatStartTime);
         spSatEndTime = view.findViewById(R.id.spSatEndTime);
@@ -664,10 +916,22 @@ public class ResInsertFragment extends Fragment {
         btSatAddHours2 = view.findViewById(R.id.btSatAddHours2);
         btSatDeleteHours3 = view.findViewById(R.id.btSatDeleteHours3);
 
-        spSatStartTime.setSelection(0, true);
-        spSatEndTime.setVisibility(View.GONE);
-        tvTo16.setVisibility(View.GONE);
-        btSatAddHours.setVisibility(View.GONE);
+        if (jsonHours.get("61") != null) {
+            compareValue = jsonHours.get("61").getAsString().split("~")[0];
+            spSatStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spSatStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("61").getAsString().split("~")[1];
+            spSatEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime.setSelection(spinnerPosition);
+        } else {
+            spSatStartTime.setSelection(0, true);
+            spSatEndTime.setVisibility(View.GONE);
+            tvTo16.setVisibility(View.GONE);
+            btSatAddHours.setVisibility(View.GONE);
+        }
 
         spSatStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
@@ -746,6 +1010,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("62") != null) {
+            btSatDeleteHours2.setVisibility(View.VISIBLE);
+            spSatStartTime2.setVisibility(View.VISIBLE);
+            tvTo17.setVisibility(View.VISIBLE);
+            spSatEndTime2.setVisibility(View.VISIBLE);
+            btSatAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("62").getAsString().split("~")[0];
+            spSatStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("62").getAsString().split("~")[1];
+            spSatEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("63") != null) {
+            btSatDeleteHours3.setVisibility(View.VISIBLE);
+            spSatStartTime3.setVisibility(View.VISIBLE);
+            tvTo18.setVisibility(View.VISIBLE);
+            spSatEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("63").getAsString().split("~")[0];
+            spSatStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("63").getAsString().split("~")[1];
+            spSatEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime3.setSelection(spinnerPosition);
+        }
+
         //星期日
         spSunStartTime = view.findViewById(R.id.spSunStartTime);
         spSunEndTime = view.findViewById(R.id.spSunEndTime);
@@ -763,10 +1062,22 @@ public class ResInsertFragment extends Fragment {
         btSunAddHours2 = view.findViewById(R.id.btSunAddHours2);
         btSunDeleteHours3 = view.findViewById(R.id.btSunDeleteHours3);
 
-        spSunStartTime.setSelection(0, true);
-        spSunEndTime.setVisibility(View.GONE);
-        tvTo19.setVisibility(View.GONE);
-        btSunAddHours.setVisibility(View.GONE);
+        if (jsonHours.get("71") != null) {
+            compareValue = jsonHours.get("71").getAsString().split("~")[0];
+            spSunStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spSunStartTime.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("71").getAsString().split("~")[1];
+            spSunEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime.setSelection(spinnerPosition);
+        } else {
+            spSunStartTime.setSelection(0, true);
+            spSunEndTime.setVisibility(View.GONE);
+            tvTo19.setVisibility(View.GONE);
+            btSunAddHours.setVisibility(View.GONE);
+        }
 
         spSunStartTime.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
@@ -845,6 +1156,41 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
+        if (jsonHours.get("72") != null) {
+            btSunDeleteHours2.setVisibility(View.VISIBLE);
+            spSunStartTime2.setVisibility(View.VISIBLE);
+            tvTo20.setVisibility(View.VISIBLE);
+            spSunEndTime2.setVisibility(View.VISIBLE);
+            btSunAddHours2.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("72").getAsString().split("~")[0];
+            spSunStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunStartTime2.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("72").getAsString().split("~")[1];
+            spSunEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime2.setSelection(spinnerPosition);
+        }
+
+        if (jsonHours.get("73") != null) {
+            btSunDeleteHours3.setVisibility(View.VISIBLE);
+            spSunStartTime3.setVisibility(View.VISIBLE);
+            tvTo21.setVisibility(View.VISIBLE);
+            spSunEndTime3.setVisibility(View.VISIBLE);
+
+            compareValue = jsonHours.get("73").getAsString().split("~")[0];
+            spSunStartTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunStartTime3.setSelection(spinnerPosition);
+
+            compareValue = jsonHours.get("73").getAsString().split("~")[1];
+            spSunEndTime3.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime3.setSelection(spinnerPosition);
+        }
+
         //餐廳分類
         List<Category> categoryList = getCategories();
 
@@ -860,7 +1206,9 @@ public class ResInsertFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
         spCategory.setAdapter(arrayAdapter);
-        spCategory.setSelection(0, true);
+        compareValue = res.getResCategoryInfo();
+        spinnerPosition = arrayAdapter.getPosition(compareValue);
+        spCategory.setSelection(spinnerPosition);
 
         //上架狀態
         swResEnable = view.findViewById(R.id.swResEnable);
@@ -874,6 +1222,9 @@ public class ResInsertFragment extends Fragment {
                 }
             }
         });
+        swResEnable.setChecked(res.isResEnable());
+
+        showRes();
 
         Button btTakePicture = view.findViewById(R.id.btTakePicture);
         btTakePicture.setOnClickListener(new View.OnClickListener() {
@@ -905,8 +1256,8 @@ public class ResInsertFragment extends Fragment {
             }
         });
 
-        Button btInsert = view.findViewById(R.id.btInsert);
-        btInsert.setOnClickListener(new View.OnClickListener() {
+        Button btUpdate = view.findViewById(R.id.btUpdate);
+        btUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (image == null) {
@@ -1196,11 +1547,11 @@ public class ResInsertFragment extends Fragment {
                 Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
                 if (Common.networkConnected(activity)) {
                     String url = Common.URL_SERVER + "ResServlet";
-                    Res res = new Res(0, resName, resAddress, resLat, resLon, resTel, resHours.toString(),
+                    Res resUpdate = new Res(res.getResId(), resName, resAddress, resLat, resLon, resTel, resHours.toString(),
                             resCategoryId, resEnable, userId, modifyDate);
                     JsonObject jsonObject = new JsonObject();
-                    jsonObject.addProperty("action", "resInsert");
-                    jsonObject.addProperty("res", new Gson().toJson(res));
+                    jsonObject.addProperty("action", "resUpdate");
+                    jsonObject.addProperty("res", new Gson().toJson(resUpdate));
                     // 有圖才上傳
                     if (image != null) {
                         jsonObject.addProperty("imageBase64", Base64.encodeToString(image, Base64.DEFAULT));
@@ -1213,9 +1564,9 @@ public class ResInsertFragment extends Fragment {
                         Log.e(TAG, e.toString());
                     }
                     if (count == 0) {
-                        Common.showToast(activity, R.string.textInsertFail);
+                        Common.showToast(activity, R.string.textUpdateFail);
                     } else {
-                        Common.showToast(activity, R.string.textInsertSuccess);
+                        Common.showToast(activity, R.string.textUpdateSuccess);
                     }
                 } else {
                     Common.showToast(activity, R.string.textNoNetwork);
@@ -1235,22 +1586,104 @@ public class ResInsertFragment extends Fragment {
         });
     }
 
+    private void showRes() {
+        String url = Common.URL_SERVER + "ResServlet";
+        int id = res.getResId();
+        int imageSize = getResources().getDisplayMetrics().widthPixels / 3;
+        Bitmap bitmap = null;
+        try {
+            bitmap = new ImageTask(url, id, imageSize).execute().get();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            image = out.toByteArray();
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        if (bitmap != null) {
+            ivRes.setImageBitmap(bitmap);
+        } else {
+            ivRes.setImageResource(R.drawable.no_image);
+        }
+        //tvId.setText(String.valueOf(id));
+        etResName.setText(res.getResName());
+        etResAddress.setText(res.getResAddress());
+        etResTel.setText(res.getResTel());
+
+    }
+
     private Map<String, Boolean> getHoursVisibility() {
         Map<String, Boolean> map = new HashMap<>();
-        map.put("MonHours2", false);
-        map.put("MonHours3", false);
-        map.put("TueHours2", false);
-        map.put("TueHours3", false);
-        map.put("WedHours2", false);
-        map.put("WedHours3", false);
-        map.put("ThuHours2", false);
-        map.put("ThuHours3", false);
-        map.put("FriHours2", false);
-        map.put("FriHours3", false);
-        map.put("SatHours2", false);
-        map.put("SatHours3", false);
-        map.put("SunHours2", false);
-        map.put("SunHours3", false);
+
+        if (jsonHours.get("12") == null) {
+            map.put("MonHours2", false);
+        } else {
+            map.put("MonHours2", true);
+        }
+        if (jsonHours.get("13") == null) {
+            map.put("MonHours3", false);
+        } else {
+            map.put("MonHours3", true);
+        }
+        if (jsonHours.get("22") == null) {
+            map.put("TueHours2", false);
+        } else {
+            map.put("TueHours2", true);
+        }
+        if (jsonHours.get("23") == null) {
+            map.put("TueHours3", false);
+        } else {
+            map.put("TueHours3", true);
+        }
+        if (jsonHours.get("32") == null) {
+            map.put("WedHours2", false);
+        } else {
+            map.put("WedHours2", true);
+        }
+        if (jsonHours.get("33") == null) {
+            map.put("WedHours3", false);
+        } else {
+            map.put("WedHours3", true);
+        }
+        if (jsonHours.get("42") == null) {
+            map.put("ThuHours2", false);
+        } else {
+            map.put("ThuHours2", true);
+        }
+        if (jsonHours.get("43") == null) {
+            map.put("ThuHours3", false);
+        } else {
+            map.put("ThuHours3", true);
+        }
+        if (jsonHours.get("52") == null) {
+            map.put("FriHours2", false);
+        } else {
+            map.put("FriHours2", true);
+        }
+        if (jsonHours.get("53") == null) {
+            map.put("FriHours3", false);
+        } else {
+            map.put("FriHours3", true);
+        }
+        if (jsonHours.get("62") == null) {
+            map.put("SatHours2", false);
+        } else {
+            map.put("SatHours2", true);
+        }
+        if (jsonHours.get("63") == null) {
+            map.put("SatHours3", false);
+        } else {
+            map.put("SatHours3", true);
+        }
+        if (jsonHours.get("72") == null) {
+            map.put("SunHours2", false);
+        } else {
+            map.put("SunHours2", true);
+        }
+        if (jsonHours.get("73") == null) {
+            map.put("SunHours3", false);
+        } else {
+            map.put("SunHours3", true);
+        }
 
         return map;
     }

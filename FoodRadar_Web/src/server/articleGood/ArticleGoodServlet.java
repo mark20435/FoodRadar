@@ -65,7 +65,7 @@ public class ArticleGoodServlet extends HttpServlet {
 			int count = articleGoodDao.delete(articleGoodId);
 			writeText(response, String.valueOf(count));
 		} else if (action.equals("findById")) {
-			int id = jsonObject.get("articleGoodId").getAsInt();
+			int id = jsonObject.get("userId").getAsInt();
 			ArticleGood articleGood = articleGoodDao.findById(id);
 			writeText(response, gson.toJson(articleGood));
 		} else {

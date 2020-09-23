@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".user.ResInsertFragment">
+        tools:context=".user.ResUpdateFragment">
 
 
 
@@ -1211,15 +1211,15 @@
             app:layout_constraintTop_toBottomOf="@+id/spCategory" />
 
         <Button
-            android:id="@+id/btInsert"
+            android:id="@+id/btUpdate"
+            style="@style/styleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            style="@style/styleButton"
             android:background="@drawable/button"
-            android:text="@string/textInsert"
+            android:text="@string/textUpdate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btCancel"
             app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
@@ -1231,10 +1231,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:background="@drawable/button"
-            android:text="@string/textInsertCancel"
-            app:layout_constraintBottom_toBottomOf="@+id/btInsert"
+            android:text="@string/textUpdateCancel"
+            app:layout_constraintBottom_toBottomOf="@+id/btUpdate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btInsert" />
+            app:layout_constraintTop_toTopOf="@+id/btUpdate" />
 
 
 

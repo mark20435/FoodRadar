@@ -11,9 +11,16 @@ public class ArticleGood {
 	public ArticleGood() {
 		super();
 	}
+	
+	public ArticleGood(int userId , int articleGoodId, int articleId) {
+		super();
+		this.articleGoodId = articleGoodId;
+		this.articleId = articleId;
+		this.userId = userId;
+	}
 
 
-	public ArticleGood(int articleGoodCount,int articleGoodStatus , int articleGoodId, int articleId, int userId) {
+	public ArticleGood(int userId, int articleGoodCount,int articleGoodStatus , int articleGoodId, int articleId) {
 		super();
 		this.articleGoodId = articleGoodId;
 		this.articleId = articleId;

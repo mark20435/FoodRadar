@@ -1,6 +1,10 @@
 package com.example.foodradar_android.user;
 
+<<<<<<< HEAD
 import android.widget.TextView;
+=======
+import android.graphics.Bitmap;
+>>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
 
 import java.sql.Timestamp;
 
@@ -16,6 +20,7 @@ public class UserAccount {
     private Boolean isEnable;
     private Boolean isAdmin;
     private byte[] userAvatar;
+    private Bitmap userAvatarBitmap;
     private Timestamp createDate;
     private Timestamp modifyDate;
 
@@ -38,6 +43,7 @@ public class UserAccount {
         this.modifyDate = modifyDate;
     }
 
+<<<<<<< HEAD
     // For Register
     public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName) {
         super();
@@ -63,6 +69,37 @@ public class UserAccount {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+=======
+    // For get UserAccount
+    public UserAccount(int userId, String userPhone, Timestamp userBirth, String userName,
+                       Boolean allowNotifi, Bitmap userAvatarBitmap, Timestamp createDate,
+                       Timestamp modifyDate) {
+        super();
+        this.userId = userId;
+        this.userPhone = userPhone;
+        this.userBirth = userBirth;
+        this.userName = userName;
+        this.allowNotifi = allowNotifi;
+        this.userAvatarBitmap = userAvatarBitmap;
+        this.createDate = createDate;
+        this.modifyDate = modifyDate;
+    }
+
+    // For Signup and Update
+    public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName,
+                       Boolean allowNotifi, Bitmap userAvatarBitmap) {
+        super();
+        this.userPhone = userPhone;
+        this.userPwd = userPwd;
+        this.userBirth = userBirth;
+        this.userName = userName;
+        this.allowNotifi = allowNotifi;
+        this.userAvatarBitmap = userAvatarBitmap;
+    }
+
+    public int getUserId() {
+        return userId;
+>>>>>>> dde8d24d62a73563e145361c3cafa77db4c0b1f1
     }
 
     public static int getUserId() {
