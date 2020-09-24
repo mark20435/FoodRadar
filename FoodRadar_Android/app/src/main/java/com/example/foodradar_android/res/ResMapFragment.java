@@ -106,7 +106,7 @@ public class ResMapFragment extends Fragment {
             ress = getRess();
             if(ress != null) {
                 for (Res res : ress) {
-                    addMarker(new LatLng(res.getResLat(), res.getResLon()));
+                    addMarker(new LatLng(res.getResLat(), res.getResLon()), res.getResName());
                 }
             }
         });
@@ -232,7 +232,7 @@ public class ResMapFragment extends Fragment {
     }
 
     // 打標記
-    private void addMarker(LatLng latLng) {
+    private void addMarker(LatLng latLng, String resName) {
         //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.pin);
         Address address = reverseGeocode(latLng.latitude, latLng.longitude);
         if (address == null) {
@@ -240,7 +240,7 @@ public class ResMapFragment extends Fragment {
             return;
         }
         // 取得道路名稱當做標題
-        String title = address.getThoroughfare();
+        String title = resName;
         // 取得地址當作說明文字
         String snippet = address.getAddressLine(0);
         map.addMarker(new MarkerOptions()

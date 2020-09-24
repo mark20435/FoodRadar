@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -24,6 +27,8 @@ import com.example.foodradar_android.R;
 public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
+    private TextView tvMyResUserArea;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,17 +46,17 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     // 顯示右上角的OptionMenu選單
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
-        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
+//        super.onCreateOptionsMenu(menu, inflater);
     }
     // 顯示右上角的OptionMenu選單
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.Finish:
-                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
-                break;
+//            case R.id.Finish:
+//                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
+//                break;
             case android.R.id.home:
                 navController.popBackStack();
                 break;
@@ -72,8 +77,21 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        // 我的餐廳收藏
+        view.findViewById(R.id.tvMyResUserArea).setOnClickListener(this);
+        // 我的優惠券收藏
+        view.findViewById(R.id.tvMyCouponUserArea).setOnClickListener(this);
+        // 我的社群活動
+        view.findViewById(R.id.tvMyArticleUserArea).setOnClickListener(this);
+        // 會員資料設定
+        view.findViewById(R.id.tvUserDataSetupUserArea).setOnClickListener(this::onClick);
+        // 系統設定
+        view.findViewById(R.id.tvSystemSetupUserArea).setOnClickListener(this);
+        // 聯繫我們
+        view.findViewById(R.id.tvContactUsUserArea).setOnClickListener(this);
+
         view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
-        view.findViewById(R.id.id_btMyRes).setOnClickListener(this);
 
         // vvvvvv 臨時加的
         UserAccount userAccount = new Common().getUserLoin(activity);
@@ -81,18 +99,6 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
         // ^^^^^^^ 臨時加的
 
-
-
-
-//        Button button;
-//        button = view.findViewById(R.id.id_btResMaintain);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
-//
-//            }
-//        });
     }
 
     private int getUserId(){
@@ -102,17 +108,33 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
             case R.id.id_btResMaintain:
                 navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
                 break;
-            case R.id.id_btMyRes:
+
+            // 我的餐廳收藏
+            case R.id.tvMyResUserArea:
                 navController.navigate(R.id.action_userAreaFragment_to_userMyResFragment);
+                break;
+            // 我的優惠券收藏
+            case R.id.tvMyCouponUserArea:
+                break;
+            // 我的社群活動
+            case R.id.tvMyArticleUserArea:
+                break;
+            // 會員資料設定
+            case R.id.tvUserDataSetupUserArea:
+                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
+                break;
+            // 系統設定
+            case R.id.tvSystemSetupUserArea:
+                break;
+            // 聯繫我們
+            case R.id.tvContactUsUserArea:
                 break;
             default:
                 break;
-
         }
 
     }

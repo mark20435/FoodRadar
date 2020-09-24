@@ -1,7 +1,9 @@
 package com.example.foodradar_android.user;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,17 +14,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -414,55 +413,46 @@ public class ResMaintainFragment extends Fragment {
                             .navigate(R.id.action_resMaintainFragment_to_resUpdateFragment, bundle);
                 }
             });
-//            myViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(final View view) {
-//                    PopupMenu popupMenu = new PopupMenu(activity, view, Gravity.END);
-//                    popupMenu.inflate(R.menu.popup_menu);
-//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                        @Override
-//                        public boolean onMenuItemClick(MenuItem item) {
-//                            switch (item.getItemId()) {
-//                                case R.id.update:
-//                                    Bundle bundle = new Bundle();
-//                                    bundle.putSerializable("res", res);
-//                                    Navigation.findNavController(view)
-//                                            .navigate(R.id.action_resListFragment_to_resUpdateFragment, bundle);
-//                                    break;
-//                                case R.id.delete:
-//                                    if (Common.networkConnected(activity)) {
-//                                        String url = Common.URL_SERVER + "resServlet";
-//                                        JsonObject jsonObject = new JsonObject();
-//                                        jsonObject.addProperty("action", "resDelete");
-//                                        jsonObject.addProperty("resId", res.getId());
-//                                        int count = 0;
-//                                        try {
-//                                            resDeleteTask = new CommonTask(url, jsonObject.toString());
-//                                            String result = resDeleteTask.execute().get();
-//                                            count = Integer.parseInt(result);
-//                                        } catch (Exception e) {
-//                                            Log.e(TAG, e.toString());
-//                                        }
-//                                        if (count == 0) {
-//                                            Common.showToast(activity, R.string.textDeleteFail);
-//                                        } else {
-//                                            ress.remove(res);
-//                                            resAdapter.this.notifyDataSetChanged();
-//                                            // 外面ress也必須移除選取的res
-//                                            resListFragment.this.ress.remove(res);
-//                                            Common.showToast(activity, R.string.textDeleteSuccess);
-//                                        }
-//                                    } else {
-//                                        Common.showToast(activity, R.string.textNoNetwork);
-//                                    }
-//                            }
-//                            return true;
-//                        }
-//                    });
-//                    popupMenu.show();
-//                    return true;
-//                }
-//            });
+
+            myViewHolder.btDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("確定刪除嗎？")
+                            .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Common.networkConnected(activity)) {
+                                        String url = Common.URL_SERVER + "ResServlet";
+                                        JsonObject jsonObject = new JsonObject();
+                                        jsonObject.addProperty("action", "resDelete");
+                                        jsonObject.addProperty("resId", res.getResId());
+                                        int count = 0;
+                                        try {
+                                            resDeleteTask = new CommonTask(url, jsonObject.toString());
+                                            String result = resDeleteTask.execute().get();
+                                            count = Integer.parseInt(result);
+                                        } catch (Exception e) {
+                                            Log.e(TAG, e.toString());
+                                        }
+                                        if (count == 0) {
+                                            Common.showToast(activity, R.string.textDeleteFail);
+                                        } else {
+                                            ress.remove(res);
+                                            ResAdapter.this.notifyDataSetChanged();
+                                            // 外面ress也必須移除選取的res
+                                            ResMaintainFragment.this.ress.remove(res);
+                                            Common.showToast(activity, R.string.textDeleteSuccess);
+                                        }
+                                    } else {
+                                        Common.showToast(activity, R.string.textNoNetwork);
+                                    }
+                                }
+                            }).setNegativeButton(R.string.textCancel,null).create()
+                            .show();
+
+                }
+            });
         }
 
     }
