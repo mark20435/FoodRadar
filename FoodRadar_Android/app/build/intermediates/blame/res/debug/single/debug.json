@@ -16,16 +16,16 @@
         "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_user_area.xml"
     },
     {
-        "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/color_item_select.xml.flat",
-        "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/color/item_select.xml"
+        "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_china_restaurant.xml.flat",
+        "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_china_restaurant.xml"
     },
     {
         "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_china_restaurant.xml.flat",
-        "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_china_restaurant.xml"
+        "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/color_item_select.xml.flat",
+        "source": "/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/res/color/item_select.xml"
     },
     {
         "merged": "/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_item_view_category.xml.flat",

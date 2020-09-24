@@ -62,7 +62,7 @@ public class LoginFragment extends Fragment  {
 
         view.findViewById(R.id.username);
         view.findViewById(R.id.userpwd);
-        view.findViewById(R.id.userid);
+
         Button login = view.findViewById(R.id.login);
         Button cancel = view.findViewById(R.id.regcancel);
 
@@ -82,29 +82,29 @@ public class LoginFragment extends Fragment  {
 //                String userPwd = "P@ssw0rd";
 
 
-                    if(UserId > 3){
-                        UserId = Common.USER_ID; //new Common().getUserLoin(activity);
-                        //new Common().showToast(activity, "會員專區，\n登入成功，userId: " + UserId);
-                        navController.navigate(R.id.action_loginFragment_to_mainFragment);
-
-                    }
-
-                 else {
-                    switch (UserId) {
-                        case 2: // 0=>登入失敗(原因不明)
-                            new Common().showToast(activity, "會員專區，\n登入失敗(原因不明)，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
-                            break;
-                        case 1: // -1=>使用者帳號(手機號碼)不存在
-                            new Common().showToast(activity, "會員專區，\n使用者帳號(手機號碼)不存在，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
-                            break;
-                        case 0: // -2=>使用者密碼錯誤
-                            new Common().showToast(activity, "會員專區，\n使用者密碼錯誤，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
-                            break;
-                        default:
-                            new Common().showToast(activity, "會員專區，\n登入失敗，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
-                            break;
-                    }
-                }
+//                    if(UserId > 3){
+//                        UserId = Common.USER_ID; //new Common().getUserLoin(activity);
+//                        //new Common().showToast(activity, "會員專區，\n登入成功，userId: " + UserId);
+//                        navController.navigate(R.id.action_loginFragment_to_mainFragment);
+//
+//                    }
+//
+//                 else {
+//                    switch (UserId) {
+//                        case 2: // 0=>登入失敗(原因不明)
+//                            new Common().showToast(activity, "會員專區，\n登入失敗(原因不明)，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
+//                            break;
+//                        case 1: // -1=>使用者帳號(手機號碼)不存在
+//                            new Common().showToast(activity, "會員專區，\n使用者帳號(手機號碼)不存在，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
+//                            break;
+//                        case 0: // -2=>使用者密碼錯誤
+//                            new Common().showToast(activity, "會員專區，\n使用者密碼錯誤，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
+//                            break;
+//                        default:
+//                            new Common().showToast(activity, "會員專區，\n登入失敗，\nuserId: " + UserId + ",\nuserPhone:" + username + ",\nuserPwd: " + userPwd);
+//                            break;
+//                    }
+//                }
             }
         });
 

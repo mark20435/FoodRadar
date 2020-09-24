@@ -2159,6 +2159,7 @@ id listMode
 id list_item
 id login
 id loginFragment
+id logo_photo
 id mainFragment
 id main_navigation
 id mapView
@@ -2488,7 +2489,6 @@ id userMyResFragment
 id userName
 id userPhone
 id userSysSetupFragment
-id userid
 id username
 id userpwd
 id view_offset_helper
