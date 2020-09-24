@@ -174,12 +174,6 @@ public class ResMapFragment extends Fragment {
                 }
             }
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
-                super.onScrolled(rv, dx, dy);
-
-
-            }
         });
 
         mapView.getMapAsync((googleMap) -> {
@@ -201,7 +195,7 @@ public class ResMapFragment extends Fragment {
                     public boolean onQueryTextChange(String newText) {
                         // 如果搜尋條件為空字串，就顯示原始資料；否則就顯示搜尋後結果
                         if (newText.isEmpty()) {
-                            showRess(nearRess);
+                            btSearchResAgain.performClick();
                         } else {
                             map.clear();
                             List<Res> searchRess = new ArrayList<>();
@@ -267,6 +261,9 @@ public class ResMapFragment extends Fragment {
         } else {
             resAdapter.setRess(ress);
             resAdapter.notifyDataSetChanged();
+        }
+        if (markers.size() != 0) {
+            markers.get(0).showInfoWindow();
         }
     }
 
