@@ -55,6 +55,31 @@ public class UserAccountDaoImpl implements UserAccountDao {
 	}
 
 	@Override
+	public int registerinsert(UserAccount useraccount) {
+		// Date Time: 2020-09-11 13:20:54
+		// insert statements : UserAccount
+		int count = 0;
+		String sqlStmt = "INSERT INTO UserAccount(userPhone, userPwd, userBirth, userName, allowNotifi, isEnable, isAdmin) ";
+		sqlStmt += " VALUES( ?, ?, ?, ?, ?, ?, ?);";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			
+			ps.setString(1, useraccount.getUserPhone());
+			ps.setString(2, useraccount.getUserPwd());
+			ps.setTimestamp(3, useraccount.getUserBirth());
+			ps.setString(4, useraccount.getUserName());
+			ps.setBoolean(5, true);
+			ps.setBoolean(6, true);
+			ps.setBoolean(7, false);
+
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
 	public int update(UserAccount useraccount, byte[] image) {
 		// Date Time: 2020-09-11 16:52:47
 		// update statements : UserAccount

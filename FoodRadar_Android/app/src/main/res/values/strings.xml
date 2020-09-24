@@ -33,14 +33,15 @@
 
     <string name="textLogin">登入</string>
     <string name="textLogout">登出</string>
+
+    <string name="textChangPassword">修改密碼</string>
+    <string name="textDateTime">請選擇生日</string>
+    <string name="textDatePicker">Date picker</string>
+    <string name="textNoArticleFound">找不到文章</string>
+    <string name="titleResInsert">新增餐廳</string>
     <string name="textSignUp">註冊</string>
     <string name="textUserChangConfrim">確認修改</string>
     <string name="textNoImagePickerApp">手機裡沒有選取照片程式</string>
-
-
-    <string name="textNoArticleFound">找不到文章</string>
-    <string name="titleResInsert">新增餐廳</string>
-
     <string name="textNoRessFound">找不到餐廳</string>
     <string name="textResIsEnable">已上架</string>
     <string name="textResIsNotEnable">未上架</string>
@@ -255,5 +256,16 @@
         <item>23:00</item>
         <item>23:30</item>
     </string-array>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_register">會員註冊</string>
+    <string name="action_sign_in">會員登入</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="phone">Phone</string>
+    <string name="userId">userId</string>
 
 </resources>

@@ -37,6 +37,17 @@ public class UserAccount {
 		this.createDate = createDate;
 		this.modifyDate = modifyDate;
 	}
+	  // For Register
+    public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName) {
+        super();
+//        this.userId = userId;
+        this.userPhone = userPhone;
+        this.userPwd = userPwd;
+        this.userBirth = userBirth;
+        this.userName = userName;
+//        this.allowNotifi = allowNotifi;
+    }
+
 	
 	public int getUserId() {
 		return userId;

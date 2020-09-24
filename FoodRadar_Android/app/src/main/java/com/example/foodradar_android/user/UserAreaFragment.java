@@ -25,6 +25,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +76,13 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
         view.findViewById(R.id.id_btMyRes).setOnClickListener(this);
 
+
         // vvvvvv 臨時加的
         UserAccount userAccount = new Common().getUserLoin(activity);
         Common.USER_ID = userAccount.getUserId();
         Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
         // ^^^^^^^ 臨時加的
+
 
 
 

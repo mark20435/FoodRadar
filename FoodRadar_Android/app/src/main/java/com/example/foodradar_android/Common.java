@@ -35,10 +35,12 @@ public class Common{
     private static final String PREFERENCES_NAME = "foodradar_preference";
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
+
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.bitmap";
+
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -92,9 +94,16 @@ public class Common{
     public int userLogin(Activity activity, String userPhone, String userPwd){
         SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+        //String userphone = preferences.getString("userphone", "0900123456");
+
+
+        //String userpwd = preferences.getString("userpwd", "P@ssw0rd");
+
+        Integer userId = 3;
 
         Log.d(TAG,"userLogin.userPhone: " + userPhone);
         Log.d(TAG,"userLogin.userPwd: " + userPwd);
+
 
         // vvvvvv臨時寫的，用來模擬使用者登入
         Integer fromDB_userId = 3;
@@ -118,6 +127,7 @@ public class Common{
             preferences.edit()
                     .putString("userId", String.valueOf(USER_ID))
                     .putString("userPhone", userPhone)
+
                     .putString("userPwd", userPwd)
                     .putString("userBirth", String.valueOf(fromDB_userBirth))
                     .putString("userName", fromDB_userName)

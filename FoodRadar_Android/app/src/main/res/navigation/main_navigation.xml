@@ -22,7 +22,7 @@
             app:destination="@id/userAreaFragment" />
         <action
             android:id="@+id/action_mainFragment_to_chinaRestaurantFragment"
-            app:destination="@id/chinaRestaurantFragment" />
+            app:destination="@id/CategoryTypeFragment" />
 
     </fragment>
     <fragment
@@ -91,10 +91,14 @@
             app:destination="@id/articleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/chinaRestaurantFragment"
-        android:name="com.example.foodradar_android.main.ChinaRestaurantFragment"
+        android:id="@+id/CategoryTypeFragment"
+        android:name="com.example.foodradar_android.main.CategoryTypeFragment"
         android:label="fragment_china_restaurant"
-        tools:layout="@layout/fragment_china_restaurant" />
+        tools:layout="@layout/fragment_china_restaurant" >
+        <action
+            android:id="@+id/action_chinaRestaurantFragment_to_category_Detail_Fragment"
+            app:destination="@id/category_Detail_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/articleDetailFragment"
         android:name="com.example.foodradar_android.article.ArticleDetailFragment"
@@ -111,8 +115,35 @@
         android:label="fragment_article_insert"
         tools:layout="@layout/fragment_article_insert" />
     <fragment
+        android:id="@+id/category_Detail_Fragment"
+        android:name="com.example.foodradar_android.main.Category_Detail_Fragment"
+        android:label="fragment_category__detail_"
+        tools:layout="@layout/fragment_category__detail_" >
+        <action
+            android:id="@+id/action_category_Detail_Fragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.foodradar_android.main.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_Fragment"
+        android:name="com.example.foodradar_android.main.Register_Fragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
         android:id="@+id/resUpdateFragment"
         android:name="com.example.foodradar_android.user.ResUpdateFragment"
         android:label="fragment_res_update"
         tools:layout="@layout/fragment_res_update" />
+
 </navigation>
