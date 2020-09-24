@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="116dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="8dp"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivRes"
+            android:layout_width="100dp"
+            android:layout_height="92dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/no_image"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvResName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/ivRes"
+            android:text="@string/textResName"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivRes"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivResRatingStar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:background="@color/mainPink"
+            android:src="@drawable/ic_baseline_star_yellow_24"
+            card_view:layout_constraintStart_toEndOf="@+id/ivRes"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResName" />
+
+        <TextView
+            android:id="@+id/tvResRating"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@id/tvResName"
+            android:layout_alignStart="@id/tvResName"
+            android:background="@color/mainPink"
+            android:text="@string/textResRating"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivResRatingStar"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvResName" />
+
+        <TextView
+            android:id="@+id/tvResAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvResName"
+            android:layout_alignStart="@id/tvResName"
+            android:layout_marginStart="8dp"
+            android:text="@string/textResAddress"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toEndOf="@+id/ivRes"
+            card_view:layout_constraintTop_toBottomOf="@+id/ivResRatingStar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -90,6 +90,8 @@
     <string name="textHoursError">營業時間輸入錯誤</string>
     <string name="textUpdateFail">修改失敗</string>
     <string name="textUpdateSuccess">修改成功</string>
+    <string name="textResRating">餐廳評價</string>
+    <string name="textSearchResAgain">重新查詢附近餐廳</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">

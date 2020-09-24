@@ -1014,6 +1014,7 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color backgroundPink
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -1753,6 +1754,7 @@ drawable ic_baseline_more_vert_24
 drawable ic_baseline_person_pin_24
 drawable ic_baseline_photo_camera_24
 drawable ic_baseline_star_24
+drawable ic_baseline_star_yellow_24
 drawable ic_baseline_supervised_user_circle_24
 drawable ic_baseline_thumb_up_24
 drawable ic_baseline_thumb_up_alt_24
@@ -1939,6 +1941,7 @@ id btAdd
 id btCancel
 id btCommentSend
 id btDelete
+id btEatWhat
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -1955,6 +1958,7 @@ id btSatAddHours
 id btSatAddHours2
 id btSatDeleteHours2
 id btSatDeleteHours3
+id btSearchResAgain
 id btSignupOrChang
 id btSunAddHours
 id btSunAddHours2
@@ -1976,7 +1980,6 @@ id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btnLogInOut
-id button
 id buttonPanel
 id caName
 id cancel_action
@@ -2132,6 +2135,7 @@ id ivRedStarPassword
 id ivRedStarPasswordConfirm
 id ivRedStarPhone
 id ivRes
+id ivResRatingStar
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2424,6 +2428,7 @@ id tvResEnable
 id tvResHours
 id tvResHoursDetail
 id tvResName
+id tvResRating
 id tvResTel
 id tvSaturday
 id tvSunday
@@ -2586,6 +2591,7 @@ layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_main
 layout item_view_res
+layout item_view_res_map
 layout item_view_user_myres
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2823,8 +2829,10 @@ string textResHours
 string textResIsEnable
 string textResIsNotEnable
 string textResName
+string textResRating
 string textResTel
 string textSaturday
+string textSearchResAgain
 string textSignUp
 string textSignUpCancel
 string textSignUpSend
