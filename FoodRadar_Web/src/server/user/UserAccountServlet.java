@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -44,7 +45,14 @@ public class UserAccountServlet extends HttpServlet {
 		}
 		
 		String action = jsonObject.get("action").getAsString();
-		Integer id = jsonObject.get("id").getAsInt();
+		Integer id = 0;
+//		try {
+//			id = jsonObject.get("id").getAsInt();
+//			id = (id == null) ? 0 : id;
+//		} catch (Exception e) {
+//			
+//		}
+		
 		pubTools.showConsoleMsg("doPost.action" , action);
 		pubTools.showConsoleMsg("doPost.id" , id.toString());
 		
@@ -52,30 +60,40 @@ public class UserAccountServlet extends HttpServlet {
 			List<UserAccount> userAccountList = userAccountDao.getAll(); // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
 			pubTools.writeText(response, gson.toJson(userAccountList));
 			
-		} else if (action.equals("getImage")) {
-			int imageSize = jsonObject.get("imageSize").getAsInt();
-			OutputStream os = response.getOutputStream();
-			byte[] image = userAccountDao.getImage(id);
-			if (image != null) {
-				image = ImageUtil.shrink(image, imageSize); // 在server端縮圖
-				response.setContentType("image/jpeg"); // 這定回傳種類為圖片
-				response.setContentLength(image.length);
-				os.write(image);
-			}
-		} else if (action.equals("userAccountInsert")) {
+//		} else if (action.equals("getImage")) {
+//			int imageSize = jsonObject.get("imageSize").getAsInt();
+//			OutputStream os = response.getOutputStream();
+//			byte[] image = userAccountDao.getImage(id);
+//			if (image != null) {
+//				image = ImageUtil.shrink(image, imageSize); // 在server端縮圖
+//				response.setContentType("image/jpeg"); // 這定回傳種類為圖片
+//				response.setContentLength(image.length);
+//				os.write(image);
+//			}
+		} else if (action.equals("userAccountSignup")) {  // 使用者註冊
 			// userAccount userAccount
 			String userAccountJson = jsonObject.get("userAccount").getAsString();
 			pubTools.showConsoleMsg("userAccountJson", userAccountJson);
-			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);			
+			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);
+			// 檢查是否有上傳圖片
+			byte[] imageAvatra = null;
+			if (jsonObject.get("imageBase64") != null) { // 若使用者修改時沒有改照片 image物件會是 null，處理時要判斷並略過
+				String imageBase64 = jsonObject.get("imageBase64").getAsString();
+				if (imageBase64 != null && !imageBase64.isEmpty()) {
+					imageAvatra = Base64.getMimeDecoder().decode(imageBase64);
+				}
+			}
 			int count = 0;
-//			count = userAccountDao.insert(userAccount);
+			count = userAccountDao.insert(userAccount, imageAvatra);
+//			List<MyRes> myResList = myResDao.getAllById(id);
+//			pubTools.writeText(response, gson.toJson(myResList));
 			pubTools.writeText(response, String.valueOf(count));
 			
-		} else if (action.equals("userAccountDelete")) {
-			Integer userId = jsonObject.get("userId").getAsInt();
-			Integer resId = jsonObject.get("resId").getAsInt();int count = 0;
-//			count = userAccountDao.delete(userId, resId);
-			pubTools.writeText(response, String.valueOf(count));			
+//		} else if (action.equals("userAccountDelete")) {
+//			Integer userId = jsonObject.get("userId").getAsInt();
+//			Integer resId = jsonObject.get("resId").getAsInt();int count = 0;
+////			count = userAccountDao.delete(userId, resId);
+//			pubTools.writeText(response, String.valueOf(count));			
 		}
 		
 		

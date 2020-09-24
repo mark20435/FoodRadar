@@ -58,14 +58,13 @@ public class UserAccount {
 
     // For Signup and Update
     public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName,
-                       Boolean allowNotifi, Bitmap userAvatarBitmap) {
+                       Boolean allowNotifi) {
         super();
         this.userPhone = userPhone;
         this.userPwd = userPwd;
         this.userBirth = userBirth;
         this.userName = userName;
         this.allowNotifi = allowNotifi;
-        this.userAvatarBitmap = userAvatarBitmap;
     }
 
     public int getUserId() {
@@ -134,6 +133,5 @@ public class UserAccount {
     public void setModifyDate(Timestamp modifyDate) {
         this.modifyDate = modifyDate;
     }
-
 
 }

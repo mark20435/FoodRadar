@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -52,8 +53,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 import static android.view.View.INVISIBLE;
@@ -113,7 +119,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-
+        Log.d("TAG_my","onCreate: ");
         // 顯示左上角的返回箭頭
         Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
@@ -157,7 +163,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         // 預設無資料的頭像
         ivAvatar = view.findViewById(R.id.id_ivAvatar);
-        ivAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
+//        ivAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
+        ivAvatar.setImageResource(R.drawable.ic_awesome_user_circle);
         btImgCamera = view.findViewById(R.id.btImgCamera);
         btImgPickPhoto = view.findViewById(R.id.btImgPickPhoto);
 //        askExternalStoragePermission();
@@ -181,7 +188,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         btnLogInOut = view.findViewById(R.id.btnLogInOut);
         btUserChangConfrim = view.findViewById(R.id.btSignupOrChang);
 
-
         // 使用者登入畫面顯示控制
         setUI();
 
@@ -199,11 +205,38 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         view.findViewById(R.id.btTestData).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String testUserDate = "2020-09-23 00:00:00";
+                Log.d(TAG,"testUserDate: " + testUserDate);
+                Timestamp testUserDate_TimeStamp = Timestamp.valueOf(testUserDate);
+                Log.d(TAG,"testUserDate_TimeStamp: " + testUserDate_TimeStamp);
+                Log.d(TAG,"testUserDate_TimeStamp: " + testUserDate_TimeStamp);
+
                 String userPhone = "0900123456";
+                userPhone = new SimpleDateFormat("MMddhhmmss").format(new Date());
                 String userPwd = "P@ssw0rd";
                 // Integer userId = 3;
                 etUserPhone.setText(userPhone);
                 etPassword.setText(userPwd);
+                etPasswordConfirm.setText(userPwd);
+                etUserName.setText("User_" + userPhone);
+                java.util.Calendar calstart = java.util.Calendar.getInstance();
+                calstart.setTime(new Date());
+                calstart.add(Calendar.DAY_OF_WEEK, -1 * Integer.parseInt(userPhone.substring(8,10)));
+                calstart.add(Calendar.YEAR, -1 * Integer.parseInt(userPhone.substring(8,10)));
+                String testUserBirth = new SimpleDateFormat("yyyy-MM-dd").format(calstart.getTime());
+                etUserBirth.setText(testUserBirth);
+
+                int[] images = {R.drawable.common_google_signin_btn_icon_dark_normal
+                        ,R.drawable.common_google_signin_btn_icon_disabled
+                        ,R.drawable.common_google_signin_btn_icon_light_normal
+                        ,R.drawable.common_google_signin_btn_icon_light_focused
+                        ,R.drawable.common_google_signin_btn_icon_dark
+                        ,R.drawable.common_full_open_on_phone};
+                Random rand = new Random();
+                ivAvatar.setImageResource(images[rand.nextInt(images.length)]);
+//                etUserName.setText(getResources().getResourceEntryName(images[rand.nextInt(images.length)]));
+//                ivAvatar.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
 
 //                if(getUserId() > 0){
 //                    UserAccount userAccount = new UserAccount();
@@ -252,7 +285,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
             btnLogInOut.setText(R.string.textLogout);
             btUserChangConfrim.setText(R.string.textUserChangConfrim);
-            bitmapAvatra = showUserAvatra();
+//            bitmapAvatra = showUserAvatra();
+            bitmapAvatra = Common.getUserAvatra(activity);
             ivAvatar.setImageBitmap(bitmapAvatra);
         } else { // 已登出狀態
             Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
@@ -266,7 +300,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
             btnLogInOut.setText(R.string.textLogin);
             btUserChangConfrim.setText(R.string.textSignUp);
 //            ivAvatar.setImageResource(R.drawable.ic_awesome_user_circle);
-            bitmapAvatra = showUserAvatra();
+//            bitmapAvatra = showUserAvatra();
+            bitmapAvatra = Common.getUserAvatra(activity);
             ivAvatar.setImageBitmap(bitmapAvatra);
         }
     }
@@ -311,12 +346,14 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                     Common.showToast(activity,"登出");
                     setUI();
                 } else { // 登入
+                    Log.d(TAG,"登入: " + "activity");
                     if(signupFlag != 1) { // 登入作業
                         new Common().userLogin(activity, etUserPhone.getText().toString(), etPassword.getText().toString());
                         setUI();
                         Common.showToast(activity,"登入");
                     } else { //註冊送出作業
                         Common.showToast(activity,"註冊送出");
+                        Log.d(TAG,"註冊送出: " + activity);
 //                        Common.showToast(activity,"etUserPhone=>" + etUserPhone.getText().toString() + "<=");
                         if (etUserPhone.getText().toString().trim().equals("")) {
                             Common.showToast(activity,tvUserPhone.getText() + "不可為空白");
@@ -328,22 +365,24 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                         String userPhone = etUserPhone.getText().toString();
                         String userPwd = etPassword.getText().toString();
                         String userBirth = etUserBirth.getText().toString();
+                        Log.d(TAG,"userBirth: " + userBirth);
                         Timestamp userBirth_Timestamp = null;
+                        Log.d(TAG,"userBirth_Timestamp-1: " + userBirth_Timestamp);
                         if (userBirth == null) {
                             userBirth_Timestamp = Timestamp.valueOf(userBirth);
+                            Log.d(TAG,"userBirth_Timestamp-2: " + userBirth_Timestamp);
                         }
                         String userName = etUserName.getText().toString();
                         Boolean allowNotifi_Boolean = true;
                         Bitmap userAvatarBitmap = null; // new Common().getUserAvatra();
 
-                        userAccount = new UserAccount(userPhone, userPwd, userBirth_Timestamp, userName
-                                , allowNotifi_Boolean, userAvatarBitmap);
+                        userAccount = new UserAccount(userPhone, userPwd, userBirth_Timestamp, userName , allowNotifi_Boolean);
                         JsonObject jsonObject = new JsonObject();
                         jsonObject.addProperty("action", "userAccountSignup");
                         jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
                         // 有圖才上傳
                         if (bitmapAvatra != null) {
-                            jsonObject.addProperty("imageBase64", Base64.encodeToString(bitmapToByteArray(bitmapAvatra), Base64.DEFAULT));
+                            jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
                         }
                         int count = 0;
                         try {
@@ -357,8 +396,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                         } else {
                             Common.showToast(activity, "註冊成功");
                         }
-
-
 
                     }
                 }
@@ -378,7 +415,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                     Bitmap bitmap = drawable.getBitmap();
                     new Common().setUserAvatra(activity, bitmap);
 //                    ivAvatar.setImageBitmap(new Common().getUserAvatra());
-                    bitmapAvatra = showUserAvatra();
+//                    bitmapAvatra = showUserAvatra();
+                    bitmapAvatra = Common.getUserAvatra(activity);
                     ivAvatar.setImageBitmap(bitmapAvatra);
                     Common.showToast(activity,"頭像存檔完成");
 
@@ -388,10 +426,12 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                         signupFlag = 1;
                         SetSignUpUI(VISIBLE);
                         Common.showToast(activity, R.string.textSignUp);
+                        setUI();
                     } else {
                         signupFlag = 0;
                         SetSignUpUI(INVISIBLE);
                         Common.showToast(activity, R.string.textSignUpCancel);
+                        setUI();
                     }
 
 
@@ -553,30 +593,32 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    private Bitmap showUserAvatra (){
-        UserAccountAvatra userAccountAvatraBitmapIn = new UserAccountAvatra();
-        try (ObjectInputStream soiIn = new ObjectInputStream(
-                activity.openFileInput(userAvatraFileName))) {
-            userAccountAvatraBitmapIn = (UserAccountAvatra) soiIn.readObject();
-        } catch (Exception e) {
-            Log.d(TAG,"getUserAvatra: Exception");
-            Log.d(TAG, e.toString());
-        }
-        return userAccountAvatraBitmapIn.getBitmapObject();
-    }
+//    private Bitmap showUserAvatra (){
+//        UserAccountAvatra userAccountAvatra = new UserAccountAvatra();
+//        try (ObjectInputStream soiIn = new ObjectInputStream(
+//                activity.openFileInput(userAvatraFileName))) {
+//            userAccountAvatra = (UserAccountAvatra) soiIn.readObject();
+//            byte[] avatraByte = userAccountAvatra.getByteObject();
+//            return BitmapFactory.decodeByteArray(avatraByte, 0, avatraByte.length);
+//        } catch (Exception e) {
+//            Log.d(TAG,"showUserAvatra: Exception");
+//            Log.d(TAG, e.toString());
+//            return null;
+//        }
+//    }
 
-    private byte[] bitmapToByteArray(Bitmap bitmap) {
-        try {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            // quality設100代表不壓縮，範圍值0~100
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            return stream.toByteArray();
-        } catch (Exception e) {
-            Log.d(TAG,"bitmapToByteArray: Exception");
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    private byte[] bitmapToByteArray(Bitmap bitmap) {
+//        try (ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        ){
+//            // quality設100代表不壓縮，範圍值0~100
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+//            return stream.toByteArray();
+//        } catch (Exception e) {
+//            Log.d(TAG,"bitmapToByteArray: Exception");
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
 //    @Override
 //    public void onResume() {

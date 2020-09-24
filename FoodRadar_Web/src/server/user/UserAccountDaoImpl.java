@@ -31,21 +31,21 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		// Date Time: 2020-09-11 13:20:54
 		// insert statements : UserAccount
 		int count = 0;
-		String sqlStmt = "INSERT INTO UserAccount(userId, userPhone, userPwd, userBirth, userName, allowNotifi, isEnable, isAdmin, userAvatar, createDate, modifyDate) ";
-		sqlStmt += " VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String sqlStmt = "INSERT INTO UserAccount(userPhone, userPwd, userBirth, userName, allowNotifi, isEnable, isAdmin, userAvatar) ";
+		sqlStmt += " VALUES( ?, ?, ?, ?, ?, ?, ?, ?);";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
-			ps.setInt(1, useraccount.getUserId());
-			ps.setString(2, useraccount.getUserPhone());
-			ps.setString(3, useraccount.getUserPwd());
-			ps.setTimestamp(4, useraccount.getUserBirth());
-			ps.setString(5, useraccount.getUserName());
-			ps.setBoolean(6, useraccount.getAllowNotifi());
-			ps.setBoolean(7, useraccount.getIsEnable());
-			ps.setBoolean(8, useraccount.getIsAdmin());
-			ps.setBytes(9, useraccount.getUserAvatar());
-			ps.setTimestamp(10, useraccount.getCreateDate());
-			ps.setTimestamp(11, useraccount.getModifyDate());
+//			ps.setInt(1, useraccount.getUserId());
+			ps.setString(1, useraccount.getUserPhone());
+			ps.setString(2, useraccount.getUserPwd());
+			ps.setTimestamp(3, useraccount.getUserBirth());
+			ps.setString(4, useraccount.getUserName());
+			ps.setBoolean(5, useraccount.getAllowNotifi());
+			ps.setBoolean(6, true); // useraccount.getIsEnable());
+			ps.setBoolean(7, false); // useraccount.getIsAdmin());
+			ps.setBytes(8, image); // useraccount.getUserAvatar());
+//			ps.setTimestamp(10, useraccount.getCreateDate());
+//			ps.setTimestamp(11, useraccount.getModifyDate());
 
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
