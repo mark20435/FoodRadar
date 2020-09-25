@@ -1871,6 +1871,8 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+id action_articleFragment_to_articleInsertFragment
+id action_articleFragment_to_newArticleFragment2
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1883,6 +1885,7 @@ id action_context_bar
 id action_divider
 id action_favoriteArticleFragment_to_articleDetailFragment
 id action_image
+id action_mainFragment_to_articleFragment
 id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
 id action_mainFragment_to_resMapFragment
@@ -1962,12 +1965,12 @@ id btTueAddHours
 id btTueAddHours2
 id btTueDeleteHours2
 id btTueDeleteHours3
-id btUserChangConfrim
 id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btnCancel
+id btnChangPassword
 id btnInsert
 id btnLogInOut
 id button
@@ -1976,6 +1979,8 @@ id caName
 id cancel_action
 id cancel_button
 id cardView
+id cardView2
+id cardView3
 id cardViewAvatar
 id cardview
 id center
@@ -2018,6 +2023,7 @@ id custom
 id customPanel
 id cut
 id cvArticle
+id cvUserIcon
 id dark
 id date_picker_actions
 id decelerate
@@ -2101,7 +2107,6 @@ id ignore
 id ignoreRequest
 id imResImg
 id image
-id imageView3
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2116,7 +2121,11 @@ id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
 id ivArticleImage
 id ivCommentGoodIcon
+id ivCommentSetting
 id ivCommentUserAvatar
+id ivDetailArticleCommentIcon
+id ivDetailFavoriteIcon
+id ivDetailGoodIcon
 id ivDetailSetting
 id ivDetailUserIcon
 id ivFavoriteIcon
@@ -2130,7 +2139,7 @@ id jumpToStart
 id labeled
 id largeLabel
 id layout
-id layoutComment
+id layoutCommentBar
 id layout_aspect_ratio
 id layout_rotate_wheel
 id layout_scale_wheel
@@ -2232,6 +2241,7 @@ id rvArticle
 id rvArticleFavorite
 id rvArticleImage
 id rvArticleRank
+id rvComment
 id rvMain
 id rvRes
 id satellite
@@ -2401,6 +2411,9 @@ id tvCommentUserName
 id tvDetailArticleTime
 id tvDetailArticleTitle
 id tvDetailAvgCon
+id tvDetailCommentCount
+id tvDetailFavoriteArticle
+id tvDetailGoodCount
 id tvDetailResName
 id tvDetailUserName
 id tvDtdailResCategoryInfo
@@ -2772,6 +2785,7 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
+string textChangPassword
 string textDelete
 string textDeleteHours
 string textEatWhat
@@ -2785,6 +2799,8 @@ string textLogout
 string textMonday
 string textNoArticleFound
 string textNoCameraApp
+string textNoCommentFound
+string textNoImgFound
 string textNoMainFound
 string textNoNetwork
 string textNoRessFound
@@ -2798,13 +2814,11 @@ string textResIsNotEnable
 string textResName
 string textResPhone
 string textSaturday
-string textSignUp
 string textSunday
 string textTakePicture
 string textThursday
 string textTo
 string textTuesDay
-string textUserChangConfrim
 string textWednesday
 string titleResInsert
 string title_of_contact_us

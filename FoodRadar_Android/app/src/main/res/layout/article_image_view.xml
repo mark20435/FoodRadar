@@ -8,11 +8,15 @@
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
+    android:layout_marginBottom="8dp"
     app:cardCornerRadius="8dp">
 
     <ImageView
         android:id="@+id/ivArticleImage"
         android:layout_width="260dp"
         android:layout_height="260dp"
+
+        android:background="@color/earthBackground"
+        android:scaleType="fitCenter"
         tools:srcCompat="@tools:sample/avatars" />
 </androidx.cardview.widget.CardView>

@@ -165,13 +165,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
 
             <Button
-                android:id="@+id/btUserChangConfrim"
+                android:id="@+id/btnChangPassword"
                 style="@style/styleButton"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/button"
-                android:text="@string/textUserChangConfrim"
+                android:text="@string/textChangPassword"
                 app:layout_constraintBottom_toBottomOf="@+id/btnLogInOut"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnLogInOut" />

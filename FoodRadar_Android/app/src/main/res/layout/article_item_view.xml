@@ -8,51 +8,61 @@
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
-    app:cardCornerRadius="16dp">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/earthBackground">
 
-        <ImageView
-            android:id="@+id/userIcon"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvUserIcon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_person_pin_24"
-            tools:ignore="VectorDrawableCompat" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/ic_baseline_person_pin_24"
+                tools:ignore="VectorDrawableCompat" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
             android:text="文青的女子"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/userIcon"
-            app:layout_constraintTop_toTopOf="@+id/userIcon" />
+            app:layout_constraintStart_toEndOf="@+id/cvUserIcon"
+            app:layout_constraintTop_toTopOf="@+id/cvUserIcon" />
 
         <TextView
             android:id="@+id/resCategoryInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:text="西式料理餐廳"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/userIcon"
-            app:layout_constraintTop_toBottomOf="@+id/userIcon" />
+            app:layout_constraintStart_toStartOf="@+id/cvUserIcon"
+            app:layout_constraintTop_toBottomOf="@+id/cvUserIcon" />
 
         <TextView
             android:id="@+id/articleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="巷弄間咖啡，度過輕鬆的早安 台北/高雄/桃園"
-            android:textSize="16sp"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/resCategoryInfo"
             app:layout_constraintTop_toBottomOf="@+id/resCategoryInfo" />
 
@@ -62,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="餐廳：LuffyCoffee路咖啡"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             app:layout_constraintStart_toStartOf="@+id/articleTitle"
             app:layout_constraintTop_toBottomOf="@+id/articleTitle" />
 
@@ -70,6 +81,7 @@
             android:layout_width="380dp"
             android:layout_height="239.5dp"
             android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/resName"
@@ -91,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:text="TextView"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/resName"
             app:layout_constraintEnd_toStartOf="@+id/ivGoodIcon"
@@ -102,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:text="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/ivArticleCommentIcon"
             app:layout_constraintTop_toTopOf="@+id/ivGoodIcon" />
@@ -122,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:text="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/ivFavoriteIcon"
             app:layout_constraintTop_toTopOf="@+id/ivArticleCommentIcon" />

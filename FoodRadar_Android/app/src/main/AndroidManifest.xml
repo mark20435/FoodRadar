@@ -43,9 +43,12 @@
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
 
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

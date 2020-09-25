@@ -94,9 +94,10 @@ public class ImgDaoImpl implements ImgDao {
 		return img;
 	}
 
+	//取得特定文章圖片
 	@Override
 	public byte[] getImage(int imgId) {
-		String sql = "SELECT imgId, articleId, img FROM Img WHERE articleId = ? ;";
+		String sql = "SELECT imgId, articleId, img FROM Img WHERE imgId = ? ;";
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -111,9 +112,10 @@ public class ImgDaoImpl implements ImgDao {
 		return image;
 	}
 
+	//取所有圖片資訊
 	@Override
 	public List<Img> getAll() {
-		String sql = "SELECT articleId " + "FROM Img ORDER BY imgId DESC;";
+		String sql = "SELECT articleId, imgId FROM Img ORDER BY imgId DESC;";
 		List<Img> imgList = new ArrayList<Img>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {

@@ -44,7 +44,8 @@ public class CommentServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<Comment> comments = commentDao.getAll();
 			writeText(response, gson.toJson(comments));
-		} else if (action.equals("commentInsert") || action.equals("commentUpdate")) { 
+		} else if (action.equals("commentInsert") || action.equals("commentUpdate")) {
+			System.out.print("action: " + action);
 			// 取得Comment內的Json字串
 			String commentJson = jsonObject.get("comment").getAsString();
 			System.out.println("commentJson = " + commentJson);
@@ -55,22 +56,26 @@ public class CommentServlet extends HttpServlet {
 			int count = 0;
 			// insert
 			if (action.equals("commentInsert")) {
+				System.out.print("count: " + count);
 				count = commentDao.insert(comment);
 			// Update
 			} else if (action.equals("commentUpdate")) {
 				count = commentDao.update(comment);
 			}
 			writeText(response, String.valueOf(count));
+			
 			// 判斷client端行為3 > Delete
 		} else if (action.equals("commentDelete")) {
 			int commentId = jsonObject.get("commentId").getAsInt();
 			int count = commentDao.delete(commentId);
 			writeText(response, String.valueOf(count));
-			// 判斷client端行為4 > 查詢findById
-		} else if (action.equals("findById")) {
-			int id = jsonObject.get("commentId").getAsInt();
-			Comment comment = commentDao.findById(id);
+			
+			// 判斷client端行為4 > 查詢findCommentById > 顯示文章內文
+		} else if (action.equals("findCommentById")) {
+			int id = jsonObject.get("articleId").getAsInt();
+			List<Comment> comment = commentDao.findCommentById(id);
 			writeText(response, gson.toJson(comment));
+			
 			// 判斷client端行為5 > 其他
 		} else {
 			writeText(response, "");

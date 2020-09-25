@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_mainFragment_to_chinaRestaurantFragment"
             app:destination="@id/chinaRestaurantFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
 
     </fragment>
     <fragment
@@ -77,7 +80,14 @@
         android:id="@+id/articleFragment"
         android:name="com.example.foodradar_android.article.ArticleFragment"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_articleFragment_to_newArticleFragment2"
+            app:destination="@id/newArticleFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resInsertFragment"
         android:name="com.example.foodradar_android.user.ResInsertFragment"

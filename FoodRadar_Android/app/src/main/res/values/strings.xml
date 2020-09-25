@@ -30,14 +30,15 @@
     <string name="textResCategory">餐廳分類</string>
     <string name="textResEnable">上架狀態</string>
     <string name="textEnable">上架</string>
-
     <string name="textLogin">登入</string>
     <string name="textLogout">登出</string>
-    <string name="textSignUp">註冊</string>
-    <string name="textUserChangConfrim">確認修改</string>
+    <string name="textChangPassword">修改密碼</string>
 
+    <string name="textNoImgFound">找不到圖片</string>
+    <string name="textNoCommentFound">尚無留言</string>
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
+
 
     <string name="textNoRessFound">找不到餐廳</string>
     <string name="textResIsEnable">已上架</string>
