@@ -269,5 +269,6 @@
     <string name="userId">userId</string>
     <string name="textResDistance">餐廳距離</string>
     <string name="titleResDetail">餐廳資訊</string>
+    <string name="textGiveRating">留下評價</string>
 
 </resources>
