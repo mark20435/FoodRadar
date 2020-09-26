@@ -252,6 +252,10 @@
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_article_detail.xml"
     },
     {
+        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_location_on_24.xml.flat",
+        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_location_on_24.xml"
+    },
+    {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     },

@@ -1751,6 +1751,7 @@ drawable ic_baseline_comment_24
 drawable ic_baseline_face_24
 drawable ic_baseline_favorite_24
 drawable ic_baseline_home_24
+drawable ic_baseline_location_on_24
 drawable ic_baseline_map_24
 drawable ic_baseline_more_vert_24
 drawable ic_baseline_person_pin_24
@@ -2143,6 +2144,7 @@ id ivRedStarPassword
 id ivRedStarPasswordConfirm
 id ivRedStarPhone
 id ivRes
+id ivResLocation
 id ivResRatingStar
 id jumpToEnd
 id jumpToStart
@@ -2442,6 +2444,7 @@ id tvPassword
 id tvPasswordConfirm
 id tvResAddress
 id tvResCategoryInfo
+id tvResDistance
 id tvResEnable
 id tvResHours
 id tvResHoursDetail
@@ -2860,6 +2863,7 @@ string textPickPicture
 string textPlsInpup
 string textResAddress
 string textResCategory
+string textResDistance
 string textResEnable
 string textResHours
 string textResIsEnable

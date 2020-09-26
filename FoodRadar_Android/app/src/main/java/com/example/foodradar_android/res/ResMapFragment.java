@@ -149,7 +149,7 @@ public class ResMapFragment extends Fragment {
                         int[] nowPos = new int[1];
                         lm.findFirstVisibleItemPositions(nowPos);
                         View itemView = lm.getChildAt(0);
-                        if(itemView != null) {
+                        if (itemView != null) {
                             TextView tvResAddress = itemView.findViewById(R.id.tvResAddress);
                             String address = tvResAddress.getText().toString();
                             List<Address> addressList;
@@ -224,6 +224,8 @@ public class ResMapFragment extends Fragment {
 
             map.setOnMarkerClickListener(marker -> {
                 marker.showInfoWindow();
+                int index = markers.indexOf(marker);
+                rvRes.smoothScrollToPosition(index);
                 return true;
             });
 
@@ -471,7 +473,7 @@ public class ResMapFragment extends Fragment {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView tvResName, tvResAddress, tvResTel, tvResCategoryInfo;
+            TextView tvResName, tvResAddress, tvResTel, tvResCategoryInfo, tvResDistance;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -480,7 +482,7 @@ public class ResMapFragment extends Fragment {
                 tvResAddress = itemView.findViewById(R.id.tvResAddress);
                 tvResTel = itemView.findViewById(R.id.tvResTel);
                 tvResCategoryInfo = itemView.findViewById(R.id.tvResCategoryInfo);
-
+                tvResDistance = itemView.findViewById(R.id.tvResDistance);
             }
         }
 
@@ -507,8 +509,13 @@ public class ResMapFragment extends Fragment {
             myViewHolder.tvResName.setText(res.getResName());
             myViewHolder.tvResAddress.setText(res.getResAddress());
             //myViewHolder.tvResTel.setText(res.getResTel());
-            //myViewHolder.tvResCategoryInfo.setText(String.valueOf(res.getResCategoryInfo()));
-
+            myViewHolder.tvResCategoryInfo.setText(res.getResCategoryInfo());
+            if (lastLocation != null) {
+                float[] results = new float[1];
+                Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
+                        res.getResLat(), res.getResLon(), results);
+                myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0]/1000f));
+            }
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

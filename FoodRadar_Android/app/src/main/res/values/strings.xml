@@ -267,5 +267,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="phone">Phone</string>
     <string name="userId">userId</string>
+    <string name="textResDistance">餐廳距離</string>
 
 </resources>
