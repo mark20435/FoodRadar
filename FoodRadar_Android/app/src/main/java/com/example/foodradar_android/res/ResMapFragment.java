@@ -272,7 +272,7 @@ public class ResMapFragment extends Fragment {
         if (Common.networkConnected(activity)) {
             String url = Common.URL_SERVER + "ResServlet";
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("action", "getAll");
+            jsonObject.addProperty("action", "getAllEnable");
             String jsonOut = jsonObject.toString();
             resGetAllTask = new CommonTask(url, jsonOut);
             try {
