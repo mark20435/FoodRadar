@@ -268,5 +268,6 @@
     <string name="phone">Phone</string>
     <string name="userId">userId</string>
     <string name="textResDistance">餐廳距離</string>
+    <string name="titleResDetail">餐廳資訊</string>
 
 </resources>

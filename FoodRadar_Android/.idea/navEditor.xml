@@ -172,6 +172,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="resDetailFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1786" />
+                            <option name="y" value="1787" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="resInsertFragment">
                     <value>
                       <LayoutPositions>
@@ -228,6 +240,15 @@
                             <option name="y" value="1272" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_resMapFragment_to_resDetailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -236,8 +257,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="35" />
-                            <option name="y" value="385" />
+                            <option name="x" value="2080" />
+                            <option name="y" value="1795" />
                           </Point>
                         </option>
                       </LayoutPositions>

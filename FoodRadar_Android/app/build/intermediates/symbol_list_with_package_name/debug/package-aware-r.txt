@@ -1908,6 +1908,7 @@ id action_rankArticleFragment_to_articleDetailFragment
 id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
+id action_resMapFragment_to_resDetailFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
@@ -2245,6 +2246,7 @@ id register_Fragment
 id registerok
 id resAddress
 id resCategoryInfo
+id resDetailFragment
 id resInsertFragment
 id resMaintainFragment
 id resMapFragment
@@ -2608,6 +2610,7 @@ layout fragment_main
 layout fragment_new_article
 layout fragment_rank_article
 layout fragment_register
+layout fragment_res_detail
 layout fragment_res_insert
 layout fragment_res_maintain
 layout fragment_res_map
@@ -2890,6 +2893,7 @@ string textUserChangConfrim
 string textUserPassword
 string textUserPhone
 string textWednesday
+string titleResDetail
 string titleResInsert
 string titleResUpdate
 string title_of_contact_us
