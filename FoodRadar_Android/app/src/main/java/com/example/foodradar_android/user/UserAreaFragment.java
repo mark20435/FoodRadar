@@ -79,17 +79,17 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 
 
         // 我的餐廳收藏
-        view.findViewById(R.id.tvMyResUserArea).setOnClickListener(this);
+        view.findViewById(R.id.tvBtUsArMyRes).setOnClickListener(this);
         // 我的優惠券收藏
-        view.findViewById(R.id.tvMyCouponUserArea).setOnClickListener(this);
+        view.findViewById(R.id.tvBtUsArMyCoupon).setOnClickListener(this);
         // 我的社群活動
-        view.findViewById(R.id.tvMyArticleUserArea).setOnClickListener(this);
+        view.findViewById(R.id.tvBtUsArMyArticle).setOnClickListener(this);
         // 會員資料設定
-        view.findViewById(R.id.tvUserDataSetupUserArea).setOnClickListener(this::onClick);
+        view.findViewById(R.id.tvBtUsArUserData).setOnClickListener(this::onClick);
         // 系統設定
-        view.findViewById(R.id.tvSystemSetupUserArea).setOnClickListener(this);
+        view.findViewById(R.id.tvBtUsArSysSetup).setOnClickListener(this);
         // 聯繫我們
-        view.findViewById(R.id.tvContactUsUserArea).setOnClickListener(this);
+        view.findViewById(R.id.tvBtUsArContactUs).setOnClickListener(this);
 
         view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
 
@@ -114,24 +114,24 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
                 break;
 
             // 我的餐廳收藏
-            case R.id.tvMyResUserArea:
+            case R.id.tvBtUsArMyRes:
                 navController.navigate(R.id.action_userAreaFragment_to_userMyResFragment);
                 break;
             // 我的優惠券收藏
-            case R.id.tvMyCouponUserArea:
+            case R.id.tvBtUsArMyCoupon:
                 break;
             // 我的社群活動
-            case R.id.tvMyArticleUserArea:
+            case R.id.tvBtUsArMyArticle:
                 break;
             // 會員資料設定
-            case R.id.tvUserDataSetupUserArea:
+            case R.id.tvBtUsArUserData:
                 navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
                 break;
             // 系統設定
-            case R.id.tvSystemSetupUserArea:
+            case R.id.tvBtUsArSysSetup:
                 break;
             // 聯繫我們
-            case R.id.tvContactUsUserArea:
+            case R.id.tvBtUsArContactUs:
                 break;
             default:
                 break;

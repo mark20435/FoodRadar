@@ -10,39 +10,328 @@
         android:id="@+id/id_btResMaintain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:text="餐廳資訊維護"
+        app:layout_constraintBottom_toTopOf="@+id/id_btMyRes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_btMyRes" />
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/id_btMyRes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="我的餐廳收藏"
+        android:background="@drawable/button_for_user_area_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/user_area_button"
         android:text="Button"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="40dp"
-        android:background="@drawable/user_area_button" /> />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!-- 我的餐廳收藏 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constvUsArMyRes"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="48dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/ic_baseline_face_24"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="40dp" />
+        <ImageView
+            android:id="@+id/ivUsArMyRes"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edUsArMyResDivider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="14dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBtUsArMyRes"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_for_user_area_menu"
+            android:text="@string/title_of_myres"
+            android:textColor="@color/mainPink"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 我的優惠券收藏 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constvUsArMyCoupon"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constvUsArMyRes">
+
+        <ImageView
+            android:id="@+id/ivUsArMyCoupon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_baseline_bookmarks_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edUsArMyCouponDivider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="14dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBtUsArMyCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_for_user_area_menu"
+            android:text="@string/title_of_mycoupon"
+            android:textColor="@color/mainPink"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 我的社群活動 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constvUsArMyArticle"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constvUsArMyCoupon">
+
+        <ImageView
+            android:id="@+id/ivUsArMyArticle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_baseline_stars_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edUsArMyArticleDivider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="14dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBtUsArMyArticle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_for_user_area_menu"
+            android:text="@string/title_of_myarticle"
+            android:textColor="@color/mainPink"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 會員資料設定 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constvUsArUserData"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constvUsArMyArticle">
+
+        <ImageView
+            android:id="@+id/ivUsArUserData"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edUsArUserDataDivider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="14dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBtUsArUserData"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_for_user_area_menu"
+            android:text="@string/title_of_userdata"
+            android:textColor="@color/mainPink"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 系統設定 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constvUsArSysSetup"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constvUsArUserData">
+
+        <ImageView
+            android:id="@+id/ivUsArSysSetup"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_baseline_settings_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edUsArSysSetupDivider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="14dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBtUsArSysSetup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_for_user_area_menu"
+            android:text="@string/title_of_sys_setup"
+            android:textColor="@color/mainPink"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 聯繫我們 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constvUsArContactUs"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constvUsArSysSetup">
+
+        <ImageView
+            android:id="@+id/ivUsArContactUs"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_baseline_mail_outline_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edUsArContactUsDivider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="14dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBtUsArContactUs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_for_user_area_menu"
+            android:text="@string/title_of_contact_us"
+            android:textColor="@color/mainPink"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

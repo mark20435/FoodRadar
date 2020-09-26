@@ -39,15 +39,9 @@
     <string name="textDatePicker">Date picker</string>
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
-
-
     <string name="textSignUp">註冊</string>
     <string name="textUserChangConfrim">確認修改</string>
     <string name="textNoImagePickerApp">手機裡沒有選取照片程式</string>
-
-
-
-
     <string name="textNoRessFound">找不到餐廳</string>
     <string name="textResIsEnable">已上架</string>
     <string name="textResIsNotEnable">未上架</string>
