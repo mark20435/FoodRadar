@@ -32,6 +32,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -84,6 +85,11 @@ public class RankArticleFragment extends Fragment {
             showArticle(articles);
             swipeRefreshLayoutRank.setRefreshing(false);
         });
+
+        //浮動button > 跳轉至insert
+        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+                .navigate(R.id.action_rankArticleFragment_to_articleInsertFragment));
     }
 
     //向server端取得Article資料
@@ -362,14 +368,14 @@ public class RankArticleFragment extends Fragment {
             });
 
             //跳轉至detail
-//            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("article", article);
-//                    Navigation.findNavController(v).navigate(R.id.action_newArticleFragment_to_articleDetailFragment, bundle);
-//                }
-//            });
+            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Article.ARTICLE_ID = article.getArticleId();
+                    Article.USER_ID = article.getUserId();
+                    Navigation.findNavController(v).navigate(R.id.action_rankArticleFragment_to_articleDetailFragment);
+                }
+            });
         }
     }
 

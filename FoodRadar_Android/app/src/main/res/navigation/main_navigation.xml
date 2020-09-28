@@ -114,7 +114,24 @@
         tools:layout="@layout/fragment_user_data_setup" />
     <fragment
         android:id="@+id/articleInsertFragment"
-        android:name="com.example.foodradar_android.ArticleInsertFragment"
+        android:name="com.example.foodradar_android.article.ArticleInsertFragment"
         android:label="fragment_article_insert"
-        tools:layout="@layout/fragment_article_insert" />
+        tools:layout="@layout/fragment_article_insert" >
+        <action
+            android:id="@+id/action_articleInsertFragment_to_resAddressFragment"
+            app:destination="@id/resAddressFragment" />
+        <action
+            android:id="@+id/action_articleInsertFragment_to_insertImageFragment"
+            app:destination="@id/insertImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resAddressFragment"
+        android:name="com.example.foodradar_android.article.ResAddressFragment"
+        android:label="fragment_res_address"
+        tools:layout="@layout/fragment_res_address" />
+    <fragment
+        android:id="@+id/insertImageFragment"
+        android:name="com.example.foodradar_android.article.InsertImageFragment"
+        android:label="fragment_insert_image"
+        tools:layout="@layout/fragment_insert_image" />
 </navigation>

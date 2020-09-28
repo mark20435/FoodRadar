@@ -2,6 +2,7 @@ package com.example.foodradar_android.article;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,13 +46,14 @@ public class ArticleDetailFragment extends Fragment {
     private Article article;
     private List<Img> imgs;
     private List<Comment> comments;
+    private List<CommentGood> commentGoods;
     private NavController navController;
     private Activity activity;
     private TextView tvDetailArticleTitle, tvDetailUserName, tvDtdailResCategoryInfo, tvDetailArticleTime, tvDetailResName,
             tvDetailAvgCon, tvArticleText, tvDetailGoodCount, tvDetailCommentCount, tvDetailFavoriteArticle;
     private ImageView ivDetailUserIcon, ivDetailSetting, user, ivDetailGoodIcon, ivDetailArticleCommentIcon, ivDetailFavoriteIcon;
-    private EditText editTextTextPersonName;
-    private Button btCommentSend;
+    private EditText etComment;   //留言
+    private Button btCommentSend;   //送出留言
     private CommonTask articleGetAllTask;
     private CommonTask commentGetAllTask;
     private CommonTask commentDeleteTask;
@@ -96,6 +99,47 @@ public class ArticleDetailFragment extends Fragment {
         tvDetailFavoriteArticle = view.findViewById(R.id.tvDetailFavoriteArticle);  //收藏數
 
         user = view.findViewById(R.id.user); //留言Bar使用者Icon
+
+        //留言功能
+        etComment = view.findViewById(R.id.etComment);  //留言Ed
+        btCommentSend = view.findViewById(R.id.btCommentSend);  //送出留言
+        btCommentSend.setOnClickListener(v -> {
+            String comment = etComment.getText().toString().trim();
+            if (comment.length() <= 0 ) {
+                Common.showToast(activity, R.string.commentNoInsert);
+                etComment.setError("請輸入留言");
+                return ;
+            }
+            if (Common.networkConnected(activity)) {
+                String url = Common.URL_SERVER + "CommentServlet";
+                Comment commentInsert = new Comment(0, articleIdBox, userIdBox, true, comment);
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("action", "commentInsert");
+                jsonObject.addProperty("comment", new Gson().toJson(commentInsert));
+                int count = 0;
+                try {
+                    String result = new CommonTask(url, jsonObject.toString()).execute().get();
+                    count = Integer.parseInt(result);
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString());
+                }
+                if (count == 0) {
+                    Common.showToast(activity, R.string.commentInsertError);
+                } else {
+                    Common.showToast(activity, R.string.commentInsertSuccess);
+                }
+            } else {
+                Common.showToast(activity, "連線失敗");
+            }
+            //收起鍵盤
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE);
+            if (imm.isActive()) {
+                // 如果鍵盤是開啟的
+                imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
+
 
         //向server端取得文章資料
         String url = Common.URL_SERVER + "ArticleServlet";
@@ -490,7 +534,8 @@ public class ArticleDetailFragment extends Fragment {
 
             //設定留言點讚功能，1.會員登入判斷還沒寫，要候補 > comment
             //2.先判斷使用者是否已點讚 > comment
-            final boolean commentGoodStatus = comment.isCommentGoodStatus();
+//            final CommentGood commentGood = commentGoods.get(position);
+            boolean commentGoodStatus = comment.isCommentGoodStatus();
             ImageView CommentGoodIcon = myViewHolder.ivCommentGoodIcon;
             if (commentGoodStatus) {
                 CommentGoodIcon.setColorFilter(Color.parseColor("#4599A6"));
@@ -498,6 +543,7 @@ public class ArticleDetailFragment extends Fragment {
                 CommentGoodIcon.setColorFilter(Color.parseColor("#424242"));
             }
             myViewHolder.ivCommentGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
+            int commentGoodCount = comment.getCommentGoodCount();
             myViewHolder.tvCommentGood.setText((comment.getCommentGoodCount() + ""));
             //3.設定監聽器
             myViewHolder.ivCommentGoodIcon.setOnClickListener(v -> {
@@ -506,10 +552,10 @@ public class ArticleDetailFragment extends Fragment {
                         String commentGoodUrl = Common.URL_SERVER + "CommentGoodServlet";
                         int insertUserId = comment.getUserId();
                         int insertcommentId = comment.getCommentId();
-                        Comment commentGood = new Comment(insertUserId, insertcommentId);
+                        Comment commentGood1 = new Comment(insertUserId, insertcommentId);
                         JsonObject jsonObject = new JsonObject();
                         jsonObject.addProperty("action", "commentGoodInsert");
-                        jsonObject.addProperty("commentGood", new Gson().toJson(commentGood));
+                        jsonObject.addProperty("commentGood", new Gson().toJson(commentGood1));
                         int count = 0;
                         try {
                             String result = new CommonTask(commentGoodUrl, jsonObject.toString()).execute().get();

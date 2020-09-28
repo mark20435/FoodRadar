@@ -32,6 +32,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -79,6 +80,11 @@ public class FavoriteArticleFragment extends Fragment {
             showArticle(articles);
             swipeRefreshLayoutFavorite.setRefreshing(false);
         });
+
+        //浮動button > 跳轉至insert
+        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+                .navigate(R.id.action_favoriteArticleFragment_to_articleInsertFragment));
     }
 
     private List<Article> getArticle() {
@@ -356,8 +362,17 @@ public class FavoriteArticleFragment extends Fragment {
                     }
                 }
             });
-        }
 
+            //跳轉至detail
+            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Article.ARTICLE_ID = article.getArticleId();
+                    Article.USER_ID = article.getUserId();
+                    Navigation.findNavController(v).navigate(R.id.action_favoriteArticleFragment_to_articleDetailFragment);
+                }
+            });
+        }
     }
 
     @Override

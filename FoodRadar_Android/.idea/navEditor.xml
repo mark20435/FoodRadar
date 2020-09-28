@@ -20,6 +20,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="articleInsertFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="996" />
+                            <option name="y" value="342" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_articleInsertFragment_to_articleDetailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="favoriteArticleFragment">
                     <value>
                       <LayoutPositions>
@@ -32,6 +53,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_favoriteArticleFragment_to_articleDetailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_favoriteArticleFragment_to_articleInsertFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -57,6 +83,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_newArticleFragment_to_articleInsertFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -74,6 +105,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_rankArticleFragment_to_articleDetailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_rankArticleFragment_to_articleInsertFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -98,8 +134,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1935" />
-                            <option name="y" value="850" />
+                            <option name="x" value="1869" />
+                            <option name="y" value="941" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -136,9 +172,23 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1927" />
-                            <option name="y" value="456" />
+                            <option name="x" value="1838" />
+                            <option name="y" value="389" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_articleInsertFragment_to_insertImageFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_articleInsertFragment_to_resAddressFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -162,6 +212,18 @@
                           <Point>
                             <option name="x" value="744" />
                             <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="insertImageFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="2167" />
+                            <option name="y" value="61" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -204,6 +266,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="resAddressFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="2163" />
+                            <option name="y" value="476" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

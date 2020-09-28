@@ -44,7 +44,10 @@ public class CommentServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<Comment> comments = commentDao.getAll();
 			writeText(response, gson.toJson(comments));
-		} else if (action.equals("commentInsert") || action.equals("commentUpdate")) {
+		} 
+		
+		//留言
+		else if (action.equals("commentInsert") || action.equals("commentUpdate")) {
 			System.out.print("action: " + action);
 			// 取得Comment內的Json字串
 			String commentJson = jsonObject.get("comment").getAsString();

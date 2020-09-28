@@ -11,5 +11,6 @@
     <color name="mainYellow">#EADDAB</color>
     <color name="mainYellowLight">#F2F0EC</color>
     <color name="colorTextHint">#AAAAAA</color>
+    <color name="mainLightBlue">#B5D8ED</color>
 
 </resources>

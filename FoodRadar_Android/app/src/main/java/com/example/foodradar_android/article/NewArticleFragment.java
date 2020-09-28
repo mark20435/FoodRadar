@@ -32,6 +32,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -113,6 +114,11 @@ public class NewArticleFragment extends Fragment {
             showArticle(articles);
             swipeRefreshLayout.setRefreshing(false);
         });
+
+        //浮動button > 跳轉至insert
+        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+                .navigate(R.id.action_newArticleFragment_to_articleInsertFragment));
 
 //          searchView
 //        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -280,7 +286,7 @@ public class NewArticleFragment extends Fragment {
 //            Log.d(TAG, "article.isArticleGoodStatus(): " + article.isArticleGoodStatus());
             ImageView goodIcon = myViewHolder.ivGoodIcon;
             if (articleGoodStatus) {
-                goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                goodIcon.setColorFilter(Color.parseColor("#1877F2"));
             } else {
                 goodIcon.setColorFilter(Color.parseColor("#424242"));
             }

@@ -19,7 +19,7 @@ public class Comment {
 	}
 
 	public Comment(int commentId, String commentTime, int articleId, int userId, String commentModifyTime,
-			boolean commentStatus, String commentText, String userName, int commentGoodId, boolean commentGoodStatus, int commentGoodCount) {
+			boolean commentStatus, String commentText, String userName, boolean commentGoodStatus, int commentGoodCount) {
 		super();
 		this.commentId = commentId;
 		this.commentTime = commentTime;
@@ -29,16 +29,25 @@ public class Comment {
 		this.commentStatus = commentStatus;
 		this.commentText = commentText;
 		this.userName = userName;
-		this.commentGoodId = commentGoodId;
+//		this.commentGoodId = commentGoodId;
 		this.commentGoodStatus = commentGoodStatus;
 		this.commentGoodCount = commentGoodCount;
 	}
+	
+    public Comment(int commentId, int articleId, int userId, boolean commentStatus, String commentText) {
+        super();
+        this.commentId = commentId;
+        this.articleId = articleId;
+        this.userId = userId;
+        this.commentStatus = commentStatus;
+        this.commentText = commentText;
+    }
 
-	public int getCommmentId() {
+	public int getCommentId() {
 		return commentId;
 	}
 
-	public void setCommmentId(int commmentId) {
+	public void setCommentId(int commmentId) {
 		this.commentId = commmentId;
 	}
 
