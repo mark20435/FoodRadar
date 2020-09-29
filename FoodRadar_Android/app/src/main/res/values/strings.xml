@@ -31,9 +31,15 @@
     <string name="textResCategory">餐廳分類</string>
     <string name="textResEnable">上架狀態</string>
     <string name="textEnable">上架</string>
-
     <string name="textLogin">登入</string>
     <string name="textLogout">登出</string>
+
+    <string name="textNoImgFound">找不到圖片</string>
+    <string name="textNoCommentFound">尚無留言</string>
+    <string name="commentNoInsert">請輸入留言</string>
+    <string name="commentInsertError">留言失敗</string>
+    <string name="commentInsertSuccess">留言成功</string>
+
 
     <string name="textChangPassword">修改密碼</string>
     <string name="textDateTime">請選擇生日</string>

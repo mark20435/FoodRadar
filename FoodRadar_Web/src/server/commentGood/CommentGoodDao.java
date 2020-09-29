@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface CommentGoodDao {
 	
+	//留言點讚
 	int insert(CommentGood commentGood);
+	
 	int update(CommentGood commentGood);
-	int delete(int commentGoodId);
+	
+	int delete(int commentId, int userId);
 	
 	CommentGood findById(int commentGood);
-	
-	//計算點讚數量
-	CommentGood commentGoodCount(CommentGood commentGood);
 	
 	List<CommentGood> getAll();
 

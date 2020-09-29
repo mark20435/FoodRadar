@@ -3,6 +3,7 @@ package server.commentGood;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import com.google.gson.JsonObject;
 public class CommentGoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static String CONTENT_TYPE = "text/html; charset=utf-8"; // 編碼
-	CommentGoodDao commentGoodDao;
+	CommentGoodDao commentGoodDao = null;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,10 +33,11 @@ public class CommentGoodServlet extends HttpServlet {
 		}
 		// Debug
 		System.out.println("input: " + jsonInput);
+		System.out.println("MyNowTime: " + new SimpleDateFormat("yyyy-MM-DD hh:mm:ss").format(System.currentTimeMillis()));
 
 		JsonObject jsonObject = gson.fromJson(jsonInput.toString(), JsonObject.class);
 		// 取得Dao實作方法
-		if (commentGoodDao != null) {
+		if (commentGoodDao == null) {
 			commentGoodDao = new CommentGoodDaoImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
@@ -43,27 +45,31 @@ public class CommentGoodServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<CommentGood> CommentGoods = commentGoodDao.getAll();
 			writeText(response, gson.toJson(CommentGoods));
-		} else if (action.equals("commentGoodInsert") || action.equals("commentGoodUpdate")) {
-			// 取得Json字串
+		} 
+		//留言點讚功能
+		else if (action.equals("commentGoodInsert")) {
 			String commentGoodJson = jsonObject.get("commentGood").getAsString();
 			System.out.println("commentGoodJson = " + commentGoodJson);
-
-			// 將Json轉為commentGood型態
 			CommentGood commentGood = gson.fromJson(commentGoodJson, CommentGood.class);
-
+			System.out.println("commentGood = " + commentGood);
 			int count = 0;
 			if (action.equals("commentGoodInsert")) {
+				System.out.println("ActioncommentGood = " + action);
 				count = commentGoodDao.insert(commentGood);
-			} else if (action.equals("commentGoodUpdate")) {
-				count = commentGoodDao.update(commentGood);
-			}
+				System.out.println("Actioncount = " + count);
+			} 		
 			// 編碼寫出
 			writeText(response, String.valueOf(count));
-		} else if (action.equals("commentGoodDelete")) {
-			int commentGoodId = jsonObject.get("commentGoodId").getAsInt();
-			int count = commentGoodDao.delete(commentGoodId);
+		} 
+		//留言取消讚功能
+		else if (action.equals("commentGoodDelete")) {
+			int commentId = jsonObject.get("commentId").getAsInt();
+			int userId = jsonObject.get("userId").getAsInt();
+			int count = commentGoodDao.delete(commentId, userId);
 			writeText(response, String.valueOf(count));
-		} else if (action.equals("findById")) {
+		} 
+		
+		else if (action.equals("findById")) {
 			int id = jsonObject.get("commentGoodId").getAsInt();
 			CommentGood commentGood = commentGoodDao.findById(id);
 			writeText(response, gson.toJson(commentGood));

@@ -1,4 +1,4 @@
-package com.example.foodradar_android;
+package com.example.foodradar_android.article;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodradar_android.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ArticleInsertFragment#newInstance} factory method to
+ * Use the {@link InsertImageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticleInsertFragment extends Fragment {
+public class InsertImageFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class ArticleInsertFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ArticleInsertFragment() {
+    public InsertImageFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class ArticleInsertFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ArticleInsertFragment.
+     * @return A new instance of fragment InsertImageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ArticleInsertFragment newInstance(String param1, String param2) {
-        ArticleInsertFragment fragment = new ArticleInsertFragment();
+    public static InsertImageFragment newInstance(String param1, String param2) {
+        InsertImageFragment fragment = new InsertImageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class ArticleInsertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_article_insert, container, false);
+        return inflater.inflate(R.layout.fragment_insert_image, container, false);
     }
 }
