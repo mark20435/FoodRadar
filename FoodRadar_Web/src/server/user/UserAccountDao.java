@@ -6,8 +6,6 @@ import java.util.List;
 //interface Dao: UserAccountDao
 public interface UserAccountDao {
 	int insert(UserAccount useraccount, byte[] image);
-	
-	int registerinsert(UserAccount useraccount);
 
 	int update(UserAccount useraccount, byte[] image);
 

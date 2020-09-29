@@ -1712,6 +1712,7 @@ drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable button
 drawable button_circle_camera
+drawable button_for_user_area_menu
 drawable chinacate
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
@@ -1746,6 +1747,7 @@ drawable ic_add
 drawable ic_awesome_user_circle
 drawable ic_baseline_account_circle_24
 drawable ic_baseline_arrow_back_24
+drawable ic_baseline_bookmarks_24
 drawable ic_baseline_broken_image_24
 drawable ic_baseline_camera_alt_24
 drawable ic_baseline_card_giftcard_24
@@ -1760,6 +1762,8 @@ drawable ic_baseline_home_24
 drawable ic_baseline_hours_24
 drawable ic_baseline_image_24
 drawable ic_baseline_location_on_24
+drawable ic_baseline_location_on_black_24
+drawable ic_baseline_mail_outline_24
 drawable ic_baseline_map_24
 drawable ic_baseline_more_vert_24
 drawable ic_baseline_person_pin_24
@@ -1767,10 +1771,12 @@ drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
 drawable ic_baseline_place_24
 drawable ic_baseline_send_24
+drawable ic_baseline_settings_24
 drawable ic_baseline_share_24
-drawable ic_baseline_star_24
 drawable ic_baseline_star_border_yellow_24
+drawable ic_baseline_star_red_24
 drawable ic_baseline_star_yellow_24
+drawable ic_baseline_stars_24
 drawable ic_baseline_supervised_user_circle_24
 drawable ic_baseline_thumb_up_24
 drawable ic_baseline_thumb_up_alt_24
@@ -1838,6 +1844,7 @@ drawable ucrop_vector_ic_crop
 drawable ucrop_vector_loader
 drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
+drawable user_area_button
 drawable wecate
 id ALT
 id BOTTOM_END
@@ -1975,13 +1982,13 @@ id btCancel
 id btCommentSend
 id btDatePicker
 id btDelete
+id btDirect
 id btEatWhat
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
 id btFriDeleteHours3
 id btImgCamera
-id btImgPickPhoto
 id btInsert
 id btMonAddHours
 id btMonAddHours2
@@ -2001,7 +2008,8 @@ id btSunAddHours2
 id btSunDeleteHours2
 id btSunDeleteHours3
 id btTakePicture
-id btTestData
+id btTestLogin
+id btTestRegister
 id btThuAddHours
 id btThuAddHours2
 id btThuDeleteHours2
@@ -2017,6 +2025,7 @@ id btWedDeleteHours2
 id btWedDeleteHours3
 id btWriteArticle
 id btnLogInOut
+id button2
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2041,6 +2050,7 @@ id chip3
 id chip_group
 id chronometer
 id circular
+id cl
 id clDetail
 id clear_text
 id clip_horizontal
@@ -2055,6 +2065,12 @@ id constraintLayout5
 id constraintLayout6
 id constraintLayout7
 id constraintLayout8
+id constvUsArContactUs
+id constvUsArMyArticle
+id constvUsArMyCoupon
+id constvUsArMyRes
+id constvUsArSysSetup
+id constvUsArUserData
 id container
 id content
 id contentPanel
@@ -2096,6 +2112,12 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id edUsArContactUsDivider
+id edUsArMyArticleDivider
+id edUsArMyCouponDivider
+id edUsArMyResDivider
+id edUsArSysSetupDivider
+id edUsArUserDataDivider
 id editComment
 id edit_query
 id end
@@ -2168,7 +2190,6 @@ id insertImageFragment
 id invisible
 id italic
 id item_touch_helper_previous_elevation
-id iv
 id ivArticleCommentIcon
 id ivArticleImage
 id ivArticleImageInsert
@@ -2200,6 +2221,12 @@ id ivResRatingStar4
 id ivResRatingStar5
 id ivResTel
 id ivShare
+id ivUsArContactUs
+id ivUsArMyArticle
+id ivUsArMyCoupon
+id ivUsArMyRes
+id ivUsArSysSetup
+id ivUsArUserData
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2225,6 +2252,8 @@ id main_navigation
 id mapView
 id masked
 id media_actions
+id menuItemPickPicture
+id menuItemTakePicture
 id menuSend
 id menu_crop
 id menu_loader
@@ -2363,6 +2392,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id spAvatraSourceSelect
 id spCategory
 id spFriEndTime
 id spFriEndTime2
@@ -2486,6 +2516,12 @@ id triangle
 id tvAdressResName
 id tvArticleText
 id tvArticleTime
+id tvBtUsArContactUs
+id tvBtUsArMyArticle
+id tvBtUsArMyCoupon
+id tvBtUsArMyRes
+id tvBtUsArSysSetup
+id tvBtUsArUserData
 id tvCommentCount
 id tvCommentGood
 id tvCommentText
@@ -2766,6 +2802,7 @@ menu appbar_menu
 menu article_insert_menu
 menu article_menu
 menu menu
+menu photo_source_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -2911,6 +2948,8 @@ string textDeleteFail
 string textDeleteHours
 string textDeleteRes
 string textDeleteSuccess
+string textDestinationNotFound
+string textDirect
 string textEatWhat
 string textEnable
 string textEveryWeek
@@ -2924,6 +2963,7 @@ string textInsert
 string textInsertCancel
 string textInsertFail
 string textInsertSuccess
+string textLocationEmpty
 string textLogin
 string textLogout
 string textModifyDate
@@ -2939,6 +2979,7 @@ string textNoMainFound
 string textNoNetwork
 string textNoRessFound
 string textOK
+string textOriginNotFound
 string textPasswordConfirm
 string textPickPicture
 string textPlsInpup

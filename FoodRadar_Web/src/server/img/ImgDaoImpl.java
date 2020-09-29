@@ -53,9 +53,9 @@ public class ImgDaoImpl implements ImgDao {
 			ps.setInt(1, img.getArticleId());
 			if (image != null) {
 				ps.setBytes(2, image);
-				ps.setInt(3, img.getImagId());
+				ps.setInt(3, img.getImgId());
 			} else {
-				ps.setInt(2, img.getImagId());
+				ps.setInt(2, img.getImgId());
 			}
 			count = ps.executeUpdate();
 		} catch (SQLException e) {

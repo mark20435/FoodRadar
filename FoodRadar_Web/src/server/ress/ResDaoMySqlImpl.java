@@ -11,6 +11,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import server.category.Category;
+import server.img.Img;
 import server.main.ServiceLocator;
 
 public class ResDaoMySqlImpl implements ResDao {
@@ -121,46 +122,13 @@ public class ResDaoMySqlImpl implements ResDao {
 				Boolean resEnable = rs.getBoolean(8);
 				Integer userId = rs.getInt(9);
 				Timestamp modifyDate = rs.getTimestamp(10);
-				 res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
+				res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
 						userId, modifyDate);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return res;
-	}
-	
-	@Override
-	public List<Res> CategoryfindById(int resId) {
-		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate FROM Res WHERE resCategoryId = ?;";
-		List<Res> ressList = new ArrayList<Res>();
-		try (Connection connection = dataSource.getConnection();
-				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setInt(1, resId);
-
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				Integer ressId = rs.getInt(1);
-				String resName = rs.getString(2);
-				String resAddress = rs.getString(3);
-				Double resLat = rs.getDouble(4);
-				Double resLon = rs.getDouble(5);
-				String resTel = rs.getString(6);
-				String resHours = rs.getString(7);
-				Integer resCategoryId = rs.getInt(8);
-				Boolean resEnable = rs.getBoolean(9);
-				Integer userId = rs.getInt(10);
-				Timestamp modifyDate = rs.getTimestamp(11);
-				Res res = new Res(ressId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
-						userId, modifyDate);
-				ressList.add(res);
-			}
-			return ressList;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return ressList;
 	}
 
 	@Override
@@ -272,14 +240,14 @@ public class ResDaoMySqlImpl implements ResDao {
 
 	@Override
 	public byte[] getImage(int resId) {
-		String sql = "SELECT resImg FROM Res WHERE resId = ? ;";
+		String sql = "SELECT resImg FROM Res WHERE resId = ?;";
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, resId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				image = rs.getBytes("resImg");
+				image = rs.getBytes(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -287,9 +255,29 @@ public class ResDaoMySqlImpl implements ResDao {
 		return image;
 	}
 
-	
-
-	
-
-	
+	@Override
+	public List<Img> getImgByResId(int resId) {
+		String sql = "select imgId, articleId\n" + 
+				"from Img\n" + 
+				"where articleId in \n" + 
+				"	(select articleId \n" + 
+				"	 from Article\n" + 
+				"     where resId = ?);";
+		List<Img> imgs = new ArrayList<Img>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, resId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int imgId = rs.getInt(1);
+				int articleId = rs.getInt(2);
+				
+				Img img = new Img(imgId, articleId);
+				imgs.add(img);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return imgs;
+	}
 }
