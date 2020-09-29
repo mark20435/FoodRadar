@@ -26,20 +26,30 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+
+
+//public class UserDataSetupFragment extends Fragment {
+//    private Activity activity;
+//    private NavController navController;
+//    private Integer UserId = 0;
+
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -159,6 +169,20 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         ImageView imageAvatar = view.findViewById(R.id.ivAvatar);
         imageAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
+
+        // vvvvvv臨時寫的，用來模擬使用者登入
+        // String userPhone = "0900123456";
+        // String userPwd = "P@ssw0rd";
+        // Integer userId = 3;
+//        UserId= new Common().getUserLoin(activity);
+//        if(UserId > 0){
+//            new Common().showToast(activity, "會員資料設定，登入成功，UserId: " + UserId);
+//        } else {
+//            new Common().showToast(activity, "會員資料設定，登入失敗，UserId: " + UserId);
+//        }
+        // ^^^^^^臨時寫的，用來模擬使用者登入
+
+//    }
 
         ivAvatar = view.findViewById(R.id.ivAvatar);
         ivAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);

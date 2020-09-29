@@ -9,6 +9,7 @@ public interface ImgDao {
 	int delete(int imgId);
 
 	Img findById(int imgId);
+
 	
 	byte[] getImage(int imgId);
 

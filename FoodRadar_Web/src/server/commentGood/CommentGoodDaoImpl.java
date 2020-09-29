@@ -23,21 +23,44 @@ public class CommentGoodDaoImpl implements CommentGoodDao {
 		this.dataSource = dataSource;
 	}
 
+	//留言點讚
 	@Override
 	public int insert(CommentGood commentGood) {
 		int count = 0;
-		String sql = "INSERT INTO CommentGood" + "(commentId, userId)" + "VALUES(?, ?)";
+		String sql = "INSERT INTO CommentGood (commentId, userId)\n"
+				+ "(SELECT ? ,? FROM CommentGood\n"
+				+ " WHERE NOT EXISTS(SELECT * FROM CommentGood WHERE commentId = ? AND userId = ?) LIMIT 1\n"
+				+ ");";
+		System.out.println("sql = " + sql);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, commentGood.getCommentId());
 			ps.setInt(2, commentGood.getUserId());
-			ps.executeUpdate();
+			ps.setInt(3, commentGood.getCommentId());
+			ps.setInt(4, commentGood.getUserId());
+			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
 
+	//取消留言點讚
+	@Override
+	public int delete(int commentId, int userId) {
+		int count = 0;
+		String sql = "DELETE FROM CommentGood WHERE commentId = ? AND userId = ? ;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, commentId);
+			ps.setInt(2, userId);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
 	@Override
 	//好像不需要？
 	public int update(CommentGood commentGood) {
@@ -49,20 +72,6 @@ public class CommentGoodDaoImpl implements CommentGoodDao {
 			ps.setInt(1, commentGood.getCommentId());
 			ps.setInt(2, commentGood.getUserId());
 			ps.setInt(3, commentGood.getCommentGoodId());
-			count = ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
-	}
-
-	@Override
-	public int delete(int commentGoodId) {
-		int count = 0;
-		String sql = "DELETE FROM CommentGood WHERE commentGoodId = ? ";
-		try (Connection connection = dataSource.getConnection();
-				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setInt(1, commentGoodId);
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,13 +96,6 @@ public class CommentGoodDaoImpl implements CommentGoodDao {
 			e.printStackTrace();
 		}
 		return commentGood;
-	}
-
-	@Override
-	// 不確定要不要
-	public CommentGood commentGoodCount(CommentGood commentGood) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

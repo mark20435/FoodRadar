@@ -25,10 +25,17 @@ public interface ArticleDao {
 	
 	//取消收藏
 	int articleFavoriteDelete(int userId, int articleId);
-
-	List<Article> getAll();
 	
+	//新進榜
 	List<Article> getAllById();
+
+	//排行榜
+	List<Article> getAllByIdRank();
+	
+	//收藏榜
+	List<Article> getAllByIdFavorite();
+	
+	List<Article> getAll();
 
 
 }

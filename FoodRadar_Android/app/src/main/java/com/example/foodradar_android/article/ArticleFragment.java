@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class ArticleFragment extends Fragment {
@@ -51,5 +52,10 @@ public class ArticleFragment extends Fragment {
         BottomNavigationView bottomNavigationView = view.findViewById(R.id.articleNavigation);
         NavController navController = Navigation.findNavController(activity, R.id.articleFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+//        //浮動button > 跳轉至insert
+//        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+//        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+//                .navigate(R.id.action_articleFragment_to_articleInsertFragment));
     }
 }

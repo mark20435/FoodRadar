@@ -27,9 +27,15 @@ public class Article implements Serializable {
     private byte[] userIcon;
     private int articleFavoriteId;
 
+    //包裝資料跳頁用
+    public static Integer ARTICLE_ID = 0;
+    public static Integer USER_ID = 0;
+
+
     public Article() {
         super();
     }
+
 
     //ArticleList頁面(新進榜，排行榜，收藏榜)
     public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
@@ -276,6 +282,11 @@ public class Article implements Serializable {
     @Override   //覆寫方法，取得articleId > 透過id 取得article
     public boolean equals(Object obj) {
         return this.articleId == ((Article) obj).articleId;
+    }
+
+    //計算平均消費
+    public String avgCon () {
+        return "平均消費："  + (conAmount / conNum)  + "/人";
     }
 
 }

@@ -5,14 +5,14 @@
     android:id="@+id/articleConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".article.ArticleFragment" >
+    tools:context=".article.ArticleFragment">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/articleNavigation"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/colorText"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="selected"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
