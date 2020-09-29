@@ -188,7 +188,7 @@ public class ArticleDaoImpl implements ArticleDao {
 		List<Article> articleList = new ArrayList<Article>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				boolean articleStatus = rs.getBoolean("articleStatus");
 				// 發文狀態為0的資料不抓取，不會顯示在前端

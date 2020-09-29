@@ -101,7 +101,7 @@ public class CommentDaoImpl implements CommentDao {
 //				+ "join CommentGood CG on C.commentId = CG.commentId\n"
 				+ "join UserAccount UA on C.userId = UA.userId\n"
 				+ "where C.commentStatus = 1 and C.articleId =  ? \n"
-				+ "ORDER BY commentTime DESC;";
+				+ "ORDER BY commentTime ASC;";
 		System.out.println("sql: " + sql);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {

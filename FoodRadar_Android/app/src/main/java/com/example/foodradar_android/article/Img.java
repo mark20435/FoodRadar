@@ -2,7 +2,7 @@ package com.example.foodradar_android.article;
 
 public class Img {
 
-    private int imagId;
+    private int imgId;
     private int articleId;
 
     public Img() {
@@ -10,22 +10,22 @@ public class Img {
     }
 
 
-    public Img(int imagId, int articleId) {
+    public Img(int imgId, int articleId) {
         super();
-        this.imagId = imagId;
+        this.imgId = imgId;
         this.articleId = articleId;
     }
 
 
 
-    public int getImagId() {
-        return imagId;
+    public int getImgId() {
+        return imgId;
     }
 
 
 
-    public void setImagId(int imagId) {
-        this.imagId = imagId;
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
     }
 
 
