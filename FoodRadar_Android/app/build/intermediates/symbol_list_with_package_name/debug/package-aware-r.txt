@@ -1759,12 +1759,15 @@ drawable ic_baseline_face_24
 drawable ic_baseline_favorite_24
 drawable ic_baseline_fiber_new_24
 drawable ic_baseline_home_24
+drawable ic_baseline_hours_24
+drawable ic_baseline_image_24
 drawable ic_baseline_location_on_24
 drawable ic_baseline_location_on_black_24
 drawable ic_baseline_mail_outline_24
 drawable ic_baseline_map_24
 drawable ic_baseline_more_vert_24
 drawable ic_baseline_person_pin_24
+drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
 drawable ic_baseline_place_24
 drawable ic_baseline_send_24
@@ -1981,6 +1984,7 @@ id btCollect
 id btCommentSend
 id btDatePicker
 id btDelete
+id btDirect
 id btEatWhat
 id btFriAddHours
 id btFriAddHours2
@@ -1993,6 +1997,7 @@ id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
 id btPickPicture
+id btReadArticle
 id btResRating
 id btSatAddHours
 id btSatAddHours2
@@ -2020,6 +2025,7 @@ id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
+id btWriteArticle
 id btnLogInOut
 id button2
 id buttonPanel
@@ -2046,6 +2052,7 @@ id chip3
 id chip_group
 id chronometer
 id circular
+id cl
 id clDetail
 id clear_text
 id clip_horizontal
@@ -2174,7 +2181,6 @@ id ignoreRequest
 id imResImg
 id image
 id imageScrollView
-id imageView
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2202,18 +2208,22 @@ id ivDetailSetting
 id ivDetailUserIcon
 id ivFavoriteIcon
 id ivGoodIcon
+id ivImage
 id ivMyRes
 id ivPlaceIcon
 id ivRedStarPassword
 id ivRedStarPasswordConfirm
 id ivRedStarPhone
 id ivRes
+id ivResAddress
+id ivResHours
 id ivResLocation
 id ivResRatingStar
 id ivResRatingStar2
 id ivResRatingStar3
 id ivResRatingStar4
 id ivResRatingStar5
+id ivResTel
 id ivShare
 id ivUsArContactUs
 id ivUsArMyArticle
@@ -2345,6 +2355,7 @@ id rvArticleImage
 id rvArticleRank
 id rvComment
 id rvCoupon
+id rvImage
 id rvInsertImage
 id rvRes
 id rvSample
@@ -2536,6 +2547,7 @@ id tvDetailUserName
 id tvDtdailResCategoryInfo
 id tvFavoriteArticle
 id tvFriday
+id tvImageNumber
 id tvModifyDate
 id tvMonday
 id tvPassword
@@ -2723,6 +2735,7 @@ layout item_view_category
 layout item_view_coupon
 layout item_view_main
 layout item_view_res
+layout item_view_res_detail_image
 layout item_view_res_map
 layout item_view_user_myres
 layout mtrl_alert_dialog
@@ -2944,6 +2957,8 @@ string textDeleteFail
 string textDeleteHours
 string textDeleteRes
 string textDeleteSuccess
+string textDestinationNotFound
+string textDirect
 string textEatWhat
 string textEnable
 string textEveryWeek
@@ -2951,11 +2966,13 @@ string textFriday
 string textGiveRating
 string textHoursError
 string textImageEmpty
+string textImageNumber
 string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
 string textInsertSuccess
+string textLocationEmpty
 string textLogin
 string textLogout
 string textModifyDate
@@ -2972,9 +2989,11 @@ string textNoMainFound
 string textNoNetwork
 string textNoRessFound
 string textOK
+string textOriginNotFound
 string textPasswordConfirm
 string textPickPicture
 string textPlsInpup
+string textReadArticle
 string textResAddress
 string textResCategory
 string textResDistance
@@ -3004,6 +3023,7 @@ string textUserChangConfrim
 string textUserPassword
 string textUserPhone
 string textWednesday
+string textWriteArticle
 string titleResDetail
 string titleResInsert
 string titleResUpdate

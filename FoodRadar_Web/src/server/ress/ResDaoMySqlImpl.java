@@ -11,6 +11,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import server.category.Category;
+import server.img.Img;
 import server.main.ServiceLocator;
 
 public class ResDaoMySqlImpl implements ResDao {
@@ -287,5 +288,31 @@ public class ResDaoMySqlImpl implements ResDao {
 			e.printStackTrace();
 		}
 		return image;
+	}
+
+	@Override
+	public List<Img> getImgByResId(int resId) {
+		String sql = "select imgId, articleId\n" + 
+				"from Img\n" + 
+				"where articleId in \n" + 
+				"	(select articleId \n" + 
+				"	 from Article\n" + 
+				"     where resId = ?);";
+		List<Img> imgs = new ArrayList<Img>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, resId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int imgId = rs.getInt(1);
+				int articleId = rs.getInt(2);
+				
+				Img img = new Img(imgId, articleId);
+				imgs.add(img);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return imgs;
 	}
 }
