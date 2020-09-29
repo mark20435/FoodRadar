@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodradar_android.user.UserAccountAvatra;
 import com.example.foodradar_android.user.UserAccount;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -39,7 +40,7 @@ public class Common{
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
     private Activity activity;
-    public static final String USER_AVATAR_FILENAME = "foodradar_avatar.bitmap";
+    public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -185,11 +186,12 @@ public class Common{
     }
 
 
-    public void setUserAvatra(Activity activity, Bitmap avatraBitmap){
-        UserAccountAvatra userAccountAvatraBitmapOut = new UserAccountAvatra(avatraBitmap);
+    public static void setUserAvatra(Activity activity, Bitmap avatraBitmap){
+        UserAccountAvatra userAccountAvatraOut = new UserAccountAvatra();
+        userAccountAvatraOut.setByteObject(bitmapToByte(avatraBitmap));
         try (ObjectOutputStream oisOut = new ObjectOutputStream(
                 activity.openFileOutput(USER_AVATAR_FILENAME, Context.MODE_PRIVATE))) {
-            oisOut.writeObject(userAccountAvatraBitmapOut);
+            oisOut.writeObject(userAccountAvatraOut);
         } catch (IOException e) {
             Log.d(TAG,"setUserAvatra: Exception");
             Log.d(TAG, e.toString());
@@ -197,17 +199,32 @@ public class Common{
     }
 
     // 取得使用者頭像，回傳Bitmap
-    public Bitmap getUserAvatra(){
-        UserAccountAvatra userAccountAvatraBitmapIn = new UserAccountAvatra();
+    public static Bitmap getUserAvatra(Activity activity){
+        UserAccountAvatra userAccountAvatraIn = new UserAccountAvatra();
+        Resources res = activity.getResources();
         try (ObjectInputStream oisIn = new ObjectInputStream(
                 activity.openFileInput(USER_AVATAR_FILENAME))) {
-                userAccountAvatraBitmapIn = (UserAccountAvatra) oisIn.readObject();
+//            if (oisIn.equals(null)) {
+//                Log.d(TAG,"oisIn.equals(null)");
+//                // 若取不到頭像，則回傳預設頭像
+//                return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
 //            }
+            userAccountAvatraIn = (UserAccountAvatra) oisIn.readObject();
+            if (userAccountAvatraIn.getByteObject().equals(null)) {
+                Log.d(TAG,"userAccountAvatraIn.getByteObject().equals(null)");
+                // 若取不到頭像，則回傳預設頭像
+                setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
+                return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
+            } else {
+                return byteToBitmap(userAccountAvatraIn.getByteObject());
+            }
         } catch (Exception e) {
             Log.d(TAG,"getUserAvatra: Exception");
             Log.d(TAG, e.toString());
+            // 若取不到頭像，則回傳預設頭像
+            setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
+            return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
         }
-        return userAccountAvatraBitmapIn.getBitmapObject();
     }
 
     // 使用者登出，傳入 Activity
@@ -232,7 +249,31 @@ public class Common{
         // 頭像設為預設值
         Resources res = activity.getResources();
         Bitmap account_circle_bitmap = BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
-        new Common().setUserAvatra(activity, account_circle_bitmap);
+        Common.setUserAvatra(activity, account_circle_bitmap);
     }
+
+    public static byte[] bitmapToByte(Bitmap bitmap) {
+//        try {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            // quality設100代表不壓縮，範圍值0~100
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            return stream.toByteArray();
+//        } catch (Exception e) {
+//            Log.d(TAG,"bitmapToByte: Exception");
+//            e.printStackTrace();
+//            return null;
+//        }
+    }
+
+    public static Bitmap byteToBitmap(byte[] bitmapOfByte) {
+//        try {
+            return BitmapFactory.decodeByteArray(bitmapOfByte, 0, bitmapOfByte.length);
+//        } catch (Exception e) {
+//            Log.d(TAG,"byteToBitmap: Exception");
+//            e.printStackTrace();
+//            return null;
+//        }
+    }
+
 
 }

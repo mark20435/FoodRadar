@@ -1,6 +1,5 @@
 package server.ress;
 
-import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,9 +42,6 @@ public class ResServlet extends HttpServlet {
 			resDao = new ResDaoMySqlImpl();
 		}
 		String action = jsonObject.get("action").getAsString();
-		int id;
-		Res res;
-		byte[] image;
 
 		if (action.equals("getAll")) {
 			List<Res> ress = resDao.getAll();
@@ -55,29 +51,24 @@ public class ResServlet extends HttpServlet {
 			writeText(response, gson.toJson(ress));
 		} else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
-			id = jsonObject.get("id").getAsInt();
-			
-			System.out.println("id: " + id);
-			
+			int id = jsonObject.get("id").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt();
-			image = resDao.getImage(id);
+			byte[] image = resDao.getImage(id);
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize);
 				response.setContentType("image/jpeg");
 				response.setContentLength(image.length);
-				os.write(image);}
-			
-			
+				os.write(image);
+			}
 		} else if (action.equals("getCategories")) {
 			List<Category> Categories = resDao.getCategories();
 			writeText(response, gson.toJson(Categories));
-		
 		} else if (action.equals("resInsert") || action.equals("resUpdate")) {
 			String resJson = jsonObject.get("res").getAsString();
 			System.out.println("resJson = " + resJson);
-			res = gson.fromJson(resJson, Res.class);
-			image = null;
-		
+			Res res = gson.fromJson(resJson, Res.class);
+			byte[] image = null;
+			
 			if (jsonObject.get("imageBase64") != null) {
 				String imageBase64 = jsonObject.get("imageBase64").getAsString();
 				if (imageBase64 != null && !imageBase64.isEmpty()) {
@@ -95,15 +86,11 @@ public class ResServlet extends HttpServlet {
 			int resId = jsonObject.get("resId").getAsInt();
 			int count = resDao.delete(resId);
 			writeText(response, String.valueOf(count));
-		} else if (action.equals("categoryfindById")) {
-			id = jsonObject.get("id").getAsInt();
-			List<Res> ress = resDao.CategoryfindById(id);	
-			writeText(response, gson.toJson(ress));
 		} else if (action.equals("findById")) {
-			id = jsonObject.get("id").getAsInt();
-			res = resDao.findById(id);
+			int id = jsonObject.get("id").getAsInt();
+			Res res = resDao.findById(id);
 			writeText(response, gson.toJson(res));
-		}else {
+		} else {
 			writeText(response, "");
 		}
 	}
@@ -112,7 +99,6 @@ public class ResServlet extends HttpServlet {
 		response.setContentType(CONTENT_TYPE);
 		PrintWriter out = response.getWriter();
 		out.print(outText);
-		System.out.println(outText);
 		
 	}
     

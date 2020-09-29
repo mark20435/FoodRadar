@@ -39,7 +39,7 @@ public class UserMyResFragment extends Fragment {
     private List<MyRes> myResList = new ArrayList<>();
     private List<UserMyResImage> imageTasks= new ArrayList<>();
     private RecyclerView rcvMyRes;
-    private Integer userId;
+//    private Integer userId;
     private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     private String MYRES_SERVLET = URL_SERVER + "MyResServlet";
     private Integer imageSize = 500;
@@ -51,7 +51,7 @@ public class UserMyResFragment extends Fragment {
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
+        Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
 
         navController =
@@ -93,13 +93,14 @@ public class UserMyResFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rcvMyRes = view.findViewById(R.id.id_rcvMyRes);
         rcvMyRes.setLayoutManager(new LinearLayoutManager(activity));
-        userId = 3; // 取得user登入的 帳號/userId
+//        userId = 3; // 取得user登入的 帳號/userId
         myResList = getMyRes();
 //        Log.d("TAG","myResList: " + myResList);
         showMyRes(myResList);
+    }
 
-
-
+    private int getUserId(){
+        return Common.USER_ID;
     }
 
     private class MyResAdapter extends  RecyclerView.Adapter<MyResAdapter.MyViewHolder>{
@@ -185,7 +186,7 @@ public class UserMyResFragment extends Fragment {
 
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getAllById");
-            jsonObject.addProperty("id", userId);
+            jsonObject.addProperty("id", getUserId());
             String jsonOut = jsonObject.toString();
 
 //            Log.d(TAG,"getBooks.Common.URL_SERVLET: " + Common.URL_SERVLET);

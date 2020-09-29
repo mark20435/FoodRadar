@@ -2,6 +2,7 @@ package server.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +16,8 @@ public class PubTools {
 		sb.append(TAG);
 		sb.append(": ");
 		sb.append(strMsg);
+		String strNow = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS").format(System.currentTimeMillis());
+		sb.append("\u0020" + strNow);
 		System.out.println(sb.toString());		
 	}
 	
