@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import server.category.Category;
 import server.main.ServiceLocator;
 
 public class ResDaoMySqlImpl implements ResDao {
@@ -120,7 +121,7 @@ public class ResDaoMySqlImpl implements ResDao {
 				Boolean resEnable = rs.getBoolean(8);
 				Integer userId = rs.getInt(9);
 				Timestamp modifyDate = rs.getTimestamp(10);
-				res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
+				 res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
 						userId, modifyDate);
 			}
 		} catch (SQLException e) {
@@ -128,11 +129,47 @@ public class ResDaoMySqlImpl implements ResDao {
 		}
 		return res;
 	}
+	
+	@Override
+	public List<Res> CategoryfindById(int resId) {
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate FROM Res WHERE resCategoryId = ?;";
+		List<Res> ressList = new ArrayList<Res>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, resId);
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Integer ressId = rs.getInt(1);
+				String resName = rs.getString(2);
+				String resAddress = rs.getString(3);
+				Double resLat = rs.getDouble(4);
+				Double resLon = rs.getDouble(5);
+				String resTel = rs.getString(6);
+				String resHours = rs.getString(7);
+				Integer resCategoryId = rs.getInt(8);
+				Boolean resEnable = rs.getBoolean(9);
+				Integer userId = rs.getInt(10);
+				Timestamp modifyDate = rs.getTimestamp(11);
+				Res res = new Res(ressId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
+						userId, modifyDate);
+				ressList.add(res);
+			}
+			return ressList;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ressList;
+	}
 
 	@Override
 	public List<Res> getAll() {
-		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate "
-				+ "FROM Res ORDER BY modifyDate DESC;";
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName \n" + 
+				"FROM Res R\n" + 
+				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
+				"left join UserAccount U on R.userId = U.userId\n" + 
+				"ORDER BY modifyDate DESC;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -149,8 +186,12 @@ public class ResDaoMySqlImpl implements ResDao {
 				Boolean resEnable = rs.getBoolean(9);
 				Integer userId = rs.getInt(10);
 				Timestamp modifyDate = rs.getTimestamp(11);
+				String resCategoryInfo = rs.getString(12);
+				String userName = rs.getString(13);
 				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
 						resEnable, userId, modifyDate);
+				res.setResCategoryInfo(resCategoryInfo);
+				res.setUserName(userName);
 				ressList.add(res);
 			}
 			return ressList;
@@ -159,21 +200,96 @@ public class ResDaoMySqlImpl implements ResDao {
 		}
 		return ressList;
 	}
+	
+	@Override
+	public List<Res> getAllEnable() {
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName \n" + 
+				"FROM Res R\n" + 
+				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
+				"left join UserAccount U on R.userId = U.userId\n" + 
+				"WHERE resEnable = 1 " +
+				"ORDER BY modifyDate DESC;";
+		List<Res> ressList = new ArrayList<Res>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int resId = rs.getInt(1);
+				String resName = rs.getString(2);
+				String resAddress = rs.getString(3);
+				Double resLat = rs.getDouble(4);
+				Double resLon = rs.getDouble(5);
+				String resTel = rs.getString(6);
+				String resHours = rs.getString(7);
+				Integer resCategoryId = rs.getInt(8);
+				Boolean resEnable = rs.getBoolean(9);
+				Integer userId = rs.getInt(10);
+				Timestamp modifyDate = rs.getTimestamp(11);
+				String resCategoryInfo = rs.getString(12);
+				String userName = rs.getString(13);
+				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
+						resEnable, userId, modifyDate);
+				res.setResCategoryInfo(resCategoryInfo);
+				res.setUserName(userName);
+				ressList.add(res);
+			}
+			return ressList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ressList;
+	}
+	
+	@Override
+	public List<Category> getCategories() {
+		// Date Time: 2020-09-11 18:35:24
+		// select statements : Category
+		String sql = "SELECT resCategoryId, resCategoryInfo, resCategorySn" 
+		        + " FROM Category;";
+		
+
+		List<Category> categoryList  = new ArrayList<Category>();
+		try (Connection connection = dataSource.getConnection();
+			PreparedStatement ps = connection.prepareStatement(sql);) {			
+			ResultSet rs = ps.executeQuery(sql);
+			// 假如有下一個欄位的話，取得其資料
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String info = rs.getString(2);
+				int cateSn = rs.getInt(3);
+				
+
+				Category category = new Category(id, info, cateSn);
+				categoryList.add(category);
+			}
+			return categoryList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return categoryList;
+
+	}
 
 	@Override
 	public byte[] getImage(int resId) {
-		String sql = "SELECT resImg FROM Res WHERE resId = ?;";
+		String sql = "SELECT resImg FROM Res WHERE resId = ? ;";
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, resId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				image = rs.getBytes(1);
+				image = rs.getBytes("resImg");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return image;
 	}
+
+	
+
+	
+
+	
 }

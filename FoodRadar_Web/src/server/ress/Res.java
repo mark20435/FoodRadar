@@ -11,9 +11,13 @@ public class Res {
 	private String resTel;
 	private String resHours;
 	private int resCategoryId;
+	private String resCategoryInfo;
 	private boolean resEnable;
 	private int userId;
+	private String userName;
 	private Timestamp modifyDate;
+	
+	
 	
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
@@ -117,6 +121,22 @@ public class Res {
 
 	public void setModifyDate(Timestamp modifyDate) {
 		this.modifyDate = modifyDate;
+	}
+
+	public String getResCategoryInfo() {
+		return resCategoryInfo;
+	}
+
+	public void setResCategoryInfo(String resCategoryInfo) {
+		this.resCategoryInfo = resCategoryInfo;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

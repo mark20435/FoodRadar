@@ -53,9 +53,9 @@ public class ArticleFragment extends Fragment {
         NavController navController = Navigation.findNavController(activity, R.id.articleFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-        //浮動button > 跳轉至insert
-        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
-        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-                .navigate(R.id.action_articleFragment_to_articleInsertFragment));
+//        //浮動button > 跳轉至insert
+//        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+//        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+//                .navigate(R.id.action_articleFragment_to_articleInsertFragment));
     }
 }

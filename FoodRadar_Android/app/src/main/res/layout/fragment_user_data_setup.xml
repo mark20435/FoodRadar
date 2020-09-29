@@ -70,7 +70,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="12dp"
                 android:ems="10"
-                android:hint="確認密碼"
+                android:hint="@string/textPasswordConfirm"
                 android:inputType="textPassword"
                 android:lineSpacingExtra="18sp"
                 android:textSize="16sp"
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="密碼"
+                android:text="@string/textUserPassword"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/etPassword"
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="確認密碼"
+                android:text="@string/textPasswordConfirm"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/etPasswordConfirm"
@@ -140,12 +140,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/id_ivAvatar"
+                    android:id="@+id/ivAvatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#EADDAB"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/ic_baseline_account_circle_24" />
+                    tools:src="@drawable/ic_awesome_user_circle" />
 
             </androidx.cardview.widget.CardView>
 
@@ -165,7 +165,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
 
             <Button
-                android:id="@+id/btnChangPassword"
+                android:id="@+id/btSignupOrChang"
                 style="@style/styleButton"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
@@ -177,11 +177,11 @@
                 app:layout_constraintTop_toTopOf="@+id/btnLogInOut" />
 
             <TextView
-                android:id="@+id/tvPhone"
+                android:id="@+id/tvUserPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="手機號碼"
+                android:text="@string/textUserPhone"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/etUserPhone"
@@ -196,7 +196,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="12dp"
                 android:ems="10"
-                android:hint="手機號碼"
+                android:hint="@string/textUserPhone"
                 android:inputType="phone"
                 android:lineSpacingExtra="18sp"
                 android:textSize="16sp"
@@ -211,7 +211,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="12dp"
                 android:ems="10"
-                android:hint="密碼"
+                android:hint="@string/textUserPassword"
                 android:inputType="textPassword"
                 android:lineSpacingExtra="18sp"
                 android:textSize="16sp"
@@ -220,17 +220,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/etUserPhone" />
 
             <ImageView
-                android:id="@+id/ivRedStar"
+                android:id="@+id/ivRedStarPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_baseline_star_24"
-                app:layout_constraintBottom_toBottomOf="@+id/tvPhone"
+                app:layout_constraintBottom_toBottomOf="@+id/tvUserPhone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvPhone" />
+                app:layout_constraintTop_toTopOf="@+id/tvUserPhone" />
 
             <ImageView
-                android:id="@+id/ivRedStar4"
+                android:id="@+id/ivRedStarPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -240,7 +240,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tvPassword" />
 
             <ImageView
-                android:id="@+id/ivRedStar5"
+                android:id="@+id/ivRedStarPasswordConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -258,6 +258,26 @@
                 android:src="@drawable/ic_baseline_camera_alt_24"
                 app:layout_constraintBottom_toBottomOf="@+id/cardViewAvatar"
                 app:layout_constraintStart_toEndOf="@+id/cardViewAvatar" />
+
+            <Button
+                android:id="@+id/btImgPickPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="選取照片"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btTestData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="InputTest"
+                app:layout_constraintBottom_toTopOf="@+id/ivRedStarPhone"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

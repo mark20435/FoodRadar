@@ -21,6 +21,7 @@ import server.main.ImageUtil;
 @WebServlet("/CategoryServlet")
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final static String CONTENT_TYPE = "text/html; charset=utf-8";
 	private CategoryDao categoryDao = null;
 	
 
@@ -92,7 +93,7 @@ public class CategoryServlet extends HttpServlet {
 	}
 	
 	private void writeText(HttpServletResponse response, String outText) throws IOException {
-		String CONTENT_TYPE = "text/html; charset=utf-8";
+//		String CONTENT_TYPE = "text/html; charset=utf-8";
 		response.setContentType(CONTENT_TYPE);
 		PrintWriter out = response.getWriter();
 		out.print(outText);

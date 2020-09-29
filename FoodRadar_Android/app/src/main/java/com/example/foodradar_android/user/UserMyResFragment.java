@@ -145,7 +145,7 @@ public class UserMyResFragment extends Fragment {
             MyRes myResBidVH = myResListAdpt.get(position);
             holder.tvResName.setText(myResBidVH.getResName());
             holder.tvResHours.setText(getResources().getString(R.string.textResHours) + ": " + myResBidVH.getResHours());
-            holder.tvResTel.setText(getResources().getString(R.string.textResPhone) + ": " + myResBidVH.getResTel());
+            holder.tvResTel.setText(getResources().getString(R.string.textResTel) + ": " + myResBidVH.getResTel());
             holder.tvResAddress.setText(getResources().getString(R.string.textResAddress) + ": " + myResBidVH.getResAddress());
 
             Integer resId = myResBidVH.getResId(); // 餐廳ID

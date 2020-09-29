@@ -24,7 +24,7 @@
     <string name="textNoNetwork">No Network</string>
     <string name="resMaintain">餐廳資訊維護</string>
     <string name="textResName">餐廳名稱</string>
-    <string name="textResPhone">聯絡電話</string>
+    <string name="textResTel">聯絡電話</string>
     <string name="textResAddress">餐廳地址</string>
     <string name="textResHours">營業時間</string>
     <string name="textResCategory">餐廳分類</string>
@@ -32,16 +32,22 @@
     <string name="textEnable">上架</string>
     <string name="textLogin">登入</string>
     <string name="textLogout">登出</string>
-    <string name="textChangPassword">修改密碼</string>
 
     <string name="textNoImgFound">找不到圖片</string>
     <string name="textNoCommentFound">尚無留言</string>
-    <string name="textNoArticleFound">找不到文章</string>
-    <string name="titleResInsert">新增餐廳</string>
     <string name="commentNoInsert">請輸入留言</string>
     <string name="commentInsertError">留言失敗</string>
     <string name="commentInsertSuccess">留言成功</string>
 
+
+    <string name="textChangPassword">修改密碼</string>
+    <string name="textDateTime">請選擇生日</string>
+    <string name="textDatePicker">Date picker</string>
+    <string name="textNoArticleFound">找不到文章</string>
+    <string name="titleResInsert">新增餐廳</string>
+    <string name="textSignUp">註冊</string>
+    <string name="textUserChangConfrim">確認修改</string>
+    <string name="textNoImagePickerApp">手機裡沒有選取照片程式</string>
     <string name="textNoRessFound">找不到餐廳</string>
     <string name="textResIsEnable">已上架</string>
     <string name="textResIsNotEnable">未上架</string>
@@ -63,6 +69,36 @@
     <string name="textFriday">星期五</string>
     <string name="textSaturday">星期六</string>
     <string name="textSunday">星期日</string>
+
+    <string name="textNetworkConnectedFail">沒有網路連線</string>
+    <string name="textSignUpSend">送出註冊</string>
+    <string name="textSignUpCancel">取消註冊</string>
+    <string name="textUserPhone">手機號碼</string>
+    <string name="textUserPassword">密碼</string>
+    <string name="textPasswordConfirm">確認密碼</string>
+    <string name="textPlsInpup">請輸入</string>
+
+    <string name="textInsertFail">新增失敗</string>
+    <string name="textInsertSuccess">新增成功</string>
+    <string name="textModifyUserName">最後修改者Name</string>
+    <string name="textModifyDate">最後修改時間</string>
+    <string name="textDeleteRes">刪除</string>
+    <string name="textUpdateRes">修改</string>
+    <string name="titleResUpdate">修改餐廳資訊</string>
+    <string name="textDeleteFail">刪除失敗</string>
+    <string name="textDeleteSuccess">刪除成功</string>
+    <string name="textOK">確定</string>
+    <string name="textCancel">取消</string>
+    <string name="textInputEmpty">所有欄位皆不可空白</string>
+    <string name="textAddressError">輸入地址錯誤</string>
+    <string name="textImageEmpty">請上傳照片</string>
+    <string name="textUpdate">確定修改</string>
+    <string name="textUpdateCancel">取消修改</string>
+    <string name="textHoursError">營業時間輸入錯誤</string>
+    <string name="textUpdateFail">修改失敗</string>
+    <string name="textUpdateSuccess">修改成功</string>
+    <string name="textResRating">餐廳評價</string>
+    <string name="textSearchResAgain">重新查詢附近餐廳</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">
@@ -226,5 +262,19 @@
         <item>23:00</item>
         <item>23:30</item>
     </string-array>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_register">會員註冊</string>
+    <string name="action_sign_in">會員登入</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="phone">Phone</string>
+    <string name="userId">userId</string>
+    <string name="textResDistance">餐廳距離</string>
+    <string name="titleResDetail">餐廳資訊</string>
+    <string name="textGiveRating">留下評價</string>
 
 </resources>
