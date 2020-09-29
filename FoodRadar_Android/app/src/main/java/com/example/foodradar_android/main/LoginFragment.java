@@ -17,11 +17,13 @@ import android.widget.Button;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.user.UserAccount;
 
 
 public class LoginFragment extends Fragment  {
     private Activity activity;
     private NavController navController;
+    private final String TAG = "TAG_LoginFragment";
     private String username;
     private String userPwd;
     private Integer UserId = 9;
@@ -67,9 +69,14 @@ public class LoginFragment extends Fragment  {
         Button cancel = view.findViewById(R.id.regcancel);
 
 
+
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserAccount userAccount = new Common().getUserLoin(activity);
+                Common.USER_ID = userAccount.getUserId();
+                Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
 
 
 //                if (username.equals("0900123456") && userPwd.equals("P@ssw0rd") && UserId.equals("9")){
@@ -108,10 +115,13 @@ public class LoginFragment extends Fragment  {
             }
         });
 
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_loginFragment_to_register_Fragment);
+
+                Navigation.findNavController(v).navigate(R.id.btTestData);
+//                navController.navigate(R.id.action_loginFragment_to_userDataSetupFragment);
 //                AlertDialog.Builder d = new AlertDialog.Builder(activity);
 //                d.setTitle("警告！")
 //                        .setMessage("已註冊")
@@ -158,5 +168,8 @@ public class LoginFragment extends Fragment  {
 //        }
 //    }
 
+    }
+    private int getUserId(){
+        return Common.USER_ID;
     }
 }

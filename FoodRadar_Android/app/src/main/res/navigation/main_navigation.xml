@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/couponFragment"
-        android:name="com.example.foodradar_android.CouponFragment"
+        android:name="com.example.foodradar_android.coupon.CouponFragment"
         android:label="fragment_coupon"
         tools:layout="@layout/fragment_coupon" />
     <fragment
@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_loginFragment_to_register_Fragment"
             app:destination="@id/register_Fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userDataSetupFragment"
+            app:destination="@id/userDataSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/register_Fragment"
