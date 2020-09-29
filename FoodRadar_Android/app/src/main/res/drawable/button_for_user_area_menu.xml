@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/mainYellow">
+    <item
+        android:id="@android:id/background" >
+        <shape>
+<!--            <corners android:radius="5dp" />-->
+            <solid android:color="#FFF9F9F9" />
+            <padding android:top="6dp"
+                android:left="2dp"/>
+<!--            <padding android:bottom="10dp"-->
+<!--                android:left="10dp"-->
+<!--                android:right="10dp"-->
+<!--                android:top="10dp" />-->
+
+        </shape>
+    </item>
+</ripple>
+
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<!--    <item android:text="@color/colorText">-->
+<!--        &lt;!&ndash;rectangle 長方形 可以畫出直角形，圓角形，弧形等&ndash;&gt;-->
+<!--        <shape android:shape="rectangle">-->
+<!--            &lt;!&ndash;設定圓角，當設置的圓角半徑很大，就可變成弧形邊了&ndash;&gt;-->
+
+<!--            <corners android:radius="8dp" />-->
+<!--            &lt;!&ndash; 顏色 &ndash;&gt;-->
+<!--&lt;!&ndash;            <solid android:color="@color/mainPink" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;邊框&ndash;&gt;-->
+<!--&lt;!&ndash;            <stroke android:width="1dip" android:color="#538394" />&ndash;&gt;-->
+<!--            &lt;!&ndash;漸層顏色&ndash;&gt;-->
+<!--&lt;!&ndash;            <gradient android:angle="-90" android:startColor="#0099CC" android:endColor="#017DAB"  />&ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+
+
+<!--</selector>-->

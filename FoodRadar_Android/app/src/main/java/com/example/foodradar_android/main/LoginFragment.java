@@ -120,7 +120,7 @@ public class LoginFragment extends Fragment  {
             @Override
             public void onClick(View v) {
 
-                Navigation.findNavController(v).navigate(R.id.btTestData);
+                Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_userDataSetupFragment);
 //                navController.navigate(R.id.action_loginFragment_to_userDataSetupFragment);
 //                AlertDialog.Builder d = new AlertDialog.Builder(activity);
 //                d.setTitle("警告！")

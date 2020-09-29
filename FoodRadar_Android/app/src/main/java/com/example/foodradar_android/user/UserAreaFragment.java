@@ -1,6 +1,7 @@
 package com.example.foodradar_android.user;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,13 +10,19 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -24,7 +31,7 @@ import com.example.foodradar_android.R;
 public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
-
+    private TextView tvMyResUserArea;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,17 +49,17 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     // 顯示右上角的OptionMenu選單
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
-        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
+//        super.onCreateOptionsMenu(menu, inflater);
     }
     // 顯示右上角的OptionMenu選單
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.Finish:
-                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
-                break;
+//            case R.id.Finish:
+//                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
+//                break;
             case android.R.id.home:
                 navController.popBackStack();
                 break;
@@ -73,29 +80,29 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
-        view.findViewById(R.id.id_btMyRes).setOnClickListener(this);
 
+        // 我的餐廳收藏
+        view.findViewById(R.id.tvBtUsArMyRes).setOnClickListener(this);
+        // 我的優惠券收藏
+        view.findViewById(R.id.tvBtUsArMyCoupon).setOnClickListener(this);
+        // 我的社群活動
+        view.findViewById(R.id.tvBtUsArMyArticle).setOnClickListener(this);
+        // 會員資料設定
+        view.findViewById(R.id.tvBtUsArUserData).setOnClickListener(this::onClick);
+        // 系統設定
+        view.findViewById(R.id.tvBtUsArSysSetup).setOnClickListener(this);
+        // 聯繫我們
+        view.findViewById(R.id.tvBtUsArContactUs).setOnClickListener(this);
 
-        // vvvvvv 臨時加的
+        // 取得使用者登入狀態，以進行後續的畫面控制
         UserAccount userAccount = new Common().getUserLoin(activity);
         Common.USER_ID = userAccount.getUserId();
         Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
-        // ^^^^^^^ 臨時加的
 
 
+        // 臨時的餐廳資訊維護進入點按鈕
+        view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
 
-
-
-//        Button button;
-//        button = view.findViewById(R.id.id_btResMaintain);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
-//
-//            }
-//        });
     }
 
     private int getUserId(){
@@ -105,17 +112,34 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
+            // 臨時的餐廳資訊維護進入點按鈕
             case R.id.id_btResMaintain:
                 navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
                 break;
-            case R.id.id_btMyRes:
+
+            // 我的餐廳收藏
+            case R.id.tvBtUsArMyRes:
                 navController.navigate(R.id.action_userAreaFragment_to_userMyResFragment);
+                break;
+            // 我的優惠券收藏
+            case R.id.tvBtUsArMyCoupon:
+                break;
+            // 我的社群活動
+            case R.id.tvBtUsArMyArticle:
+                break;
+            // 會員資料設定
+            case R.id.tvBtUsArUserData:
+                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
+                break;
+            // 系統設定
+            case R.id.tvBtUsArSysSetup:
+                break;
+            // 聯繫我們
+            case R.id.tvBtUsArContactUs:
                 break;
             default:
                 break;
-
         }
 
     }

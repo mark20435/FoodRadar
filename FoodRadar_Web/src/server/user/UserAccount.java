@@ -21,6 +21,7 @@ public class UserAccount {
 		
 	}
 	
+	// For get UserAccount
 	public UserAccount(int userId, String userPhone, String userPwd, Timestamp userBirth, String userName,
 			Boolean allowNotifi, Boolean isEnable, Boolean isAdmin, byte[] userAvatar, Timestamp createDate,
 			Timestamp modifyDate) {
@@ -37,17 +38,18 @@ public class UserAccount {
 		this.createDate = createDate;
 		this.modifyDate = modifyDate;
 	}
-	  // For Register
-    public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName) {
+	
+	// For Signup and Update
+    public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName,
+                       Boolean allowNotifi) {
         super();
-//        this.userId = userId;
         this.userPhone = userPhone;
         this.userPwd = userPwd;
         this.userBirth = userBirth;
         this.userName = userName;
-//        this.allowNotifi = allowNotifi;
+        this.allowNotifi = allowNotifi;
+        this.userAvatar = userAvatar;
     }
-
 	
 	public int getUserId() {
 		return userId;

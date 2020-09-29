@@ -121,7 +121,7 @@ public class ResDaoMySqlImpl implements ResDao {
 				Boolean resEnable = rs.getBoolean(8);
 				Integer userId = rs.getInt(9);
 				Timestamp modifyDate = rs.getTimestamp(10);
-				 res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
+				res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable,
 						userId, modifyDate);
 			}
 		} catch (SQLException e) {
@@ -129,6 +129,7 @@ public class ResDaoMySqlImpl implements ResDao {
 		}
 		return res;
 	}
+
 	
 	@Override
 	public List<Res> CategoryfindById(int resId) {
@@ -162,6 +163,7 @@ public class ResDaoMySqlImpl implements ResDao {
 		}
 		return ressList;
 	}
+
 
 	@Override
 	public List<Res> getAll() {
@@ -272,24 +274,18 @@ public class ResDaoMySqlImpl implements ResDao {
 
 	@Override
 	public byte[] getImage(int resId) {
-		String sql = "SELECT resImg FROM Res WHERE resId = ? ;";
+		String sql = "SELECT resImg FROM Res WHERE resId = ?;";
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, resId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				image = rs.getBytes("resImg");
+				image = rs.getBytes(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return image;
 	}
-
-	
-
-	
-
-	
 }
