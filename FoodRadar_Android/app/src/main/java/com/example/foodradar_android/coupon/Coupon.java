@@ -12,6 +12,11 @@ public class Coupon implements Serializable {
     private String tvCouInfo;
     private Timestamp date;
     private Button btCollect;
+    private Boolean couPonEnable;
+
+    public Coupon(Boolean couPonEnable) {
+        this.couPonEnable = couPonEnable;
+    }
 
     public Coupon(int couPonId, int resId, String resName, String tvCouInfo, Timestamp date, Button btCollect) {
         this.couPonId = couPonId;
@@ -20,6 +25,15 @@ public class Coupon implements Serializable {
         this.tvCouInfo = tvCouInfo;
         this.date = date;
         this.btCollect = btCollect;
+
+    }
+
+    public Boolean getCouPonEnable() {
+        return couPonEnable;
+    }
+
+    public void setCouPonEnable(Boolean couPonEnable) {
+        this.couPonEnable = couPonEnable;
     }
 
     public int getCouPonId() {

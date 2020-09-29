@@ -9,19 +9,29 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.task.ImageTask;
+
+import java.util.List;
 
 
 public class ResDetailFragment extends Fragment {
     private NavController navController;
     private final static String TAG = "TAG_ResDetailFragment";
     private FragmentActivity activity;
+    private List<ImageTask> imageTasks;
+    private ImageTask imageTask;
+    private ImageView imageView;
+    private int imageSize;
+    private Res res;
 
 
     @Override
@@ -29,6 +39,7 @@ public class ResDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         activity = getActivity();
+        res = (Res) (getArguments() != null ? getArguments().getSerializable("res") : null);
 
         // 顯示左上角的返回箭頭
         new Common();
@@ -66,5 +77,15 @@ public class ResDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imageView = view.findViewById(R.id.imageView);
+
+
+        String url = Common.URL_SERVER + "ResServlet";
+        int id = res.getResId();
+        imageSize = getResources().getDisplayMetrics().widthPixels /4;
+        imageTask = new ImageTask(url, id, imageSize, imageView);
+        imageTask.execute();
+//        Log.d(TAG, "imageTask: " + imageTaskBVH);
+
     }
 }

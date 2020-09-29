@@ -162,6 +162,11 @@ public class CouponFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+            final Coupon coupon = coupons.get(position);
+            String url = Common.URL_SERVER + "CouponServlet";
+            int id = coupon.getCouPonId();
+
+
 
         }
 

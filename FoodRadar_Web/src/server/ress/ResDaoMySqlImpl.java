@@ -132,7 +132,7 @@ public class ResDaoMySqlImpl implements ResDao {
 	
 	@Override
 	public List<Res> CategoryfindById(int resId) {
-		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate FROM Res WHERE resCategoryId = ?;";
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId, resEnable, userId, modifyDate FROM Res WHERE resEnable = 1 AND resCategoryId = ?;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
