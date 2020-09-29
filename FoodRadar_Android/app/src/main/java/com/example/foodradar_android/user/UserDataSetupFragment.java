@@ -431,12 +431,12 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         String userPwd = etPassword.getText().toString();
         String userBirth = etUserBirth.getText().toString();
         Log.d(TAG,"userBirth: " + userBirth);
-        Timestamp userBirth_Timestamp = null;
-        Log.d(TAG,"userBirth_Timestamp-1: " + userBirth_Timestamp);
-        if (userBirth == null) {
-            userBirth_Timestamp = Timestamp.valueOf(userBirth);
-            Log.d(TAG,"userBirth_Timestamp-2: " + userBirth_Timestamp);
-        }
+        Timestamp userBirth_Timestamp = Timestamp.valueOf(userBirth + " 00:00:00");
+//        Log.d(TAG,"userBirth_Timestamp-1: " + userBirth_Timestamp);
+//        if (userBirth == null) {
+//            userBirth_Timestamp = Timestamp.valueOf(userBirth);
+//            Log.d(TAG,"userBirth_Timestamp-2: " + userBirth_Timestamp);
+//        }
         String userName = etUserName.getText().toString();
         Boolean allowNotifi_Boolean = true;
         Bitmap userAvatarBitmap = null; // new Common().getUserAvatra();
