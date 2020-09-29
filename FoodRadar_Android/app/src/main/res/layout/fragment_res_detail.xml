@@ -2,12 +2,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/iv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".res.ResDetailFragment" >
+    tools:context=".res.ResDetailFragment">
+
+    <TextView
+        android:id="@+id/tvResAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/textResAddress"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivResAddress"
+        app:layout_constraintStart_toEndOf="@+id/ivResAddress" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivResAddress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_location_on_24"
+        app:layout_constraintStart_toStartOf="@+id/tvResRating"
+        app:layout_constraintTop_toBottomOf="@+id/tvResRating" />
+
+    <ImageView
+        android:id="@+id/ivRes"
         android:layout_width="0dp"
         android:layout_height="160dp"
         android:src="@drawable/no_image"
@@ -24,7 +44,7 @@
         android:text="@string/textResName"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/ivRes" />
 
     <TextView
         android:id="@+id/tvResRating"
