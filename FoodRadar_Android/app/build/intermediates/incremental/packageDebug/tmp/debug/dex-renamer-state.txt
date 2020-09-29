@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 #Sun Sep 27 16:39:11 CST 2020
 base.0=/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+=======
+#Sat Sep 26 17:08:04 CST 2020
+base.0=/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+>>>>>>> d215549ee4b717c1d2a49797b993943558c8d65c
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=/Users/ricky/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+base.1=/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex

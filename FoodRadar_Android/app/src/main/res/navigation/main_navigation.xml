@@ -29,7 +29,11 @@
         android:id="@+id/resMapFragment"
         android:name="com.example.foodradar_android.res.ResMapFragment"
         android:label="fragment_res_map"
-        tools:layout="@layout/fragment_res_map" />
+        tools:layout="@layout/fragment_res_map" >
+        <action
+            android:id="@+id/action_resMapFragment_to_resDetailFragment"
+            app:destination="@id/resDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/couponFragment"
@@ -148,5 +152,10 @@
         android:name="com.example.foodradar_android.user.ResUpdateFragment"
         android:label="fragment_res_update"
         tools:layout="@layout/fragment_res_update" />
+    <fragment
+        android:id="@+id/resDetailFragment"
+        android:name="com.example.foodradar_android.res.ResDetailFragment"
+        android:label="fragment_res_detail"
+        tools:layout="@layout/fragment_res_detail" />
 
 </navigation>

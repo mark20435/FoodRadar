@@ -123,7 +123,7 @@ public class CouponFragment extends Fragment {
             spotAdapter.notifyDataSetChanged();
         }
     }
-    private class CouponAdapter extends RecyclerView.Adapter<MyViewHolder> {
+    private class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
         private List<Coupon> coupons;
         private int imageSize;
@@ -138,6 +138,8 @@ public class CouponFragment extends Fragment {
         public void setCoupons(List<Coupon> coupons) {
             this.coupons = coupons;
         }
+
+
          class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
             TextView resName, tvCouInfo;
@@ -147,27 +149,27 @@ public class CouponFragment extends Fragment {
 
              }
          }
-        @NonNull
-        @Override
-        public CouponAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return null;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull CouponAdapter.MyViewHolder holder, int position) {
-
-        }
-
         @Override
         public int getItemCount() {
-            return 0;
+            return coupons == null ? 0 : coupons.size();
         }
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = layoutInflater.inflate(R.layout.item_view_coupon, parent, false);
+            return new MyViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+
+        }
+
+
     }
+
+
+
 
 
     private class ImageTask {

@@ -19,6 +19,7 @@
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
+    <string name="textNoCouponsFound">找不到優惠券</string>
     <!--    <string name="textNoNetwork">no network connection available</string>-->
     <string name="textNoMainFound">no Main found</string>
     <string name="textNoNetwork">No Network</string>
@@ -91,6 +92,8 @@
     <string name="textHoursError">營業時間輸入錯誤</string>
     <string name="textUpdateFail">修改失敗</string>
     <string name="textUpdateSuccess">修改成功</string>
+    <string name="textResRating">餐廳評價</string>
+    <string name="textSearchResAgain">重新查詢附近餐廳</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">
@@ -265,5 +268,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="phone">Phone</string>
     <string name="userId">userId</string>
+    <string name="textResDistance">餐廳距離</string>
+    <string name="titleResDetail">餐廳資訊</string>
+    <string name="textGiveRating">留下評價</string>
 
 </resources>
