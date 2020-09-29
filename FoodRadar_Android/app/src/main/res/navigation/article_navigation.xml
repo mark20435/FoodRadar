@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_newArticleFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/action_newArticleFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
     </fragment>
     <fragment
         android:id="@+id/rankArticleFragment"
@@ -22,6 +25,9 @@
         <action
             android:id="@+id/action_rankArticleFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/action_rankArticleFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteArticleFragment"
@@ -31,10 +37,22 @@
         <action
             android:id="@+id/action_favoriteArticleFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/action_favoriteArticleFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleDetailFragment"
         android:name="com.example.foodradar_android.article.ArticleDetailFragment"
         android:label="fragment_article_detail"
         tools:layout="@layout/fragment_article_detail" />
+    <fragment
+        android:id="@+id/articleInsertFragment"
+        android:name="com.example.foodradar_android.article.ArticleInsertFragment"
+        android:label="fragment_article_insert"
+        tools:layout="@layout/fragment_article_insert" >
+        <action
+            android:id="@+id/action_articleInsertFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
 </navigation>

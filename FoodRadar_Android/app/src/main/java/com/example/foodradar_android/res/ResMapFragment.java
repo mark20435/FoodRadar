@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -51,6 +52,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -75,6 +77,7 @@ import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_SETTLING;
 
 public class ResMapFragment extends Fragment {
+    private NavController navController;
     private static final int PER_ACCESS_LOCATION = 0;
     private static final String TAG = "TAG_ResMapFragment";
     private static final int REQ_CHECK_SETTINGS = 101;
@@ -84,6 +87,7 @@ public class ResMapFragment extends Fragment {
     private FusedLocationProviderClient fusedLocationClient;
     private Activity activity;
     private MapView mapView;
+    private SearchView searchView;
     private GoogleMap map;
     private CommonTask resGetAllTask;
     private CommonTask resDeleteTask;
@@ -95,6 +99,7 @@ public class ResMapFragment extends Fragment {
     private LatLng LastCameraLatLng;
     private Button btSearchResAgain;
     private List<Marker> markers;
+    int[] nowPos = new int[1];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,6 +118,9 @@ public class ResMapFragment extends Fragment {
         };
 
         imageTasks = new ArrayList<>();
+
+        navController =
+                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override
@@ -126,7 +134,7 @@ public class ResMapFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView = view.findViewById(R.id.searchView);
         rvRes = view.findViewById(R.id.rvRes);
         btSearchResAgain = view.findViewById(R.id.btSearchResAgain);
 
@@ -138,44 +146,6 @@ public class ResMapFragment extends Fragment {
 
         mapView = view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-
-        rvRes.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView rv, int newState) {
-                super.onScrollStateChanged(rv, newState);
-                if (newState == SCROLL_STATE_IDLE) {
-                    StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) rv.getLayoutManager();
-                    if (lm != null) {
-                        int[] nowPos = new int[1];
-                        lm.findFirstVisibleItemPositions(nowPos);
-                        View itemView = lm.getChildAt(0);
-                        if (itemView != null) {
-                            TextView tvResAddress = itemView.findViewById(R.id.tvResAddress);
-                            String address = tvResAddress.getText().toString();
-                            List<Address> addressList;
-                            // 如果地址無法解析成經緯度，就設為-181，因為經度為-180~+180
-                            double resLat = -181.0;
-                            double resLon = -181.0;
-                            try {
-                                addressList = new Geocoder(activity).getFromLocationName(address, 1);
-                                if (addressList != null && addressList.size() > 0) {
-                                    resLat = addressList.get(0).getLatitude();
-                                    resLon = addressList.get(0).getLongitude();
-                                }
-                            } catch (Exception e) {
-                                Log.e(TAG, e.toString());
-                            }
-                            if (resLat != -181.0) {
-                                moveMap(new LatLng(resLat, resLon));
-                                markers.get(nowPos[0]).showInfoWindow();
-                            }
-                        }
-                    }
-                }
-            }
-
-        });
-
         mapView.getMapAsync((googleMap) -> {
             map = googleMap;
 
@@ -249,7 +219,42 @@ public class ResMapFragment extends Fragment {
             });
         });
 
+        rvRes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView rv, int newState) {
+                super.onScrollStateChanged(rv, newState);
+                if (newState == SCROLL_STATE_IDLE) {
+                    StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) rv.getLayoutManager();
+                    if (lm != null) {
 
+                        lm.findFirstVisibleItemPositions(nowPos);
+                        View itemView = lm.getChildAt(0);
+                        if (itemView != null) {
+                            TextView tvResAddress = itemView.findViewById(R.id.tvResAddress);
+                            String address = tvResAddress.getText().toString();
+                            List<Address> addressList;
+                            // 如果地址無法解析成經緯度，就設為-181，因為經度為-180~+180
+                            double resLat = -181.0;
+                            double resLon = -181.0;
+                            try {
+                                addressList = new Geocoder(activity).getFromLocationName(address, 1);
+                                if (addressList != null && addressList.size() > 0) {
+                                    resLat = addressList.get(0).getLatitude();
+                                    resLon = addressList.get(0).getLongitude();
+                                }
+                            } catch (Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                            if (resLat != -181.0) {
+                                moveMap(new LatLng(resLat, resLon));
+                                markers.get(nowPos[0]).showInfoWindow();
+                            }
+                        }
+                    }
+                }
+            }
+
+        });
     }
 
     private void showRess(List<Res> ress) {
@@ -294,8 +299,61 @@ public class ResMapFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        Common.setBackArrow(false, activity);
         mapView.onStart();
         askAccessLocationPermission();
+        if (lastLocation != null && fusedLocationClient != null) {
+            if (ActivityCompat.checkSelfPermission(activity,
+                    Manifest.permission.ACCESS_FINE_LOCATION) ==
+                    PackageManager.PERMISSION_DENIED) {
+                //todo 如果拒絕
+                return;
+            }
+            fusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    if (task.isSuccessful()) {
+                        lastLocation = task.getResult();
+                        if (lastLocation != null) {
+                            moveMap(new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()));
+                            map.clear();
+                            markers = new ArrayList<>();
+                            for (Res res : nearRess) {
+                                addMarker(new LatLng(res.getResLat(), res.getResLon()), res.getResName());
+                            }
+                            showRess(nearRess);
+
+                            rvRes.scrollToPosition(0);
+
+                            if (map != null) {
+                                map.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+                                    @Override
+                                    public void onCameraMove() {
+                                        float[] results = new float[1];
+                                        cameraLatLng = map.getCameraPosition().target;
+
+                                        if (LastCameraLatLng == null) {
+                                            Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
+                                                    cameraLatLng.latitude, cameraLatLng.longitude, results);
+                                        } else {
+                                            Location.distanceBetween(LastCameraLatLng.latitude, LastCameraLatLng.longitude,
+                                                    cameraLatLng.latitude, cameraLatLng.longitude, results);
+                                        }
+                                        if (results[0] != 0 && results[0] > 1000.0) {
+                                            btSearchResAgain.setVisibility(View.VISIBLE);
+                                        }
+                                    }
+                                });
+                            }
+                        } else {
+                            //lLisNull = true;
+                        }
+                    }
+                }
+            });
+            fusedLocationClient.requestLocationUpdates(
+                    locationRequest, locationCallback, null);
+        }
     }
 
     private void askAccessLocationPermission() {
@@ -397,6 +455,7 @@ public class ResMapFragment extends Fragment {
                                     }
                                 });
                             }
+                            btSearchResAgain.performClick();
                         } else {
                             //lLisNull = true;
                         }
@@ -514,13 +573,16 @@ public class ResMapFragment extends Fragment {
                 float[] results = new float[1];
                 Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
                         res.getResLat(), res.getResLon(), results);
-                myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0]/1000f));
+                myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0] / 1000f));
             }
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("res", res);
+                    Navigation.findNavController(v)
+                            .navigate(R.id.action_resMapFragment_to_resDetailFragment, bundle);
                 }
             });
 

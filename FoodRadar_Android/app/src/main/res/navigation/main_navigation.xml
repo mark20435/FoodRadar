@@ -22,14 +22,21 @@
             app:destination="@id/userAreaFragment" />
         <action
             android:id="@+id/action_mainFragment_to_chinaRestaurantFragment"
-            app:destination="@id/CategoryTypeFragment" />
+            app:destination="@id/CategoryTypeFragment"/>
+        <action
+            android:id="@+id/action_mainFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/resMapFragment"
         android:name="com.example.foodradar_android.res.ResMapFragment"
         android:label="fragment_res_map"
-        tools:layout="@layout/fragment_res_map" />
+        tools:layout="@layout/fragment_res_map" >
+        <action
+            android:id="@+id/action_resMapFragment_to_resDetailFragment"
+            app:destination="@id/resDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/couponFragment"
@@ -80,7 +87,14 @@
         android:id="@+id/articleFragment"
         android:name="com.example.foodradar_android.article.ArticleFragment"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_articleFragment_to_newArticleFragment2"
+            app:destination="@id/newArticleFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resInsertFragment"
         android:name="com.example.foodradar_android.user.ResInsertFragment"
@@ -111,9 +125,28 @@
         tools:layout="@layout/fragment_user_data_setup" />
     <fragment
         android:id="@+id/articleInsertFragment"
-        android:name="com.example.foodradar_android.ArticleInsertFragment"
+        android:name="com.example.foodradar_android.article.ArticleInsertFragment"
         android:label="fragment_article_insert"
-        tools:layout="@layout/fragment_article_insert" />
+        tools:layout="@layout/fragment_article_insert" >
+        <action
+            android:id="@+id/action_articleInsertFragment_to_resAddressFragment"
+            app:destination="@id/resAddressFragment" />
+        <action
+            android:id="@+id/action_articleInsertFragment_to_insertImageFragment"
+            app:destination="@id/insertImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resAddressFragment"
+        android:name="com.example.foodradar_android.article.ResAddressFragment"
+        android:label="fragment_res_address"
+        tools:layout="@layout/fragment_res_address" />
+    <fragment
+        android:id="@+id/insertImageFragment"
+        android:name="com.example.foodradar_android.article.InsertImageFragment"
+        android:label="fragment_insert_image"
+        tools:layout="@layout/fragment_insert_image" />
+<!--=======-->
+<!--        tools:layout="@layout/fragment_article_insert" />-->
     <fragment
         android:id="@+id/category_Detail_Fragment"
         android:name="com.example.foodradar_android.main.Category_Detail_Fragment"
@@ -145,5 +178,10 @@
         android:name="com.example.foodradar_android.user.ResUpdateFragment"
         android:label="fragment_res_update"
         tools:layout="@layout/fragment_res_update" />
+    <fragment
+        android:id="@+id/resDetailFragment"
+        android:name="com.example.foodradar_android.res.ResDetailFragment"
+        android:label="fragment_res_detail"
+        tools:layout="@layout/fragment_res_detail" />
 
 </navigation>

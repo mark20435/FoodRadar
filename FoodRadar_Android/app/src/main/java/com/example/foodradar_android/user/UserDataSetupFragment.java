@@ -39,6 +39,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
@@ -46,6 +47,7 @@ import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

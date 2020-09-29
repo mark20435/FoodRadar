@@ -8,21 +8,31 @@
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/earthBackground">
 
-        <ImageView
-            android:id="@+id/ivCommentUserAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            app:cardCornerRadius="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_person_pin_24" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivCommentUserAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_person_pin_24" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvCommentUserName"
@@ -31,9 +41,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:text="嘴砲的酸民"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/ivCommentUserAvatar"
-            app:layout_constraintTop_toTopOf="@+id/ivCommentUserAvatar" />
+            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toTopOf="@+id/cardView3" />
 
         <TextView
             android:id="@+id/tvCommentText"
@@ -41,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="搶頭香～超好吃～～～～～～～"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/tvCommentUserName"
             app:layout_constraintTop_toBottomOf="@+id/tvCommentUserName" />
@@ -59,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvCommentText" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ivCommentSetting"
             android:layout_width="16dp"
             android:layout_height="16dp"
             app:layout_constraintEnd_toEndOf="@+id/tvCommentTime"
@@ -73,18 +85,19 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="2dp"
             android:text="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/tvCommentUserName"
             app:layout_constraintTop_toTopOf="@+id/tvCommentUserName" />
 
         <ImageView
             android:id="@+id/ivCommentGoodIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="7dp"
             app:layout_constraintStart_toEndOf="@+id/tvCommentGood"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_thumb_up_alt_24" />
+            app:srcCompat="@drawable/ic_baseline_thumb_up_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

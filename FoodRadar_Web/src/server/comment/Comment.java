@@ -2,36 +2,53 @@ package server.comment;
 
 public class Comment {
 
-	private int commmentId;
+	private int commentId;
 	private String commentTime;
 	private int articleId;
 	private int userId;
 	private String commentModifyTime;
 	private boolean commentStatus;
 	private String commentText;
+	private String userName;
+	private int commentGoodId;
+	private boolean commentGoodStatus; 
+	private int commentGoodCount;
 
 	Comment() {
 		super();
 	}
 
-	public Comment(int commmentId, String commentTime, int articleId, int userId, String commentModifyTime,
-			boolean commentStatus, String commentText) {
+	public Comment(int commentId, String commentTime, int articleId, int userId, String commentModifyTime,
+			boolean commentStatus, String commentText, String userName, boolean commentGoodStatus, int commentGoodCount) {
 		super();
-		this.commmentId = commmentId;
+		this.commentId = commentId;
 		this.commentTime = commentTime;
 		this.articleId = articleId;
 		this.userId = userId;
 		this.commentModifyTime = commentModifyTime;
 		this.commentStatus = commentStatus;
 		this.commentText = commentText;
+		this.userName = userName;
+//		this.commentGoodId = commentGoodId;
+		this.commentGoodStatus = commentGoodStatus;
+		this.commentGoodCount = commentGoodCount;
+	}
+	
+    public Comment(int commentId, int articleId, int userId, boolean commentStatus, String commentText) {
+        super();
+        this.commentId = commentId;
+        this.articleId = articleId;
+        this.userId = userId;
+        this.commentStatus = commentStatus;
+        this.commentText = commentText;
+    }
+
+	public int getCommentId() {
+		return commentId;
 	}
 
-	public int getCommmentId() {
-		return commmentId;
-	}
-
-	public void setCommmentId(int commmentId) {
-		this.commmentId = commmentId;
+	public void setCommentId(int commmentId) {
+		this.commentId = commmentId;
 	}
 
 	public String getCommentTime() {
@@ -82,4 +99,38 @@ public class Comment {
 		this.commentText = commentText;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getCommentGoodId() {
+		return commentGoodId;
+	}
+
+	public void setCommentGoodId(int commentGoodId) {
+		this.commentGoodId = commentGoodId;
+	}
+
+	public boolean isCommentGoodStatus() {
+		return commentGoodStatus;
+	}
+
+	public void setCommentGoodStatus(boolean commentGoodStatus) {
+		this.commentGoodStatus = commentGoodStatus;
+	}
+
+	public int getCommentGoodCount() {
+		return commentGoodCount;
+	}
+
+	public void setCommentGoodCount(int commentGoodCount) {
+		this.commentGoodCount = commentGoodCount;
+	}
+
+	
+	
 }

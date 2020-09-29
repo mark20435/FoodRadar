@@ -33,7 +33,7 @@ import java.util.Locale;
 import static android.content.Context.MODE_PRIVATE;
 
 public class Common{
-    private static final String PREFERENCES_NAME = "foodradar_preference";
+    private final static String PREFERENCES_NAME = "foodradar_preference"; //prep偏好設定檔名
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
 
@@ -41,7 +41,6 @@ public class Common{
     public static Integer USER_ID = 0 ;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
-
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -107,9 +106,14 @@ public class Common{
 
 
         // vvvvvv臨時寫的，用來模擬使用者登入
-        Integer fromDB_userId = 3;
         String fromDB_userPhone = "0900123456";
         String fromDB_userPwd = "P@ssw0rd";
+        Integer fromDB_userId = 3;
+//
+//        if (fromDB_userPhone == userPhone && fromDB_userPwd == userPwd) {
+//            userId = fromDB_userId;
+//            preferences.edit()
+
         Timestamp fromDB_userBirth = Timestamp.valueOf("2020-06-15" + " 00:00:00.000");
         String fromDB_userName = "CloseBeta";
         Boolean fromDB_allowNotifi = false;
@@ -128,8 +132,8 @@ public class Common{
             preferences.edit()
                     .putString("userId", String.valueOf(USER_ID))
                     .putString("userPhone", userPhone)
-
                     .putString("userPwd", userPwd)
+                    .putString("userId", String.valueOf(userId))
                     .putString("userBirth", String.valueOf(fromDB_userBirth))
                     .putString("userName", fromDB_userName)
                     .putString("allowNotifi", String.valueOf(fromDB_allowNotifi))
@@ -137,7 +141,7 @@ public class Common{
                     .putString("createDate", String.valueOf(fromDB_createDate))
                     .putString("modifyDate", String.valueOf(fromDB_modifyDate))
                     .apply();
-            return USER_ID;
+            return userId;
         } else if (fromDB_userPhone != userPhone) {
             return  -1;
         } else {
