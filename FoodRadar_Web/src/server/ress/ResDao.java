@@ -12,6 +12,8 @@ public interface ResDao {
 	Res findById(int resId);
 
 	List<Res> getAll();
+	
+	List<Res> getAllEnable();
 
 	byte[] getImage(int resId);
 	

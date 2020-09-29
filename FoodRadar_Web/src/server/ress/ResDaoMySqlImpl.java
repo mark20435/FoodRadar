@@ -169,6 +169,45 @@ public class ResDaoMySqlImpl implements ResDao {
 	}
 	
 	@Override
+	public List<Res> getAllEnable() {
+		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName \n" + 
+				"FROM Res R\n" + 
+				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
+				"left join UserAccount U on R.userId = U.userId\n" + 
+				"WHERE resEnable = 1 " +
+				"ORDER BY modifyDate DESC;";
+		List<Res> ressList = new ArrayList<Res>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int resId = rs.getInt(1);
+				String resName = rs.getString(2);
+				String resAddress = rs.getString(3);
+				Double resLat = rs.getDouble(4);
+				Double resLon = rs.getDouble(5);
+				String resTel = rs.getString(6);
+				String resHours = rs.getString(7);
+				Integer resCategoryId = rs.getInt(8);
+				Boolean resEnable = rs.getBoolean(9);
+				Integer userId = rs.getInt(10);
+				Timestamp modifyDate = rs.getTimestamp(11);
+				String resCategoryInfo = rs.getString(12);
+				String userName = rs.getString(13);
+				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
+						resEnable, userId, modifyDate);
+				res.setResCategoryInfo(resCategoryInfo);
+				res.setUserName(userName);
+				ressList.add(res);
+			}
+			return ressList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ressList;
+	}
+	
+	@Override
 	public List<Category> getCategories() {
 		// Date Time: 2020-09-11 18:35:24
 		// select statements : Category

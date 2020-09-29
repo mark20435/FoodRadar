@@ -40,7 +40,7 @@ public class Common{
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
     private Activity activity;
-    public static final String USER_AVATAR_FILENAME = "foodradar_avatar.bitmap";
+    public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
 
 
     public static boolean networkConnected(Activity activity) {
@@ -182,7 +182,7 @@ public class Common{
     }
 
 
-    public void setUserAvatra(Activity activity, Bitmap avatraBitmap){
+    public static void setUserAvatra(Activity activity, Bitmap avatraBitmap){
         UserAccountAvatra userAccountAvatraOut = new UserAccountAvatra();
         userAccountAvatraOut.setByteObject(bitmapToByte(avatraBitmap));
         try (ObjectOutputStream oisOut = new ObjectOutputStream(
@@ -200,9 +200,16 @@ public class Common{
         Resources res = activity.getResources();
         try (ObjectInputStream oisIn = new ObjectInputStream(
                 activity.openFileInput(USER_AVATAR_FILENAME))) {
+//            if (oisIn.equals(null)) {
+//                Log.d(TAG,"oisIn.equals(null)");
+//                // 若取不到頭像，則回傳預設頭像
+//                return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
+//            }
             userAccountAvatraIn = (UserAccountAvatra) oisIn.readObject();
-            if (userAccountAvatraIn.getByteObject() == null) {
+            if (userAccountAvatraIn.getByteObject().equals(null)) {
+                Log.d(TAG,"userAccountAvatraIn.getByteObject().equals(null)");
                 // 若取不到頭像，則回傳預設頭像
+                setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
                 return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
             } else {
                 return byteToBitmap(userAccountAvatraIn.getByteObject());
@@ -210,6 +217,8 @@ public class Common{
         } catch (Exception e) {
             Log.d(TAG,"getUserAvatra: Exception");
             Log.d(TAG, e.toString());
+            // 若取不到頭像，則回傳預設頭像
+            setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
             return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
         }
     }
@@ -236,7 +245,7 @@ public class Common{
         // 頭像設為預設值
         Resources res = activity.getResources();
         Bitmap account_circle_bitmap = BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
-        new Common().setUserAvatra(activity, account_circle_bitmap);
+        Common.setUserAvatra(activity, account_circle_bitmap);
     }
 
     public static byte[] bitmapToByte(Bitmap bitmap) {

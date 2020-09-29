@@ -5,9 +5,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ColorSpace;
 import android.graphics.ImageDecoder;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -26,17 +26,22 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TabHost;
+import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -50,11 +55,8 @@ import com.yalantis.ucrop.UCrop;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,7 +91,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
     private Bitmap bitmapAvatra = null;
 
     private ImageButton btImgCamera;
-    private Button btImgPickPhoto;
+    private Boolean bolAccessExternalStorage;
+    private Spinner spAvatraSourceSelect;
 
     private TextView tvUserPhone;
     private EditText etUserPhone;
@@ -112,18 +115,16 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
     private UserAccount userAccount;
 
-    private Integer signupFlag = 0;
+    private Integer signupFlag = 0; // 註冊作業識別
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-        Log.d("TAG_my","onCreate: ");
         // 顯示左上角的返回箭頭
         Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
-
         navController =
                 Navigation.findNavController(activity, R.id.mainFragment);
     }
@@ -157,16 +158,35 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         return inflater.inflate(R.layout.fragment_user_data_setup, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // 註冊作業識別
+//        signupFlag = 1;
 
         // 預設無資料的頭像
         ivAvatar = view.findViewById(R.id.ivAvatar);
         ivAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
+
+        // 拍照功能
+//        view.findViewById(R.id.btImgCamera).setOnClickListener(this);
         btImgCamera = view.findViewById(R.id.btImgCamera);
-        btImgPickPhoto = view.findViewById(R.id.btImgPickPhoto);
-//        askExternalStoragePermission();
+        // 按拍照會出現ContextMenu選擇 拍照 或 挑選照片
+        registerForContextMenu(btImgCamera);
+        btImgCamera.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        btImgCamera.showContextMenu(event.getX(), event.getY());
+                    } else {
+                        btImgCamera.showContextMenu();
+                    }
+                }
+                return false;
+            }
+        });
 
         tvUserPhone = view.findViewById(R.id.tvUserPhone);
         etUserPhone = view.findViewById(R.id.etUserPhone);
@@ -188,24 +208,27 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         btUserChangConfrim = view.findViewById(R.id.btSignupOrChang);
 
         // 使用者登入畫面顯示控制
-        setUI();
+//        setUI();
+        if(getUserId() > 0) { // 已登入狀態
+            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
+            setUiIsLogin();
 
-        // 拍照功能
-        view.findViewById(R.id.btImgCamera).setOnClickListener(this);
-        view.findViewById(R.id.btImgPickPhoto).setOnClickListener(this);
+        } else { // 已登出狀態
+            Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
+            setUiIsLogout();
+        }
+
 
         // 登入/登出功能
         view.findViewById(R.id.btnLogInOut).setOnClickListener(this);
-
         // 變更密碼功能
         view.findViewById(R.id.btSignupOrChang).setOnClickListener(this);
 
-
-        // vvvvvv臨時寫的，用來模擬使用者登入
-        view.findViewById(R.id.btTestData).setOnClickListener(new View.OnClickListener() {
+        // vvvvvv臨時寫的，用來模擬使用者 登入 與 註冊
+        // 模擬使用者 登入
+        view.findViewById(R.id.btTestLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String testUserDate = "2020-09-23 00:00:00";
                 Log.d(TAG,"testUserDate: " + testUserDate);
                 Timestamp testUserDate_TimeStamp = Timestamp.valueOf(testUserDate);
@@ -213,7 +236,17 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                 Log.d(TAG,"testUserDate_TimeStamp: " + testUserDate_TimeStamp);
 
                 String userPhone = "0900123456";
-                userPhone = new SimpleDateFormat("MMddhhmmss").format(new Date());
+                String userPwd = "P@ssw0rd";
+                etUserPhone.setText(userPhone);
+                etPassword.setText(userPwd);
+            }
+        });
+
+        // 模擬使用者 註冊
+        view.findViewById(R.id.btTestRegister).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userPhone = new SimpleDateFormat("MMddhhmmss").format(new Date());
                 String userPwd = "P@ssw0rd";
                 // Integer userId = 3;
                 etUserPhone.setText(userPhone);
@@ -261,53 +294,103 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 //                }
             }
         });
-        // ^^^^^^臨時寫的，用來模擬使用者登入
+        // ^^^^^^臨時寫的，用來模擬使用者 登入 與 註冊
+
+        /* Spinner用List填入選單項目 */
+        spAvatraSourceSelect = view.findViewById(R.id.spAvatraSourceSelect);
+        Resources res = getResources();
+//        String[] sourceItemList = {getResources().getString(R.string.textTakePicture)};
+//        String[] sourceItemList = {res.getString(R.string.textTakePicture), res.getString(R.string.textPickPicture)};
+//        Log.d(TAG,"Calendar.DAY_OF_YEAR: " + Calendar.DAY_OF_YEAR);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        int yearStart = 2000;
+        int yearEnd = cal.get(Calendar.YEAR);
+        String[] sourceItemList = new String[yearEnd - yearStart + 1];
+        Integer itemIndex = 0;
+        for (int i = yearStart; i <= yearEnd; i++){
+            Log.d(TAG,"i: " + i);
+            sourceItemList[itemIndex] = String.valueOf(i);
+            itemIndex++;
+        }
+//        String[] sourceItemList = {"2019","2020"};
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity,
+                android.R.layout.simple_spinner_item, sourceItemList);
+        /* 指定點選時彈出來的選單樣式 */
+        arrayAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+        spAvatraSourceSelect.setAdapter(arrayAdapter);
+//        spAvatraSourceSelect.setSelection(0, true);
+        spAvatraSourceSelect.setSelection(0);
+        spAvatraSourceSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spAvatraSourceSelect.setSelection(position, true);
+                Common.showToast(activity,parent.getItemAtPosition(position).toString());
+                Common.showToast(activity,"position: " + position);
+                Common.showToast(activity,"id: " + id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spAvatraSourceSelect.setVisibility(INVISIBLE);
+
 
     }
+
 
     private int getUserId(){
         return Common.USER_ID;
     }
 
     private void setUI() {
-        if(getUserId() > 0) { // 登入狀態
+        if(getUserId() > 0) { // 已登入狀態
             Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
-            // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-            SetSignUpUI(VISIBLE);
+            setUiIsLogin();
 
-            userAccount = Common.getUserLoin(activity);
-            etUserPhone.setText(userAccount.getUserPhone());
-            etPassword.setText(userAccount.getUserPwd());
-            etPasswordConfirm.setText(userAccount.getUserPwd());
-            etUserName.setText(userAccount.getUserName());
-            String userBirth = new SimpleDateFormat("yyyy-MM-dd").format(userAccount.getUserBirth());
-            etUserBirth.setText(userBirth);
-
-            btnLogInOut.setText(R.string.textLogout);
-            btUserChangConfrim.setText(R.string.textUserChangConfrim);
-//            bitmapAvatra = showUserAvatra();
-            bitmapAvatra = Common.getUserAvatra(activity);
-            ivAvatar.setImageBitmap(bitmapAvatra);
         } else { // 已登出狀態
             Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
-            // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-            SetSignUpUI(INVISIBLE);
-
-            etUserPhone.setText("");
-            etPassword.setText("");
-            etPasswordConfirm.setText("");
-
-            btnLogInOut.setText(R.string.textLogin);
-            btUserChangConfrim.setText(R.string.textSignUp);
-//            ivAvatar.setImageResource(R.drawable.ic_awesome_user_circle);
-//            bitmapAvatra = showUserAvatra();
-            bitmapAvatra = Common.getUserAvatra(activity);
-            ivAvatar.setImageBitmap(bitmapAvatra);
+            setUiIsLogout();
         }
     }
 
+    private void setUiIsLogin() {
+        // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
+        setSignUpUI(VISIBLE);
+
+        userAccount = Common.getUserLoin(activity);
+        etUserPhone.setText(userAccount.getUserPhone());
+        etPassword.setText(userAccount.getUserPwd());
+        etPasswordConfirm.setText(userAccount.getUserPwd());
+        etUserName.setText(userAccount.getUserName());
+        String userBirth = new SimpleDateFormat("yyyy-MM-dd").format(userAccount.getUserBirth());
+        etUserBirth.setText(userBirth);
+
+        btnLogInOut.setText(R.string.textLogout);
+        btUserChangConfrim.setText(R.string.textUserChangConfrim);
+        bitmapAvatra = Common.getUserAvatra(activity);
+        ivAvatar.setImageBitmap(bitmapAvatra);
+    }
+
+    private void setUiIsLogout() {
+        // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
+        setSignUpUI(INVISIBLE);
+
+        etUserPhone.setText("");
+        etPassword.setText("");
+        etPasswordConfirm.setText("");
+
+        btnLogInOut.setText(R.string.textLogin);
+        btUserChangConfrim.setText(R.string.textSignUp);
+        bitmapAvatra = Common.getUserAvatra(activity);
+        ivAvatar.setImageBitmap(bitmapAvatra);
+    }
+
     // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-    private void SetSignUpUI(Integer visibStaus) {
+    private void setSignUpUI(Integer visibStaus) {
         ivRedStarPasswordConfirm.setVisibility(visibStaus);
         tvPasswordConfirm.setVisibility(visibStaus);
         etPasswordConfirm.setText("");
@@ -333,6 +416,51 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
     }
 
+    // 送出註冊
+    private void Register () {
+        if (etUserPhone.getText().toString().trim().equals("")) {
+            Common.showToast(activity,tvUserPhone.getText() + "不可為空白");
+            tvUserPhone.setTextColor(getResources().getColor(R.color.mainPink));
+            etUserPhone.setHintTextColor(getResources().getColor(R.color.mainPink));
+            etUserPhone.setHint(getResources().getString(R.string.textPlsInpup) + getResources().getString(R.string.textUserPhone));
+        }
+
+        String userPhone = etUserPhone.getText().toString();
+        String userPwd = etPassword.getText().toString();
+        String userBirth = etUserBirth.getText().toString();
+        Log.d(TAG,"userBirth: " + userBirth);
+        Timestamp userBirth_Timestamp = null;
+        Log.d(TAG,"userBirth_Timestamp-1: " + userBirth_Timestamp);
+        if (userBirth == null) {
+            userBirth_Timestamp = Timestamp.valueOf(userBirth);
+            Log.d(TAG,"userBirth_Timestamp-2: " + userBirth_Timestamp);
+        }
+        String userName = etUserName.getText().toString();
+        Boolean allowNotifi_Boolean = true;
+        Bitmap userAvatarBitmap = null; // new Common().getUserAvatra();
+
+        userAccount = new UserAccount(userPhone, userPwd, userBirth_Timestamp, userName , allowNotifi_Boolean);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "userAccountSignup");
+        jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
+        // 有圖才上傳
+        if (bitmapAvatra != null) {
+            jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
+        }
+        int count = 0;
+        try {
+            String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
+            count = Integer.parseInt(result);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        if (count == 0) {
+            Common.showToast(activity, "註冊失敗");
+        } else {
+            Common.showToast(activity, "註冊成功");
+        }
+    }
+
 
 //    @SuppressLint("ResourceAsColor")
     @Override
@@ -354,48 +482,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                     } else { //註冊送出作業
                         Common.showToast(activity,"註冊送出");
                         Log.d(TAG,"註冊送出: " + activity);
+                        Register();
 //                        Common.showToast(activity,"etUserPhone=>" + etUserPhone.getText().toString() + "<=");
-                        if (etUserPhone.getText().toString().trim().equals("")) {
-                            Common.showToast(activity,tvUserPhone.getText() + "不可為空白");
-                            tvUserPhone.setTextColor(getResources().getColor(R.color.mainPink));
-                            etUserPhone.setHintTextColor(getResources().getColor(R.color.mainPink));
-                            etUserPhone.setHint(getResources().getString(R.string.textPlsInpup) + getResources().getString(R.string.textUserPhone));
-                        }
-
-                        String userPhone = etUserPhone.getText().toString();
-                        String userPwd = etPassword.getText().toString();
-                        String userBirth = etUserBirth.getText().toString();
-                        Log.d(TAG,"userBirth: " + userBirth);
-                        Timestamp userBirth_Timestamp = null;
-                        Log.d(TAG,"userBirth_Timestamp-1: " + userBirth_Timestamp);
-                        if (userBirth == null) {
-                            userBirth_Timestamp = Timestamp.valueOf(userBirth);
-                            Log.d(TAG,"userBirth_Timestamp-2: " + userBirth_Timestamp);
-                        }
-                        String userName = etUserName.getText().toString();
-                        Boolean allowNotifi_Boolean = true;
-                        Bitmap userAvatarBitmap = null; // new Common().getUserAvatra();
-
-                        userAccount = new UserAccount(userPhone, userPwd, userBirth_Timestamp, userName , allowNotifi_Boolean);
-                        JsonObject jsonObject = new JsonObject();
-                        jsonObject.addProperty("action", "userAccountSignup");
-                        jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
-                        // 有圖才上傳
-                        if (bitmapAvatra != null) {
-                            jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
-                        }
-                        int count = 0;
-                        try {
-                            String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
-                            count = Integer.parseInt(result);
-                        } catch (Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                        if (count == 0) {
-                            Common.showToast(activity, "註冊失敗");
-                        } else {
-                            Common.showToast(activity, "註冊成功");
-                        }
 
                     }
                 }
@@ -413,7 +501,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                     Common.showToast(activity,"確認修改");
                     BitmapDrawable drawable = (BitmapDrawable) ivAvatar.getDrawable();
                     Bitmap bitmap = drawable.getBitmap();
-                    new Common().setUserAvatra(activity, bitmap);
+                    Common.setUserAvatra(activity, bitmap);
 //                    ivAvatar.setImageBitmap(new Common().getUserAvatra());
 //                    bitmapAvatra = showUserAvatra();
                     bitmapAvatra = Common.getUserAvatra(activity);
@@ -424,14 +512,14 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                     // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
                     if (etPasswordConfirm.getVisibility() == INVISIBLE) {
                         signupFlag = 1;
-                        SetSignUpUI(VISIBLE);
+                        setSignUpUI(VISIBLE);
                         Common.showToast(activity, R.string.textSignUp);
-                        setUI();
+//                        setUI();
                     } else {
                         signupFlag = 0;
-                        SetSignUpUI(INVISIBLE);
+                        setSignUpUI(INVISIBLE);
                         Common.showToast(activity, R.string.textSignUpCancel);
-                        setUI();
+//                        setUI();
                     }
 
 
@@ -464,30 +552,70 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                 }
                 return;
 
+            // PopMenu
+//            case R.id.btImgCamera:
+//                PopupMenu popupMenu = new PopupMenu(activity, v);
+//                popupMenu.inflate(R.menu.photo_source_menu);
+//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    /* 選項被點選時會呼叫onMenuItemClick()並將被點選的選項傳遞過來（item） */
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        switch (item.getItemId()) {
+//                            case R.id.menuItemTakePicture:
+//                            case R.id.menuItemPickPicture: // 選取照片功能
+//                            default:
+//                                Common.showToast(activity,"id: " + item.getItemId());
+//                                Common.showToast(activity,"id: " + getResources().getResourceEntryName(item.getItemId()));
+//                                break;
+//                        }
+//                        return true;
+//                    }
+//                });
+//                popupMenu.show(); // PopupMenu要呼叫show才會顯示出來
+//                break;
+
+            default:
+                return;
+
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = activity.getMenuInflater();
+        inflater.inflate(R.menu.photo_source_menu, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
             // 拍照功能
-            case R.id.btImgCamera:
+            case R.id.menuItemTakePicture:
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // 指定存檔路徑
                 File dir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
                 if (dir != null && !dir.exists()) {
                     if (!dir.mkdirs()) {
-                        return;
+                        break;
                     }
                 }
                 file = new File(dir, "avatar_" + getUserId() + ".jpg");
-                contentUri = FileProvider.getUriForFile(
-                        activity, activity.getPackageName() + ".provider", file);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+                if (!file.equals(null)) {
+                    contentUri = FileProvider.getUriForFile(
+                            activity, activity.getPackageName() + ".provider", file);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+                }
 
                 if (intent.resolveActivity(activity.getPackageManager()) != null) {
                     startActivityForResult(intent, REQ_TAKE_PICTURE);
                 } else {
                     Common.showToast(activity, R.string.textNoCameraApp);
                 }
-                return;
-
+                break;
             // 選取照片功能
-            case R.id.btImgPickPhoto:
+            case R.id.menuItemPickPicture:
                 Intent intentPickPhoto = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 if (intentPickPhoto.resolveActivity(activity.getPackageManager()) != null) {
@@ -495,13 +623,13 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                 } else {
                     Common.showToast(activity, R.string.textNoImagePickerApp);
                 }
-                return;
-
+                break;
             default:
-                return;
-
+                break;
         }
+        return super.onContextItemSelected(item);
     }
+
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -563,8 +691,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
     @SuppressLint("LongLogTag")
     private void handleCropResult(Intent intent) {
-//        byte[] imageByteAvatar;
-
         Uri resultUri = UCrop.getOutput(intent);
         if (resultUri == null) {
             return;
@@ -581,7 +707,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
             }
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             bitmapAvatra.compress(Bitmap.CompressFormat.JPEG, 100, out);
-//            imageByteAvatar = out.toByteArray();
         } catch (IOException e) {
             Log.d(TAG, e.toString());
         }
@@ -624,13 +749,14 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 //    public void onResume() {
 //        super.onResume();
 //        askExternalStoragePermission();
+//
 //    }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        askExternalStoragePermission();
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        askExternalStoragePermission();
+    }
 
 
     private void askExternalStoragePermission() {
@@ -652,9 +778,9 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
             // 如果user不同意將資料儲存至外部儲存體的公開檔案，就將儲存按鈕設為disable
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 Common.showToast(activity,"需存取內部儲存空間權限");
-                btImgPickPhoto.setEnabled(false);
+                bolAccessExternalStorage = false;
             } else {
-                btImgPickPhoto.setEnabled(true);
+                bolAccessExternalStorage = true;
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.foodradar_android.user;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +32,6 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
     private TextView tvMyResUserArea;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,13 +94,14 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         // 聯繫我們
         view.findViewById(R.id.tvBtUsArContactUs).setOnClickListener(this);
 
-        view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
-
-        // vvvvvv 臨時加的
+        // 取得使用者登入狀態，以進行後續的畫面控制
         UserAccount userAccount = new Common().getUserLoin(activity);
         Common.USER_ID = userAccount.getUserId();
         Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
-        // ^^^^^^^ 臨時加的
+
+
+        // 臨時的餐廳資訊維護進入點按鈕
+        view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
 
     }
 
@@ -109,6 +113,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            // 臨時的餐廳資訊維護進入點按鈕
             case R.id.id_btResMaintain:
                 navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
                 break;
