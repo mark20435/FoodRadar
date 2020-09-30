@@ -3,6 +3,7 @@ package com.example.foodradar_android.main;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class CategoryFragment extends Fragment {
     private List<ImageTask> imageTasks;
     private List<Category> categorys;
     private String categoryType;
+
 
 
     @Override
@@ -144,6 +146,7 @@ public class CategoryFragment extends Fragment {
         private LayoutInflater layoutInflater;
         private List<Category> categorys;
         private int imageSize;
+
 //        Context context;
 //        List<Main> mains;
 
@@ -209,6 +212,7 @@ public class CategoryFragment extends Fragment {
 
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -238,6 +242,8 @@ public class CategoryFragment extends Fragment {
             CategoryDeleteTask = null;
         }
     }
+
+
 }
 
 

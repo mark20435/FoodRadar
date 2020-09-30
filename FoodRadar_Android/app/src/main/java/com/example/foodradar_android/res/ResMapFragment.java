@@ -341,6 +341,8 @@ public class ResMapFragment extends Fragment {
                                         }
                                         if (results[0] != 0 && results[0] > 1000.0) {
                                             btSearchResAgain.setVisibility(View.VISIBLE);
+                                        } else {
+                                            btSearchResAgain.setVisibility(View.GONE);
                                         }
                                     }
                                 });
@@ -451,6 +453,8 @@ public class ResMapFragment extends Fragment {
                                         }
                                         if (results[0] != 0 && results[0] > 1000.0) {
                                             btSearchResAgain.setVisibility(View.VISIBLE);
+                                        } else {
+                                            btSearchResAgain.setVisibility(View.GONE);
                                         }
                                     }
                                 });

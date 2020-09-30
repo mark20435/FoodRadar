@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import server.category.Category;
+import server.img.Img;
 import server.main.ImageUtil;
 
 
@@ -86,10 +87,18 @@ public class ResServlet extends HttpServlet {
 			int resId = jsonObject.get("resId").getAsInt();
 			int count = resDao.delete(resId);
 			writeText(response, String.valueOf(count));
+		} else if (action.equals("categoryfindById")) {
+			int id = jsonObject.get("id").getAsInt();
+			List<Res> ress = resDao.CategoryfindById(id);	
+			writeText(response, gson.toJson(ress));
 		} else if (action.equals("findById")) {
 			int id = jsonObject.get("id").getAsInt();
 			Res res = resDao.findById(id);
 			writeText(response, gson.toJson(res));
+		} else if (action.equals("getImgByResId")) {
+			int resId = jsonObject.get("resId").getAsInt();
+			List<Img> imgs = resDao.getImgByResId(resId);
+			writeText(response, gson.toJson(imgs));
 		} else {
 			writeText(response, "");
 		}

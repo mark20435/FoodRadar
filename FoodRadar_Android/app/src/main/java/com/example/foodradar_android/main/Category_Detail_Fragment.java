@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
 
@@ -32,7 +33,9 @@ public class Category_Detail_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-
+// 顯示左上角的返回箭頭
+        Common.setBackArrow(true, activity);
+        setHasOptionsMenu(true);
         navController =
                 Navigation.findNavController(activity, R.id.mainFragment);
 
