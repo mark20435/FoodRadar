@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -32,6 +33,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +63,7 @@ public class ArticleDetailFragment extends Fragment {
     private Integer articleIdBox = Article.ARTICLE_ID;
     private Integer userIdBox = Article.USER_ID;
     private int imageSize;
+    private ConstraintLayout articleConstraintLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,12 @@ public class ArticleDetailFragment extends Fragment {
         new Common().setBackArrow(true, activity);
         setHasOptionsMenu(true);
         navController = Navigation.findNavController(activity, R.id.mainFragment);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+     Common.faButtonControl(activity, false);
     }
 
     @Override
@@ -213,7 +222,7 @@ public class ArticleDetailFragment extends Fragment {
         final boolean articleGoodStatus = article.isArticleGoodStatus();
         ImageView goodIcon = ivDetailGoodIcon;
         if (articleGoodStatus) {
-            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
         } else {
             goodIcon.setColorFilter(Color.parseColor("#424242"));
         }
@@ -243,7 +252,7 @@ public class ArticleDetailFragment extends Fragment {
                         } else {
                             article.setArticleGoodCount(article.getArticleGoodCount() + 1);
                             tvDetailGoodCount.setText((article.getArticleGoodCount() + ""));
-                            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             article.setArticleGoodStatus(true);
                         }
                     } else {
@@ -547,7 +556,7 @@ public class ArticleDetailFragment extends Fragment {
             boolean commentGoodStatus = comment.isCommentGoodStatus();
             ImageView CommentGoodIcon = myViewHolder.ivCommentGoodIcon;
             if (commentGoodStatus) {
-                CommentGoodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
             } else {
                 CommentGoodIcon.setColorFilter(Color.parseColor("#424242"));
             }
@@ -577,7 +586,7 @@ public class ArticleDetailFragment extends Fragment {
                         } else {
                             comment.setCommentGoodCount(comment.getCommentGoodCount() + 1);
                             myViewHolder.tvCommentGood.setText((comment.getCommentGoodCount() + ""));
-                            CommentGoodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             comment.setCommentGoodStatus(true);
                         }
                     } else {

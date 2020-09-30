@@ -26,6 +26,7 @@ public class ArticleDaoImpl implements ArticleDao {
 		this.dataSource = dataSource;
 	}
 
+	//發文
 	@Override
 	public int insert(Article article) {
 		int count = 0; // insert的時候時影響的筆數

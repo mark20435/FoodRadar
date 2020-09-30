@@ -53,6 +53,21 @@ public class Article {
         this.articleFavoriteStatus = articleFavoriteStatus;
 	}
 	
+	   //建構子，發文用
+    public  Article(int articleId, String articleTitle, String articleText, int conNum,
+                    int conAmount,int resId, int userId, boolean articleStatus){
+        super();
+        this.articleId = articleId;
+        this.articleTitle = articleTitle;
+        this.articleText = articleText;
+        this.conNum = conNum;
+        this.conAmount = conAmount;
+//        this.resName = resName;
+        this.resId = resId;
+        this.userId = userId;
+        this.articleStatus = articleStatus;
+    }
+	
 	//點讚
     public Article(int articleGoodId,int userId , int articleId) {
         super();

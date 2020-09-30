@@ -94,6 +94,9 @@
         <action
             android:id="@+id/action_articleFragment_to_articleInsertFragment"
             app:destination="@id/articleInsertFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/resInsertFragment"
@@ -139,7 +142,11 @@
         android:id="@+id/resAddressFragment"
         android:name="com.example.foodradar_android.article.ResAddressFragment"
         android:label="fragment_res_address"
-        tools:layout="@layout/fragment_res_address" />
+        tools:layout="@layout/fragment_res_address" >
+        <action
+            android:id="@+id/action_resAddressFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
+    </fragment>
     <fragment
         android:id="@+id/insertImageFragment"
         android:name="com.example.foodradar_android.article.InsertImageFragment"

@@ -6,8 +6,11 @@ import server.article.Article;
 
 public interface ArticleDao {
 	
+	//發文
 	int insert(Article article);
+	
 	int update(Article article);
+	
 	int delete(int articleId);
 
 	Article findById(int articleId);

@@ -54,5 +54,13 @@
         <action
             android:id="@+id/action_articleInsertFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/action_articleInsertFragment_to_resAddressFragment2"
+            app:destination="@id/resAddressFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/resAddressFragment"
+        android:name="com.example.foodradar_android.article.ResAddressFragment"
+        android:label="fragment_res_address"
+        tools:layout="@layout/fragment_res_address" />
 </navigation>
