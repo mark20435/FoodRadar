@@ -106,7 +106,6 @@ public class ResUpdateFragment extends Fragment {
     private static final int REQ_PICK_PICTURE = 1;
     private static final int REQ_CROP_PICTURE = 2;
     private Uri contentUri;
-    private CommonTask resGetCategoriesTask;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +114,8 @@ public class ResUpdateFragment extends Fragment {
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
+        new Common();
+        Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
 
         navController =
@@ -1751,7 +1751,7 @@ public class ResUpdateFragment extends Fragment {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getCategories");
             String jsonOut = jsonObject.toString();
-            resGetCategoriesTask = new CommonTask(url, jsonOut);
+            CommonTask resGetCategoriesTask = new CommonTask(url, jsonOut);
             try {
                 String jsonIn = resGetCategoriesTask.execute().get();
                 Type listType = new TypeToken<List<Category>>() {

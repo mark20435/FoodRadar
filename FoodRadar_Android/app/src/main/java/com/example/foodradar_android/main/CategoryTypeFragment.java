@@ -208,7 +208,7 @@ public class CategoryTypeFragment extends Fragment {
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("res", res);
-                    Navigation.findNavController(view).navigate(R.id.action_chinaRestaurantFragment_to_category_Detail_Fragment, bundle);
+                    Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
                 }
         });
         }

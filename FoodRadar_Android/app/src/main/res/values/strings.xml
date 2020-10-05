@@ -19,6 +19,7 @@
     <string name="newArticle">新進榜</string>
     <string name="rankArticle">排行榜</string>
     <string name="favoriteArticle">收藏榜</string>
+    <string name="textNoCouponsFound">找不到優惠券</string>
     <!--    <string name="textNoNetwork">no network connection available</string>-->
     <string name="textNoMainFound">no Main found</string>
     <string name="textNoNetwork">No Network</string>
@@ -283,6 +284,12 @@
     <string name="title_of_res_coupon_maintain">餐廳優惠管理</string>
     <string name="title_of_res_user_maintain">會員管理</string>
     <string name="title_of_res_article_maintain">會員發文管理</string>
-
+    <string name="textImageNumber">照片數量</string>
+    <string name="textReadArticle">觀看食記</string>
+    <string name="textWriteArticle">撰寫食記</string>
+    <string name="textDirect">開啟導航</string>
+    <string name="textLocationEmpty">無法定位現在位置</string>
+    <string name="textOriginNotFound">找不到起點</string>
+    <string name="textDestinationNotFound">找不到目的地</string>
 
 </resources>

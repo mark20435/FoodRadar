@@ -6,11 +6,21 @@ public class Category implements Serializable {
     private int id;
     private String info;
     private int cateSn;
+    private boolean resEnable;
 
-    public Category(int id, String info, int cateSn) {
+    public Category(int id, String info, int cateSn, boolean resEnable) {
         this.id = id;
         this.info = info;
         this.cateSn = cateSn;
+        this.resEnable = resEnable;
+    }
+
+    public boolean isResEnable() {
+        return resEnable;
+    }
+
+    public void setResEnable(boolean resEnable) {
+        this.resEnable = resEnable;
     }
 
     public int getId() {

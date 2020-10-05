@@ -46,7 +46,6 @@ public class ArticleDetailFragment extends Fragment {
     private Article article;
     private List<Img> imgs;
     private List<Comment> comments;
-    private List<CommentGood> commentGoods;
     private NavController navController;
     private Activity activity;
     private TextView tvDetailArticleTitle, tvDetailUserName, tvDtdailResCategoryInfo, tvDetailArticleTime, tvDetailResName,
@@ -80,6 +79,10 @@ public class ArticleDetailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_article_detail, container, false);
     }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -105,10 +108,10 @@ public class ArticleDetailFragment extends Fragment {
         btCommentSend = view.findViewById(R.id.btCommentSend);  //送出留言
         btCommentSend.setOnClickListener(v -> {
             String comment = etComment.getText().toString().trim();
-            if (comment.length() <= 0 ) {
+            if (comment.length() <= 0) {
                 Common.showToast(activity, R.string.commentNoInsert);
                 etComment.setError("請輸入留言");
-                return ;
+                return;
             }
             if (Common.networkConnected(activity)) {
                 String url = Common.URL_SERVER + "CommentServlet";
@@ -127,6 +130,10 @@ public class ArticleDetailFragment extends Fragment {
                     Common.showToast(activity, R.string.commentInsertError);
                 } else {
                     Common.showToast(activity, R.string.commentInsertSuccess);
+
+                    //先將加入過的留言加入List內，再呼叫show方法顯示出來
+                    comments.add(commentInsert);
+                    showComments(comments);
                 }
             } else {
                 Common.showToast(activity, "連線失敗");
@@ -134,10 +141,12 @@ public class ArticleDetailFragment extends Fragment {
             //收起鍵盤
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE);
             if (imm.isActive()) {
-                // 如果鍵盤是開啟的
+                // 如果鍵盤是開啟的 > 關閉
                 imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
                         InputMethodManager.HIDE_NOT_ALWAYS);
             }
+            //清空edText
+            etComment.setText("");
         });
 
 
@@ -417,7 +426,7 @@ public class ArticleDetailFragment extends Fragment {
         public void onBindViewHolder(@NonNull ImgAdpter.MyViewHolder myViewHolder, int position) {
             final Img img = imgs.get(position);
             String url = Common.URL_SERVER + "ImgServlet";
-            int imgId = img.getImagId();
+            int imgId = img.getImgId();
             ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage);
             imageTask.execute();
             imageTasks.add(imageTask);
@@ -426,7 +435,7 @@ public class ArticleDetailFragment extends Fragment {
     }
 
     //取得comment連線 > 先不取得comment使用者圖示
-    private List<Comment> getComments() {
+    public List<Comment> getComments() {
         List<Comment> comments = null;
         if (Common.networkConnected(activity)) {
             String url = Common.URL_SERVER + "CommentServlet";
@@ -450,7 +459,7 @@ public class ArticleDetailFragment extends Fragment {
         return comments;
     }
 
-    private void showComments(List<Comment> commentList) {
+    public void showComments(List<Comment> commentList) {
         if (commentList == null || commentList.isEmpty()) {
             Common.showToast(activity, R.string.textNoCommentFound);
         }
