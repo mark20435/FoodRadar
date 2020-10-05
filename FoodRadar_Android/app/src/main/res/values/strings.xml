@@ -284,5 +284,6 @@
     <string name="textLocationEmpty">無法定位現在位置</string>
     <string name="textOriginNotFound">找不到起點</string>
     <string name="textDestinationNotFound">找不到目的地</string>
+    <string name="textMyRes">我的收藏</string>
 
 </resources>
