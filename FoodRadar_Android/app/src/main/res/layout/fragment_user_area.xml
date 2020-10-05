@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,35 +11,17 @@
         android:id="@+id/id_btResMaintain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:layout_marginBottom="8dp"
         android:text="餐廳資訊維護"
-        app:layout_constraintBottom_toTopOf="@+id/id_btMyRes"
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constvUsArContactUs" />
 
-    <Button
-        android:id="@+id/id_btMyRes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="我的餐廳收藏"
-        android:background="@drawable/button_for_user_area_menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/user_area_button"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
     <!-- 我的餐廳收藏 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constvUsArMyRes"
@@ -60,29 +43,16 @@
 
         <EditText
             android:id="@+id/edUsArMyResDivider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginEnd="14dp"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
+            style="@style/style_user_area_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvBtUsArMyRes"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_for_user_area_menu"
+        <Button
+            android:id="@+id/btUsArMyRes"
+            style="@style/style_user_area_button"
             android:text="@string/title_of_myres"
-            android:textColor="@color/mainPink"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,29 +79,16 @@
 
         <EditText
             android:id="@+id/edUsArMyCouponDivider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginEnd="14dp"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
+            style="@style/style_user_area_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvBtUsArMyCoupon"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_for_user_area_menu"
+        <Button
+            android:id="@+id/btUsArMyCoupon"
+            style="@style/style_user_area_button"
             android:text="@string/title_of_mycoupon"
-            android:textColor="@color/mainPink"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,29 +115,16 @@
 
         <EditText
             android:id="@+id/edUsArMyArticleDivider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginEnd="14dp"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
+            style="@style/style_user_area_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvBtUsArMyArticle"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_for_user_area_menu"
+        <Button
+            android:id="@+id/btUsArMyArticle"
+            style="@style/style_user_area_button"
             android:text="@string/title_of_myarticle"
-            android:textColor="@color/mainPink"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -207,29 +151,16 @@
 
         <EditText
             android:id="@+id/edUsArUserDataDivider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginEnd="14dp"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
+            style="@style/style_user_area_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvBtUsArUserData"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_for_user_area_menu"
+        <Button
+            android:id="@+id/btUsArUserData"
+            style="@style/style_user_area_button"
             android:text="@string/title_of_userdata"
-            android:textColor="@color/mainPink"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -256,29 +187,16 @@
 
         <EditText
             android:id="@+id/edUsArSysSetupDivider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginEnd="14dp"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
+            style="@style/style_user_area_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvBtUsArSysSetup"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_for_user_area_menu"
+        <Button
+            android:id="@+id/btUsArSysSetup"
+            style="@style/style_user_area_button"
             android:text="@string/title_of_sys_setup"
-            android:textColor="@color/mainPink"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -305,29 +223,16 @@
 
         <EditText
             android:id="@+id/edUsArContactUsDivider"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginEnd="14dp"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
+            style="@style/style_user_area_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvBtUsArContactUs"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_for_user_area_menu"
+        <Button
+            android:id="@+id/btUsArContactUs"
+            style="@style/style_user_area_button"
             android:text="@string/title_of_contact_us"
-            android:textColor="@color/mainPink"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

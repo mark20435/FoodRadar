@@ -39,10 +39,23 @@ public class UserAccount {
 		this.modifyDate = modifyDate;
 	}
 	
-	// For Signup and Update
+	// For Register
     public UserAccount(String userPhone, String userPwd, Timestamp userBirth, String userName,
                        Boolean allowNotifi) {
         super();
+        this.userPhone = userPhone;
+        this.userPwd = userPwd;
+        this.userBirth = userBirth;
+        this.userName = userName;
+        this.allowNotifi = allowNotifi;
+        this.userAvatar = userAvatar;
+    }
+    
+	// For Update
+    public UserAccount(int userId, String userPhone, String userPwd, Timestamp userBirth, String userName,
+                       Boolean allowNotifi) {
+        super();
+        this.userId = userId;
         this.userPhone = userPhone;
         this.userPwd = userPwd;
         this.userBirth = userBirth;

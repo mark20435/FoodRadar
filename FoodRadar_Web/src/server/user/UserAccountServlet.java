@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import server.main.ImageUtil;
@@ -31,7 +32,12 @@ public class UserAccountServlet extends HttpServlet {
 		String fromName = this.getClass().getName() + "." + Thread.currentThread().getStackTrace()[1].getMethodName();
 		pubTools.showConsoleMsg(fromName, "[START]");
 		request.setCharacterEncoding("UTF-8");
-		Gson gson = new Gson();
+		// vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+	       Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+	       // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+	       // vvvvvv 日期時間，未特別進行格式處理的寫法
+	       // Gson gson = new Gson();
+	       // ^^^^^^ 日期時間，未特別進行格式處理的寫法
 		BufferedReader br = request.getReader();
 		StringBuilder jsonIn = new StringBuilder();
 		String line = null;
@@ -59,18 +65,25 @@ public class UserAccountServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<UserAccount> userAccountList = userAccountDao.getAll(); // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
 			pubTools.writeText(response, gson.toJson(userAccountList));
-			
-//		} else if (action.equals("getImage")) {
-//			int imageSize = jsonObject.get("imageSize").getAsInt();
-//			OutputStream os = response.getOutputStream();
-//			byte[] image = userAccountDao.getImage(id);
-//			if (image != null) {
+		} else if (action.equals("getImage")) {
+			id = jsonObject.get("id").getAsInt();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			OutputStream os = response.getOutputStream();
+			byte[] image = userAccountDao.getImage(id);
+			if (image != null) {
+				// 註解掉不縮圖
 //				image = ImageUtil.shrink(image, imageSize); // 在server端縮圖
-//				response.setContentType("image/jpeg"); // 這定回傳種類為圖片
-//				response.setContentLength(image.length);
-//				os.write(image);
-//			}
-		} else if (action.equals("userAccountSignup")) {  // 使用者註冊
+				response.setContentType("image/jpeg"); // 這定回傳種類為圖片
+				response.setContentLength(image.length);
+				os.write(image);
+			}
+		} else if (action.equals("userLogin")) {
+				String userPhone = jsonObject.get("userPhone").getAsString();
+				String userPwd = jsonObject.get("userPwd").getAsString();
+				List<UserAccount> userAccountList = userAccountDao.userLogin(userPhone, userPwd); // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
+				pubTools.writeText(response, gson.toJson(userAccountList));
+				
+		} else if (action.equals("userAccountRegister")) {  // 使用者註冊
 			// userAccount userAccount
 			String userAccountJson = jsonObject.get("userAccount").getAsString();
 			pubTools.showConsoleMsg("userAccountJson", userAccountJson);
@@ -85,6 +98,26 @@ public class UserAccountServlet extends HttpServlet {
 			}
 			int count = 0;
 			count = userAccountDao.insert(userAccount, imageAvatra);
+//			List<MyRes> myResList = myResDao.getAllById(id);
+//			pubTools.writeText(response, gson.toJson(myResList));
+			pubTools.writeText(response, String.valueOf(count));
+		
+		} else if (action.equals("userAccountModify")) {  // 使用者資料修改
+			String userAccountJson = jsonObject.get("userAccount").getAsString();
+			pubTools.showConsoleMsg("userAccountJson", userAccountJson);
+			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);
+			// 檢查是否有上傳圖片
+			byte[] imageAvatra = null;
+			if (jsonObject.get("imageBase64") != null) { // 若使用者修改時沒有改照片 image物件會是 null，處理時要判斷並略過
+				System.out.println("imageBase64 != null");
+				String imageBase64 = jsonObject.get("imageBase64").getAsString();
+				if (imageBase64 != null && !imageBase64.isEmpty()) {
+					imageAvatra = Base64.getMimeDecoder().decode(imageBase64);
+				}
+				System.out.println("imageAvatra: " + imageAvatra);
+			}
+			int count = 0;
+			count = userAccountDao.update(userAccount, imageAvatra);
 //			List<MyRes> myResList = myResDao.getAllById(id);
 //			pubTools.writeText(response, gson.toJson(myResList));
 			pubTools.writeText(response, String.valueOf(count));
