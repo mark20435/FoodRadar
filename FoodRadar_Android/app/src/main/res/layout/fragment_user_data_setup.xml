@@ -158,13 +158,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button"
-                android:text="@string/textLogin"
+                android:text="@string/action_sign_in"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
 
             <Button
-                android:id="@+id/btSignupOrChang"
+                android:id="@+id/btRegisterOrChang"
                 style="@style/styleButton"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
@@ -262,21 +262,21 @@
                 android:id="@+id/btTestRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="註冊"
-                app:layout_constraintBottom_toTopOf="@+id/btTestLogin"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="自動輸入註冊"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btTestLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="登入"
-                app:layout_constraintBottom_toTopOf="@+id/tvUserPhone"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="自動輸入登入"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btTestRegister" />
 
             <Spinner
                 android:id="@+id/spAvatraSourceSelect"

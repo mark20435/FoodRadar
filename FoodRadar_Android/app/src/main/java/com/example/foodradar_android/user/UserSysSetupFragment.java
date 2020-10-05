@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
-public class UserSysSetupFragment extends Fragment {
+public class UserSysSetupFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
 
@@ -70,6 +70,8 @@ public class UserSysSetupFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        view.findViewById(R.id.btUsArResＭaintain).setOnClickListener(this);
+
 //        Button button;
 //        button = view.findViewById(R.id.id_btResMaintain);
 //        button.setOnClickListener(new View.OnClickListener() {
@@ -80,4 +82,18 @@ public class UserSysSetupFragment extends Fragment {
 //            }
 //        });
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            // 餐廳資訊維護
+            case R.id.btUsArResＭaintain:
+                navController.navigate(R.id.resMaintainFragment);
+                break;
+            default:
+                break;
+        }
+
+
+        }
 }

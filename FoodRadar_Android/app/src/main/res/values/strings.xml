@@ -7,7 +7,7 @@
     <string name="chinacategory">中式料理餐廳</string>
     <string name="coupon">優惠活動</string>
     <string name="article">討論區</string>
-    <string name="user">會員管理</string>
+    <string name="user">會員專區</string>
     <string name="appbar">完成</string>
     <string name="textEatWhat">今天吃什麼</string>
     <string name="title_of_myres">我的餐廳收藏</string>
@@ -31,7 +31,7 @@
     <string name="textResCategory">餐廳分類</string>
     <string name="textResEnable">上架狀態</string>
     <string name="textEnable">上架</string>
-    <string name="textLogin">登入</string>
+<!--    <string name="textLogin">登入</string>-->
     <string name="textLogout">登出</string>
 
     <string name="textNoImgFound">找不到圖片</string>
@@ -46,7 +46,7 @@
     <string name="textDatePicker">Date picker</string>
     <string name="textNoArticleFound">找不到文章</string>
     <string name="titleResInsert">新增餐廳</string>
-    <string name="textSignUp">註冊</string>
+<!--    <string name="textSignUp">註冊</string>-->
     <string name="textUserChangConfrim">確認修改</string>
     <string name="textNoImagePickerApp">手機裡沒有選取照片程式</string>
     <string name="textNoRessFound">找不到餐廳</string>
@@ -72,8 +72,8 @@
     <string name="textSunday">星期日</string>
 
     <string name="textNetworkConnectedFail">沒有網路連線</string>
-    <string name="textSignUpSend">送出註冊</string>
-    <string name="textSignUpCancel">取消註冊</string>
+    <string name="textRegisterSend">送出註冊</string>
+    <string name="textRegisterCancel">取消註冊</string>
     <string name="textUserPhone">手機號碼</string>
     <string name="textUserPassword">密碼</string>
     <string name="textPasswordConfirm">確認密碼</string>
@@ -277,6 +277,13 @@
     <string name="textResDistance">餐廳距離</string>
     <string name="titleResDetail">餐廳資訊</string>
     <string name="textGiveRating">留下評價</string>
+    <string name="textLogouted">已登出</string>
+    <string name="textDontWantLogout">不要登出</string>
+    <string name="textMustInput">不可為空白</string>
+    <string name="textPasswordConfirmErr">確認密碼與密碼不符</string>
+    <string name="title_of_res_coupon_maintain">餐廳優惠管理</string>
+    <string name="title_of_res_user_maintain">會員管理</string>
+    <string name="title_of_res_article_maintain">會員發文管理</string>
     <string name="textImageNumber">照片數量</string>
     <string name="textReadArticle">觀看食記</string>
     <string name="textWriteArticle">撰寫食記</string>

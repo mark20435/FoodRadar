@@ -30,4 +30,32 @@
 <!--        <item name="colorControlHighlight">@color/BackgroundtWhiteColor</item>-->
     </style>
 
+    <!-- 會員專區畫面選單style-->
+    <style name="style_user_area_button">
+        <item name="android:background">@drawable/button_for_user_area_menu</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">82dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textColor">@color/mainPink</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">viewStart</item>
+<!--        <item name="android:paddingTop">14dp</item>-->
+        <item name="android:paddingLeft">2dp</item>
+        <!-- 去按鈕陰影效果 -->
+<!--        <item name="android:stateListAnimator">@null</item>-->
+    </style>
+
+    <!-- 會員專區畫面選單style-->
+    <style name="style_user_area_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginStart">80dp</item>
+        <item name="android:layout_marginTop">51dp</item>
+        <item name="android:layout_marginEnd">14dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:enabled">false</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
     </resources>
