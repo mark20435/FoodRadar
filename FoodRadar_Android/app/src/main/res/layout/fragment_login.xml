@@ -63,7 +63,7 @@
             android:id="@+id/regcancel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="註冊" />
+            android:text="取消" />
     </LinearLayout>
 
 </LinearLayout>

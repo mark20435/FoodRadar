@@ -29,6 +29,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.example.foodradar_android.user.UserAccount;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -116,7 +117,8 @@ public class CategoryFragment extends Fragment {
             }
         });
 
-
+        // 取得使用者目前的登入狀態，並把使用者的ID設定到 Common.USER_ID 裡，以供其他功能識別使用
+        UserAccount userAccount = Common.getUserLoin(activity);
     }
 
 

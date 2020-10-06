@@ -48,6 +48,19 @@ public class UserAccount {
         this.userName = userName;
     }
 
+    // For Update
+    public UserAccount(int userId, String userPhone, String userPwd, Timestamp userBirth, String userName,
+                       Boolean allowNotifi) {
+        super();
+        this.userId = userId;
+        this.userPhone = userPhone;
+        this.userPwd = userPwd;
+        this.userBirth = userBirth;
+        this.userName = userName;
+        this.allowNotifi = allowNotifi;
+        this.userAvatar = userAvatar;
+    }
+
     public Boolean getEnable() {
         return isEnable;
     }

@@ -1,7 +1,6 @@
 package com.example.foodradar_android.user;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,12 +16,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -31,7 +27,24 @@ import com.example.foodradar_android.R;
 public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private NavController navController;
-    private TextView tvMyResUserArea;
+    // 我的餐廳收藏
+    private ImageView ivUsArMyRes;
+    private Button btUsArMyRes;
+    // 我的優惠券收藏
+    private ImageView ivUsArMyCoupon;
+    private Button btUsArMyCoupon;
+    // 我的社群活動
+    private ImageView ivUsArMyArticle;
+    private Button btUsArMyArticle;
+    // 會員資料設定
+//    private ImageView ivUsArUserData;
+    private Button btUsArUserData;
+    // 系統設定
+    private ImageView ivUsArSysSetup;
+    private Button btUsArSysSetup;
+    // 聯繫我們
+//    private ImageView ivUsArContactUs;
+    private Button btUsArContactUs;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,15 +55,14 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
 
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     // 顯示右上角的OptionMenu選單
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 //        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
-//        super.onCreateOptionsMenu(menu, inflater);
+//            super.onCreateOptionsMenu(menu, inflater);
     }
     // 顯示右上角的OptionMenu選單
     @Override
@@ -82,22 +94,29 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 
 
         // 我的餐廳收藏
-        view.findViewById(R.id.tvBtUsArMyRes).setOnClickListener(this);
+        ivUsArMyRes = view.findViewById(R.id.ivUsArMyRes);
+        btUsArMyRes = view.findViewById(R.id.btUsArMyRes);
+        btUsArMyRes.setOnClickListener(this);
         // 我的優惠券收藏
-        view.findViewById(R.id.tvBtUsArMyCoupon).setOnClickListener(this);
+        ivUsArMyCoupon = view.findViewById(R.id.ivUsArMyCoupon);
+        btUsArMyCoupon = view.findViewById(R.id.btUsArMyCoupon);
+        btUsArMyCoupon.setOnClickListener(this);
         // 我的社群活動
-        view.findViewById(R.id.tvBtUsArMyArticle).setOnClickListener(this);
+        ivUsArMyArticle = view.findViewById(R.id.ivUsArMyArticle);
+        btUsArMyArticle = view.findViewById(R.id.btUsArMyArticle);
+        btUsArMyArticle.setOnClickListener(this);
         // 會員資料設定
-        view.findViewById(R.id.tvBtUsArUserData).setOnClickListener(this::onClick);
+//        ivUsArUserData = view.findViewById(R.id.ivUsArUserData);
+        btUsArUserData = view.findViewById(R.id.btUsArUserData);
+        btUsArUserData.setOnClickListener(this);
         // 系統設定
-        view.findViewById(R.id.tvBtUsArSysSetup).setOnClickListener(this);
+        ivUsArSysSetup = view.findViewById(R.id.ivUsArSysSetup);
+        btUsArSysSetup = view.findViewById(R.id.btUsArSysSetup);
+        btUsArSysSetup.setOnClickListener(this);
         // 聯繫我們
-        view.findViewById(R.id.tvBtUsArContactUs).setOnClickListener(this);
-
-        // 取得使用者登入狀態，以進行後續的畫面控制
-        UserAccount userAccount = new Common().getUserLoin(activity);
-        Common.USER_ID = userAccount.getUserId();
-        Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
+//        ivUsArContactUs = view.findViewById(R.id.ivUsArContactUs);
+        btUsArContactUs = view.findViewById(R.id.btUsArContactUs);
+        btUsArContactUs.setOnClickListener(this);
 
 
         // 臨時的餐廳資訊維護進入點按鈕
@@ -105,10 +124,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private int getUserId(){
-        return Common.USER_ID;
-    }
-
+    private int getUserId() { return Common.USER_ID; }
 
     @Override
     public void onClick(View v) {
@@ -119,28 +135,78 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
                 break;
 
             // 我的餐廳收藏
-            case R.id.tvBtUsArMyRes:
+            case R.id.btUsArMyRes:
                 navController.navigate(R.id.action_userAreaFragment_to_userMyResFragment);
                 break;
             // 我的優惠券收藏
-            case R.id.tvBtUsArMyCoupon:
+            case R.id.btUsArMyCoupon:
                 break;
             // 我的社群活動
-            case R.id.tvBtUsArMyArticle:
+            case R.id.btUsArMyArticle:
                 break;
             // 會員資料設定
-            case R.id.tvBtUsArUserData:
+            case R.id.btUsArUserData:
                 navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
                 break;
             // 系統設定
-            case R.id.tvBtUsArSysSetup:
+            case R.id.btUsArSysSetup:
+                navController.navigate((R.id.action_userAreaFragment_to_userSysSetupFragment));
                 break;
             // 聯繫我們
-            case R.id.tvBtUsArContactUs:
+            case R.id.btUsArContactUs:
                 break;
             default:
                 break;
         }
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getUserId() <= 0) {
+            setButton(false);
+        } else {
+            setButton(true);
+        }
+    }
+
+    // 畫面功能Enable控制
+    private void setButton(boolean setEnable) {
+        Integer intTextColor = 0;
+        Float floAlpha;
+        if (setEnable == true) {
+            intTextColor = getResources().getColor(R.color.mainPink);
+            floAlpha = 1.0f;
+        } else {
+            intTextColor = getResources().getColor(R.color.colorTextHint);
+            floAlpha = 0.2f;
+        }
+
+        // 我的餐廳收藏
+        ivUsArMyRes.setAlpha(floAlpha);
+        btUsArMyRes.setEnabled(setEnable);
+        btUsArMyRes.setTextColor(intTextColor);
+        // 我的優惠券收藏
+        ivUsArMyCoupon.setAlpha(floAlpha);
+        btUsArMyCoupon.setEnabled(setEnable);
+        btUsArMyCoupon.setTextColor(intTextColor);
+        // 我的社群活動
+        ivUsArMyArticle.setAlpha(floAlpha);
+        btUsArMyArticle.setEnabled(setEnable);
+        btUsArMyArticle.setTextColor(intTextColor);
+        // 會員資料設定
+//        ivUsArUserData.setAlpha(floAlpha);
+//        btUsArUserData.setEnabled(setEnable);
+//        btUsArUserData.setTextColor(intTextColor);
+        // 系統設定
+        ivUsArSysSetup.setAlpha(floAlpha);
+        btUsArSysSetup.setEnabled(setEnable);
+        btUsArSysSetup.setTextColor(intTextColor);
+        // 聯繫我們
+//        ivUsArContactUs.setAlpha(floAlpha);
+//        btUsArContactUs.setEnabled(setEnable);
+//        btUsArMyRes.setTextColor(intTextColor);
+    }
+
 }

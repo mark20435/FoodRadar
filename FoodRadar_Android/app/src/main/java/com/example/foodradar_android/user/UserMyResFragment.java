@@ -153,7 +153,7 @@ public class UserMyResFragment extends Fragment {
 //            final MyRes bookOnBVH = books.get(position);
             Log.d(TAG,"resId: " + resId);
             Log.d(TAG,"MYRES_SERVLET: " + MYRES_SERVLET);
-            UserMyResImage userMyResImage = new UserMyResImage(MYRES_SERVLET,resId,imageSize,holder.imResImg);
+            UserMyResImage userMyResImage = new UserMyResImage(MYRES_SERVLET, resId, imageSize, holder.imResImg);
             userMyResImage.execute(); // .execute() => UserImage.doInBackground
             imageTasks.add(userMyResImage);
         }
