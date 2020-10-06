@@ -29,9 +29,10 @@
             android:text="帳號 : " />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/userPhone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="請輸入手機號碼" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:text="密碼 : " />
         <EditText
-            android:id="@+id/userpwd"
+            android:id="@+id/userPwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
