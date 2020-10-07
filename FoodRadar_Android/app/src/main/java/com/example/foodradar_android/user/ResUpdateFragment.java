@@ -1540,9 +1540,7 @@ public class ResUpdateFragment extends Fragment {
 
                 boolean resEnable = swResEnable.isChecked();
 
-                //todo userId
-                int userId = 3;
-                //int userId = Common.USER_ID;
+                int userId = Common.USER_ID;
 
                 Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
                 if (Common.networkConnected(activity)) {

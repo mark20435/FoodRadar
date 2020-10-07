@@ -1734,6 +1734,7 @@ drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable cucate
+drawable demo_res_img
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1994,6 +1995,7 @@ id btCollect
 id btCommentSend
 id btDatePicker
 id btDelete
+id btDemo
 id btDirect
 id btEatWhat
 id btFriAddHours
@@ -2006,6 +2008,7 @@ id btMonAddHours
 id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
+id btMyRes
 id btPickPicture
 id btReadArticle
 id btRegisterOrChang
@@ -2995,6 +2998,7 @@ string textDeleteFail
 string textDeleteHours
 string textDeleteRes
 string textDeleteSuccess
+string textDemo
 string textDestinationNotFound
 string textDirect
 string textDontWantLogout
@@ -3018,6 +3022,7 @@ string textModifyDate
 string textModifyUserName
 string textMonday
 string textMustInput
+string textMyRes
 string textNetworkConnectedFail
 string textNoArticleFound
 string textNoCameraApp
