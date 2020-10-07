@@ -27,6 +27,7 @@ MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/gn0987
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/45f338660131004e5c042347a558e7de/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/95ed6e33310cf9f3b13fd925335e8eb4/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6ab49cd06f46079b6a0f79624ca6e3e7/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.gridlayout:gridlayout:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/4f85e9fd811de7d2bcbb81d518443616/gridlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9aa4d9e462c051eb7158f47090e90247/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/672b4207984d55357ede8ec4610d5d48/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat-resources:1.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/438e094a684e56e4c340d5ea3951f1c9/jetified-appcompat-resources-1.2.0/AndroidManifest.xml:17:1-24:12
@@ -237,6 +238,8 @@ MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gn0987123/.gradle/cach
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/95ed6e33310cf9f3b13fd925335e8eb4/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6ab49cd06f46079b6a0f79624ca6e3e7/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/6ab49cd06f46079b6a0f79624ca6e3e7/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.gridlayout:gridlayout:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/4f85e9fd811de7d2bcbb81d518443616/gridlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.gridlayout:gridlayout:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/4f85e9fd811de7d2bcbb81d518443616/gridlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9aa4d9e462c051eb7158f47090e90247/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/9aa4d9e462c051eb7158f47090e90247/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/672b4207984d55357ede8ec4610d5d48/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44

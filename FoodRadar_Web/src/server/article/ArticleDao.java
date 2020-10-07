@@ -3,6 +3,7 @@ package server.article;
 import java.util.List;
 
 import server.article.Article;
+import server.img.Img;
 
 public interface ArticleDao {
 	
@@ -14,6 +15,8 @@ public interface ArticleDao {
 	int delete(int articleId);
 
 	Article findById(int articleId);
+	
+	int findByIdMax(int Id,Img img, byte[] image);
 	
 	byte[] getImage(int imgId);
 	

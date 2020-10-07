@@ -45,7 +45,11 @@
         android:id="@+id/articleDetailFragment"
         android:name="com.example.foodradar_android.article.ArticleDetailFragment"
         android:label="fragment_article_detail"
-        tools:layout="@layout/fragment_article_detail" />
+        tools:layout="@layout/fragment_article_detail" >
+        <action
+            android:id="@+id/action_articleDetailFragment_to_newArticleFragment"
+            app:destination="@id/newArticleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/articleInsertFragment"
         android:name="com.example.foodradar_android.article.ArticleInsertFragment"

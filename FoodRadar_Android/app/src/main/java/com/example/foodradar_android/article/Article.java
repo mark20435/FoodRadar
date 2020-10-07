@@ -88,6 +88,12 @@ public class Article implements Serializable {
         this.userId = userId;
     }
 
+
+    public Article(int articleId) {
+        super();
+        this.articleId = articleId;
+    }
+
     public int getArticleId() {
         return articleId;
     }

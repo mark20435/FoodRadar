@@ -266,7 +266,6 @@ public class NewArticleFragment extends Fragment {
 
             String commentCount = article.getCommentCount() + "";
 
-
             myViewHolder.userName.setText(article.getUserName());
             myViewHolder.resCategoryInfo.setText(article.getResCategoryInfo());
             myViewHolder.articleTitle.setText(article.getArticleTitle());

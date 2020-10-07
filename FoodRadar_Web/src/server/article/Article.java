@@ -67,6 +67,11 @@ public class Article {
         this.userId = userId;
         this.articleStatus = articleStatus;
     }
+    
+	public Article(int articleId) {
+		super();
+        this.articleId = articleId;
+	}
 	
 	//點讚
     public Article(int articleGoodId,int userId , int articleId) {

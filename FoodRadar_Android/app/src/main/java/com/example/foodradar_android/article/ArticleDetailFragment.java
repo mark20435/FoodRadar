@@ -1,6 +1,7 @@
 package com.example.foodradar_android.article;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -71,9 +72,9 @@ public class ArticleDetailFragment extends Fragment {
         activity = getActivity();
         imageTasks = new ArrayList<>();
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
-        setHasOptionsMenu(true);
-        navController = Navigation.findNavController(activity, R.id.mainFragment);
+//        new Common().setBackArrow(true, activity);
+//        setHasOptionsMenu(true);
+//        navController = Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override
@@ -206,7 +207,7 @@ public class ArticleDetailFragment extends Fragment {
         //取得文章圖片
         //橫向recyclerView
         rvArticleImage = view.findViewById(R.id.rvArticleImage);    //圖片recyclerView
-        rvArticleImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true));
+        rvArticleImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
         imgs = getImgs();
         showImgs(imgs);
 
@@ -363,7 +364,8 @@ public class ArticleDetailFragment extends Fragment {
         if (Common.networkConnected(activity)) {
             String url = Common.URL_SERVER + "ImgServlet";
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("action", "getAll");
+            jsonObject.addProperty("action", "getAllById");
+            jsonObject.addProperty("articleId", article.getArticleId());
             String jsonOut = jsonObject.toString();
             articleGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -436,9 +438,21 @@ public class ArticleDetailFragment extends Fragment {
             final Img img = imgs.get(position);
             String url = Common.URL_SERVER + "ImgServlet";
             int imgId = img.getImgId();
-            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage);
+            int articleId = img.getArticleId();
+            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage, articleId);
+//            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage);
             imageTask.execute();
             imageTasks.add(imageTask);
+
+            myViewHolder.ivArticleImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setView(R.layout.show_image_item)
+                                .setCancelable(true) // 必須點擊按鈕方能關閉，預設為true
+                                .show();
+                }
+            });
         }
 
     }
@@ -624,26 +638,25 @@ public class ArticleDetailFragment extends Fragment {
     }
 
 
-    // 顯示右上角的OptionMenu選單
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-    }
-
-    // 顯示右上角的OptionMenu選單
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.Finish:
-                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
-                break;
-            case android.R.id.home:
-                navController.popBackStack();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
+//    // 顯示右上角的OptionMenu選單
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//
+//    }
+//
+//    // 顯示右上角的OptionMenu選單
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                navController.popBackStack();
+////                navController.navigate(R.id.action_articleDetailFragment_to_articleFragment);
+//                break;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//        return true;
+//    }
 
     //生命週期結束，釋放記憶體
     @Override

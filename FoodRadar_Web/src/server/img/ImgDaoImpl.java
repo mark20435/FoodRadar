@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import server.article.Article;
 import server.main.ServiceLocator;
 
 public class ImgDaoImpl implements ImgDao {
@@ -96,12 +97,12 @@ public class ImgDaoImpl implements ImgDao {
 
 	//取得特定文章圖片
 	@Override
-	public byte[] getImage(int imgId) {
-		String sql = "SELECT imgId, articleId, img FROM Img WHERE imgId = ? ;";
+	public byte[] getImage(int articleId) {
+		String sql = "SELECT imgId, articleId, img FROM Img WHERE articleId = ? ;";
 		byte[] image = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setInt(1, imgId);
+			ps.setInt(1, articleId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				image = rs.getBytes("img");
@@ -132,5 +133,59 @@ public class ImgDaoImpl implements ImgDao {
 		}
 		return imgList;
 	}
+	
+	//取特定文章圖片資訊
+	@Override
+	public List<Img> getAllById(int articleId) {
+		String sql = "SELECT articleId, imgId FROM Img where articleId = ? ORDER BY imgId DESC;";
+		List<Img> imgList = new ArrayList<Img>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, articleId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int imgId = rs.getInt("imgId");
+//				int articleId = rs.getInt("articleId");
+				Img img = new Img(imgId, articleId);
+				imgList.add(img);
+			}
+			return imgList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return imgList;
+	}
+
+	@Override
+	public int findByIdMax(int Id, Img img, byte[] image) {
+		Article article = null;
+		String sql = "select Max(articleId) From Article; ";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			System.out.println("SQL:" + sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+					int articleId = rs.getInt("articleId");
+					article = new Article(articleId);
+			}
+//			return article;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+//		return article;
+		int count = 0;
+		String sqlImg = "INSERT INTO Img" + "(articleId, img)" + "VALUES(?,?);";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlImg);) {
+			ps.setInt(1, article.getArticleId());
+			ps.setBytes(2, image);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	
 
 }
