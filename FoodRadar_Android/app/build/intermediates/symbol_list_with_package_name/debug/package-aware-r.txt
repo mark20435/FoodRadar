@@ -1910,6 +1910,7 @@ id accessibility_custom_action_9
 id action0
 id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
+id action_CategoryTypeFragment_to_userDataSetupFragment
 id action_articleFragment_to_articleInsertFragment
 id action_articleFragment_to_newArticleFragment2
 id action_articleInsertFragment_to_articleDetailFragment
@@ -1989,9 +1990,9 @@ id blocking
 id bottom
 id bounce
 id btAdd
+id btAutoLogin
 id btBack
 id btCancel
-id btCollect
 id btCommentSend
 id btDatePicker
 id btDelete
@@ -2050,6 +2051,7 @@ id btWedDeleteHours2
 id btWedDeleteHours3
 id btWriteArticle
 id btnLogInOut
+id button
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2164,7 +2166,6 @@ id etArticleTitle
 id etComment
 id etConAmount
 id etConNum
-id etDate
 id etPassword
 id etPasswordConfirm
 id etResAddress
@@ -2529,6 +2530,7 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView4
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop

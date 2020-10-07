@@ -260,7 +260,7 @@ public class CategoryFragment extends Fragment {
 
         }
     }
-    private int getUserId(){
+    private int getUserId() {
         return Common.USER_ID;
     }
 

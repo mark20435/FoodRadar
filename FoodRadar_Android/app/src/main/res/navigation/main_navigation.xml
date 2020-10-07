@@ -22,7 +22,11 @@
             app:destination="@id/userAreaFragment" />
         <action
             android:id="@+id/action_mainFragment_to_chinaRestaurantFragment"
-            app:destination="@id/CategoryTypeFragment"/>
+            app:destination="@id/CategoryTypeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_mainFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
@@ -113,11 +117,14 @@
         android:label="fragment_china_restaurant"
         tools:layout="@layout/fragment_china_restaurant" >
         <action
-            android:id="@+id/action_CategoryTypeFragment_to_resDetailFragment"
-            app:destination="@id/resDetailFragment" />
-        <action
             android:id="@+id/action_CategoryTypeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_CategoryTypeFragment_to_userDataSetupFragment"
+            app:destination="@id/userDataSetupFragment" />
+        <action
+            android:id="@+id/action_CategoryTypeFragment_to_resDetailFragment"
+            app:destination="@id/resDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleDetailFragment"

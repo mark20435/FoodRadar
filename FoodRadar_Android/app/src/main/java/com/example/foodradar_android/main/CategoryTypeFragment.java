@@ -220,12 +220,12 @@ public class CategoryTypeFragment extends Fragment {
                     if (getUserId() <= 0) {
                         AlertDialog.Builder d = new AlertDialog.Builder(activity);
                         d.setTitle("警告！")
-                                .setMessage("您還未註冊")
+                                .setMessage("您還未加入會員")
                                 .setCancelable(false);
-                        d.setPositiveButton("請註冊", new DialogInterface.OnClickListener() {
+                        d.setPositiveButton("登入會員", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                navController.navigate(R.id.action_CategoryTypeFragment_to_loginFragment);
+                                navController.navigate(R.id.action_CategoryTypeFragment_to_userDataSetupFragment, bundle);
                             }
                         });
                         d.setNegativeButton("取消", new DialogInterface.OnClickListener() {

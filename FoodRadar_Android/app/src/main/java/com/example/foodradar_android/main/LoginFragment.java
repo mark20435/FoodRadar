@@ -58,7 +58,7 @@ public class LoginFragment extends Fragment {
     private EditText userphone;
 
     private TextView tvuserPwd;
-    private EditText userPwd;
+    private EditText etUserPwd;
 
     private TextView tvuserPwdConfirm;
     private EditText etuserPwdConfirm;
@@ -121,7 +121,7 @@ public class LoginFragment extends Fragment {
         userphone = view.findViewById(R.id.userPhone);
 
         tvuserPwd = view.findViewById(R.id.tvuserPwd);
-        userPwd = view.findViewById(R.id.userPwd);
+        etUserPwd = view.findViewById(R.id.userPwd);
 
         login = view.findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +137,7 @@ public class LoginFragment extends Fragment {
 
                                          } else {
 
-                                             int logInResult = Common.userLogin(activity, userphone.getText().toString(), userPwd.getText().toString());
+                                             int logInResult = Common.userLogin(activity, userphone.getText().toString(), etUserPwd.getText().toString());
                                              if (logInResult <= 0) {
                                                  Common.showToast(activity, "登入失敗");
                                              } else {
@@ -172,6 +172,17 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.btAutoLogin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String  userPhone = "0912345678";
+                String userPwd = "P@ssw0rd";
+                userphone.setText(userPhone);
+                etUserPwd.setText(userPwd);
+            }
+        }
+        );
+
 
 //                            UserAccount userAccount = new Common().getUserLoin(activity);
 //                            Common.USER_ID = userAccount.getUserId();
@@ -204,8 +215,8 @@ public class LoginFragment extends Fragment {
         // 去空白
         String strUserPhone = userphone.getText().toString().trim();
         userphone.setText(strUserPhone);
-        String strPassword = userPwd.getText().toString().trim();
-        userPwd.setText(strPassword);
+        String strPassword = etUserPwd.getText().toString().trim();
+        etUserPwd.setText(strPassword);
 
         if (strUserPhone.equals("")) {
             strToast += ((strToast == "") ? "" : "\n") + tvuserPhone.getText() + space(1) + res.getString(R.string.textMustInput);
@@ -295,7 +306,7 @@ public class LoginFragment extends Fragment {
         userphone.setText(userAccount.getUserPhone());
         userphone.setFocusable(false); // 手機號碼不可修改
         userphone.setFocusableInTouchMode(false); // 手機號碼不可修改
-        userPwd.setText(userAccount.getUserPwd());
+        etUserPwd.setText(userAccount.getUserPwd());
         etuserPwdConfirm.setText(userAccount.getUserPwd());
 //        etUserName.setText(userAccount.getUserName());
 //        String userBirth = new SimpleDateFormat("yyyy-MM-dd").format(userAccount.getUserBirth());
@@ -320,7 +331,7 @@ public class LoginFragment extends Fragment {
         userphone.requestFocus(); // 設定手機號碼可修改
         userphone.setFocusableInTouchMode(true); // 設定手機號碼可修改
 
-        userPwd.setText("");
+        etUserPwd.setText("");
         etuserPwdConfirm.setText("");
         login.setText(R.string.action_sign_in);
 //        btnLogInOut.setText(R.string.action_sign_in);
