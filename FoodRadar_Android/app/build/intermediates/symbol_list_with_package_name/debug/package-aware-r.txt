@@ -2013,6 +2013,7 @@ id btPickPicture
 id btReadArticle
 id btRegisterOrChang
 id btResRating
+id btResRatingInsert
 id btSatAddHours
 id btSatAddHours2
 id btSatDeleteHours2
@@ -2253,10 +2254,6 @@ id ivResAddress
 id ivResHours
 id ivResLocation
 id ivResRatingStar
-id ivResRatingStar2
-id ivResRatingStar3
-id ivResRatingStar4
-id ivResRatingStar5
 id ivResTel
 id ivShare
 id ivUsArArticleＭaintain
@@ -2364,6 +2361,7 @@ id progress_circular
 id progress_horizontal
 id radio
 id rankArticleFragment
+id ratingBar
 id ratio
 id rectangles
 id regcancel
@@ -2725,6 +2723,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout activity_res_rating
 layout article_comment_view
 layout article_image_insert
 layout article_image_view
