@@ -1767,6 +1767,7 @@ drawable ic_baseline_location_on_black_24
 drawable ic_baseline_mail_outline_24
 drawable ic_baseline_map_24
 drawable ic_baseline_more_vert_24
+drawable ic_baseline_notifications_24
 drawable ic_baseline_person_pin_24
 drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
@@ -2428,7 +2429,6 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
-id spAvatraSourceSelect
 id spCategory
 id spFriEndTime
 id spFriEndTime2
@@ -2615,6 +2615,7 @@ id tvTo9
 id tvTuesDay
 id tvUsArManagerFundivider
 id tvUserBirth
+id tvUserBirthDivider
 id tvUserName
 id tvUserPhone
 id tvWednesday
@@ -3017,7 +3018,10 @@ string textNoImgFound
 string textNoMainFound
 string textNoNetwork
 string textNoRessFound
+string textNotifi
 string textOK
+string textOff
+string textOn
 string textOriginNotFound
 string textPasswordConfirm
 string textPasswordConfirmErr
@@ -3048,6 +3052,7 @@ string textUpdateCancel
 string textUpdateFail
 string textUpdateRes
 string textUpdateSuccess
+string textUserBirth
 string textUserChangConfrim
 string textUserPassword
 string textUserPhone
