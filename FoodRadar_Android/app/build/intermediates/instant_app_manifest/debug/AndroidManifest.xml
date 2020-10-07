@@ -13,11 +13,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!-- Android 10開始，使用全螢幕的Intent需要加 -->
-    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-    <!-- 選取照片需user同意存取外部儲存體的公開檔案 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Android 10開始，使用全螢幕的Intent需要加 -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- 選取照片需user同意存取外部儲存體的公開檔案 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -36,6 +33,11 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.example.foodradar_android.res.ResRatingActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.foodradar_android.provider"
@@ -66,7 +68,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- Needs to be explicitly declared on P+ -->
         <uses-library
             android:name="org.apache.http.legacy"

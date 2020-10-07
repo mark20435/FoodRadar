@@ -76,6 +76,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class ResDetailFragment extends Fragment {
     private NavController navController;
@@ -96,8 +98,9 @@ public class ResDetailFragment extends Fragment {
     private Location lastLocation;
     private FusedLocationProviderClient fusedLocationClient;
     private Button btDirect;
-    private static final int PER_ACCESS_LOCATION = 0;
+    //private static final int PER_ACCESS_LOCATION = 0;
     private static final int REQ_CHECK_SETTINGS = 101;
+    private static final int REQ_RATING = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -744,10 +747,35 @@ public class ResDetailFragment extends Fragment {
         });
 
         //todo 評價
+        Button btResRating = view.findViewById(R.id.btResRating);
+        btResRating.setOnClickListener(v -> {
+            rating();
+        });
+
         //todo 分享
         //todo 收藏
         //todo 食記相關按鈕
         //todo 轉到餐廳照片頁面
+    }
+
+    private void rating() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("res", res);
+        Intent ratingIntent = new Intent(activity, ResRatingActivity.class);
+        ratingIntent.putExtras(bundle);
+        startActivityForResult(ratingIntent, REQ_RATING);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQ_RATING:
+                    //
+                    break;
+            }
+        }
     }
 
     private class ImgAdapter extends RecyclerView.Adapter<ResDetailFragment.ImgAdapter.MyViewHolder> {

@@ -1768,6 +1768,7 @@ drawable ic_baseline_location_on_black_24
 drawable ic_baseline_mail_outline_24
 drawable ic_baseline_map_24
 drawable ic_baseline_more_vert_24
+drawable ic_baseline_notifications_24
 drawable ic_baseline_person_pin_24
 drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
@@ -2014,6 +2015,7 @@ id btPickPicture
 id btReadArticle
 id btRegisterOrChang
 id btResRating
+id btResRatingInsert
 id btSatAddHours
 id btSatAddHours2
 id btSatDeleteHours2
@@ -2254,10 +2256,6 @@ id ivResAddress
 id ivResHours
 id ivResLocation
 id ivResRatingStar
-id ivResRatingStar2
-id ivResRatingStar3
-id ivResRatingStar4
-id ivResRatingStar5
 id ivResTel
 id ivShare
 id ivUsArArticleＭaintain
@@ -2365,6 +2363,7 @@ id progress_circular
 id progress_horizontal
 id radio
 id rankArticleFragment
+id ratingBar
 id ratio
 id rectangles
 id regcancel
@@ -2437,7 +2436,6 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
-id spAvatraSourceSelect
 id spCategory
 id spFriEndTime
 id spFriEndTime2
@@ -2625,6 +2623,7 @@ id tvTo9
 id tvTuesDay
 id tvUsArManagerFundivider
 id tvUserBirth
+id tvUserBirthDivider
 id tvUserName
 id tvUserPhone
 id tvWednesday
@@ -2727,6 +2726,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout activity_res_rating
 layout article_comment_view
 layout article_image_insert
 layout article_image_view
@@ -3035,7 +3035,10 @@ string textNoImgFound
 string textNoMainFound
 string textNoNetwork
 string textNoRessFound
+string textNotifi
 string textOK
+string textOff
+string textOn
 string textOriginNotFound
 string textPasswordConfirm
 string textPasswordConfirmErr
@@ -3066,6 +3069,7 @@ string textUpdateCancel
 string textUpdateFail
 string textUpdateRes
 string textUpdateSuccess
+string textUserBirth
 string textUserChangConfrim
 string textUserPassword
 string textUserPhone

@@ -249,4 +249,23 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		return userAccountList;
 	}
 
+	@Override
+	public int updateNotifiStatus(Integer id, Boolean notifiStatus) {
+		// Date Time: 2020-10-07 14:17:58
+		// update statements : UserAccount
+		int count = 0;
+		String sqlStmt = "UPDATE UserAccount ";
+		sqlStmt += " SET allowNotifi = ?, modifyDate = now()";
+		sqlStmt += " WHERE userId = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setBoolean(1, notifiStatus);
+			ps.setInt(2, id);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 }

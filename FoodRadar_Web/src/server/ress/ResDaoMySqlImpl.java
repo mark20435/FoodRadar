@@ -315,4 +315,58 @@ public class ResDaoMySqlImpl implements ResDao {
 		}
 		return imgs;
 	}
+
+	@Override
+	public int insertResRating(ResRating resRating) {
+		int count = 0;
+		String sql = "INSERT INTO ResRating"
+				+ "(resId, userId, rating) "
+				+ "VALUES(?, ?, ?);";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, resRating.getResId());
+			ps.setInt(2, resRating.getUserId());
+			ps.setFloat(3, resRating.getRating());
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public ResRating findRatingByResIdAndUserId(int resId, int userId) {
+		String sql = "SELECT resRatingId, rating FROM ResRating WHERE resId = ? and userId = ?;";
+		ResRating resRating = null;
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, resId);
+			ps.setInt(2, userId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Integer resRatingId = rs.getInt(1);
+				Float rating = rs.getFloat(2);
+				resRating = new ResRating(resRatingId, resId, userId, rating);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resRating;
+	}
+
+	@Override
+	public int UpdateResRating(ResRating resRating) {
+		int count = 0;
+		String sql = "UPDATE Res SET rating = ? "
+				+ "WHERE resRatingId = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setFloat(1, resRating.getRating());
+			ps.setInt(2, resRating.getResRatingId());
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 }
