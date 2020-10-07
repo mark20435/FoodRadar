@@ -1907,6 +1907,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_articleFragment_to_articleInsertFragment
 id action_articleFragment_to_newArticleFragment2
@@ -2173,6 +2174,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id ezLogin
+id ezLogout
 id fade
 id favoriteArticleFragment
 id fbArticleInsert
@@ -2622,6 +2624,8 @@ id tvUserName
 id tvUserPhone
 id tvWednesday
 id tvgoodCount
+id tvuserPhone
+id tvuserPwd
 id ucrop
 id ucrop_frame
 id ucrop_photobox
@@ -2838,6 +2842,7 @@ layout ucrop_layout_rotate_wheel
 layout ucrop_layout_scale_wheel
 layout ucrop_view
 menu appbar_ezlogin
+menu appbar_ezlogout
 menu appbar_menu
 menu article_insert_menu
 menu article_menu
@@ -2914,6 +2919,7 @@ string coupon
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string ezLogin
+string ezLogout
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string favoriteArticle

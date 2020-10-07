@@ -24,6 +24,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/tvuserPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="帳號 : " />
@@ -32,6 +33,7 @@
             android:id="@+id/userPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             android:hint="請輸入手機號碼" />
     </LinearLayout>
 
@@ -39,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/tvuserPwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="密碼 : " />

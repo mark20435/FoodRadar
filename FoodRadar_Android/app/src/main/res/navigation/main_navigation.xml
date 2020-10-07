@@ -115,6 +115,9 @@
         <action
             android:id="@+id/action_CategoryTypeFragment_to_resDetailFragment"
             app:destination="@id/resDetailFragment" />
+        <action
+            android:id="@+id/action_CategoryTypeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleDetailFragment"

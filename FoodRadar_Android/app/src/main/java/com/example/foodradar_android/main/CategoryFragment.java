@@ -30,6 +30,7 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
 import com.example.foodradar_android.user.UserAccount;
+import com.google.android.gms.common.api.Api;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -55,6 +56,7 @@ public class CategoryFragment extends Fragment {
 
 
 
+
     @Override
     public void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +69,15 @@ public class CategoryFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.appbar_ezlogin,menu);
 
+        if(getUserId() <= 0){
+            inflater.inflate(R.menu.appbar_ezlogin,menu);
+        }else if(getUserId() > 0){
+            setHasOptionsMenu(false);
+            return;
+        }
+
+        //inflater.inflate(R.menu.appbar_ezlogout,menu);
         //navController.navigate(R.id.action_mainFragment_to_loginFragment);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -108,6 +117,8 @@ public class CategoryFragment extends Fragment {
         showCategorys(categorys);
 
 
+
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -120,6 +131,7 @@ public class CategoryFragment extends Fragment {
         // 取得使用者目前的登入狀態，並把使用者的ID設定到 Common.USER_ID 裡，以供其他功能識別使用
         UserAccount userAccount = Common.getUserLoin(activity);
     }
+
 
 
 
@@ -247,6 +259,9 @@ public class CategoryFragment extends Fragment {
             });
 
         }
+    }
+    private int getUserId(){
+        return Common.USER_ID;
     }
 
     @Override
