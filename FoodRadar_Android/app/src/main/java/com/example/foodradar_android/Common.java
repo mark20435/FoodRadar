@@ -19,6 +19,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ import com.example.foodradar_android.user.UserAccount;
 import com.example.foodradar_android.user.UserMyResImage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
@@ -54,7 +56,7 @@ public class Common{
     public static String USERACCOUNT_SERVLET = URL_SERVER + "UserAccountServlet";
 
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
-    public static Integer USER_ID = 0 ;
+    public static Integer USER_ID = 0;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
 
@@ -107,7 +109,7 @@ public class Common{
     //  0=>登入失敗(原因不明)
     // -1=>使用者帳號(手機號碼)不存在
     // -2=>使用者密碼錯誤
-    public static int userLogin(Activity activity, String userPhone, String userPwd){
+    public static int userLogin(@NonNull Activity activity, String userPhone, String userPwd){
         SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
         Log.d(TAG,"userLogin.userPhone: " + userPhone);
@@ -256,6 +258,64 @@ public class Common{
         ImageView imageView = activity.findViewById(R.id.ivAvatar);
         UserMyResImage userMyResImage = new UserMyResImage(USERACCOUNT_SERVLET,USER_ID,activity,imageView);
         userMyResImage.execute(); // .execute() => UserImage.doInBackground
+    }
+
+
+    // 取得推播功能狀態
+    public static Boolean getUserAllowNotifi(Activity activity){
+        SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
+        preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+        String userId = preferences.getString("userId", "0");
+
+        if (userId.equals("") || userId == null || userId.equals("0")){
+            return false;
+        } else {
+            String allowNotifi = preferences.getString("allowNotifi", "0");
+            return Boolean.parseBoolean(allowNotifi);
+        }
+    }
+
+    // 設定推播功能狀態
+    public Boolean setUserAllowNotifi(Activity activity, Boolean notifiStatus){
+
+        String strAllowNotifi = "0";
+        if (notifiStatus == true) {
+            strAllowNotifi = "1";
+        }
+        Log.d(TAG,"setUserAllowNotifi.USER_ID: " + USER_ID);
+//        userAccount = new UserAccount(userId, userPhone, userPwd, userBirth_Timestamp, userName, allowNotifi_Boolean);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "setNotifiStatus");
+        jsonObject.addProperty("id", USER_ID);
+        jsonObject.addProperty("notifiStatus", notifiStatus);
+//        jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
+        // vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+//        jsonObject.addProperty("userAccount", new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create().toJson(userAccount));
+
+//        bitmapAvatra = new Common().getImageView(ivAvatar);
+//        // 有圖才上傳
+//        if (bitmapAvatra != null) {
+//            jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
+//        }
+        int count = 0;
+        try {
+            String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
+            count = Integer.parseInt(result);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        if (count == 0) {
+            return false;
+        } else {
+            SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
+            preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+            preferences.edit().putString(strAllowNotifi, "0");
+//            Common.userLogin(activity, userPhone, userPwd);
+//            new Common().setPreferences(activity, userAccount);
+//            Common.setUserAvatra(activity, bitmapAvatra);
+            return true;
+        }
+
     }
 
 
