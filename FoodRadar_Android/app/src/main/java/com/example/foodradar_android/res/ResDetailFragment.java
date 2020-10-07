@@ -34,6 +34,9 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.ImageTask;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import android.widget.Button;
@@ -73,6 +76,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.app.Activity.RESULT_OK;
 
 
 public class ResDetailFragment extends Fragment {
@@ -81,11 +85,10 @@ public class ResDetailFragment extends Fragment {
     private FragmentActivity activity;
     private List<ImageTask> imageTasks;
     private ImageTask imageTask;
-    private ImageView imageView;
     private int imageSize;
     private Res res;
     private ImageView ivRes, ivImage;
-    private TextView tvResName, tvResCategoryInfo, tvResAddress, tvResHours, tvResTel, tvImageNumber;
+    private TextView tvResName, tvResCategoryInfo, tvResAddress, tvResHours, tvResTel, tvImageNumber, tvResHoursDetail;
     private RecyclerView rvImage;
     private JsonObject jsonHours;
     private CommonTask imgGetAllTask;
@@ -95,8 +98,9 @@ public class ResDetailFragment extends Fragment {
     private Location lastLocation;
     private FusedLocationProviderClient fusedLocationClient;
     private Button btDirect;
-    private static final int PER_ACCESS_LOCATION = 0;
+    //private static final int PER_ACCESS_LOCATION = 0;
     private static final int REQ_CHECK_SETTINGS = 101;
+    private static final int REQ_RATING = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -155,13 +159,11 @@ public class ResDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        imageView = view.findViewById(R.id.ivRes);
-
-
+        ivRes = view.findViewById(R.id.ivRes);
         String url = Common.URL_SERVER + "ResServlet";
         int id = res.getResId();
-        imageSize = getResources().getDisplayMetrics().widthPixels /4;
-        imageTask = new ImageTask(url, id, imageSize, imageView);
+        imageSize = getResources().getDisplayMetrics().widthPixels / 4;
+        imageTask = new ImageTask(url, id, imageSize, ivRes);
         imageTask.execute();
 //        Log.d(TAG, "imageTask: " + imageTaskBVH);
 
@@ -174,7 +176,7 @@ public class ResDetailFragment extends Fragment {
         }
         res = (Res) bundle.getSerializable("res");
 
-        ivRes = view.findViewById(R.id.ivRes);
+
         tvResName = view.findViewById(R.id.tvResName);
         tvResCategoryInfo = view.findViewById(R.id.tvResCategoryInfo);
         tvResAddress = view.findViewById(R.id.tvResAddress);
@@ -189,8 +191,510 @@ public class ResDetailFragment extends Fragment {
 
         showResImg();
 
-        //todo 營業時間
+        tvResHours = view.findViewById(R.id.tvResHours);
         jsonHours = JsonParser.parseString(res.getResHours()).getAsJsonObject();
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(System.currentTimeMillis());
+        //測試時用來加小時
+        //cal.add(Calendar.HOUR, 2);
+        int nowDay = cal.get(Calendar.DAY_OF_WEEK);
+        StringBuilder strResHours = new StringBuilder();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Calendar calStart = Calendar.getInstance();
+        Calendar calEnd = Calendar.getInstance();
+        boolean open = false;
+
+        try {
+            cal.setTime(sdf.parse(cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE)));
+            switch (nowDay) {
+                case 1:
+                    if (jsonHours.get("71") == null && jsonHours.get("72") == null && jsonHours.get("73") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("71") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("71").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("71").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("72") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("72").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("72").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("73") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("73").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("73").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("71") != null) {
+                            strResHours.append(jsonHours.get("71").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("72") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("72").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("73") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("73").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                case 2:
+                    if (jsonHours.get("11") == null && jsonHours.get("12") == null && jsonHours.get("13") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("11") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("11").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("11").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("12") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("12").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("12").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("13") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("13").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("13").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("11") != null) {
+                            strResHours.append(jsonHours.get("11").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("12") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("12").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("13") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("13").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                case 3:
+                    if (jsonHours.get("21") == null && jsonHours.get("22") == null && jsonHours.get("23") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("21") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("21").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("21").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("22") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("22").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("22").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("23") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("23").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("23").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("21") != null) {
+                            strResHours.append(jsonHours.get("21").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("22") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("22").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("23") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("23").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                case 4:
+                    if (jsonHours.get("31") == null && jsonHours.get("32") == null && jsonHours.get("33") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("31") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("31").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("31").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("32") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("32").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("32").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("33") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("33").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("33").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("31") != null) {
+                            strResHours.append(jsonHours.get("31").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("32") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("32").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("33") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("33").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                case 5:
+                    if (jsonHours.get("41") == null && jsonHours.get("42") == null && jsonHours.get("43") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("41") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("41").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("41").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("42") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("42").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("42").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("43") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("43").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("43").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("41") != null) {
+                            strResHours.append(jsonHours.get("41").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("42") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("42").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("43") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("43").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                case 6:
+                    if (jsonHours.get("51") == null && jsonHours.get("52") == null && jsonHours.get("53") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("51") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("51").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("51").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("52") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("52").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("52").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("53") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("53").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("53").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("51") != null) {
+                            strResHours.append(jsonHours.get("51").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("52") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("52").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("53") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("53").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                case 7:
+                    if (jsonHours.get("61") == null && jsonHours.get("62") == null && jsonHours.get("63") == null) {
+                        strResHours.append("本日公休");
+                    } else {
+                        if (jsonHours.get("61") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("61").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("61").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("62") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("62").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("62").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+                        if (jsonHours.get("63") != null) {
+                            calStart.setTime(sdf.parse(jsonHours.get("63").getAsString().split("~")[0]));
+                            calEnd.setTime(sdf.parse(jsonHours.get("63").getAsString().split("~")[1]));
+                            if (cal.after(calStart) && cal.before(calEnd)) {
+                                open = true;
+                            }
+                        }
+
+                        if (open) {
+                            strResHours.append("營業中 ");
+                        } else {
+                            strResHours.append("休息中 ");
+                        }
+
+                        if (jsonHours.get("61") != null) {
+                            strResHours.append(jsonHours.get("61").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("62") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("62").getAsString() + "\n");
+                        }
+                        if (jsonHours.get("63") != null) {
+                            strResHours.append("\t\t\t\t\t\t\t");
+                            strResHours.append(jsonHours.get("63").getAsString() + "\n");
+                        }
+
+                        strResHours.deleteCharAt(strResHours.length() - 1);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        tvResHours.setText(strResHours);
+
+        tvResHoursDetail = view.findViewById(R.id.tvResHoursDetail);
+        final boolean[] hoursDetailVisible = {false};
+        StringBuilder strResHoursDetail = new StringBuilder(strResHours);
+        strResHoursDetail.append("\n\n星期一 ");
+        if (jsonHours.get("11") == null
+                && jsonHours.get("12") == null
+                && jsonHours.get("13") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("11") != null) {
+                strResHoursDetail.append(jsonHours.get("11").getAsString() + "\n");
+            }
+            if (jsonHours.get("12") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("12").getAsString() + "\n");
+            }
+            if (jsonHours.get("13") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("13").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.append("星期二 ");
+        if (jsonHours.get("21") == null
+                && jsonHours.get("22") == null
+                && jsonHours.get("23") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("21") != null) {
+                strResHoursDetail.append(jsonHours.get("21").getAsString() + "\n");
+            }
+            if (jsonHours.get("22") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("22").getAsString() + "\n");
+            }
+            if (jsonHours.get("23") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("23").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.append("星期三 ");
+        if (jsonHours.get("31") == null
+                && jsonHours.get("32") == null
+                && jsonHours.get("33") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("31") != null) {
+                strResHoursDetail.append(jsonHours.get("31").getAsString() + "\n");
+            }
+            if (jsonHours.get("32") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("32").getAsString() + "\n");
+            }
+            if (jsonHours.get("33") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("33").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.append("星期四 ");
+        if (jsonHours.get("41") == null
+                && jsonHours.get("42") == null
+                && jsonHours.get("43") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("41") != null) {
+                strResHoursDetail.append(jsonHours.get("41").getAsString() + "\n");
+            }
+            if (jsonHours.get("42") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("42").getAsString() + "\n");
+            }
+            if (jsonHours.get("43") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("43").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.append("星期五 ");
+        if (jsonHours.get("51") == null
+                && jsonHours.get("52") == null
+                && jsonHours.get("53") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("51") != null) {
+                strResHoursDetail.append(jsonHours.get("51").getAsString() + "\n");
+            }
+            if (jsonHours.get("52") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("52").getAsString() + "\n");
+            }
+            if (jsonHours.get("53") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("53").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.append("星期六 ");
+        if (jsonHours.get("61") == null
+                && jsonHours.get("62") == null
+                && jsonHours.get("63") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("61") != null) {
+                strResHoursDetail.append(jsonHours.get("61").getAsString() + "\n");
+            }
+            if (jsonHours.get("62") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("62").getAsString() + "\n");
+            }
+            if (jsonHours.get("63") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("63").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.append("星期日 ");
+        if (jsonHours.get("71") == null
+                && jsonHours.get("72") == null
+                && jsonHours.get("73") == null) {
+            strResHoursDetail.append("休息\n");
+        } else {
+            if (jsonHours.get("71") != null) {
+                strResHoursDetail.append(jsonHours.get("71").getAsString() + "\n");
+            }
+            if (jsonHours.get("72") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("72").getAsString() + "\n");
+            }
+            if (jsonHours.get("73") != null) {
+                strResHoursDetail.append("\t\t\t\t\t\t\t");
+                strResHoursDetail.append(jsonHours.get("73").getAsString() + "\n");
+            }
+        }
+
+        strResHoursDetail.deleteCharAt(strResHoursDetail.length() - 1);
+
+        tvResHoursDetail.setOnClickListener(v -> {
+            if (hoursDetailVisible[0]) {
+                tvResHoursDetail.setText("▼");
+                hoursDetailVisible[0] = false;
+                tvResHours.setText(strResHours);
+            } else {
+                tvResHoursDetail.setText("▲");
+                hoursDetailVisible[0] = true;
+                tvResHours.setText(strResHoursDetail);
+            }
+
+        });
 
         rvImage = view.findViewById(R.id.rvImage);    //圖片recyclerView
         rvImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
@@ -241,6 +745,37 @@ public class ResDetailFragment extends Fragment {
 
             direct(fromLat, fromLng, toLat, toLng);
         });
+
+        //todo 評價
+        Button btResRating = view.findViewById(R.id.btResRating);
+        btResRating.setOnClickListener(v -> {
+            rating();
+        });
+
+        //todo 分享
+        //todo 收藏
+        //todo 食記相關按鈕
+        //todo 轉到餐廳照片頁面
+    }
+
+    private void rating() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("res", res);
+        Intent ratingIntent = new Intent(activity, ResRatingActivity.class);
+        ratingIntent.putExtras(bundle);
+        startActivityForResult(ratingIntent, REQ_RATING);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQ_RATING:
+                    //
+                    break;
+            }
+        }
     }
 
     private class ImgAdapter extends RecyclerView.Adapter<ResDetailFragment.ImgAdapter.MyViewHolder> {

@@ -2,11 +2,14 @@ package com.example.foodradar_android.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +39,7 @@ public class CategoryTypeFragment extends Fragment {
     private static final String TAG = "TAG_CategoryType";
     private SwipeRefreshLayout swipeRefreshLayout;
     private Activity activity;
+    private NavController navController;
     private RecyclerView rvRess;
     private ImageView ibcate;
     private TextView resSecName;
@@ -55,7 +59,10 @@ public class CategoryTypeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
         imageTasks = new ArrayList<>();
+        //Common.setBackArrow(true, activity);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -142,15 +149,15 @@ public class CategoryTypeFragment extends Fragment {
                resAdapter.notifyDataSetChanged();
            }
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        // 設定畫面到首頁一律不顯示返回鍵
-        new Common().setBackArrow(false,activity);
-        // 設定首頁AppBar(ActionBar)的Title(抬頭)
-//        activity.setTitle(R.string.chinacategory);
-
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        // 設定畫面到首頁一律不顯示返回鍵
+//        new Common().setBackArrow(false,activity);
+//        // 設定首頁AppBar(ActionBar)的Title(抬頭)
+////        activity.setTitle(R.string.chinacategory);
+//
+//    }
 
 
     private class ResAdapter extends RecyclerView.Adapter<ResAdapter.MyViewHolder>{
@@ -208,9 +215,36 @@ public class CategoryTypeFragment extends Fragment {
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("res", res);
-                    Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
+
+                    //Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
+                    if (getUserId() <= 0) {
+                        AlertDialog.Builder d = new AlertDialog.Builder(activity);
+                        d.setTitle("警告！")
+                                .setMessage("您還未加入會員")
+                                .setCancelable(false);
+                        d.setPositiveButton("登入會員", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                navController.navigate(R.id.action_CategoryTypeFragment_to_userDataSetupFragment, bundle);
+                            }
+                        });
+                        d.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        d.setCancelable(false) // 必須點擊按鈕方能關閉，預設為true
+                                .show();
+                    }else if (getUserId() > 0){
+                        Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
+                    }
                 }
         });
         }
+
+    }
+    private int getUserId(){
+        return Common.USER_ID;
     }
 }

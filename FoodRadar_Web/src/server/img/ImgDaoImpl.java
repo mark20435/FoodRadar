@@ -156,6 +156,7 @@ public class ImgDaoImpl implements ImgDao {
 		return imgList;
 	}
 
+	//取得上傳文章的ID並上傳圖片
 	@Override
 	public int findByIdMax(int Id, Img img, byte[] image) {
 		Article article = null;

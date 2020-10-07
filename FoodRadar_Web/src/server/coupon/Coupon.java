@@ -3,56 +3,108 @@ package server.coupon;
 import java.awt.Button;
 import java.sql.Timestamp;
 
+import com.sun.accessibility.internal.resources.accessibility;
+
 public class Coupon {
 	
-	private int couPonId;
-    private int resId;
-    private String resName;
-    private String tvCouInfo;
+	private int id;
+    private String couPonInfo;
     private Timestamp date;
+    private String couPonStartDate;
+    private String couPonEndDate;
     private Button btCollect;
     private Boolean couPonEnable;
+    private Boolean couPonType;
+    
+    
 
-    public Coupon(int couPonId, int resId, String resName, String tvCouInfo, Timestamp date, Button btCollect, Boolean couPonEnable) {
-        this.couPonId = couPonId;
-        this.resId = resId;
-        this.resName = resName;
-        this.tvCouInfo = tvCouInfo;
+    public Coupon(Integer id, int couPonId, int resId, String resName, String couPonInfo,
+    		Timestamp date, Button btCollect, Boolean couPonEnable, String couPonStartDate, String couPonEndDate, Boolean couPonType) {
+        this.id = id;
+        this.couPonInfo = couPonInfo;
         this.date = date;
         this.btCollect = btCollect;
         this.couPonEnable = couPonEnable;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+        
     }
 
-    public int getCouPonId() {
-        return couPonId;
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCouPonInfo() {
+		return couPonInfo;
+	}
+
+	public void setCouPonInfo(String couPonInfo) {
+		this.couPonInfo = couPonInfo;
+	}
+
+	public Coupon(Integer resId, String couPonInfo, String couPonStartDate, String couPonEndDate,
+			String couPonType, boolean couPonEnable, int couponId) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Coupon(int id, String couPonStartDate, String couPonEndDate, Boolean couPonType, String couPonInfo) {
+		this.id = id;
+        this.couPonInfo = couPonInfo;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+		
+	}
+
+	public Coupon(int id, Integer couponId, String couPonStartDate, String couPonEndDate, String couPonType,
+			String couPonInfo, boolean couPonEnable, Integer resId) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Coupon(Integer resId, String couPonStartDate, String couPonEndDate, Boolean couPonType,
+			String couPonInfo, Boolean couPonEnable, Integer couPonId) {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+	public Boolean getCouPonType() {
+		return couPonType;
+	}
+
+	public void setCouPonType(Boolean couPonType) {
+		this.couPonType = couPonType;
+	}
+
+	public String getCouPonStartDate() {
+		return couPonStartDate;
+	}
+
+	public void setCouPonStartDate(String couPonStartDate) {
+		this.couPonStartDate = couPonStartDate;
+	}
+
+	public String getCouPonEndDate() {
+		return couPonEndDate;
+	}
+
+	public void setCouPonEndDate(String couPonEndDate) {
+		this.couPonEndDate = couPonEndDate;
+	}
+
+
+
+    public String getcouPonInfo() {
+        return couPonInfo;
     }
 
-    public void setCouPonId(int couPonId) {
-        this.couPonId = couPonId;
-    }
-
-    public int getResId() {
-        return resId;
-    }
-
-    public void setResId(int resId) {
-        this.resId = resId;
-    }
-
-    public String getResName() {
-        return resName;
-    }
-
-    public void setResName(String resName) {
-        this.resName = resName;
-    }
-
-    public String getTvCouInfo() {
-        return tvCouInfo;
-    }
-
-    public void setTvCouInfo(String tvCouInfo) {
-        this.tvCouInfo = tvCouInfo;
+    public void setcouPonInfo(String couPonInfo) {
+        this.couPonInfo = couPonInfo;
     }
 
     public Timestamp getDate() {

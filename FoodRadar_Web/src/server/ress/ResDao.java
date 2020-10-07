@@ -23,4 +23,10 @@ public interface ResDao {
 	List<Category> getCategories();
 	
 	List<Img> getImgByResId(int resId);
+	
+	int insertResRating(ResRating resRating);
+	
+	int UpdateResRating(ResRating resRating);
+	
+	ResRating findRatingByResIdAndUserId(int resId, int userId);
 }

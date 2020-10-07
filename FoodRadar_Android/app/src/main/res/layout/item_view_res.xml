@@ -169,10 +169,10 @@
             <Button
                 android:id="@+id/btUpdate"
                 style="@style/styleButton"
+                android:background="@drawable/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/button"
                 android:text="@string/textUpdateRes"
                 card_view:layout_constraintEnd_toStartOf="@+id/btDelete"
                 card_view:layout_constraintTop_toTopOf="@+id/btDelete" />

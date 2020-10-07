@@ -3,8 +3,12 @@ package com.example.foodradar_android.user;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +20,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -24,6 +29,8 @@ import androidx.navigation.Navigation;
 
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -34,14 +41,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -50,15 +56,15 @@ import com.example.foodradar_android.R;
 
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,7 +75,7 @@ import static android.app.Activity.RESULT_OK;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class UserDataSetupFragment extends Fragment implements View.OnClickListener, View.OnFocusChangeListener{
+public class UserDataSetupFragment extends Fragment implements View.OnClickListener { // , View.OnFocusChangeListener
     private Activity activity;
     private NavController navController;
     public final String TAG = "TAG_UserDataSetupFrag";
@@ -101,6 +107,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
     private TextView tvPassword;
     private EditText etPassword;
+    private ColorStateList edTextdefaultColor;
 
     private ImageView ivRedStarPasswordConfirm;
     private TextView tvPasswordConfirm;
@@ -110,14 +117,20 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
     private EditText etUserName;
 
     private TextView tvUserBirth;
-    private EditText etUserBirth;
+    private TextView etUserBirth;
+    private TextView tvUserBirthDivider;
+    DatePickerDialog datePickerDialog;
+    DatePickerDialog.OnDateSetListener dateSetListener;
 
     private Button btnLogInOut;
     private Button btUserChangConfrim;
 
     private UserAccount userAccount;
 
-    private Integer signupFlag = 0; // 註冊作業識別
+    private enum ProcModeEnum { LOGIN, REGISTER, LOGOUT } // 目前操作模式識別
+    private ProcModeEnum procMode;
+
+    private int rndIntTemp = 0;
 
 
     @Override
@@ -127,8 +140,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         // 顯示左上角的返回箭頭
         Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     // 顯示右上角的OptionMenu選單
@@ -160,16 +172,13 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         return inflater.inflate(R.layout.fragment_user_data_setup, container, false);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // 註冊作業識別
-//        signupFlag = 1;
 
         // 預設無資料的頭像
         ivAvatar = view.findViewById(R.id.ivAvatar);
-        ivAvatar.setImageResource(R.drawable.ic_baseline_account_circle_24);
+        ivAvatar.setImageResource(R.drawable.ic_awesome_user_circle);
 
         // 拍照功能
 //        view.findViewById(R.id.btImgCamera).setOnClickListener(this);
@@ -192,39 +201,120 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         tvUserPhone = view.findViewById(R.id.tvUserPhone);
         etUserPhone = view.findViewById(R.id.etUserPhone);
+//        etUserPhone.setOnFocusChangeListener(this);
+        etUserPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                etUserPhone.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         tvPassword = view.findViewById(R.id.tvPassword);
         etPassword = view.findViewById(R.id.etPassword);
+        edTextdefaultColor =  etPassword.getTextColors();
+//        etPassword.setOnFocusChangeListener(this);
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                etPassword.setTextColor(edTextdefaultColor);
+                etPassword.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         ivRedStarPasswordConfirm = view.findViewById(R.id.ivRedStarPasswordConfirm);
         tvPasswordConfirm = view.findViewById(R.id.tvPasswordConfirm);
         etPasswordConfirm = view.findViewById(R.id.etPasswordConfirm);
+//        etPasswordConfirm.setOnFocusChangeListener(this);
+        etPasswordConfirm.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                etPasswordConfirm.setTextColor(edTextdefaultColor);
+                etPasswordConfirm.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         tvUserName = view.findViewById(R.id.tvUserName);
         etUserName = view.findViewById(R.id.etUserName);
 
         tvUserBirth = view.findViewById(R.id.tvUserBirth);
         etUserBirth = view.findViewById(R.id.etUserBirth);
+        tvUserBirthDivider = view.findViewById(R.id.tvUserBirthDivider);
+//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);// getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(etUserBirth.getWindowToken(),0);
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String yyyyMMdd = year + "-" + (month < 10 ? "0" + month : month) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+                etUserBirth.setText(yyyyMMdd);
+                etUserBirth.setTextColor(edTextdefaultColor);
+            }
+        };
+
+        etUserBirth.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    // 最後要呼叫show()方能顯示
+                    datePickerDialog.show();
+                }
+                return false;
+            }
+        });
+
+        etUserBirth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etUserBirth.getText().equals("")) {
+                    etUserBirth.setTextColor(getResources().getColor(R.color.colorTextHint));
+                    etUserBirth.setText(getResources().getString(R.string.textUserBirth));
+                } else {
+                    etUserBirth.setTextColor(edTextdefaultColor);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         btnLogInOut = view.findViewById(R.id.btnLogInOut);
-        btUserChangConfrim = view.findViewById(R.id.btSignupOrChang);
-
-        // 使用者登入畫面顯示控制
-//        setUI();
+        btUserChangConfrim = view.findViewById(R.id.btRegisterOrChang);
+        // 用者登入畫面顯示控制
         if(getUserId() > 0) { // 已登入狀態
-            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
+//            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
             setUiIsLogin();
-
+            procMode = ProcModeEnum.LOGIN; // 在已登入狀態
         } else { // 已登出狀態
-            Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
+//            Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
             setUiIsLogout();
+            procMode = ProcModeEnum.LOGOUT; // 在已登出狀態
         }
 
 
-        // 登入/登出功能
+        // 登入/登出/註冊送出 功能
         view.findViewById(R.id.btnLogInOut).setOnClickListener(this);
-        // 變更密碼功能
-        view.findViewById(R.id.btSignupOrChang).setOnClickListener(this);
+        // 註冊/取消註冊/確認變更 功能
+        view.findViewById(R.id.btRegisterOrChang).setOnClickListener(this);
+
 
         // vvvvvv臨時寫的，用來模擬使用者 登入 與 註冊
         // 模擬使用者 登入
@@ -248,101 +338,51 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         view.findViewById(R.id.btTestRegister).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userPhone = new SimpleDateFormat("MMddhhmmss").format(new Date());
-                String userPwd = "P@ssw0rd";
-                // Integer userId = 3;
-                etUserPhone.setText(userPhone);
-                etPassword.setText(userPwd);
-                etPasswordConfirm.setText(userPwd);
-                etUserName.setText("User_" + userPhone);
+                SimpleDateFormat sdf = new SimpleDateFormat("MMddhhmmss");
+                String testUserPhone = sdf.format(new Date());
+                testUserPhone = "09" + String.valueOf(Integer.parseInt(testUserPhone.substring(3,4))+31) + testUserPhone.substring(4,10);
+                etUserPhone.setText(testUserPhone);
+                String testUserPwd = "P@ssw0rd";
+                etPassword.setText(testUserPwd);
+                etPasswordConfirm.setText(testUserPwd);
+
                 java.util.Calendar calstart = java.util.Calendar.getInstance();
                 calstart.setTime(new Date());
-                calstart.add(Calendar.DAY_OF_WEEK, -1 * Integer.parseInt(userPhone.substring(8,10)));
-                calstart.add(Calendar.YEAR, -1 * Integer.parseInt(userPhone.substring(8,10)));
-                String testUserBirth = new SimpleDateFormat("yyyy-MM-dd").format(calstart.getTime());
+                calstart.add(Calendar.DAY_OF_WEEK, -1 * Integer.parseInt(testUserPhone.substring(8,10)));
+                calstart.add(Calendar.YEAR, -1 * Integer.parseInt(testUserPhone.substring(8)));
+                sdf.applyPattern("yyyy-MM-dd");
+                String testUserBirth = sdf.format(calstart.getTime());
                 etUserBirth.setText(testUserBirth);
 
-                int[] images = {R.drawable.common_google_signin_btn_icon_dark_normal
-                        ,R.drawable.common_google_signin_btn_icon_disabled
-                        ,R.drawable.common_google_signin_btn_icon_light_normal
-                        ,R.drawable.common_google_signin_btn_icon_light_focused
-                        ,R.drawable.common_google_signin_btn_icon_dark
-                        ,R.drawable.common_full_open_on_phone};
+                int[] images = {R.drawable.ic_add
+                        ,R.drawable.x_sue
+                        ,R.drawable.x_ivy
+                        ,R.drawable.x_mary
+                        ,R.drawable.x_cat
+                        ,R.drawable.x_dog
+                        ,R.drawable.x_mouse
+                        ,R.drawable.logo_foodradar};
                 Random rand = new Random();
-                ivAvatar.setImageResource(images[rand.nextInt(images.length)]);
-//                etUserName.setText(getResources().getResourceEntryName(images[rand.nextInt(images.length)]));
-//                ivAvatar.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
-
-//                if(getUserId() > 0){
-//                    UserAccount userAccount = new UserAccount();
-//                    userAccount = Common.getUserLoin(activity);
-//                    Common.showToast(activity, "會員專區，\n登入成功，\nCommon.USER_ID: "  + userAccount.getUserId());
-//                    Common.showToast(activity, "會員專區，\n登入成功，\nuserId: "  + getUserId());
-//                } else {
-//                    switch (getUserId()){
-//                        case 0: // 0=>登入失敗(原因不明)
-//                            Common.showToast(activity, "會員專區，\n登入失敗(原因不明)，\nuserId: " + userId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-//                            break;
-//                        case -1: // -1=>使用者帳號(手機號碼)不存在
-//                            Common.showToast(activity, "會員專區，\n使用者帳號(手機號碼)不存在，\nuserId: " + userId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-//                            break;
-//                        case -2: // -2=>使用者密碼錯誤
-//                            Common.showToast(activity, "會員專區，\n使用者密碼錯誤，\nuserId: " + userId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-//                            break;
-//                        default:
-//                            Common.showToast(activity, "會員專區，\n登入失敗，\nuserId: " + userId +",\nuserPhone:" + userPhone + ",\nuserPwd: " + userPwd);
-//                            break;
-//                    }
-//                }
+                Integer rndInt = images[rand.nextInt(images.length)];
+                view.findViewById(R.id.btTestRegister).setEnabled(false);
+                while (rndInt.equals(rndIntTemp)) {
+                    rndInt = images[rand.nextInt(images.length)];
+                }
+                view.findViewById(R.id.btTestRegister).setEnabled(true);
+                rndIntTemp = rndInt;
+                bitmapAvatra = BitmapFactory.decodeResource(getResources(),rndInt);
+                ivAvatar.setImageBitmap(bitmapAvatra);
+                String testUserName = getResources().getResourceEntryName(rndInt);
+                testUserName = testUserName.substring(0,1).equals("x") ? testUserName.substring(2) : testUserName;
+                testUserName += "_" + etUserPhone.getText();
+                etUserName.setText(testUserName);
             }
         });
         // ^^^^^^臨時寫的，用來模擬使用者 登入 與 註冊
 
-        /* Spinner用List填入選單項目 */
-        spAvatraSourceSelect = view.findViewById(R.id.spAvatraSourceSelect);
-        Resources res = getResources();
-//        String[] sourceItemList = {getResources().getString(R.string.textTakePicture)};
-//        String[] sourceItemList = {res.getString(R.string.textTakePicture), res.getString(R.string.textPickPicture)};
-//        Log.d(TAG,"Calendar.DAY_OF_YEAR: " + Calendar.DAY_OF_YEAR);
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        int yearStart = 2000;
-        int yearEnd = cal.get(Calendar.YEAR);
-        String[] sourceItemList = new String[yearEnd - yearStart + 1];
-        Integer itemIndex = 0;
-        for (int i = yearStart; i <= yearEnd; i++){
-            Log.d(TAG,"i: " + i);
-            sourceItemList[itemIndex] = String.valueOf(i);
-            itemIndex++;
-        }
-//        String[] sourceItemList = {"2019","2020"};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity,
-                android.R.layout.simple_spinner_item, sourceItemList);
-        /* 指定點選時彈出來的選單樣式 */
-        arrayAdapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
-        spAvatraSourceSelect.setAdapter(arrayAdapter);
-//        spAvatraSourceSelect.setSelection(0, true);
-        spAvatraSourceSelect.setSelection(0);
-        spAvatraSourceSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spAvatraSourceSelect.setSelection(position, true);
-                Common.showToast(activity,parent.getItemAtPosition(position).toString());
-                Common.showToast(activity,"position: " + position);
-                Common.showToast(activity,"id: " + id);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spAvatraSourceSelect.setVisibility(INVISIBLE);
 
 
     }
-
 
     private int getUserId(){
         return Common.USER_ID;
@@ -350,52 +390,115 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
     private void setUI() {
         if(getUserId() > 0) { // 已登入狀態
-            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
             setUiIsLogin();
-
         } else { // 已登出狀態
-            Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
             setUiIsLogout();
         }
     }
 
     private void setUiIsLogin() {
         // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-        setSignUpUI(VISIBLE);
+        setRegisterUI(VISIBLE);
 
         userAccount = Common.getUserLoin(activity);
         etUserPhone.setText(userAccount.getUserPhone());
+        etUserPhone.setFocusable(false); // 手機號碼不可修改
+        etUserPhone.setFocusableInTouchMode(false); // 手機號碼不可修改
         etPassword.setText(userAccount.getUserPwd());
         etPasswordConfirm.setText(userAccount.getUserPwd());
         etUserName.setText(userAccount.getUserName());
         String userBirth = new SimpleDateFormat("yyyy-MM-dd").format(userAccount.getUserBirth());
         etUserBirth.setText(userBirth);
+        etUserBirth.setTextColor(edTextdefaultColor);
+        setDatePicker();
+
+        bitmapAvatra = Common.getUserAvatra(activity);
+//        Common.setUserAvatra(activity, bitmapAvatra);
+        ivAvatar.setImageBitmap(bitmapAvatra);
+//        ivAvatar.setImageResource(R.drawable.x_cat);
 
         btnLogInOut.setText(R.string.textLogout);
         btUserChangConfrim.setText(R.string.textUserChangConfrim);
-        bitmapAvatra = Common.getUserAvatra(activity);
-        ivAvatar.setImageBitmap(bitmapAvatra);
     }
 
     private void setUiIsLogout() {
         // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-        setSignUpUI(INVISIBLE);
+        setRegisterUI(INVISIBLE);
 
         etUserPhone.setText("");
+        etUserPhone.setFocusable(true); // 設定手機號碼可修改
+        etUserPhone.requestFocus(); // 設定手機號碼可修改
+        etUserPhone.setFocusableInTouchMode(true); // 設定手機號碼可修改
+
         etPassword.setText("");
         etPasswordConfirm.setText("");
 
-        btnLogInOut.setText(R.string.textLogin);
-        btUserChangConfrim.setText(R.string.textSignUp);
+        btnLogInOut.setText(R.string.action_sign_in);
+        btUserChangConfrim.setText(R.string.action_register);
         bitmapAvatra = Common.getUserAvatra(activity);
         ivAvatar.setImageBitmap(bitmapAvatra);
     }
 
+    private void setDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int year = calendar.get(Calendar.YEAR) - 12; // 年份預設顯示減12年
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        if (!etUserBirth.getText().equals("")) {
+
+            //欲轉換的日期字串
+            String dateString = etUserBirth.getText().toString();
+            //設定日期格式
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //進行轉換
+            Date dateBirth = new Date();
+            try {
+                dateBirth = sdf.parse(dateString);
+            } catch (ParseException e) {
+                Log.d(TAG,"DateParse: Exeception");
+                e.printStackTrace();
+            }
+            calendar.setTime(dateBirth);
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+        }
+
+        datePickerDialog = new DatePickerDialog(activity, DatePickerDialog.THEME_HOLO_LIGHT, dateSetListener, year, month, day);
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+
+        // 設定可選取的起始日為前130年
+        Calendar calendarMin = Calendar.getInstance();
+        calendarMin.add(Calendar.YEAR, -130);
+        datePicker.setMinDate(calendarMin.getTimeInMillis());
+        // 設定可選取的結束日為一個月前
+        Calendar calendarMax = Calendar.getInstance();
+        calendarMax.add(Calendar.MONTH, -1);
+        datePicker.setMaxDate(calendarMax.getTimeInMillis());
+    }
+
     // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-    private void setSignUpUI(Integer visibStaus) {
+    private void setRegisterUI(Integer visibStaus) {
+
+        Resources res = getResources();
+
+        etUserPhone.setFocusable(true); // 設定手機號碼可修改
+        etUserPhone.requestFocus(); // 設定手機號碼可修改
+        etUserPhone.setFocusableInTouchMode(true); // 設定手機號碼可修改
+
+        etUserPhone.setText("");
+        etUserPhone.setHintTextColor(res.getColor(R.color.colorTextHint));
+
+        etPassword.setText("");
+        etPassword.setHintTextColor(res.getColor(R.color.colorTextHint));
+        etPassword.setTextColor(edTextdefaultColor);
+
         ivRedStarPasswordConfirm.setVisibility(visibStaus);
         tvPasswordConfirm.setVisibility(visibStaus);
         etPasswordConfirm.setText("");
+        etPasswordConfirm.setHintTextColor(res.getColor(R.color.colorTextHint));
+        etPasswordConfirm.setTextColor(edTextdefaultColor);
         etPasswordConfirm.setVisibility(visibStaus);
 
         tvUserName.setVisibility(visibStaus);
@@ -403,34 +506,98 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         etUserName.setVisibility(visibStaus);
 
         tvUserBirth.setVisibility(visibStaus);
-        etUserBirth.setText("");
+        etUserBirth.setText("出生日期");
+        etUserBirth.setTextColor(getResources().getColor(R.color.colorTextHint));
         etUserBirth.setVisibility(visibStaus);
+        tvUserBirthDivider.setVisibility(visibStaus);
+        setDatePicker();
 
         btImgCamera.setVisibility(visibStaus);
 
         if (visibStaus == VISIBLE) {
-            btnLogInOut.setText(R.string.textSignUpSend);
-            btUserChangConfrim.setText(R.string.textSignUpCancel);
+            btnLogInOut.setText(R.string.textRegisterSend);
+            btUserChangConfrim.setText(R.string.textRegisterCancel);
         } else {
-            btnLogInOut.setText(R.string.textLogin);
-            btUserChangConfrim.setText(R.string.textSignUp);
+            btnLogInOut.setText(R.string.action_sign_in);
+            btUserChangConfrim.setText(R.string.action_register);
+            ivAvatar.setImageResource(R.drawable.ic_awesome_user_circle);
         }
 
     }
 
-    // 送出註冊
-    private void Register () {
-        if (etUserPhone.getText().toString().trim().equals("")) {
-            Common.showToast(activity,tvUserPhone.getText() + "不可為空白");
-            tvUserPhone.setTextColor(getResources().getColor(R.color.mainPink));
-            etUserPhone.setHintTextColor(getResources().getColor(R.color.mainPink));
-            etUserPhone.setHint(getResources().getString(R.string.textPlsInpup) + getResources().getString(R.string.textUserPhone));
+    private boolean checkInput(ProcModeEnum chkProcMode) {
+//        Log.d("TAG_checkInput", "checkInput: " + chkProcMode);
+
+        Boolean bolResult = true;
+
+        String strToast = "";
+        Resources res = getResources();
+
+        // 去空白
+        String strUserPhone = etUserPhone.getText().toString().trim();
+        etUserPhone.setText(strUserPhone);
+        String strPassword = etPassword.getText().toString().trim();
+        etPassword.setText(strPassword);
+
+        if (strUserPhone.equals("")) {
+            strToast += ((strToast == "") ? "" : "\n") + tvUserPhone.getText() + space(1) + res.getString(R.string.textMustInput);
+//            Common.showToast(activity,tvUserPhone.getText() + "不可為空白");
+//            tvUserPhone.setTextColor(getResources().getColor(R.color.mainPink));
+            etUserPhone.setHintTextColor(res.getColor(R.color.mainPink));
+//            etUserPhone.setHint(getResources().getString(R.string.textPlsInpup) + getResources().getString(R.string.textUserPhone));
+            bolResult = false;
         }
+
+        if (strPassword.equals("")) {
+            strToast += ((strToast == "") ? "" : "\n") + tvPassword.getText() + space(1) + res.getString(R.string.textMustInput);
+            etPassword.setHintTextColor(res.getColor(R.color.mainPink));
+            bolResult = false;
+        }
+
+        String strPasswordConfirm = etPasswordConfirm.getText().toString().trim();
+        etPasswordConfirm.setText(strPasswordConfirm);
+        // 註冊模式 或 已登入模式(使用者修改資料)，皆需檢查“確認密碼欄”
+        if (chkProcMode.equals(ProcModeEnum.REGISTER) || chkProcMode.equals(ProcModeEnum.LOGIN)) {
+//            Log.d("TAG","etPassword: " + strPassword);
+//            Log.d("TAG","etPasswordConfirm: " + strPasswordConfirm);
+            if(strPasswordConfirm.equals("")) {
+                strToast += ((strToast == "") ? "" : "\n") + tvPasswordConfirm.getText() + space(1) + res.getString(R.string.textMustInput);
+                etPasswordConfirm.setHintTextColor(res.getColor(R.color.mainPink));
+                bolResult = false;
+            } else if (!strPasswordConfirm.equals(strPassword)) {
+                strToast += ((strToast == "") ? "" : "\n") + res.getString(R.string.textPasswordConfirmErr);
+                etPassword.setTextColor(res.getColor(R.color.mainPink));
+//                etPasswordConfirm.setHintTextColor(res.getColor(R.color.mainPink));
+                etPasswordConfirm.setTextColor(res.getColor(R.color.mainPink));
+                bolResult = false;
+            }
+
+        }
+
+        if (bolResult == false) {
+            Common.showToast(activity, strToast);
+        }
+
+        return bolResult;
+    }
+
+    private String space(int count) {
+        String strSpace = "";
+        for (int i = 0 ; i<=count ; i++) {
+            strSpace += "\u0020";
+        }
+        return strSpace;
+    }
+
+    // 送出註冊
+    private boolean userRegister() {
+
+        if (checkInput(procMode) == false) { return false; }
 
         String userPhone = etUserPhone.getText().toString();
         String userPwd = etPassword.getText().toString();
         String userBirth = etUserBirth.getText().toString();
-        Log.d(TAG,"userBirth: " + userBirth);
+//        Log.d(TAG,"userBirth: " + userBirth);
         Timestamp userBirth_Timestamp = Timestamp.valueOf(userBirth + " 00:00:00");
 //        Log.d(TAG,"userBirth_Timestamp-1: " + userBirth_Timestamp);
 //        if (userBirth == null) {
@@ -439,12 +606,22 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 //        }
         String userName = etUserName.getText().toString();
         Boolean allowNotifi_Boolean = true;
-        Bitmap userAvatarBitmap = null; // new Common().getUserAvatra();
 
         userAccount = new UserAccount(userPhone, userPwd, userBirth_Timestamp, userName , allowNotifi_Boolean);
+
+        // vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+        Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+        // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "userAccountSignup");
-        jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
+        jsonObject.addProperty("action", "userAccountRegister");
+        // vvvvvv 日期時間，未特別進行格式處理的寫法
+        // jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
+        // ^^^^^^ 日期時間，未特別進行格式處理的寫法
+
+        // vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+        jsonObject.addProperty("userAccount", gson.toJson(userAccount));
+        // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
         // 有圖才上傳
         if (bitmapAvatra != null) {
             jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
@@ -457,102 +634,133 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
             Log.e(TAG, e.toString());
         }
         if (count == 0) {
-            Common.showToast(activity, "註冊失敗");
+            return false;
         } else {
-            Common.showToast(activity, "註冊成功");
+            return true;
         }
     }
 
+    // 資料修改
+    private boolean userDataModify() {
 
-//    @SuppressLint("ResourceAsColor")
+        if (checkInput(procMode) == false) { return false; }
+
+        Integer userId = getUserId();
+        String userPhone = etUserPhone.getText().toString();
+        String userPwd = etPassword.getText().toString();
+        String userBirth = etUserBirth.getText().toString();
+        Timestamp userBirth_Timestamp = Timestamp.valueOf(userBirth + " 00:00:00");
+        String userName = etUserName.getText().toString();
+        Boolean allowNotifi_Boolean = Common.getUserAllowNotifi(activity);;
+
+        userAccount = new UserAccount(userId, userPhone, userPwd, userBirth_Timestamp, userName, allowNotifi_Boolean);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "userAccountModify");
+//        jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
+        // vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+        jsonObject.addProperty("userAccount", new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create().toJson(userAccount));
+
+        bitmapAvatra = new Common().getImageView(ivAvatar);
+        // 有圖才上傳
+        if (bitmapAvatra != null) {
+            jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
+        }
+        int count = 0;
+        try {
+            String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
+            count = Integer.parseInt(result);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        if (count == 0) {
+            return false;
+        } else {
+            Common.userLogin(activity, userPhone, userPwd);
+//            new Common().setPreferences(activity, userAccount);
+//            Common.setUserAvatra(activity, bitmapAvatra);
+            return true;
+        }
+    }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        // 若沒有網路連線不進行作業
+        if (!Common.networkConnected(activity)) {
+            Common.showToast(activity,R.string.textNetworkConnectedFail);
+            return;
+        }
 
+        switch (v.getId()){
             // 登入/登出 功能
             case R.id.btnLogInOut:
-                if(getUserId() > 0) { // 登出
-                    new Common().userLogout(activity);
-                    Common.showToast(activity,"登出");
-                    setUI();
-                } else { // 登入
-                    Log.d(TAG,"登入: " + "activity");
-                    if(signupFlag != 1) { // 登入作業
-                        new Common().userLogin(activity, etUserPhone.getText().toString(), etPassword.getText().toString());
-                        setUI();
-                        Common.showToast(activity,"登入");
-                    } else { //註冊送出作業
+
+                if(procMode.equals(ProcModeEnum.LOGIN)) { // 登出
+                    logoutWithConfirm();
+
+                } else if(procMode.equals(ProcModeEnum.LOGOUT)) { // 登入
+                        if (checkInput(procMode) == false) { return; }
+                        int logInResult = Common.userLogin(activity, etUserPhone.getText().toString(), etPassword.getText().toString());
+                        if (logInResult <=0){
+                            Common.showToast(activity,"登入失敗");
+                        } else {
+                            setUI();
+                            procMode = ProcModeEnum.LOGIN;
+                            Common.showToast(activity,"登入成功");
+                        }
+
+                } else if(procMode.equals(ProcModeEnum.REGISTER)) { //註冊送出作業
+//                        Log.d(TAG,"註冊送出: " + activity);
                         Common.showToast(activity,"註冊送出");
-                        Log.d(TAG,"註冊送出: " + activity);
-                        Register();
-//                        Common.showToast(activity,"etUserPhone=>" + etUserPhone.getText().toString() + "<=");
-
+                    if (userRegister()) {
+                        Common.showToast(activity, "註冊成功");
+                        Common.showToast(activity, "請重新登入");
+                        setUiIsLogout(); // 設定作業識別為“登出”的狀態
+                        procMode = ProcModeEnum.LOGOUT;
+                    } else {
+                        Common.showToast(activity, "註冊失敗");
                     }
-                }
-                return;
 
-            // 資料修改/註冊 功能
-            case R.id.btSignupOrChang:
-                // 若沒有網路連線不進行作業
-                if (!Common.networkConnected(activity)) {
-                    Common.showToast(activity,R.string.textNetworkConnectedFail);
-                    return;
                 }
+                break;
 
-                if(getUserId() > 0) { // 資料修改
-                    Common.showToast(activity,"確認修改");
-                    BitmapDrawable drawable = (BitmapDrawable) ivAvatar.getDrawable();
-                    Bitmap bitmap = drawable.getBitmap();
-                    Common.setUserAvatra(activity, bitmap);
+            // 會員註冊 / 確認(資料)修改 功能
+            case R.id.btRegisterOrChang:
+                if(procMode.equals(ProcModeEnum.LOGOUT)) { // 登出狀態，這裡是會員註冊
+                    // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
+                    procMode = ProcModeEnum.REGISTER;
+                    setRegisterUI(VISIBLE);
+//                    Common.showToast(activity, R.string.action_register);
+
+                } else if (procMode.equals(ProcModeEnum.REGISTER)) { // 註冊狀態，這裡是取消註冊
+                    procMode = ProcModeEnum.LOGOUT;
+                    // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
+                    setRegisterUI(INVISIBLE);
+                    Common.showToast(activity, R.string.textRegisterCancel);
+
+                } else if(procMode.equals(ProcModeEnum.LOGIN)){ // 登入狀態，這裡是確認資料修改
+                    Common.showToast(activity,"修改送出");
+                    if (userDataModify()) {
+                        Common.showToast(activity, "修改完成");
+//                        Common.showToast(activity, "請重新登入");
+//                        setUiIsLogout(); // 設定作業識別為“登出”的狀態
+//                        procMode = ProcModeEnum.LOGOUT;
+
+//                        BitmapDrawable drawable = (BitmapDrawable) ivAvatar.getDrawable();
+//                        Bitmap bitmap = drawable.getBitmap();
+//                        Common.setUserAvatra(activity, bitmap);
+                        Common.setUserAvatra(activity, new Common().getImageView(ivAvatar));
+
 //                    ivAvatar.setImageBitmap(new Common().getUserAvatra());
 //                    bitmapAvatra = showUserAvatra();
-                    bitmapAvatra = Common.getUserAvatra(activity);
-                    ivAvatar.setImageBitmap(bitmapAvatra);
-                    Common.showToast(activity,"頭像存檔完成");
-
-                } else if ( 1 == 1) { // 註冊
-                    // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
-                    if (etPasswordConfirm.getVisibility() == INVISIBLE) {
-                        signupFlag = 1;
-                        setSignUpUI(VISIBLE);
-                        Common.showToast(activity, R.string.textSignUp);
-//                        setUI();
+                        bitmapAvatra = Common.getUserAvatra(activity);
+                        ivAvatar.setImageBitmap(bitmapAvatra);
+//                        Common.showToast(activity,"頭像存檔完成");
+                        Log.d(TAG,"修改完成 且 頭像存檔完成");
                     } else {
-                        signupFlag = 0;
-                        setSignUpUI(INVISIBLE);
-                        Common.showToast(activity, R.string.textSignUpCancel);
-//                        setUI();
+                        Common.showToast(activity, "修改失敗");
                     }
-
-
-                    return;
-                } else {
-//                    byte[] imgBytes = new byte[1];
-//                    MyRes myRes = new MyRes(1,"resName","resHours","resTel","resAddress", imgBytes);
-//                    getMyResList = new ArrayList<>();
-//                    getMyResList.add(0,myRes);
-//                    getMyResList.add(1,new MyRes(2,"resName2","resHours","resTel","resAddress", imgBytes));
-//                    for (int i = 2 ; i <= 13 ; i++){
-//                    getMyResList.add(i,new MyRes(i,"resName" + String.valueOf(i),"resHours","resTel","resAddress", imgBytes));
-//
-                    JsonObject jsonObject = new JsonObject();
-                    jsonObject.addProperty("action", "findById");
-                    jsonObject.addProperty("id", getUserId());
-                    String jsonOut = jsonObject.toString();
-
-                    CommonTask getAllTask;
-                    getAllTask = new CommonTask(USERACCOUNT_SERVLET, jsonOut);
-                    try {
-                        String jsonIn = getAllTask.execute().get();
-                        Type listType = new TypeToken<List<UserAccount>>() {
-                        }.getType();
-                        getUserAccountList = new Gson().fromJson(jsonIn, listType);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
                 }
-                return;
+                break;
 
             // PopMenu
 //            case R.id.btImgCamera:
@@ -577,10 +785,40 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 //                break;
 
             default:
-                return;
+                break;
 
         }
     }
+
+
+//    @Override
+//    public void onFocusChange(View v, boolean hasFocus) {
+//        switch (v.getId()) {
+//            case R.id.etUserPhone:
+////                if (hasFocus) {
+//                    etUserPhone.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+////                    etUserPhone.setHint(R.string.textUserPhone);
+////                }
+//                break;
+//            case R.id.etPassword:
+////                if (hasFocus) {
+//                    etPassword.setTextColor(edTextdefaultColor);
+//                    etPassword.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+////                    etPassword.setHint(R.string.textUserPassword);
+////                }
+//                break;
+//            case R.id.etPasswordConfirm:
+////                if (hasFocus) {
+//                    etPasswordConfirm.setTextColor(edTextdefaultColor);
+//                    etPasswordConfirm.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+////                    etPasswordConfirm.setHint(R.string.textPasswordConfirm);
+////                }
+//                break;
+//            default:
+//                break;
+//        }
+//
+//    }
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
@@ -631,36 +869,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         }
         return super.onContextItemSelected(item);
     }
-
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-
-        switch (v.getId()) {
-            case R.id.etUserPhone:
-                if (hasFocus) {
-                    etUserPhone.setHintTextColor(getResources().getColor(R.color.colorTextHint));
-                    etUserPhone.setHint(R.string.textUserPhone);
-                }
-                return;
-            case R.id.etPassword:
-                if (hasFocus) {
-                    etPassword.setHintTextColor(getResources().getColor(R.color.colorTextHint));
-                    etPassword.setHint(R.string.textUserPassword);
-                }
-                return;
-            case R.id.etPasswordConfirm:
-                if (hasFocus) {
-                    etPasswordConfirm.setHintTextColor(getResources().getColor(R.color.colorTextHint));
-                    etPasswordConfirm.setHint(R.string.textPasswordConfirm);
-                }
-                return;
-            default:
-                return;
-        }
-
-    }
-
 
     // 拍照後裁切圖片
     @Override
@@ -720,44 +928,23 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         }
     }
 
-//    private Bitmap showUserAvatra (){
-//        UserAccountAvatra userAccountAvatra = new UserAccountAvatra();
-//        try (ObjectInputStream soiIn = new ObjectInputStream(
-//                activity.openFileInput(userAvatraFileName))) {
-//            userAccountAvatra = (UserAccountAvatra) soiIn.readObject();
-//            byte[] avatraByte = userAccountAvatra.getByteObject();
-//            return BitmapFactory.decodeByteArray(avatraByte, 0, avatraByte.length);
-//        } catch (Exception e) {
-//            Log.d(TAG,"showUserAvatra: Exception");
-//            Log.d(TAG, e.toString());
-//            return null;
-//        }
-//    }
-
-//    private byte[] bitmapToByteArray(Bitmap bitmap) {
-//        try (ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        ){
-//            // quality設100代表不壓縮，範圍值0~100
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-//            return stream.toByteArray();
-//        } catch (Exception e) {
-//            Log.d(TAG,"bitmapToByteArray: Exception");
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        askExternalStoragePermission();
-//
-//    }
 
     @Override
     public void onStart() {
         super.onStart();
         askExternalStoragePermission();
+
+//        // 使用者登入畫面顯示控制
+//        if(getUserId() > 0) { // 已登入狀態
+////            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
+//            setUiIsLogin();
+//            procMode = ProcModeEnum.LOGIN; // 在已登入狀態
+//
+//        } else { // 已登出狀態
+////            Common.showToast(activity, "會員資料設定\n登入失敗\nUserId: " + getUserId());
+//            setUiIsLogout();
+//            procMode = ProcModeEnum.LOGOUT; // 在已登出狀態
+//        }
     }
 
 
@@ -785,6 +972,47 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                 bolAccessExternalStorage = true;
             }
         }
+    }
+
+
+    // 顯示詢問是否確認登出的對話視窗
+    private void logoutWithConfirm() {
+        /* 設定positive與negative按鈕上面的文字與點擊事件監聽器 */
+        AlertDialog.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        new Common().userLogout(activity);
+                        setUI();
+                        procMode = ProcModeEnum.LOGOUT;
+                        Common.showToast(activity, R.string.textLogouted);
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+//                    break;
+                    default:
+                        Common.showToast(activity, R.string.textDontWantLogout);
+                        /* 關閉對話視窗 */
+                        dialog.cancel();
+                        break;
+                }
+            }
+        };
+
+        new AlertDialog.Builder(activity)
+                /* 設定標題 */
+                .setTitle(R.string.textLogout)
+                /* 設定圖示 */
+                .setIcon(R.drawable.logo_foodradar)
+                /* 設定訊息文字 */
+                .setMessage("確認要登出嗎？")
+                /* 設定positive與negative按鈕上面的文字與點擊事件監聽器 */
+                .setPositiveButton("是的我要登出", listener)
+                .setNegativeButton(R.string.textDontWantLogout, listener)
+                // 是否一定要按按鈕才能離開對話框，預設為true，設false代表必須點擊按鈕方能關閉
+                .setCancelable(true)
+                .create()
+                .show();
     }
 
 }

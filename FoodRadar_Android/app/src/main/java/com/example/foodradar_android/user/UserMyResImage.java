@@ -1,11 +1,14 @@
 package com.example.foodradar_android.user;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.google.gson.JsonObject;
 
@@ -23,12 +26,19 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
     private String url;
     private int id, imageSize;
     private WeakReference<ImageView> imageViewWeakReference;
+    private Activity activity;
 
     // 取單張圖片
     public UserMyResImage(String url, int id, int imageSize) {
         this(url, id, imageSize, null);
     }
 
+    public UserMyResImage(String url, int id, Activity activity, ImageView imageView) {
+        this.url = url;
+        this.id = id;
+        this.activity = activity;
+        this.imageViewWeakReference = new WeakReference<>(imageView);
+    }
     // 取完圖片後使用傳入的ImageView顯示，適用於顯示多張圖片
     public UserMyResImage(String url, int id, int imageSize, ImageView imageView) {
         this.url = url;
@@ -43,6 +53,7 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
         jsonObject.addProperty("action", "getImage");
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("imageSize", imageSize);
+        Log.d(TAG,"doInBackground.bitmap: " + id);
         return getRemoteImage(url, jsonObject.toString());
     }
 
@@ -52,8 +63,17 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
         if (isCancelled() || imageView == null) {
             return;
         }
+        Log.d(TAG,"onPostExecute.bitmap: " + bitmap);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
+            Log.d(TAG,"bitmap: " + bitmap);
+
+            if (activity != null){
+                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+                Bitmap drawableＧetBitmap = drawable.getBitmap();
+                Common.setUserAvatra(activity, drawableＧetBitmap);
+            }
+
         } else {
             imageView.setImageResource(R.drawable.no_image);
         }

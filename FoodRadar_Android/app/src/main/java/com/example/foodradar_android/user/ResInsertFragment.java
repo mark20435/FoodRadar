@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -1189,9 +1191,7 @@ public class ResInsertFragment extends Fragment {
 
                 boolean resEnable = swResEnable.isChecked();
 
-                //todo userId
-                int userId = 3;
-                //int userId = Common.USER_ID;
+                int userId = Common.USER_ID;
 
                 Timestamp modifyDate = new Timestamp(System.currentTimeMillis());
                 if (Common.networkConnected(activity)) {
@@ -1232,6 +1232,181 @@ public class ResInsertFragment extends Fragment {
                 /* 回前一個Fragment */
                 navController.popBackStack();
             }
+        });
+
+        //Demo鍵
+        Button btDemo = view.findViewById(R.id.btDemo);
+        btDemo.setOnClickListener(v -> {
+            //餐廳照片
+            ivRes.setImageResource(R.drawable.demo_res_img);
+            Drawable drawable = ivRes.getDrawable();
+            BitmapDrawable bitmapDrawable = ((BitmapDrawable) drawable);
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            image = stream.toByteArray();
+            ivRes.getLayoutParams().height = bitmap.getHeight();
+
+            etResName.setText("大和日本料理");
+            etResAddress.setText("台北市中山區復興北路176號");
+            etResTel.setText("02 2547 2550");
+            //營業時間
+            ArrayAdapter<CharSequence> adapterWithRest = ArrayAdapter.createFromResource(activity, R.array.textHoursArrayWithRest, android.R.layout.simple_spinner_item);
+            adapterWithRest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity, R.array.textHoursArray, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            String compareValue;
+            int spinnerPosition;
+
+            //星期一
+            compareValue = "11:00";
+            spMonStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spMonStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spMonEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonEndTime.setSelection(spinnerPosition);
+
+            btMonAddHours.performClick();
+            compareValue = "17:00";
+            spMonStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spMonEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spMonEndTime2.setSelection(spinnerPosition);
+            btMonDeleteHours3.performClick();
+
+            //星期二
+            compareValue = "11:00";
+            spTueStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spTueStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spTueEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueEndTime.setSelection(spinnerPosition);
+
+            btTueAddHours.performClick();
+            compareValue = "17:00";
+            spTueStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spTueEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spTueEndTime2.setSelection(spinnerPosition);
+            btTueDeleteHours3.performClick();
+
+            //星期三
+            compareValue = "11:00";
+            spWedStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spWedStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spWedEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedEndTime.setSelection(spinnerPosition);
+
+            btWedAddHours.performClick();
+            compareValue = "17:00";
+            spWedStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spWedEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spWedEndTime2.setSelection(spinnerPosition);
+            btWedDeleteHours3.performClick();
+
+            //星期四
+            compareValue = "11:00";
+            spThuStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spThuStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spThuEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuEndTime.setSelection(spinnerPosition);
+
+            btThuAddHours.performClick();
+            compareValue = "17:00";
+            spThuStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spThuEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spThuEndTime2.setSelection(spinnerPosition);
+            btThuDeleteHours3.performClick();
+
+            //星期五
+            compareValue = "11:00";
+            spFriStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spFriStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spFriEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime.setSelection(spinnerPosition);
+
+            btFriAddHours.performClick();
+            compareValue = "17:00";
+            spFriStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spFriEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spFriEndTime2.setSelection(spinnerPosition);
+            btFriDeleteHours3.performClick();
+
+            //星期六
+            compareValue = "11:00";
+            spSatStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spSatStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spSatEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime.setSelection(spinnerPosition);
+
+            btSatAddHours.performClick();
+            compareValue = "17:00";
+            spSatStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spSatEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSatEndTime2.setSelection(spinnerPosition);
+            btSatDeleteHours3.performClick();
+
+            //星期日
+            compareValue = "11:00";
+            spSunStartTime.setAdapter(adapterWithRest);
+            spinnerPosition = adapterWithRest.getPosition(compareValue);
+            spSunStartTime.setSelection(spinnerPosition);
+            compareValue = "14:00";
+            spSunEndTime.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime.setSelection(spinnerPosition);
+
+            btSunAddHours.performClick();
+            compareValue = "17:00";
+            spSunStartTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunStartTime2.setSelection(spinnerPosition);
+            compareValue = "22:30";
+            spSunEndTime2.setAdapter(adapter);
+            spinnerPosition = adapter.getPosition(compareValue);
+            spSunEndTime2.setSelection(spinnerPosition);
+            btSunDeleteHours3.performClick();
+
+            spCategory.setSelection(2);
+            swResEnable.setChecked(true);
         });
     }
 

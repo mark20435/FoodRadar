@@ -12,9 +12,13 @@ public interface UserAccountDao {
 	int delete(int id);
 
 	UserAccount findById(int id);
+	
+	List<UserAccount> userLogin(String userPhone, String userPwd);
 
 	List<UserAccount> getAll();
 
 	byte[] getImage(int id);
+
+	int updateNotifiStatus(Integer id, Boolean notifiStatus);
 
 }

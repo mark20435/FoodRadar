@@ -99,6 +99,12 @@ public class ResServlet extends HttpServlet {
 			int resId = jsonObject.get("resId").getAsInt();
 			List<Img> imgs = resDao.getImgByResId(resId);
 			writeText(response, gson.toJson(imgs));
+		} else if (action.equals("insertResRating")) {
+			String resRatingJson = jsonObject.get("resRating").getAsString();
+			System.out.println("resRatingJson = " + resRatingJson);
+			ResRating resRating = gson.fromJson(resRatingJson, ResRating.class);
+			int count = resDao.insertResRating(resRating);
+			writeText(response, String.valueOf(count));
 		} else {
 			writeText(response, "");
 		}

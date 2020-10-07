@@ -36,72 +36,44 @@
         <TextView
             android:id="@+id/tvResRating"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/textResRating"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tvResName"
             app:layout_constraintTop_toBottomOf="@+id/tvResName" />
 
-        <ImageView
-            android:id="@+id/ivResRatingStar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_baseline_star_border_yellow_24"
+<!--        <ImageView-->
+<!--            android:id="@+id/ivResRatingStar"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:src="@drawable/ic_baseline_star_border_yellow_24"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/tvResRating"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/tvResRating" />-->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:progressTint="#FFEB3B"
             app:layout_constraintStart_toEndOf="@+id/tvResRating"
             app:layout_constraintTop_toTopOf="@+id/tvResRating" />
 
-        <ImageView
-            android:id="@+id/ivResRatingStar2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_baseline_star_border_yellow_24"
-            app:layout_constraintStart_toEndOf="@+id/ivResRatingStar"
-            app:layout_constraintTop_toTopOf="@+id/tvResRating" />
-
-        <ImageView
-            android:id="@+id/ivResRatingStar3"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_baseline_star_border_yellow_24"
-            app:layout_constraintStart_toEndOf="@+id/ivResRatingStar2"
-            app:layout_constraintTop_toTopOf="@+id/tvResRating" />
-
-        <ImageView
-            android:id="@+id/ivResRatingStar4"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_baseline_star_border_yellow_24"
-            app:layout_constraintStart_toEndOf="@+id/ivResRatingStar3"
-            app:layout_constraintTop_toTopOf="@+id/tvResRating" />
-
-        <ImageView
-            android:id="@+id/ivResRatingStar5"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_baseline_star_border_yellow_24"
-            app:layout_constraintStart_toEndOf="@+id/ivResRatingStar4"
-            app:layout_constraintTop_toTopOf="@+id/tvResRating" />
 
         <Button
             android:id="@+id/btResRating"
             style="@style/styleButton"
-            android:background="@drawable/button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button"
             android:text="@string/textGiveRating"
             app:layout_constraintBottom_toBottomOf="@+id/tvResRating"
-            app:layout_constraintStart_toEndOf="@+id/ivResRatingStar5" />
+            app:layout_constraintStart_toEndOf="@+id/ratingBar" />
 
         <ImageView
             android:id="@+id/ivShare"
@@ -145,7 +117,7 @@
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/textResAddress"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/tvResHours"
@@ -163,12 +135,22 @@
         <TextView
             android:id="@+id/tvResHours"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/textResHours"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivResHours"
-            app:layout_constraintStart_toEndOf="@+id/ivResHours" />
+            app:layout_constraintStart_toEndOf="@+id/ivResHours"
+            app:layout_constraintTop_toTopOf="@+id/ivResHours" />
+
+        <TextView
+            android:id="@+id/tvResHoursDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="▼"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/tvResHours"
+            app:layout_constraintTop_toTopOf="@+id/tvResHours" />
 
         <ImageView
             android:id="@+id/ivResTel"
@@ -177,13 +159,14 @@
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_baseline_phone_24"
             app:layout_constraintStart_toStartOf="@+id/tvResRating"
-            app:layout_constraintTop_toBottomOf="@+id/ivResHours" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResHours" />
 
         <TextView
             android:id="@+id/tvResTel"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
+            android:autoLink="phone"
             android:text="@string/textResTel"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/ivResTel"
@@ -212,7 +195,10 @@
             android:id="@+id/rvImage"
             android:layout_width="match_parent"
             android:layout_height="116dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivImage" />
 
@@ -253,6 +239,8 @@
             android:text="@string/textDirect"
             app:layout_constraintBottom_toBottomOf="@+id/tvResAddress"
             app:layout_constraintEnd_toEndOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

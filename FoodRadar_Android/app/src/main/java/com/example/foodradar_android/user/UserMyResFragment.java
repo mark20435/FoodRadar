@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -153,9 +154,46 @@ public class UserMyResFragment extends Fragment {
 //            final MyRes bookOnBVH = books.get(position);
             Log.d(TAG,"resId: " + resId);
             Log.d(TAG,"MYRES_SERVLET: " + MYRES_SERVLET);
-            UserMyResImage userMyResImage = new UserMyResImage(MYRES_SERVLET,resId,imageSize,holder.imResImg);
+            UserMyResImage userMyResImage = new UserMyResImage(MYRES_SERVLET, resId, imageSize, holder.imResImg);
             userMyResImage.execute(); // .execute() => UserImage.doInBackground
             imageTasks.add(userMyResImage);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Common.showToast(activity,"餐廳ID: " + myResBidVH.getResId());
+
+//                    private List<Res> getRess() {
+//                        List<Res> ress = null;
+//                        if (Common.networkConnected(activity)) {
+//                            String url = Common.URL_SERVER + "ResServlet";
+//                            JsonObject jsonObject = new JsonObject();
+//                            jsonObject.addProperty("action", "getAllEnable");
+//                            String jsonOut = jsonObject.toString();
+//                            resGetAllTask = new CommonTask(url, jsonOut);
+//                            try {
+//                                String jsonIn = resGetAllTask.execute().get();
+//                                Type listType = new TypeToken<List<Res>>() {
+//                                }.getType();
+//                                ress = new Gson().fromJson(jsonIn, listType);
+//                            } catch (Exception e) {
+//                                Log.e(TAG, e.toString());
+//                            }
+//                        } else {
+//                            Common.showToast(activity, R.string.textNoNetwork);
+//                        }
+//                        return ress;
+//                    }
+//
+//
+//
+//
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("res", res);
+//                    Navigation.findNavController(v)
+//                            .navigate(R.id.action_resMapFragment_to_resDetailFragment, bundle);
+                }
+            });
         }
 
         @Override

@@ -6,34 +6,38 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class Coupon implements Serializable {
+    private int id;
     private int couPonId;
     private int resId;
     private String resName;
     private String tvCouInfo;
+    private String couPonStartDate;
+    private String couPonEndDate;
+    private boolean couPonType;
+    private boolean couPonEnable;
     private Timestamp date;
     private Button btCollect;
-    private Boolean couPonEnable;
 
-    public Coupon(Boolean couPonEnable) {
-        this.couPonEnable = couPonEnable;
-    }
-
-    public Coupon(int couPonId, int resId, String resName, String tvCouInfo, Timestamp date, Button btCollect) {
+    public Coupon(int id, int couPonId, int resId, String resName, String tvCouInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect) {
+        this.id = id;
         this.couPonId = couPonId;
         this.resId = resId;
         this.resName = resName;
         this.tvCouInfo = tvCouInfo;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+        this.couPonEnable = couPonEnable;
         this.date = date;
         this.btCollect = btCollect;
-
     }
 
-    public Boolean getCouPonEnable() {
-        return couPonEnable;
+    public int getId() {
+        return id;
     }
 
-    public void setCouPonEnable(Boolean couPonEnable) {
-        this.couPonEnable = couPonEnable;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCouPonId() {
@@ -66,6 +70,38 @@ public class Coupon implements Serializable {
 
     public void setTvCouInfo(String tvCouInfo) {
         this.tvCouInfo = tvCouInfo;
+    }
+
+    public String getCouPonStartDate() {
+        return couPonStartDate;
+    }
+
+    public void setCouPonStartDate(String couPonStartDate) {
+        this.couPonStartDate = couPonStartDate;
+    }
+
+    public String getCouPonEndDate() {
+        return couPonEndDate;
+    }
+
+    public void setCouPonEndDate(String couPonEndDate) {
+        this.couPonEndDate = couPonEndDate;
+    }
+
+    public boolean isCouPonType() {
+        return couPonType;
+    }
+
+    public void setCouPonType(boolean couPonType) {
+        this.couPonType = couPonType;
+    }
+
+    public boolean isCouPonEnable() {
+        return couPonEnable;
+    }
+
+    public void setCouPonEnable(boolean couPonEnable) {
+        this.couPonEnable = couPonEnable;
     }
 
     public Timestamp getDate() {
