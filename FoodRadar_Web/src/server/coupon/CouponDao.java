@@ -10,11 +10,13 @@ public interface CouponDao {
 	 
 	 int delete(int id);
 	 
-	 Coupon findById(int couponId);
+	 Coupon findById(int id);
 	 
 	 List<Coupon> getAll();
 	 
-	 List<Coupon> getAllEnable();
+	// List<Coupon> getAllEnable();
+	 
+	// List<Coupon> couponfindById(int couponId);
 	 
 	 byte[] getImage(int id);
 

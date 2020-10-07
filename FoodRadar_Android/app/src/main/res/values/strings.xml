@@ -9,6 +9,8 @@
     <string name="article">討論區</string>
     <string name="user">會員專區</string>
     <string name="appbar">完成</string>
+    <string name="ezLogin">登入</string>
+    <string name="ezLogout">登出</string>
     <string name="textEatWhat">今天吃什麼</string>
     <string name="title_of_myres">我的餐廳收藏</string>
     <string name="title_of_mycoupon">我的優惠券收藏</string>
@@ -295,6 +297,6 @@
     <string name="textNotifi">推播通知</string>
     <string name="textOn">開啟</string>
     <string name="textOff">關閉</string>
-
-
+    <string name="textMyRes">我的收藏</string>
+    <string name="textDemo">Demo</string>
 </resources>

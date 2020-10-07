@@ -1,5 +1,6 @@
 package com.example.foodradar_android;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,6 +30,8 @@ import com.example.foodradar_android.user.MyRes;
 import com.example.foodradar_android.user.UserAccountAvatra;
 import com.example.foodradar_android.user.UserAccount;
 import com.example.foodradar_android.user.UserMyResImage;
+import com.google.android.gms.common.api.Api;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -346,10 +349,11 @@ public class Common{
             BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
             bottomNavigationView.getMenu().getItem(4).setTitle(R.string.user);
 
+
+
         } else {
             Integer userId_Int = Integer.parseInt(userId);
             USER_ID = userId_Int;
-
             // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
             BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
             bottomNavigationView.getMenu().getItem(4).setTitle(String.valueOf(USER_ID));

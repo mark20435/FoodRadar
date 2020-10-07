@@ -188,7 +188,6 @@ public class ResDetailFragment extends Fragment {
 
         showResImg();
 
-        //todo 營業時間
         tvResHours = view.findViewById(R.id.tvResHours);
         jsonHours = JsonParser.parseString(res.getResHours()).getAsJsonObject();
         Calendar cal = Calendar.getInstance();
@@ -743,6 +742,12 @@ public class ResDetailFragment extends Fragment {
 
             direct(fromLat, fromLng, toLat, toLng);
         });
+
+        //todo 評價
+        //todo 分享
+        //todo 收藏
+        //todo 食記相關按鈕
+        //todo 轉到餐廳照片頁面
     }
 
     private class ImgAdapter extends RecyclerView.Adapter<ResDetailFragment.ImgAdapter.MyViewHolder> {
