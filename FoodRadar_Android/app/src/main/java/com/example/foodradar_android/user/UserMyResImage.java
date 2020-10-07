@@ -53,6 +53,7 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
         jsonObject.addProperty("action", "getImage");
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("imageSize", imageSize);
+        Log.d(TAG,"doInBackground.bitmap: " + id);
         return getRemoteImage(url, jsonObject.toString());
     }
 
@@ -62,8 +63,10 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
         if (isCancelled() || imageView == null) {
             return;
         }
+        Log.d(TAG,"onPostExecute.bitmap: " + bitmap);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
+            Log.d(TAG,"bitmap: " + bitmap);
 
             if (activity != null){
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();

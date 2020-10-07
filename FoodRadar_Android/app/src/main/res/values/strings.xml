@@ -293,7 +293,10 @@
     <string name="textLocationEmpty">無法定位現在位置</string>
     <string name="textOriginNotFound">找不到起點</string>
     <string name="textDestinationNotFound">找不到目的地</string>
+    <string name="textUserBirth">出生日期</string>
+    <string name="textNotifi">推播通知</string>
+    <string name="textOn">開啟</string>
+    <string name="textOff">關閉</string>
     <string name="textMyRes">我的收藏</string>
     <string name="textDemo">Demo</string>
-
 </resources>

@@ -3,6 +3,8 @@ package com.example.foodradar_android.user;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -39,7 +41,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -60,6 +64,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -112,7 +117,10 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
     private EditText etUserName;
 
     private TextView tvUserBirth;
-    private EditText etUserBirth;
+    private TextView etUserBirth;
+    private TextView tvUserBirthDivider;
+    DatePickerDialog datePickerDialog;
+    DatePickerDialog.OnDateSetListener dateSetListener;
 
     private Button btnLogInOut;
     private Button btUserChangConfrim;
@@ -242,11 +250,54 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         tvUserBirth = view.findViewById(R.id.tvUserBirth);
         etUserBirth = view.findViewById(R.id.etUserBirth);
+        tvUserBirthDivider = view.findViewById(R.id.tvUserBirthDivider);
+//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);// getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(etUserBirth.getWindowToken(),0);
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String yyyyMMdd = year + "-" + (month < 10 ? "0" + month : month) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+                etUserBirth.setText(yyyyMMdd);
+                etUserBirth.setTextColor(edTextdefaultColor);
+            }
+        };
+
+        etUserBirth.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    // 最後要呼叫show()方能顯示
+                    datePickerDialog.show();
+                }
+                return false;
+            }
+        });
+
+        etUserBirth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etUserBirth.getText().equals("")) {
+                    etUserBirth.setTextColor(getResources().getColor(R.color.colorTextHint));
+                    etUserBirth.setText(getResources().getString(R.string.textUserBirth));
+                } else {
+                    etUserBirth.setTextColor(edTextdefaultColor);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         btnLogInOut = view.findViewById(R.id.btnLogInOut);
         btUserChangConfrim = view.findViewById(R.id.btRegisterOrChang);
-
-
         // 用者登入畫面顯示控制
         if(getUserId() > 0) { // 已登入狀態
 //            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
@@ -259,10 +310,11 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         }
 
 
-        // 登入/登出功能
+        // 登入/登出/註冊送出 功能
         view.findViewById(R.id.btnLogInOut).setOnClickListener(this);
-        // 變更密碼功能
+        // 註冊/取消註冊/確認變更 功能
         view.findViewById(R.id.btRegisterOrChang).setOnClickListener(this);
+
 
         // vvvvvv臨時寫的，用來模擬使用者 登入 與 註冊
         // 模擬使用者 登入
@@ -328,47 +380,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         });
         // ^^^^^^臨時寫的，用來模擬使用者 登入 與 註冊
 
-        /* Spinner用List填入選單項目 */
-        spAvatraSourceSelect = view.findViewById(R.id.spAvatraSourceSelect);
-//        Resources res = getResources();
-////        String[] sourceItemList = {getResources().getString(R.string.textTakePicture)};
-////        String[] sourceItemList = {res.getString(R.string.textTakePicture), res.getString(R.string.textPickPicture)};
-////        Log.d(TAG,"Calendar.DAY_OF_YEAR: " + Calendar.DAY_OF_YEAR);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(new Date());
-//        int yearStart = 2000;
-//        int yearEnd = cal.get(Calendar.YEAR);
-//        String[] sourceItemList = new String[yearEnd - yearStart + 1];
-//        Integer itemIndex = 0;
-//        for (int i = yearStart; i <= yearEnd; i++){
-//            Log.d(TAG,"i: " + i);
-//            sourceItemList[itemIndex] = String.valueOf(i);
-//            itemIndex++;
-//        }
-////        String[] sourceItemList = {"2019","2020"};
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity,
-//                android.R.layout.simple_spinner_item, sourceItemList);
-//        /* 指定點選時彈出來的選單樣式 */
-//        arrayAdapter.setDropDownViewResource(
-//                android.R.layout.simple_spinner_dropdown_item);
-//        spAvatraSourceSelect.setAdapter(arrayAdapter);
-////        spAvatraSourceSelect.setSelection(0, true);
-//        spAvatraSourceSelect.setSelection(0);
-//        spAvatraSourceSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                spAvatraSourceSelect.setSelection(position, true);
-//                Common.showToast(activity,parent.getItemAtPosition(position).toString());
-//                Common.showToast(activity,"position: " + position);
-//                Common.showToast(activity,"id: " + id);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-        spAvatraSourceSelect.setVisibility(INVISIBLE);
+
 
     }
 
@@ -397,6 +409,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         etUserName.setText(userAccount.getUserName());
         String userBirth = new SimpleDateFormat("yyyy-MM-dd").format(userAccount.getUserBirth());
         etUserBirth.setText(userBirth);
+        etUserBirth.setTextColor(edTextdefaultColor);
+        setDatePicker();
 
         bitmapAvatra = Common.getUserAvatra(activity);
 //        Common.setUserAvatra(activity, bitmapAvatra);
@@ -405,7 +419,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         btnLogInOut.setText(R.string.textLogout);
         btUserChangConfrim.setText(R.string.textUserChangConfrim);
-
     }
 
     private void setUiIsLogout() {
@@ -424,6 +437,45 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         btUserChangConfrim.setText(R.string.action_register);
         bitmapAvatra = Common.getUserAvatra(activity);
         ivAvatar.setImageBitmap(bitmapAvatra);
+    }
+
+    private void setDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int year = calendar.get(Calendar.YEAR) - 12; // 年份預設顯示減12年
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        if (!etUserBirth.getText().equals("")) {
+
+            //欲轉換的日期字串
+            String dateString = etUserBirth.getText().toString();
+            //設定日期格式
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //進行轉換
+            Date dateBirth = new Date();
+            try {
+                dateBirth = sdf.parse(dateString);
+            } catch (ParseException e) {
+                Log.d(TAG,"DateParse: Exeception");
+                e.printStackTrace();
+            }
+            calendar.setTime(dateBirth);
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+        }
+
+        datePickerDialog = new DatePickerDialog(activity, DatePickerDialog.THEME_HOLO_LIGHT, dateSetListener, year, month, day);
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+
+        // 設定可選取的起始日為前130年
+        Calendar calendarMin = Calendar.getInstance();
+        calendarMin.add(Calendar.YEAR, -130);
+        datePicker.setMinDate(calendarMin.getTimeInMillis());
+        // 設定可選取的結束日為一個月前
+        Calendar calendarMax = Calendar.getInstance();
+        calendarMax.add(Calendar.MONTH, -1);
+        datePicker.setMaxDate(calendarMax.getTimeInMillis());
     }
 
     // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
@@ -454,8 +506,11 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         etUserName.setVisibility(visibStaus);
 
         tvUserBirth.setVisibility(visibStaus);
-        etUserBirth.setText("");
+        etUserBirth.setText("出生日期");
+        etUserBirth.setTextColor(getResources().getColor(R.color.colorTextHint));
         etUserBirth.setVisibility(visibStaus);
+        tvUserBirthDivider.setVisibility(visibStaus);
+        setDatePicker();
 
         btImgCamera.setVisibility(visibStaus);
 
@@ -596,7 +651,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         String userBirth = etUserBirth.getText().toString();
         Timestamp userBirth_Timestamp = Timestamp.valueOf(userBirth + " 00:00:00");
         String userName = etUserName.getText().toString();
-        Boolean allowNotifi_Boolean = true;
+        Boolean allowNotifi_Boolean = Common.getUserAllowNotifi(activity);;
 
         userAccount = new UserAccount(userId, userPhone, userPwd, userBirth_Timestamp, userName, allowNotifi_Boolean);
         JsonObject jsonObject = new JsonObject();

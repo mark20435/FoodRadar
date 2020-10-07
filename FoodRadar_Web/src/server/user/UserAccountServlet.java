@@ -104,7 +104,7 @@ public class UserAccountServlet extends HttpServlet {
 		
 		} else if (action.equals("userAccountModify")) {  // 使用者資料修改
 			String userAccountJson = jsonObject.get("userAccount").getAsString();
-			pubTools.showConsoleMsg("userAccountJson", userAccountJson);
+			pubTools.showConsoleMsg("userAccountJso: ", userAccountJson);
 			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);
 			// 檢查是否有上傳圖片
 			byte[] imageAvatra = null;
@@ -118,6 +118,17 @@ public class UserAccountServlet extends HttpServlet {
 			}
 			int count = 0;
 			count = userAccountDao.update(userAccount, imageAvatra);
+//			List<MyRes> myResList = myResDao.getAllById(id);
+//			pubTools.writeText(response, gson.toJson(myResList));
+			pubTools.writeText(response, String.valueOf(count));
+			
+		} else if (action.equals("setNotifiStatus")) {  // 使用者資料修改
+			id = jsonObject.get("id").getAsInt();
+			Boolean notifiStatus = jsonObject.get("notifiStatus").getAsBoolean();
+			pubTools.showConsoleMsg("id: ", id.toString());
+			pubTools.showConsoleMsg("notifiStatus: ", String.valueOf(notifiStatus));
+			int count = 0;
+			count = userAccountDao.updateNotifiStatus(id, notifiStatus);
 //			List<MyRes> myResList = myResDao.getAllById(id);
 //			pubTools.writeText(response, gson.toJson(myResList));
 			pubTools.writeText(response, String.valueOf(count));

@@ -19,4 +19,6 @@ public interface UserAccountDao {
 
 	byte[] getImage(int id);
 
+	int updateNotifiStatus(Integer id, Boolean notifiStatus);
+
 }
