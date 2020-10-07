@@ -1863,6 +1863,7 @@ id CategoryTypeFragment
 id FUNCTION
 id Finish
 id LinearLayout
+id LinearLayout2
 id META
 id NO_DEBUG
 id SHIFT
@@ -1907,6 +1908,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_articleFragment_to_articleInsertFragment
 id action_articleFragment_to_newArticleFragment2
@@ -1933,6 +1935,7 @@ id action_loginFragment_to_userDataSetupFragment
 id action_mainFragment_to_articleFragment
 id action_mainFragment_to_chinaRestaurantFragment
 id action_mainFragment_to_couponFragment
+id action_mainFragment_to_loginFragment
 id action_mainFragment_to_resMapFragment
 id action_mainFragment_to_userAreaFragment
 id action_menu_divider
@@ -2173,6 +2176,8 @@ id etUserPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id ezLogin
+id ezLogout
 id fade
 id favoriteArticleFragment
 id fbArticleInsert
@@ -2622,6 +2627,8 @@ id tvUserName
 id tvUserPhone
 id tvWednesday
 id tvgoodCount
+id tvuserPhone
+id tvuserPwd
 id ucrop
 id ucrop_frame
 id ucrop_photobox
@@ -2637,8 +2644,8 @@ id userIcon
 id userMyResFragment
 id userName
 id userPhone
+id userPwd
 id userSysSetupFragment
-id username
 id userpwd
 id view_offset_helper
 id view_overlay
@@ -2837,6 +2844,8 @@ layout ucrop_fragment_photobox
 layout ucrop_layout_rotate_wheel
 layout ucrop_layout_scale_wheel
 layout ucrop_view
+menu appbar_ezlogin
+menu appbar_ezlogout
 menu appbar_menu
 menu article_insert_menu
 menu article_menu
@@ -2912,6 +2921,8 @@ string common_signin_button_text_long
 string coupon
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
+string ezLogin
+string ezLogout
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string favoriteArticle

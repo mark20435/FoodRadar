@@ -443,6 +443,7 @@ public class ResMaintainFragment extends Fragment {
                                             // 外面ress也必須移除選取的res
                                             ResMaintainFragment.this.ress.remove(res);
                                             Common.showToast(activity, R.string.textDeleteSuccess);
+                                            myViewHolder.clDetail.setVisibility(View.GONE);
                                         }
                                     } else {
                                         Common.showToast(activity, R.string.textNoNetwork);

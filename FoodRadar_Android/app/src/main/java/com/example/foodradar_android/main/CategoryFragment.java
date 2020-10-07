@@ -1,11 +1,16 @@
 package com.example.foodradar_android.main;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +30,7 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
 import com.example.foodradar_android.user.UserAccount;
+import com.google.android.gms.common.api.Api;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -31,12 +38,15 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterOutputStream;
 
 
 public class CategoryFragment extends Fragment {
     private static final String TAG = "TAG_CategoryFragment";
     private SwipeRefreshLayout swipeRefreshLayout;
     private Activity activity;
+    private NavController navController;
     private RecyclerView rvMain;
     private CommonTask CategoryGetAllTask;
     private CommonTask CategoryDeleteTask;
@@ -46,14 +56,47 @@ public class CategoryFragment extends Fragment {
 
 
 
+
     @Override
     public void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         imageTasks = new ArrayList<>();
 //        mains = getMains();
-//        setHasOptionsMenu(true);
-//        navController = Navigation.findNavController(activity, R.id.mainFragment);
+        setHasOptionsMenu(true);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        if(getUserId() <= 0){
+            inflater.inflate(R.menu.appbar_ezlogin,menu);
+        }else if(getUserId() > 0){
+            setHasOptionsMenu(false);
+            return;
+        }
+
+        //inflater.inflate(R.menu.appbar_ezlogout,menu);
+        //navController.navigate(R.id.action_mainFragment_to_loginFragment);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.ezLogin:
+                navController.navigate(R.id.action_mainFragment_to_loginFragment);
+                return true;
+            case android.R.id.home:
+                navController.popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+
     }
 
     @Nullable
@@ -74,6 +117,8 @@ public class CategoryFragment extends Fragment {
         showCategorys(categorys);
 
 
+
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -86,6 +131,7 @@ public class CategoryFragment extends Fragment {
         // 取得使用者目前的登入狀態，並把使用者的ID設定到 Common.USER_ID 裡，以供其他功能識別使用
         UserAccount userAccount = Common.getUserLoin(activity);
     }
+
 
 
 
@@ -213,6 +259,9 @@ public class CategoryFragment extends Fragment {
             });
 
         }
+    }
+    private int getUserId(){
+        return Common.USER_ID;
     }
 
     @Override
