@@ -199,7 +199,7 @@ public class CouponFragment extends Fragment {
            // Log.d(TAG, "resName" + coupon);
             myViewHolder.couPonInfo.setText(coupon.getTvCouInfo());
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override 
+                @Override
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("couPon", coupon);

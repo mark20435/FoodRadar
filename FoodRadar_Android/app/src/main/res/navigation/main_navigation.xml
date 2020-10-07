@@ -101,6 +101,9 @@
         <action
             android:id="@+id/action_articleFragment_to_articleInsertFragment"
             app:destination="@id/articleInsertFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/resInsertFragment"
@@ -130,7 +133,11 @@
         android:id="@+id/articleDetailFragment"
         android:name="com.example.foodradar_android.article.ArticleDetailFragment"
         android:label="fragment_article_detail"
-        tools:layout="@layout/fragment_article_detail" />
+        tools:layout="@layout/fragment_article_detail" >
+        <action
+            android:id="@+id/action_articleDetailFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userDataSetupFragment"
         android:name="com.example.foodradar_android.user.UserDataSetupFragment"
@@ -147,12 +154,19 @@
         <action
             android:id="@+id/action_articleInsertFragment_to_insertImageFragment"
             app:destination="@id/insertImageFragment" />
+        <action
+            android:id="@+id/action_articleInsertFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
     <fragment
         android:id="@+id/resAddressFragment"
         android:name="com.example.foodradar_android.article.ResAddressFragment"
         android:label="fragment_res_address"
-        tools:layout="@layout/fragment_res_address" />
+        tools:layout="@layout/fragment_res_address" >
+        <action
+            android:id="@+id/action_resAddressFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
+    </fragment>
     <fragment
         android:id="@+id/insertImageFragment"
         android:name="com.example.foodradar_android.article.InsertImageFragment"

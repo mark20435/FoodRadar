@@ -43,7 +43,7 @@
 22-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-32
 23
 24    <application
-24-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-62:19
+24-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-63:19
 25        android:allowBackup="true"
 25-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:20:9-35
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -127,33 +127,34 @@
 67-->/Users/ricky/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:59:27-74
 68            </intent-filter>
 69        </activity>
-70        <!-- Needs to be explicitly declared on P+ -->
-71        <uses-library
-71-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-72            android:name="org.apache.http.legacy"
-72-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-73            android:required="false" />
-73-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-74
-75        <activity
-75-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-76            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-76-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-77            android:exported="false"
-77-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-78            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-78-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-79
-80        <provider
-80-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:23:9-27:43
-81            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-81-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:24:13-79
-82            android:authorities="com.example.foodradar_android.lifecycle-process"
-82-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:25:13-69
-83            android:exported="false"
-83-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:26:13-37
-84            android:multiprocess="true" />
-84-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:27:13-40
-85    </application>
-86
-87</manifest>
+70
+71        <!-- Needs to be explicitly declared on P+ -->
+72        <uses-library
+72-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+73            android:name="org.apache.http.legacy"
+73-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+74            android:required="false" />
+74-->[com.google.android.gms:play-services-maps:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+75
+76        <activity
+76-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+77            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+77-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+78            android:exported="false"
+78-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+79            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+79-->[com.google.android.gms:play-services-base:17.0.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/acfe542f66f0a9b342a14528ef499b25/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+80
+81        <provider
+81-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:23:9-27:43
+82            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+82-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:24:13-79
+83            android:authorities="com.example.foodradar_android.lifecycle-process"
+83-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:25:13-69
+84            android:exported="false"
+84-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:26:13-37
+85            android:multiprocess="true" />
+85-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/ricky/.gradle/caches/transforms-2/files-2.1/fa6a6edb88125438264a05bc2b92e472/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:27:13-40
+86    </application>
+87
+88</manifest>

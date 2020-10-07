@@ -1,6 +1,7 @@
 package com.example.foodradar_android.article;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -32,6 +34,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +64,7 @@ public class ArticleDetailFragment extends Fragment {
     private Integer articleIdBox = Article.ARTICLE_ID;
     private Integer userIdBox = Article.USER_ID;
     private int imageSize;
+    private ConstraintLayout articleConstraintLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,9 +72,15 @@ public class ArticleDetailFragment extends Fragment {
         activity = getActivity();
         imageTasks = new ArrayList<>();
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
-        setHasOptionsMenu(true);
-        navController = Navigation.findNavController(activity, R.id.mainFragment);
+//        new Common().setBackArrow(true, activity);
+//        setHasOptionsMenu(true);
+//        navController = Navigation.findNavController(activity, R.id.mainFragment);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+     Common.faButtonControl(activity, false);
     }
 
     @Override
@@ -197,7 +207,7 @@ public class ArticleDetailFragment extends Fragment {
         //取得文章圖片
         //橫向recyclerView
         rvArticleImage = view.findViewById(R.id.rvArticleImage);    //圖片recyclerView
-        rvArticleImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true));
+        rvArticleImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
         imgs = getImgs();
         showImgs(imgs);
 
@@ -213,7 +223,7 @@ public class ArticleDetailFragment extends Fragment {
         final boolean articleGoodStatus = article.isArticleGoodStatus();
         ImageView goodIcon = ivDetailGoodIcon;
         if (articleGoodStatus) {
-            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
         } else {
             goodIcon.setColorFilter(Color.parseColor("#424242"));
         }
@@ -243,7 +253,7 @@ public class ArticleDetailFragment extends Fragment {
                         } else {
                             article.setArticleGoodCount(article.getArticleGoodCount() + 1);
                             tvDetailGoodCount.setText((article.getArticleGoodCount() + ""));
-                            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             article.setArticleGoodStatus(true);
                         }
                     } else {
@@ -354,7 +364,8 @@ public class ArticleDetailFragment extends Fragment {
         if (Common.networkConnected(activity)) {
             String url = Common.URL_SERVER + "ImgServlet";
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("action", "getAll");
+            jsonObject.addProperty("action", "getAllById");
+            jsonObject.addProperty("articleId", article.getArticleId());
             String jsonOut = jsonObject.toString();
             articleGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -427,9 +438,21 @@ public class ArticleDetailFragment extends Fragment {
             final Img img = imgs.get(position);
             String url = Common.URL_SERVER + "ImgServlet";
             int imgId = img.getImgId();
-            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage);
+            int articleId = img.getArticleId();
+            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage, articleId);
+//            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage);
             imageTask.execute();
             imageTasks.add(imageTask);
+
+            myViewHolder.ivArticleImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setView(R.layout.show_image_item)
+                                .setCancelable(true) // 必須點擊按鈕方能關閉，預設為true
+                                .show();
+                }
+            });
         }
 
     }
@@ -547,7 +570,7 @@ public class ArticleDetailFragment extends Fragment {
             boolean commentGoodStatus = comment.isCommentGoodStatus();
             ImageView CommentGoodIcon = myViewHolder.ivCommentGoodIcon;
             if (commentGoodStatus) {
-                CommentGoodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
             } else {
                 CommentGoodIcon.setColorFilter(Color.parseColor("#424242"));
             }
@@ -577,7 +600,7 @@ public class ArticleDetailFragment extends Fragment {
                         } else {
                             comment.setCommentGoodCount(comment.getCommentGoodCount() + 1);
                             myViewHolder.tvCommentGood.setText((comment.getCommentGoodCount() + ""));
-                            CommentGoodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             comment.setCommentGoodStatus(true);
                         }
                     } else {
@@ -615,26 +638,25 @@ public class ArticleDetailFragment extends Fragment {
     }
 
 
-    // 顯示右上角的OptionMenu選單
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-    }
-
-    // 顯示右上角的OptionMenu選單
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.Finish:
-                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
-                break;
-            case android.R.id.home:
-                navController.popBackStack();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
+//    // 顯示右上角的OptionMenu選單
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//
+//    }
+//
+//    // 顯示右上角的OptionMenu選單
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                navController.popBackStack();
+////                navController.navigate(R.id.action_articleDetailFragment_to_articleFragment);
+//                break;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//        return true;
+//    }
 
     //生命週期結束，釋放記憶體
     @Override

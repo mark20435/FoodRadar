@@ -42,7 +42,6 @@
     <string name="commentInsertError">留言失敗</string>
     <string name="commentInsertSuccess">留言成功</string>
 
-
     <string name="textChangPassword">修改密碼</string>
     <string name="textDateTime">請選擇生日</string>
     <string name="textDatePicker">Date picker</string>

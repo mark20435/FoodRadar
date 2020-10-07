@@ -17,6 +17,6 @@
         android:layout_height="120dp"
 
         android:background="@color/earthBackground"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 </androidx.cardview.widget.CardView>

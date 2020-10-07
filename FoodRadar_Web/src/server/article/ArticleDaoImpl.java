@@ -11,6 +11,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import server.articleGood.ArticleGood;
+import server.img.Img;
 import server.main.ServiceLocator;
 
 public class ArticleDaoImpl implements ArticleDao {
@@ -26,24 +27,24 @@ public class ArticleDaoImpl implements ArticleDao {
 		this.dataSource = dataSource;
 	}
 
+	//發文
 	@Override
 	public int insert(Article article) {
 		int count = 0; // insert的時候時影響的筆數
 		String sql = "";
 		// 沒修改，不用insert > modifyTime
 		sql = "INSERT INTO Article"
-				+ "(articleTitle, articleTime, articleText, resId, userId, conAmount, conNum, articleStatus)"
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "(articleTitle, articleText, resId, userId, conAmount, conNum, articleStatus)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?);";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setString(1, article.getArticleTitle());
-			ps.setString(2, article.getArticleTime());
-			ps.setString(3, article.getArticleText());
-			ps.setInt(4, article.getResId());
-			ps.setInt(5, article.getUserId());
-			ps.setInt(6, article.getConAmount());
-			ps.setInt(7, article.getConNum());
-			ps.setBoolean(8, article.isArticleStatus());
+			ps.setString(2, article.getArticleText());
+			ps.setInt(3, article.getResId());
+			ps.setInt(4, article.getUserId());
+			ps.setInt(5, article.getConAmount());
+			ps.setInt(6, article.getConNum());
+			ps.setBoolean(7, article.isArticleStatus());
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,10 +119,8 @@ public class ArticleDaoImpl implements ArticleDao {
 				" FROM Article A\n" + 
 				" join UserAccount UA on A.userId = UA.userId\n" + 
 				" join Res R on A.resId = R.resId\n" + 
-				" join Img I on A.articleId = I.articleId\n" + 
 				" join Category C on R.resCategoryId = C.resCategoryId\n" + 
 				"where A.articleStatus = 1 and A.articleId = ? ; ";
-//		List<Article> articleList = new ArrayList<Article>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, articleId);
@@ -142,7 +141,6 @@ public class ArticleDaoImpl implements ArticleDao {
 					int favoriteCount = rs.getInt("favoriteCount");
 					boolean articleGoodStatus = rs.getBoolean("articleGoodStatus");
 					boolean aritcleFavoriteStatus = rs.getBoolean("articleFavoriteStatus");
-//					int articleId = rs.getInt("articleId");
 					int resId = rs.getInt("resId");
 					int userId = rs.getInt("userId");
 					int conAmount = rs.getInt("conAmount");
@@ -160,6 +158,37 @@ public class ArticleDaoImpl implements ArticleDao {
 			e.printStackTrace();
 		}
 		return article;
+	}
+	
+	@Override
+	// 查詢(單一)資料，文章MaxId並 insert圖片
+	public int findByIdMax(int Id,Img img, byte[] image) {
+		Article article = null;
+		String sql = "select Max(articleId) From Article; ";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			System.out.println("SQL:" + sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+					int articleId = rs.getInt("articleId");
+					article = new Article(articleId);
+			}
+//			return article;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+//		return article;
+		int count = 0;
+		String sqlImg = "INSERT INTO Img" + "(articleId, img)" + "VALUES(?,?);";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlImg);) {
+			ps.setInt(1, article.getArticleId());
+			ps.setBytes(2, image);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	@Override
@@ -182,7 +211,8 @@ public class ArticleDaoImpl implements ArticleDao {
 				+ ",A.resId as 'resId'\n" + ",A.userId as 'userId'\n"
 				+ ",A.conAmount as 'conAmount'\n" + ",A.conNum as 'conNum'\n" + ",A.articleStatus as 'articleStatus'\n"
 				+ " FROM Article A\n" + " join UserAccount UA on A.userId = UA.userId\n"
-				+ " join Res R on A.resId = R.resId\n" + " join Img I on A.articleId = I.articleId\n"
+				+ " join Res R on A.resId = R.resId\n" 
+//				+ " join Img I on A.articleId = I.articleId\n"
 				+ " join Category C on R.resCategoryId = C.resCategoryId\n" + "where A.articleStatus = 1\n"
 				+ "order by A.articleTime DESC;\n" + "";
 		List<Article> articleList = new ArrayList<Article>();
@@ -347,9 +377,10 @@ public class ArticleDaoImpl implements ArticleDao {
 				+ ",A.articleId as 'articleId'\n" + ",A.resId as 'resId'\n" + ",A.userId as 'userId'\n"
 				+ ",A.conAmount as 'conAmount'\n" + ",A.conNum as 'conNum'\n" + ",A.articleStatus as 'articleStatus'\n"
 				+ " FROM Article A\n" + " join UserAccount UA on A.userId = UA.userId\n"
-				+ " join Res R on A.resId = R.resId\n" + " join Img I on A.articleId = I.articleId\n"
+				+ " join Res R on A.resId = R.resId\n" 
+//				+ " join Img I on A.articleId = I.articleId\n"
 				+ " join Category C on R.resCategoryId = C.resCategoryId\n" + "where A.articleStatus = 1\n"
-				+ "order by A.articleTime DESC; ";
+				+ "order by articleGoodCount DESC; ";
 		List<Article> articleList = new ArrayList<Article>();
 //		System.out.println("articleList:"+ articleList);
 		try (Connection connection = dataSource.getConnection();
@@ -408,7 +439,8 @@ public class ArticleDaoImpl implements ArticleDao {
 				+ ",A.articleId as 'articleId'\n" + ",A.resId as 'resId'\n" + ",A.userId as 'userId'\n"
 				+ ",A.conAmount as 'conAmount'\n" + ",A.conNum as 'conNum'\n" + ",A.articleStatus as 'articleStatus'\n"
 				+ " FROM Article A\n" + " join UserAccount UA on A.userId = UA.userId\n"
-				+ " join Res R on A.resId = R.resId\n" + " join Img I on A.articleId = I.articleId\n"
+				+ " join Res R on A.resId = R.resId\n" 
+//				+ " join Img I on A.articleId = I.articleId\n"
 				+ " join Category C on R.resCategoryId = C.resCategoryId\n" + "where A.articleStatus = 1\n"
 				+ "order by favoriteCount DESC;";
 		List<Article> articleList = new ArrayList<Article>();
