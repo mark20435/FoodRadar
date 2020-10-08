@@ -2558,7 +2558,6 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView4
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop
@@ -2598,6 +2597,7 @@ id tvCommentTime
 id tvCommentUserName
 id tvCouInfo
 id tvCouName
+id tvDate
 id tvDateTime
 id tvDetailArticleTime
 id tvDetailArticleTitle

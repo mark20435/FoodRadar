@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import server.category.Category;
 import server.img.Img;
 import server.main.ImageUtil;
+import server.ress.ResRating;
 
 
 @WebServlet("/ResServlet")

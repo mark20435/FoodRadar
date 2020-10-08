@@ -42,6 +42,8 @@ public class CouponFragment extends Fragment {
     private RecyclerView rvCoupon;
     private RecyclerView rvSample;
     private Activity activity;
+    private LinearLayout linearLayout;
+    private TextView tvCouName, tvCouInfo;
     private Timestamp Date;
     private String couPonStartDate;
     private String couPonEndDate;
@@ -83,11 +85,13 @@ public class CouponFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         rvSample = view.findViewById(R.id.rvSample);
+        linearLayout = view.findViewById(R.id.LinearLayout);
+        //linearLayout = view.findViewById(R.id.LinearLayout2)
         //rvCoupon = view.findViewById(R.id.rvCoupon);
 
 
         rvSample.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
-        //rvCoupon.setLayoutManager(new LinearLayoutManager(activity));
+        //rvSample.setLayoutManager(new LinearLayoutManager(activity));
         coupons = getCoupons();
         showCoupons(coupons);
 //        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -143,8 +147,7 @@ public class CouponFragment extends Fragment {
         private List<Coupon> coupons;
         private int imageSize;
 
-        public CouponAdapter(Context context, List<Coupon> coupons) {
-
+        CouponAdapter(Context context, List<Coupon> coupons) {
             layoutInflater = LayoutInflater.from(context);
             this.coupons = coupons;
             imageSize = getResources().getDisplayMetrics().widthPixels / 4;
@@ -158,13 +161,13 @@ public class CouponFragment extends Fragment {
 
          class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView tvCouName, tvCouInfo;
+            TextView couPonInfo;
 
              public MyViewHolder(@NonNull View itemView) {
                  super(itemView);
                  imageView = itemView.findViewById(R.id.ivCoupon);
-                 tvCouName = itemView.findViewById(R.id.tvCouName);
-                 tvCouInfo = itemView.findViewById(R.id.tvCouInfo);
+                 //tvCouName = itemView.findViewById(R.id.tvCouName);
+                 couPonInfo = itemView.findViewById(R.id.tvCouInfo);
 
              }
          }
@@ -192,9 +195,9 @@ public class CouponFragment extends Fragment {
             imageTasks.add(imageTask);
 
 
-            myViewHolder.tvCouName.setText(coupon.getResName());
-            Log.d(TAG, "resName" + coupon);
-            myViewHolder.tvCouInfo.setText(coupon.getTvCouInfo());
+//            myViewHolder.tvCouName.setText(coupon.getResName());
+           // Log.d(TAG, "resName" + coupon);
+            myViewHolder.couPonInfo.setText(coupon.getTvCouInfo());
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
