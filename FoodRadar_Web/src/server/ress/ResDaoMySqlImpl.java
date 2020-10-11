@@ -355,9 +355,9 @@ public class ResDaoMySqlImpl implements ResDao {
 	}
 
 	@Override
-	public int UpdateResRating(ResRating resRating) {
+	public int updateResRating(ResRating resRating) {
 		int count = 0;
-		String sql = "UPDATE Res SET rating = ? "
+		String sql = "UPDATE ResRating SET rating = ? "
 				+ "WHERE resRatingId = ?;";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {

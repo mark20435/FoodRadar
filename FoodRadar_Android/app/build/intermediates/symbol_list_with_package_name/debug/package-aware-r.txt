@@ -1970,6 +1970,7 @@ id action_newArticleFragment_to_articleInsertFragment
 id action_rankArticleFragment_to_articleDetailFragment
 id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
+id action_resDetailFragment_to_loginFragment
 id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
@@ -3049,6 +3050,8 @@ string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
+string textInsertResRatingFail
+string textInsertResRatingSuccess
 string textInsertSuccess
 string textLocationEmpty
 string textLogout
@@ -3101,6 +3104,8 @@ string textUpdate
 string textUpdateCancel
 string textUpdateFail
 string textUpdateRes
+string textUpdateResRatingFail
+string textUpdateResRatingSuccess
 string textUpdateSuccess
 string textUserBirth
 string textUserChangConfrim

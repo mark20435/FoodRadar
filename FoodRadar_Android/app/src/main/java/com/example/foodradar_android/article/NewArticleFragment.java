@@ -61,7 +61,8 @@ public class NewArticleFragment extends Fragment {
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
+        new Common();
+        Common.setBackArrow(false, activity);
         setHasOptionsMenu(false);
 
         navController =

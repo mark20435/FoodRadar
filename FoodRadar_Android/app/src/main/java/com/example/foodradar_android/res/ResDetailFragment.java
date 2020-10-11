@@ -1,7 +1,9 @@
 package com.example.foodradar_android.res;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -749,7 +751,20 @@ public class ResDetailFragment extends Fragment {
         //todo 評價
         Button btResRating = view.findViewById(R.id.btResRating);
         btResRating.setOnClickListener(v -> {
-            rating();
+            if (Common.USER_ID <= 0) {
+                new AlertDialog.Builder(activity)
+                        .setTitle("您尚未登入，要進行登入嗎？")
+                        .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Navigation.findNavController(view)
+                                        .navigate(R.id.action_resDetailFragment_to_loginFragment);
+                            }
+                        }).setNegativeButton(R.string.textCancel, null).create()
+                        .show();
+            } else {
+                rating();
+            }
         });
 
         //todo 分享

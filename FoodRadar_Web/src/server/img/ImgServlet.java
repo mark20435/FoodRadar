@@ -72,7 +72,7 @@ public class ImgServlet extends HttpServlet {
 			System.out.println("imgJson:" + imgJson);
 			Img img = gson.fromJson(imgJson, Img.class);
 			byte[] image = null;
-			int id = jsonObject.get("articleId").getAsInt();
+//			int id = jsonObject.get("articleId").getAsInt();
 
 			// 檢查是否有取得圖片
 			if (jsonObject.get("imageBase64") != null) {
@@ -89,7 +89,7 @@ public class ImgServlet extends HttpServlet {
 			else if (action.equals("imgUpdate")) {
 				count = imgDao.update(img, image);
 			} else if (action.equals("findByIdMax")) {
-				count = imgDao.findByIdMax(id, img, image);
+				count = imgDao.findByIdMax(img, image);
 			}
 			writeText(response, String.valueOf(count));
 		} else if (action.equals("imgDelete")) {

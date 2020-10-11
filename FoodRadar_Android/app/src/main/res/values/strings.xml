@@ -298,4 +298,8 @@
     <string name="textOff">關閉</string>
     <string name="textMyRes">我的收藏</string>
     <string name="textDemo">Demo</string>
+    <string name="textInsertResRatingFail">新增評價失敗</string>
+    <string name="textInsertResRatingSuccess">新增評價成功</string>
+    <string name="textUpdateResRatingFail">修改評價失敗</string>
+    <string name="textUpdateResRatingSuccess">修改評價成功</string>
 </resources>

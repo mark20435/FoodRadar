@@ -26,7 +26,7 @@ public interface ResDao {
 	
 	int insertResRating(ResRating resRating);
 	
-	int UpdateResRating(ResRating resRating);
+	int updateResRating(ResRating resRating);
 	
 	ResRating findRatingByResIdAndUserId(int resId, int userId);
 }

@@ -212,6 +212,10 @@
         android:id="@+id/resDetailFragment"
         android:name="com.example.foodradar_android.res.ResDetailFragment"
         android:label="fragment_res_detail"
-        tools:layout="@layout/fragment_res_detail" />
+        tools:layout="@layout/fragment_res_detail" >
+        <action
+            android:id="@+id/action_resDetailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 </navigation>
