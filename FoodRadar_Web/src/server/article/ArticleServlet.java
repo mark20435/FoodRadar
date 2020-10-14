@@ -127,7 +127,12 @@ public class ArticleServlet extends HttpServlet {
 			Article article = articleDao.findById(id);
 			writeText(response, gson.toJson(article));
 		}
-
+//		// 判斷client端行為11 > 查詢(顯示內文)findByIdMax
+//				else if (action.equals("findByIdMax")) {
+//					int id = jsonObject.get("articleId").getAsInt();
+//					Article article = articleDao.findByIdMax(id);
+//					writeText(response, gson.toJson(article));
+//				}
 		// 判斷client端行為11 > 其他
 		else {
 			writeText(response, "");

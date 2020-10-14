@@ -42,6 +42,8 @@ public class CouponFragment extends Fragment {
     private RecyclerView rvCoupon;
     private RecyclerView rvSample;
     private Activity activity;
+    private LinearLayout linearLayout;
+    private TextView tvCouName, tvCouInfo;
     private Timestamp Date;
     private String couPonStartDate;
     private String couPonEndDate;
@@ -51,7 +53,7 @@ public class CouponFragment extends Fragment {
     private CommonTask couponDeleteTask;
     private List<ImageTask> imageTasks;
     private List<Coupon> coupons;
-    private int UserId = 3;
+    private int UserId;
 
 
 
@@ -73,8 +75,9 @@ public class CouponFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_coupon, container, false);
+
     }
 
     @Override
@@ -82,10 +85,13 @@ public class CouponFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         rvSample = view.findViewById(R.id.rvSample);
-        rvCoupon = view.findViewById(R.id.rvCoupon);
+        linearLayout = view.findViewById(R.id.LinearLayout);
+        //linearLayout = view.findViewById(R.id.LinearLayout2)
+        //rvCoupon = view.findViewById(R.id.rvCoupon);
+
 
         rvSample.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
-        rvCoupon.setLayoutManager(new LinearLayoutManager(activity));
+        //rvSample.setLayoutManager(new LinearLayoutManager(activity));
         coupons = getCoupons();
         showCoupons(coupons);
 //        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -127,10 +133,10 @@ public class CouponFragment extends Fragment {
         if (coupons == null || coupons.isEmpty()) {
             Common.showToast(activity, R.string.textNoCouponsFound);
         }
-        CouponAdapter couponAdapter = (CouponAdapter) rvCoupon.getAdapter();
+        CouponAdapter couponAdapter = (CouponAdapter) rvSample.getAdapter();
 
         if (couponAdapter == null) {
-            rvCoupon.setAdapter(new CouponAdapter(activity, coupons));
+            rvSample.setAdapter(new CouponAdapter(activity, coupons));
         } else {
             couponAdapter.setCoupons(coupons);
             couponAdapter.notifyDataSetChanged();
@@ -138,13 +144,10 @@ public class CouponFragment extends Fragment {
     }
     private class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
-        private RecyclerView rvSample;
-        private RecyclerView rvCoupon;
         private List<Coupon> coupons;
         private int imageSize;
 
-        public CouponAdapter(Context context, List<Coupon> coupons) {
-
+        CouponAdapter(Context context, List<Coupon> coupons) {
             layoutInflater = LayoutInflater.from(context);
             this.coupons = coupons;
             imageSize = getResources().getDisplayMetrics().widthPixels / 4;
@@ -158,13 +161,13 @@ public class CouponFragment extends Fragment {
 
          class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView resName, tvCouInfo;
+            TextView couPonInfo;
 
              public MyViewHolder(@NonNull View itemView) {
                  super(itemView);
                  imageView = itemView.findViewById(R.id.ivCoupon);
-                 resName = itemView.findViewById(R.id.tvCouName);
-                 tvCouInfo = itemView.findViewById(R.id.tvCouInfo);
+                 //tvCouName = itemView.findViewById(R.id.tvCouName);
+                 couPonInfo = itemView.findViewById(R.id.tvCouInfo);
 
              }
          }
@@ -181,8 +184,8 @@ public class CouponFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
-            UserAccount userAccount = new Common().getUserLoin(activity);
-            Common.USER_ID = userAccount.getUserId();
+            //UserAccount userAccount = new Common().getUserLoin(activity);
+            //Common.USER_ID = userAccount.getUserId();
             //Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
             final Coupon coupon = coupons.get(position);
             String url = Common.URL_SERVER + "CouponServlet";
@@ -190,9 +193,11 @@ public class CouponFragment extends Fragment {
             ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imageView);
             imageTask.execute();
             imageTasks.add(imageTask);
-            myViewHolder.resName.setText(coupon.getId());
-            Log.d(TAG, "resName" + coupon);
-            myViewHolder.tvCouInfo.setText(coupon.getTvCouInfo());
+
+
+//            myViewHolder.tvCouName.setText(coupon.getResName());
+           // Log.d(TAG, "resName" + coupon);
+            myViewHolder.couPonInfo.setText(coupon.getTvCouInfo());
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

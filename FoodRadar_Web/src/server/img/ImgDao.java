@@ -11,8 +11,12 @@ public interface ImgDao {
 	Img findById(int imgId);
 
 	
-	byte[] getImage(int imgId);
+	byte[] getImage(int articleId);
 
 	List<Img> getAll();
+	
+	List<Img> getAllById(int articleId);
+	
+	int findByIdMax(Img img, byte[] image);
 
 }

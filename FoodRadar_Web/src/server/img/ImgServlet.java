@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import server.article.Article;
 import server.main.ImageUtil;
 
 @WebServlet("/ImgServlet")
@@ -48,7 +49,14 @@ public class ImgServlet extends HttpServlet {
 		if (action.equals("getAll")) {
 			List<Img> imgs = imgDao.getAll();
 			writeText(response, gson.toJson(imgs));
-		} else if (action.equals("getImage")) { // 使用getImage方法
+		} 
+		//特定文章的圖片資訊
+		else if (action.equals("getAllById")) {
+			int id = jsonObject.get("articleId").getAsInt();
+			List<Img> imgs = imgDao.getAllById(id);
+			writeText(response, gson.toJson(imgs));
+		} 
+		else if (action.equals("getImage")) { // 使用getImage方法
 			OutputStream os = response.getOutputStream();
 			int imgId = jsonObject.get("id").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt(); // image物件 > 縮小的圖片尺寸數字，client會呼叫此物件的KEY(imageSize)
@@ -59,11 +67,12 @@ public class ImgServlet extends HttpServlet {
 				response.setContentLength(image.length); // 讀取圖片長度
 				os.write(image);
 			}
-		} else if (action.equals("imgInsert") || action.equals("imgUpdate")) { // 宣告的"bookInsert" key > client端會呼叫到
+		} else if (action.equals("imgInsert") || action.equals("imgUpdate") || action.equals("findByIdMax")) { // 宣告的"bookInsert" key > client端會呼叫到
 			String imgJson = jsonObject.get("img").getAsString();
 			System.out.println("imgJson:" + imgJson);
 			Img img = gson.fromJson(imgJson, Img.class);
 			byte[] image = null;
+//			int id = jsonObject.get("articleId").getAsInt();
 
 			// 檢查是否有取得圖片
 			if (jsonObject.get("imageBase64") != null) {
@@ -76,8 +85,11 @@ public class ImgServlet extends HttpServlet {
 			int count = 0;
 			if (action.equals("imgInsert")) {
 				count = imgDao.insert(img, image);
-			} else if (action.equals("imgUpdate")) {
+			} 
+			else if (action.equals("imgUpdate")) {
 				count = imgDao.update(img, image);
+			} else if (action.equals("findByIdMax")) {
+				count = imgDao.findByIdMax(img, image);
 			}
 			writeText(response, String.valueOf(count));
 		} else if (action.equals("imgDelete")) {

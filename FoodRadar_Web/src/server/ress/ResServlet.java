@@ -19,15 +19,16 @@ import com.google.gson.JsonObject;
 import server.category.Category;
 import server.img.Img;
 import server.main.ImageUtil;
-
+import server.ress.ResRating;
 
 @WebServlet("/ResServlet")
 public class ResServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static String CONTENT_TYPE = "text/html; charset=utf-8";
 	ResDao resDao = null;
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
 		BufferedReader br = request.getReader();
@@ -64,12 +65,17 @@ public class ResServlet extends HttpServlet {
 		} else if (action.equals("getCategories")) {
 			List<Category> Categories = resDao.getCategories();
 			writeText(response, gson.toJson(Categories));
+		} else if (action.equals("findRatingByResIdAndUserId")) {
+			int resId = jsonObject.get("resId").getAsInt();
+			int userId = jsonObject.get("userId").getAsInt();
+			ResRating resRating = resDao.findRatingByResIdAndUserId(resId, userId);
+			writeText(response, gson.toJson(resRating));
 		} else if (action.equals("resInsert") || action.equals("resUpdate")) {
 			String resJson = jsonObject.get("res").getAsString();
 			System.out.println("resJson = " + resJson);
 			Res res = gson.fromJson(resJson, Res.class);
 			byte[] image = null;
-			
+
 			if (jsonObject.get("imageBase64") != null) {
 				String imageBase64 = jsonObject.get("imageBase64").getAsString();
 				if (imageBase64 != null && !imageBase64.isEmpty()) {
@@ -89,7 +95,7 @@ public class ResServlet extends HttpServlet {
 			writeText(response, String.valueOf(count));
 		} else if (action.equals("categoryfindById")) {
 			int id = jsonObject.get("id").getAsInt();
-			List<Res> ress = resDao.CategoryfindById(id);	
+			List<Res> ress = resDao.CategoryfindById(id);
 			writeText(response, gson.toJson(ress));
 		} else if (action.equals("findById")) {
 			int id = jsonObject.get("id").getAsInt();
@@ -99,27 +105,36 @@ public class ResServlet extends HttpServlet {
 			int resId = jsonObject.get("resId").getAsInt();
 			List<Img> imgs = resDao.getImgByResId(resId);
 			writeText(response, gson.toJson(imgs));
+		} else if (action.equals("insertResRating") || action.equals("updateResRating")) {
+			String resRatingJson = jsonObject.get("resRating").getAsString();
+			System.out.println("resRatingJson = " + resRatingJson);
+			ResRating resRating = gson.fromJson(resRatingJson, ResRating.class);
+			int count = 0;
+			if (action.equals("insertResRating")) {
+				count = resDao.insertResRating(resRating);
+			} else if (action.equals("updateResRating")) {
+				count = resDao.updateResRating(resRating);
+			}
+			writeText(response, String.valueOf(count));
 		} else {
 			writeText(response, "");
 		}
 	}
-       
+
 	private void writeText(HttpServletResponse response, String outText) throws IOException {
 		response.setContentType(CONTENT_TYPE);
 		PrintWriter out = response.getWriter();
 		out.print(outText);
-		
+
 	}
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (resDao == null) {
 			resDao = new ResDaoMySqlImpl();
 		}
 		List<Res> ress = resDao.getAll();
 		writeText(response, new Gson().toJson(ress));
 	}
-
-	
-	
 
 }

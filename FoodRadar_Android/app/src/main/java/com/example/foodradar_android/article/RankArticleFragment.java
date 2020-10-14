@@ -75,6 +75,8 @@ public class RankArticleFragment extends Fragment {
         rvArticleRank = view.findViewById(R.id.rvArticleRank);
         swipeRefreshLayoutRank = view.findViewById(R.id.swipeRefreshLayoutRank);
 
+//        Common.btControl(activity,false);
+
         rvArticleRank.setLayoutManager(new LinearLayoutManager(activity));
         articles = getArticle();
         showArticle(articles);
@@ -86,10 +88,6 @@ public class RankArticleFragment extends Fragment {
             swipeRefreshLayoutRank.setRefreshing(false);
         });
 
-        //浮動button > 跳轉至insert
-        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
-        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-                .navigate(R.id.action_rankArticleFragment_to_articleInsertFragment));
     }
 
     //向server端取得Article資料
@@ -227,7 +225,7 @@ public class RankArticleFragment extends Fragment {
             final boolean articleGoodStatus = article.isArticleGoodStatus();
             ImageView goodIcon = myViewHolder.ivGoodIcon;
             if (articleGoodStatus) {
-                goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                goodIcon.setColorFilter(Color.parseColor("#1877F2"));
             } else {
                 goodIcon.setColorFilter(Color.parseColor("#424242"));
             }
@@ -259,7 +257,7 @@ public class RankArticleFragment extends Fragment {
                             article.setArticleGoodCount((article.getArticleGoodCount() + 1));
                             myViewHolder.tvGoodCount.setText((article.getArticleGoodCount() + ""));
 
-                            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             article.setArticleGoodStatus(true);
                         }
                     } else {

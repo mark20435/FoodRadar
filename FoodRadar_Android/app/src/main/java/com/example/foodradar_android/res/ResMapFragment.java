@@ -581,7 +581,11 @@ public class ResMapFragment extends Fragment {
                 float[] results = new float[1];
                 Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
                         res.getResLat(), res.getResLon(), results);
-                myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0] / 1000f));
+                if (results[0] < 1000) {
+                    myViewHolder.tvResDistance.setText(String.format("%.0f公尺", results[0]));
+                } else {
+                    myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0] / 1000f));
+                }
             }
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {

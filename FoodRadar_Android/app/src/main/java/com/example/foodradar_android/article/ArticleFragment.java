@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,32 +19,35 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 
 public class ArticleFragment extends Fragment {
     private Activity activity;
     private NavController navController;
+    public Boolean fbisVisible = true ;
+    public FloatingActionButton fbArticleInsert;
+    public BottomNavigationView articleNavigation;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
-        setHasOptionsMenu(true);
-
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+//        new Common();
+//        Common.setBackArrow(false, activity);
+//        setHasOptionsMenu(true);
+//        navController =
+//                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-       activity.setTitle(R.string.article);
-        return inflater.inflate(R.layout.fragment_article, container, false);
+        activity.setTitle(R.string.article);
+    return inflater.inflate(R.layout.fragment_article, container, false);
     }
 
     @Override
@@ -53,9 +57,10 @@ public class ArticleFragment extends Fragment {
         NavController navController = Navigation.findNavController(activity, R.id.articleFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-//        //浮動button > 跳轉至insert
-//        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
-//        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-//                .navigate(R.id.action_articleFragment_to_articleInsertFragment));
+        //浮動button > 跳轉至insert
+        fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+                .navigate(R.id.action_articleFragment_to_articleInsertFragment));
+
     }
 }

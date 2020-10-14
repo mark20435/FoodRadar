@@ -18,12 +18,9 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +28,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.user.MyRes;
 import com.example.foodradar_android.user.UserAccountAvatra;
 import com.example.foodradar_android.user.UserAccount;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.foodradar_android.user.UserMyResImage;
 import com.google.android.gms.common.api.Api;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -69,7 +69,9 @@ public class Common{
     public static String USERACCOUNT_SERVLET = URL_SERVER + "UserAccountServlet";
 
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
-    public static Integer USER_ID = 0;
+    public static Integer USER_ID = 0 ;
+    public static Integer ARTICLE_FRAGMENT_ID = 0 ;
+//    public static Integer USER_ID = 0;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
 
@@ -582,6 +584,26 @@ public class Common{
             tvBadgeText.setText(String.valueOf(badgeText));
 //            tvBadgeText.setVisibility(View.VISIBLE);
             Log.d(TAG,"addView.badgeText: " + badgeText);
+        }
+    }
+
+    //控制BottomNav > articleNavigation
+    public static void btControl(Activity activity, boolean isVisible) {
+        BottomNavigationView bt = activity.findViewById(R.id.articleNavigation);
+        if (isVisible){
+            bt.setVisibility(View.VISIBLE);
+        } else {
+            bt.setVisibility(View.GONE);
+        }
+    }
+
+    //控制FoatingActionButton
+    public static void faButtonControl(Activity activity, boolean isVisible) {
+        FloatingActionButton fbArticleInsert = activity.findViewById(R.id.fbArticleInsert);
+        if (isVisible){
+            fbArticleInsert.setVisibility(View.VISIBLE);
+        } else {
+            fbArticleInsert.setVisibility(View.GONE);
         }
     }
 

@@ -51,6 +51,7 @@ public class NewArticleFragment extends Fragment {
     private CommonTask articleGetAllTask;
     private CommonTask articleDeleteTask;
     private NavController navController;
+    public FloatingActionButton fbArticleInsert ;
 
 
     @Override
@@ -60,8 +61,9 @@ public class NewArticleFragment extends Fragment {
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
-        setHasOptionsMenu(true);
+        new Common();
+        Common.setBackArrow(false, activity);
+        setHasOptionsMenu(false);
 
         navController =
                 Navigation.findNavController(activity, R.id.mainFragment);
@@ -115,12 +117,8 @@ public class NewArticleFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
         });
 
-        //浮動button > 跳轉至insert
-        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
-        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-                .navigate(R.id.action_newArticleFragment_to_articleInsertFragment));
 
-//          searchView
+         // searchView
 //        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //            @Override
 //            public boolean onQueryTextSubmit(String nextText) {
@@ -269,7 +267,6 @@ public class NewArticleFragment extends Fragment {
 
             String commentCount = article.getCommentCount() + "";
 
-
             myViewHolder.userName.setText(article.getUserName());
             myViewHolder.resCategoryInfo.setText(article.getResCategoryInfo());
             myViewHolder.articleTitle.setText(article.getArticleTitle());
@@ -317,7 +314,7 @@ public class NewArticleFragment extends Fragment {
                             article.setArticleGoodCount(article.getArticleGoodCount() + 1);
                             myViewHolder.tvGoodCount.setText((article.getArticleGoodCount() + ""));
 
-                            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             article.setArticleGoodStatus(true);
                         }
                     } else {
@@ -432,6 +429,7 @@ public class NewArticleFragment extends Fragment {
                 public void onClick(View v) {
                     Article.ARTICLE_ID = article.getArticleId();
                     Article.USER_ID = article.getUserId();
+
                     Navigation.findNavController(v).navigate(R.id.action_newArticleFragment_to_articleDetailFragment);
                 }
             });

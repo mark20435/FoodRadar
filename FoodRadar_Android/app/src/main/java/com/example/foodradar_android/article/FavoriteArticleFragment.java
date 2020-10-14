@@ -81,10 +81,12 @@ public class FavoriteArticleFragment extends Fragment {
             swipeRefreshLayoutFavorite.setRefreshing(false);
         });
 
-        //浮動button > 跳轉至insert
-        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
-        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-                .navigate(R.id.action_favoriteArticleFragment_to_articleInsertFragment));
+       //浮動button > 跳轉至insert
+//        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+//        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
+//                .navigate(R.id.action_favoriteArticleFragment_to_articleInsertFragment));
+
+
     }
 
     private List<Article> getArticle() {
@@ -221,7 +223,7 @@ public class FavoriteArticleFragment extends Fragment {
             final boolean articleGoodStatus = article.isArticleGoodStatus();
             ImageView goodIcon = myViewHolder.ivGoodIcon;
             if (articleGoodStatus) {
-                goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                goodIcon.setColorFilter(Color.parseColor("#1877F2"));
             } else {
                 goodIcon.setColorFilter(Color.parseColor("#424242"));
             }
@@ -253,7 +255,7 @@ public class FavoriteArticleFragment extends Fragment {
                             article.setArticleGoodCount(article.getArticleGoodCount() + 1);
                             myViewHolder.tvGoodCount.setText((article.getArticleGoodCount() + ""));
 
-                            goodIcon.setColorFilter(Color.parseColor("#4599A6"));
+                            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
                             article.setArticleGoodStatus(true);
 
                         }

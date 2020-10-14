@@ -23,6 +23,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
     private final static String TAG = "TAG_ImageTask";
     private String url;
     private int id, imageSize;
+    private  int articleId = 0;
     /* ImageTask的屬性strong參照到SpotListFragment內的imageView不好，
         會導致SpotListFragment進入背景時imageView被參照而無法被釋放，
         而且imageView會參照到Context，也會導致Activity無法被回收。
@@ -42,12 +43,21 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         this.imageViewWeakReference = new WeakReference<>(imageView);
     }
 
+    public ImageTask(String url, int id, int imageSize, ImageView imageView, int articleId) {
+        this.url = url;
+        this.id = id;
+        this.imageSize = imageSize;
+        this.articleId = articleId;
+        this.imageViewWeakReference = new WeakReference<>(imageView);
+    }
+
     @Override
     protected Bitmap doInBackground(Object... params) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "getImage");
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("imageSize", imageSize);
+        jsonObject.addProperty("articleId", articleId); //要抓文章圖片，預設值為0
         return getRemoteImage(url, jsonObject.toString());
     }
 

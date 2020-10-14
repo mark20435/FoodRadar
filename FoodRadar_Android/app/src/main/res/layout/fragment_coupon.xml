@@ -13,9 +13,7 @@
             android:id="@+id/LinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="470dp"
-            android:orientation="horizontal"
+            android:layout_marginBottom="370dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +22,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvSample"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -32,7 +30,7 @@
             android:id="@+id/LinearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="340dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
