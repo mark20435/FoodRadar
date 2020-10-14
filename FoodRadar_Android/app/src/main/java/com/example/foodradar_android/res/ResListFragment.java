@@ -267,6 +267,7 @@ public class ResListFragment extends Fragment {
             String url = Common.URL_SERVER + "ResServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getAllEnable");
+            jsonObject.addProperty("userId", Common.USER_ID);
             String jsonOut = jsonObject.toString();
             resGetAllTask = new CommonTask(url, jsonOut);
             try {

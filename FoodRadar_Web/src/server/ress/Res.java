@@ -17,6 +17,7 @@ public class Res {
 	private String userName;
 	private Timestamp modifyDate;
 	private Float rating;
+	private boolean myRes;
 
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
@@ -146,4 +147,11 @@ public class Res {
 		this.rating = rating;
 	}
 	
+	public boolean isMyRes() {
+		return myRes;
+	}
+
+	public void setMyRes(boolean myRes) {
+		this.myRes = myRes;
+	}
 }

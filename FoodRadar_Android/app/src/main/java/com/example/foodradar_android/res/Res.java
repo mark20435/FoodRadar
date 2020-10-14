@@ -19,6 +19,7 @@ public class Res implements Serializable, Comparable {
 	private Timestamp modifyDate;
 	private Float rating;
 	private Float distance;
+	private boolean myRes;
 	
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
@@ -169,5 +170,13 @@ public class Res implements Serializable, Comparable {
 	@Override
 	public int compareTo(Object o) {
 		return Float.compare(this.distance, ((Res)o).getDistance());
+	}
+
+	public boolean isMyRes() {
+		return myRes;
+	}
+
+	public void setMyRes(boolean myRes) {
+		this.myRes = myRes;
 	}
 }

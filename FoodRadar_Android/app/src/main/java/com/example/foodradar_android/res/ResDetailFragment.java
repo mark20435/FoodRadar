@@ -800,6 +800,8 @@ public class ResDetailFragment extends Fragment {
 
         //todo 分享
         //todo 收藏
+
+
         //todo 食記相關按鈕
         //todo 轉到餐廳照片頁面
     }

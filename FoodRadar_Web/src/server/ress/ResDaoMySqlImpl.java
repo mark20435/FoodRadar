@@ -205,7 +205,7 @@ public class ResDaoMySqlImpl implements ResDao {
 	}
 	
 	@Override
-	public List<Res> getAllEnable() {
+	public List<Res> getAllEnable(int curUserId) {
 		String sql = "SELECT R.resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName, ifnull(avg(rating), -1) as rating \n" + 
 				"FROM Res R\n" + 
 				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 

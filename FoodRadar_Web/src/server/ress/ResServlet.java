@@ -49,7 +49,8 @@ public class ResServlet extends HttpServlet {
 			List<Res> ress = resDao.getAll();
 			writeText(response, gson.toJson(ress));
 		} else if (action.equals("getAllEnable")) {
-			List<Res> ress = resDao.getAllEnable();
+			int userId = jsonObject.get("userId").getAsInt();
+			List<Res> ress = resDao.getAllEnable(userId);
 			writeText(response, gson.toJson(ress));
 		} else if (action.equals("getImage")) {
 			OutputStream os = response.getOutputStream();
