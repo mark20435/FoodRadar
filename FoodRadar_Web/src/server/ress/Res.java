@@ -16,7 +16,8 @@ public class Res {
 	private int userId;
 	private String userName;
 	private Timestamp modifyDate;
-	
+	private Float rating;
+
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
 		super();
@@ -137,6 +138,12 @@ public class Res {
 		this.userName = userName;
 	}
 	
-	
+	public Float getRating() {
+		return rating;
+	}
+
+	public void setRating(Float rating) {
+		this.rating = rating;
+	}
 	
 }

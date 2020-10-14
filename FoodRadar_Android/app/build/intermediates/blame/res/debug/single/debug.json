@@ -48,12 +48,12 @@
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_notifications_24.xml"
     },
     {
-        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_button_for_user_area_menu.xml.flat",
-        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/drawable/button_for_user_area_menu.xml"
-    },
-    {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_main.xml.flat",
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_main.xml"
+    },
+    {
+        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_button_for_user_area_menu.xml.flat",
+        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/drawable/button_for_user_area_menu.xml"
     },
     {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_item_view_res_map.xml.flat",
@@ -72,12 +72,12 @@
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_coupon.xml.flat",
-        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_coupon.xml"
-    },
-    {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_more_vert_24.xml.flat",
         "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_more_vert_24.xml"
+    },
+    {
+        "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_coupon.xml.flat",
+        "source": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/res/layout/fragment_coupon.xml"
     },
     {
         "merged": "/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_res_map.xml.flat",

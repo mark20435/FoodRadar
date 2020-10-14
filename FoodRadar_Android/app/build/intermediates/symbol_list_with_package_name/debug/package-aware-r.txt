@@ -3077,6 +3077,7 @@ string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
 string textNoNetwork
+string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK

@@ -59,6 +59,7 @@
             android:layout_below="@id/tvResName"
             android:layout_alignStart="@id/tvResName"
             android:background="@color/mainPink"
+            android:paddingEnd="4dp"
             android:text="@string/textResRating"
             android:textColor="@color/colorText"
             android:textSize="16sp"

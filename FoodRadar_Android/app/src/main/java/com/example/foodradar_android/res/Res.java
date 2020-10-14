@@ -17,6 +17,7 @@ public class Res implements Serializable {
 	private int userId;
 	private String userName;
 	private Timestamp modifyDate;
+	private Float rating;
 	
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
@@ -147,7 +148,13 @@ public class Res implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
+
+	public Float getRating() {
+		return rating;
+	}
+
+	public void setRating(Float rating) {
+		this.rating = rating;
+	}
 	
 }
