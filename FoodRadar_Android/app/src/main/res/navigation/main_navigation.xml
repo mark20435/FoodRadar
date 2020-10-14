@@ -234,5 +234,10 @@
         android:name="com.example.foodradar_android.res.ResListFragment"
         android:label="fragment_res_list"
         tools:layout="@layout/fragment_res_list" />
+    <fragment
+        android:id="@+id/userMyArticleFragment"
+        android:name="com.example.foodradar_android.user.UserMyArticleFragment"
+        android:label="fragment_user_my_article"
+        tools:layout="@layout/fragment_user_my_article" />
 
 </navigation>

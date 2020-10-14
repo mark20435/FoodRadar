@@ -38,12 +38,12 @@ public class UserMyResFragment extends Fragment {
     private Activity activity;
     private NavController navController;
     private List<MyRes> myResList = new ArrayList<>();
-    private List<UserMyResImage> imageTasks= new ArrayList<>();
+    private List<UserImageTask> imageTasks= new ArrayList<>();
     private RecyclerView rcvMyRes;
 //    private Integer userId;
     private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     private String MYRES_SERVLET = URL_SERVER + "MyResServlet";
-    private Integer imageSize = 500;
+    private Integer imageSize = 400;
     final private String TAG = "UserMyResFragment";
 
     @Override
@@ -154,9 +154,9 @@ public class UserMyResFragment extends Fragment {
 //            final MyRes bookOnBVH = books.get(position);
             Log.d(TAG,"resId: " + resId);
             Log.d(TAG,"MYRES_SERVLET: " + MYRES_SERVLET);
-            UserMyResImage userMyResImage = new UserMyResImage(MYRES_SERVLET, resId, imageSize, holder.imResImg);
-            userMyResImage.execute(); // .execute() => UserImage.doInBackground
-            imageTasks.add(userMyResImage);
+            UserImageTask userImageTask = new UserImageTask(MYRES_SERVLET, resId, imageSize, holder.imResImg);
+            userImageTask.execute(); // .execute() => UserImage.doInBackground
+            imageTasks.add(userImageTask);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
