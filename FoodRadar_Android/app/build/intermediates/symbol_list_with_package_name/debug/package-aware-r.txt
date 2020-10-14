@@ -1957,6 +1957,7 @@ id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
 id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
+id action_userMyResFragment_to_resDetailFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -1987,6 +1988,7 @@ id beginOnFirstDraw
 id beginning
 id bidirectional
 id blocking
+id bnvBadge
 id bottom
 id bounce
 id btAdd
@@ -2111,6 +2113,7 @@ id controls_wrapper
 id coordinator
 id cos
 id couponFragment
+id couponMaintainFragment
 id custom
 id customPanel
 id cut
@@ -2561,6 +2564,7 @@ id triangle
 id tvAdressResName
 id tvArticleText
 id tvArticleTime
+id tvBadgeText
 id tvCommentCount
 id tvCommentGood
 id tvCommentText
@@ -2730,6 +2734,7 @@ layout article_comment_view
 layout article_image_insert
 layout article_image_view
 layout article_item_view
+layout bottomnavigationview_badge
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2752,6 +2757,7 @@ layout fragment_article_insert
 layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
+layout fragment_coupon_maintain
 layout fragment_favorite_article
 layout fragment_insert_image
 layout fragment_login
