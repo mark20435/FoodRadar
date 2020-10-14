@@ -3,10 +3,12 @@ package server.user;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +26,14 @@ public class UserAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserAccountDao userAccountDao = null;
 	private PubTools pubTools = new PubTools();
+//	private final static String CONTENT_TYPE = "text/html; charset=UTF-8";
+//	private ServletContext context;
 
-
-
+//	@Override
+//	public void init() throws ServletException {
+//		context = getServletContext();
+//	}
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fromName = this.getClass().getName() + "." + Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -76,6 +83,7 @@ public class UserAccountServlet extends HttpServlet {
 				response.setContentType("image/jpeg"); // 這定回傳種類為圖片
 				response.setContentLength(image.length);
 				os.write(image);
+				os.close();
 			}
 		} else if (action.equals("userLogin")) {
 				String userPhone = jsonObject.get("userPhone").getAsString();
@@ -107,17 +115,17 @@ public class UserAccountServlet extends HttpServlet {
 			pubTools.showConsoleMsg("userAccountJso: ", userAccountJson);
 			UserAccount userAccount = gson.fromJson(userAccountJson, UserAccount.class);
 			// 檢查是否有上傳圖片
-			byte[] imageAvatra = null;
+			byte[] imageAvatraByte = null;
 			if (jsonObject.get("imageBase64") != null) { // 若使用者修改時沒有改照片 image物件會是 null，處理時要判斷並略過
 				System.out.println("imageBase64 != null");
 				String imageBase64 = jsonObject.get("imageBase64").getAsString();
 				if (imageBase64 != null && !imageBase64.isEmpty()) {
-					imageAvatra = Base64.getMimeDecoder().decode(imageBase64);
+					imageAvatraByte = Base64.getMimeDecoder().decode(imageBase64);
 				}
-				System.out.println("imageAvatra: " + imageAvatra);
+				System.out.println("imageAvatra: " + imageAvatraByte);
 			}
 			int count = 0;
-			count = userAccountDao.update(userAccount, imageAvatra);
+			count = userAccountDao.update(userAccount, imageAvatraByte);
 //			List<MyRes> myResList = myResDao.getAllById(id);
 //			pubTools.writeText(response, gson.toJson(myResList));
 			pubTools.writeText(response, String.valueOf(count));
@@ -132,6 +140,16 @@ public class UserAccountServlet extends HttpServlet {
 //			List<MyRes> myResList = myResDao.getAllById(id);
 //			pubTools.writeText(response, gson.toJson(myResList));
 			pubTools.writeText(response, String.valueOf(count));
+			
+		} else if (action.equals("getImageAvatar")) {
+			id = jsonObject.get("id").getAsInt();
+			byte[] imageByte = userAccountDao.getImage(id);
+			String jsonOut = Base64.getMimeEncoder().encodeToString(imageByte);
+			jsonOut = "{\"imageBase64\":\"" + jsonOut + "\"}";
+//			System.out.print("getImageAvatar.jsonOut: " + jsonOut);
+			PrintWriter out = response.getWriter();
+			out.println(jsonOut);
+			out.close();
 			
 //		} else if (action.equals("userAccountDelete")) {
 //			Integer userId = jsonObject.get("userId").getAsInt();

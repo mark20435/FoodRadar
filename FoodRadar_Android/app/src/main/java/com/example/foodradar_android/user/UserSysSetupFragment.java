@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -74,11 +75,18 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // 餐廳資訊維護
         view.findViewById(R.id.btUsArResＭaintain).setOnClickListener(this);
+        // 餐廳優惠管理
+        view.findViewById(R.id.btUsArCouponＭaintain).setOnClickListener(this);
+        // 會員管理
+        view.findViewById(R.id.btUsArUserＭaintain).setOnClickListener(this);
+        // 會員發文管理
+        view.findViewById(R.id.btUsArArticleＭaintain).setOnClickListener(this);
 
         Resources res = getResources();
         swUsArNotifi = view.findViewById(R.id.swUsArNotifi);
-        Boolean allowNotifi = Common.getUserAllowNotifi(activity);
+        Boolean allowNotifi = new Common().getUserAllowNotifi(activity);
         if (allowNotifi == true) {
             swUsArNotifi.setText(res.getString(R.string.textNotifi) + " ("+ res.getString(R.string.textOn) + ")");
         } else {
@@ -124,10 +132,25 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
             case R.id.btUsArResＭaintain:
                 navController.navigate(R.id.resMaintainFragment);
                 break;
+            // 餐廳優惠管理
+            case R.id.btUsArCouponＭaintain:
+                navController.navigate(R.id.couponMaintainFragment);
+                break;
+            // 會員管理
+            case R.id.btUsArUserＭaintain:
+//                navController.navigate(R.id.);
+                break;
+            // 會員發文管理
+            case R.id.btUsArArticleＭaintain:
+//                navController.navigate(R.id.);
+                break;
             default:
+                Toast.makeText(activity, "Unknow id: " + v.getId() + "\n" +
+                                ", getResourceName: " + getResources().getResourceName(v.getId()) + "\n" +
+                                ", getResourceEntryName: " + getResources().getResourceEntryName(v.getId())
+                        , Toast.LENGTH_LONG).show();
                 break;
         }
 
-
-        }
+    }
 }

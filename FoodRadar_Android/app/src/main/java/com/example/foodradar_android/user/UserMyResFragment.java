@@ -161,37 +161,41 @@ public class UserMyResFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Common.showToast(activity,"餐廳ID: " + myResBidVH.getResId());
+                    Integer resID = myResBidVH.getResId();
+                    Common.showToast(activity,"餐廳ID: " + resID);
+                    List<Res> res = new ArrayList<>();
+                    CommonTask getResTask;
+                    Log.d(TAG,"getResById: " + resID);
+                    if (Common.networkConnected(activity)) {
+                        String url = MYRES_SERVLET;
+                        Log.d(TAG,"getResById.url: " + url);
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty("action", "getResById");
+                        jsonObject.addProperty("id",resID);
+                        String jsonOut = jsonObject.toString();
+                        Log.d(TAG,"getResById.jsonOut: " + jsonOut);
+                        getResTask = new CommonTask(url, jsonOut);
+                        try {
+                            String jsonIn = getResTask.execute().get();
+                            Log.d(TAG,"getResById.jsonIn: " + jsonIn);
+                            Type listType = new TypeToken<List<Res>>() {
+                            }.getType();
+                            res = new Gson().fromJson(jsonIn, listType);
+                        } catch (Exception e) {
+                            Log.e(TAG, e.toString());
+                        }
+                    } else {
+                        Common.showToast(activity, R.string.textNoNetwork);
+                    }
 
-//                    private List<Res> getRess() {
-//                        List<Res> ress = null;
-//                        if (Common.networkConnected(activity)) {
-//                            String url = Common.URL_SERVER + "ResServlet";
-//                            JsonObject jsonObject = new JsonObject();
-//                            jsonObject.addProperty("action", "getAllEnable");
-//                            String jsonOut = jsonObject.toString();
-//                            resGetAllTask = new CommonTask(url, jsonOut);
-//                            try {
-//                                String jsonIn = resGetAllTask.execute().get();
-//                                Type listType = new TypeToken<List<Res>>() {
-//                                }.getType();
-//                                ress = new Gson().fromJson(jsonIn, listType);
-//                            } catch (Exception e) {
-//                                Log.e(TAG, e.toString());
-//                            }
-//                        } else {
-//                            Common.showToast(activity, R.string.textNoNetwork);
-//                        }
-//                        return ress;
-//                    }
-//
-//
-//
-//
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("res", res);
-//                    Navigation.findNavController(v)
-//                            .navigate(R.id.action_resMapFragment_to_resDetailFragment, bundle);
+                    if (res != null) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("res", res.get(0));
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_userMyResFragment_to_resDetailFragment, bundle);
+                    } else {
+                        Common.showToast(activity, R.string.textNoRessFound);
+                    }
                 }
             });
         }

@@ -68,11 +68,11 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
             imageView.setImageBitmap(bitmap);
             Log.d(TAG,"bitmap: " + bitmap);
 
-            if (activity != null){
-                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-                Bitmap drawableＧetBitmap = drawable.getBitmap();
-                Common.setUserAvatra(activity, drawableＧetBitmap);
-            }
+//            if (activity != null){
+//                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+//                Bitmap drawableＧetBitmap = drawable.getBitmap();
+//                new Common().setUserAvatra(activity, drawableＧetBitmap);
+//            }
 
         } else {
             imageView.setImageResource(R.drawable.no_image);
