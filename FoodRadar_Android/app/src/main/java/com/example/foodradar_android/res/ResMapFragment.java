@@ -280,7 +280,7 @@ public class ResMapFragment extends Fragment {
 
         //todo 今天吃什麼
         //todo 我的收藏
-        //todo 餐廳列表 menu是否要新增？
+        //todo 餐廳列表
     }
 
     private void showRess(List<Res> ress) {
