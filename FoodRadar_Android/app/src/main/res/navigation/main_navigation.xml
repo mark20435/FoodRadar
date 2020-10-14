@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_resMapFragment_to_resDetailFragment"
             app:destination="@id/resDetailFragment" />
+        <action
+            android:id="@+id/action_resMapFragment_to_resListFragment"
+            app:destination="@id/resListFragment" />
     </fragment>
 
     <fragment
@@ -226,4 +229,10 @@
         android:name="com.example.foodradar_android.coupon.CouponMaintainFragment"
         android:label="fragment_coupon_maintain"
         tools:layout="@layout/fragment_coupon_maintain" />
+    <fragment
+        android:id="@+id/resListFragment"
+        android:name="com.example.foodradar_android.res.ResListFragment"
+        android:label="fragment_res_list"
+        tools:layout="@layout/fragment_res_list" />
+
 </navigation>
