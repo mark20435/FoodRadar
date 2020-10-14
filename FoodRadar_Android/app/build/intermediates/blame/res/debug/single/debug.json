@@ -124,12 +124,12 @@
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_map_24.xml"
     },
     {
-        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_thumb_up_alt_24.xml.flat",
-        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_thumb_up_alt_24.xml"
-    },
-    {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/menu_appbar_ezlogout.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/menu/appbar_ezlogout.xml"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_thumb_up_alt_24.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_thumb_up_alt_24.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_notifications_24.xml.flat",
@@ -210,6 +210,10 @@
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_cucate.jpg.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/drawable/cucate.jpg"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_user_my_article.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/fragment_user_my_article.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_x_dog.jpg.flat",

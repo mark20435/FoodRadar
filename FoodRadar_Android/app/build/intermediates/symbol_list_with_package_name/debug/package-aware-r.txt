@@ -2680,6 +2680,7 @@ id user
 id userAreaFragment
 id userDataSetupFragment
 id userIcon
+id userMyArticleFragment
 id userMyResFragment
 id userName
 id userPhone
@@ -2812,6 +2813,7 @@ layout fragment_res_map
 layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
+layout fragment_user_my_article
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_category

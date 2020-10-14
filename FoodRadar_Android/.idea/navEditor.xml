@@ -157,7 +157,14 @@
                   </entry>
                   <entry key="couponMaintainFragment">
                     <value>
-                      <LayoutPositions />
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
                     </value>
                   </entry>
                   <entry key="insertImageFragment">
@@ -443,6 +450,18 @@
                           <Point>
                             <option name="x" value="1476" />
                             <option name="y" value="1672" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userMyArticleFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1599" />
+                            <option name="y" value="1094" />
                           </Point>
                         </option>
                       </LayoutPositions>
