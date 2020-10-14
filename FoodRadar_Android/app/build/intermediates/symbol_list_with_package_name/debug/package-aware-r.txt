@@ -1788,6 +1788,7 @@ drawable ic_baseline_person_pin_24
 drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
 drawable ic_baseline_place_24
+drawable ic_baseline_res_map_24
 drawable ic_baseline_send_24
 drawable ic_baseline_settings_24
 drawable ic_baseline_share_24
@@ -1801,6 +1802,7 @@ drawable ic_baseline_thumb_up_alt_24
 drawable ic_baseline_turned_in_24
 drawable ic_baseline_turned_in_not_24
 drawable ic_baseline_user_24
+drawable ic_baseline_view_list_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_checked_circle
@@ -1975,6 +1977,7 @@ id action_resInsertFragment_to_articleFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
 id action_resMapFragment_to_resDetailFragment
+id action_resMapFragment_to_resListFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
@@ -2402,6 +2405,7 @@ id resAddressFragment
 id resCategoryInfo
 id resDetailFragment
 id resInsertFragment
+id resListFragment
 id resMaintainFragment
 id resMapFragment
 id resName
@@ -2796,6 +2800,7 @@ layout fragment_register
 layout fragment_res_address
 layout fragment_res_detail
 layout fragment_res_insert
+layout fragment_res_list
 layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_res_update
@@ -2887,6 +2892,8 @@ menu article_insert_menu
 menu article_menu
 menu menu
 menu photo_source_menu
+menu res_list_menu
+menu res_map_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -3090,6 +3097,8 @@ string textResEnable
 string textResHours
 string textResIsEnable
 string textResIsNotEnable
+string textResList
+string textResMap
 string textResName
 string textResRating
 string textResTel

@@ -27,6 +27,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -119,8 +122,8 @@ public class ResMapFragment extends Fragment {
 
         imageTasks = new ArrayList<>();
 
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -128,6 +131,25 @@ public class ResMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         activity.setTitle(R.string.map);
         return inflater.inflate(R.layout.fragment_res_map, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.res_map_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.resListFragment:
+                navController.navigate(R.id.action_resMapFragment_to_resListFragment);
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -258,7 +280,7 @@ public class ResMapFragment extends Fragment {
 
         //todo 今天吃什麼
         //todo 我的收藏
-        //todo 餐廳列表
+        //todo 餐廳列表 menu是否要新增？
     }
 
     private void showRess(List<Res> ress) {

@@ -302,4 +302,6 @@
     <string name="textInsertResRatingSuccess">新增評價成功</string>
     <string name="textUpdateResRatingFail">修改評價失敗</string>
     <string name="textUpdateResRatingSuccess">修改評價成功</string>
+    <string name="textResList">餐廳列表</string>
+    <string name="textResMap">餐廳地圖</string>
 </resources>
