@@ -14,6 +14,10 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class ResRatingActivity extends AppCompatActivity {
     private final static String TAG = "TAG_ResRatingActivity";
@@ -21,6 +25,7 @@ public class ResRatingActivity extends AppCompatActivity {
     private RatingBar ratingBar;
     private Float rating;
     private ResRating resRating;
+    private CommonTask getRatingTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +67,12 @@ public class ResRatingActivity extends AppCompatActivity {
                         Log.e(TAG, e.toString());
                     }
                     if (count == 0) {
-                        Common.showToast(this, R.string.textInsertFail);
+                        Common.showToast(this, R.string.textInsertResRatingFail);
                     } else {
-                        Common.showToast(this, R.string.textInsertSuccess);
+                        Common.showToast(this, R.string.textInsertResRatingSuccess);
                     }
                 } else {
+                    resRating.setRating(rating);
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action", "updateResRating");
                     jsonObject.addProperty("resRating", new Gson().toJson(resRating));
@@ -79,9 +85,9 @@ public class ResRatingActivity extends AppCompatActivity {
                         Log.e(TAG, e.toString());
                     }
                     if (count == 0) {
-                        Common.showToast(this, R.string.textUpdateFail);
+                        Common.showToast(this, R.string.textUpdateResRatingFail);
                     } else {
-                        Common.showToast(this, R.string.textUpdateSuccess);
+                        Common.showToast(this, R.string.textUpdateResRatingSuccess);
                     }
                 }
             } else {
@@ -98,6 +104,28 @@ public class ResRatingActivity extends AppCompatActivity {
     }
 
     private void getRating() {
+        if (Common.networkConnected(this)) {
+            String url = Common.URL_SERVER + "ResServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "findRatingByResIdAndUserId");
+            jsonObject.addProperty("resId", res.getResId());
+            jsonObject.addProperty("userId", Common.USER_ID);
+            String jsonOut = jsonObject.toString();
+            getRatingTask = new CommonTask(url, jsonOut);
+            try {
+                String jsonIn = getRatingTask.execute().get();
+                Type listType = new TypeToken<ResRating>() {
+                }.getType();
+                resRating = new Gson().fromJson(jsonIn, listType);
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Common.showToast(this, R.string.textNoNetwork);
+        }
 
+        if (resRating != null) {
+            ratingBar.setRating(resRating.getRating());
+        }
     }
 }

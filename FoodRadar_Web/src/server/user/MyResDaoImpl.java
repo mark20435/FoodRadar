@@ -12,6 +12,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import server.main.ServiceLocator;
+import server.ress.*;
 
 // Date Time: 2020-09-08 08:14:26
 // implements Dao: MyResDaoImpl
@@ -176,6 +177,24 @@ public class MyResDaoImpl implements MyResDao{
 			e.printStackTrace();
 		} 
 		return image;
+	}
+
+	@Override
+	public List<Res> getResById(Integer id, Integer userId) {
+		Res res = null;
+		ResDao resDao = new ResDaoMySqlImpl();
+		List<Res> resList = new ArrayList<Res>();
+		resList = resDao.getAllEnable(userId);
+		
+		List<Res> resListById = new ArrayList<Res>();
+		for (Res getRes : resList ) {
+			Integer resID = getRes.getResId();
+			if (resID.equals(id)) {
+				resListById.add(getRes);
+				break;
+			}
+		}
+		return resListById;
 	}
 
 }

@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_resMapFragment_to_resDetailFragment"
             app:destination="@id/resDetailFragment" />
+        <action
+            android:id="@+id/action_resMapFragment_to_resListFragment"
+            app:destination="@id/resListFragment" />
     </fragment>
 
     <fragment
@@ -81,7 +84,11 @@
         android:id="@+id/userMyResFragment"
         android:name="com.example.foodradar_android.user.UserMyResFragment"
         android:label="fragment_user_my_res"
-        tools:layout="@layout/fragment_user_my_res" />
+        tools:layout="@layout/fragment_user_my_res" >
+        <action
+            android:id="@+id/action_userMyResFragment_to_resDetailFragment"
+            app:destination="@id/resDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resMaintainFragment"
         android:name="com.example.foodradar_android.user.ResMaintainFragment"
@@ -216,11 +223,29 @@
         android:id="@+id/resDetailFragment"
         android:name="com.example.foodradar_android.res.ResDetailFragment"
         android:label="fragment_res_detail"
-        tools:layout="@layout/fragment_res_detail" />
+        tools:layout="@layout/fragment_res_detail" >
+        <action
+            android:id="@+id/action_resDetailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/couponDetailFragment"
-        android:name="com.example.foodradar_android.coupon.CouponDetailFragment"
-        android:label="fragment_coupon_detail"
-        tools:layout="@layout/fragment_coupon_detail" />
+    android:id="@+id/couponDetailFragment"
+    android:name="com.example.foodradar_android.coupon.CouponDetailFragment"
+    android:label="fragment_coupon_detail"
+    tools:layout="@layout/fragment_coupon_detail" />
+    <fragment
+        android:id="@+id/couponMaintainFragment"
+        android:name="com.example.foodradar_android.coupon.CouponMaintainFragment"
+        android:label="fragment_coupon_maintain"
+        tools:layout="@layout/fragment_coupon_maintain" />
+    <fragment
+        android:id="@+id/resListFragment"
+        android:name="com.example.foodradar_android.res.ResListFragment"
+        android:label="fragment_res_list"
+        tools:layout="@layout/fragment_res_list" >
+        <action
+            android:id="@+id/action_resListFragment_to_resDetailFragment"
+            app:destination="@id/resDetailFragment" />
+    </fragment>
 
 </navigation>

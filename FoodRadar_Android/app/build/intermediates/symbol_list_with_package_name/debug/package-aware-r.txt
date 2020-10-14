@@ -1790,6 +1790,7 @@ drawable ic_baseline_person_pin_24
 drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
 drawable ic_baseline_place_24
+drawable ic_baseline_res_map_24
 drawable ic_baseline_send_24
 drawable ic_baseline_settings_24
 drawable ic_baseline_share_24
@@ -1803,6 +1804,7 @@ drawable ic_baseline_thumb_up_alt_24
 drawable ic_baseline_turned_in_24
 drawable ic_baseline_turned_in_not_24
 drawable ic_baseline_user_24
+drawable ic_baseline_view_list_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_checked_circle
@@ -1974,15 +1976,19 @@ id action_newArticleFragment_to_articleInsertFragment
 id action_rankArticleFragment_to_articleDetailFragment
 id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
+id action_resDetailFragment_to_loginFragment
 id action_resInsertFragment_to_articleFragment
+id action_resListFragment_to_resDetailFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
 id action_resMapFragment_to_resDetailFragment
+id action_resMapFragment_to_resListFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
 id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
+id action_userMyResFragment_to_resDetailFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -2015,6 +2021,7 @@ id beginOnFirstDraw
 id beginning
 id bidirectional
 id blocking
+id bnvBadge
 id bottom
 id bounce
 id btAdd
@@ -2149,6 +2156,7 @@ id couPonStartDate
 id couPonStartDateUp
 id couponDetailFragment
 id couponFragment
+id couponMaintainFragment
 id custom
 id customPanel
 id cut
@@ -2415,6 +2423,7 @@ id resAddressFragment
 id resCategoryInfo
 id resDetailFragment
 id resInsertFragment
+id resListFragment
 id resMaintainFragment
 id resMapFragment
 id resName
@@ -2608,6 +2617,7 @@ id tvActwo
 id tvAddressResName
 id tvArticleText
 id tvArticleTime
+id tvBadgeText
 id tvCommentCount
 id tvCommentGood
 id tvCommentText
@@ -2781,6 +2791,7 @@ layout article_image_insert
 layout article_image_pick
 layout article_image_view
 layout article_item_view
+layout bottomnavigationview_badge
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2804,6 +2815,7 @@ layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_coupon_detail
+layout fragment_coupon_maintain
 layout fragment_favorite_article
 layout fragment_insert_image
 layout fragment_login
@@ -2814,6 +2826,7 @@ layout fragment_register
 layout fragment_res_address
 layout fragment_res_detail
 layout fragment_res_insert
+layout fragment_res_list
 layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_res_update
@@ -2906,6 +2919,8 @@ menu article_insert_menu
 menu article_menu
 menu menu
 menu photo_source_menu
+menu res_list_menu
+menu res_map_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -3069,6 +3084,8 @@ string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
+string textInsertResRatingFail
+string textInsertResRatingSuccess
 string textInsertSuccess
 string textLocationEmpty
 string textLogout
@@ -3087,6 +3104,7 @@ string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
 string textNoNetwork
+string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK
@@ -3107,6 +3125,8 @@ string textResEnable
 string textResHours
 string textResIsEnable
 string textResIsNotEnable
+string textResList
+string textResMap
 string textResName
 string textResRating
 string textResTel
@@ -3121,6 +3141,8 @@ string textUpdate
 string textUpdateCancel
 string textUpdateFail
 string textUpdateRes
+string textUpdateResRatingFail
+string textUpdateResRatingSuccess
 string textUpdateSuccess
 string textUserBirth
 string textUserChangConfrim

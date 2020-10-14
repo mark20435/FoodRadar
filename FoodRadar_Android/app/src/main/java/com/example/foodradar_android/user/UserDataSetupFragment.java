@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,7 +12,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,7 +39,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -119,8 +116,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
     private TextView tvUserBirth;
     private TextView etUserBirth;
     private TextView tvUserBirthDivider;
-    DatePickerDialog datePickerDialog;
-    DatePickerDialog.OnDateSetListener dateSetListener;
+    private DatePickerDialog datePickerDialog;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
 
     private Button btnLogInOut;
     private Button btUserChangConfrim;
@@ -251,13 +248,16 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         tvUserBirth = view.findViewById(R.id.tvUserBirth);
         etUserBirth = view.findViewById(R.id.etUserBirth);
         tvUserBirthDivider = view.findViewById(R.id.tvUserBirthDivider);
-//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);// getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(etUserBirth.getWindowToken(),0);
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String yyyyMMdd = year + "-" + (month < 10 ? "0" + month : month) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
-                etUserBirth.setText(yyyyMMdd);
+                // 一月的值是0而非1，所以「month + 1」後才顯示
+                month++;
+                String yyyyMMdd = new StringBuilder()
+                        .append(year).append("-")
+                        .append((month < 10 ? "0" + month : month)).append("-")
+                        .append((dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth))
+                        .toString();etUserBirth.setText(yyyyMMdd);
                 etUserBirth.setTextColor(edTextdefaultColor);
             }
         };
@@ -275,10 +275,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         etUserBirth.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (etUserBirth.getText().equals("")) {
@@ -288,11 +285,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                     etUserBirth.setTextColor(edTextdefaultColor);
                 }
             }
-
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
 
@@ -381,7 +375,6 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         // ^^^^^^臨時寫的，用來模擬使用者 登入 與 註冊
 
 
-
     }
 
     private int getUserId(){
@@ -412,13 +405,20 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         etUserBirth.setTextColor(edTextdefaultColor);
         setDatePicker();
 
-        bitmapAvatra = Common.getUserAvatra(activity);
+        bitmapAvatra = new Common().getUserAvatra(activity);
 //        Common.setUserAvatra(activity, bitmapAvatra);
         ivAvatar.setImageBitmap(bitmapAvatra);
 //        ivAvatar.setImageResource(R.drawable.x_cat);
 
         btnLogInOut.setText(R.string.textLogout);
         btUserChangConfrim.setText(R.string.textUserChangConfrim);
+
+        // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
+//            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
+//            bottomNavigationView.getMenu().getItem(4).setTitle(String.valueOf(USER_ID));
+        new Common().setBottomNavigationViewBadge(activity,4,String.valueOf(getUserId()),true);
+
+
     }
 
     private void setUiIsLogout() {
@@ -435,17 +435,24 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         btnLogInOut.setText(R.string.action_sign_in);
         btUserChangConfrim.setText(R.string.action_register);
-        bitmapAvatra = Common.getUserAvatra(activity);
+        bitmapAvatra = new Common().getUserAvatra(activity);
         ivAvatar.setImageBitmap(bitmapAvatra);
+
+        // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
+//            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
+//            bottomNavigationView.getMenu().getItem(4).setTitle(String.valueOf(USER_ID));
+//        new Common().setBottomNavigationViewBadge(activity,4,String.valueOf(getUserId()),false);
+
     }
 
     private void setDatePicker() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+//        calendar.setTime(new Date());
         int year = calendar.get(Calendar.YEAR) - 12; // 年份預設顯示減12年
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        if (!etUserBirth.getText().equals("")) {
+        if (!etUserBirth.getText().equals("")
+                && !etUserBirth.getText().equals(getResources().getString(R.string.textUserBirth))) {
 
             //欲轉換的日期字串
             String dateString = etUserBirth.getText().toString();
@@ -470,7 +477,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         // 設定可選取的起始日為前130年
         Calendar calendarMin = Calendar.getInstance();
-        calendarMin.add(Calendar.YEAR, -130);
+        calendarMin.add(Calendar.YEAR, -100);
         datePicker.setMinDate(calendarMin.getTimeInMillis());
         // 設定可選取的結束日為一個月前
         Calendar calendarMax = Calendar.getInstance();
@@ -651,7 +658,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         String userBirth = etUserBirth.getText().toString();
         Timestamp userBirth_Timestamp = Timestamp.valueOf(userBirth + " 00:00:00");
         String userName = etUserName.getText().toString();
-        Boolean allowNotifi_Boolean = Common.getUserAllowNotifi(activity);;
+        Boolean allowNotifi_Boolean = new Common().getUserAllowNotifi(activity);;
 
         userAccount = new UserAccount(userId, userPhone, userPwd, userBirth_Timestamp, userName, allowNotifi_Boolean);
         JsonObject jsonObject = new JsonObject();
@@ -748,11 +755,11 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 //                        BitmapDrawable drawable = (BitmapDrawable) ivAvatar.getDrawable();
 //                        Bitmap bitmap = drawable.getBitmap();
 //                        Common.setUserAvatra(activity, bitmap);
-                        Common.setUserAvatra(activity, new Common().getImageView(ivAvatar));
+                        new Common().setUserAvatra(activity, new Common().getImageView(ivAvatar));
 
 //                    ivAvatar.setImageBitmap(new Common().getUserAvatra());
 //                    bitmapAvatra = showUserAvatra();
-                        bitmapAvatra = Common.getUserAvatra(activity);
+                        bitmapAvatra = new Common().getUserAvatra(activity);
                         ivAvatar.setImageBitmap(bitmapAvatra);
 //                        Common.showToast(activity,"頭像存檔完成");
                         Log.d(TAG,"修改完成 且 頭像存檔完成");

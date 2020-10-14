@@ -62,7 +62,8 @@ public class ArticleDetailFragment extends Fragment {
     private CommonTask articleDeleteTask;
     private List<ImageTask> imageTasks;
     private Integer articleIdBox = Article.ARTICLE_ID;
-    private Integer userIdBox = Article.USER_ID;
+//    private Integer userIdBox = Article.USER_ID;
+    private Integer userIdBox = Common.USER_ID;
     private int imageSize;
     private ConstraintLayout articleConstraintLayout;
 

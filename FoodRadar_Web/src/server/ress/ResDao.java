@@ -14,7 +14,7 @@ public interface ResDao {
 
 	List<Res> getAll();
 	
-	List<Res> getAllEnable();
+	List<Res> getAllEnable(int curUserId);
 	
 	List<Res> CategoryfindById(int resId);
 	
@@ -26,7 +26,7 @@ public interface ResDao {
 	
 	int insertResRating(ResRating resRating);
 	
-	int UpdateResRating(ResRating resRating);
+	int updateResRating(ResRating resRating);
 	
 	ResRating findRatingByResIdAndUserId(int resId, int userId);
 }

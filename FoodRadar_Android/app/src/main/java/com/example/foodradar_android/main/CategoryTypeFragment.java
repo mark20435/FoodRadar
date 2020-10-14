@@ -137,6 +137,7 @@ public class CategoryTypeFragment extends Fragment {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "categoryfindById");
             jsonObject.addProperty("id",categoryId);
+
             String jsonOut = jsonObject.toString();
             ResGetAllTask = new CommonTask(url, jsonOut);
             try {

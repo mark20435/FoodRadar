@@ -35,10 +35,11 @@ public class ArticleFragment extends Fragment {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         // 顯示左上角的返回箭頭
-        new Common().setBackArrow(true, activity);
-        setHasOptionsMenu(true);
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+//        new Common();
+//        Common.setBackArrow(false, activity);
+//        setHasOptionsMenu(true);
+//        navController =
+//                Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override

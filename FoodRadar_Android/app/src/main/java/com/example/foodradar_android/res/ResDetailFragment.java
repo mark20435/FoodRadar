@@ -1,7 +1,9 @@
 package com.example.foodradar_android.res;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -41,6 +43,7 @@ import java.util.List;
 
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,7 +91,7 @@ public class ResDetailFragment extends Fragment {
     private int imageSize;
     private Res res;
     private ImageView ivRes, ivImage;
-    private TextView tvResName, tvResCategoryInfo, tvResAddress, tvResHours, tvResTel, tvImageNumber, tvResHoursDetail;
+    private TextView tvResName, tvResRating, tvResCategoryInfo, tvResAddress, tvResHours, tvResTel, tvImageNumber, tvResHoursDetail;
     private RecyclerView rvImage;
     private JsonObject jsonHours;
     private CommonTask imgGetAllTask;
@@ -178,6 +181,8 @@ public class ResDetailFragment extends Fragment {
 
 
         tvResName = view.findViewById(R.id.tvResName);
+        tvResRating = view.findViewById(R.id.tvResRating);
+        RatingBar ratingBar = view.findViewById(R.id.ratingBar);
         tvResCategoryInfo = view.findViewById(R.id.tvResCategoryInfo);
         tvResAddress = view.findViewById(R.id.tvResAddress);
         tvResTel = view.findViewById(R.id.tvResTel);
@@ -185,6 +190,34 @@ public class ResDetailFragment extends Fragment {
         tvImageNumber = view.findViewById(R.id.tvImageNumber);
 
         tvResName.setText(res.getResName());
+        Float rating = res.getRating();
+        if (rating >= 0) {
+            tvResRating.setText(String.format("%.1f", rating));
+            if (rating < 0.75) {
+                ratingBar.setRating(0.5f);
+            } else if (rating < 1.25) {
+                ratingBar.setRating(1f);
+            } else if (rating < 1.75) {
+                ratingBar.setRating(1.5f);
+            } else if (rating < 2.25) {
+                ratingBar.setRating(2f);
+            } else if (rating < 2.75) {
+                ratingBar.setRating(2.5f);
+            } else if (rating < 3.25) {
+                ratingBar.setRating(3f);
+            } else if (rating < 3.75) {
+                ratingBar.setRating(3.5f);
+            } else if (rating < 4.25) {
+                ratingBar.setRating(4f);
+            } else if (rating < 4.75) {
+                ratingBar.setRating(4.5f);
+            } else {
+                ratingBar.setRating(5f);
+            }
+        } else {
+            tvResRating.setText(R.string.textNoRating);
+            ratingBar.setVisibility(View.GONE);
+        }
         tvResCategoryInfo.setText(res.getResCategoryInfo());
         tvResAddress.setText(res.getResAddress());
         tvResTel.setText(res.getResTel());
@@ -749,11 +782,26 @@ public class ResDetailFragment extends Fragment {
         //todo 評價
         Button btResRating = view.findViewById(R.id.btResRating);
         btResRating.setOnClickListener(v -> {
-            rating();
+            if (Common.USER_ID <= 0) {
+                new AlertDialog.Builder(activity)
+                        .setTitle("您尚未登入，要進行登入嗎？")
+                        .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Navigation.findNavController(view)
+                                        .navigate(R.id.action_resDetailFragment_to_loginFragment);
+                            }
+                        }).setNegativeButton(R.string.textCancel, null).create()
+                        .show();
+            } else {
+                rating();
+            }
         });
 
         //todo 分享
         //todo 收藏
+
+
         //todo 食記相關按鈕
         //todo 轉到餐廳照片頁面
     }
