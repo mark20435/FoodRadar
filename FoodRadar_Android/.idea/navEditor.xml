@@ -157,7 +157,17 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_CategoryTypeFragment_to_loginFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_CategoryTypeFragment_to_resDetailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_CategoryTypeFragment_to_userDataSetupFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -230,6 +240,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_articleInsertFragment_to_articleFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_articleInsertFragment_to_insertImageFragment">
                               <value>
                                 <LayoutPositions />
@@ -262,6 +277,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="couponDetailFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1972" />
+                            <option name="y" value="1818" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -343,6 +370,11 @@
                               </value>
                             </entry>
                             <entry key="action_mainFragment_to_couponFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_mainFragment_to_loginFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

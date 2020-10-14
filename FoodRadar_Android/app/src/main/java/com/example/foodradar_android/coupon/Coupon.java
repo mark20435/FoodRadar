@@ -10,7 +10,7 @@ public class Coupon implements Serializable {
     private int couPonId;
     private int resId;
     private String resName;
-    private String tvCouInfo;
+    private String couPonInfo;
     private String couPonStartDate;
     private String couPonEndDate;
     private boolean couPonType;
@@ -18,12 +18,12 @@ public class Coupon implements Serializable {
     private Timestamp date;
     private Button btCollect;
 
-    public Coupon(int id, int couPonId, int resId, String resName, String tvCouInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect) {
+    public Coupon(int id, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect) {
         this.id = id;
         this.couPonId = couPonId;
         this.resId = resId;
         this.resName = resName;
-        this.tvCouInfo = tvCouInfo;
+        this.couPonInfo = couPonInfo;
         this.couPonStartDate = couPonStartDate;
         this.couPonEndDate = couPonEndDate;
         this.couPonType = couPonType;
@@ -64,12 +64,12 @@ public class Coupon implements Serializable {
         this.resName = resName;
     }
 
-    public String getTvCouInfo() {
-        return tvCouInfo;
+    public String getCouPonInfo() {
+        return couPonInfo;
     }
 
-    public void setTvCouInfo(String tvCouInfo) {
-        this.tvCouInfo = tvCouInfo;
+    public void setCouPonInfo(String couPonInfo) {
+        this.couPonInfo = couPonInfo;
     }
 
     public String getCouPonStartDate() {

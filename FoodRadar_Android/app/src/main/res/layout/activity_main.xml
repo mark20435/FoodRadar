@@ -4,6 +4,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#42F44646"
     tools:context="com.example.foodradar_android.main.MainActivity">
 
 
@@ -12,6 +13,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#42F44646"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/BottomNavigation"
         app:layout_constraintStart_toStartOf="parent"
