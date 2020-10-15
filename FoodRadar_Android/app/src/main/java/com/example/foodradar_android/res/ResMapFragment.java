@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -562,7 +563,7 @@ public class ResMapFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView imageView;
+            ImageView imageView, ivMyRes;
             TextView tvResName,tvResRating , tvResAddress, tvResCategoryInfo, tvResDistance;
 
             MyViewHolder(View itemView) {
@@ -573,6 +574,7 @@ public class ResMapFragment extends Fragment {
                 tvResAddress = itemView.findViewById(R.id.tvResAddress);
                 tvResCategoryInfo = itemView.findViewById(R.id.tvResCategoryInfo);
                 tvResDistance = itemView.findViewById(R.id.tvResDistance);
+                ivMyRes = itemView.findViewById(R.id.ivMyRes);
             }
         }
 
@@ -613,6 +615,11 @@ public class ResMapFragment extends Fragment {
                 } else {
                     myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0] / 1000f));
                 }
+            }
+
+            if (res.isMyRes()) {
+                myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_24);
+                myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#1877F2"));
             }
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
