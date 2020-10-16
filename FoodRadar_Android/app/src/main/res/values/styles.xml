@@ -59,6 +59,7 @@
     </style>
 
     <!-- alertDialogBottom 特效 -->
+    <!-- alertDialog animation 樣式 -->
     <style name="popupAnimation" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/pop_in</item>
         <item name="android:windowExitAnimation">@anim/pop_out</item>

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -17,9 +18,10 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +40,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.foodradar_android.user.UserMyResImage;
 import com.google.android.gms.common.api.Api;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,6 +57,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -212,10 +217,48 @@ public class Common{
 //                    .putString("createDate", String.valueOf(fromDB_createDate))
 //                    .putString("modifyDate", String.valueOf(fromDB_modifyDate))
 //                    .apply();
+            Log.d(TAG,"jsonObjectAvatar: ");
+            JsonObject jsonObjectAvatar = new JsonObject();
+            jsonObjectAvatar.addProperty("action", "getImageAvatar");
+            jsonObjectAvatar.addProperty("id", USER_ID);
+//            private CommonTask dataUploadTask;
+//            jsonObjectAvatar.addProperty("imageBase64", Base64.encodeToString(image, Base64.DEFAULT));
+            CommonTask dataUploadTask = new CommonTask(USERACCOUNT_SERVLET, jsonObjectAvatar.toString());
+            byte [] imageByte;
+            try {
+                String jsonIn = dataUploadTask.execute().get();
+                Log.d(TAG,"dataUploadTask.JsonIn: " + jsonIn);
 
-            ImageView imageView = activity.findViewById(R.id.ivAvatar);
-            UserMyResImage userMyResImage = new UserMyResImage(USERACCOUNT_SERVLET,USER_ID,activity,imageView);
-            userMyResImage.execute(); // .execute() => UserImage.doInBackground
+                JsonObject jObject = new Gson().fromJson(jsonIn, JsonObject.class);
+                Log.d(TAG,"jObject.get(imageBase64): " + jObject.get("imageBase64").getAsString());
+
+                imageByte = Base64.decode(jObject.get("imageBase64").getAsString(), Base64.DEFAULT);
+                Log.d(TAG,"dataUploadTask.imageBase64: " + imageByte);
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
+
+                ImageView imageView = activity.findViewById(R.id.ivAvatar);
+                Log.d(TAG,"bitmap: " + bitmap);
+                if (bitmap != null) {
+                    new Common().setUserAvatra(activity, bitmap);
+                    if (imageView != null){
+                        imageView.setImageBitmap(bitmap);
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+//
+//            ImageView imageView = activity.findViewById(R.id.ivAvatar);
+//            UserMyResImage userMyResImage = new UserMyResImage(USERACCOUNT_SERVLET,USER_ID,activity,imageView);
+//            userMyResImage.execute(); // .execute() => UserImage.doInBackground
+
+            // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
+//            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
+//            bottomNavigationView.getMenu().getItem(4).setTitle(String.valueOf(USER_ID));
+            new Common().setBottomNavigationViewBadge(activity,4,String.valueOf(USER_ID),true);
+
 
             return USER_ID;
         } else if (fromDB_userPhone != userPhone) {
@@ -225,6 +268,7 @@ public class Common{
         }
     }
 
+    // 登入成功時，產生偏好設定檔
     public void setPreferences(Activity activity, UserAccount ua) {
         String fromDB_userPhone = "";
         String fromDB_userPwd = "";
@@ -274,7 +318,7 @@ public class Common{
 
 
     // 取得推播功能狀態
-    public static Boolean getUserAllowNotifi(Activity activity){
+    public Boolean getUserAllowNotifi(Activity activity){
         SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
         String userId = preferences.getString("userId", "0");
@@ -295,20 +339,10 @@ public class Common{
             strAllowNotifi = "1";
         }
         Log.d(TAG,"setUserAllowNotifi.USER_ID: " + USER_ID);
-//        userAccount = new UserAccount(userId, userPhone, userPwd, userBirth_Timestamp, userName, allowNotifi_Boolean);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "setNotifiStatus");
         jsonObject.addProperty("id", USER_ID);
         jsonObject.addProperty("notifiStatus", notifiStatus);
-//        jsonObject.addProperty("userAccount", new Gson().toJson(userAccount));
-        // vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
-//        jsonObject.addProperty("userAccount", new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create().toJson(userAccount));
-
-//        bitmapAvatra = new Common().getImageView(ivAvatar);
-//        // 有圖才上傳
-//        if (bitmapAvatra != null) {
-//            jsonObject.addProperty("imageBase64", Base64.encodeToString(Common.bitmapToByte(bitmapAvatra), Base64.DEFAULT));
-//        }
         int count = 0;
         try {
             String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
@@ -322,9 +356,6 @@ public class Common{
             SharedPreferences preferences; // 定義一個存取偏好設定檔的Preferences
             preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
             preferences.edit().putString(strAllowNotifi, "0");
-//            Common.userLogin(activity, userPhone, userPwd);
-//            new Common().setPreferences(activity, userAccount);
-//            Common.setUserAvatra(activity, bitmapAvatra);
             return true;
         }
 
@@ -346,26 +377,26 @@ public class Common{
         String createDate = preferences.getString("createDate", "");
         String modifyDate = preferences.getString("modifyDate", "");
 
-//        Bitmap userAvatarBitmap = null; // new Common().getUserAvatra();
-
         UserAccount userAccount = null;
-        Log.d(TAG,"userId: " + userId);
+        Log.d(TAG,"getUserLoin.userId: " + userId);
         if (userId.equals("") || userId == null || userId.equals("0")){
             userAccount = new UserAccount(0, "", null, ""
                     , false, null, null, null);
 
             // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
-            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
-            bottomNavigationView.getMenu().getItem(4).setTitle(R.string.user);
-
-
+//            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
+//            bottomNavigationView.getMenu().getItem(4).setTitle(R.string.user);
+            new Common().setBottomNavigationViewBadge(activity,4,String.valueOf(USER_ID),false);
 
         } else {
             Integer userId_Int = Integer.parseInt(userId);
             USER_ID = userId_Int;
+
             // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
-            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
-            bottomNavigationView.getMenu().getItem(4).setTitle(String.valueOf(USER_ID));
+//            BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
+//            bottomNavigationView.getMenu().getItem(4).setTitle(String.valueOf(USER_ID));
+            new Common().setBottomNavigationViewBadge(activity,4,String.valueOf(USER_ID),true);
+
             Timestamp userBirth_Timestamp = null;
             try {
                 userBirth_Timestamp = Timestamp.valueOf(userBirth);
@@ -386,7 +417,7 @@ public class Common{
     }
 
 
-    public static void setUserAvatra(Activity activity, Bitmap avatraBitmap){
+    public void setUserAvatra(Activity activity, Bitmap avatraBitmap){
         UserAccountAvatra userAccountAvatraOut = new UserAccountAvatra();
         userAccountAvatraOut.setByteObject(bitmapToByte(avatraBitmap));
         try (ObjectOutputStream oisOut = new ObjectOutputStream(
@@ -399,7 +430,7 @@ public class Common{
     }
 
     // 取得使用者頭像，回傳Bitmap
-    public static Bitmap getUserAvatra(Activity activity){
+    public Bitmap getUserAvatra(Activity activity){
         UserAccountAvatra userAccountAvatraIn;
         Resources res = activity.getResources();
 
@@ -410,7 +441,7 @@ public class Common{
             if (userAccountAvatraIn.getByteObject().equals(null) || USER_ID <= 0) {
                 Log.d(TAG,"userAccountAvatraIn.getByteObject().equals(null) || USER_ID <= 0: 沒取到頭像");
                 // 若取不到頭像，則回傳預設頭像
-                setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
+                new Common().setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
                 return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
             } else {
                 Log.d(TAG,"userAccountAvatraIn.getByteObject(): 取到頭像");
@@ -421,7 +452,7 @@ public class Common{
             Log.d(TAG,"getUserAvatra: Exception，回傳預設頭像");
             Log.d(TAG, e.toString());
             // 若取不到頭像，則回傳預設頭像
-            setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
+            new Common().setUserAvatra(activity,BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle));
             return BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
         }
     }
@@ -447,13 +478,14 @@ public class Common{
         USER_ID = 0;
 
         // 使用者登入後，把BottomNavigationView會員專區文字改暫時改為 使用者ID值 或 "會員專區" 供識別
-        BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
-        bottomNavigationView.getMenu().getItem(4).setTitle(R.string.user);
+//        BottomNavigationView bottomNavigationView =  activity.findViewById(R.id.BottomNavigation);
+//        bottomNavigationView.getMenu().getItem(4).setTitle(R.string.user);
+        new Common().setBottomNavigationViewBadge(activity,4,String.valueOf(USER_ID),false);
 
         // 頭像設為預設值
         Resources res = activity.getResources();
         Bitmap account_circle_bitmap = BitmapFactory.decodeResource(res,R.drawable.ic_awesome_user_circle);
-        Common.setUserAvatra(activity, account_circle_bitmap);
+        new Common().setUserAvatra(activity, account_circle_bitmap);
     }
 
     public Bitmap getImageView (ImageView imageView) {
@@ -463,26 +495,98 @@ public class Common{
     }
 
     public static byte[] bitmapToByte(Bitmap bitmap) {
-//        try {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             // quality設100代表不壓縮，範圍值0~100
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             return stream.toByteArray();
-//        } catch (Exception e) {
-//            Log.d(TAG,"bitmapToByte: Exception");
-//            e.printStackTrace();
-//            return null;
-//        }
     }
 
     public static Bitmap byteToBitmap(byte[] bitmapOfByte) {
-//        try {
             return BitmapFactory.decodeByteArray(bitmapOfByte, 0, bitmapOfByte.length);
-//        } catch (Exception e) {
-//            Log.d(TAG,"byteToBitmap: Exception");
-//            e.printStackTrace();
-//            return null;
+    }
+
+    // 設定Bottom Navigation View 的 Badge(訊息數量提示標籤)
+    public void setBottomNavigationViewBadge(Activity activity, int bottomMenuIndex, String badgeText, Boolean badgeIsVisibility){
+//        https://stackoverflow.com/questions/42682855/display-badge-on-top-of-bottom-navigation-bars-icon
+//        BottomNavigationMenuView bottomNavigationMenuView =
+//                (BottomNavigationMenuView) navigationView.getChildAt(0);
+//        View v = bottomNavigationMenuView.getChildAt(3);
+//        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+//
+//        View badge = LayoutInflater.from(this)
+//                .inflate(R.layout.notification_badge, itemView, true);
+// https://stackoverflow.com/questions/42682855/display-badge-on-top-of-bottom-navigation-bars-icon
+
+// https://stackoverflow.com/questions/28071349/the-specified-child-already-has-a-parent-you-must-call-removeview-on-the-chil
+//        if(tv.getParent() != null) {
+//            ((ViewGroup)tv.getParent()).removeView(tv); // <- fix
 //        }
+//        layout.addView(tv); //  <==========  ERROR IN THIS LINE DURING 2ND RUN
+//
+//        if(tvBadgeText.getParent() != null) {
+//            ((ViewGroup)tvBadgeText.getParent()).removeView(tvBadgeText); // <- fix
+//        }
+
+        // find id 取得 BottomNavigationView
+        BottomNavigationView bottomNavigationView = activity.findViewById(R.id.BottomNavigation);
+        // 取出BottomNavigationView的 Child MenuView
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        //取得要設定的 BottomMenu，BottomMenuIndex: 0 ~ count-1
+        View bottomMenu = menuView.getChildAt(bottomMenuIndex);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) bottomMenu;
+
+        Log.d(TAG,"itemView.getChildCount(): " + itemView.getChildCount());
+        for (int childIndex = 0; childIndex <= itemView.getChildCount()-1 ; childIndex++) {
+            Log.d(TAG, "itemView.childIndex: " + childIndex);
+
+            // vvvvvv
+            Integer itemID = itemView.getChildAt(childIndex).getId();
+//            Log.d(TAG, "itemView.itemID: " + itemID);
+//            if (itemID > 0) { Log.d(TAG, "itemView.itemName: " + activity.getResources().getResourceEntryName(itemID)); }
+            if (itemID > 0 && activity.getResources().getResourceEntryName(itemID).equals("bnvBadge")) {
+                // 把 BottomNavigationItemView 上的 badgeView 移除
+                itemView.removeViewAt(childIndex);
+            }
+            // ^^^^^^
+
+            // vvvvvv
+////            Log.d(TAG, "itemView.getTransitionName: " + itemView.getChildAt(childIndex).getTransitionName());
+//            if (itemView.getChildAt(childIndex).getTransitionName() != null && itemView.getChildAt(childIndex).getTransitionName().equals("bnvBadge")) {
+//                // 把 BottomNavigationItemView 上的 badgeView 移除
+//                itemView.removeViewAt(childIndex);
+//            }
+            // ^^^^^^
+        }
+
+        // 設定badgeView是否 顯示(add增加) 或 不顯示(remove移除)
+        if (badgeIsVisibility == true) {
+            Log.d(TAG,"removeViewAt.badgeIsVisibility: " + badgeIsVisibility);
+
+            Log.d(TAG,"itemView.getChildCount(): " + itemView.getChildCount());
+            Log.d(TAG,"badgeText: " + badgeText);
+            if (itemView.getChildCount() > 2) {
+                itemView.removeViewAt(2);
+            }
+            // vvvvvv
+            // 載入 Badge 的 XML
+            View badgeView = LayoutInflater.from(activity)
+                    .inflate(R.layout.bottomnavigationview_badge, itemView, true);
+            // 設定在 badgeView 裡的 TextView 的文字
+            TextView tvBadgeText = (TextView) badgeView.findViewById(R.id.tvBadgeText);
+            // ^^^^^^
+
+            // vvvvvv
+//            // 產生 Badge 的Layout與View
+//            TextView tvBadgeText = BadgeView(activity, badgeText);
+//            //在 BottomNavigationItemView 上增加 badgeView
+//            itemView.addView(tvBadgeText);
+            // ^^^^^^
+
+            // 設定在 badgeView 裡的 TextView 的文字
+            tvBadgeText.setText(String.valueOf(badgeText));
+//            tvBadgeText.setVisibility(View.VISIBLE);
+            Log.d(TAG,"addView.badgeText: " + badgeText);
+        }
     }
 
     //控制BottomNav > articleNavigation
@@ -504,5 +608,35 @@ public class Common{
             fbArticleInsert.setVisibility(View.GONE);
         }
     }
+
+    // vvvvvv 產生 Badge 的Layout與View
+/*
+    private TextView BadgeView (Activity activity, String badgeText) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
+        layoutParams.leftMargin = 140;
+        layoutParams.topMargin = 16;
+        // 呼叫TextView()建構式並傳入Context(Activity)物件 以動態建立TextView
+        TextView tvBadgeText = new TextView(activity);
+        tvBadgeText.setTransitionName("bnvBadge"); // :id="@+id/tvBadgeText"
+//        tvBadgeText.setLayoutParams(itemView.getLayoutParams());
+        tvBadgeText.setLayoutParams(layoutParams);
+//        tvBadgeText.setHeight(50);
+//        tvBadgeText.setWidth(100);
+        tvBadgeText.setBackground(activity.getResources().getDrawable(R.drawable.button_circle_camera));
+//        tvBadgeText.setBackgroundColor(Color.rgb(0,0,255));
+        tvBadgeText.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+//        tvBadgeText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        // 設定在 badgeView 裡的 TextView 的文字
+        tvBadgeText.setText(String.valueOf(badgeText));
+//        tvBadgeText.setTextColor(Color.rgb(0,255,0));
+        tvBadgeText.setTextColor(activity.getResources().getColor(R.color.mainYellowLight));
+        tvBadgeText.setTextSize(12);
+        return tvBadgeText;
+    }
+*/
+    // ^^^^^^ 產生 Badge 的Layout與View
 
 }

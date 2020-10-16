@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import server.main.ImageUtil;
+import server.ress.Res;
 import server.user.PubTools;
 
 @WebServlet("/MyResServlet")
@@ -44,20 +45,24 @@ public class MyResServlet extends HttpServlet {
 		}
 				
 		String action = jsonObject.get("action").getAsString();
-		Integer id = jsonObject.get("id").getAsInt();
+		Integer id = 0;
 		pubTools.showConsoleMsg("doPost.action" , action);
-		pubTools.showConsoleMsg("doPost.id" , id.toString());
+//		pubTools.showConsoleMsg("doPost.id" , id.toString());
 		
 		if (action.equals("getAll")) {
 			List<MyRes> myResList = myResDao.getAll(); // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
 			pubTools.writeText(response, gson.toJson(myResList));
 			
 		} else if (action.equals("getAllById")) {
+			id = jsonObject.get("id").getAsInt();
+			pubTools.showConsoleMsg("getAllById.id" , id.toString());
 			List<MyRes> myResList = myResDao.getAllById(id);
 			pubTools.writeText(response, gson.toJson(myResList));
 			
 		} else if (action.equals("getImage")) {
 			int imageSize = jsonObject.get("imageSize").getAsInt();
+			id = jsonObject.get("id").getAsInt();
+			pubTools.showConsoleMsg("getImage.id" , id.toString());
 			OutputStream os = response.getOutputStream();
 			byte[] image = myResDao.getImage(id);
 			if (image != null) {
@@ -67,7 +72,6 @@ public class MyResServlet extends HttpServlet {
 				os.write(image);
 			}
 		} else if (action.equals("myResInsert")) {
-			// MyRes myres
 			String myResJson = jsonObject.get("myres").getAsString();
 			pubTools.showConsoleMsg("myResJson", myResJson);
 			MyRes myres = gson.fromJson(myResJson, MyRes.class);			
@@ -79,7 +83,14 @@ public class MyResServlet extends HttpServlet {
 			Integer userId = jsonObject.get("userId").getAsInt();
 			Integer resId = jsonObject.get("resId").getAsInt();int count = 0;
 			count = myResDao.delete(userId, resId);
-			pubTools.writeText(response, String.valueOf(count));			
+			pubTools.writeText(response, String.valueOf(count));
+			
+		} else if (action.equals("getResById")) {
+			id = jsonObject.get("id").getAsInt();
+			Integer userId = jsonObject.get("userId").getAsInt();
+			pubTools.showConsoleMsg("getAllById.id" , id.toString());
+			List<Res> resList = myResDao.getResById(id, userId);
+			pubTools.writeText(response, gson.toJson(resList));
 		}
 	}
 	

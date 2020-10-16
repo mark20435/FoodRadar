@@ -105,7 +105,7 @@ public class CouponDaoImpl implements CouponDao {
 	}
 	@Override
 	public Coupon findById(int id) {
-		String sql = "SELECT resId, couPonStartDate, couPonEndDate, couPonType, couPonInfo, couPonPhoto, couPonEnable FROM Coupon WHERE couPonId = ?;";
+		String sql = "SELECT resId, couPonStartDate, couPonEndDate, couPonType, couPonInfo, couPonEnable FROM Coupon WHERE couPonId = ?;";
 		Coupon coupon = null;
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
@@ -113,6 +113,7 @@ public class CouponDaoImpl implements CouponDao {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				
 				Integer resId = rs.getInt(1);
 				String couPonStartDate = rs.getString(2);
 				String couPonEndDate = rs.getString(3);
@@ -131,7 +132,7 @@ public class CouponDaoImpl implements CouponDao {
 
 	@Override
 	public List<Coupon> getAll() {
-		String sqlStmt = "SELECT couPonId, resId, couPonStartDate, couPonEndDate, couPonType, couPonInfo, couPonPhoto" + " FROM Coupon;";
+		String sqlStmt = "SELECT couPonId, resId, couPonStartDate, couPonEndDate, couPonType, couPonInfo" + " FROM Coupon;";
 		
 		List<Coupon> couponList  = new ArrayList<Coupon>();
 		try (Connection connection = dataSource.getConnection();

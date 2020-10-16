@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -27,6 +28,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -119,8 +123,8 @@ public class ResMapFragment extends Fragment {
 
         imageTasks = new ArrayList<>();
 
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -128,6 +132,25 @@ public class ResMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         activity.setTitle(R.string.map);
         return inflater.inflate(R.layout.fragment_res_map, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.res_map_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.resListFragment:
+                navController.navigate(R.id.action_resMapFragment_to_resListFragment);
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -284,6 +307,7 @@ public class ResMapFragment extends Fragment {
             String url = Common.URL_SERVER + "ResServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getAllEnable");
+            jsonObject.addProperty("userId", Common.USER_ID);
             String jsonOut = jsonObject.toString();
             resGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -539,17 +563,18 @@ public class ResMapFragment extends Fragment {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView imageView;
-            TextView tvResName, tvResAddress, tvResTel, tvResCategoryInfo, tvResDistance;
+            ImageView imageView, ivMyRes;
+            TextView tvResName,tvResRating , tvResAddress, tvResCategoryInfo, tvResDistance;
 
             MyViewHolder(View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.ivRes);
                 tvResName = itemView.findViewById(R.id.tvResName);
+                tvResRating = itemView.findViewById(R.id.tvResRating);
                 tvResAddress = itemView.findViewById(R.id.tvResAddress);
-                tvResTel = itemView.findViewById(R.id.tvResTel);
                 tvResCategoryInfo = itemView.findViewById(R.id.tvResCategoryInfo);
                 tvResDistance = itemView.findViewById(R.id.tvResDistance);
+                ivMyRes = itemView.findViewById(R.id.ivMyRes);
             }
         }
 
@@ -575,13 +600,26 @@ public class ResMapFragment extends Fragment {
             imageTasks.add(imageTask);
             myViewHolder.tvResName.setText(res.getResName());
             myViewHolder.tvResAddress.setText(res.getResAddress());
-            //myViewHolder.tvResTel.setText(res.getResTel());
+            if (res.getRating() >= 0) {
+                myViewHolder.tvResRating.setText(String.format("%.1f", res.getRating()));
+            } else {
+                myViewHolder.tvResRating.setText(R.string.textNoRating);
+            }
             myViewHolder.tvResCategoryInfo.setText(res.getResCategoryInfo());
             if (lastLocation != null) {
                 float[] results = new float[1];
                 Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
                         res.getResLat(), res.getResLon(), results);
-                myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0] / 1000f));
+                if (results[0] < 1000) {
+                    myViewHolder.tvResDistance.setText(String.format("%.0f公尺", results[0]));
+                } else {
+                    myViewHolder.tvResDistance.setText(String.format("%.2f公里", results[0] / 1000f));
+                }
+            }
+
+            if (res.isMyRes()) {
+                myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_24);
+                myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#1877F2"));
             }
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {

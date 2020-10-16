@@ -1790,6 +1790,7 @@ drawable ic_baseline_person_pin_24
 drawable ic_baseline_phone_24
 drawable ic_baseline_photo_camera_24
 drawable ic_baseline_place_24
+drawable ic_baseline_res_map_24
 drawable ic_baseline_send_24
 drawable ic_baseline_settings_24
 drawable ic_baseline_share_24
@@ -1803,6 +1804,7 @@ drawable ic_baseline_thumb_up_alt_24
 drawable ic_baseline_turned_in_24
 drawable ic_baseline_turned_in_not_24
 drawable ic_baseline_user_24
+drawable ic_baseline_view_list_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_checked_circle
@@ -1864,6 +1866,7 @@ drawable ucrop_vector_ic_crop
 drawable ucrop_vector_loader
 drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
+drawable use_image
 drawable user_area_button
 drawable wecate
 drawable x_cat
@@ -1878,10 +1881,10 @@ id BOTTOM_START
 id BottomNavigation
 id CTRL
 id CategoryTypeFragment
+id ConstraintLayout
 id FUNCTION
 id Finish
 id LinearLayout
-id LinearLayout2
 id META
 id NO_DEBUG
 id SHIFT
@@ -1952,6 +1955,7 @@ id action_bar_title
 id action_category_Detail_Fragment_to_loginFragment
 id action_container
 id action_context_bar
+id action_couponFragment_to_couponDetailFragment
 id action_divider
 id action_favoriteArticleFragment_to_articleDetailFragment
 id action_favoriteArticleFragment_to_articleInsertFragment
@@ -1975,15 +1979,19 @@ id action_newArticleFragment_to_articleInsertFragment
 id action_rankArticleFragment_to_articleDetailFragment
 id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
+id action_resDetailFragment_to_loginFragment
 id action_resInsertFragment_to_articleFragment
+id action_resListFragment_to_resDetailFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
 id action_resMapFragment_to_resDetailFragment
+id action_resMapFragment_to_resListFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
 id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
+id action_userMyResFragment_to_resDetailFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -2016,6 +2024,7 @@ id beginOnFirstDraw
 id beginning
 id bidirectional
 id blocking
+id bnvBadge
 id bottom
 id bounce
 id btAdd
@@ -2064,6 +2073,7 @@ id btTueAddHours
 id btTueAddHours2
 id btTueDeleteHours2
 id btTueDeleteHours3
+id btUpCoupon
 id btUpdate
 id btUsArArticleＭaintain
 id btUsArContactUs
@@ -2075,13 +2085,14 @@ id btUsArResＭaintain
 id btUsArSysSetup
 id btUsArUserData
 id btUsArUserＭaintain
+id btUsCoupon
+id btUse
 id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btWriteArticle
 id btnLogInOut
-id button
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2142,7 +2153,13 @@ id controls_shadow
 id controls_wrapper
 id coordinator
 id cos
+id couPonEndDate
+id couPonEndDateUp
+id couPonStartDate
+id couPonStartDateUp
+id couponDetailFragment
 id couponFragment
+id couponMaintainFragment
 id custom
 id customPanel
 id cut
@@ -2247,6 +2264,7 @@ id ignore
 id ignoreRequest
 id imResImg
 id image
+id imageAlert
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2270,7 +2288,8 @@ id ivAvatar
 id ivCommentGoodIcon
 id ivCommentSetting
 id ivCommentUserAvatar
-id ivCoupon
+id ivDemo
+id ivDemoUp
 id ivDetailArticleCommentIcon
 id ivDetailFavoriteIcon
 id ivDetailGoodIcon
@@ -2280,6 +2299,7 @@ id ivFavoriteIcon
 id ivGoodIcon
 id ivImage
 id ivMyRes
+id ivNoUse
 id ivPlaceIcon
 id ivRedStarPassword
 id ivRedStarPasswordConfirm
@@ -2408,6 +2428,7 @@ id resAddressFragment
 id resCategoryInfo
 id resDetailFragment
 id resInsertFragment
+id resListFragment
 id resMaintainFragment
 id resMapFragment
 id resName
@@ -2444,6 +2465,7 @@ id screen
 id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
+id scrollV
 id scrollView
 id scrollView2
 id scrollable
@@ -2541,6 +2563,7 @@ id submit_area
 id svArticleDetail
 id svResAddress
 id swResEnable
+id swRf
 id swUsArNotifi
 id swipeRefreshLayout
 id swipeRefreshLayoutFavorite
@@ -2594,17 +2617,18 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAcone
+id tvActwo
 id tvAddressResName
 id tvArticleText
 id tvArticleTime
+id tvBadgeText
 id tvCommentCount
 id tvCommentGood
 id tvCommentText
 id tvCommentTime
 id tvCommentUserName
 id tvCouInfo
-id tvCouName
-id tvDate
 id tvDateTime
 id tvDetailArticleTime
 id tvDetailArticleTitle
@@ -2675,6 +2699,7 @@ id unchecked
 id uniform
 id unlabeled
 id up
+id upCouInfo
 id useLogo
 id user
 id userAreaFragment
@@ -2766,12 +2791,14 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_res_rating
+layout alert_dialog_view
 layout article_comment_view
 layout article_image_check
 layout article_image_insert
 layout article_image_pick
 layout article_image_view
 layout article_item_view
+layout bottomnavigationview_badge
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2794,6 +2821,8 @@ layout fragment_article_insert
 layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
+layout fragment_coupon_detail
+layout fragment_coupon_maintain
 layout fragment_favorite_article
 layout fragment_insert_image
 layout fragment_login
@@ -2804,6 +2833,7 @@ layout fragment_register
 layout fragment_res_address
 layout fragment_res_detail
 layout fragment_res_insert
+layout fragment_res_list
 layout fragment_res_maintain
 layout fragment_res_map
 layout fragment_res_update
@@ -2812,6 +2842,7 @@ layout fragment_user_data_setup
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_category
+layout item_view_couact
 layout item_view_coupon
 layout item_view_main
 layout item_view_res
@@ -2896,6 +2927,8 @@ menu article_menu
 menu comment_setting_menu
 menu menu
 menu photo_source_menu
+menu res_list_menu
+menu res_map_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -3059,6 +3092,8 @@ string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
+string textInsertResRatingFail
+string textInsertResRatingSuccess
 string textInsertSuccess
 string textLocationEmpty
 string textLogout
@@ -3077,6 +3112,7 @@ string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
 string textNoNetwork
+string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK
@@ -3097,6 +3133,8 @@ string textResEnable
 string textResHours
 string textResIsEnable
 string textResIsNotEnable
+string textResList
+string textResMap
 string textResName
 string textResRating
 string textResTel
@@ -3111,6 +3149,8 @@ string textUpdate
 string textUpdateCancel
 string textUpdateFail
 string textUpdateRes
+string textUpdateResRatingFail
+string textUpdateResRatingSuccess
 string textUpdateSuccess
 string textUserBirth
 string textUserChangConfrim

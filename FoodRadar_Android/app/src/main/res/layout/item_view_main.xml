@@ -7,7 +7,8 @@
     android:layout_height="250dp"
     android:layout_margin="1dp"
     android:padding="32dp"
-    card_view:cardBackgroundColor="#ffdddddd"
+    android:background="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="@color/colorTextDark"
     card_view:cardCornerRadius="18dp"
     card_view:cardElevation="16dp">
 
@@ -15,7 +16,7 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/design_default_color_background">
+        android:background="@color/colorTextDark">
 
 
         <!--        <ImageView-->
@@ -55,7 +56,7 @@
             android:layout_marginBottom="16dp"
             android:layout_toEndOf="@id/ibcate"
             android:text="@string/textResCategory"
-            android:textColor="#000000"
+            android:textColor="@color/colorText"
             android:textSize="24sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"

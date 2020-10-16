@@ -3,7 +3,7 @@ package com.example.foodradar_android.res;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Res implements Serializable {
+public class Res implements Serializable, Comparable {
 	private int resId;
 	private String resName;
 	private String resAddress;
@@ -17,6 +17,9 @@ public class Res implements Serializable {
 	private int userId;
 	private String userName;
 	private Timestamp modifyDate;
+	private Float rating;
+	private Float distance;
+	private boolean myRes;
 	
 	public Res(int resId, String resName, String resAddress, Double resLat, Double resLon, String resTel,
 			String resHours, int resCategoryId, boolean resEnable, int userId, Timestamp modifyDate) {
@@ -146,7 +149,33 @@ public class Res implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
-	
+
+	public Float getRating() {
+		return rating;
+	}
+
+	public void setRating(Float rating) {
+		this.rating = rating;
+	}
+
+	public Float getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Float distance) {
+		this.distance = distance;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return Float.compare(this.distance, ((Res)o).getDistance());
+	}
+
+	public boolean isMyRes() {
+		return myRes;
+	}
+
+	public void setMyRes(boolean myRes) {
+		this.myRes = myRes;
+	}
 }

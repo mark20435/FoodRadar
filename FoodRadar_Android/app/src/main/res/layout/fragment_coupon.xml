@@ -5,56 +5,96 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
     android:orientation="vertical"
-    android:background="#FFFFFF"
     tools:context=".coupon.CouponFragment">
 
-        <LinearLayout
-            android:id="@+id/LinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="370dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/tvAcone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="296dp"
+            android:text="活動公告"
+            android:textColor="#03A9F4"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/swipeRefreshLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="245dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/tvActwo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAcone">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvSample"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layoutMode="clipBounds">
 
-        </LinearLayout>
+                </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <LinearLayout
-            android:id="@+id/LinearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="340dp"
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/tvActwo"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="296dp"
+            android:text="優惠活動"
+            android:textAlignment="textStart"
+            android:textColor="#03A9F4"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/swRf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swRf"
+            android:layout_width="393dp"
+            android:layout_height="237dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="10dp"
+            android:background="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/tvActwo">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCoupon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="190dp" />
+                    app:layout_constraintStart_toStartOf="parent">
 
-        </LinearLayout>
-
+                </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/btAdd"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_margin="8dp"-->
-    <!--        android:src="@drawable/ic_add"-->
-    <!--        app:elevation="6dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:rippleColor="#FFFFFF" />-->
+        <!--        android:id="@+id/btAdd"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_margin="8dp"-->
+        <!--        android:src="@drawable/ic_add"-->
+        <!--        app:elevation="6dp"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:rippleColor="#FFFFFF" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

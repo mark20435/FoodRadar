@@ -65,6 +65,7 @@ public class ArticleDetailFragment extends Fragment {
     private List<ImageTask> imageTasks;
     private Integer articleIdBox = Article.ARTICLE_ID;
     private Integer userIdBox = Common.USER_ID; //已登入的使用者ID
+
     private int imageSize;
     private ConstraintLayout articleConstraintLayout;
     private UserAccount userAccount; //已登入的使用者名稱
