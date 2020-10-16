@@ -41,6 +41,8 @@ anim nav_default_enter_anim
 anim nav_default_exit_anim
 anim nav_default_pop_enter_anim
 anim nav_default_pop_exit_anim
+anim pop_in
+anim pop_out
 anim ucrop_loader_circle_path
 anim ucrop_loader_circle_scale
 animator design_appbar_state_list_animator
@@ -1928,10 +1930,13 @@ id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_CategoryTypeFragment_to_userDataSetupFragment
 id action_articleDetailFragment_to_articleFragment
-id action_articleDetailFragment_to_newArticleFragment
+id action_articleDetailFragment_to_favoriteArticleFragment
+id action_articleDetailFragment_to_newArticleFragment2
+id action_articleDetailFragment_to_rankArticleFragment
 id action_articleFragment_to_articleDetailFragment
 id action_articleFragment_to_articleInsertFragment
 id action_articleFragment_to_newArticleFragment2
+id action_articleFragment_to_userDataSetupFragment
 id action_articleInsertFragment_to_articleDetailFragment
 id action_articleInsertFragment_to_articleFragment
 id action_articleInsertFragment_to_insertImageFragment
@@ -2252,6 +2257,8 @@ id incoming
 id info
 id insertImageFragment
 id invisible
+id itDeleteComment
+id itUpdateComment
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
@@ -2614,8 +2621,10 @@ id tvImageNumber
 id tvManagerFun
 id tvModifyDate
 id tvMonday
+id tvMoney
 id tvPassword
 id tvPasswordConfirm
+id tvPeople
 id tvResAddress
 id tvResCategoryInfo
 id tvResDistance
@@ -2884,6 +2893,7 @@ menu appbar_ezlogout
 menu appbar_menu
 menu article_insert_menu
 menu article_menu
+menu comment_setting_menu
 menu menu
 menu photo_source_menu
 menu ucrop_menu_activity
@@ -3838,6 +3848,7 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style popupAnimation
 style styleButton
 style style_user_area_button
 style style_user_area_divider

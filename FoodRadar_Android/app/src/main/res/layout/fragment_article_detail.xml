@@ -189,6 +189,7 @@
                 android:layout_marginTop="4dp"
                 android:scrollbars="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/tvArticleText"
                 app:layout_constraintTop_toBottomOf="@+id/tvArticleText" />
 
@@ -211,12 +212,12 @@
         android:id="@+id/layoutCommentBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="436dp"
         android:background="@color/earthBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svArticleDetail">
+        app:layout_constraintTop_toTopOf="@+id/svArticleDetail">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
@@ -232,7 +233,7 @@
                 android:id="@+id/user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_supervised_user_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -11,7 +11,9 @@ public interface ImgDao {
 	Img findById(int imgId);
 
 	
-	byte[] getImage(int articleId);
+	byte[] getImage(int imgId);
+	
+	byte[] getImageByArticleId(int articleId);
 
 	List<Img> getAll();
 	

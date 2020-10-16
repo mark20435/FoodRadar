@@ -35,6 +35,11 @@ public class Comment {
         this.commentGoodCount = commentGoodCount;
     }
 
+    //刪除文章用
+    public void setStatus(boolean commentStatus){
+        this.commentStatus = commentStatus;
+    }
+
     public Comment(int userId, int commentId) {
         super();
         this.commentId = commentId;
@@ -49,6 +54,23 @@ public class Comment {
         this.commentStatus = commentStatus;
         this.commentText = commentText;
     }
+
+    //update
+    public void setComment(int commentId, String commentText, String commentModifyTime) {
+        this.commentText = commentText;
+        this.commentModifyTime = commentModifyTime;
+        this.commentId = commentId;
+    }
+
+//    public Comment(int commentId, int articleId, int userId, boolean commentStatus, String commentText, String userName, String commentTime) {
+//        super();
+//        this.commentId = commentId;
+//        this.articleId = articleId;
+//        this.userId = userId;
+//        this.commentStatus = commentStatus;
+//        this.commentText = commentText;
+//        this.userName = userName;
+//    }
 
 //    public Comment(int commmentId) {
 //        super();
