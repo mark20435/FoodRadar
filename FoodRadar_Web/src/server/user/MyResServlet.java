@@ -87,8 +87,9 @@ public class MyResServlet extends HttpServlet {
 			
 		} else if (action.equals("getResById")) {
 			id = jsonObject.get("id").getAsInt();
+			Integer userId = jsonObject.get("userId").getAsInt();
 			pubTools.showConsoleMsg("getAllById.id" , id.toString());
-			List<Res> resList = myResDao.getResById(id);
+			List<Res> resList = myResDao.getResById(id, userId);
 			pubTools.writeText(response, gson.toJson(resList));
 		}
 	}

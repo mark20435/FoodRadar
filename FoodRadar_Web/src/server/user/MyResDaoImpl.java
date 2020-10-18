@@ -180,11 +180,11 @@ public class MyResDaoImpl implements MyResDao{
 	}
 
 	@Override
-	public List<Res> getResById(Integer id) {
+	public List<Res> getResById(Integer id, Integer userId) {
 		Res res = null;
 		ResDao resDao = new ResDaoMySqlImpl();
 		List<Res> resList = new ArrayList<Res>();
-		resList = resDao.getAllEnable();
+		resList = resDao.getAllEnable(userId);
 		
 		List<Res> resListById = new ArrayList<Res>();
 		for (Res getRes : resList ) {

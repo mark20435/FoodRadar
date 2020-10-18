@@ -1,12 +1,12 @@
 package com.example.foodradar_android.coupon;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.util.Printer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import android.widget.TextView;
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
-import com.example.foodradar_android.user.UserAccount;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -34,25 +32,25 @@ import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.foodradar_android.task.ImageTask;
 
 public class CouponFragment extends Fragment {
     private static final String TAG = "TAG_CouponFragment";
     private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swRf;
     private RecyclerView rvCoupon;
     private RecyclerView rvSample;
-    private Activity activity;
-    private LinearLayout linearLayout;
-    private TextView tvCouName, tvCouInfo;
+    private FragmentActivity activity;
+    private TextView tvCouInfo, couPonStartDate, couPonEndDate;
     private Timestamp Date;
-    private String couPonStartDate;
-    private String couPonEndDate;
     private boolean couPonType;
     private boolean couPonEnable;
     private CommonTask couponGetAllTask;
     private CommonTask couponDeleteTask;
     private List<ImageTask> imageTasks;
     private List<Coupon> coupons;
+    private List<Coupon> couacts;
     private int UserId;
 
 
@@ -66,16 +64,15 @@ public class CouponFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-
         imageTasks = new ArrayList<>();
-
-        }
+        //new Common().setBackArrow(false,activity);
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        activity.setTitle(R.string.coupon);
         return inflater.inflate(R.layout.fragment_coupon, container, false);
 
     }
@@ -85,27 +82,152 @@ public class CouponFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         rvSample = view.findViewById(R.id.rvSample);
-        linearLayout = view.findViewById(R.id.LinearLayout);
-        //linearLayout = view.findViewById(R.id.LinearLayout2)
-        //rvCoupon = view.findViewById(R.id.rvCoupon);
+        rvCoupon = view.findViewById(R.id.rvCoupon);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+        swRf = view.findViewById(R.id.swRf);
+        rvSample.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
 
-
-        rvSample.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
-        //rvSample.setLayoutManager(new LinearLayoutManager(activity));
+        rvCoupon.setLayoutManager(new LinearLayoutManager(activity));
+        couacts = getCouacts();
+        showCouacts(couacts);
         coupons = getCoupons();
         showCoupons(coupons);
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//
-//            @Override
-//            public void onRefresh() {
-//                swipeRefreshLayout.setRefreshing(true);
-//                showCoupons(coupons);
-//                swipeRefreshLayout.setRefreshing(false);
-//
-//            }
-//        });
+
+        swRf.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showCoupons(couacts);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showCoupons(coupons);
+                swipeRefreshLayout.setRefreshing(false);
+
+            }
+        });
 
     }
+
+
+
+    private List<Coupon> getCouacts() {
+        List<Coupon> couacts = null;
+        if (Common.networkConnected(activity)) {
+            String url = Common.URL_SERVER + "CouponServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "getAll");
+            String jsonOut = jsonObject.toString();
+            couponGetAllTask = new CommonTask(url, jsonOut);
+            try {
+                String jsonIn = couponGetAllTask.execute().get();
+                Type listType = new TypeToken<List<Coupon>>() {
+                }.getType();
+                couacts = new Gson().fromJson(jsonIn, listType);
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Common.showToast(activity, R.string.textNoNetwork);
+        }
+        return couacts;
+    }
+
+    private void showCouacts(List<Coupon> couacts) {
+        if (couacts == null || couacts.isEmpty()) {
+            Common.showToast(activity, R.string.textNoCouponsFound);
+        }
+        CouactAdapter couactAdapter = (CouactAdapter) rvCoupon.getAdapter();
+
+        if (couactAdapter == null) {
+            rvCoupon.setAdapter(new CouactAdapter(activity, couacts));
+        } else {
+            couactAdapter.setCouacts(couacts);
+            couactAdapter.notifyDataSetChanged();
+        }
+    }
+    private class CouactAdapter extends RecyclerView.Adapter<CouactAdapter.MyViewHolder>{
+        private LayoutInflater layoutInflater;
+        private List<Coupon> couacts;
+        private int imageSize;
+
+        public CouactAdapter(Context context, List<Coupon> couacts) {
+            layoutInflater = LayoutInflater.from(context);
+            this.couacts = couacts;
+            imageSize = getResources().getDisplayMetrics().widthPixels / 4;
+        }
+
+        public void setCouacts(List<Coupon> couacts) {
+            this.couacts = couacts;
+        }
+        class MyViewHolder extends RecyclerView.ViewHolder {
+            ImageView imageView;
+            TextView couPonInfo, couPonStartDate, couPonEndDate;
+
+            public MyViewHolder(@NonNull View itemView) {
+                super(itemView);
+                imageView = itemView.findViewById(R.id.ivDemo);
+                couPonInfo = itemView.findViewById(R.id.tvCouInfo);
+                couPonStartDate = itemView.findViewById(R.id.couPonStartDate);
+                couPonEndDate = itemView.findViewById(R.id.couPonEndDate);
+
+            }
+        }
+
+        @NonNull
+        @Override
+        public CouactAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = layoutInflater.inflate(R.layout.item_view_couact, parent, false);
+            return new CouactAdapter.MyViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull CouactAdapter.MyViewHolder holder, int position) {
+            //final Couact couact = couacts.get(position);
+            final Coupon coupon = coupons.get(position);
+            String url = Common.URL_SERVER + "CouponServlet";
+            int id = coupon.getId();
+            ImageTask imageTask = new ImageTask(url, id, imageSize, holder.imageView);
+            imageTask.execute();
+            imageTasks.add(imageTask);
+
+            holder.couPonInfo.setText(coupon.getCouPonInfo());
+            //Log.d(TAG,"coupon.getTvCouInfo(): " + coupon.getTvCouInfo());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("coupon", coupon);
+                    Navigation.findNavController(v)
+                            .navigate(R.id.action_couponFragment_to_couponDetailFragment, bundle);
+
+                }
+            });
+        }
+        protected RecyclerView.LayoutManager initLayoutManger(){
+            LinearLayoutManager manager = new LinearLayoutManager(getContext());
+            manager.setOrientation(LinearLayoutManager.VERTICAL);
+            return manager;
+        }
+        @Override
+        public int getItemViewType(int position) {
+
+            return super.getItemViewType(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return couacts == null ? 0 : couacts.size();
+        }
+
+
+    }
+        //以下是上面的rvsample.recyclerview
     private List<Coupon> getCoupons() {
         List<Coupon> coupons = null;
         if (Common.networkConnected(activity)) {
@@ -147,6 +269,7 @@ public class CouponFragment extends Fragment {
         private List<Coupon> coupons;
         private int imageSize;
 
+
         CouponAdapter(Context context, List<Coupon> coupons) {
             layoutInflater = LayoutInflater.from(context);
             this.coupons = coupons;
@@ -161,13 +284,14 @@ public class CouponFragment extends Fragment {
 
          class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView couPonInfo;
+            TextView upcouPonInfo, couPonStartDateUp, couPonEndDateUp;
 
              public MyViewHolder(@NonNull View itemView) {
                  super(itemView);
-                 imageView = itemView.findViewById(R.id.ivCoupon);
-                 //tvCouName = itemView.findViewById(R.id.tvCouName);
-                 couPonInfo = itemView.findViewById(R.id.tvCouInfo);
+                 imageView = itemView.findViewById(R.id.ivDemoUp);
+                 upcouPonInfo = itemView.findViewById(R.id.upCouInfo);
+                 couPonStartDateUp = itemView.findViewById(R.id.couPonStartDateUp);
+                 couPonEndDateUp = itemView.findViewById(R.id.couPonEndDateUp);
 
              }
          }
@@ -187,34 +311,55 @@ public class CouponFragment extends Fragment {
             //UserAccount userAccount = new Common().getUserLoin(activity);
             //Common.USER_ID = userAccount.getUserId();
             //Common.showToast(activity,"TAG_ UserAreaFragment.USER_ID: " + String.valueOf(getUserId()));
+
             final Coupon coupon = coupons.get(position);
             String url = Common.URL_SERVER + "CouponServlet";
             int id = coupon.getId();
+
             ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imageView);
             imageTask.execute();
             imageTasks.add(imageTask);
-
-
 //            myViewHolder.tvCouName.setText(coupon.getResName());
            // Log.d(TAG, "resName" + coupon);
-            myViewHolder.couPonInfo.setText(coupon.getTvCouInfo());
+            myViewHolder.upcouPonInfo.setText(coupon.getCouPonInfo());
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("couPon", coupon);
                     Navigation.findNavController(view)
-                            .navigate(R.id.action_mainFragment_to_couponFragment, bundle);
+                            .navigate(R.id.action_couponFragment_to_couponDetailFragment, bundle);
                 }
             });
-
-
-
         }
 
 
     }
 
+//    private void schedule(TimerTask task, long delay, long period){
+//        final int[] position = {0};
+//        Timer timer = new Timer();
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                if (position[0] == coupons.size()){
+//                    position[0] = 0;
+//                    position[0]++;
+//                }else{
+//                    position[0]++;
+//                }
+//                rvSample.getLayoutManager().scrollToPosition(position[0]);
+//                timer.scheduleAtFixedRate(task, 1000, 3000);
+//                //timer.schedule(task, 1000, 3000);
+//
+//            }
+//
+//        };
 
+        //timer.schedule(timerTask, 1000, 3000);
+//          List<Coupon> coupon = new ArrayList<>();
+//          coupons = getCoupons();
+//          int index = coupon.indexOf(coupons);
+//          rvSample.smoothScrollToPosition(index);
 
 }

@@ -10,10 +10,16 @@ public class MyArticle {
     private int articleId;
     private Timestamp modifyDate;
 
-    //	private int articleId;
     private String articleTitle;
     private Timestamp articleTime;
+    private String articleText;
     private String userName;
+
+    private int commentId;
+    private Timestamp commentTime;
+    private String commentText;
+
+    public static boolean goToMyArticleDetail = false;
 
     public MyArticle(int myArticleId, int userId, int articleId, Timestamp modifyDate) {
         super();
@@ -24,11 +30,22 @@ public class MyArticle {
     }
 
     // getAllById
-    public MyArticle(int articleId, String articleTitle, Timestamp articleTime, String userName) {
+    public MyArticle(int articleId, String articleTitle, Timestamp articleTime, String articleText, String userName) {
         super();
         this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
+        this.articleText = articleText;
+        this.userName = userName;
+    }
+
+    public MyArticle (int articleId, String articleTitle, int commentId, Timestamp commentTime, String commentText, String userName) {
+        super();
+        this.articleId = articleId;
+        this.articleTitle = articleTitle;
+        this.commentId = commentId;
+        this.commentTime = commentTime;
+        this.commentText = commentText;
         this.userName = userName;
     }
 
@@ -55,5 +72,61 @@ public class MyArticle {
     }
     public void setModifyDate(Timestamp modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public String getArticleTitle() {
+        return articleTitle;
+    }
+
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle;
+    }
+
+    public Timestamp getArticleTime() {
+        return articleTime;
+    }
+
+    public void setArticleTime(Timestamp articleTime) {
+        this.articleTime = articleTime;
+    }
+
+    public String getArticleText() {
+        return articleText;
+    }
+
+    public void setArticleText(String articleText) {
+        this.articleText = articleText;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
+
+    public Timestamp getCommentTime() {
+        return commentTime;
+    }
+
+    public void setCommentTime(Timestamp commentTime) {
+        this.commentTime = commentTime;
+    }
+
+    public String getCommentText() {
+        return commentText;
+    }
+
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 }

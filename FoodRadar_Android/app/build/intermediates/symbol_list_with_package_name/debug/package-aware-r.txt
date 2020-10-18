@@ -41,6 +41,8 @@ anim nav_default_enter_anim
 anim nav_default_exit_anim
 anim nav_default_pop_enter_anim
 anim nav_default_pop_exit_anim
+anim pop_in
+anim pop_out
 anim ucrop_loader_circle_path
 anim ucrop_loader_circle_scale
 animator design_appbar_state_list_animator
@@ -1119,6 +1121,7 @@ color mainLightBlue
 color mainPink
 color mainYellow
 color mainYellowLight
+color mainYellowMiddle
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1864,7 +1867,9 @@ drawable ucrop_vector_ic_crop
 drawable ucrop_vector_loader
 drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
+drawable use_image
 drawable user_area_button
+drawable user_area_img_backgrond
 drawable wecate
 drawable x_cat
 drawable x_dog
@@ -1878,10 +1883,10 @@ id BOTTOM_START
 id BottomNavigation
 id CTRL
 id CategoryTypeFragment
+id ConstraintLayout
 id FUNCTION
 id Finish
 id LinearLayout
-id LinearLayout2
 id META
 id NO_DEBUG
 id SHIFT
@@ -1949,6 +1954,7 @@ id action_bar_title
 id action_category_Detail_Fragment_to_loginFragment
 id action_container
 id action_context_bar
+id action_couponFragment_to_couponDetailFragment
 id action_divider
 id action_favoriteArticleFragment_to_articleDetailFragment
 id action_favoriteArticleFragment_to_articleInsertFragment
@@ -1974,6 +1980,7 @@ id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
 id action_resDetailFragment_to_loginFragment
 id action_resInsertFragment_to_articleFragment
+id action_resListFragment_to_resDetailFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
 id action_resMapFragment_to_resDetailFragment
@@ -2065,6 +2072,7 @@ id btTueAddHours
 id btTueAddHours2
 id btTueDeleteHours2
 id btTueDeleteHours3
+id btUpCoupon
 id btUpdate
 id btUsArArticleＭaintain
 id btUsArContactUs
@@ -2076,13 +2084,14 @@ id btUsArResＭaintain
 id btUsArSysSetup
 id btUsArUserData
 id btUsArUserＭaintain
+id btUsCoupon
+id btUse
 id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btWriteArticle
 id btnLogInOut
-id button
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2136,6 +2145,10 @@ id constvUsArSetNotifi
 id constvUsArSysSetup
 id constvUsArUserData
 id constvUsArUserＭaintain
+id constvUsAtMyArticle
+id constvUsAtMyArticleCollect
+id constvUsAtMyArticleIsMe
+id constvUsAtMyComment
 id container
 id content
 id contentPanel
@@ -2143,6 +2156,11 @@ id controls_shadow
 id controls_wrapper
 id coordinator
 id cos
+id couPonEndDate
+id couPonEndDateUp
+id couPonStartDate
+id couPonStartDateUp
+id couponDetailFragment
 id couponFragment
 id couponMaintainFragment
 id custom
@@ -2247,8 +2265,10 @@ id id_rcvMyRes
 id ifRoom
 id ignore
 id ignoreRequest
+id imMyAtResImg
 id imResImg
 id image
+id imageAlert
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2270,7 +2290,8 @@ id ivAvatar
 id ivCommentGoodIcon
 id ivCommentSetting
 id ivCommentUserAvatar
-id ivCoupon
+id ivDemo
+id ivDemoUp
 id ivDetailArticleCommentIcon
 id ivDetailFavoriteIcon
 id ivDetailGoodIcon
@@ -2280,6 +2301,7 @@ id ivFavoriteIcon
 id ivGoodIcon
 id ivImage
 id ivMyRes
+id ivNoUse
 id ivPlaceIcon
 id ivRedStarPassword
 id ivRedStarPasswordConfirm
@@ -2399,6 +2421,9 @@ id radio
 id rankArticleFragment
 id ratingBar
 id ratio
+id rcvMyArticleCollect
+id rcvMyArticleIsMe
+id rcvMyComment
 id rectangles
 id regcancel
 id register_Fragment
@@ -2445,6 +2470,7 @@ id screen
 id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
+id scrollV
 id scrollView
 id scrollView2
 id scrollable
@@ -2540,8 +2566,10 @@ id stretch
 id submenuarrow
 id submit_area
 id svArticleDetail
+id svMyArticle
 id svResAddress
 id swResEnable
+id swRf
 id swUsArNotifi
 id swipeRefreshLayout
 id swipeRefreshLayoutFavorite
@@ -2595,6 +2623,8 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAcone
+id tvActwo
 id tvAddressResName
 id tvArticleText
 id tvArticleTime
@@ -2605,8 +2635,6 @@ id tvCommentText
 id tvCommentTime
 id tvCommentUserName
 id tvCouInfo
-id tvCouName
-id tvDate
 id tvDateTime
 id tvDetailArticleTime
 id tvDetailArticleTitle
@@ -2623,6 +2651,16 @@ id tvImageNumber
 id tvManagerFun
 id tvModifyDate
 id tvMonday
+id tvMyArticleCollect
+id tvMyArticleCollectDivider
+id tvMyArticleIsMe
+id tvMyArticleIsMeDivider
+id tvMyAtArticleText
+id tvMyAtArticleTime
+id tvMyAtArticleTitle
+id tvMyAtUserName
+id tvMyComment
+id tvMyCommentDivider
 id tvPassword
 id tvPasswordConfirm
 id tvResAddress
@@ -2675,6 +2713,7 @@ id unchecked
 id uniform
 id unlabeled
 id up
+id upCouInfo
 id useLogo
 id user
 id userAreaFragment
@@ -2767,6 +2806,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_res_rating
+layout alert_dialog_view
 layout article_comment_view
 layout article_image_check
 layout article_image_insert
@@ -2796,6 +2836,7 @@ layout fragment_article_insert
 layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
+layout fragment_coupon_detail
 layout fragment_coupon_maintain
 layout fragment_favorite_article
 layout fragment_insert_image
@@ -2817,11 +2858,13 @@ layout fragment_user_my_article
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_category
+layout item_view_couact
 layout item_view_coupon
 layout item_view_main
 layout item_view_res
 layout item_view_res_detail_image
 layout item_view_res_map
+layout item_view_user_myarticle
 layout item_view_user_myres
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -3040,8 +3083,13 @@ string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
 string textAddressError
+string textArticleDate
+string textArticleText
+string textArticleWirter
 string textCancel
 string textChangPassword
+string textCommentDate
+string textCommentText
 string textDatePicker
 string textDateTime
 string textDelete
@@ -3075,6 +3123,9 @@ string textModifyDate
 string textModifyUserName
 string textMonday
 string textMustInput
+string textMyArticleCollect
+string textMyArticleIsMy
+string textMyComment
 string textMyRes
 string textNetworkConnectedFail
 string textNoArticleFound
@@ -3085,6 +3136,7 @@ string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
 string textNoNetwork
+string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK
@@ -3860,6 +3912,7 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style popupAnimation
 style styleButton
 style style_user_area_button
 style style_user_area_divider

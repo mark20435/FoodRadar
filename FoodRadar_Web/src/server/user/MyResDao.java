@@ -21,6 +21,6 @@ public interface MyResDao {
 
 	byte[] getImage(int id);
 
-	List<Res> getResById(Integer id);
+	List<Res> getResById(Integer id, Integer userId);
 
 }

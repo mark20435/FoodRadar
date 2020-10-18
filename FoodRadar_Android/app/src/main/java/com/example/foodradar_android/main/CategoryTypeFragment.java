@@ -17,6 +17,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -61,10 +64,23 @@ public class CategoryTypeFragment extends Fragment {
         activity = getActivity();
         navController = Navigation.findNavController(activity, R.id.mainFragment);
         imageTasks = new ArrayList<>();
-        //Common.setBackArrow(true, activity);
+        Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
     }
-
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                navController.popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,8 +126,8 @@ public class CategoryTypeFragment extends Fragment {
         //Bundle bundle = new Bundle();
 //        Common.showToast(activity,"TEST");
 //        Common.showToast(activity,bundle.getString("categoryType"));
-        activity.setTitle(category.getInfo());
-//        activity.setTitle(bundle.getString("categoryType"));
+        //activity.setTitle(category.getInfo());
+        activity.setTitle(bundle.getString("categoryType"));
     }
 
     private List<Res> getRess() {
@@ -121,6 +137,7 @@ public class CategoryTypeFragment extends Fragment {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "categoryfindById");
             jsonObject.addProperty("id",categoryId);
+
             String jsonOut = jsonObject.toString();
             ResGetAllTask = new CommonTask(url, jsonOut);
             try {

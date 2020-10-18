@@ -122,7 +122,7 @@ public class MyArticleDaoImpl implements MyArticleDao{
 	}
 
 	@Override
-	public List<MyArticle> getAllById(int id) {
+	public List<MyArticle> myArticle(int id, String action) {
 		/*
 		 SELECT A.articleId, A.articleTitle, A.articleTime
 		,(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END
@@ -130,13 +130,24 @@ public class MyArticleDaoImpl implements MyArticleDao{
 		FROM Article A
 		WHERE articleId IN (SELECT articleId FROM MyArticle WHERE userId = 3); 
 		 */
+		
 		// Date Time: 2020-10-14 14:34:03
 		// select statements : MyArticle
 		// String sqlStmt = "SELECT myArticleId, userId, articleId, modifyDate FROM MyArticle WHERE userId = ?;";
-		String sqlStmt = "SELECT A.articleId, A.articleTitle, A.articleTime ";
+		String sqlStmt = "SELECT A.articleId, A.articleTitle, A.articleTime, A.articleText ";
 		sqlStmt += ",(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END "; 
-		sqlStmt +=    " FROM UserAccount U WHERE U.userId =A.userId) AS 'userName'";
-		sqlStmt += " FROM Article A WHERE articleId IN (SELECT articleId FROM MyArticle WHERE userId = ?);";
+		sqlStmt += " FROM UserAccount U WHERE U.userId =A.userId) AS 'userName'";
+		switch (action) {
+			case "getMyArticleCollect":
+				sqlStmt += " FROM Article A WHERE articleId IN (SELECT articleId FROM MyArticle WHERE userId = ?)";
+				break;
+			case "getMyArticleIsMe":
+				sqlStmt += " FROM Article A WHERE A.userId = ?";
+				break;
+			default:
+				break;
+		}
+		sqlStmt += " ORDER BY A.articleTime DESC;";
 		MyArticle myArticle = null;
 
 		List<MyArticle> myArticleList  = new ArrayList<>();
@@ -151,9 +162,10 @@ public class MyArticleDaoImpl implements MyArticleDao{
 				int articleId = rs.getInt("articleId");
 				String articleTitle = rs.getString("articleTitle");
 				Timestamp articleTime = rs.getTimestamp("articleTime");
+				String articleText = rs.getString("articleText");
 				String userName = rs.getString("userName");
 
-				myArticle = new MyArticle(articleId, articleTitle, articleTime, userName);
+				myArticle = new MyArticle(articleId, articleTitle, articleTime, articleText, userName);
 				myArticleList.add(myArticle);
 			}
 			return myArticleList;
@@ -164,6 +176,57 @@ public class MyArticleDaoImpl implements MyArticleDao{
 
 	}
 
+	@Override
+	public List<MyArticle> myArticleMyComment(int id) {
+		/*
+		SELECT A.articleId, A.articleTitle, C.commentId, C.commentTime, C.commentText
+		,(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END
+		 FROM UserAccount U WHERE U.userId =A.userId) AS 'userName'
+		FROM `Comment` C JOIN Article A
+		JOIN (SELECT MAX(commentId) AS 'commentIdMax' ,articleId from `Comment` CM WHERE CM.commentStatus = 1 AND CM.userId = 3
+		GROUP BY articleId) CMD
+		ON C.articleId = A.articleId
+		AND C.commentId = CMD.commentIdMax ORDER BY C.commentTime DESC; 
+		 */
+		// Date Time: 2020-10-17 21:52:27
+		// select statements : Comment
+		String sqlStmt = "SELECT A.articleId, A.articleTitle, C.commentId, C.commentTime, C.commentText"; 
+		sqlStmt += ",(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END"; 
+		sqlStmt += " FROM UserAccount U WHERE U.userId =A.userId) AS 'userName'"; 
+		sqlStmt += " FROM `Comment` C JOIN Article A"; 
+		sqlStmt += " JOIN (SELECT MAX(commentId) AS 'commentIdMax' ,articleId from `Comment` CM";
+		sqlStmt += " WHERE CM.commentStatus = 1 AND CM.userId = ? GROUP BY articleId) CMD"; 
+		sqlStmt += " ON C.articleId = A.articleId AND C.commentId = CMD.commentIdMax";
+		sqlStmt += " ORDER BY C.commentTime DESC;";		
+		MyArticle myArticle = null;
+
+		List<MyArticle> myArticleList  = new ArrayList<>();
+		try (Connection connection = dataSource.getConnection();
+			// PreparedStatement ps = connection.prepareStatement();) {
+			// ResultSet rs = ps.executeQuery(sqlStmt);
+			PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			// 假如有下一個欄位的話，取得其資料
+			while (rs.next()) {
+				int articleId = rs.getInt("articleId");
+				String articleTitle = rs.getString("articleTitle");
+				Integer commentId = rs.getInt("commentId");
+				Timestamp commentTime = rs.getTimestamp("commentTime");
+				String commentText = rs.getString("commentText");
+				String userName = rs.getString("userName");
+
+				myArticle = new MyArticle(articleId, articleTitle, commentId, commentTime, commentText, userName);
+				myArticleList.add(myArticle);
+			}
+			return myArticleList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return myArticleList;
+
+	}
+	
 	@Override
 	public byte[] getImage(int id) {
 		/*

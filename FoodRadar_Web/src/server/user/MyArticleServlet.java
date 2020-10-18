@@ -44,15 +44,21 @@ public class MyArticleServlet extends HttpServlet {
 		String action = jsonObject.get("action").getAsString();
 		Integer id = 0;
 		pubTools.showConsoleMsg("doPost.action" , action);
-
-		// 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
-		if (action.equals("getAllById")) {
+		
+		if (action.equals("getMyArticleCollect") // 我的文章收藏 
+				|| action.equals("getMyArticleIsMe")) { // 我的發文
 			id = jsonObject.get("id").getAsInt();
-			pubTools.showConsoleMsg("getAllById.id" , id.toString());
-			List<MyArticle> myArticleList = myArticleDao.getAllById(id);
+			pubTools.showConsoleMsg(action + ".id" , id.toString());
+			List<MyArticle> myArticleList = myArticleDao.myArticle(id, action);
 			pubTools.writeText(response, gson.toJson(myArticleList));
 			
-		} else if (action.equals("getImage")) {
+		} else if (action.equals("getMyArticleMyComment")) { // 我的回文
+			id = jsonObject.get("id").getAsInt();
+			pubTools.showConsoleMsg(action + ".id" , id.toString());
+			List<MyArticle> myArticleList = myArticleDao.myArticleMyComment(id);
+			pubTools.writeText(response, gson.toJson(myArticleList));
+			
+		} else if (action.equals("getImage")) { // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
 			int imageSize = jsonObject.get("imageSize").getAsInt();
 			id = jsonObject.get("id").getAsInt();
 			pubTools.showConsoleMsg("getImage.id" , id.toString());
@@ -66,8 +72,8 @@ public class MyArticleServlet extends HttpServlet {
 			}
 			
 		} else if (action.equals("myResInsert")) {
-			String myArticleJson = jsonObject.get("myres").getAsString();
-			pubTools.showConsoleMsg("myResJson", myArticleJson);
+			String myArticleJson = jsonObject.get("myArtcile").getAsString();
+			pubTools.showConsoleMsg("myResInsert", myArticleJson);
 			MyArticle myArticle = gson.fromJson(myArticleJson, MyArticle.class);			
 			int count = 0;
 			count = myArticleDao.insert(myArticle);
@@ -75,6 +81,7 @@ public class MyArticleServlet extends HttpServlet {
 			
 		} else if (action.equals("myResDelete")) {
 			Integer myArticleId = jsonObject.get("myArticleId").getAsInt();
+			pubTools.showConsoleMsg("myResDelete", myArticleId.toString());
 			int count = 0;
 			count = myArticleDao.delete(myArticleId);
 			pubTools.writeText(response, String.valueOf(count));
@@ -86,7 +93,7 @@ public class MyArticleServlet extends HttpServlet {
 		if (myArticleDao == null) {
 			myArticleDao = new MyArticleDaoImpl();
 		}
-		List<MyArticle> myArticleList = myArticleDao.getAllById(3);
+		List<MyArticle> myArticleList = myArticleDao.myArticle(3,"getMyArticleCollect");
 		pubTools.writeText(response, new Gson().toJson(myArticleList));
 		
 		pubTools.writeText(response, "<br><br>");

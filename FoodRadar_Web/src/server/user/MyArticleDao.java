@@ -13,7 +13,10 @@ public interface MyArticleDao {
 
 	MyArticle findById(int id);
 
-	List<MyArticle> getAllById(int id);
+	List<MyArticle> myArticle(int id, String action);
+	
+	List<MyArticle> myArticleMyComment(int id);
+	
 
 	byte[] getImage(int id);
 

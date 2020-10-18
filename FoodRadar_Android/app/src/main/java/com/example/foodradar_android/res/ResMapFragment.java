@@ -280,7 +280,7 @@ public class ResMapFragment extends Fragment {
 
         //todo 今天吃什麼
         //todo 我的收藏
-        //todo 餐廳列表 menu是否要新增？
+        //todo 餐廳列表
     }
 
     private void showRess(List<Res> ress) {
@@ -306,6 +306,7 @@ public class ResMapFragment extends Fragment {
             String url = Common.URL_SERVER + "ResServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "getAllEnable");
+            jsonObject.addProperty("userId", Common.USER_ID);
             String jsonOut = jsonObject.toString();
             resGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -562,14 +563,14 @@ public class ResMapFragment extends Fragment {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView tvResName, tvResAddress, tvResTel, tvResCategoryInfo, tvResDistance;
+            TextView tvResName,tvResRating , tvResAddress, tvResCategoryInfo, tvResDistance;
 
             MyViewHolder(View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.ivRes);
                 tvResName = itemView.findViewById(R.id.tvResName);
+                tvResRating = itemView.findViewById(R.id.tvResRating);
                 tvResAddress = itemView.findViewById(R.id.tvResAddress);
-                tvResTel = itemView.findViewById(R.id.tvResTel);
                 tvResCategoryInfo = itemView.findViewById(R.id.tvResCategoryInfo);
                 tvResDistance = itemView.findViewById(R.id.tvResDistance);
             }
@@ -597,7 +598,11 @@ public class ResMapFragment extends Fragment {
             imageTasks.add(imageTask);
             myViewHolder.tvResName.setText(res.getResName());
             myViewHolder.tvResAddress.setText(res.getResAddress());
-            //myViewHolder.tvResTel.setText(res.getResTel());
+            if (res.getRating() >= 0) {
+                myViewHolder.tvResRating.setText(String.format("%.1f", res.getRating()));
+            } else {
+                myViewHolder.tvResRating.setText(R.string.textNoRating);
+            }
             myViewHolder.tvResCategoryInfo.setText(res.getResCategoryInfo());
             if (lastLocation != null) {
                 float[] results = new float[1];

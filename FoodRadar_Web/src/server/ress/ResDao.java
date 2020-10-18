@@ -14,7 +14,7 @@ public interface ResDao {
 
 	List<Res> getAll();
 	
-	List<Res> getAllEnable();
+	List<Res> getAllEnable(int curUserId);
 	
 	List<Res> CategoryfindById(int resId);
 	

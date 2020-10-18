@@ -205,12 +205,14 @@ public class ResDaoMySqlImpl implements ResDao {
 	}
 	
 	@Override
-	public List<Res> getAllEnable() {
-		String sql = "SELECT resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName \n" + 
+	public List<Res> getAllEnable(int curUserId) {
+		String sql = "SELECT R.resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName, ifnull(avg(rating), -1) as rating \n" + 
 				"FROM Res R\n" + 
 				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
 				"left join UserAccount U on R.userId = U.userId\n" + 
+				"left join ResRating RR on R.resId = RR.resId " +
 				"WHERE resEnable = 1 " +
+				"GROUP BY R.resId " +
 				"ORDER BY modifyDate DESC;";
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
@@ -230,10 +232,12 @@ public class ResDaoMySqlImpl implements ResDao {
 				Timestamp modifyDate = rs.getTimestamp(11);
 				String resCategoryInfo = rs.getString(12);
 				String userName = rs.getString(13);
+				Float rating = rs.getFloat(14);
 				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
 						resEnable, userId, modifyDate);
 				res.setResCategoryInfo(resCategoryInfo);
 				res.setUserName(userName);
+				res.setRating(rating);
 				ressList.add(res);
 			}
 			return ressList;

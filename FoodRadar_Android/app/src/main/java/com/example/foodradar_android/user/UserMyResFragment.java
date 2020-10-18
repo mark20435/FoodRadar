@@ -172,6 +172,7 @@ public class UserMyResFragment extends Fragment {
                         JsonObject jsonObject = new JsonObject();
                         jsonObject.addProperty("action", "getResById");
                         jsonObject.addProperty("id",resID);
+                        jsonObject.addProperty("userId",Common.USER_ID);
                         String jsonOut = jsonObject.toString();
                         Log.d(TAG,"getResById.jsonOut: " + jsonOut);
                         getResTask = new CommonTask(url, jsonOut);
