@@ -1935,10 +1935,13 @@ id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_CategoryTypeFragment_to_userDataSetupFragment
 id action_articleDetailFragment_to_articleFragment
-id action_articleDetailFragment_to_newArticleFragment
+id action_articleDetailFragment_to_favoriteArticleFragment
+id action_articleDetailFragment_to_newArticleFragment2
+id action_articleDetailFragment_to_rankArticleFragment
 id action_articleFragment_to_articleDetailFragment
 id action_articleFragment_to_articleInsertFragment
 id action_articleFragment_to_newArticleFragment2
+id action_articleFragment_to_userDataSetupFragment
 id action_articleInsertFragment_to_articleDetailFragment
 id action_articleInsertFragment_to_articleFragment
 id action_articleInsertFragment_to_insertImageFragment
@@ -2279,6 +2282,8 @@ id incoming
 id info
 id insertImageFragment
 id invisible
+id itDeleteComment
+id itUpdateComment
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
@@ -2651,6 +2656,7 @@ id tvImageNumber
 id tvManagerFun
 id tvModifyDate
 id tvMonday
+id tvMoney
 id tvMyArticleCollect
 id tvMyArticleCollectDivider
 id tvMyArticleIsMe
@@ -2663,6 +2669,7 @@ id tvMyComment
 id tvMyCommentDivider
 id tvPassword
 id tvPasswordConfirm
+id tvPeople
 id tvResAddress
 id tvResCategoryInfo
 id tvResDistance
@@ -2941,6 +2948,7 @@ menu appbar_ezlogout
 menu appbar_menu
 menu article_insert_menu
 menu article_menu
+menu comment_setting_menu
 menu menu
 menu photo_source_menu
 menu res_list_menu

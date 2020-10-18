@@ -2,6 +2,7 @@ package com.example.foodradar_android.article;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -40,18 +41,19 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class ResAddressFragment extends Fragment {
     private static final String TAG = "TAG_ResListFragment";
     private Activity activity;
-//    private TextView tvResAddress, tvResAddressName;
     private RecyclerView rvResAddress;
     private SearchView svResAddress;
     private CommonTask resAddressGetAllTask;
     private List<ResAddress> resAddresses;
     private NavController navController;
-
+    private final static String PREFERENCES_NAME = "Res";
+    private SharedPreferences preferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,9 +79,6 @@ public class ResAddressFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-//            case R.id.Finish:
-//                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
-//                break;
             case android.R.id.home:
                 navController.popBackStack();
                 break;
@@ -103,6 +102,7 @@ public class ResAddressFragment extends Fragment {
         rvResAddress = view.findViewById(R.id.rvResAddress);    //餐廳列表
         rvResAddress.setLayoutManager(new LinearLayoutManager(activity));
 
+        preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
 
         //分隔線
         rvResAddress.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
@@ -225,11 +225,18 @@ public class ResAddressFragment extends Fragment {
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                   preferences.edit()
+                           .putString("ResName", resAddress.getResName())
+                           .putString("Category", resAddress.getResCategoryInfo())
+                           .putInt("resId", resAddress.getResId())
+                           .apply();
 
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("ResAddress", resAddress);
-                    Navigation.findNavController(v).navigate(R.id.action_resAddressFragment_to_articleInsertFragment, bundle);
+                    navController.popBackStack();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("ResAddress", resAddress);
+//                    Navigation.findNavController(v).navigate(R.id.action_resAddressFragment_to_articleInsertFragment, bundle);
                 }
+
             });
         }
 

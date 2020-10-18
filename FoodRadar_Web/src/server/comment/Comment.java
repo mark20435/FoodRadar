@@ -42,6 +42,12 @@ public class Comment {
         this.commentStatus = commentStatus;
         this.commentText = commentText;
     }
+    
+    public Comment(String commentText, String commentModifyTime) {
+        super();
+        this.commentText = commentText;
+        this.commentModifyTime = commentModifyTime;
+    }
 
 	public int getCommentId() {
 		return commentId;

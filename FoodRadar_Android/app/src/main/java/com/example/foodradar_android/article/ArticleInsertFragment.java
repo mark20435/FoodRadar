@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
@@ -50,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 public class ArticleInsertFragment extends Fragment {
     private final static String TAG = "ArticleInsertFragment";
@@ -75,6 +77,13 @@ public class ArticleInsertFragment extends Fragment {
     private static final int REQ_CROP_PICTURE = 2;  //設定裁切圖片請求狀態碼
     private Bitmap bitmap = null;
     private NavController navController;
+    private int userIdBox = Common.USER_ID;
+
+    private final static String PREFERENCES_NAME = "Res";   //儲存檔名
+    private final static String DEFAULT_FILE_NAME = " "; //抓不到檔案就顯示
+    private SharedPreferences preferences;
+    private String conNumStr, conAmountStr, articleTitle, articleText;
+    private int newArticle;
 
 
     @Override
@@ -94,8 +103,6 @@ public class ArticleInsertFragment extends Fragment {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -113,13 +120,11 @@ public class ArticleInsertFragment extends Fragment {
         tvResName = view.findViewById(R.id.tvResName);
         imgList = new ArrayList<>();
 
-
-        //顯示餐廳資訊
-        if (resAddresses != null) {
-            String resName = resAddresses.getResName();
-            String resCategoryInfo = resAddresses.getResCategoryInfo();
-            tvResName.setText(resCategoryInfo + "\n" + "餐廳：" + resName);
-        }
+        //輸入文字
+        conNumStr = etConNum.getText().toString().trim();
+        conAmountStr = etConAmount.getText().toString().trim();
+        articleTitle = etArticleTitle.getText().toString().trim();
+        articleText = etArticleText.getText().toString().trim();
 
         //跳轉至，選擇餐廳頁面(外)
         ivPlaceIcon = view.findViewById(R.id.ivPlaceIcon);
@@ -131,6 +136,43 @@ public class ArticleInsertFragment extends Fragment {
         rvInsertImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
 //        imgs = getImgs();
         showImgs(imgList);
+
+        Bundle bundle = getArguments();
+       newArticle = bundle.getInt("newArticle");
+
+        //顯示餐廳資訊
+        if (newArticle == 2) {
+            tvResName.setText("店名：請選擇餐廳");
+            //將bundle內的資料(int)改成0
+            bundle.putInt("newArticle", 0);
+        } else {
+            tvResName.setText("店名：請選擇餐廳2");
+
+        }
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //偏好設定取得文字
+        preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+        String resName = preferences.getString("ResName", DEFAULT_FILE_NAME);
+        String resCategory = preferences.getString("Category", DEFAULT_FILE_NAME);
+//        int resIdPre = preferences.getInt("resId", 0);
+
+        //顯示餐廳資訊
+        if (newArticle == 0 ) {
+            tvResName.setText(resCategory + "\n" + "餐廳：" + resName);
+        } else {
+            tvResName.setText("店名：請選擇餐廳");
+        }
+    }
+
+    //取得UserID方法
+    private Integer getUserID() {
+        return Common.USER_ID;
     }
 
 //    private List<Img> getImgs() {
@@ -150,11 +192,6 @@ public class ArticleInsertFragment extends Fragment {
         }
     }
 
-    //取得UserID方法
-    private Integer getUserID() {
-        return Common.USER_ID;
-    }
-
     //右上角，送出按鈕
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -171,37 +208,45 @@ public class ArticleInsertFragment extends Fragment {
                 break;
             //右上送出發文
             case R.id.menuSend:
-                Integer userId = getUserID();
 //                String resName = tvResName.toString();
+                boolean textError = true;
+
                 String conNumStr = etConNum.getText().toString().trim();   //輸入人數轉為字串
                 Log.d(TAG, "conNumStr:::::::: " + conNumStr);
-                int conNum = Integer.parseInt(conNumStr);  //輸入人數，int型態
-                if (conNumStr.length() <= 0 || conNum <= 0) {
+                if (conNumStr.length() <= 0 ) {
                     etConNum.setError("請輸入正確消費人數");
-                    return false;
+                    textError = false;
                 }
+                int conNum = Integer.parseInt(conNumStr);  //輸入人數，int型態
+
                 String conAmountStr = etConAmount.getText().toString().trim();   //輸入消費轉為字串
-                int conAmount = Integer.parseInt(conAmountStr);   //輸入消費金額，int型態
-                if (conAmountStr.length() <= 0 || conAmount <= 0) {
+                if (conAmountStr.length() <= 0) {
                     etConAmount.setError("請輸入正確消費金額");
-                    return false;
+                    textError = false;
                 }
+                int conAmount = Integer.parseInt(conAmountStr);   //輸入消費金額，int型態
+
                 String articleTitle = etArticleTitle.getText().toString().trim();   //輸入文章主題
                 if (articleTitle.length() <= 0) {
                     etArticleTitle.setError("請輸入文章主題");
-                    return false;
+                    textError = false;
                 }
                 String articleText = etArticleText.getText().toString().trim();     //輸入文章內文
                 if (articleText.length() <= 0) {
                     etArticleTitle.setError("請輸入文章內文");
+                    textError = false;
+                }
+                if (!textError) {
                     return false;
                 }
+
                 //取得餐廳的ID
-                int resId = resAddresses.getResId();
+                int resId = preferences.getInt("resId", 0);
+
                 //送出文章資料(不含圖片)
                 if (Common.networkConnected(activity)) {
                     String url = Common.URL_SERVER + "ArticleServlet";
-                    Article article = new Article(0 ,articleTitle ,articleText ,conNum, conAmount ,resId , 1, true);
+                    Article article = new Article(0, articleTitle, articleText, conNum, conAmount, resId, userIdBox, true);
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action", "articleInsert");
                     jsonObject.addProperty("article", new Gson().toJson(article));
@@ -221,25 +266,39 @@ public class ArticleInsertFragment extends Fragment {
                     Common.showToast(activity, "連線失敗");
                 }
 
-                //上傳圖片(Insert)
+                /* 上傳圖片(Insert) */
                 if (Common.networkConnected(activity)) {
                     String url = Common.URL_SERVER + "ImgServlet";
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action", "findByIdMax");
-                    Img img = new Img (0, 0);
+                    Img img = new Img(0, 0);
                     jsonObject.addProperty("img", new Gson().toJson(img));
 
                     //確認是否有取得圖檔才會上傳
-                    if (imgbit != null) {
-                        jsonObject.addProperty("imageBase64", Base64.encodeToString(imgbit, Base64.DEFAULT));
-                    }
+//                    if (imgbit != null) {
+//                        jsonObject.addProperty("imageBase64", Base64.encodeToString(imgbit, Base64.DEFAULT));
+//                    }
                     int count = 0;
-                    try {
-                        String result = new CommonTask(url, jsonObject.toString()).execute().get();
-                        count = Integer.parseInt(result);
-                    } catch (Exception e) {
-                        Log.e(TAG, e.toString());
+//                    try {
+//                        String result = new CommonTask(url, jsonObject.toString()).execute().get();
+//                        count = Integer.parseInt(result);
+//                    } catch (Exception e) {
+//                        Log.e(TAG, e.toString());
+//                    }
+
+                    //for迴圈 > 迭代取出imgList的資料
+                    for (int i = 0 ; i <= imgList.size() -1 ; i++) {
+                        byte[] imgBytes = Common.bitmapToByte(imgList.get(i));
+                        //確認是否有取得圖檔才會上傳
+                            jsonObject.addProperty("imageBase64", Base64.encodeToString(imgBytes, Base64.DEFAULT));
+                        try {
+                            String result = new CommonTask(url, jsonObject.toString()).execute().get();
+                            count = Integer.parseInt(result);
+                        } catch (Exception e) {
+                            Log.e(TAG, e.toString());
+                        }
                     }
+
                     if (count == 0) {
                         Common.showToast(activity, "上傳失敗");
                     } else {
@@ -248,9 +307,9 @@ public class ArticleInsertFragment extends Fragment {
                 } else {
                     Common.showToast(activity, "連線失敗");
                 }
-                //結束動作後返回前一頁
+                /* 結束動作後返回前一頁 */
                 navController.navigate(R.id.action_articleInsertFragment_to_articleFragment);
-//                navController.popBackStack();
+//              navController.popBackStack();
                 break;
             //預設
             default:
@@ -384,7 +443,7 @@ public class ArticleInsertFragment extends Fragment {
                                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    //intent物件 > 意圖取得圖片檔
                                     File file = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);   //File取得外部圖檔
                                     file = new File(file, "picture.jpg");
-                                    imageUri =  FileProvider.getUriForFile(activity, activity.getOpPackageName() + ".provider", file);
+                                    imageUri = FileProvider.getUriForFile(activity, activity.getOpPackageName() + ".provider", file);
                                     intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                                     //叫Intent.resolveActivity()檢查有無⽀援拍照的app
                                     if (intent.resolveActivity(activity.getPackageManager()) != null) {
@@ -402,18 +461,18 @@ public class ArticleInsertFragment extends Fragment {
                                 .show();
                     }
                 });
-           } else if (holder instanceof MyViewHolder) {
+            } else if (holder instanceof MyViewHolder) {
                 MyViewHolder myViewHolder = (MyViewHolder) holder;
-                    // position -1 > 因為每增加一筆資料，onBindViewHolder的position會自動加1，(0被PickViewHolder綁住)
-                    // 但imgList的索引值是從0開始，對不上position的1 ， 所以 position - 1 > 跟
-                    Bitmap bitmapPosition = imgList.get(position - 1);
-                    myViewHolder.ivArticleImageInsert.setImageBitmap(bitmapPosition);
+                // position -1 > 因為每增加一筆資料，onBindViewHolder的position會自動加1，(0被PickViewHolder綁住)
+                // 但imgList的索引值是從0開始，對不上position的1 ， 所以 position - 1 > 跟
+                Bitmap bitmapPosition = imgList.get(position - 1);
+                myViewHolder.ivArticleImageInsert.setImageBitmap(bitmapPosition);
             }
 
         }
     }
 
-//    圖片裁減方法
+    //    圖片裁減方法
     private void crop(Uri sourceImageUri) {
         //取得外部檔案路徑
         File file = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -446,8 +505,10 @@ public class ArticleInsertFragment extends Fragment {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
-        imgList.add(bitmap);
-        showImgs(imgList);
+        if (bitmap != null) {
+            imgList.add(bitmap);
+            showImgs(imgList);
+        }
     }
 
 

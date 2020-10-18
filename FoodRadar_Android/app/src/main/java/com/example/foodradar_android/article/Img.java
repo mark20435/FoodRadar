@@ -1,9 +1,12 @@
 package com.example.foodradar_android.article;
 
+import android.graphics.Bitmap;
+
 public class Img {
 
     private int imgId;
     private int articleId;
+    private Bitmap img;
 
     public Img() {
         super();

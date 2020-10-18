@@ -115,6 +115,9 @@
         <action
             android:id="@+id/action_articleFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_userDataSetupFragment"
+            app:destination="@id/userDataSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/resInsertFragment"
