@@ -1121,6 +1121,7 @@ color mainLightBlue
 color mainPink
 color mainYellow
 color mainYellowLight
+color mainYellowMiddle
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1868,6 +1869,7 @@ drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
 drawable use_image
 drawable user_area_button
+drawable user_area_img_backgrond
 drawable wecate
 drawable x_cat
 drawable x_dog
@@ -1933,10 +1935,13 @@ id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_CategoryTypeFragment_to_userDataSetupFragment
 id action_articleDetailFragment_to_articleFragment
-id action_articleDetailFragment_to_newArticleFragment
+id action_articleDetailFragment_to_favoriteArticleFragment
+id action_articleDetailFragment_to_newArticleFragment2
+id action_articleDetailFragment_to_rankArticleFragment
 id action_articleFragment_to_articleDetailFragment
 id action_articleFragment_to_articleInsertFragment
 id action_articleFragment_to_newArticleFragment2
+id action_articleFragment_to_userDataSetupFragment
 id action_articleInsertFragment_to_articleDetailFragment
 id action_articleInsertFragment_to_articleFragment
 id action_articleInsertFragment_to_insertImageFragment
@@ -1981,6 +1986,7 @@ id action_resInsertFragment_to_articleFragment
 id action_resListFragment_to_resDetailFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
+id action_resMapFragment_to_loginFragment
 id action_resMapFragment_to_resDetailFragment
 id action_resMapFragment_to_resListFragment
 id action_text
@@ -2143,6 +2149,10 @@ id constvUsArSetNotifi
 id constvUsArSysSetup
 id constvUsArUserData
 id constvUsArUserＭaintain
+id constvUsAtMyArticle
+id constvUsAtMyArticleCollect
+id constvUsAtMyArticleIsMe
+id constvUsAtMyComment
 id container
 id content
 id contentPanel
@@ -2259,6 +2269,7 @@ id id_rcvMyRes
 id ifRoom
 id ignore
 id ignoreRequest
+id imMyAtResImg
 id imResImg
 id image
 id imageAlert
@@ -2272,6 +2283,8 @@ id incoming
 id info
 id insertImageFragment
 id invisible
+id itDeleteComment
+id itUpdateComment
 id italic
 id item_touch_helper_previous_elevation
 id ivArticleCommentIcon
@@ -2414,6 +2427,9 @@ id radio
 id rankArticleFragment
 id ratingBar
 id ratio
+id rcvMyArticleCollect
+id rcvMyArticleIsMe
+id rcvMyComment
 id rectangles
 id regcancel
 id register_Fragment
@@ -2556,6 +2572,7 @@ id stretch
 id submenuarrow
 id submit_area
 id svArticleDetail
+id svMyArticle
 id svResAddress
 id swResEnable
 id swRf
@@ -2640,8 +2657,20 @@ id tvImageNumber
 id tvManagerFun
 id tvModifyDate
 id tvMonday
+id tvMoney
+id tvMyArticleCollect
+id tvMyArticleCollectDivider
+id tvMyArticleIsMe
+id tvMyArticleIsMeDivider
+id tvMyAtArticleText
+id tvMyAtArticleTime
+id tvMyAtArticleTitle
+id tvMyAtUserName
+id tvMyComment
+id tvMyCommentDivider
 id tvPassword
 id tvPasswordConfirm
+id tvPeople
 id tvResAddress
 id tvResCategoryInfo
 id tvResDistance
@@ -2698,6 +2727,7 @@ id user
 id userAreaFragment
 id userDataSetupFragment
 id userIcon
+id userMyArticleFragment
 id userMyResFragment
 id userName
 id userPhone
@@ -2832,6 +2862,7 @@ layout fragment_res_map
 layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
+layout fragment_user_my_article
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_category
@@ -2841,6 +2872,7 @@ layout item_view_main
 layout item_view_res
 layout item_view_res_detail_image
 layout item_view_res_map
+layout item_view_user_myarticle
 layout item_view_user_myres
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2917,6 +2949,7 @@ menu appbar_ezlogout
 menu appbar_menu
 menu article_insert_menu
 menu article_menu
+menu comment_setting_menu
 menu menu
 menu photo_source_menu
 menu res_list_menu
@@ -3059,13 +3092,20 @@ string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
 string textAddressError
+string textArticleDate
+string textArticleText
+string textArticleWirter
 string textCancel
 string textChangPassword
+string textCommentDate
+string textCommentText
 string textDatePicker
 string textDateTime
 string textDelete
 string textDeleteFail
 string textDeleteHours
+string textDeleteMyResFail
+string textDeleteMyResSuccess
 string textDeleteRes
 string textDeleteSuccess
 string textDemo
@@ -3084,6 +3124,8 @@ string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
+string textInsertMyResFail
+string textInsertMyResSuccess
 string textInsertResRatingFail
 string textInsertResRatingSuccess
 string textInsertSuccess
@@ -3094,6 +3136,9 @@ string textModifyDate
 string textModifyUserName
 string textMonday
 string textMustInput
+string textMyArticleCollect
+string textMyArticleIsMy
+string textMyComment
 string textMyRes
 string textNetworkConnectedFail
 string textNoArticleFound

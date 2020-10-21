@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_resMapFragment_to_resListFragment"
             app:destination="@id/resListFragment" />
+        <action
+            android:id="@+id/action_resMapFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -115,6 +118,9 @@
         <action
             android:id="@+id/action_articleFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_userDataSetupFragment"
+            app:destination="@id/userDataSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/resInsertFragment"
@@ -247,5 +253,10 @@
             android:id="@+id/action_resListFragment_to_resDetailFragment"
             app:destination="@id/resDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userMyArticleFragment"
+        android:name="com.example.foodradar_android.user.UserMyArticleFragment"
+        android:label="fragment_user_my_article"
+        tools:layout="@layout/fragment_user_my_article" />
 
 </navigation>

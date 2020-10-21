@@ -57,7 +57,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         jsonObject.addProperty("action", "getImage");
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("imageSize", imageSize);
-        jsonObject.addProperty("articleId", articleId); //要抓文章圖片，預設值為0
+//        jsonObject.addProperty("articleId", articleId); //要抓文章圖片，預設值為0
         return getRemoteImage(url, jsonObject.toString());
     }
 

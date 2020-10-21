@@ -1,16 +1,12 @@
 package com.example.foodradar_android;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -26,24 +22,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
 import com.example.foodradar_android.task.CommonTask;
-import com.example.foodradar_android.user.MyRes;
 import com.example.foodradar_android.user.UserAccountAvatra;
 import com.example.foodradar_android.user.UserAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.example.foodradar_android.user.UserMyResImage;
-import com.google.android.gms.common.api.Api;
-import com.google.android.material.bottomappbar.BottomAppBar;
+import com.example.foodradar_android.user.UserImageTask;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,8 +45,6 @@ import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -67,6 +55,7 @@ public class Common{
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     public static String USERACCOUNT_SERVLET = URL_SERVER + "UserAccountServlet";
+    public NavController navController;
 
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
@@ -310,8 +299,9 @@ public class Common{
                 .apply();
 
         ImageView imageView = activity.findViewById(R.id.ivAvatar);
-        UserMyResImage userMyResImage = new UserMyResImage(USERACCOUNT_SERVLET,USER_ID,activity,imageView);
-        userMyResImage.execute(); // .execute() => UserImage.doInBackground
+        Integer imageSize = 200;
+        UserImageTask userImageTask = new UserImageTask(USERACCOUNT_SERVLET,USER_ID,imageSize,imageView);
+        userImageTask.execute(); // .execute() => UserImage.doInBackground
     }
 
 

@@ -38,14 +38,13 @@ public class Res implements Serializable, Comparable {
 	}
 
 	//暘璿
-	public Res(int resId, String resName, String resAddress , boolean resEnable) {
-		super();
-		this.resId = resId;
-		this.resName = resName;
-		this.resAddress = resAddress;
-		this.resEnable = resEnable;
-
-	}
+//	public Res(int resId, String resName, String resAddress , boolean resEnable) {
+//		super();
+//		this.resId = resId;
+//		this.resName = resName;
+//		this.resAddress = resAddress;
+//		this.resEnable = resEnable;
+//	}
 
 	public int getResId() {
 		return resId;

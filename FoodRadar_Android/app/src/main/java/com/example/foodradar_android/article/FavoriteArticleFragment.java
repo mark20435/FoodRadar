@@ -48,15 +48,54 @@ public class FavoriteArticleFragment extends Fragment {
     private List<Article> articles;
     private Activity activity;
     private List<ImageTask> imageTasks;
+    private List<ArticleImageTask> articleImageTasks;
     private SwipeRefreshLayout swipeRefreshLayoutFavorite;
     private CommonTask articleGetAllTask;
     private CommonTask articleDeleteTask;
+    private NavController navController;
+    private int userIdBox = Common.USER_ID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         imageTasks = new ArrayList<>();
+        articleImageTasks = new ArrayList<>();
         activity = getActivity();
+
+        navController =
+                Navigation.findNavController(activity, R.id.mainFragment);
+    }
+
+    //顯示floating
+    @Override
+    public void onStart() {
+        super.onStart();
+        //隱藏 floatingActionButton
+        Common.faButtonControl(activity, true);
+
+    }
+
+    // 顯示右上角的OptionMenu選單
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.appbar_menu, menu);  // 從res取用選項的清單“R.menu.my_menu“
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    // 設定右上及左上的OptionMenu選單
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.Finish:
+                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
+                break;
+            case android.R.id.home:
+                navController.popBackStack();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     @Override
@@ -81,7 +120,7 @@ public class FavoriteArticleFragment extends Fragment {
             swipeRefreshLayoutFavorite.setRefreshing(false);
         });
 
-       //浮動button > 跳轉至insert
+        //浮動button > 跳轉至insert
 //        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
 //        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
 //                .navigate(R.id.action_favoriteArticleFragment_to_articleInsertFragment));
@@ -96,6 +135,7 @@ public class FavoriteArticleFragment extends Fragment {
             JsonObject jsonObject = new JsonObject();
             //？？
             jsonObject.addProperty("action", "getAllByIdFavorite");
+            jsonObject.addProperty("loginUserId", new Gson().toJson(userIdBox));
             String jsonOut = jsonObject.toString();
             articleGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -119,8 +159,8 @@ public class FavoriteArticleFragment extends Fragment {
             Common.showToast(activity, R.string.textNoArticleFound);
             Log.e(TAG, "article:" + articleList);
         }
-       ArticleAdapter articleAdapter = (ArticleAdapter) rvArticleFavorite.getAdapter();
-        if(articleAdapter == null) {
+        ArticleAdapter articleAdapter = (ArticleAdapter) rvArticleFavorite.getAdapter();
+        if (articleAdapter == null) {
             rvArticleFavorite.setAdapter(new ArticleAdapter(activity, articleList));
         } else {
             articleAdapter.setArticleList(articleList);
@@ -172,8 +212,8 @@ public class FavoriteArticleFragment extends Fragment {
                 articleTitle = itemView.findViewById(R.id.articleTitle);
                 resName = itemView.findViewById(R.id.resName);
                 tvArticleTime = itemView.findViewById(R.id.tvArticleTime);
-                tvCommentCount= itemView.findViewById(R.id.tvCommentCount);
-                tvGoodCount  = itemView.findViewById(R.id.tvgoodCount);
+                tvCommentCount = itemView.findViewById(R.id.tvCommentCount);
+                tvGoodCount = itemView.findViewById(R.id.tvgoodCount);
                 tvFavoriteArticle = itemView.findViewById(R.id.tvFavoriteArticle);
                 ivGoodIcon = itemView.findViewById(R.id.ivGoodIcon);
                 ivFavoriteIcon = itemView.findViewById(R.id.ivFavoriteIcon);
@@ -196,9 +236,13 @@ public class FavoriteArticleFragment extends Fragment {
             //取得大圖
             String url = Common.URL_SERVER + "ImgServlet";
             int articleId = article.getArticleId();
-            ImageTask imageTask = new ImageTask(url, articleId, imageSize, myViewHolder.imgView);
-            imageTask.execute();
-            imageTasks.add(imageTask);
+            ArticleImageTask articleImageTask = new ArticleImageTask(url, articleId, imageSize, myViewHolder.imgView);
+            articleImageTask.execute();
+            articleImageTasks.add(articleImageTask);
+
+//            ImageTask imageTask = new ImageTask(url, articleId, imageSize, myViewHolder.imgView);
+//            imageTask.execute();
+//            imageTasks.add(imageTask);
 
             //取得使用者小圖
             String urlIcon = Common.URL_SERVER + "UserAccountServlet";
@@ -219,151 +263,163 @@ public class FavoriteArticleFragment extends Fragment {
 
 
             //設定點讚功能，1.會員登入判斷還沒寫，要候補
-            //2.先判斷使用者是否已點讚
-            final boolean articleGoodStatus = article.isArticleGoodStatus();
+//            boolean articleGoodStatus = article.isArticleGoodStatus();
             ImageView goodIcon = myViewHolder.ivGoodIcon;
-            if (articleGoodStatus) {
-                goodIcon.setColorFilter(Color.parseColor("#1877F2"));
-            } else {
+            if (userIdBox == 0) {    //0 > 訪客，一律設為沒點讚
+                article.setArticleGoodStatus(false);
                 goodIcon.setColorFilter(Color.parseColor("#424242"));
+            } else { //否則就判斷是否有點讚
+                if (article.isArticleGoodStatus()) {
+                    goodIcon.setColorFilter(Color.parseColor("#1877F2"));
+                    article.setArticleGoodStatus(true);
+                } else {
+                    goodIcon.setColorFilter(Color.parseColor("#424242"));
+                    article.setArticleGoodStatus(false);
+                }
             }
             myViewHolder.ivGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
             myViewHolder.tvGoodCount.setText((article.getArticleGoodCount() + ""));
 
-            //3.設定監聽器
-            myViewHolder.ivGoodIcon.setOnClickListener(v -> {
-                if (!article.isArticleGoodStatus()) {
-                    if (Common.networkConnected(activity)) {
-                        String insertGoodUrl = Common.URL_SERVER + "ArticleServlet";
-                        int insertUserId = article.getUserId();
-                        int insertArticleId = article.getArticleId();
-//                        int insertArticleGoodId = article.getArticleGoodId();
-                        Article articleGood = new Article(insertUserId, insertArticleId);
-                        JsonObject jsonObject = new JsonObject();
-                        jsonObject.addProperty("action", "articleGoodInsert");
-                        jsonObject.addProperty("articleGood", new Gson().toJson(articleGood));
-                        int count = 0;
-                        try {
-                            String result = new CommonTask(insertGoodUrl, jsonObject.toString()).execute().get();
-                            count = Integer.parseInt(result);
-                        } catch (Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                        if (count == 0) {
-                            Common.showToast(activity, "點讚失敗");
+            //3.設定監聽器   >   點讚
+            if (userIdBox != 0) {
+                myViewHolder.ivGoodIcon.setOnClickListener(v -> {
+                    if (!article.isArticleGoodStatus()) {
+                        if (Common.networkConnected(activity)) {
+                            String insertGoodUrl = Common.URL_SERVER + "ArticleServlet";
+                            JsonObject jsonObject = new JsonObject();
+                            jsonObject.addProperty("action", "articleGoodInsert");
+                            jsonObject.addProperty("articleId", article.getArticleId());
+                            jsonObject.addProperty("loginUserId", userIdBox);
+                            int count = 0;
+                            try {
+                                String result = new CommonTask(insertGoodUrl, jsonObject.toString()).execute().get();
+                                count = Integer.parseInt(result);
+                            } catch (Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                            if (count == 0) {
+                                Common.showToast(activity, "點讚失敗");
+                            } else {
+                                article.setArticleGoodCount(article.getArticleGoodCount() + 1);
+                                myViewHolder.tvGoodCount.setText((article.getArticleGoodCount() + ""));
+
+                                goodIcon.setColorFilter(Color.parseColor("#1877F2"));
+                                article.setArticleGoodStatus(true);
+                            }
                         } else {
-                            article.setArticleGoodCount(article.getArticleGoodCount() + 1);
-                            myViewHolder.tvGoodCount.setText((article.getArticleGoodCount() + ""));
-
-                            goodIcon.setColorFilter(Color.parseColor("#1877F2"));
-                            article.setArticleGoodStatus(true);
-
+                            Common.showToast(activity, "取得連線失敗");
                         }
+
                     } else {
-                        Common.showToast(activity, "取得連線失敗");
-                    }
+                        if (Common.networkConnected(activity)) {
+                            String deleteGoodUrl = Common.URL_SERVER + "ArticleServlet";
+                            JsonObject jsonObject = new JsonObject();
+                            jsonObject.addProperty("action", "articleGoodDelete");
+                            jsonObject.addProperty("articleId", article.getArticleId());
+                            jsonObject.addProperty("userId", userIdBox);
+                            int count = 0;
+                            try {
+                                articleDeleteTask = new CommonTask(deleteGoodUrl, jsonObject.toString());
+                                String result = articleDeleteTask.execute().get();
+                                count = Integer.parseInt(result);
+                            } catch (Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                            if (count == 0) { //如果選擇的資料已經沒東西
+                                Common.showToast(activity, "取消失敗");
+                            } else {
+                                article.setArticleGoodCount(article.getArticleGoodCount() - 1);
+                                myViewHolder.tvGoodCount.setText(((article.getArticleGoodCount()) + ""));
 
-                } else {
-                    if (Common.networkConnected(activity)) {
-                        String deleteGoodUrl = Common.URL_SERVER + "ArticleServlet";
-                        JsonObject jsonObject = new JsonObject();
-                        jsonObject.addProperty("action", "articleGoodDelete");
-                        jsonObject.addProperty("articleId", article.getArticleId());
-                        jsonObject.addProperty("userId", article.getUserId());
-                        int count = 0;
-                        try {
-                            articleDeleteTask = new CommonTask(deleteGoodUrl, jsonObject.toString());
-                            String result = articleDeleteTask.execute().get();
-                            count = Integer.parseInt(result);
-                        } catch (Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                        if (count == 0) { //如果選擇的資料已經沒東西
-                            Common.showToast(activity, "取消失敗");
+                                goodIcon.setColorFilter(Color.parseColor("#424242"));
+                                article.setArticleGoodStatus(false);
+                            }
                         } else {
-                            article.setArticleGoodCount(article.getArticleGoodCount() - 1);
-                            myViewHolder.tvGoodCount.setText(((article.getArticleGoodCount()) + ""));
-
-                            goodIcon.setColorFilter(Color.parseColor("#424242"));
-                            article.setArticleGoodStatus(true);
+                            Common.showToast(activity, "取消讚連線失敗");
                         }
-                    } else {
-                        Common.showToast(activity, "取消讚連線失敗");
                     }
-                }
-            });
-
+                });
+            }
 
             //設定收藏功能，1.會員登入判斷還沒寫，要候補
             //2.先判斷使用者是否已收藏
             final boolean articleFavoriteStatus = article.isArticleFavoriteStatus();
             ImageView favoriteIcon = myViewHolder.ivFavoriteIcon;
-            if (articleFavoriteStatus) {
-                favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
+            if (userIdBox == 0) {    //0 > 訪客，一律設為沒點讚
+                article.setArticleFavoriteStatus(false);
+                goodIcon.setColorFilter(Color.parseColor("#424242"));
             } else {
-                favoriteIcon.setColorFilter(Color.parseColor("#424242"));
+                if (articleFavoriteStatus) {
+                    favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
+                    article.setArticleFavoriteStatus(true);
+                } else {
+                    favoriteIcon.setColorFilter(Color.parseColor("#424242"));
+                    article.setArticleFavoriteStatus(false);
+                }
             }
             myViewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_baseline_favorite_24);
             myViewHolder.tvFavoriteArticle.setText((article.getFavoriteCount() + ""));
 
-            //3.設定監聽器
-            myViewHolder.ivFavoriteIcon.setOnClickListener(v -> {
-                if (!article.isArticleFavoriteStatus()) {
-                    if (Common.networkConnected(activity)) {
-                        String insertFavoriteUrl = Common.URL_SERVER + "ArticleServlet";
-                        int favoriteUserId = article.getUserId();
-                        int favoriteArticleId = article.getArticleId();
-                        Article articleFavorite = new Article(favoriteUserId, favoriteArticleId);
-                        JsonObject jsonObject = new JsonObject();
-                        jsonObject.addProperty("action", "articleFavoriteInsert");
-                        jsonObject.addProperty("articleFavorite", new Gson().toJson(articleFavorite));
-                        int count = 0;
-                        try {
-                            String result = new CommonTask(insertFavoriteUrl, jsonObject.toString()).execute().get();
-                            count = Integer.parseInt(result);
-                        } catch (Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                        if (count == 0) {
-                            Common.showToast(activity, "收藏失敗");
+            //3.設定監聽器   >   收藏
+            if (userIdBox != 0) {
+                myViewHolder.ivFavoriteIcon.setOnClickListener(v -> {
+                    if (!article.isArticleFavoriteStatus()) {
+                        if (Common.networkConnected(activity)) {
+                            String insertFavoriteUrl = Common.URL_SERVER + "ArticleServlet";
+                            int favoriteArticleId = article.getArticleId();
+                            JsonObject jsonObject = new JsonObject();
+                            jsonObject.addProperty("action", "articleFavoriteInsert");
+                            jsonObject.addProperty("articleId", article.getArticleId());
+                            jsonObject.addProperty("loginUserId", userIdBox);
+//                        jsonObject.addProperty("articleFavorite", new Gson().toJson(articleFavorite));
+                            int count = 0;
+                            try {
+                                String result = new CommonTask(insertFavoriteUrl, jsonObject.toString()).execute().get();
+                                count = Integer.parseInt(result);
+                            } catch (Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                            if (count == 0) {
+                                Common.showToast(activity, "收藏失敗");
+                            } else {
+                                article.setFavoriteCount((article.getFavoriteCount() + 1));
+                                myViewHolder.tvFavoriteArticle.setText(((article.getFavoriteCount()) + ""));
+                                favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
+                                article.setArticleFavoriteStatus(true);
+                            }
                         } else {
-                            article.setFavoriteCount((article.getFavoriteCount() + 1));
-                            myViewHolder.tvFavoriteArticle.setText(((article.getFavoriteCount()) + ""));
-                            favoriteIcon.setColorFilter(Color.parseColor("#EADDAB"));
-                            article.setArticleFavoriteStatus(true);
+                            Common.showToast(activity, "取得連線失敗");
                         }
                     } else {
-                        Common.showToast(activity, "取得連線失敗");
-                    }
-                } else {
-                    if (Common.networkConnected(activity)) {
-                        String deleteFavoriteUrl = Common.URL_SERVER + "ArticleServlet";
-                        JsonObject jsonObject = new JsonObject();
-                        jsonObject.addProperty("action", "articleFavoriteDelete");
-                        jsonObject.addProperty("userId", article.getUserId());
-                        jsonObject.addProperty("articleId", article.getArticleId());
-                        int count = 0;
-                        try {
-                            articleDeleteTask = new CommonTask(deleteFavoriteUrl, jsonObject.toString());
-                            String result = articleDeleteTask.execute().get();
-                            count = Integer.parseInt(result);
-                        } catch (Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                        if (count == 0) { //如果選擇的資料已經沒東西
-                            Common.showToast(activity, "取消失敗");
-                        } else {
-                            article.setFavoriteCount((article.getFavoriteCount() - 1));
-                            myViewHolder.tvFavoriteArticle.setText((article.getFavoriteCount() + ""));
+                        if (Common.networkConnected(activity)) {
+                            String deleteFavoriteUrl = Common.URL_SERVER + "ArticleServlet";
+                            JsonObject jsonObject = new JsonObject();
+                            jsonObject.addProperty("action", "articleFavoriteDelete");
+                            jsonObject.addProperty("loginUserId", userIdBox);
+                            jsonObject.addProperty("articleId", article.getArticleId());
+                            int count = 0;
+                            try {
+                                articleDeleteTask = new CommonTask(deleteFavoriteUrl, jsonObject.toString());
+                                String result = articleDeleteTask.execute().get();
+                                count = Integer.parseInt(result);
+                            } catch (Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                            if (count == 0) { //如果選擇的資料已經沒東西
+                                Common.showToast(activity, "取消失敗");
+                            } else {
+                                article.setFavoriteCount((article.getFavoriteCount() - 1));
+                                myViewHolder.tvFavoriteArticle.setText((article.getFavoriteCount() + ""));
 
-                            favoriteIcon.setColorFilter(Color.parseColor("#424242"));
-                            article.setArticleFavoriteStatus(false);
+                                favoriteIcon.setColorFilter(Color.parseColor("#424242"));
+                                article.setArticleFavoriteStatus(false);
+                            }
+                        } else {
+                            Common.showToast(activity, "取消收藏連線失敗");
                         }
-                    } else {
-                        Common.showToast(activity, "取消收藏連線失敗");
                     }
-                }
-            });
+                });
+            }
 
             //跳轉至detail
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
