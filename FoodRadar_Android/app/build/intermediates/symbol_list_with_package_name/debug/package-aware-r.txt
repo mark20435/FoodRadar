@@ -1982,6 +1982,7 @@ id action_rankArticleFragment_to_articleDetailFragment
 id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
 id action_resDetailFragment_to_loginFragment
+id action_resDetailFragment_to_resImgFragment
 id action_resInsertFragment_to_articleFragment
 id action_resListFragment_to_loginFragment
 id action_resListFragment_to_resDetailFragment
@@ -2276,6 +2277,7 @@ id imMyAtResImg
 id imResImg
 id image
 id imageAlert
+id imageView
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2441,6 +2443,7 @@ id resAddress
 id resAddressFragment
 id resCategoryInfo
 id resDetailFragment
+id resImgFragment
 id resInsertFragment
 id resListFragment
 id resMaintainFragment
@@ -2841,6 +2844,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_res_img
 layout fragment_article
 layout fragment_article_detail
 layout fragment_article_insert
@@ -2858,6 +2862,7 @@ layout fragment_rank_article
 layout fragment_register
 layout fragment_res_address
 layout fragment_res_detail
+layout fragment_res_img
 layout fragment_res_insert
 layout fragment_res_list
 layout fragment_res_maintain
@@ -2874,6 +2879,7 @@ layout item_view_coupon
 layout item_view_main
 layout item_view_res
 layout item_view_res_detail_image
+layout item_view_res_img
 layout item_view_res_map
 layout item_view_user_myarticle
 layout item_view_user_myres
@@ -3202,6 +3208,7 @@ string textUserPhone
 string textWednesday
 string textWriteArticle
 string titleResDetail
+string titleResImg
 string titleResInsert
 string titleResUpdate
 string title_of_contact_us

@@ -180,7 +180,6 @@ public class ResDetailFragment extends Fragment {
             navController.popBackStack();
             return;
         }
-        res = (Res) bundle.getSerializable("res");
 
 
         tvResName = view.findViewById(R.id.tvResName);
@@ -734,6 +733,8 @@ public class ResDetailFragment extends Fragment {
 
         rvImage = view.findViewById(R.id.rvImage);    //圖片recyclerView
         rvImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+
+
         imgs = getImgs();
         if (imgs.size() == 0) {
             rvImage.setVisibility(View.GONE);
@@ -800,8 +801,6 @@ public class ResDetailFragment extends Fragment {
             }
         });
 
-        //todo 分享
-        //todo 收藏
         ImageView ivMyRes = view.findViewById(R.id.ivMyRes);
 
         if (res.isMyRes()) {
@@ -868,8 +867,21 @@ public class ResDetailFragment extends Fragment {
 
         });
 
+        //todo 分享
+//        ImageView ivShare = view.findViewById(R.id.ivShare);
+//        ivShare.setOnClickListener(v -> {
+//            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//            sharingIntent.setType("text/plain");
+//            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, res.getResAddress());
+//            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, res.getResName());
+//
+//            startActivity(Intent.createChooser(sharingIntent, "chooserTitle"));
+//        });
+
         //todo 食記相關按鈕
+
         //todo 轉到餐廳照片頁面
+
     }
 
     private void rating() {
@@ -937,6 +949,12 @@ public class ResDetailFragment extends Fragment {
             ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivImage);
             imageTask.execute();
             imageTasks.add(imageTask);
+
+            myViewHolder.itemView.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("res", res);
+                navController.navigate(R.id.action_resDetailFragment_to_resImgFragment, bundle);
+            });
         }
 
     }
