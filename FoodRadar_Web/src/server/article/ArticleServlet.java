@@ -44,28 +44,32 @@ public class ArticleServlet extends HttpServlet {
 
 		// 判斷client端行為1 > 取得所有資料庫資料(新進榜)
 		if (action.equals("getAllById")) {
-			// int articleId = jsonObject.get("articleId").getAsInt();
-			List<Article> articles = articleDao.getAllById();
+			 int loginUserId = jsonObject.get("loginUserId").getAsInt();
+			List<Article> articles = articleDao.getAllById(loginUserId);
 			writeText(response, gson.toJson(articles));
 		}
 		// 判斷client端行為2 > 取得所有資料庫資料(排行榜)
 		else if (action.equals("getAllByIdRank")) {
-			List<Article> articles = articleDao.getAllByIdRank();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
+			List<Article> articles = articleDao.getAllByIdRank(loginUserId);
 			writeText(response, gson.toJson(articles));
 		}
 		// 判斷client端行為3 > 取得所有資料庫資料(收藏榜)
 		else if (action.equals("getAllByIdFavorite")) {
-			List<Article> articles = articleDao.getAllByIdFavorite();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
+			List<Article> articles = articleDao.getAllByIdFavorite(loginUserId);
 			writeText(response, gson.toJson(articles));
 		}
 		// 判斷client端行為4 > insert點讚
 		else if (action.equals("articleGoodInsert")) {
-			String articleGoodJson = jsonObject.get("articleGood").getAsString(); // 取得jsonObject
-			System.out.println("articleGoodJson = " + articleGoodJson);
-			Article articleGood = gson.fromJson(articleGoodJson, Article.class); // 將Json轉為commentGood型態
+//			String articleGoodJson = jsonObject.get("articleGood").getAsString(); // 取得jsonObject
+//			System.out.println("articleGoodJson = " + articleGoodJson);
+//			Article articleGood = gson.fromJson(articleGoodJson, Article.class); // 將Json轉為commentGood型態
+			int articleId = jsonObject.get("articleId").getAsInt();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
 			int count = 0;
 			if (action.equals("articleGoodInsert")) {
-				count = articleDao.articleGoodInsert(articleGood);
+				count = articleDao.articleGoodInsert(articleId, loginUserId);
 			}
 			writeText(response, String.valueOf(count));
 
@@ -80,12 +84,14 @@ public class ArticleServlet extends HttpServlet {
 
 		// 判斷client端行為6 > insert收藏
 		else if (action.equals("articleFavoriteInsert")) {
-			String articleFavoriteJson = jsonObject.get("articleFavorite").getAsString(); // 取得jsonObject
-			System.out.println("articleFavoriteJson = " + articleFavoriteJson);
-			Article articleFavorite = gson.fromJson(articleFavoriteJson, Article.class); // 將Json轉為javaBean型態
+//			String articleFavoriteJson = jsonObject.get("articleFavorite").getAsString(); // 取得jsonObject
+//			System.out.println("articleFavoriteJson = " + articleFavoriteJson);
+//			Article articleFavorite = gson.fromJson(articleFavoriteJson, Article.class); // 將Json轉為javaBean型態
+			int articleId = jsonObject.get("articleId").getAsInt();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
 			int count = 0;
 			if (action.equals("articleFavoriteInsert")) {
-				count = articleDao.articleFavoriteInsert(articleFavorite);
+				count = articleDao.articleFavoriteInsert(articleId, loginUserId);
 			}
 			writeText(response, String.valueOf(count));
 		}
@@ -93,14 +99,14 @@ public class ArticleServlet extends HttpServlet {
 		// 判斷client端行為7 > 取消收藏
 		else if (action.equals("articleFavoriteDelete")) {
 			System.out.println("articleFavoriteDelete: " + action);
-			int userId = jsonObject.get("userId").getAsInt();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
 			int articleId = jsonObject.get("articleId").getAsInt();
-			int count = articleDao.articleFavoriteDelete(userId, articleId);
+			int count = articleDao.articleFavoriteDelete(loginUserId, articleId);
 			writeText(response, String.valueOf(count));
 		}
 
 		// 判斷client端行為8 > 判斷insert或Update(文章)
-		else if (action.equals("articleInsert") || action.equals("articleUpdate")) {
+		else if (action.equals("articleInsert") || action.equals("articleUpdate") || action.equals("articleDelete")) {
 			String articleJson = jsonObject.get("article").getAsString(); // 取得article內的Json字串
 			System.out.println("articleJson = " + articleJson);
 			Article article = gson.fromJson(articleJson, Article.class); // 將Json轉為article型態
@@ -113,27 +119,26 @@ public class ArticleServlet extends HttpServlet {
 			} else if (action.equals("articleUpdate")) {
 				count = articleDao.update(article);
 			}
+				//delete(刪除文章)
+			else if (action.equals("articleDelete")) {
+				count = articleDao.delete(article);
+			}
 			writeText(response, String.valueOf(count));
 		}
-		// 判斷client端行為9 > Delete(刪除文章)
-		else if (action.equals("articleDelete")) {
-			int articleId = jsonObject.get("articleId").getAsInt();
-			int count = articleDao.delete(articleId);
-			writeText(response, String.valueOf(count));
-		}
-		// 判斷client端行為10 > 查詢(顯示內文)findById
+		// 判斷client端行為 > Delete(刪除文章)
+//		else if (action.equals("articleDelete")) {
+//			int articleId = jsonObject.get("articleId").getAsInt();
+//			int count = articleDao.delete(articleId);
+//			writeText(response, String.valueOf(count)); 
+//		}
+		// 判斷client端行為9 > 查詢(顯示內文)findById
 		else if (action.equals("findById")) {
-			int id = jsonObject.get("articleId").getAsInt();
-			Article article = articleDao.findById(id);
+			int articleId = jsonObject.get("articleId").getAsInt();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
+			Article article = articleDao.findById(loginUserId, articleId);
 			writeText(response, gson.toJson(article));
 		}
-//		// 判斷client端行為11 > 查詢(顯示內文)findByIdMax
-//				else if (action.equals("findByIdMax")) {
-//					int id = jsonObject.get("articleId").getAsInt();
-//					Article article = articleDao.findByIdMax(id);
-//					writeText(response, gson.toJson(article));
-//				}
-		// 判斷client端行為11 > 其他
+		// 判斷client端行為1 > 其他
 		else {
 			writeText(response, "");
 		}
@@ -149,13 +154,13 @@ public class ArticleServlet extends HttpServlet {
 	}
 
 	// 網頁(測試)用
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		if (articleDao == null) {
-			articleDao = new ArticleDaoImpl();
-		}
-		List<Article> articles = articleDao.getAllById();
-		writeText(response, new Gson().toJson(articles));
-	}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		if (articleDao == null) {
+//			articleDao = new ArticleDaoImpl();
+//		}
+//		List<Article> articles = articleDao.getAllById();
+//		writeText(response, new Gson().toJson(articles));
+//	}
 
 }

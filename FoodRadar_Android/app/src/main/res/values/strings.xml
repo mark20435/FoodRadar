@@ -316,5 +316,5 @@
     <string name="textInsertMyResFail">新增餐廳收藏失敗</string>
     <string name="textInsertMyResSuccess">新增餐廳收藏成功</string>
     <string name="textDeleteMyResFail">移除餐廳收藏失敗</string>
-    <string name="textDeleteMyResSuccess">移除餐廳收藏成功</string>g>
+    <string name="textDeleteMyResSuccess">移除餐廳收藏成功</string>
 </resources>

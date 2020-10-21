@@ -50,29 +50,43 @@ public class ImgServlet extends HttpServlet {
 			List<Img> imgs = imgDao.getAll();
 			writeText(response, gson.toJson(imgs));
 		} 
-		//特定文章的圖片資訊
+		//特定文章圖片資訊(不含圖)
 		else if (action.equals("getAllById")) {
 			int id = jsonObject.get("articleId").getAsInt();
 			List<Img> imgs = imgDao.getAllById(id);
 			writeText(response, gson.toJson(imgs));
 		} 
-		else if (action.equals("getImage")) { // 使用getImage方法
+		//特定文章的圖片 > 透過文章ID
+		else if (action.equals("getImageByArticleId")) { // 使用getImage方法
 			OutputStream os = response.getOutputStream();
-			int imgId = jsonObject.get("id").getAsInt();
+			int id = jsonObject.get("id").getAsInt();
 			int imageSize = jsonObject.get("imageSize").getAsInt(); // image物件 > 縮小的圖片尺寸數字，client會呼叫此物件的KEY(imageSize)
-			byte[] image = imgDao.getImage(imgId);
+			byte[] image = imgDao.getImageByArticleId(id);
 			if (image != null) {
 				image = ImageUtil.shrink(image, imageSize); // 將取得的圖片縮小
 				response.setContentType("image/*"); // 取得資料庫圖片
 				response.setContentLength(image.length); // 讀取圖片長度
 				os.write(image);
 			}
-		} else if (action.equals("imgInsert") || action.equals("imgUpdate") || action.equals("findByIdMax")) { // 宣告的"bookInsert" key > client端會呼叫到
+		} 
+		//getImage方法
+		else if (action.equals("getImage")) {
+			OutputStream os = response.getOutputStream();
+			int id = jsonObject.get("id").getAsInt();
+			int imageSize = jsonObject.get("imageSize").getAsInt(); 
+			byte[] image = imgDao.getImage(id);
+			if (image != null) {
+				image = ImageUtil.shrink(image, imageSize);
+				response.setContentType("image/*");
+				response.setContentLength(image.length);
+				os.write(image);
+			}
+		} 
+		else if (action.equals("imgInsert") || action.equals("imgUpdate") || action.equals("findByIdMax")) { // 宣告的"bookInsert" key > client端會呼叫到
 			String imgJson = jsonObject.get("img").getAsString();
 			System.out.println("imgJson:" + imgJson);
 			Img img = gson.fromJson(imgJson, Img.class);
 			byte[] image = null;
-//			int id = jsonObject.get("articleId").getAsInt();
 
 			// 檢查是否有取得圖片
 			if (jsonObject.get("imageBase64") != null) {
