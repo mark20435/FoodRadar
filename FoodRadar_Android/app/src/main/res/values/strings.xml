@@ -317,4 +317,7 @@
     <string name="textInsertMyResSuccess">新增餐廳收藏成功</string>
     <string name="textDeleteMyResFail">移除餐廳收藏失敗</string>
     <string name="textDeleteMyResSuccess">移除餐廳收藏成功</string>
+    <string name="textNearRess">附近餐廳</string>
+    <string name="textNoMyRessFound">您尚未收藏任何餐廳</string>
+    <string name="textMyResList">我的收藏列表</string>
 </resources>

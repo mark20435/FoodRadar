@@ -1983,7 +1983,9 @@ id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
 id action_resDetailFragment_to_loginFragment
 id action_resInsertFragment_to_articleFragment
+id action_resListFragment_to_loginFragment
 id action_resListFragment_to_resDetailFragment
+id action_resListFragment_to_userMyResFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
 id action_resMapFragment_to_loginFragment
@@ -2051,6 +2053,7 @@ id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
 id btMyRes
+id btMyResList
 id btPickPicture
 id btReadArticle
 id btRegisterOrChang
@@ -3140,6 +3143,8 @@ string textMyArticleCollect
 string textMyArticleIsMy
 string textMyComment
 string textMyRes
+string textMyResList
+string textNearRess
 string textNetworkConnectedFail
 string textNoArticleFound
 string textNoCameraApp
@@ -3148,6 +3153,7 @@ string textNoCouponsFound
 string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
+string textNoMyRessFound
 string textNoNetwork
 string textNoRating
 string textNoRessFound

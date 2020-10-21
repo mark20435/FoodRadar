@@ -252,6 +252,12 @@
         <action
             android:id="@+id/action_resListFragment_to_resDetailFragment"
             app:destination="@id/resDetailFragment" />
+        <action
+            android:id="@+id/action_resListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_resListFragment_to_userMyResFragment"
+            app:destination="@id/userMyResFragment" />
     </fragment>
     <fragment
         android:id="@+id/userMyArticleFragment"

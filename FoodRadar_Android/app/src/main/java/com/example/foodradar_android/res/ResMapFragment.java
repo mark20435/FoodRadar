@@ -144,7 +144,7 @@ public class ResMapFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.resListFragment:
                 navController.navigate(R.id.action_resMapFragment_to_resListFragment);
                 break;
@@ -241,6 +241,44 @@ public class ResMapFragment extends Fragment {
                 showRess(newNearRess);
                 LastCameraLatLng = cameraLatLng;
                 btSearchResAgain.setVisibility(View.GONE);
+            });
+
+            Button btMyRes = view.findViewById(R.id.btMyRes);
+            btMyRes.setOnClickListener(v -> {
+                if (Common.USER_ID <= 0) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("您尚未登入，要進行登入嗎？")
+                            .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Navigation.findNavController(v)
+                                            .navigate(R.id.action_resMapFragment_to_loginFragment);
+                                }
+                            }).setNegativeButton(R.string.textCancel, null).create()
+                            .show();
+                } else if (!btMyRes.getText().equals(getResources().getString(R.string.textNearRess))) {
+                    map.clear();
+                    List<Res> myRess = new ArrayList<>();
+                    markers = new ArrayList<>();
+                    for (Res res : ress) {
+                        if (res.isMyRes()) {
+                            myRess.add(res);
+                            addMarker(new LatLng(res.getResLat(), res.getResLon()), res.getResName());
+                        }
+                    }
+
+                    if (myRess.size() != 0) {
+                        showRess(myRess);
+                        moveMap(new LatLng(myRess.get(0).getResLat(), myRess.get(0).getResLon()));
+                        btMyRes.setText(R.string.textNearRess);
+                    } else {
+                        Common.showToast(activity, R.string.textNoMyRessFound);
+                    }
+
+                } else {
+                    btSearchResAgain.performClick();
+                    btMyRes.setText(R.string.textMyRes);
+                }
             });
         });
 
@@ -566,7 +604,7 @@ public class ResMapFragment extends Fragment {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView, ivMyRes;
-            TextView tvResName,tvResRating , tvResAddress, tvResCategoryInfo, tvResDistance;
+            TextView tvResName, tvResRating, tvResAddress, tvResCategoryInfo, tvResDistance;
 
             MyViewHolder(View itemView) {
                 super(itemView);
