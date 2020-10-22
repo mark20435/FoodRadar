@@ -1121,6 +1121,7 @@ color mainLightBlue
 color mainPink
 color mainYellow
 color mainYellowLight
+color mainYellowMiddle
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1868,6 +1869,7 @@ drawable ucrop_vector_loader_animated
 drawable ucrop_wrapper_controls_shape
 drawable use_image
 drawable user_area_button
+drawable user_area_img_backgrond
 drawable wecate
 drawable x_cat
 drawable x_dog
@@ -1981,10 +1983,14 @@ id action_rankArticleFragment_to_articleDetailFragment
 id action_rankArticleFragment_to_articleInsertFragment
 id action_resAddressFragment_to_articleInsertFragment
 id action_resDetailFragment_to_loginFragment
+id action_resDetailFragment_to_resImgFragment
 id action_resInsertFragment_to_articleFragment
+id action_resListFragment_to_loginFragment
 id action_resListFragment_to_resDetailFragment
+id action_resListFragment_to_userMyResFragment
 id action_resMaintainFragment_to_resInsertFragment
 id action_resMaintainFragment_to_resUpdateFragment
+id action_resMapFragment_to_loginFragment
 id action_resMapFragment_to_resDetailFragment
 id action_resMapFragment_to_resListFragment
 id action_text
@@ -2050,6 +2056,7 @@ id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
 id btMyRes
+id btMyResList
 id btPickPicture
 id btReadArticle
 id btRegisterOrChang
@@ -2149,6 +2156,10 @@ id constvUsArSetNotifi
 id constvUsArSysSetup
 id constvUsArUserData
 id constvUsArUserＭaintain
+id constvUsAtMyArticle
+id constvUsAtMyArticleCollect
+id constvUsAtMyArticleIsMe
+id constvUsAtMyComment
 id container
 id content
 id contentPanel
@@ -2271,9 +2282,11 @@ id id_rcvMyRes
 id ifRoom
 id ignore
 id ignoreRequest
+id imMyAtResImg
 id imResImg
 id image
 id imageAlert
+id imageView
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2428,6 +2441,9 @@ id radio
 id rankArticleFragment
 id ratingBar
 id ratio
+id rcvMyArticleCollect
+id rcvMyArticleIsMe
+id rcvMyComment
 id rectangles
 id regcancel
 id register_Fragment
@@ -2436,6 +2452,7 @@ id resAddress
 id resAddressFragment
 id resCategoryInfo
 id resDetailFragment
+id resImgFragment
 id resInsertFragment
 id resListFragment
 id resMaintainFragment
@@ -2572,6 +2589,7 @@ id stretch
 id submenuarrow
 id submit_area
 id svArticleDetail
+id svMyArticle
 id svResAddress
 id swResEnable
 id swRf
@@ -2658,6 +2676,16 @@ id tvModifyDate
 id tvMonday
 id tvMoney
 id tvMoneyUpdate
+id tvMyArticleCollect
+id tvMyArticleCollectDivider
+id tvMyArticleIsMe
+id tvMyArticleIsMeDivider
+id tvMyAtArticleText
+id tvMyAtArticleTime
+id tvMyAtArticleTitle
+id tvMyAtUserName
+id tvMyComment
+id tvMyCommentDivider
 id tvPassword
 id tvPasswordConfirm
 id tvPeople
@@ -2718,6 +2746,7 @@ id user
 id userAreaFragment
 id userDataSetupFragment
 id userIcon
+id userMyArticleFragment
 id userMyResFragment
 id userName
 id userPhone
@@ -2828,6 +2857,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_res_img
 layout fragment_article
 layout fragment_article_detail
 layout fragment_article_insert
@@ -2846,6 +2876,7 @@ layout fragment_rank_article
 layout fragment_register
 layout fragment_res_address
 layout fragment_res_detail
+layout fragment_res_img
 layout fragment_res_insert
 layout fragment_res_list
 layout fragment_res_maintain
@@ -2853,6 +2884,7 @@ layout fragment_res_map
 layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
+layout fragment_user_my_article
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_category
@@ -2861,7 +2893,9 @@ layout item_view_coupon
 layout item_view_main
 layout item_view_res
 layout item_view_res_detail_image
+layout item_view_res_img
 layout item_view_res_map
+layout item_view_user_myarticle
 layout item_view_user_myres
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -3081,13 +3115,20 @@ string status_bar_notification_info_overflow
 string textAdd
 string textAddHours
 string textAddressError
+string textArticleDate
+string textArticleText
+string textArticleWirter
 string textCancel
 string textChangPassword
+string textCommentDate
+string textCommentText
 string textDatePicker
 string textDateTime
 string textDelete
 string textDeleteFail
 string textDeleteHours
+string textDeleteMyResFail
+string textDeleteMyResSuccess
 string textDeleteRes
 string textDeleteSuccess
 string textDemo
@@ -3106,6 +3147,8 @@ string textInputEmpty
 string textInsert
 string textInsertCancel
 string textInsertFail
+string textInsertMyResFail
+string textInsertMyResSuccess
 string textInsertResRatingFail
 string textInsertResRatingSuccess
 string textInsertSuccess
@@ -3116,7 +3159,12 @@ string textModifyDate
 string textModifyUserName
 string textMonday
 string textMustInput
+string textMyArticleCollect
+string textMyArticleIsMy
+string textMyComment
 string textMyRes
+string textMyResList
+string textNearRess
 string textNetworkConnectedFail
 string textNoArticleFound
 string textNoCameraApp
@@ -3125,6 +3173,7 @@ string textNoCouponsFound
 string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
+string textNoMyRessFound
 string textNoNetwork
 string textNoRating
 string textNoRessFound
@@ -3173,6 +3222,7 @@ string textUserPhone
 string textWednesday
 string textWriteArticle
 string titleResDetail
+string titleResImg
 string titleResInsert
 string titleResUpdate
 string title_of_contact_us

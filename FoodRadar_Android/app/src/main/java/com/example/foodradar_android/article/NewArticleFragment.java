@@ -34,6 +34,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.example.foodradar_android.user.MyArticle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -128,6 +129,12 @@ public class NewArticleFragment extends Fragment {
             showArticle(articles);
             swipeRefreshLayout.setRefreshing(false);
         });
+
+        // 從“我的社群活動”頁面，跳轉到“討論區”頁面並轉到文章detail頁面
+        if (MyArticle.goToMyArticleDetail == true) {
+            MyArticle.goToMyArticleDetail = false;
+            Navigation.findNavController(view).navigate(R.id.action_newArticleFragment_to_articleDetailFragment);
+        }
 
  //         searchView
 //        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -17,7 +17,7 @@ INJECTED from /Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/
 INJECTED from /Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-65:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/2849ec2b50e51d8ee8f1f561e596ae07/navigation-ui-2.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/acce64f065fcfc1fdec88c661d9f5949/material-1.3.0-alpha01/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/ce1b9411baf8e776a45af1f4042f7cd9/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/28c2386d21c3134049a1888b50652813/constraintlayout-2.0.2/AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.yalantis:ucrop:2.2.4] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/7697710f675b167c917a7faccf335033/jetified-ucrop-2.2.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/27946f5646124fa7e2849e53559616ba/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-fragment:2.3.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/0798c4f721aa4b3f7ef60b6878f65812/navigation-fragment-2.3.0/AndroidManifest.xml:17:1-24:12
@@ -134,8 +134,8 @@ application
 ADDED from /Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-63:19
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/acce64f065fcfc1fdec88c661d9f5949/material-1.3.0-alpha01/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/acce64f065fcfc1fdec88c661d9f5949/material-1.3.0-alpha01/AndroidManifest.xml:22:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/ce1b9411baf8e776a45af1f4042f7cd9/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/ce1b9411baf8e776a45af1f4042f7cd9/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/28c2386d21c3134049a1888b50652813/constraintlayout-2.0.2/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/28c2386d21c3134049a1888b50652813/constraintlayout-2.0.2/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/1a393f25be06e7aac432ac31427cae06/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/b112060bd96b5fecf3a6ca11b8a1cbeb/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
@@ -230,8 +230,8 @@ MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/gn0987123/.gradle/c
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/2849ec2b50e51d8ee8f1f561e596ae07/navigation-ui-2.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/acce64f065fcfc1fdec88c661d9f5949/material-1.3.0-alpha01/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/acce64f065fcfc1fdec88c661d9f5949/material-1.3.0-alpha01/AndroidManifest.xml:20:5-44
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/ce1b9411baf8e776a45af1f4042f7cd9/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/ce1b9411baf8e776a45af1f4042f7cd9/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/28c2386d21c3134049a1888b50652813/constraintlayout-2.0.2/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/28c2386d21c3134049a1888b50652813/constraintlayout-2.0.2/AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.yalantis:ucrop:2.2.4] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/7697710f675b167c917a7faccf335033/jetified-ucrop-2.2.4/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.yalantis:ucrop:2.2.4] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/7697710f675b167c917a7faccf335033/jetified-ucrop-2.2.4/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat:1.2.0] /Users/gn0987123/.gradle/caches/transforms-2/files-2.1/27946f5646124fa7e2849e53559616ba/appcompat-1.2.0/AndroidManifest.xml:20:5-22:41
