@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.main.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -64,5 +65,16 @@ public class ArticleFragment extends Fragment {
         fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
                 .navigate(R.id.action_articleFragment_to_articleInsertFragment, bundle));
 
+    }
+
+
+    //隱藏BottomNavigationView 方法
+    public static void bottomNavSet (Activity activity, int bottomNavigationInt) {
+        BottomNavigationView bottomNavigationView = activity.findViewById(R.id.articleNavigation);
+        if (bottomNavigationInt == 0) {
+            bottomNavigationView.setVisibility(View.GONE);
+        } else {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        }
     }
 }

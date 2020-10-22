@@ -264,6 +264,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_place_24.xml"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_article_update.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/res/layout/fragment_article_update.xml"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },

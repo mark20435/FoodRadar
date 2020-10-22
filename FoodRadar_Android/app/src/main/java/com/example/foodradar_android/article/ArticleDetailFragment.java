@@ -2,9 +2,12 @@ package com.example.foodradar_android.article;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -71,8 +74,10 @@ public class ArticleDetailFragment extends Fragment {
     private UserAccount userAccount; //已登入的使用者名稱
     private ConstraintLayout layoutCommentBar;
     final String[] articleSetting = {"編輯文章", "刪除文章"};
+    private CommentGood commentGood;
 
     private BottomNavigationView bottomNavigationView;
+    private ImageView imageShow;
 
 
     public ArticleDetailFragment() {
@@ -94,6 +99,8 @@ public class ArticleDetailFragment extends Fragment {
         super.onStart();
         //隱藏 floatingActionButton
         Common.faButtonControl(activity, false);
+        //隱藏bottomNav
+        ArticleFragment.bottomNavSet(activity, 0);
 
     }
 
@@ -211,7 +218,8 @@ public class ArticleDetailFragment extends Fragment {
         tvDtdailResCategoryInfo.setText(resCategory);
         String resName = article.getResName();  //餐聽名稱
         tvDetailResName.setText("店名：" + resName);
-        String DetailArticleTime = article.getArticleTime();  //文章發表時間(修改後時間顯示後補)
+//      String DetailArticleTime = article.getArticleTime();  //文章發表時間(修改後時間顯示後補)
+        String DetailArticleTime = article.getModifyTime();  //文章修改時間
         tvDetailArticleTime.setText("發表時間：" + DetailArticleTime);
         String articleText = article.getArticleText();  //文章內文
         tvArticleText.setText(articleText);
@@ -220,6 +228,12 @@ public class ArticleDetailFragment extends Fragment {
         String DetailCommentCount = article.getCommentCount() + "";     //取得留言數
         tvDetailCommentCount.setText(DetailCommentCount);
 
+        /* 取得消費人數及金額，目的帶到Update文章頁面 */
+        int conNum = article.getConNum();
+        String conNumStr = Integer.toString(conNum);
+        int conAmount = article.getConAmount();
+        String conAmountStr = Integer.toString(conAmount);
+
         //登入的user不是發文者的話不顯示設定圖樣
         ivDetailSetting.setImageResource(R.drawable.ic_baseline_more_vert_24);
         if (article.getUserId() == userIdBox) {
@@ -227,13 +241,25 @@ public class ArticleDetailFragment extends Fragment {
             ivDetailSetting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //AlertDialog
+                    /* AlertDialog修改、刪除文章 */
                     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                     builder.setItems(articleSetting, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (which == 0) {
-                                //跳轉至更新頁面
+                                /* 跳轉至更新頁面 */
+                                //包裝資料
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("articleId", articleIdBox);
+                                bundle.putInt("userId", userIdBox);
+                                bundle.putString("articleTitle", title);
+                                bundle.putString("articleText", articleText);
+                                bundle.putString("conNum", conNumStr);   //消費人數
+                                bundle.putString("conAmount", conAmountStr); //平均消費
+                                bundle.putString("resName", resName);   //餐廳名稱
+                                bundle.putString("resCategory", resCategory);   //餐廳種類
+                                Navigation.findNavController(v).navigate(R.id.action_articleDetailFragment_to_articleUpdateFragment, bundle);
+
                             } else {
                                 //跳轉至刪除
                                 if (Common.networkConnected(activity)) {
@@ -251,9 +277,9 @@ public class ArticleDetailFragment extends Fragment {
                                         Log.e(TAG, e.toString());
                                     }
                                     if (count == 0) {   //影響資料筆數0筆
-                                        Common.showToast(activity, "刪除失敗");
+                                        Common.showToast(activity, "文章刪除失敗");
                                     } else {
-                                        Common.showToast(activity, "刪除成功");
+                                        Common.showToast(activity, "文章刪除成功");
                                     }
                                     Navigation.findNavController(v).navigate(R.id.action_articleDetailFragment_to_newArticleFragment2);
                                 }
@@ -553,15 +579,18 @@ public class ArticleDetailFragment extends Fragment {
             imageTask.execute();
             imageTasks.add(imageTask);
 
+
+            /* alertDiolog顯示大圖  >   顯示圖片 */
             myViewHolder.ivArticleImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setView(R.layout.show_image_item)
-                            .setCancelable(true) // 必須點擊按鈕方能關閉，預設為true
-                            .show();
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+//                    builder.setView(R.layout.show_image_item)
+//                            .setCancelable(true) // 必須點擊按鈕方能關閉，預設為true
+//                            .show();
                 }
             });
+
         }
 
     }
@@ -654,7 +683,7 @@ public class ArticleDetailFragment extends Fragment {
             return new MyViewHolder(itemView);
         }
 
-        //將抓取至MyViewHolder的留言呈現到畫面上 > comment
+        /* 將抓取至MyViewHolder的留言呈現到畫面上 > comment */
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
             final Comment comment = comments.get(position);
@@ -684,6 +713,7 @@ public class ArticleDetailFragment extends Fragment {
                         String url = Common.URL_SERVER + "CommentServlet";
                         switch (item.getItemId()) {
                             case R.id.itUpdateComment:
+
                                 /*更新留言功能*/
                                 //1.取得留言
                                 if (Common.networkConnected(activity)) {
@@ -706,9 +736,9 @@ public class ArticleDetailFragment extends Fragment {
                                 etComment.setText(comment.getCommentText());
                                 //自動彈出鍵盤
                                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    // 如果鍵盤是關閉的 > 打開
-                                    imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
-                                    etComment.requestFocus();//setFocus方法无效 //addAddressRemarkInfo is EditText
+                                // 如果鍵盤是關閉的 > 打開
+                                imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+                                etComment.requestFocus();//setFocus方法无效 //addAddressRemarkInfo is EditText
 
                                 //3.更新留言
                                 btCommentSend.setOnClickListener(new View.OnClickListener() {
@@ -719,9 +749,8 @@ public class ArticleDetailFragment extends Fragment {
                                             int commentId = comment.getCommentId();
                                             String commentText = etComment.getText().toString().trim();
                                             String commentModifyTime = comment.getCommentModifyTime();
-                                            comment.setComment(commentId ,commentText, commentModifyTime);
+                                            comment.setComment(commentId, commentText, commentModifyTime);
                                             jsonObject.addProperty("action", "commentUpdate");
-//                                            jsonObject.addProperty("commentId", comment.getCommentId());
                                             jsonObject.addProperty("comment", new Gson().toJson(comment));
                                             int count = 0;
                                             try {
@@ -769,13 +798,13 @@ public class ArticleDetailFragment extends Fragment {
                                         Log.e(TAG, e.toString());
                                     }
                                     if (count == 0) {   //影響資料筆數0筆
-                                        Common.showToast(activity, "刪除失敗");
+                                        Common.showToast(activity, "留言刪除失敗");
                                     } else {
-                                        Common.showToast(activity, "刪除成功");
+                                        Common.showToast(activity, "留言刪除成功");
                                     }
+                                    comments = getComments();
+                                    showComments(comments);
                                 }
-                                comments = getComments();
-                                showComments(comments);
                                 break;
                         }
                         return false;
@@ -785,26 +814,33 @@ public class ArticleDetailFragment extends Fragment {
             } else {
                 myViewHolder.ivCommentSetting.setVisibility(View.GONE);
             }
-            //設定留言點讚功能，1.會員登入判斷還沒寫，要候補 > comment
+
+            //設定 留言點讚 功能，1.會員登入判斷還沒寫，要候補 > comment
             //2.先判斷使用者是否已點讚 > comment
 //            final CommentGood commentGood = commentGoods.get(position);
             boolean commentGoodStatus = comment.isCommentGoodStatus();
             ImageView CommentGoodIcon = myViewHolder.ivCommentGoodIcon;
-            if (commentGoodStatus) {
-                CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
-            } else {
+            if (userIdBox == 0) {
+                comment.setCommentGoodStatus(false);
                 CommentGoodIcon.setColorFilter(Color.parseColor("#424242"));
+            } else {
+                if (commentGoodStatus) {
+                    CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
+                    comment.setCommentGoodStatus(true);
+                } else {
+                    CommentGoodIcon.setColorFilter(Color.parseColor("#424242"));
+                    comment.setCommentGoodStatus(false);
+                }
             }
             myViewHolder.ivCommentGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
-            int commentGoodCount = comment.getCommentGoodCount();
             myViewHolder.tvCommentGood.setText((comment.getCommentGoodCount() + ""));
-            //3.設定監聽器
+            //3.設定監聽器   >   留言點讚
             if (userIdBox != 0) {
                 myViewHolder.ivCommentGoodIcon.setOnClickListener(v -> {
                     if (!comment.isCommentGoodStatus()) {
                         if (Common.networkConnected(activity)) {
                             String commentGoodUrl = Common.URL_SERVER + "CommentGoodServlet";
-                            int insertUserId = comment.getUserId();
+                            int insertUserId = userIdBox;
                             int insertcommentId = comment.getCommentId();
                             Comment commentGood1 = new Comment(insertUserId, insertcommentId);
                             JsonObject jsonObject = new JsonObject();
@@ -901,6 +937,25 @@ public class ArticleDetailFragment extends Fragment {
             articleGetAllTask.cancel(true);
             articleGetAllTask = null;
         }
+    }
+
+    //點擊圖片顯示大圖
+    private void bigImageLoader(Bitmap bitmap) {
+        final Dialog dialog = new Dialog(activity);
+        ImageView image = new ImageView(getContext());
+        image.setImageBitmap(bitmap);
+        dialog.setContentView(image);
+        //将dialog周围的白块设置为透明
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        //显示
+        dialog.show();
+        //点击图片取消
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
     }
 
 }

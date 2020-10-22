@@ -61,10 +61,9 @@ public class ArticleInsertFragment extends Fragment {
     private TextView tvResName;
     private RecyclerView rvInsertImage;
     private ImageView ivPlaceIcon;
-    private ImageView ivArticleImageInsert;
     //    private List<ResAddress> resAddresses;
     private ResAddress resAddresses;
-    private static final int TYPE_PICK = 0;
+    private static final int TYPE_PICK = 0; //rvImage
     private static final int TYPE_IMAGE = 1;
     private List<ImageTask> imageTasks;
     private byte[] imgbit;
@@ -147,22 +146,18 @@ public class ArticleInsertFragment extends Fragment {
             bundle.putInt("newArticle", 0);
         } else {
             tvResName.setText("店名：請選擇餐廳2");
-
         }
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
-        //偏好設定取得文字
+        /* 偏好設定取得文字 > 帶回餐廳資訊 */
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
         String resName = preferences.getString("ResName", DEFAULT_FILE_NAME);
         String resCategory = preferences.getString("Category", DEFAULT_FILE_NAME);
-//        int resIdPre = preferences.getInt("resId", 0);
 
-        //顯示餐廳資訊
+        /* 顯示餐廳資訊 */
         if (newArticle == 0 ) {
             tvResName.setText(resCategory + "\n" + "餐廳：" + resName);
         } else {
@@ -202,17 +197,16 @@ public class ArticleInsertFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            //左上返回鍵
+            /* 左上返回鍵 */
             case android.R.id.home:
                 navController.popBackStack();
                 break;
-            //右上送出發文
+            /* 右上送出發文 */
             case R.id.menuSend:
 //                String resName = tvResName.toString();
                 boolean textError = true;
-
                 String conNumStr = etConNum.getText().toString().trim();   //輸入人數轉為字串
-                Log.d(TAG, "conNumStr:::::::: " + conNumStr);
+//                Log.d(TAG, "conNumStr:::::::: " + conNumStr);
                 if (conNumStr.length() <= 0 ) {
                     etConNum.setError("請輸入正確消費人數");
                     textError = false;
@@ -439,7 +433,7 @@ public class ArticleInsertFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (which == 0) {
-                                    //使用相機
+                                    /* 使用相機 */
                                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    //intent物件 > 意圖取得圖片檔
                                     File file = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);   //File取得外部圖檔
                                     file = new File(file, "picture.jpg");
@@ -452,7 +446,10 @@ public class ArticleInsertFragment extends Fragment {
                                         Common.showToast(activity, "找不到相機");
                                     }
                                 } else {
-                                    Navigation.findNavController(v).navigate(R.id.action_articleInsertFragment_to_insertImageFragment);
+                                    /* 讀取相簿 */
+                                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    startActivityForResult(intent, REQ_PICK_PICTURE); //找到相簿後intent就發出請求，取得相片
+                                    // Navigation.findNavController(v).navigate(R.id.action_articleInsertFragment_to_insertImageFragment);
                                 }
                             }
                         })

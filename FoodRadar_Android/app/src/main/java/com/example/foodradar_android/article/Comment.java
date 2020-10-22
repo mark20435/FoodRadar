@@ -55,6 +55,22 @@ public class Comment {
         this.commentText = commentText;
     }
 
+    public Comment(int commentId, String commentTime, int articleId, int userId, String commentModifyTime,
+                   boolean commentStatus, String commentText, String userName, int commentGoodCount) {
+        super();
+        this.commentId = commentId;
+        this.commentTime = commentTime;
+        this.articleId = articleId;
+        this.userId = userId;
+        this.commentModifyTime = commentModifyTime;
+        this.commentStatus = commentStatus;
+        this.commentText = commentText;
+        this.userName = userName;
+//		this.commentGoodId = commentGoodId;
+//		this.commentGoodStatus = commentGoodStatus;
+        this.commentGoodCount = commentGoodCount;
+    }
+
     //update
     public void setComment(int commentId, String commentText, String commentModifyTime) {
         this.commentText = commentText;

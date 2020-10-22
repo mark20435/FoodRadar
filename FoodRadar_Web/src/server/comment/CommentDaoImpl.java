@@ -63,13 +63,14 @@ public class CommentDaoImpl implements CommentDao {
 		return count;
 	}
 
+	//刪除留言 >
 	@Override
 	public int delete(Comment comment) {
 		int count = 0;
-		String sql = "UPDATE Comment SET commentStatus = ? WHERE commentId = ?";
+		String sql = "UPDATE Comment SET commentStatus = ? WHERE commentId = ? ";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setBoolean(1, comment.isCommentGoodStatus());
+			ps.setBoolean(1, comment.isCommentStatus());
 			ps.setInt(2, comment.getCommentId());
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
@@ -90,7 +91,7 @@ public class CommentDaoImpl implements CommentDao {
 				+ ",(select count(*) from CommentGood CG where CG.commentId = C.commentId) as 'commentGoodCount'\n"
 				+ ",(select case count(*) when 0 then 0 else 1 end from CommentGood CG where CG.commentId = C.commentId and CG.userId = C.userId ) as 'commentGoodStatus'\n"
 				+ "FROM Comment C \n" + "join UserAccount UA on C.userId = UA.userId\n"
-				+ "where C.commentStatus = 1 and C.articleId =  ? \n" + "ORDER BY commentModifyTime ASC;";
+				+ "where C.commentStatus = 1 and C.articleId =  ? \n" + "ORDER BY commentModifyTime ASC ;";
 		System.out.println("sql: " + sql);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {

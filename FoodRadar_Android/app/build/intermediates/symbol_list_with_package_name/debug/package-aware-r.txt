@@ -1933,6 +1933,7 @@ id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_CategoryTypeFragment_to_userDataSetupFragment
 id action_articleDetailFragment_to_articleFragment
+id action_articleDetailFragment_to_articleUpdateFragment
 id action_articleDetailFragment_to_favoriteArticleFragment
 id action_articleDetailFragment_to_newArticleFragment2
 id action_articleDetailFragment_to_rankArticleFragment
@@ -2011,6 +2012,7 @@ id articleFragment
 id articleInsertFragment
 id articleNavigation
 id articleTitle
+id articleUpdateFragment
 id article_navigation
 id asConfigured
 id async
@@ -2094,6 +2096,7 @@ id btWedDeleteHours3
 id btWriteArticle
 id btnLogInOut
 id buttonPanel
+id cache_measures
 id cancel_action
 id cancel_button
 id cardView
@@ -2172,6 +2175,7 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id deltaRelative
+id dependency_ordering
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -2210,10 +2214,14 @@ id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id etArticleText
+id etArticleTextUpdate
 id etArticleTitle
+id etArticleTitleUpdate
 id etComment
 id etConAmount
+id etConAmountUpdate
 id etConNum
+id etConNumUpdate
 id etPassword
 id etPasswordConfirm
 id etResAddress
@@ -2246,6 +2254,7 @@ id gone
 id graph
 id graph_wrap
 id group_divider
+id grouping
 id groups
 id hideable
 id home
@@ -2455,6 +2464,7 @@ id rvRes
 id rvResAddress
 id rvSample
 id rvSec
+id rvUpdateImage
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -2468,6 +2478,7 @@ id scrollIndicatorUp
 id scrollV
 id scrollView
 id scrollView2
+id scrollViewUpdate
 id scrollable
 id searchView
 id search_badge
@@ -2646,6 +2657,7 @@ id tvManagerFun
 id tvModifyDate
 id tvMonday
 id tvMoney
+id tvMoneyUpdate
 id tvPassword
 id tvPasswordConfirm
 id tvPeople
@@ -2656,6 +2668,7 @@ id tvResEnable
 id tvResHours
 id tvResHoursDetail
 id tvResName
+id tvResNameUpdate
 id tvResRating
 id tvResTel
 id tvSaturday
@@ -2818,6 +2831,7 @@ layout design_text_input_start_icon
 layout fragment_article
 layout fragment_article_detail
 layout fragment_article_insert
+layout fragment_article_update
 layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
