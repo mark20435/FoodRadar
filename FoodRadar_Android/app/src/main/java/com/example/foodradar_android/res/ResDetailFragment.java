@@ -173,6 +173,15 @@ public class ResDetailFragment extends Fragment {
         imageTask.execute();
 //        Log.d(TAG, "imageTask: " + imageTaskBVH);
 
+        ivRes.setOnClickListener(v -> {
+            final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_res_img, null);
+            alertDialog.setView(dialogView);
+            ImageTask bigImageTask = new ImageTask(url, id, getResources().getDisplayMetrics().widthPixels, dialogView.findViewById(R.id.imageView));
+            bigImageTask.execute();
+            imageTasks.add(bigImageTask);
+            alertDialog.show();
+        });
 
         Bundle bundle = getArguments();
         if (bundle == null || bundle.getSerializable("res") == null) {
@@ -880,7 +889,6 @@ public class ResDetailFragment extends Fragment {
 
         //todo 食記相關按鈕
 
-        //todo 轉到餐廳照片頁面
 
     }
 
