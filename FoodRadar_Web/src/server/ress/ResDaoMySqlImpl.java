@@ -206,7 +206,8 @@ public class ResDaoMySqlImpl implements ResDao {
 	
 	@Override
 	public List<Res> getAllEnable(int curUserId) {
-		String sql = "SELECT R.resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName, ifnull(avg(rating), -1) as rating \n" + 
+		String sql = "SELECT R.resId, resName, resAddress, resLat, resLon, resTel, resHours, R.resCategoryId, resEnable, R.userId, R.modifyDate, resCategoryInfo, userName, ifnull(avg(rating), -1) as rating, \n" +
+				"(select case count(*) when 0 then false else true end from MyRes where resId = R.resId and userId = ?) as isMyRes " +
 				"FROM Res R\n" + 
 				"left join Category C on R.resCategoryId = C.resCategoryId\n" + 
 				"left join UserAccount U on R.userId = U.userId\n" + 
@@ -217,6 +218,7 @@ public class ResDaoMySqlImpl implements ResDao {
 		List<Res> ressList = new ArrayList<Res>();
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, curUserId);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int resId = rs.getInt(1);
@@ -233,11 +235,13 @@ public class ResDaoMySqlImpl implements ResDao {
 				String resCategoryInfo = rs.getString(12);
 				String userName = rs.getString(13);
 				Float rating = rs.getFloat(14);
+				Boolean myRes = rs.getBoolean(15);
 				Res res = new Res(resId, resName, resAddress, resLat, resLon, resTel, resHours, resCategoryId,
 						resEnable, userId, modifyDate);
 				res.setResCategoryInfo(resCategoryInfo);
 				res.setUserName(userName);
 				res.setRating(rating);
+				res.setMyRes(myRes);
 				ressList.add(res);
 			}
 			return ressList;

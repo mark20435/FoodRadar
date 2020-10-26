@@ -3,12 +3,10 @@ package com.example.foodradar_android.user;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.google.gson.JsonObject;
 
@@ -21,7 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
+public class UserImageTask extends AsyncTask<Object, Integer, Bitmap> {
     private final static String TAG = "TAG_ImageTask";
     private String url;
     private int id, imageSize;
@@ -29,18 +27,19 @@ public class UserMyResImage extends AsyncTask<Object, Integer, Bitmap> {
     private Activity activity;
 
     // 取單張圖片
-    public UserMyResImage(String url, int id, int imageSize) {
+    public UserImageTask(String url, int id, int imageSize) {
         this(url, id, imageSize, null);
     }
 
-    public UserMyResImage(String url, int id, Activity activity, ImageView imageView) {
-        this.url = url;
-        this.id = id;
-        this.activity = activity;
-        this.imageViewWeakReference = new WeakReference<>(imageView);
-    }
+//    public UserMyResImage(String url, int id, Activity activity, ImageView imageView) {
+//        this.url = url;
+//        this.id = id;
+//        this.activity = activity;
+//        this.imageViewWeakReference = new WeakReference<>(imageView);
+//    }
+
     // 取完圖片後使用傳入的ImageView顯示，適用於顯示多張圖片
-    public UserMyResImage(String url, int id, int imageSize, ImageView imageView) {
+    public UserImageTask(String url, int id, int imageSize, ImageView imageView) {
         this.url = url;
         this.id = id;
         this.imageSize = imageSize;

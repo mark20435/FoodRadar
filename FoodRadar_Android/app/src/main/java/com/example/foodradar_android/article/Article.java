@@ -68,6 +68,11 @@ public class Article implements Serializable {
         this.userId = userId;
     }
 
+    //刪除文章用
+    public void setStatus(boolean articleStatus){
+        this.articleStatus = articleStatus;
+    }
+
     //建構子，發文用
     public  Article(int articleId, String articleTitle, String articleText, int conNum,
                     int conAmount,int resId, int userId, boolean articleStatus){

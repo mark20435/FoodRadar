@@ -47,7 +47,13 @@
         android:label="fragment_article_detail"
         tools:layout="@layout/fragment_article_detail" >
         <action
-            android:id="@+id/action_articleDetailFragment_to_newArticleFragment"
+            android:id="@+id/action_articleDetailFragment_to_rankArticleFragment"
+            app:destination="@id/rankArticleFragment" />
+        <action
+            android:id="@+id/action_articleDetailFragment_to_favoriteArticleFragment"
+            app:destination="@id/favoriteArticleFragment" />
+        <action
+            android:id="@+id/action_articleDetailFragment_to_newArticleFragment2"
             app:destination="@id/newArticleFragment" />
     </fragment>
     <fragment

@@ -29,7 +29,6 @@ public class ArticleFragment extends Fragment {
     public FloatingActionButton fbArticleInsert;
     public BottomNavigationView articleNavigation;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +58,11 @@ public class ArticleFragment extends Fragment {
 
         //浮動button > 跳轉至insert
         fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
+         Bundle bundle = new Bundle();
+         int newArticle = 2;    //狀態判斷碼  > bundle帶到insert文章
+         bundle.putInt("newArticle", newArticle);
         fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-                .navigate(R.id.action_articleFragment_to_articleInsertFragment));
+                .navigate(R.id.action_articleFragment_to_articleInsertFragment, bundle));
 
     }
 }

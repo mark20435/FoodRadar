@@ -52,7 +52,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         activity = getActivity();
 
         // 顯示左上角的返回箭頭
-        Common.setBackArrow(true, activity);
+        Common.setBackArrow(false, activity);
         setHasOptionsMenu(true);
 
         navController = Navigation.findNavController(activity, R.id.mainFragment);
@@ -144,6 +144,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
                 break;
             // 我的社群活動
             case R.id.btUsArMyArticle:
+                navController.navigate(R.id.userMyArticleFragment);
                 break;
             // 會員資料設定
             case R.id.btUsArUserData:
@@ -170,6 +171,8 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         } else {
             setButton(true);
         }
+        // 左上角的返回箭頭顯示控制
+        Common.setBackArrow(false, activity);
     }
 
     // 畫面功能Enable控制
