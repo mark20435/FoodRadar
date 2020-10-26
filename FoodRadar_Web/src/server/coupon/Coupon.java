@@ -8,6 +8,9 @@ import com.sun.accessibility.internal.resources.accessibility;
 public class Coupon {
 	
 	private int id;
+	private int userId;
+	private int couPonId;
+	private int resId;
     private String couPonInfo;
     private Timestamp date;
     private String couPonStartDate;
@@ -18,9 +21,10 @@ public class Coupon {
     
     
 
-    public Coupon(Integer id, int couPonId, int resId, String resName, String couPonInfo,
+    public Coupon(Integer id, int couPonId, int resId, int userId, String resName, String couPonInfo,
     		Timestamp date, Button btCollect, Boolean couPonEnable, String couPonStartDate, String couPonEndDate, Boolean couPonType) {
         this.id = id;
+        this.userId = userId;
         this.couPonInfo = couPonInfo;
         this.date = date;
         this.btCollect = btCollect;
@@ -31,7 +35,15 @@ public class Coupon {
         
     }
 
-    public int getId() {
+    public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -72,6 +84,35 @@ public class Coupon {
 	}
 
 	
+
+	public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+			String couPonInfo, boolean couPonEnable, Integer userId) {
+		this.couPonId = couPonId;
+		this.resId = resId;
+		this.couPonStartDate = couPonStartDate;
+		this.couPonEndDate = couPonEndDate;
+		this.couPonType = couPonType;
+		this.couPonInfo = couPonInfo;
+		this.couPonEnable = couPonEnable;
+		this.userId = userId;
+		
+	}
+
+	public int getCouPonId() {
+		return couPonId;
+	}
+
+	public void setCouPonId(int couPonId) {
+		this.couPonId = couPonId;
+	}
+
+	public int getResId() {
+		return resId;
+	}
+
+	public void setResId(int resId) {
+		this.resId = resId;
+	}
 
 	public Boolean getCouPonType() {
 		return couPonType;

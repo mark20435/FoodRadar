@@ -140,6 +140,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
                 break;
             // 我的優惠券收藏
             case R.id.btUsArMyCoupon:
+                navController.navigate(R.id.action_userAreaFragment_to_userMyCouponFragment);
                 break;
             // 我的社群活動
             case R.id.btUsArMyArticle:

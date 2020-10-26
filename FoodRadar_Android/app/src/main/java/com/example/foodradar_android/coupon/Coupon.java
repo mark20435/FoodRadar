@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class Coupon implements Serializable {
     private int id;
     private int couPonId;
+    private int userId;
     private int resId;
     private String resName;
     private String couPonInfo;
@@ -18,10 +19,11 @@ public class Coupon implements Serializable {
     private Timestamp date;
     private Button btCollect;
 
-    public Coupon(int id, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect) {
+    public Coupon(int id, int userId, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect) {
         this.id = id;
         this.couPonId = couPonId;
         this.resId = resId;
+        this.userId = userId;
         this.resName = resName;
         this.couPonInfo = couPonInfo;
         this.couPonStartDate = couPonStartDate;
@@ -30,6 +32,14 @@ public class Coupon implements Serializable {
         this.couPonEnable = couPonEnable;
         this.date = date;
         this.btCollect = btCollect;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getId() {

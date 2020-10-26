@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="199dp"
     android:layout_margin="6dp"
     android:padding="6dp"
     card_view:cardBackgroundColor="#ffdddddd"
@@ -73,13 +73,14 @@
 
         <TextView
             android:id="@+id/couPonStartDate"
-            android:layout_width="0dp"
-            android:layout_height="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/ivDemo"
             android:layout_alignStart="@id/ivDemo"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="80dp"
             android:text="開始日期"
             android:textColor="#555555"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="@+id/tvCouInfo"
             card_view:layout_constraintStart_toEndOf="@+id/tvCouInfo"
             card_view:layout_constraintTop_toTopOf="@+id/tvCouInfo" />
@@ -92,6 +93,7 @@
             android:layout_alignStart="@id/ivDemo"
             android:layout_marginStart="16dp"
             android:text="結束日期"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="@+id/couPonStartDate"
             card_view:layout_constraintStart_toEndOf="@+id/couPonStartDate"
             card_view:layout_constraintTop_toTopOf="@+id/couPonStartDate" />

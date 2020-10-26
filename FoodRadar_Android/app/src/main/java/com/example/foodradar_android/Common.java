@@ -62,7 +62,7 @@ import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Common{
+public class Common {
     private final static String PREFERENCES_NAME = "foodradar_preference"; //prep偏好設定檔名
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
@@ -77,7 +77,7 @@ public class Common{
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
-                (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) activity.getSystemService(activity.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // API 23支援getActiveNetwork()
@@ -264,6 +264,21 @@ public class Common{
         } else {
             return  -2;
         }
+    }
+
+    public static void sendTokenToServer(String token, Activity activity) {
+        if (Common.networkConnected(activity)) {
+            String url = Common.URL_SERVER + "FcmBasicServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "register");
+            jsonObject.addProperty("registrationToken", token);
+            String jsonOut = jsonObject.toString();
+            CommonTask registerTask = new CommonTask(url, jsonOut);
+            registerTask.execute();
+        } else {
+            Common.showToast(activity, R.string.textNoNetwork);
+        }
+
     }
 
     // 登入成功時，產生偏好設定檔
