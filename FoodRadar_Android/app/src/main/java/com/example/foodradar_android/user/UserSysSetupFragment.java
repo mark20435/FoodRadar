@@ -83,6 +83,8 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
         view.findViewById(R.id.btUsArUserＭaintain).setOnClickListener(this);
         // 會員發文管理
         view.findViewById(R.id.btUsArArticleＭaintain).setOnClickListener(this);
+        // 訊息推撥設定
+        view.findViewById(R.id.btUsArMessageSend).setOnClickListener(this);
 
         Resources res = getResources();
         swUsArNotifi = view.findViewById(R.id.swUsArNotifi);
@@ -143,6 +145,10 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
             // 會員發文管理
             case R.id.btUsArArticleＭaintain:
 //                navController.navigate(R.id.);
+                break;
+            // 訊息推撥設定
+            case R.id.btUsArMessageSend:
+                navController.navigate(R.id.action_userSysSetupFragment_to_fcmFragment);
                 break;
             default:
                 Toast.makeText(activity, "Unknow id: " + v.getId() + "\n" +

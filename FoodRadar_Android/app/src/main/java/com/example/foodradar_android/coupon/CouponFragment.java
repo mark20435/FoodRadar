@@ -5,8 +5,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +16,16 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +51,10 @@ public class CouponFragment extends Fragment {
     private RecyclerView rvCoupon;
     private RecyclerView rvSample;
     private FragmentActivity activity;
+    private NavController navController;
     private TextView tvCouInfo, couPonStartDate, couPonEndDate;
+    private ImageView imageAlert, imageAlert2, ivNoUse;
+    private ImageButton ibUseCard;
     private Timestamp Date;
     private boolean couPonType;
     private boolean couPonEnable;
@@ -53,19 +65,70 @@ public class CouponFragment extends Fragment {
     private List<Coupon> couacts;
     private int UserId;
 
-
-
-    public CouponFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         imageTasks = new ArrayList<>();
+        setHasOptionsMenu(true);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
         //new Common().setBackArrow(false,activity);
+    }
+    private void showDialog(int imageId, int imageId2) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+
+        new Common().setBackArrow(true, activity);
+        alertDialog.show();
+        Window window = alertDialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.popupAnimation);
+        View view = View.inflate(activity, R.layout.alert_dialog_view, null);
+        imageAlert = view.findViewById(R.id.imageAlert);
+        imageAlert.setImageResource(imageId);
+        imageAlert2 = view.findViewById(R.id.imageAlert2);
+        imageAlert2.setImageResource(imageId2);
+        ibUseCard = view.findViewById(R.id.ibUseCard);
+        ibUseCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+//        alertView = view.findViewById(R.id.tvUseInfo1);
+//        alertView.setText(tvUseInfo1);
+//        alertView2 = view.findViewById(R.id.tvUseInfo2);
+//        alertView2.setText(tvUseInfo2);
+
+        window.setContentView(view);
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.setCancelable(true);
+
+    }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        //navController.navigate(R.id.action_couponFragment_to_fcmFragment);
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.appbar_ezfcm,menu);
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.ezFcm:
+                showDialog(R.drawable.chinacate, R.drawable.no_image);
+                return true;
+            case android.R.id.home:
+                navController.popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
 
@@ -83,34 +146,36 @@ public class CouponFragment extends Fragment {
         //swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         rvSample = view.findViewById(R.id.rvSample);
         rvCoupon = view.findViewById(R.id.rvCoupon);
-        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+//        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         swRf = view.findViewById(R.id.swRf);
         rvSample.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
 
         rvCoupon.setLayoutManager(new LinearLayoutManager(activity));
+
         couacts = getCouacts();
         showCouacts(couacts);
+
         coupons = getCoupons();
         showCoupons(coupons);
 
         swRf.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
+                swRf.setRefreshing(true);
                 showCoupons(couacts);
-                swipeRefreshLayout.setRefreshing(false);
+                swRf.setRefreshing(false);
             }
         });
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
-                showCoupons(coupons);
-                swipeRefreshLayout.setRefreshing(false);
-
-            }
-        });
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//
+//            @Override
+//            public void onRefresh() {
+//                swipeRefreshLayout.setRefreshing(true);
+//                showCoupons(coupons);
+//                swipeRefreshLayout.setRefreshing(false);
+//
+//            }
+//        });
 
     }
 
@@ -197,6 +262,8 @@ public class CouponFragment extends Fragment {
             imageTasks.add(imageTask);
 
             holder.couPonInfo.setText(coupon.getCouPonInfo());
+            holder.couPonStartDate.setText(coupon.getCouPonStartDate());
+            holder.couPonEndDate.setText(coupon.getCouPonEndDate());
             //Log.d(TAG,"coupon.getTvCouInfo(): " + coupon.getTvCouInfo());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -322,11 +389,13 @@ public class CouponFragment extends Fragment {
 //            myViewHolder.tvCouName.setText(coupon.getResName());
            // Log.d(TAG, "resName" + coupon);
             myViewHolder.upcouPonInfo.setText(coupon.getCouPonInfo());
+            myViewHolder.couPonStartDateUp.setText(coupon.getCouPonStartDate());
+            myViewHolder.couPonEndDateUp.setText(coupon.getCouPonEndDate());
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("couPon", coupon);
+                    bundle.putSerializable("coupon", coupon);
                     Navigation.findNavController(view)
                             .navigate(R.id.action_couponFragment_to_couponDetailFragment, bundle);
                 }

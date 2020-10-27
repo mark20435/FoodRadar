@@ -1765,6 +1765,7 @@ drawable googleg_standard_color_18
 drawable ic_add
 drawable ic_awesome_user_circle
 drawable ic_baseline_account_circle_24
+drawable ic_baseline_announcement_24
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_bookmarks_24
 drawable ic_baseline_broken_image_24
@@ -1996,9 +1997,12 @@ id action_resMapFragment_to_resListFragment
 id action_text
 id action_userAreaFragment_to_resMaintainFragment
 id action_userAreaFragment_to_userDataSetupFragment
+id action_userAreaFragment_to_userMyCouponFragment
 id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
+id action_userMyCouponFragment_to_couponDetailFragment
 id action_userMyResFragment_to_resDetailFragment
+id action_userSysSetupFragment_to_fcmFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -2039,6 +2043,7 @@ id btAdd
 id btAutoLogin
 id btBack
 id btCancel
+id btClear
 id btCommentSend
 id btDatePicker
 id btDelete
@@ -2049,6 +2054,7 @@ id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
 id btFriDeleteHours3
+id btGetToken
 id btImgCamera
 id btInsert
 id btMonAddHours
@@ -2067,6 +2073,10 @@ id btSatAddHours2
 id btSatDeleteHours2
 id btSatDeleteHours3
 id btSearchResAgain
+id btSendGroupFcm
+id btSendSingleFcm
+id btSendSubscriber
+id btSubscribeHealth
 id btSunAddHours
 id btSunAddHours2
 id btSunDeleteHours2
@@ -2087,6 +2097,7 @@ id btUpdate
 id btUsArArticleＭaintain
 id btUsArContactUs
 id btUsArCouponＭaintain
+id btUsArMessageSend
 id btUsArMyArticle
 id btUsArMyCoupon
 id btUsArMyRes
@@ -2148,6 +2159,7 @@ id constvUsArContactUs
 id constvUsArCouponＭaintain
 id constvUsArManagerFun
 id constvUsArManagerFunTitle
+id constvUsArMessageSend
 id constvUsArMyArticle
 id constvUsArMyCoupon
 id constvUsArMyRes
@@ -2211,6 +2223,7 @@ id easeOut
 id edUsArArticleＭaintain
 id edUsArContactUsDivider
 id edUsArCouponＭaintainDivider
+id edUsArMessageSend
 id edUsArMyArticleDivider
 id edUsArMyCouponDivider
 id edUsArMyResDivider
@@ -2228,27 +2241,32 @@ id etArticleText
 id etArticleTextUpdate
 id etArticleTitle
 id etArticleTitleUpdate
+id etBody
 id etComment
 id etConAmount
 id etConAmountUpdate
 id etConNum
 id etConNumUpdate
+id etData
 id etPassword
 id etPasswordConfirm
 id etResAddress
 id etResName
 id etResTel
+id etTitle
 id etUserBirth
 id etUserName
 id etUserPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id ezFcm
 id ezLogin
 id ezLogout
 id fade
 id favoriteArticleFragment
 id fbArticleInsert
+id fcmFragment
 id fill
 id fill_horizontal
 id fill_vertical
@@ -2273,6 +2291,7 @@ id homeAsUp
 id honorRequest
 id horizontal
 id hybrid
+id ibUseCard
 id ibcate
 id icon
 id icon_group
@@ -2286,6 +2305,7 @@ id imMyAtResImg
 id imResImg
 id image
 id imageAlert
+id imageAlert2
 id imageView
 id image_view_crop
 id image_view_logo
@@ -2338,6 +2358,7 @@ id ivShowImage
 id ivUsArArticleＭaintain
 id ivUsArContactUs
 id ivUsArCouponＭaintain
+id ivUsArMessageSend
 id ivUsArMyArticle
 id ivUsArMyCoupon
 id ivUsArMyRes
@@ -2360,6 +2381,7 @@ id line1
 id line3
 id linear
 id linearLayout
+id linearLayout2
 id listMode
 id list_item
 id login
@@ -2407,6 +2429,8 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
+id myCouponInfo
+id myCouponPhoto
 id nav_controller_view_tag
 id nav_host_fragment_container
 id navigation_header_container
@@ -2445,6 +2469,7 @@ id ratio
 id rcvMyArticleCollect
 id rcvMyArticleIsMe
 id rcvMyComment
+id rcvMyCoupon
 id rectangles
 id regcancel
 id register_Fragment
@@ -2592,6 +2617,7 @@ id submit_area
 id svArticleDetail
 id svMyArticle
 id svResAddress
+id svUseCard
 id swResEnable
 id swRf
 id swUsArNotifi
@@ -2618,6 +2644,7 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
 id text_input_end_icon
 id text_input_start_icon
 id text_view_crop
@@ -2727,6 +2754,8 @@ id tvTo9
 id tvTuesDay
 id tvUpdate
 id tvUsArManagerFundivider
+id tvUseInfo1
+id tvUseInfo2
 id tvUserBirth
 id tvUserBirthDivider
 id tvUserName
@@ -2749,6 +2778,7 @@ id userAreaFragment
 id userDataSetupFragment
 id userIcon
 id userMyArticleFragment
+id userMyCouponFragment
 id userMyResFragment
 id userName
 id userPhone
@@ -2870,6 +2900,7 @@ layout fragment_coupon
 layout fragment_coupon_detail
 layout fragment_coupon_maintain
 layout fragment_favorite_article
+layout fragment_fcm_item
 layout fragment_insert_image
 layout fragment_login
 layout fragment_main
@@ -2887,6 +2918,7 @@ layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
 layout fragment_user_my_article
+layout fragment_user_my_coupon
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_category
@@ -2898,6 +2930,7 @@ layout item_view_res_detail_image
 layout item_view_res_img
 layout item_view_res_map
 layout item_view_user_myarticle
+layout item_view_user_mycoupon
 layout item_view_user_myres
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2969,6 +3002,7 @@ layout ucrop_fragment_photobox
 layout ucrop_layout_rotate_wheel
 layout ucrop_layout_scale_wheel
 layout ucrop_view
+menu appbar_ezfcm
 menu appbar_ezlogin
 menu appbar_ezlogout
 menu appbar_menu
@@ -2985,6 +3019,8 @@ mipmap ic_launcher_round
 navigation article_navigation
 navigation main_navigation
 plurals mtrl_badge_content_description
+string FcmNoNetwork
+string Fcm_name
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -3047,13 +3083,24 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string coupon
+string default_notification_channel_id
+string default_notification_channel_name
+string default_web_client_id
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
+string ezFcm
 string ezLogin
 string ezLogout
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string favoriteArticle
+string fcm_fallback_notification_channel_label
+string firebase_database_url
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string home
@@ -3108,6 +3155,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string phone
+string project_id
 string prompt_email
 string prompt_password
 string rankArticle
@@ -3120,10 +3168,13 @@ string textAddressError
 string textArticleDate
 string textArticleText
 string textArticleWirter
+string textBody
 string textCancel
 string textChangPassword
+string textClear
 string textCommentDate
 string textCommentText
+string textData
 string textDatePicker
 string textDateTime
 string textDelete
@@ -3141,6 +3192,7 @@ string textEatWhat
 string textEnable
 string textEveryWeek
 string textFriday
+string textGetToken
 string textGiveRating
 string textHoursError
 string textImageEmpty
@@ -3191,6 +3243,7 @@ string textPlsInpup
 string textReadArticle
 string textRegisterCancel
 string textRegisterSend
+string textRegistrationToken
 string textResAddress
 string textResCategory
 string textResDistance
@@ -3205,9 +3258,16 @@ string textResRating
 string textResTel
 string textSaturday
 string textSearchResAgain
+string textSendGroupFcm
+string textSendSingleFcm
+string textSendSubscriber
+string textSubscribeFailed
+string textSubscribeHealth
+string textSubscribed
 string textSunday
 string textTakePicture
 string textThursday
+string textTitle
 string textTo
 string textTuesDay
 string textUpdate
@@ -3228,6 +3288,7 @@ string titleResImg
 string titleResInsert
 string titleResUpdate
 string title_of_contact_us
+string title_of_messageSend
 string title_of_myarticle
 string title_of_mycoupon
 string title_of_myres

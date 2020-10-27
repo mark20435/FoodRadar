@@ -14,7 +14,7 @@ public interface CouponDao {
 	 
 	 List<Coupon> getAll();
 	 
-	// List<Coupon> getAllEnable();
+	 List<Coupon> getAllEnable(int cupUserId);
 	 
 	// List<Coupon> couponfindById(int couponId);
 	 

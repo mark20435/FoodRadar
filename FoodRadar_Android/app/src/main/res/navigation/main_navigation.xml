@@ -77,12 +77,19 @@
         <action
             android:id="@+id/action_userAreaFragment_to_userDataSetupFragment"
             app:destination="@id/userDataSetupFragment" />
+        <action
+            android:id="@+id/action_userAreaFragment_to_userMyCouponFragment"
+            app:destination="@id/userMyCouponFragment" />
     </fragment>
     <fragment
         android:id="@+id/userSysSetupFragment"
         android:name="com.example.foodradar_android.user.UserSysSetupFragment"
         android:label="fragment_user_sys_setup"
-        tools:layout="@layout/fragment_user_sys_setup" />
+        tools:layout="@layout/fragment_user_sys_setup" >
+        <action
+            android:id="@+id/action_userSysSetupFragment_to_fcmFragment"
+            app:destination="@id/fcmFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userMyResFragment"
         android:name="com.example.foodradar_android.user.UserMyResFragment"
@@ -263,6 +270,21 @@
             app:destination="@id/userMyResFragment" />
     </fragment>
     <fragment
+
+        android:id="@+id/fcmFragment"
+        android:name="com.example.foodradar_android.FcmFragment"
+        android:label="fragment_fcm_item"
+        tools:layout="@layout/fragment_fcm_item" />
+    <fragment
+        android:id="@+id/userMyCouponFragment"
+        android:name="com.example.foodradar_android.user.UserMyCouponFragment"
+        android:label="fragment_user_my_coupon"
+        tools:layout="@layout/fragment_user_my_coupon" >
+        <action
+            android:id="@+id/action_userMyCouponFragment_to_couponDetailFragment"
+            app:destination="@id/couponDetailFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/userMyArticleFragment"
         android:name="com.example.foodradar_android.user.UserMyArticleFragment"
         android:label="fragment_user_my_article"
@@ -272,5 +294,6 @@
         android:name="com.example.foodradar_android.res.ResImgFragment"
         android:label="fragment_res_img"
         tools:layout="@layout/fragment_res_img" />
+
 
 </navigation>
