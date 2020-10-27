@@ -262,8 +262,8 @@ public class CouponFragment extends Fragment {
             imageTasks.add(imageTask);
 
             holder.couPonInfo.setText(coupon.getCouPonInfo());
-            holder.couPonStartDate.setText(coupon.getCouPonStartDate());
-            holder.couPonEndDate.setText(coupon.getCouPonEndDate());
+            holder.couPonStartDate.setText(coupon.getCouPonStartDate() + "~" + coupon.getCouPonEndDate());
+            //holder.couPonEndDate.setText(coupon.getCouPonEndDate());
             //Log.d(TAG,"coupon.getTvCouInfo(): " + coupon.getTvCouInfo());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
