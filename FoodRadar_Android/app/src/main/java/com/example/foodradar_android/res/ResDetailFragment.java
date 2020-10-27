@@ -176,6 +176,7 @@ public class ResDetailFragment extends Fragment {
         ivRes.setOnClickListener(v -> {
             final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
             View dialogView = getLayoutInflater().inflate(R.layout.dialog_res_img, null);
+            alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             alertDialog.setView(dialogView);
             ImageTask bigImageTask = new ImageTask(url, id, getResources().getDisplayMetrics().widthPixels, dialogView.findViewById(R.id.imageView));
             bigImageTask.execute();
@@ -792,6 +793,7 @@ public class ResDetailFragment extends Fragment {
             direct(fromLat, fromLng, toLat, toLng);
         });
 
+        //評價
         Button btResRating = view.findViewById(R.id.btResRating);
         btResRating.setOnClickListener(v -> {
             if (Common.USER_ID <= 0) {
@@ -810,6 +812,7 @@ public class ResDetailFragment extends Fragment {
             }
         });
 
+        //收藏
         ImageView ivMyRes = view.findViewById(R.id.ivMyRes);
 
         if (res.isMyRes()) {

@@ -183,6 +183,7 @@ public class ResImgFragment extends Fragment {
             myViewHolder.itemView.setOnClickListener(v -> {
                 final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                 View view = getLayoutInflater().inflate(R.layout.dialog_res_img, null);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 alertDialog.setView(view);
                 ImageTask bigImageTask = new ImageTask(url, imgId, getResources().getDisplayMetrics().widthPixels, view.findViewById(R.id.imageView));
                 bigImageTask.execute();
