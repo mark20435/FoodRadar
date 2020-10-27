@@ -255,5 +255,10 @@
         android:name="com.example.foodradar_android.user.UserMyArticleFragment"
         android:label="fragment_user_my_article"
         tools:layout="@layout/fragment_user_my_article" />
+    <fragment
+        android:id="@+id/userManagementFragment"
+        android:name="com.example.foodradar_android.user.UserManagementFragment"
+        android:label="fragment_user_management"
+        tools:layout="@layout/fragment_user_management" />
 
 </navigation>

@@ -80,7 +80,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
         // 餐廳優惠管理
         view.findViewById(R.id.btUsArCouponＭaintain).setOnClickListener(this);
         // 會員管理
-        view.findViewById(R.id.btUsArUserＭaintain).setOnClickListener(this);
+        view.findViewById(R.id.btUsArUserManagement).setOnClickListener(this);
         // 會員發文管理
         view.findViewById(R.id.btUsArArticleＭaintain).setOnClickListener(this);
 
@@ -137,8 +137,8 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
                 navController.navigate(R.id.couponMaintainFragment);
                 break;
             // 會員管理
-            case R.id.btUsArUserＭaintain:
-//                navController.navigate(R.id.);
+            case R.id.btUsArUserManagement:
+                navController.navigate(R.id.userManagementFragment);
                 break;
             // 會員發文管理
             case R.id.btUsArArticleＭaintain:

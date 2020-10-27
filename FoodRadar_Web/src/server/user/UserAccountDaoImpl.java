@@ -237,7 +237,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 						isAdmin, userAvatar, createDate, modifyDate);
 				userAccountList.add(userAccount);
 			}
-			pubTools.showConsoleMsg("userLogin.userAccountList.userId", "String.valueOf(userId)");
+			pubTools.showConsoleMsg("userLogin.userAccountList.userId", String.valueOf(userAccount.getUserId()));
 			return userAccountList;
 		} catch (SQLException e) {
 			pubTools.showConsoleMsg("getImage.SQLException", String.valueOf(e.getErrorCode()));

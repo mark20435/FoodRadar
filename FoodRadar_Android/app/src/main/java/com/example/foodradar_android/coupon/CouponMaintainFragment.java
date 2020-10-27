@@ -21,7 +21,7 @@ import com.example.foodradar_android.R;
 
 public class CouponMaintainFragment extends Fragment {
     private Activity activity;
-    NavController navController;
+    private NavController navController;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

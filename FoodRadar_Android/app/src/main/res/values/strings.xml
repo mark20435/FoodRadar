@@ -283,7 +283,7 @@
     <string name="textMustInput">不可為空白</string>
     <string name="textPasswordConfirmErr">確認密碼與密碼不符</string>
     <string name="title_of_res_coupon_maintain">餐廳優惠管理</string>
-    <string name="title_of_res_user_maintain">會員管理</string>
+    <string name="title_of_res_user_management">會員管理</string>
     <string name="title_of_res_article_maintain">會員發文管理</string>
     <string name="textImageNumber">照片數量</string>
     <string name="textReadArticle">觀看食記</string>
@@ -312,5 +312,10 @@
     <string name="textMyArticleIsMy">我的發文</string>
     <string name="textMyComment">我的回文</string>
     <string name="textCommentDate">"回文日期："</string>
-    <string name="textCommentText">"回文："</string>g>
+    <string name="textCommentText">"回文："</string>
+    <string name="textRegisterDate">"註冊日期"</string>
+    <string name="textAccountStatus">"帳號狀態"</string>
+    <string name="textOfEnable">"啟用"</string>
+    <string name="textOfDisable">"停用"</string>
+
 </resources>

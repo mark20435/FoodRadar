@@ -2086,7 +2086,7 @@ id btUsArMyRes
 id btUsArResＭaintain
 id btUsArSysSetup
 id btUsArUserData
-id btUsArUserＭaintain
+id btUsArUserManagement
 id btUsCoupon
 id btUse
 id btWedAddHours
@@ -2103,6 +2103,7 @@ id cardView2
 id cardView3
 id cardView4
 id cardViewAvatar
+id cardViewUserManageAvatar
 id cardview
 id category_Detail_Fragment
 id center
@@ -2265,11 +2266,13 @@ id icon_group
 id icon_only
 id id_btResMaintain
 id id_rcvMyRes
+id id_rcvUserManagement
 id ifRoom
 id ignore
 id ignoreRequest
 id imMyAtResImg
 id imResImg
+id imUserManageAvatar
 id image
 id imageAlert
 id image_view_crop
@@ -2480,6 +2483,8 @@ id scrollView
 id scrollView2
 id scrollable
 id searchView
+id searchViewMyRes
+id searchViewUserManagement
 id search_badge
 id search_bar
 id search_button
@@ -2576,6 +2581,7 @@ id svResAddress
 id swResEnable
 id swRf
 id swUsArNotifi
+id swUserManageStatus
 id swipeRefreshLayout
 id swipeRefreshLayoutFavorite
 id swipeRefreshLayoutRank
@@ -2707,6 +2713,10 @@ id tvTuesDay
 id tvUsArManagerFundivider
 id tvUserBirth
 id tvUserBirthDivider
+id tvUserManageAccountStatus
+id tvUserManageEditTime
+id tvUserManagePhone
+id tvUserManageRegisterTime
 id tvUserName
 id tvUserPhone
 id tvWednesday
@@ -2726,6 +2736,7 @@ id user
 id userAreaFragment
 id userDataSetupFragment
 id userIcon
+id userManagementFragment
 id userMyArticleFragment
 id userMyResFragment
 id userName
@@ -2861,6 +2872,7 @@ layout fragment_res_map
 layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
+layout fragment_user_management
 layout fragment_user_my_article
 layout fragment_user_my_res
 layout fragment_user_sys_setup
@@ -2871,6 +2883,7 @@ layout item_view_main
 layout item_view_res
 layout item_view_res_detail_image
 layout item_view_res_map
+layout item_view_user_management
 layout item_view_user_myarticle
 layout item_view_user_myres
 layout mtrl_alert_dialog
@@ -3088,6 +3101,7 @@ string rankArticle
 string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
+string textAccountStatus
 string textAdd
 string textAddHours
 string textAddressError
@@ -3148,6 +3162,8 @@ string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK
+string textOfDisable
+string textOfEnable
 string textOff
 string textOn
 string textOriginNotFound
@@ -3157,6 +3173,7 @@ string textPickPicture
 string textPlsInpup
 string textReadArticle
 string textRegisterCancel
+string textRegisterDate
 string textRegisterSend
 string textResAddress
 string textResCategory
@@ -3199,7 +3216,7 @@ string title_of_mycoupon
 string title_of_myres
 string title_of_res_article_maintain
 string title_of_res_coupon_maintain
-string title_of_res_user_maintain
+string title_of_res_user_management
 string title_of_sys_setup
 string title_of_userdata
 string ucrop_crop
