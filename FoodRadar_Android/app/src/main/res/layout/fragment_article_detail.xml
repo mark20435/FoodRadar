@@ -12,7 +12,6 @@
         android:id="@+id/svArticleDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,8 +126,8 @@
 
             <ImageView
                 android:id="@+id/ivDetailGoodIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_baseline_thumb_up_24"
                 app:layout_constraintEnd_toStartOf="@+id/tvDetailCommentCount"
@@ -141,13 +140,14 @@
                 android:layout_marginEnd="4dp"
                 android:text="10"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/ivDetailGoodIcon"
                 app:layout_constraintTop_toTopOf="@+id/ivDetailGoodIcon" />
 
             <ImageView
                 android:id="@+id/ivDetailArticleCommentIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_baseline_chat_bubble_24"
                 app:layout_constraintEnd_toStartOf="@+id/tvDetailFavoriteArticle"
@@ -160,13 +160,14 @@
                 android:layout_marginEnd="4dp"
                 android:text="10"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/ivDetailArticleCommentIcon"
                 app:layout_constraintTop_toTopOf="@+id/ivDetailArticleCommentIcon" />
 
             <ImageView
                 android:id="@+id/ivDetailFavoriteIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/ic_baseline_favorite_24"
                 app:layout_constraintBottom_toTopOf="@+id/tvArticleText"
@@ -179,6 +180,7 @@
                 android:layout_marginEnd="4dp"
                 android:text="10"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/ivDetailFavoriteIcon"
                 app:layout_constraintTop_toTopOf="@+id/ivDetailFavoriteIcon" />
 
@@ -212,12 +214,12 @@
         android:id="@+id/layoutCommentBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="492dp"
+        android:layout_marginTop="490dp"
         android:background="@color/earthBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/svArticleDetail">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
@@ -231,8 +233,8 @@
 
             <ImageView
                 android:id="@+id/user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_supervised_user_circle_24"
                 app:layout_constraintStart_toStartOf="parent"

@@ -44,9 +44,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 public class ArticleDetailFragment extends Fragment {
     private static final String TAG = "TAG_Detail";
@@ -79,15 +85,12 @@ public class ArticleDetailFragment extends Fragment {
     private BottomNavigationView bottomNavigationView;
     private ImageView imageShow;
 
-
-    public ArticleDetailFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         imageTasks = new ArrayList<>();
+        imgs = new ArrayList<>();
         // 顯示左上角的返回箭頭
 //        new Common().setBackArrow(true, activity);
 //        setHasOptionsMenu(true);
@@ -218,8 +221,8 @@ public class ArticleDetailFragment extends Fragment {
         tvDtdailResCategoryInfo.setText(resCategory);
         String resName = article.getResName();  //餐聽名稱
         tvDetailResName.setText("店名：" + resName);
-//      String DetailArticleTime = article.getArticleTime();  //文章發表時間(修改後時間顯示後補)
-        String DetailArticleTime = article.getModifyTime();  //文章修改時間
+      String DetailArticleTime = article.getArticleTime();  //文章發表時間(修改後時間顯示後補)
+//        String DetailArticleTime = article.getModifyTime();  //文章修改時間
         tvDetailArticleTime.setText("發表時間：" + DetailArticleTime);
         String articleText = article.getArticleText();  //文章內文
         tvArticleText.setText(articleText);
@@ -539,7 +542,7 @@ public class ArticleDetailFragment extends Fragment {
             layoutInflater = LayoutInflater.from(context);
             this.imgs = imgs;
             /* 螢幕寬度除以2當作將圖的尺寸 */
-            imageSize = getResources().getDisplayMetrics().widthPixels / 2;
+            imageSize = getResources().getDisplayMetrics().widthPixels;
         }
 
         @Override
@@ -575,7 +578,6 @@ public class ArticleDetailFragment extends Fragment {
             int imgId = img.getImgId();
             int articleId = img.getArticleId();
             ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage, articleId);
-//            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage);
             imageTask.execute();
             imageTasks.add(imageTask);
 
@@ -584,10 +586,17 @@ public class ArticleDetailFragment extends Fragment {
             myViewHolder.ivArticleImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-//                    builder.setView(R.layout.show_image_item)
-//                            .setCancelable(true) // 必須點擊按鈕方能關閉，預設為true
-//                            .show();
+                    final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                    View view = getLayoutInflater().inflate(R.layout.show_image_item, null);
+                    alertDialog.setView(view);
+                    ImageTask bigImageTask = new ImageTask(url, imgId, getResources().getDisplayMetrics().widthPixels, view.findViewById(R.id.ivShowImage));
+                    bigImageTask.execute();
+                    imageTasks.add(bigImageTask);
+                    //將白色部分設為透明
+                    alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    alertDialog.setCancelable(true);
+                    alertDialog.show();
+
                 }
             });
 
@@ -698,7 +707,14 @@ public class ArticleDetailFragment extends Fragment {
             //顯示留言
             myViewHolder.tvCommentUserName.setText(comment.getUserName());
             myViewHolder.tvCommentText.setText(comment.getCommentText());
-            myViewHolder.tvCommentTime.setText(comment.getCommentTime());
+
+            //假如新增留言時間 != 修改留言時間(未修改過) > 則顯示新增留言時間(沒修改)，否則顯示修改留言時間(有修改)
+            if (!comment.getCommentText().equals(comment.getCommentModifyTime())) {
+                myViewHolder.tvCommentTime.setText(comment.getCommentModifyTime());
+            } else {
+                myViewHolder.tvCommentTime.setText(comment.getCommentTime());
+            }
+
 
             //非留言的使用者，隱藏setting選項
             myViewHolder.ivCommentSetting.setImageResource(R.drawable.ic_baseline_more_vert_24);//設定功能，後要做optionMenu
@@ -748,7 +764,12 @@ public class ArticleDetailFragment extends Fragment {
                                             JsonObject jsonObject = new JsonObject();
                                             int commentId = comment.getCommentId();
                                             String commentText = etComment.getText().toString().trim();
-                                            String commentModifyTime = comment.getCommentModifyTime();
+                                            /* 取得現在時間並格式化時間格式 */
+                                            SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                            nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));    //時區設定
+                                            String strDate = nowdate.format(new java.util.Date());    //取得現在時間
+
+                                            String commentModifyTime = strDate;
                                             comment.setComment(commentId, commentText, commentModifyTime);
                                             jsonObject.addProperty("action", "commentUpdate");
                                             jsonObject.addProperty("comment", new Gson().toJson(comment));
@@ -896,26 +917,17 @@ public class ArticleDetailFragment extends Fragment {
         }
     }
 
-
-//    // 顯示右上角的OptionMenu選單
-//    @Override
-//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//
-//    }
-//
-//    // 顯示右上角的OptionMenu選單
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                navController.popBackStack();
-////                navController.navigate(R.id.action_articleDetailFragment_to_articleFragment);
-//                break;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//        return true;
-//    }
+    /* 使用「getCacheDir() + 檔案名稱」將物件存檔 */
+    private void saveFile_getCacheDir(String fileName, Bitmap bitmap){
+        File file = new File(activity.getCacheDir(), fileName);
+        Log.d(TAG, "getCacheDir() path: " + file.getPath());
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(file))) {
+            out.writeObject(bitmap);
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+        } //暫存檔案，重要資料不要用cache的方法存取
+    }
 
     //生命週期結束，釋放記憶體
     @Override
@@ -937,25 +949,6 @@ public class ArticleDetailFragment extends Fragment {
             articleGetAllTask.cancel(true);
             articleGetAllTask = null;
         }
-    }
-
-    //點擊圖片顯示大圖
-    private void bigImageLoader(Bitmap bitmap) {
-        final Dialog dialog = new Dialog(activity);
-        ImageView image = new ImageView(getContext());
-        image.setImageBitmap(bitmap);
-        dialog.setContentView(image);
-        //将dialog周围的白块设置为透明
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        //显示
-        dialog.show();
-        //点击图片取消
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
     }
 
 }

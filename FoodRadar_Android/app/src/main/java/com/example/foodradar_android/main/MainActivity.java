@@ -1,5 +1,7 @@
 package com.example.foodradar_android.main;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -9,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,11 +43,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void enableBottomBar(Activity activity, int i) {
+        BottomNavigationView bottomNavigationView = activity.findViewById(R.id.BottomNavigation);
+        int k = bottomNavigationView.getSelectedItemId();
+        if (i == k) {
+            bottomNavigationView.getMenu().getItem(i).setEnabled(false);
+        } else {
+            bottomNavigationView.getMenu().getItem(i).setEnabled(true);
+        }
+    }
+
 }
 
 
-
-      // Main Activity右上角選單
+// Main Activity右上角選單
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        MenuInflater inflater = getMenuInflater(); //inflater載入器

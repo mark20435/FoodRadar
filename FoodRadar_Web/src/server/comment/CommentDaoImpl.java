@@ -91,7 +91,7 @@ public class CommentDaoImpl implements CommentDao {
 				+ ",(select count(*) from CommentGood CG where CG.commentId = C.commentId) as 'commentGoodCount'\n"
 				+ ",(select case count(*) when 0 then 0 else 1 end from CommentGood CG where CG.commentId = C.commentId and CG.userId = C.userId ) as 'commentGoodStatus'\n"
 				+ "FROM Comment C \n" + "join UserAccount UA on C.userId = UA.userId\n"
-				+ "where C.commentStatus = 1 and C.articleId =  ? \n" + "ORDER BY commentModifyTime ASC ;";
+				+ "where C.commentStatus = 1 and C.articleId =  ? \n" + "ORDER BY commentTime ASC ;";
 		System.out.println("sql: " + sql);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {

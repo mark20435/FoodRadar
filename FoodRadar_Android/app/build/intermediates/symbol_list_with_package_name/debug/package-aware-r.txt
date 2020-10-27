@@ -2307,6 +2307,7 @@ id ivArticleImageCheck
 id ivArticleImageInsert
 id ivArticleImagePick
 id ivAvatar
+id ivCamera
 id ivCommentGoodIcon
 id ivCommentSetting
 id ivCommentUserAvatar
@@ -2724,6 +2725,7 @@ id tvTo7
 id tvTo8
 id tvTo9
 id tvTuesDay
+id tvUpdate
 id tvUsArManagerFundivider
 id tvUserBirth
 id tvUserBirthDivider
