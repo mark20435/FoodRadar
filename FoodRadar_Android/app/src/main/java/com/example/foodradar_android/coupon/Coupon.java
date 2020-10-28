@@ -18,8 +18,10 @@ public class Coupon implements Serializable {
     private boolean couPonEnable;
     private Timestamp date;
     private Button btCollect;
+    private boolean couponLoveStatus;
+    private int loveCount;
 
-    public Coupon(int id, int userId, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect) {
+    public Coupon(int id, int userId, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect, boolean couponLoveStatus, int loveCount) {
         this.id = id;
         this.couPonId = couPonId;
         this.resId = resId;
@@ -32,6 +34,24 @@ public class Coupon implements Serializable {
         this.couPonEnable = couPonEnable;
         this.date = date;
         this.btCollect = btCollect;
+        this.couponLoveStatus = couponLoveStatus;
+        this.loveCount = loveCount;
+    }
+
+    public int getLoveCount() {
+        return loveCount;
+    }
+
+    public void setLoveCount(int loveCount) {
+        this.loveCount = loveCount;
+    }
+
+    public boolean isCouponLoveStatus() {
+        return couponLoveStatus;
+    }
+
+    public void setCouponLoveStatus(boolean couponLoveStatus) {
+        this.couponLoveStatus = couponLoveStatus;
     }
 
     public int getUserId() {

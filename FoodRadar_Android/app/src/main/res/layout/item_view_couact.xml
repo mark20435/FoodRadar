@@ -40,10 +40,12 @@
             android:layout_margin="8dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#05F44336"
+            android:onClick="click"
             android:text="收藏優惠券"
             android:textColor="@color/mainBlue"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:visibility="invisible"
             card_view:layout_constraintBottom_toBottomOf="@+id/ivDemo"
             card_view:layout_constraintEnd_toEndOf="@+id/ivDemo" />
         <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
@@ -77,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ivDemo"
             android:layout_alignStart="@id/ivDemo"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="200dp"
             android:text="開始日期"
             android:textColor="#555555"
             android:textStyle="bold"
@@ -85,18 +87,18 @@
             card_view:layout_constraintStart_toEndOf="@+id/tvCouInfo"
             card_view:layout_constraintTop_toTopOf="@+id/tvCouInfo" />
 
-        <TextView
-            android:id="@+id/couPonEndDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/couPonStartDate"
-            android:layout_alignStart="@id/ivDemo"
-            android:layout_marginStart="16dp"
-            android:text="結束日期"
-            android:textStyle="bold"
-            card_view:layout_constraintBottom_toBottomOf="@+id/couPonStartDate"
-            card_view:layout_constraintStart_toEndOf="@+id/couPonStartDate"
-            card_view:layout_constraintTop_toTopOf="@+id/couPonStartDate" />
+<!--        <TextView-->
+<!--            android:id="@+id/couPonEndDate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/couPonStartDate"-->
+<!--            android:layout_alignStart="@id/ivDemo"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:text="結束日期"-->
+<!--            android:textStyle="bold"-->
+<!--            card_view:layout_constraintBottom_toBottomOf="@+id/couPonStartDate"-->
+<!--            card_view:layout_constraintStart_toEndOf="@+id/couPonStartDate"-->
+<!--            card_view:layout_constraintTop_toTopOf="@+id/couPonStartDate" />-->
 
         <!--        <TextView-->
         <!--            android:id="@+id/tvCouInfo2"-->

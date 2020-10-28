@@ -1,6 +1,9 @@
 package com.example.foodradar_android.coupon;
 
+import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,14 +28,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
+import com.example.foodradar_android.user.MyCoupon;
+import com.example.foodradar_android.user.UserAccount;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -52,8 +59,9 @@ public class CouponFragment extends Fragment {
     private RecyclerView rvSample;
     private FragmentActivity activity;
     private NavController navController;
-    private TextView tvCouInfo, couPonStartDate, couPonEndDate;
+    private TextView tvCouInfo, couPonStartDate, couPonEndDate, btUsCoupon;
     private ImageView imageAlert, imageAlert2, ivNoUse;
+
     private ImageButton ibUseCard;
     private Timestamp Date;
     private boolean couPonType;
@@ -63,7 +71,7 @@ public class CouponFragment extends Fragment {
     private List<ImageTask> imageTasks;
     private List<Coupon> coupons;
     private List<Coupon> couacts;
-    private int UserId;
+    private int userIdBox = Common.USER_ID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -232,14 +240,16 @@ public class CouponFragment extends Fragment {
         }
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
-            TextView couPonInfo, couPonStartDate, couPonEndDate;
+            TextView couPonInfo, couPonStartDate, couPonEndDate, btUsCoupon;
+
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.ivDemo);
                 couPonInfo = itemView.findViewById(R.id.tvCouInfo);
                 couPonStartDate = itemView.findViewById(R.id.couPonStartDate);
-                couPonEndDate = itemView.findViewById(R.id.couPonEndDate);
+                //couPonEndDate = itemView.findViewById(R.id.couPonEndDate);
+                btUsCoupon = itemView.findViewById(R.id.btUsCoupon);
 
             }
         }
@@ -255,26 +265,90 @@ public class CouponFragment extends Fragment {
         public void onBindViewHolder(@NonNull CouactAdapter.MyViewHolder holder, int position) {
             //final Couact couact = couacts.get(position);
             final Coupon coupon = coupons.get(position);
+
             String url = Common.URL_SERVER + "CouponServlet";
             int id = coupon.getId();
+            //Log.d(TAG, "couPonId: " + coupon.getId());
             ImageTask imageTask = new ImageTask(url, id, imageSize, holder.imageView);
             imageTask.execute();
             imageTasks.add(imageTask);
+            //設定收藏功能，1.會員登入判斷還沒寫，要候補
+            //2.先判斷使用者是否已收藏
+//            boolean couponLoveStatus = coupon.isCouponLoveStatus();
+            TextView btCoupon = holder.btUsCoupon;
+            if (userIdBox == 0) {    //0 > 訪客，一律設為看不見btUsCoupon
+                coupon.setCouponLoveStatus(false);
+                btCoupon.setVisibility(View.GONE);
+            }
+            else {
+                coupon.isCouponLoveStatus();
+
+                if (coupon.isCouponLoveStatus()){ //已經有收藏
+                    //Common.showToast(activity, "已收藏過囉！！");
+                    btCoupon.setVisibility(View.GONE);
+//                    coupon.setCouponLoveStatus(true);
+                }
+                else {   //還沒被收藏
+                    btCoupon.setVisibility(View.VISIBLE);
+//                    coupon.setCouponLoveStatus(false);
+                }
+            }
 
             holder.couPonInfo.setText(coupon.getCouPonInfo());
             holder.couPonStartDate.setText(coupon.getCouPonStartDate() + "~" + coupon.getCouPonEndDate());
             //holder.couPonEndDate.setText(coupon.getCouPonEndDate());
             //Log.d(TAG,"coupon.getTvCouInfo(): " + coupon.getTvCouInfo());
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.btUsCoupon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("coupon", coupon);
-                    Navigation.findNavController(v)
-                            .navigate(R.id.action_couponFragment_to_couponDetailFragment, bundle);
+                    if (userIdBox != 0) {
+                        if (!coupon.isCouponLoveStatus()) {
+                            if (Common.networkConnected(activity)) {
+                                String insertLoveUrl = Common.URL_SERVER + "CouponServlet";
+                                int loveCouponId = coupon.getId();
+                                Log.d(TAG, "couPonId: " + coupon.getId());
+                                JsonObject jsonObject = new JsonObject();
+                                jsonObject.addProperty("action", "couponLoveInsert");
+                                jsonObject.addProperty("couPonId", loveCouponId);
+                                jsonObject.addProperty("loginUserId", userIdBox);
+                                int count = 0;
+                                try {
+                                    String result = new CommonTask(insertLoveUrl, jsonObject.toString()).execute().get();
+                                    count = Integer.parseInt(result);
+                                } catch (Exception e) {
+                                    Log.e(TAG, e.toString());
+                                }
+                                if (count == 0) {
+                                    Common.showToast(activity, "收藏失敗");
+                                } else {
+                                    coupon.setCouponLoveStatus(true);
+                                }
+                            } else {
+                                Common.showToast(activity, "取得連線失敗");
+                            }
+                            coupon.setCouponLoveStatus(true);
+                            btCoupon.setVisibility(View.GONE);
+                        }
+                    }
+//                    if (Common.USER_ID <= 0) {
+//                        new android.app.AlertDialog.Builder(activity)
+//                                .setTitle("您尚未登入，要進行登入嗎？")
+//                                .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        Navigation.findNavController(v)
+//                                                .navigate(R.id.action_couponFragment_to_loginFragment);
+//                                    }
+//                                }).setNegativeButton(R.string.textCancel, null).create()
+//                                .show();
+//                    } else if (!btUsCoupon.getText().equals(getResources().getString(R.string.title_of_mycoupon))) {
+
 
                 }
             });
+        }
+        private int getUserId(){
+            return Common.USER_ID;
         }
         protected RecyclerView.LayoutManager initLayoutManger(){
             LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -294,7 +368,7 @@ public class CouponFragment extends Fragment {
 
 
     }
-        //以下是上面的rvsample.recyclerview
+        //以下是上面的rvsample.recyclerview------------------------------
     private List<Coupon> getCoupons() {
         List<Coupon> coupons = null;
         if (Common.networkConnected(activity)) {
@@ -352,6 +426,7 @@ public class CouponFragment extends Fragment {
          class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
             TextView upcouPonInfo, couPonStartDateUp, couPonEndDateUp;
+            Button btUsCoupon;
 
              public MyViewHolder(@NonNull View itemView) {
                  super(itemView);
@@ -359,6 +434,7 @@ public class CouponFragment extends Fragment {
                  upcouPonInfo = itemView.findViewById(R.id.upCouInfo);
                  couPonStartDateUp = itemView.findViewById(R.id.couPonStartDateUp);
                  couPonEndDateUp = itemView.findViewById(R.id.couPonEndDateUp);
+                 btUsCoupon = itemView.findViewById(R.id.btUsCoupon);
 
              }
          }

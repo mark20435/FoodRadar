@@ -64,6 +64,8 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array couponEnable
+array couponType
 array textHoursArray
 array textHoursArrayWithRest
 array textHoursArrayWithSame
@@ -1765,6 +1767,7 @@ drawable googleg_standard_color_18
 drawable ic_add
 drawable ic_awesome_user_circle
 drawable ic_baseline_account_circle_24
+drawable ic_baseline_add_photo_alternate_24
 drawable ic_baseline_announcement_24
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_bookmarks_24
@@ -1959,6 +1962,7 @@ id action_category_Detail_Fragment_to_loginFragment
 id action_container
 id action_context_bar
 id action_couponFragment_to_couponDetailFragment
+id action_couponFragment_to_loginFragment
 id action_divider
 id action_favoriteArticleFragment_to_articleDetailFragment
 id action_favoriteArticleFragment_to_articleInsertFragment
@@ -2059,6 +2063,8 @@ id btMonAddHours
 id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
+id btMtadd
+id btMtdel
 id btMyRes
 id btMyResList
 id btPickPicture
@@ -2176,7 +2182,6 @@ id controls_shadow
 id controls_wrapper
 id coordinator
 id cos
-id couPonEndDate
 id couPonEndDateUp
 id couPonStartDate
 id couPonStartDateUp
@@ -2188,6 +2193,7 @@ id customPanel
 id cut
 id cvArticle
 id cvUserIcon
+id cvcouPonPhoto
 id dark
 id date_picker_actions
 id decelerate
@@ -2249,6 +2255,11 @@ id etTitle
 id etUserBirth
 id etUserName
 id etUserPhone
+id etcouPonEndDate
+id etcouPonEndDateDivider
+id etcouPonInfo
+id etcouPonStartDate
+id etcouPonStartDateDivider
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2284,6 +2295,7 @@ id horizontal
 id hybrid
 id ibUseCard
 id ibcate
+id ibphotoAdd
 id icon
 id icon_group
 id icon_only
@@ -2303,6 +2315,7 @@ id image_view_logo
 id image_view_state_aspect_ratio
 id image_view_state_rotate
 id image_view_state_scale
+id imcouPonPhoto
 id imgView
 id incoming
 id info
@@ -2537,6 +2550,7 @@ id snackbar_text
 id snap
 id snapMargins
 id spCategory
+id spEnable
 id spFriEndTime
 id spFriEndTime2
 id spFriEndTime3
@@ -2573,6 +2587,7 @@ id spTueEndTime3
 id spTueStartTime
 id spTueStartTime2
 id spTueStartTime3
+id spType
 id spWedEndTime
 id spWedEndTime2
 id spWedEndTime3
@@ -2603,6 +2618,7 @@ id stretch
 id submenuarrow
 id submit_area
 id svArticleDetail
+id svMaintain
 id svMyArticle
 id svResAddress
 id svUseCard
@@ -2746,6 +2762,11 @@ id tvUserBirthDivider
 id tvUserName
 id tvUserPhone
 id tvWednesday
+id tvcouPonEnable
+id tvcouPonEndDate
+id tvcouPonInfo
+id tvcouPonStartDate
+id tvcouPonType
 id tvgoodCount
 id tvuserPhone
 id tvuserPwd
@@ -3292,6 +3313,7 @@ string ucrop_scale
 string user
 string userId
 string welcome
+string 開始日期
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow
