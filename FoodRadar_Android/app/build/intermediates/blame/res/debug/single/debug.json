@@ -44,12 +44,12 @@
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/menu/comment_setting_menu.xml"
     },
     {
-        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_item_view_category.xml.flat",
-        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/item_view_category.xml"
-    },
-    {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/menu_appbar_ezfcm.xml.flat",
         "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/menu/appbar_ezfcm.xml"
+    },
+    {
+        "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_item_view_category.xml.flat",
+        "source": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/res/layout/item_view_category.xml"
     },
     {
         "merged": "/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_user_area.xml.flat",

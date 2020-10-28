@@ -175,6 +175,7 @@
         <item>22:30</item>
         <item>23:00</item>
         <item>23:30</item>
+        <item>24:00</item>
     </string-array>
 
     <string-array name="textHoursArrayWithRest">
@@ -229,6 +230,7 @@
         <item>22:30</item>
         <item>23:00</item>
         <item>23:30</item>
+        <item>24:00</item>
     </string-array>
 
     <string-array name="textHoursArrayWithSame">
@@ -284,6 +286,7 @@
         <item>22:30</item>
         <item>23:00</item>
         <item>23:30</item>
+        <item>24:00</item>
     </string-array>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

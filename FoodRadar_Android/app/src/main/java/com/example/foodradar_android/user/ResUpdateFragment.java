@@ -1587,7 +1587,7 @@ public class ResUpdateFragment extends Fragment {
     private void showRes() {
         String url = Common.URL_SERVER + "ResServlet";
         int id = res.getResId();
-        int imageSize = getResources().getDisplayMetrics().widthPixels / 3;
+        int imageSize = getResources().getDisplayMetrics().widthPixels;
         Bitmap bitmap = null;
         try {
             bitmap = new ImageTask(url, id, imageSize).execute().get();

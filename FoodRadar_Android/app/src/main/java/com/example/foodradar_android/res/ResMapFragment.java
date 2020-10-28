@@ -78,6 +78,7 @@ import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_SETTLING;
@@ -319,7 +320,54 @@ public class ResMapFragment extends Fragment {
 
         });
 
-        //todo 今天吃什麼
+        //今天吃什麼
+        Button btEatWhatGone = view.findViewById(R.id.btEatWhatGone);
+        Button btEatWhat = view.findViewById(R.id.btEatWhat);
+        btEatWhat.setOnClickListener(v -> {
+            new Thread() {
+                public void run() {
+                    for (int i = 0; i <= 5; i++) {
+                        btEatWhatGone.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                btEatWhatGone.performClick();
+                            }
+                        });
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    rvRes.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (nowPos != null) {
+                                rvRes.findViewHolderForAdapterPosition(nowPos[0]).itemView.performClick();
+                            }
+                        }
+                    });
+                }
+            }.start();
+        });
+
+
+        btEatWhatGone.setOnClickListener(v -> {
+            StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) rvRes.getLayoutManager();
+            if (lm != null) {
+                lm.findFirstVisibleItemPositions(nowPos);
+                int resNumber = markers.size();
+                int nowNumber = nowPos[0];
+                int randomNumber = (int) (Math.random() * resNumber);
+                while (nowNumber == randomNumber) {
+                    randomNumber = (int) (Math.random() * resNumber);
+                }
+                nowNumber = (int) (Math.random() * resNumber);
+                markers.get(nowNumber).showInfoWindow();
+                rvRes.smoothScrollToPosition(nowNumber);
+            }
+        });
     }
 
     private void showRess(List<Res> ress) {
