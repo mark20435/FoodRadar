@@ -6,7 +6,7 @@ public class Img {
 
     private int imgId;
     private int articleId;
-    private Bitmap img;
+    private byte[] imgByte;
 
     public Img() {
         super();
@@ -41,6 +41,20 @@ public class Img {
 
     public void setArticleId(int articleId) {
         this.articleId = articleId;
+    }
+
+    public Img(int imgId, int articleId, byte[] imgByte) {
+        this.imgId = imgId;
+        this.articleId = articleId;
+        this.imgByte = imgByte;
+    }
+
+    public byte[] getImgByte() {
+        return imgByte;
+    }
+
+    public void setImgByte(byte[] imgByte) {
+        this.imgByte = imgByte;
     }
 
 }

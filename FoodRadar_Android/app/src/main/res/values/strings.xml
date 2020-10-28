@@ -11,9 +11,11 @@
     <string name="appbar">完成</string>
     <string name="ezLogin">登入</string>
     <string name="ezLogout">登出</string>
+
     <string name="textEatWhat">今天吃什麼</string>
     <string name="title_of_myres">我的餐廳收藏</string>
     <string name="title_of_mycoupon">我的優惠券收藏</string>
+    <string name="title_of_messageSend">訊息推播設定</string>
     <string name="title_of_myarticle">我的社群活動</string>
     <string name="title_of_userdata">會員資料設定</string>
     <string name="title_of_sys_setup">系統設定</string>
@@ -101,6 +103,25 @@
     <string name="textUpdateSuccess">修改成功</string>
     <string name="textResRating">餐廳評價</string>
     <string name="textSearchResAgain">重新查詢附近餐廳</string>
+
+    <!--定義FCM-->
+    <string name="Fcm_name">FCMDemo</string>
+    <string name="FcmNoNetwork">沒有網路連線</string>
+    <string name="textSendSingleFcm">FCM單發</string>
+    <string name="textSendGroupFcm">FCM群發</string>
+    <string name="textGetToken">取得裝置Token</string>
+    <string name="textTitle">訊息標題</string>
+    <string name="textBody">訊息內容</string>
+    <string name="textData">自訂資料</string>
+    <string name="textClear">清除</string>
+    <string name="textRegistrationToken">裝置ID</string>
+    <string name="default_notification_channel_id">default_channel_id</string>
+    <string name="default_notification_channel_name">default_channel_name</string>
+    <string name="textSubscribeHealth">訂閱「健康主題」</string>
+    <string name="textSubscribed">完成訂閱</string>
+    <string name="textSubscribeFailed">訂閱失敗</string>
+    <string name="textSendSubscriber">發FCM給訂閱者</string>
+    <string name="ezFcm">使用規則</string>
 
     <!--定義營業時間字串陣列內容-->
     <string-array name="textHoursArray">
@@ -317,5 +338,15 @@
     <string name="textAccountStatus">"帳號狀態"</string>
     <string name="textOfEnable">"啟用"</string>
     <string name="textOfDisable">"停用"</string>
+    <string name="textInsertMyResFail">新增餐廳收藏失敗</string>
+    <string name="textInsertMyResSuccess">新增餐廳收藏成功</string>
+    <string name="textDeleteMyResFail">移除餐廳收藏失敗</string>
+    <string name="textDeleteMyResSuccess">移除餐廳收藏成功</string>
+    <string name="textNearRess">附近餐廳</string>
+    <string name="textNoMyRessFound">您尚未收藏任何餐廳</string>
+    <string name="textMyResList">我的收藏列表</string>
+    <string name="titleResImg">餐廳照片</string>
+    <string name="textSetSuccess">設定成功</string>
+    <string name="textSetFail">設定未完成</string>
 
 </resources>

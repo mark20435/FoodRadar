@@ -40,11 +40,11 @@ public class UserAccountServlet extends HttpServlet {
 		pubTools.showConsoleMsg(fromName, "[START]");
 		request.setCharacterEncoding("UTF-8");
 		// vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
-	       Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
-	       // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
-	       // vvvvvv 日期時間，未特別進行格式處理的寫法
-	       // Gson gson = new Gson();
-	       // ^^^^^^ 日期時間，未特別進行格式處理的寫法
+       Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+       // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+       // vvvvvv 日期時間，未特別進行格式處理的寫法
+       // Gson gson = new Gson();
+       // ^^^^^^ 日期時間，未特別進行格式處理的寫法
 		BufferedReader br = request.getReader();
 		StringBuilder jsonIn = new StringBuilder();
 		String line = null;
@@ -139,6 +139,15 @@ public class UserAccountServlet extends HttpServlet {
 			count = userAccountDao.updateNotifiStatus(id, notifiStatus);
 //			List<MyRes> myResList = myResDao.getAllById(id);
 //			pubTools.writeText(response, gson.toJson(myResList));
+			pubTools.writeText(response, String.valueOf(count));
+			
+		} else if (action.equals("setEnableStatus")) {  // 使用者Enable狀態設定
+			id = jsonObject.get("id").getAsInt();
+			Boolean enableStatus = jsonObject.get("enableStatus").getAsBoolean();
+			pubTools.showConsoleMsg("id: ", id.toString());
+			pubTools.showConsoleMsg("enableStatus: ", String.valueOf(enableStatus));
+			int count = 0;
+			count = userAccountDao.setEnableStatus(id, enableStatus);
 			pubTools.writeText(response, String.valueOf(count));
 			
 		} else if (action.equals("getImageAvatar")) {

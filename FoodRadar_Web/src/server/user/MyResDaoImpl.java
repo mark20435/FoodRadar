@@ -53,8 +53,8 @@ public class MyResDaoImpl implements MyResDao{
 	@Override
 	public int delete(int userId, int resId) {
 		int count = 0;
-		String sql = "DELETE MyRes" + 
-				"WHERE userId = ?, resId = ?";
+		String sql = "DELETE FROM MyRes " + 
+				"WHERE userId = ? and resId = ?";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, userId);

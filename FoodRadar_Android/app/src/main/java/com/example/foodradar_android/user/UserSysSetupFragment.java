@@ -83,6 +83,8 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
         view.findViewById(R.id.btUsArUserManagement).setOnClickListener(this);
         // 會員發文管理
         view.findViewById(R.id.btUsArArticleＭaintain).setOnClickListener(this);
+        // 訊息推撥設定
+        view.findViewById(R.id.btUsArMessageSend).setOnClickListener(this);
 
         Resources res = getResources();
         swUsArNotifi = view.findViewById(R.id.swUsArNotifi);
@@ -99,7 +101,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
 
                 if (new Common().setUserAllowNotifi(activity,isChecked)) {
 
-                    Common.showToast(activity, "設定成功");
+                    Common.showToast(activity, res.getString(R.string.textSetSuccess));
                     if (isChecked == true) {
                         swUsArNotifi.setText(res.getString(R.string.textNotifi) + " ("+ res.getString(R.string.textOn) + ")");
                     } else {
@@ -109,7 +111,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
 
                 } else {
                     swUsArNotifi.setChecked(!isChecked); //switch設定還原
-                    Common.showToast(activity, "設定未完成");
+                    Common.showToast(activity, res.getString(R.string.textSetFail));
                 }
             }
         });
@@ -143,6 +145,10 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
             // 會員發文管理
             case R.id.btUsArArticleＭaintain:
 //                navController.navigate(R.id.);
+                break;
+            // 訊息推撥設定
+            case R.id.btUsArMessageSend:
+                navController.navigate(R.id.action_userSysSetupFragment_to_fcmFragment);
                 break;
             default:
                 Toast.makeText(activity, "Unknow id: " + v.getId() + "\n" +

@@ -3,8 +3,8 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
-    android:layout_width="350dp"
-    android:layout_height="250dp"
+    android:layout_width="343dp"
+    android:layout_height="199dp"
     android:layout_margin="6dp"
     android:padding="6dp"
     card_view:cardBackgroundColor="#ffdddddd"
@@ -73,13 +73,14 @@
 
         <TextView
             android:id="@+id/couPonStartDateUp"
-            android:layout_width="0dp"
-            android:layout_height="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/ivDemoUp"
             android:layout_alignStart="@id/ivDemoUp"
-            android:layout_marginStart="16dp"
-            android:textColor="#555555"
+            android:layout_marginStart="80dp"
             android:text="開始日期"
+            android:textColor="#555555"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="@+id/upCouInfo"
             card_view:layout_constraintStart_toEndOf="@+id/upCouInfo"
             card_view:layout_constraintTop_toTopOf="@+id/upCouInfo" />
@@ -92,6 +93,7 @@
             android:layout_alignStart="@id/ivDemoUp"
             android:layout_marginStart="16dp"
             android:text="結束日期"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="@+id/couPonStartDateUp"
             card_view:layout_constraintStart_toEndOf="@+id/couPonStartDateUp"
             card_view:layout_constraintTop_toTopOf="@+id/couPonStartDateUp" />

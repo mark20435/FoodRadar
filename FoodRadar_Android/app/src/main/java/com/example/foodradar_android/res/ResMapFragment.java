@@ -43,6 +43,7 @@ import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.example.foodradar_android.user.MyRes;
 import com.example.foodradar_android.user.ResMaintainFragment;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -74,6 +75,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,7 +144,7 @@ public class ResMapFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.resListFragment:
                 navController.navigate(R.id.action_resMapFragment_to_resListFragment);
                 break;
@@ -240,6 +242,44 @@ public class ResMapFragment extends Fragment {
                 LastCameraLatLng = cameraLatLng;
                 btSearchResAgain.setVisibility(View.GONE);
             });
+
+            Button btMyRes = view.findViewById(R.id.btMyRes);
+            btMyRes.setOnClickListener(v -> {
+                if (Common.USER_ID <= 0) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("您尚未登入，要進行登入嗎？")
+                            .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Navigation.findNavController(v)
+                                            .navigate(R.id.action_resMapFragment_to_loginFragment);
+                                }
+                            }).setNegativeButton(R.string.textCancel, null).create()
+                            .show();
+                } else if (!btMyRes.getText().equals(getResources().getString(R.string.textNearRess))) {
+                    map.clear();
+                    List<Res> myRess = new ArrayList<>();
+                    markers = new ArrayList<>();
+                    for (Res res : ress) {
+                        if (res.isMyRes()) {
+                            myRess.add(res);
+                            addMarker(new LatLng(res.getResLat(), res.getResLon()), res.getResName());
+                        }
+                    }
+
+                    if (myRess.size() != 0) {
+                        showRess(myRess);
+                        moveMap(new LatLng(myRess.get(0).getResLat(), myRess.get(0).getResLon()));
+                        btMyRes.setText(R.string.textNearRess);
+                    } else {
+                        Common.showToast(activity, R.string.textNoMyRessFound);
+                    }
+
+                } else {
+                    btSearchResAgain.performClick();
+                    btMyRes.setText(R.string.textMyRes);
+                }
+            });
         });
 
         rvRes.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -280,8 +320,6 @@ public class ResMapFragment extends Fragment {
         });
 
         //todo 今天吃什麼
-        //todo 我的收藏
-        //todo 餐廳列表
     }
 
     private void showRess(List<Res> ress) {
@@ -564,7 +602,7 @@ public class ResMapFragment extends Fragment {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView, ivMyRes;
-            TextView tvResName,tvResRating , tvResAddress, tvResCategoryInfo, tvResDistance;
+            TextView tvResName, tvResRating, tvResAddress, tvResCategoryInfo, tvResDistance;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -621,6 +659,64 @@ public class ResMapFragment extends Fragment {
                 myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_24);
                 myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#1877F2"));
             }
+
+            myViewHolder.ivMyRes.setOnClickListener(v -> {
+                String urlMyRes = Common.URL_SERVER + "MyResServlet";
+                if (Common.USER_ID <= 0) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("您尚未登入，要進行登入嗎？")
+                            .setPositiveButton(R.string.textOK, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Navigation.findNavController(v)
+                                            .navigate(R.id.action_resMapFragment_to_loginFragment);
+                                }
+                            }).setNegativeButton(R.string.textCancel, null).create()
+                            .show();
+                } else if (res.isMyRes()) {
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("action", "myResDelete");
+                    jsonObject.addProperty("userId", Common.USER_ID);
+                    jsonObject.addProperty("resId", res.getResId());
+
+                    int count = 0;
+                    try {
+                        String result = new CommonTask(urlMyRes, jsonObject.toString()).execute().get();
+                        count = Integer.parseInt(result);
+                    } catch (Exception e) {
+                        Log.e(TAG, e.toString());
+                    }
+                    if (count == 0) {
+                        Common.showToast(activity, R.string.textDeleteMyResFail);
+                    } else {
+                        Common.showToast(activity, R.string.textDeleteMyResSuccess);
+                        myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_not_24);
+                        myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#424242"));
+                        res.setMyRes(false);
+                    }
+                } else {
+                    MyRes myRes = new MyRes(0, Common.USER_ID, res.getResId(), new Timestamp(System.currentTimeMillis()));
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("action", "myResInsert");
+                    jsonObject.addProperty("myres", new Gson().toJson(myRes));
+
+                    int count = 0;
+                    try {
+                        String result = new CommonTask(urlMyRes, jsonObject.toString()).execute().get();
+                        count = Integer.parseInt(result);
+                    } catch (Exception e) {
+                        Log.e(TAG, e.toString());
+                    }
+                    if (count == 0) {
+                        Common.showToast(activity, R.string.textInsertMyResFail);
+                    } else {
+                        Common.showToast(activity, R.string.textInsertMyResSuccess);
+                        myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_24);
+                        myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#1877F2"));
+                        res.setMyRes(true);
+                    }
+                }
+            });
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -14,68 +14,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="296dp"
             android:text="活動公告"
             android:textColor="#03A9F4"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/swipeRefreshLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSample"
             android:layout_width="match_parent"
-            android:layout_height="245dp"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/tvActwo"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layoutMode="clipBounds"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAcone">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSample"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layoutMode="clipBounds">
-
-                </androidx.recyclerview.widget.RecyclerView>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
             android:id="@+id/tvActwo"
             android:layout_width="wrap_content"
             android:layout_height="30sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="296dp"
+            android:layout_marginTop="16dp"
             android:text="優惠活動"
             android:textAlignment="textStart"
             android:textColor="#03A9F4"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/swRf"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout" />
+            app:layout_constraintStart_toStartOf="@+id/tvAcone"
+            app:layout_constraintTop_toBottomOf="@+id/rvSample" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swRf"
-            android:layout_width="393dp"
-            android:layout_height="237dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             android:layout_margin="8dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="16dp"
             android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rvSample"
             app:layout_constraintTop_toBottomOf="@+id/tvActwo">
 
                 <androidx.recyclerview.widget.RecyclerView

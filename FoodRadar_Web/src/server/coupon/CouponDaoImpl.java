@@ -159,37 +159,38 @@ public class CouponDaoImpl implements CouponDao {
 	}
 	
 
-//	@Override
-//	public List<Coupon> getAllEnable() {
-//		String sql = "SELECT couPonId, resId, CouPonType, couPonStartDate, couPonEndDate, couPonType, couPonInfo, CouPonEnable, userName \n" + 
-//				"FROM Coupon \n" + "left join UserAccount U on R.userId = U.userId\n" +
-//				"WHERE resEnable = 1 ";
-//				
-//		List<Coupon> couponsList = new ArrayList<Coupon>();
-//		try (Connection connection = dataSource.getConnection();
-//				PreparedStatement ps = connection.prepareStatement(sql);) {
-//			ResultSet rs = ps.executeQuery();
-//			while (rs.next()) {
-//				int id = rs.getInt(1);
-//				Integer couponId = rs.getInt(2);
-//				String couPonStartDate = rs.getString(3);
-//				String couPonEndDate = rs.getString(4);
-//				String couPonType = rs.getString(5);
-//				String couPonInfo = rs.getString(6);
-//				boolean couPonEnable = rs.getBoolean(7);
-//				Integer resId = rs.getInt(8);
-//				String userName = rs.getString(9);
-//				Coupon coupon = new Coupon(id, couponId, couPonStartDate, couPonEndDate, couPonType, couPonInfo, couPonEnable, resId);
-//				coupon.setcouPonInfo(couPonInfo);
-//				coupon.setUserName(userName);			
-//				couponsList.add(coupon);
-//			}
-//			return couponsList;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return couponsList;
-//	}
+	@Override
+	public List<Coupon> getAllEnable(int cupUserId) {
+		String sql = "SELECT P.couPonId, P.resId, couPonStartDate, couPonEndDate, couPonType, couPonInfo, CouPonEnable, P.userId" + 
+				"FROM CouPon P\n" + 
+				"left join UserAccount U on P.userId = U.userId\n" +
+				"WHERE resEnable = 1 " + 
+				"GROUP BY P.resId ";
+				
+				
+		List<Coupon> couponsList = new ArrayList<Coupon>();
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int couPonId = rs.getInt(1);
+				Integer resId = rs.getInt(2);
+				String couPonStartDate = rs.getString(3);
+				String couPonEndDate = rs.getString(4);
+				boolean couPonType = rs.getBoolean(5);
+				String couPonInfo = rs.getString(6);
+				boolean couPonEnable = rs.getBoolean(7);
+				Integer userId = rs.getInt(8);
+				Coupon coupon = new Coupon(couPonId, resId, couPonStartDate, couPonEndDate, couPonType, couPonInfo, couPonEnable, userId);
+				coupon.setcouPonInfo(couPonInfo);			
+				couponsList.add(coupon);
+			}
+			return couponsList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return couponsList;
+	}
 
 	
 

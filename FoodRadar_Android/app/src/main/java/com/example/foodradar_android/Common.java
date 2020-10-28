@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -50,12 +51,13 @@ import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Common{
+public class Common {
     private final static String PREFERENCES_NAME = "foodradar_preference"; //prep偏好設定檔名
     private static final String TAG = "TAG_Common";
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     public static String USERACCOUNT_SERVLET = URL_SERVER + "UserAccountServlet";
     public NavController navController;
+
 
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
@@ -66,7 +68,7 @@ public class Common{
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
-                (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) activity.getSystemService(activity.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // API 23支援getActiveNetwork()
@@ -255,6 +257,21 @@ public class Common{
         }
     }
 
+    public static void sendTokenToServer(String token, Activity activity) {
+        if (Common.networkConnected(activity)) {
+            String url = Common.URL_SERVER + "FcmBasicServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "register");
+            jsonObject.addProperty("registrationToken", token);
+            String jsonOut = jsonObject.toString();
+            CommonTask registerTask = new CommonTask(url, jsonOut);
+            registerTask.execute();
+        } else {
+            Common.showToast(activity, R.string.textNoNetwork);
+        }
+
+    }
+
     // 登入成功時，產生偏好設定檔
     public void setPreferences(Activity activity, UserAccount ua) {
         String fromDB_userPhone = "";
@@ -416,6 +433,7 @@ public class Common{
             Log.d(TAG, e.toString());
         }
     }
+
 
     // 取得使用者頭像，回傳Bitmap
     public Bitmap getUserAvatra(Activity activity){
@@ -595,6 +613,12 @@ public class Common{
         } else {
             fbArticleInsert.setVisibility(View.GONE);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void enableBottomBar(Activity activity, boolean enable, int i) {
+        BottomNavigationView bottomNavigationView = activity.findViewById(R.id.BottomNavigation);
+        bottomNavigationView.getMenu().getItem(i).setEnabled(enable);
     }
 
     // vvvvvv 產生 Badge 的Layout與View

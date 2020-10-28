@@ -2,12 +2,15 @@ package com.example.foodradar_android.user;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -39,6 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class UserManagementFragment extends Fragment {
     private Activity activity;
     private NavController navController;
@@ -48,7 +53,7 @@ public class UserManagementFragment extends Fragment {
     private RecyclerView rcvUserManagement;
     private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     private String USERACCOUNT_SERVLET = URL_SERVER + "UserAccountServlet";
-    private Integer imageSize = 400;
+    private Integer imageSize = 50;
     final private String TAG = "UserManagementFragment";
 
     @Override
@@ -129,7 +134,7 @@ public class UserManagementFragment extends Fragment {
 
     }
 
-    private int getUserId(){ return Common.USER_ID; }
+//    private int getUserId(){ return Common.USER_ID; }
 
     private class UserAccountAdapter extends RecyclerView.Adapter<UserAccountAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
@@ -171,10 +176,10 @@ public class UserManagementFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull UserAccountAdapter.MyViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             UserAccount uA = userAccountListAdp.get(position);
             Resources res = getResources();
-            holder.tvUserManagePhone.setText(getResources().getString(R.string.textUserPhone) + ": " + uA.getUserPhone());
+            holder.tvUserManagePhone.setText(getResources().getString(R.string.textUserPhone) + ": " + uA.getUserPhone() + " ( ID: " + String.valueOf(uA.getUserId()) + " )");
             holder.tvUserManageRegisterTime.setText(getResources().getString(R.string.textRegisterDate) + ": " + uA.getCreateDate().toString());
             holder.tvUserManageEditTime.setText(getResources().getString(R.string.textModifyDate) + ": " + uA.getModifyDate().toString());
 
@@ -196,17 +201,41 @@ public class UserManagementFragment extends Fragment {
             userImageTask.execute(); // .execute() => UserImage.doInBackground
             imageTasks.add(userImageTask);
 
-            holder.swUserManageStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            holder.swUserManageStatus.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        holder.tvUserManageAccountStatus.setTextColor(Color.BLUE);
-                    } else {
-                        holder.tvUserManageAccountStatus.setTextColor(Color.RED);
-                    }
-                    String strAccountStatus = getResources().getString(R.string.textAccountStatus) + ": "
-                        + (isChecked ? getResources().getString(R.string.textOfEnable) : getResources().getString(R.string.textOfDisable) );
-                    holder.tvUserManageAccountStatus.setText(strAccountStatus);
+                public void onClick(View v) {
+
+//                }
+//            });
+//            holder.swUserManageStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    boolean isChecked = !uA.getIsEnable();
+                    UserManagementFragment umf = new UserManagementFragment();
+
+                    umf.setEnableWithConfirm(activity, holder, uA, isChecked);
+                    // 因為用 AlertDialog，所以UI呈現的判斷與資料庫的處理全移到 AlertDialog 的onClick裡處理
+//                    Resources res = getResources();
+//                    String textAccountStatus = res.getString(R.string.textAccountStatus);
+//                    String textOfEnable = res.getString(R.string.textOfEnable);
+//                    String textOfDisable = res.getString(R.string.textOfDisable);
+//
+//                    if (umf.setEnableWithConfirm(activity, holder, uA, isChecked)) {
+//                        String strAccountStatus = textAccountStatus + ": "
+//                                + (isChecked ? textOfEnable : textOfDisable);
+//                        holder.tvUserManageAccountStatus.setText(strAccountStatus);
+//
+//                        if (isChecked) {
+//                            holder.tvUserManageAccountStatus.setTextColor(Color.BLUE);
+//                        } else {
+//                            holder.tvUserManageAccountStatus.setTextColor(Color.RED);
+//                        }
+////                        Common.showToast(activity, "設定完成");
+//                    } else {
+//                        holder.swUserManageStatus.setChecked(!isChecked);
+////                        Common.showToast(activity, "設定未完成");
+//                    }
+
                 }
             });
 
@@ -263,6 +292,113 @@ public class UserManagementFragment extends Fragment {
             Log.d(TAG,"uAAdapter.showUserAccountList: " + showUAList);
             uAAdapter.setUserAccountListAdp (showUAList);
             uAAdapter.notifyDataSetChanged();
+        }
+
+    }
+
+
+    // 顯示詢問是否調整會員帳號狀態的對話視窗
+    public void setEnableWithConfirm(Activity activity, UserAccountAdapter.MyViewHolder holder, UserAccount uA, Boolean enableStatus) {
+
+        /* 設定positive與negative按鈕上面的文字與點擊事件監聽器 */
+        AlertDialog.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+
+                        Resources res = activity.getResources();
+                        String textAccountStatus = res.getString(R.string.textAccountStatus);
+                        String textOfEnable = res.getString(R.string.textOfEnable);
+                        String textOfDisable = res.getString(R.string.textOfDisable);
+
+                        if (setUserStatus(uA.getUserId(), enableStatus)){
+                            String strAccountStatus = textAccountStatus + ": "
+                                    + (enableStatus ? textOfEnable : textOfDisable);
+                            holder.tvUserManageAccountStatus.setText(strAccountStatus);
+
+                            if (enableStatus) {
+                                holder.tvUserManageAccountStatus.setTextColor(Color.BLUE);
+                            } else {
+                                holder.tvUserManageAccountStatus.setTextColor(Color.RED);
+                            }
+
+                            holder.swUserManageStatus.setChecked(enableStatus);
+                            uA.setEnable(enableStatus);
+                            Common.showToast(activity, activity.getResources().getString(R.string.textSetSuccess));
+                        } else {
+                            holder.swUserManageStatus.setChecked(!enableStatus);
+                            uA.setEnable(!enableStatus);
+                            Common.showToast(activity, activity.getResources().getString(R.string.textSetFail));
+                        }
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+//                    break;
+                    default:
+                        Common.showToast(activity, R.string.textCancel);
+                        /* 關閉對話視窗 */
+                        holder.swUserManageStatus.setChecked(!enableStatus);
+                        dialog.cancel();
+
+                        break;
+                }
+            }
+        };
+
+        Resources res = activity.getResources();
+
+        String txtEnable = "啟用"; // res.getString(R.string.textOfEnable);
+        String txtDisable = "停用"; // res.getString(R.string.textOfDisable);
+        String txtEnableStatus = (enableStatus? txtEnable : txtDisable);
+
+        String textPhone = "手機號碼"; // getResources().getString(R.string.textUserPhone)
+        String textRegisterDate = "註冊日期"; // getResources().getString(R.string.textRegisterDate)
+
+        String alertMessage = "\n" + textPhone + ": " + uA.getUserPhone() + " ( ID: " + String.valueOf(uA.getUserId()) + " )";
+        alertMessage += "\n" + textRegisterDate + ": " + uA.getCreateDate().toString();
+        alertMessage += "\n\n" + "確認要調整這個會員的\n帳號狀態為“" + txtEnableStatus + "”嗎？";
+
+        String positiveText = "是，" + txtEnableStatus + "此會員";
+        String negativeText = "否，不調整";
+
+        new AlertDialog.Builder(activity)
+                /* 設定標題 */
+                .setTitle(R.string.title_of_res_user_management)
+                /* 設定圖示 */
+                .setIcon(R.drawable.ic_baseline_build_24)
+                /* 設定訊息文字 */
+                .setMessage(alertMessage)
+                /* 設定positive與negative按鈕上面的文字與點擊事件監聽器 */
+                .setPositiveButton(positiveText, listener)
+                .setNegativeButton(negativeText, listener)
+                // 是否一定要按按鈕才能離開對話框，預設為true，設false代表必須點擊按鈕方能關閉
+                .setCancelable(true)
+                .create()
+                .show();
+
+    }
+
+    public Boolean setUserStatus(int userId ,Boolean enableStatus){
+
+        Log.d(TAG,"setUserEnable.userId: " + userId);
+        Log.d(TAG,"setUserEnable.enableStatus: " + enableStatus);
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "setEnableStatus");
+        jsonObject.addProperty("id", userId);
+        jsonObject.addProperty("enableStatus", enableStatus);
+        int count = 0;
+        try {
+            String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
+            count = Integer.parseInt(result);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+
+        if (count == 0) {
+            return false;
+        } else {
+            return true;
         }
 
     }

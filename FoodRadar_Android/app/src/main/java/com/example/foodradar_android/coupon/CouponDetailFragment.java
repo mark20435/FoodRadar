@@ -1,5 +1,6 @@
 package com.example.foodradar_android.coupon;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
@@ -20,8 +22,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowAnimationFrameStats;
 import android.view.WindowManager;
+import android.view.animation.AnimationSet;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
@@ -39,7 +46,8 @@ public class CouponDetailFragment extends Fragment {
     private List<ImageTask> imageTasks;
     private ImageTask imageTask;
     private int imageSize;
-    private ImageView ivCoupon, imageAlert, ivNoUse;
+    private TextView couPonEndDate, couPonStartDate;
+    private ImageView ivCoupon, ivNoUse;
     private CommonTask couponGetAllTask;
     private CommonTask couponDeleteTask;
     private Coupon coupon;
@@ -54,21 +62,6 @@ public class CouponDetailFragment extends Fragment {
         new Common().setBackArrow(true, activity);
         setHasOptionsMenu(true);
         }
-
-//    private void showDialog(int imageId) {
-//        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-//        alertDialog.show();
-//        Window window = alertDialog.getWindow();
-//        window.setGravity(Gravity.BOTTOM);
-//        window.setWindowAnimations(R.style.popupAnimation);
-//        View view = View.inflate(activity, R.layout.alert_dialog_view, null);
-//        imageAlert = view.findViewById(R.id.imageAlert);
-//        imageAlert.setImageResource(imageId);
-//        window.setContentView(view);
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        alertDialog.setCanceledOnTouchOutside(true);
-//        alertDialog.setCancelable(true);
-//    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -104,6 +97,9 @@ public class CouponDetailFragment extends Fragment {
         Coupon coupon =(Coupon) bundle.getSerializable("coupon");
         ivCoupon = view.findViewById(R.id.ivDemo);
         ivCoupon.setImageResource(R.drawable.no_image);
+        couPonStartDate = view.findViewById(R.id.couPonStartDate);
+        couPonEndDate = view.findViewById(R.id.couPonEndDate);
+
         ivNoUse = view.findViewById(R.id.ivNoUse);
         String url = Common.URL_SERVER + "CouponServlet";
         int id = coupon.getId();
@@ -115,6 +111,7 @@ public class CouponDetailFragment extends Fragment {
         btUse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (getUserId() > 0){
                     ivNoUse.setVisibility(View.VISIBLE);
                 }else if (getUserId() <= 0){
@@ -124,7 +121,11 @@ public class CouponDetailFragment extends Fragment {
             }
         });
 
+
     }
+
+
+
 
     public CouponDetailFragment() {
         // Required empty public constructor
