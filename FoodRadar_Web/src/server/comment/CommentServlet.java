@@ -83,7 +83,7 @@ public class CommentServlet extends HttpServlet {
 			List<Comment> comment = commentDao.findCommentById(id);
 			writeText(response, gson.toJson(comment));
 		}
-		// 判斷client端行為 > 查詢findById > 取得留言內文
+		// 判斷client端行為 > 查詢findById > 留言內文
 		else if (action.equals("findById")) {
 			int commentId = jsonObject.get("commentId").getAsInt();
 			Comment comment = commentDao.findById(commentId);

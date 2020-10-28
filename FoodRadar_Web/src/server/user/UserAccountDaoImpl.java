@@ -237,7 +237,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 						isAdmin, userAvatar, createDate, modifyDate);
 				userAccountList.add(userAccount);
 			}
-			pubTools.showConsoleMsg("userLogin.userAccountList.userId", "String.valueOf(userId)");
+			pubTools.showConsoleMsg("userLogin.userAccountList.userId", String.valueOf(userAccount.getUserId()));
 			return userAccountList;
 		} catch (SQLException e) {
 			pubTools.showConsoleMsg("getImage.SQLException", String.valueOf(e.getErrorCode()));
@@ -250,7 +250,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 	}
 
 	@Override
-	public int updateNotifiStatus(Integer id, Boolean notifiStatus) {
+	public int updateNotifiStatus(Integer userId, Boolean notifiStatus) {
 		// Date Time: 2020-10-07 14:17:58
 		// update statements : UserAccount
 		int count = 0;
@@ -260,12 +260,33 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
 			ps.setBoolean(1, notifiStatus);
-			ps.setInt(2, id);
+			ps.setInt(2, userId);
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
+	
+	@Override
+	public int setEnableStatus(Integer userId, Boolean enableStatus) {
+		// Date Time: 2020-10-7 14:17:58
+		// update statements : UserAccount
+		int count = 0;
+		String sqlStmt = "UPDATE UserAccount ";
+		sqlStmt += " SET isEnable = ?, modifyDate = now()";
+		sqlStmt += " WHERE userId = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setBoolean(1, enableStatus);
+			ps.setInt(2, userId);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	
 
 }

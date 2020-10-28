@@ -1,10 +1,12 @@
 package com.example.foodradar_android.article;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -12,11 +14,13 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.main.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -28,6 +32,7 @@ public class ArticleFragment extends Fragment {
     public Boolean fbisVisible = true ;
     public FloatingActionButton fbArticleInsert;
     public BottomNavigationView articleNavigation;
+    public MenuItem articleFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +45,12 @@ public class ArticleFragment extends Fragment {
 //        navController =
 //                Navigation.findNavController(activity, R.id.mainFragment);
     }
+//    @RequiresApi(api = Build.VERSION_CODES.M)
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//    }
 
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, ViewGroup container,
@@ -48,6 +59,7 @@ public class ArticleFragment extends Fragment {
         activity.setTitle(R.string.article);
     return inflater.inflate(R.layout.fragment_article, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -64,5 +76,17 @@ public class ArticleFragment extends Fragment {
         fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
                 .navigate(R.id.action_articleFragment_to_articleInsertFragment, bundle));
 
+
+    }
+
+
+    //隱藏BottomNavigationView 方法
+    public static void bottomNavSet (Activity activity, int bottomNavigationInt) {
+        BottomNavigationView bottomNavigationView = activity.findViewById(R.id.articleNavigation);
+        if (bottomNavigationInt == 0) {
+            bottomNavigationView.setVisibility(View.GONE);
+        } else {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        }
     }
 }

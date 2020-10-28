@@ -1772,6 +1772,7 @@ drawable ic_baseline_announcement_24
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_bookmarks_24
 drawable ic_baseline_broken_image_24
+drawable ic_baseline_build_24
 drawable ic_baseline_camera_alt_24
 drawable ic_baseline_card_giftcard_24
 drawable ic_baseline_chat_24
@@ -1939,6 +1940,7 @@ id action_CategoryTypeFragment_to_loginFragment
 id action_CategoryTypeFragment_to_resDetailFragment
 id action_CategoryTypeFragment_to_userDataSetupFragment
 id action_articleDetailFragment_to_articleFragment
+id action_articleDetailFragment_to_articleUpdateFragment
 id action_articleDetailFragment_to_favoriteArticleFragment
 id action_articleDetailFragment_to_newArticleFragment2
 id action_articleDetailFragment_to_rankArticleFragment
@@ -2025,6 +2027,7 @@ id articleFragment
 id articleInsertFragment
 id articleNavigation
 id articleTitle
+id articleUpdateFragment
 id article_navigation
 id asConfigured
 id async
@@ -2052,6 +2055,7 @@ id btDelete
 id btDemo
 id btDirect
 id btEatWhat
+id btEatWhatGone
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -2108,7 +2112,7 @@ id btUsArMyRes
 id btUsArResＭaintain
 id btUsArSysSetup
 id btUsArUserData
-id btUsArUserＭaintain
+id btUsArUserManagement
 id btUsCoupon
 id btUse
 id btWedAddHours
@@ -2118,6 +2122,7 @@ id btWedDeleteHours3
 id btWriteArticle
 id btnLogInOut
 id buttonPanel
+id cache_measures
 id cancel_action
 id cancel_button
 id cardView
@@ -2125,6 +2130,7 @@ id cardView2
 id cardView3
 id cardView4
 id cardViewAvatar
+id cardViewUserManageAvatar
 id cardview
 id category_Detail_Fragment
 id center
@@ -2201,6 +2207,7 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id deltaRelative
+id dependency_ordering
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -2240,11 +2247,15 @@ id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id etArticleText
+id etArticleTextUpdate
 id etArticleTitle
+id etArticleTitleUpdate
 id etBody
 id etComment
 id etConAmount
+id etConAmountUpdate
 id etConNum
+id etConNumUpdate
 id etData
 id etPassword
 id etPasswordConfirm
@@ -2286,6 +2297,7 @@ id gone
 id graph
 id graph_wrap
 id group_divider
+id grouping
 id groups
 id hideable
 id home
@@ -2301,11 +2313,13 @@ id icon_group
 id icon_only
 id id_btResMaintain
 id id_rcvMyRes
+id id_rcvUserManagement
 id ifRoom
 id ignore
 id ignoreRequest
 id imMyAtResImg
 id imResImg
+id imUserManageAvatar
 id image
 id imageAlert
 id imageAlert2
@@ -2331,6 +2345,7 @@ id ivArticleImageCheck
 id ivArticleImageInsert
 id ivArticleImagePick
 id ivAvatar
+id ivCamera
 id ivCommentGoodIcon
 id ivCommentSetting
 id ivCommentUserAvatar
@@ -2510,6 +2525,7 @@ id rvRes
 id rvResAddress
 id rvSample
 id rvSec
+id rvUpdateImage
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -2523,8 +2539,11 @@ id scrollIndicatorUp
 id scrollV
 id scrollView
 id scrollView2
+id scrollViewUpdate
 id scrollable
 id searchView
+id searchViewMyRes
+id searchViewUserManagement
 id search_badge
 id search_bar
 id search_button
@@ -2625,6 +2644,7 @@ id svUseCard
 id swResEnable
 id swRf
 id swUsArNotifi
+id swUserManageStatus
 id swipeRefreshLayout
 id swipeRefreshLayoutFavorite
 id swipeRefreshLayoutRank
@@ -2707,6 +2727,7 @@ id tvManagerFun
 id tvModifyDate
 id tvMonday
 id tvMoney
+id tvMoneyUpdate
 id tvMyArticleCollect
 id tvMyArticleCollectDivider
 id tvMyArticleIsMe
@@ -2727,6 +2748,7 @@ id tvResEnable
 id tvResHours
 id tvResHoursDetail
 id tvResName
+id tvResNameUpdate
 id tvResRating
 id tvResTel
 id tvSaturday
@@ -2754,11 +2776,16 @@ id tvTo7
 id tvTo8
 id tvTo9
 id tvTuesDay
+id tvUpdate
 id tvUsArManagerFundivider
 id tvUseInfo1
 id tvUseInfo2
 id tvUserBirth
 id tvUserBirthDivider
+id tvUserManageAccountStatus
+id tvUserManageEditTime
+id tvUserManagePhone
+id tvUserManageRegisterTime
 id tvUserName
 id tvUserPhone
 id tvWednesday
@@ -2783,6 +2810,7 @@ id user
 id userAreaFragment
 id userDataSetupFragment
 id userIcon
+id userManagementFragment
 id userMyArticleFragment
 id userMyCouponFragment
 id userMyResFragment
@@ -2899,6 +2927,7 @@ layout dialog_res_img
 layout fragment_article
 layout fragment_article_detail
 layout fragment_article_insert
+layout fragment_article_update
 layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
@@ -2922,6 +2951,7 @@ layout fragment_res_map
 layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
+layout fragment_user_management
 layout fragment_user_my_article
 layout fragment_user_my_coupon
 layout fragment_user_my_res
@@ -2934,6 +2964,7 @@ layout item_view_res
 layout item_view_res_detail_image
 layout item_view_res_img
 layout item_view_res_map
+layout item_view_user_management
 layout item_view_user_myarticle
 layout item_view_user_mycoupon
 layout item_view_user_myres
@@ -3167,6 +3198,7 @@ string rankArticle
 string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
+string textAccountStatus
 string textAdd
 string textAddHours
 string textAddressError
@@ -3238,6 +3270,8 @@ string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK
+string textOfDisable
+string textOfEnable
 string textOff
 string textOn
 string textOriginNotFound
@@ -3247,6 +3281,7 @@ string textPickPicture
 string textPlsInpup
 string textReadArticle
 string textRegisterCancel
+string textRegisterDate
 string textRegisterSend
 string textRegistrationToken
 string textResAddress
@@ -3266,6 +3301,8 @@ string textSearchResAgain
 string textSendGroupFcm
 string textSendSingleFcm
 string textSendSubscriber
+string textSetFail
+string textSetSuccess
 string textSubscribeFailed
 string textSubscribeHealth
 string textSubscribed
@@ -3299,7 +3336,7 @@ string title_of_mycoupon
 string title_of_myres
 string title_of_res_article_maintain
 string title_of_res_coupon_maintain
-string title_of_res_user_maintain
+string title_of_res_user_management
 string title_of_sys_setup
 string title_of_userdata
 string ucrop_crop

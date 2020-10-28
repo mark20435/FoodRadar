@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import server.main.ImageUtil;
@@ -31,7 +32,12 @@ public class MyResServlet extends HttpServlet {
 		String fromName = this.getClass().getName() + "." + Thread.currentThread().getStackTrace()[1].getMethodName();
 		pubTools.showConsoleMsg(fromName, "[START]");
 		request.setCharacterEncoding("UTF-8");
-		Gson gson = new Gson();
+		// vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+       Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+       // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+       // vvvvvv 日期時間，未特別進行格式處理的寫法
+       // Gson gson = new Gson();
+       // ^^^^^^ 日期時間，未特別進行格式處理的寫法
 		BufferedReader br = request.getReader();
 		StringBuilder jsonIn = new StringBuilder();
 		String line = null;

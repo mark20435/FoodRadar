@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -56,6 +57,7 @@ public class Common {
     public static String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     public static String USERACCOUNT_SERVLET = URL_SERVER + "UserAccountServlet";
     public NavController navController;
+
 
     // 使用者登入後的ID(UserAccount.userId)，若 USER_ID <= 0 代表未登入或沒登入成功
     public static Integer USER_ID = 0 ;
@@ -432,6 +434,7 @@ public class Common {
         }
     }
 
+
     // 取得使用者頭像，回傳Bitmap
     public Bitmap getUserAvatra(Activity activity){
         UserAccountAvatra userAccountAvatraIn;
@@ -610,6 +613,12 @@ public class Common {
         } else {
             fbArticleInsert.setVisibility(View.GONE);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void enableBottomBar(Activity activity, boolean enable, int i) {
+        BottomNavigationView bottomNavigationView = activity.findViewById(R.id.BottomNavigation);
+        bottomNavigationView.getMenu().getItem(i).setEnabled(enable);
     }
 
     // vvvvvv 產生 Badge 的Layout與View

@@ -80,7 +80,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
         // 餐廳優惠管理
         view.findViewById(R.id.btUsArCouponＭaintain).setOnClickListener(this);
         // 會員管理
-        view.findViewById(R.id.btUsArUserＭaintain).setOnClickListener(this);
+        view.findViewById(R.id.btUsArUserManagement).setOnClickListener(this);
         // 會員發文管理
         view.findViewById(R.id.btUsArArticleＭaintain).setOnClickListener(this);
         // 訊息推撥設定
@@ -101,7 +101,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
 
                 if (new Common().setUserAllowNotifi(activity,isChecked)) {
 
-                    Common.showToast(activity, "設定成功");
+                    Common.showToast(activity, res.getString(R.string.textSetSuccess));
                     if (isChecked == true) {
                         swUsArNotifi.setText(res.getString(R.string.textNotifi) + " ("+ res.getString(R.string.textOn) + ")");
                     } else {
@@ -111,7 +111,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
 
                 } else {
                     swUsArNotifi.setChecked(!isChecked); //switch設定還原
-                    Common.showToast(activity, "設定未完成");
+                    Common.showToast(activity, res.getString(R.string.textSetFail));
                 }
             }
         });
@@ -139,8 +139,8 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
                 navController.navigate(R.id.couponMaintainFragment);
                 break;
             // 會員管理
-            case R.id.btUsArUserＭaintain:
-//                navController.navigate(R.id.);
+            case R.id.btUsArUserManagement:
+                navController.navigate(R.id.userManagementFragment);
                 break;
             // 會員發文管理
             case R.id.btUsArArticleＭaintain:

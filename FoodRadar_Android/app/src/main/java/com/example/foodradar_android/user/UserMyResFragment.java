@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -94,7 +95,28 @@ public class UserMyResFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rcvMyRes = view.findViewById(R.id.id_rcvMyRes);
         rcvMyRes.setLayoutManager(new LinearLayoutManager(activity));
-//        userId = 3; // 取得user登入的 帳號/userId
+
+        SearchView searchViewMyRes = view.findViewById(R.id.searchViewMyRes);
+        searchViewMyRes.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) { return false; }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.trim().isEmpty()) {
+                    showMyRes(myResList);
+                } else {
+                    List<MyRes> searchMyResList = new ArrayList<>();
+                    for(MyRes myRes : myResList){
+                        if(myRes.getResName().toUpperCase().contains(newText.toUpperCase())){
+                            searchMyResList.add(myRes);
+                        }
+                    }
+                    showMyRes(searchMyResList);
+                }
+                return true;
+            }
+        });
+
         myResList = getMyRes();
 //        Log.d("TAG","myResList: " + myResList);
         showMyRes(myResList);
@@ -115,7 +137,6 @@ public class UserMyResFragment extends Fragment {
             /* 螢幕寬度除以4當作將圖的尺寸 */
             imgSize = getResources().getDisplayMetrics().widthPixels / 4;
         }
-
 
         public void setMyResListAdpt(List<MyRes> myResListSetAdpt){
             this.myResListAdpt = myResListSetAdpt;

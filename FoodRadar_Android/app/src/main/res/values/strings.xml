@@ -186,6 +186,7 @@
         <item>22:30</item>
         <item>23:00</item>
         <item>23:30</item>
+        <item>24:00</item>
     </string-array>
 
     <string-array name="textHoursArrayWithRest">
@@ -240,6 +241,7 @@
         <item>22:30</item>
         <item>23:00</item>
         <item>23:30</item>
+        <item>24:00</item>
     </string-array>
 
     <string-array name="textHoursArrayWithSame">
@@ -295,6 +297,7 @@
         <item>22:30</item>
         <item>23:00</item>
         <item>23:30</item>
+        <item>24:00</item>
     </string-array>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -315,7 +318,7 @@
     <string name="textMustInput">不可為空白</string>
     <string name="textPasswordConfirmErr">確認密碼與密碼不符</string>
     <string name="title_of_res_coupon_maintain">餐廳優惠管理</string>
-    <string name="title_of_res_user_maintain">會員管理</string>
+    <string name="title_of_res_user_management">會員管理</string>
     <string name="title_of_res_article_maintain">會員發文管理</string>
     <string name="textImageNumber">照片數量</string>
     <string name="textReadArticle">觀看食記</string>
@@ -345,6 +348,10 @@
     <string name="textMyComment">我的回文</string>
     <string name="textCommentDate">"回文日期："</string>
     <string name="textCommentText">"回文："</string>
+    <string name="textRegisterDate">"註冊日期"</string>
+    <string name="textAccountStatus">"帳號狀態"</string>
+    <string name="textOfEnable">"啟用"</string>
+    <string name="textOfDisable">"停用"</string>
     <string name="textInsertMyResFail">新增餐廳收藏失敗</string>
     <string name="textInsertMyResSuccess">新增餐廳收藏成功</string>
     <string name="textDeleteMyResFail">移除餐廳收藏失敗</string>
@@ -354,4 +361,7 @@
     <string name="textMyResList">我的收藏列表</string>
     <string name="titleResImg">餐廳照片</string>
     <string name="開始日期">開始日期</string>
+    <string name="textSetSuccess">設定成功</string>
+    <string name="textSetFail">設定未完成</string>
+
 </resources>

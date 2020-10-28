@@ -24,6 +24,7 @@ import com.example.foodradar_android.R;
 
 public class CouponMaintainFragment extends Fragment {
     private Activity activity;
+
     NavController navController;
     public final String TAG = "TAG_CouponMaintainFragment";
 
@@ -31,6 +32,7 @@ public class CouponMaintainFragment extends Fragment {
     private ImageButton ibphotoAdd;
 
     private TextView tvcouPonStartDate;
+
 
 
     @Override

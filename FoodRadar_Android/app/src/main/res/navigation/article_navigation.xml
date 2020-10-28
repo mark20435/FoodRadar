@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_articleDetailFragment_to_newArticleFragment2"
             app:destination="@id/newArticleFragment" />
+        <action
+            android:id="@+id/action_articleDetailFragment_to_articleUpdateFragment"
+            app:destination="@id/articleUpdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleInsertFragment"
@@ -73,4 +76,9 @@
         android:name="com.example.foodradar_android.article.ResAddressFragment"
         android:label="fragment_res_address"
         tools:layout="@layout/fragment_res_address" />
+    <fragment
+        android:id="@+id/articleUpdateFragment"
+        android:name="com.example.foodradar_android.article.ArticleUpdateFragment"
+        android:label="fragment_article_update"
+        tools:layout="@layout/fragment_article_update" />
 </navigation>
