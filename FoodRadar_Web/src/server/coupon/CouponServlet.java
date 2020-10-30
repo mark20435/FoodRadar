@@ -90,6 +90,17 @@ public class CouponServlet extends HttpServlet {
 				count = couponDao.update(coupon, image);
 			}
 			writeText(response, String.valueOf(count));
+			
+		}else if(action.equals("couponLoveInsert")) {
+			
+			int couPonId = jsonObject.get("couPonId").getAsInt();
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
+			int count = 0;
+			if (action.equals("couponLoveInsert")) {
+				count = couponDao.couponLoveInsert(couPonId, loginUserId);
+			}
+			writeText(response, String.valueOf(count));
+		
 		} else if (action.equals("couponDelete")) {
 			int couponId = jsonObject.get("couPonId").getAsInt();
 			int count = couponDao.delete(couponId);

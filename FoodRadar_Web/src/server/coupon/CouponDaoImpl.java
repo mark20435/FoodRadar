@@ -47,6 +47,26 @@ public class CouponDaoImpl implements CouponDao {
 		return count;
 	}
 	@Override
+	public int couponLoveInsert(int couPonId, int loginUserId) {
+		int count = 0;
+		String sql = "INSERT INTO MyCouPon (userId, couPonId, couponIsUsed)\n" + "(SELECT ? ,? ,0 FROM MyCouPon\n"
+				+ "WHERE NOT EXISTS(SELECT * FROM MyCouPon WHERE userId = ? AND couPonId = ?) LIMIT 1\n" + ");";
+		System.out.println("SQL:" + sql);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, loginUserId);
+			ps.setInt(2, couPonId);
+			ps.setInt(3, loginUserId);
+			ps.setInt(4, couPonId);
+			System.out.println("couPonId: " + couPonId);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	@Override
 	public int update(Coupon coupon, byte[] image) {
 		int count = 0;
 		String sql = "";

@@ -15,13 +15,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
 
 public class CouponMaintainFragment extends Fragment {
     private Activity activity;
-    private NavController navController;
+
+    NavController navController;
+    public final String TAG = "TAG_CouponMaintainFragment";
+
+    private ImageView imcouPonPhoto;
+    private ImageButton ibphotoAdd;
+
+    private TextView tvcouPonStartDate;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
