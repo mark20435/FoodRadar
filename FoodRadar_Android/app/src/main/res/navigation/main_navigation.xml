@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_couponFragment_to_couponDetailFragment"
             app:destination="@id/couponDetailFragment" />
+        <action
+            android:id="@+id/action_couponFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/userAreaFragment"
@@ -290,10 +293,14 @@
         android:label="fragment_user_my_article"
         tools:layout="@layout/fragment_user_my_article" />
     <fragment
+        android:id="@+id/userManagementFragment"
+        android:name="com.example.foodradar_android.user.UserManagementFragment"
+        android:label="fragment_user_management"
+        tools:layout="@layout/fragment_user_management" />
+    <fragment
         android:id="@+id/resImgFragment"
         android:name="com.example.foodradar_android.res.ResImgFragment"
         android:label="fragment_res_img"
         tools:layout="@layout/fragment_res_img" />
-
 
 </navigation>

@@ -207,9 +207,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btUsArUserＭaintain"
+                android:id="@+id/btUsArUserManagement"
                 style="@style/style_user_area_button"
-                android:text="@string/title_of_res_user_maintain"
+                android:text="@string/title_of_res_user_management"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

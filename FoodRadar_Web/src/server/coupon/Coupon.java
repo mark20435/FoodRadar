@@ -18,11 +18,14 @@ public class Coupon {
     private Button btCollect;
     private Boolean couPonEnable;
     private Boolean couPonType;
+    private Boolean couponLoveStatus;
+    private int loveCount;
     
     
 
     public Coupon(Integer id, int couPonId, int resId, int userId, String resName, String couPonInfo,
-    		Timestamp date, Button btCollect, Boolean couPonEnable, String couPonStartDate, String couPonEndDate, Boolean couPonType) {
+    		Timestamp date, Button btCollect, Boolean couPonEnable, String couPonStartDate, String couPonEndDate, 
+    		Boolean couPonType, Boolean couponLoveStatus, int loveCount) {
         this.id = id;
         this.userId = userId;
         this.couPonInfo = couPonInfo;
@@ -32,10 +35,28 @@ public class Coupon {
         this.couPonStartDate = couPonStartDate;
         this.couPonEndDate = couPonEndDate;
         this.couPonType = couPonType;
+        this.couponLoveStatus = couponLoveStatus;
+        this.loveCount = loveCount;
         
     }
 
-    public int getUserId() {
+    public Boolean getCouponLoveStatus() {
+		return couponLoveStatus;
+	}
+
+	public void setCouponLoveStatus(Boolean couponLoveStatus) {
+		this.couponLoveStatus = couponLoveStatus;
+	}
+
+	public int getLoveCount() {
+		return loveCount;
+	}
+
+	public void setLoveCount(int loveCount) {
+		this.loveCount = loveCount;
+	}
+
+	public int getUserId() {
 		return userId;
 	}
 
