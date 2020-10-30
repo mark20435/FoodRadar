@@ -127,10 +127,10 @@ public class UserAccountDaoImpl implements UserAccountDao {
 			}
 			return userAccount;
 		} catch (SQLException e) {
-			pubTools.showConsoleMsg("getImage.SQLException", String.valueOf(e.getErrorCode()));
+			pubTools.showConsoleMsg("findById.SQLException", String.valueOf(e.getErrorCode()));
 			e.printStackTrace();
 		} catch (Exception e) {
-			pubTools.showConsoleMsg("getImage.Exception", String.valueOf(e.getMessage()));
+			pubTools.showConsoleMsg("findById.Exception", String.valueOf(e.getMessage()));
 			e.printStackTrace();
 		}
 		return userAccount;
@@ -168,10 +168,10 @@ public class UserAccountDaoImpl implements UserAccountDao {
 			}
 			return userAccountList;
 		} catch (SQLException e) {
-			pubTools.showConsoleMsg("getImage.SQLException", String.valueOf(e.getErrorCode()));
+			pubTools.showConsoleMsg("getAll.SQLException", String.valueOf(e.getErrorCode()));
 			e.printStackTrace();
 		} catch (Exception e) {
-			pubTools.showConsoleMsg("getImage.Exception", String.valueOf(e.getMessage()));
+			pubTools.showConsoleMsg("getAll.Exception", String.valueOf(e.getMessage()));
 			e.printStackTrace();
 		}
 		return userAccountList;
@@ -228,7 +228,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				Boolean allowNotifi = rs.getBoolean("allowNotifi");
 				Boolean isEnable = rs.getBoolean("isEnable");
 				Boolean isAdmin = rs.getBoolean("isAdmin");
-				byte[] userAvatar = rs.getBytes("userAvatar");
+				byte[] userAvatar = null; //rs.getBytes("userAvatar");
 //				byte[] userAvatar = null;
 				Timestamp createDate = rs.getTimestamp("createDate");
 				Timestamp modifyDate = rs.getTimestamp("modifyDate");
@@ -240,10 +240,10 @@ public class UserAccountDaoImpl implements UserAccountDao {
 			pubTools.showConsoleMsg("userLogin.userAccountList.userId", String.valueOf(userAccount.getUserId()));
 			return userAccountList;
 		} catch (SQLException e) {
-			pubTools.showConsoleMsg("getImage.SQLException", String.valueOf(e.getErrorCode()));
+			pubTools.showConsoleMsg("userLogin.SQLException", String.valueOf(e.getErrorCode()));
 			e.printStackTrace();
 		} catch (Exception e) {
-			pubTools.showConsoleMsg("getImage.Exception", String.valueOf(e.getMessage()));
+			pubTools.showConsoleMsg("userLogin.Exception", String.valueOf(e.getMessage()));
 			e.printStackTrace();
 		}
 		return userAccountList;
@@ -287,6 +287,45 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		return count;
 	}
 	
-	
+	@Override
+	public UserAccount findByPhone(String userPhone) {
+		// Date Time: 2020-10-28 17:55:24
+		// select statements : UserAccount
+		String sqlStmt = "SELECT userId, userPhone, userPwd, userBirth, userName, ";
+		sqlStmt += " allowNotifi, isEnable, isAdmin, userAvatar, createDate, modifyDate ";
+		sqlStmt += " FROM UserAccount WHERE userPhone = ?;";
+		UserAccount userAccount = null;
+		pubTools.showConsoleMsg("findById.sqlStmt", sqlStmt);
+		pubTools.showConsoleMsg("findById.userPhone", userPhone);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setString(1, userPhone);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				int userId = rs.getInt("userId");
+				userPhone = rs.getString("userPhone");
+				String userPwd = rs.getString("userPwd");
+				Timestamp userBirth = rs.getTimestamp("userBirth");
+				String userName = rs.getString("userName");
+				Boolean allowNotifi = rs.getBoolean("allowNotifi");
+				Boolean isEnable = rs.getBoolean("isEnable");
+				Boolean isAdmin = rs.getBoolean("isAdmin");
+				byte[] userAvatar = null; //rs.getBytes("userAvatar");
+				Timestamp createDate = rs.getTimestamp("createDate");
+				Timestamp modifyDate = rs.getTimestamp("modifyDate");
+
+				userAccount = new UserAccount(userId, userPhone, userPwd, userBirth, userName, allowNotifi, isEnable,
+						isAdmin, userAvatar, createDate, modifyDate);
+			}
+			return userAccount;
+		} catch (SQLException e) {
+			pubTools.showConsoleMsg("findByPhone.SQLException", String.valueOf(e.getErrorCode()));
+			e.printStackTrace();
+		} catch (Exception e) {
+			pubTools.showConsoleMsg("findByPhone.Exception", String.valueOf(e.getMessage()));
+			e.printStackTrace();
+		}
+		return userAccount;
+	}
 
 }

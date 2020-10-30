@@ -23,4 +23,6 @@ public interface UserAccountDao {
 
 	int setEnableStatus(Integer userId, Boolean enableStatus);
 
+	UserAccount findByPhone(String userPhone);
+
 }

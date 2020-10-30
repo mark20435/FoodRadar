@@ -61,14 +61,6 @@ public class UserAccount {
         this.userAvatar = userAvatar;
     }
 
-    public Boolean getEnable() {
-        return isEnable;
-    }
-
-    public void setEnable(Boolean enable) {
-        isEnable = enable;
-    }
-
     public Boolean getAdmin() {
         return isAdmin;
     }

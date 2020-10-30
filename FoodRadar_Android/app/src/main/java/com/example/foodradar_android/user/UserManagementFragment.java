@@ -184,10 +184,10 @@ public class UserManagementFragment extends Fragment {
             holder.tvUserManageEditTime.setText(getResources().getString(R.string.textModifyDate) + ": " + uA.getModifyDate().toString());
 
             String strAccountStatus = getResources().getString(R.string.textAccountStatus) + ": "
-                    + (uA.getEnable() ? getResources().getString(R.string.textOfEnable) : getResources().getString(R.string.textOfDisable) );
+                    + (uA.getIsEnable() ? getResources().getString(R.string.textOfEnable) : getResources().getString(R.string.textOfDisable) );
             holder.tvUserManageAccountStatus.setText(strAccountStatus);
-            holder.swUserManageStatus.setChecked(uA.getEnable());
-            if (uA.getEnable()) {
+            holder.swUserManageStatus.setChecked(uA.getIsEnable());
+            if (uA.getIsEnable()) {
                 holder.tvUserManageAccountStatus.setTextColor(Color.BLUE);
             } else {
                 holder.tvUserManageAccountStatus.setTextColor(Color.RED);
@@ -324,11 +324,11 @@ public class UserManagementFragment extends Fragment {
                             }
 
                             holder.swUserManageStatus.setChecked(enableStatus);
-                            uA.setEnable(enableStatus);
+                            uA.setIsEnable(enableStatus);
                             Common.showToast(activity, activity.getResources().getString(R.string.textSetSuccess));
                         } else {
                             holder.swUserManageStatus.setChecked(!enableStatus);
-                            uA.setEnable(!enableStatus);
+                            uA.setIsEnable(!enableStatus);
                             Common.showToast(activity, activity.getResources().getString(R.string.textSetFail));
                         }
                         break;

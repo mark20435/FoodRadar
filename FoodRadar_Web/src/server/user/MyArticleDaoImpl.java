@@ -122,7 +122,7 @@ public class MyArticleDaoImpl implements MyArticleDao{
 	}
 
 	@Override
-	public List<MyArticle> myArticle(int id, String action) {
+	public List<MyArticle> myArticle(int id, String articleDate, String action) {
 		/*
 		 SELECT A.articleId, A.articleTitle, A.articleTime
 		,(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END
@@ -142,7 +142,9 @@ public class MyArticleDaoImpl implements MyArticleDao{
 				sqlStmt += " FROM Article A WHERE articleId IN (SELECT articleId FROM MyArticle WHERE userId = ?)";
 				break;
 			case "getMyArticleIsMe":
-				sqlStmt += " FROM Article A WHERE A.userId = ?";
+			case "getArticleByUserPhone":
+//				sqlStmt += " FROM Article A WHERE A.userId = ? AND A.articleTime <= ? ";
+				sqlStmt += " FROM Article A WHERE A.userId = ? AND date_format(A.articleTime, '%Y-%m-%d') <= ? ";
 				break;
 			default:
 				break;
@@ -156,6 +158,9 @@ public class MyArticleDaoImpl implements MyArticleDao{
 			// ResultSet rs = ps.executeQuery(sqlStmt);
 			PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
 			ps.setInt(1, id);
+			if (action.contentEquals("getArticleByUserPhone")) {
+				ps.setString(2, articleDate);	
+			}
 			ResultSet rs = ps.executeQuery();
 			// 假如有下一個欄位的話，取得其資料
 			while (rs.next()) {

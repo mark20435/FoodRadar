@@ -75,25 +75,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_baseline_star_red_24"
-                app:layout_constraintBottom_toBottomOf="@+id/tvUserPhone"
+                app:layout_constraintBottom_toBottomOf="@+id/tvUsManageUserPhone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvUserPhone" />
+                app:layout_constraintTop_toTopOf="@+id/tvUsManageUserPhone" />
 
             <TextView
-                android:id="@+id/tvUserPhone"
+                android:id="@+id/tvUsManageUserPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@string/textUserPhone"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/etUserPhone"
-                app:layout_constraintEnd_toStartOf="@+id/etUserPhone"
-                app:layout_constraintTop_toTopOf="@+id/etUserPhone"
+                app:layout_constraintBottom_toBottomOf="@+id/etUsManageUserPhone"
+                app:layout_constraintEnd_toStartOf="@+id/etUsManageUserPhone"
+                app:layout_constraintTop_toTopOf="@+id/etUsManageUserPhone"
                 app:layout_constraintVertical_bias="0.466" />
 
             <EditText
-                android:id="@+id/etUserPhone"
+                android:id="@+id/etUsManageUserPhone"
                 android:layout_width="256dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
@@ -142,7 +142,7 @@
                 android:textSize="16sp"
                 android:theme="@style/EditTextHint"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etUserPhone" />
+                app:layout_constraintTop_toBottomOf="@+id/etUsManageUserPhone" />
 
             <ImageView
                 android:id="@+id/ivRedStarPasswordConfirm"
@@ -209,20 +209,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/etPasswordConfirm" />
 
             <TextView
-                android:id="@+id/tvUserBirth"
+                android:id="@+id/tvUsManageArticleDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@string/textUserBirth"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/etUserBirth"
-                app:layout_constraintEnd_toStartOf="@+id/etUserBirth"
-                app:layout_constraintTop_toTopOf="@+id/etUserBirth" />
+                app:layout_constraintBottom_toBottomOf="@+id/tvManageArticleDate"
+                app:layout_constraintEnd_toStartOf="@+id/tvManageArticleDate"
+                app:layout_constraintTop_toTopOf="@+id/tvManageArticleDate" />
 
 
             <TextView
-                android:id="@+id/etUserBirth"
+                android:id="@+id/tvManageArticleDate"
                 android:layout_width="256dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
@@ -262,7 +262,7 @@
 
 
             <Button
-                android:id="@+id/btnLogInOut"
+                android:id="@+id/btUsManageSearchArticle"
                 style="@style/styleButton"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
@@ -276,16 +276,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/swResEnable" />
 
             <Button
-                android:id="@+id/btRegisterOrChang"
+                android:id="@+id/btUsManageCancel"
                 style="@style/styleButton"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/button"
                 android:text="@string/textChangPassword"
-                app:layout_constraintBottom_toBottomOf="@+id/btnLogInOut"
+                app:layout_constraintBottom_toBottomOf="@+id/btUsManageSearchArticle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnLogInOut" />
+                app:layout_constraintTop_toTopOf="@+id/btUsManageSearchArticle" />
 
             <Button
                 android:id="@+id/btTestRegister"

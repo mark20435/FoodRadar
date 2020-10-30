@@ -11,6 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ import java.util.List;
 
 public class UserMyResFragment extends Fragment {
     private Activity activity;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private NavController navController;
     private List<MyRes> myResList = new ArrayList<>();
     private List<UserImageTask> imageTasks= new ArrayList<>();
@@ -118,8 +120,17 @@ public class UserMyResFragment extends Fragment {
         });
 
         myResList = getMyRes();
-//        Log.d("TAG","myResList: " + myResList);
         showMyRes(myResList);
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayoutMyRes);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showMyRes(myResList);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private int getUserId(){

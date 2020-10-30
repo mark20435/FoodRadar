@@ -144,7 +144,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
                 break;
             // 會員發文管理
             case R.id.btUsArArticleＭaintain:
-//                navController.navigate(R.id.);
+                navController.navigate(R.id.articleManagementFragment);
                 break;
             // 訊息推撥設定
             case R.id.btUsArMessageSend:

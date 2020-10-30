@@ -2021,6 +2021,7 @@ id articleConstraintLayout
 id articleDetailFragment
 id articleFragment
 id articleInsertFragment
+id articleManagementFragment
 id articleNavigation
 id articleTitle
 id articleUpdateFragment
@@ -2067,7 +2068,6 @@ id btMyRes
 id btMyResList
 id btPickPicture
 id btReadArticle
-id btRegisterOrChang
 id btResRating
 id btResRatingInsert
 id btSatAddHours
@@ -2108,13 +2108,14 @@ id btUsArSysSetup
 id btUsArUserData
 id btUsArUserManagement
 id btUsCoupon
+id btUsManageCancel
+id btUsManageSearchArticle
 id btUse
 id btWedAddHours
 id btWedAddHours2
 id btWedDeleteHours2
 id btWedDeleteHours3
 id btWriteArticle
-id btnLogInOut
 id buttonPanel
 id cache_measures
 id cancel_action
@@ -2149,6 +2150,7 @@ id clip_horizontal
 id clip_vertical
 id collapseActionView
 id confirm_button
+id constUsManage
 id constraintLayout
 id constraintLayout2
 id constraintLayout3
@@ -2257,9 +2259,8 @@ id etResAddress
 id etResName
 id etResTel
 id etTitle
-id etUserBirth
+id etUsManageUserPhone
 id etUserName
-id etUserPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2300,6 +2301,7 @@ id icon
 id icon_group
 id icon_only
 id id_btResMaintain
+id id_rcvArticleManagement
 id id_rcvMyRes
 id id_rcvUserManagement
 id ifRoom
@@ -2630,7 +2632,9 @@ id swRf
 id swUsArNotifi
 id swUserManageStatus
 id swipeRefreshLayout
+id swipeRefreshLayoutArticleManagement
 id swipeRefreshLayoutFavorite
+id swipeRefreshLayoutMyRes
 id swipeRefreshLayoutRank
 id tabMode
 id tag_accessibility_actions
@@ -2707,6 +2711,7 @@ id tvDtdailResCategoryInfo
 id tvFavoriteArticle
 id tvFriday
 id tvImageNumber
+id tvManageArticleDate
 id tvManagerFun
 id tvModifyDate
 id tvMonday
@@ -2762,16 +2767,16 @@ id tvTo9
 id tvTuesDay
 id tvUpdate
 id tvUsArManagerFundivider
+id tvUsManageArticleDate
+id tvUsManageUserPhone
 id tvUseInfo1
 id tvUseInfo2
-id tvUserBirth
 id tvUserBirthDivider
 id tvUserManageAccountStatus
 id tvUserManageEditTime
 id tvUserManagePhone
 id tvUserManageRegisterTime
 id tvUserName
-id tvUserPhone
 id tvWednesday
 id tvgoodCount
 id tvuserPhone
@@ -2906,6 +2911,7 @@ layout dialog_res_img
 layout fragment_article
 layout fragment_article_detail
 layout fragment_article_insert
+layout fragment_article_management
 layout fragment_article_update
 layout fragment_category__detail_
 layout fragment_china_restaurant
@@ -2935,6 +2941,7 @@ layout fragment_user_my_article
 layout fragment_user_my_coupon
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout item_view_article_management
 layout item_view_category
 layout item_view_couact
 layout item_view_coupon
@@ -3276,6 +3283,7 @@ string textResName
 string textResRating
 string textResTel
 string textSaturday
+string textSearchArticle
 string textSearchResAgain
 string textSendGroupFcm
 string textSendSingleFcm
@@ -3313,7 +3321,7 @@ string title_of_messageSend
 string title_of_myarticle
 string title_of_mycoupon
 string title_of_myres
-string title_of_res_article_maintain
+string title_of_res_article_management
 string title_of_res_coupon_maintain
 string title_of_res_user_management
 string title_of_sys_setup

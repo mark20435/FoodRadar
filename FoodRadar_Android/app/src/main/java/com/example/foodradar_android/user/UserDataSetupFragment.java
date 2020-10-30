@@ -196,8 +196,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
             }
         });
 
-        tvUserPhone = view.findViewById(R.id.tvUserPhone);
-        etUserPhone = view.findViewById(R.id.etUserPhone);
+        tvUserPhone = view.findViewById(R.id.tvUsManageUserPhone);
+        etUserPhone = view.findViewById(R.id.etUsManageUserPhone);
 //        etUserPhone.setOnFocusChangeListener(this);
         etUserPhone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -245,8 +245,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         tvUserName = view.findViewById(R.id.tvUserName);
         etUserName = view.findViewById(R.id.etUserName);
 
-        tvUserBirth = view.findViewById(R.id.tvUserBirth);
-        etUserBirth = view.findViewById(R.id.etUserBirth);
+        tvUserBirth = view.findViewById(R.id.tvUsManageArticleDate);
+        etUserBirth = view.findViewById(R.id.tvManageArticleDate);
         tvUserBirthDivider = view.findViewById(R.id.tvUserBirthDivider);
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -290,8 +290,8 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
         });
 
 
-        btnLogInOut = view.findViewById(R.id.btnLogInOut);
-        btUserChangConfrim = view.findViewById(R.id.btRegisterOrChang);
+        btnLogInOut = view.findViewById(R.id.btUsManageSearchArticle);
+        btUserChangConfrim = view.findViewById(R.id.btUsManageCancel);
         // 用者登入畫面顯示控制
         if(getUserId() > 0) { // 已登入狀態
 //            Common.showToast(activity, "會員資料設定\n登入成功\nUserId: " + getUserId());
@@ -305,9 +305,9 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
 
         // 登入/登出/註冊送出 功能
-        view.findViewById(R.id.btnLogInOut).setOnClickListener(this);
+        view.findViewById(R.id.btUsManageSearchArticle).setOnClickListener(this);
         // 註冊/取消註冊/確認變更 功能
-        view.findViewById(R.id.btRegisterOrChang).setOnClickListener(this);
+        view.findViewById(R.id.btUsManageCancel).setOnClickListener(this);
 
 
         // vvvvvv臨時寫的，用來模擬使用者 登入 與 註冊
@@ -699,7 +699,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
         switch (v.getId()){
             // 登入/登出 功能
-            case R.id.btnLogInOut:
+            case R.id.btUsManageSearchArticle:
 
                 if(procMode.equals(ProcModeEnum.LOGIN)) { // 登出
                     logoutWithConfirm();
@@ -731,7 +731,7 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
                 break;
 
             // 會員註冊 / 確認(資料)修改 功能
-            case R.id.btRegisterOrChang:
+            case R.id.btUsManageCancel:
                 if(procMode.equals(ProcModeEnum.LOGOUT)) { // 登出狀態，這裡是會員註冊
                     // 設定註冊欄位是(VISIBLE)否(INVISIBLE)顯示
                     procMode = ProcModeEnum.REGISTER;

@@ -245,7 +245,7 @@
             <Button
                 android:id="@+id/btUsArArticleＭaintain"
                 style="@style/style_user_area_button"
-                android:text="@string/title_of_res_article_maintain"
+                android:text="@string/title_of_res_article_management"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
