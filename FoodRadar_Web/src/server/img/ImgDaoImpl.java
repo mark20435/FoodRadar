@@ -25,6 +25,7 @@ public class ImgDaoImpl implements ImgDao {
 		this.dataSource = dataSource;
 	}
 
+	// 取得上傳文章的ID並上傳圖片 > 更新文章
 	@Override
 	public int insert(Img img, byte[] image) {
 		int count = 0;
@@ -95,7 +96,7 @@ public class ImgDaoImpl implements ImgDao {
 		return img;
 	}
 
-	//取得特定文章圖片
+	// 取得特定文章圖片
 	@Override
 	public byte[] getImageByArticleId(int articleId) {
 		String sql = "SELECT img FROM Img WHERE articleId = ? ;";
@@ -126,11 +127,11 @@ public class ImgDaoImpl implements ImgDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		}
 		return image;
 	}
-	
-	//取所有圖片資訊
+
+	// 取所有圖片資訊
 	@Override
 	public List<Img> getAll() {
 		String sql = "SELECT articleId, imgId FROM Img ORDER BY imgId DESC;";
@@ -150,8 +151,8 @@ public class ImgDaoImpl implements ImgDao {
 		}
 		return imgList;
 	}
-	
-	//取特定文章圖片資訊
+
+	// 取特定文章圖片資訊
 	@Override
 	public List<Img> getAllById(int articleId) {
 		String sql = "SELECT articleId, imgId, img FROM Img where articleId = ? ORDER BY imgId DESC;";
@@ -172,33 +173,49 @@ public class ImgDaoImpl implements ImgDao {
 		return imgList;
 	}
 
-	//取得上傳文章的ID並上傳圖片
+	// 取得上傳文章的ID並上傳圖片 > 發文
 	@Override
-	public int findByIdMax( Img img, byte[] image) {
+	public int findByIdMax(Img img, byte[] image) {
 		int count = 0;
-		//sql語法 > 取文章Id最大(最新的文章)的圖片
+		// sql語法 > 取文章Id最大(最新的文章)的圖片
 		String sql = "select Max(articleId) as 'articleId' From Article; ";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			System.out.println("SQL:" + sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-					int articleId = rs.getInt("articleId");
-					String sqlImg = "INSERT INTO Img " + "(articleId, img) " + " VALUES(?,?) ;";
-					try (Connection connectionImg = dataSource.getConnection();
-							PreparedStatement psImg = connection.prepareStatement(sqlImg);) {
-						psImg.setInt(1, articleId);
-						psImg.setBytes(2, image);
-						count = psImg.executeUpdate();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					return count;
-			}	
+				int articleId = rs.getInt("articleId");
+				String sqlImg = "INSERT INTO Img " + "(articleId, img) " + " VALUES(?,?) ;";
+				try (Connection connectionImg = dataSource.getConnection();
+						PreparedStatement psImg = connection.prepareStatement(sqlImg);) {
+					psImg.setInt(1, articleId);
+					psImg.setBytes(2, image);
+					count = psImg.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return count;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
 
+	@Override
+	public byte[] getImageBase(int imgId) {
+		byte[] image = null;
+		String sql = "SELECT img FROM Img WHERE imgId = ? ;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {
+			ps.setInt(1, imgId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				image = rs.getBytes(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return image;
+	}
 }

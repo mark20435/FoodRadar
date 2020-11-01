@@ -114,7 +114,18 @@ public class ImgServlet extends HttpServlet {
 			int id = jsonObject.get("imgId").getAsInt();
 			Img img = imgDao.findById(id);
 			writeText(response, gson.toJson(img));
-		} else {
+		} 
+		/* 取得更新圖片方法 */
+		else if (action.equals("getImageBase")) {
+			Integer id = jsonObject.get("id").getAsInt();
+			byte[] image = imgDao.getImageBase(id);
+			String jsonOut = Base64.getMimeEncoder().encodeToString(image);
+			jsonOut = "{\"imageBase64\":\"" + jsonOut + "\"}";
+			PrintWriter out = response.getWriter();
+			out.println(jsonOut);
+			out.close();
+		}
+		else {
 			writeText(response, "");
 		}
 	}

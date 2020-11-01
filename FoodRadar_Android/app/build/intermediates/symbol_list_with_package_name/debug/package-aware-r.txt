@@ -1807,6 +1807,7 @@ drawable ic_baseline_turned_in_24
 drawable ic_baseline_turned_in_not_24
 drawable ic_baseline_user_24
 drawable ic_baseline_view_list_24
+drawable ic_baseline_warning_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_checked_circle
@@ -2021,6 +2022,7 @@ id articleDetailFragment
 id articleFragment
 id articleInsertFragment
 id articleNavigation
+id articleSearchView
 id articleTitle
 id articleUpdateFragment
 id article_navigation
@@ -2327,7 +2329,6 @@ id ivArticleImageCheck
 id ivArticleImageInsert
 id ivArticleImagePick
 id ivAvatar
-id ivCamera
 id ivCommentGoodIcon
 id ivCommentSetting
 id ivCommentUserAvatar
@@ -2500,6 +2501,7 @@ id rvArticleImage
 id rvArticleRank
 id rvComment
 id rvCoupon
+id rvDefaultImage
 id rvImage
 id rvImagePick
 id rvInsertImage
@@ -2752,7 +2754,6 @@ id tvTo7
 id tvTo8
 id tvTo9
 id tvTuesDay
-id tvUpdate
 id tvUsArManagerFundivider
 id tvUseInfo1
 id tvUseInfo2
@@ -3086,6 +3087,9 @@ string coupon
 string default_notification_channel_id
 string default_notification_channel_name
 string default_web_client_id
+string deleteImage
+string deleteImageNo
+string deleteImageYes
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string ezFcm
@@ -3281,6 +3285,7 @@ string textUserBirth
 string textUserChangConfrim
 string textUserPassword
 string textUserPhone
+string textWarning
 string textWednesday
 string textWriteArticle
 string titleResDetail

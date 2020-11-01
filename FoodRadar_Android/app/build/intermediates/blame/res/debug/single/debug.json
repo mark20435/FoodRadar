@@ -40,6 +40,10 @@
         "source": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/res/drawable/cucate.jpg"
     },
     {
+        "merged": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/build/intermediates/res/merged/debug/drawable_ic_baseline_warning_24.xml.flat",
+        "source": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/res/drawable/ic_baseline_warning_24.xml"
+    },
+    {
         "merged": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/build/intermediates/res/merged/debug/layout_fragment_res_list.xml.flat",
         "source": "/Users/gn0987123/Downloads/Tibame/FoodRadar1008/FoodRadar_Android/app/src/main/res/layout/fragment_res_list.xml"
     },

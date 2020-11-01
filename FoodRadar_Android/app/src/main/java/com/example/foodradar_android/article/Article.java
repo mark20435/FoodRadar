@@ -37,10 +37,10 @@ public class Article implements Serializable {
     }
 
 
-    //ArticleList頁面(新進榜，排行榜，收藏榜)
+    //ArticleList頁面(新進榜，排行榜，收藏榜，內文)
     public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
-                   String resName,int articleGoodCount, int commentCount, int favoriteCount,boolean articleGoodStatus ,boolean articleFavoriteStatus,
-                   int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
+                   String resName,int articleGoodCount, int commentCount, int favoriteCount,boolean articleGoodStatus ,boolean articleFavoriteStatus ,
+                   int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus, String modifyTime) {
         super();
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
@@ -59,6 +59,7 @@ public class Article implements Serializable {
         this.articleStatus = articleStatus;
         this.articleGoodStatus = articleGoodStatus;
         this.articleFavoriteStatus = articleFavoriteStatus;
+        this.modifyTime = modifyTime;
     }
 
     public Article(int articleGoodId, int userId , int articleId) {
@@ -85,6 +86,21 @@ public class Article implements Serializable {
         this.resId = resId;
         this.userId = userId;
         this.articleStatus = articleStatus;
+    }
+
+    //更新文章用
+    public  Article( String articleTitle, String articleText, String modifyTime,
+                    int conAmount, int conNum,  int articleId){
+        super();
+        this.articleId = articleId;
+        this.articleTitle = articleTitle;
+        this.articleText = articleText;
+        this.conNum = conNum;
+        this.conAmount = conAmount;
+        this.resId = resId;
+        this.userId = userId;
+        this.articleStatus = articleStatus;
+        this.modifyTime = modifyTime;
     }
 
     public Article(int userId , int articleId) {

@@ -43,6 +43,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         this.imageViewWeakReference = new WeakReference<>(imageView);
     }
 
+
     public ImageTask(String url, int id, int imageSize, ImageView imageView, int articleId) {
         this.url = url;
         this.id = id;

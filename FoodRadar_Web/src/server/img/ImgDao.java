@@ -8,7 +8,7 @@ public interface ImgDao {
 	int update(Img img, byte[] image);
 	int delete(int imgId);
 	
-	
+	byte[] getImageBase(int imgId);
 
 	Img findById(int imgId);
 

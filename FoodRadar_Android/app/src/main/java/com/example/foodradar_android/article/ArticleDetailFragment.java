@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -20,6 +22,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -102,9 +105,9 @@ public class ArticleDetailFragment extends Fragment {
         super.onStart();
         //隱藏 floatingActionButton
         Common.faButtonControl(activity, false);
+
         //隱藏bottomNav
         ArticleFragment.bottomNavSet(activity, 0);
-
     }
 
     @Override
@@ -221,9 +224,15 @@ public class ArticleDetailFragment extends Fragment {
         tvDtdailResCategoryInfo.setText(resCategory);
         String resName = article.getResName();  //餐聽名稱
         tvDetailResName.setText("店名：" + resName);
-      String DetailArticleTime = article.getArticleTime();  //文章發表時間(修改後時間顯示後補)
-//        String DetailArticleTime = article.getModifyTime();  //文章修改時間
-        tvDetailArticleTime.setText("發表時間：" + DetailArticleTime);
+
+        String DetailArticleTime = article.getArticleTime();  //文章發表時間(修改後時間顯示後補)
+        String ModifyArticleTime = article.getModifyTime();  //文章修改時間
+        if(DetailArticleTime.equals(ModifyArticleTime)) {
+            tvDetailArticleTime.setText("發表時間：" + DetailArticleTime);
+        } else {
+            tvDetailArticleTime.setText("修改時間：" + ModifyArticleTime);
+        }
+
         String articleText = article.getArticleText();  //文章內文
         tvArticleText.setText(articleText);
         String DetailAvgCon = article.avgCon(); //計算平均消費
@@ -261,6 +270,8 @@ public class ArticleDetailFragment extends Fragment {
                                 bundle.putString("conAmount", conAmountStr); //平均消費
                                 bundle.putString("resName", resName);   //餐廳名稱
                                 bundle.putString("resCategory", resCategory);   //餐廳種類
+
+
                                 Navigation.findNavController(v).navigate(R.id.action_articleDetailFragment_to_articleUpdateFragment, bundle);
 
                             } else {
@@ -573,13 +584,38 @@ public class ArticleDetailFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ImgAdpter.MyViewHolder myViewHolder, int position) {
             final Img img = imgs.get(position);
-            //取得文章圖片
+            /* 取得文章圖片 */
             String url = Common.URL_SERVER + "ImgServlet";
             int imgId = img.getImgId();
             int articleId = img.getArticleId();
-            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage, articleId);
-            imageTask.execute();
-            imageTasks.add(imageTask);
+            //透過ImageTask
+//            ImageTask imageTask = new ImageTask(url, imgId, imageSize, myViewHolder.ivArticleImage, articleId);
+//            imageTask.execute();
+//            imageTasks.add(imageTask);
+
+            /* 透過Base64 */
+            JsonObject jsonObjectBase = new JsonObject();
+            jsonObjectBase.addProperty("action", "getImageBase");
+            jsonObjectBase.addProperty("id", imgId);
+            CommonTask BaseTaskTask = new CommonTask(url, jsonObjectBase.toString());
+            byte[] imageByte;
+            try {
+                String jsonIn = BaseTaskTask.execute().get();
+                JsonObject jObject = new Gson().fromJson(jsonIn, JsonObject.class);
+                imageByte = Base64.decode(jObject.get("imageBase64").getAsString(), Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
+                if (bitmap != null) {
+                    new Common().setImage(activity, bitmap);
+                    if (myViewHolder.ivArticleImage != null) {
+                        myViewHolder.ivArticleImage.setImageBitmap(bitmap);
+
+                        /* 儲存圖片> 內部 */
+                        saveToInternalStorage(bitmap);
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
 
 
             /* alertDiolog顯示大圖  >   顯示圖片 */
@@ -708,7 +744,7 @@ public class ArticleDetailFragment extends Fragment {
             myViewHolder.tvCommentUserName.setText(comment.getUserName());
             myViewHolder.tvCommentText.setText(comment.getCommentText());
 
-            //假如新增留言時間 != 修改留言時間(未修改過) > 則顯示新增留言時間(沒修改)，否則顯示修改留言時間(有修改)
+            /* 假如新增留言時間 != 修改留言時間(未修改過) > 則顯示新增留言時間(沒修改)，否則顯示修改留言時間(有修改) */
             if (!comment.getCommentText().equals(comment.getCommentModifyTime())) {
                 myViewHolder.tvCommentTime.setText(comment.getCommentModifyTime());
             } else {
@@ -918,15 +954,37 @@ public class ArticleDetailFragment extends Fragment {
     }
 
     /* 使用「getCacheDir() + 檔案名稱」將物件存檔 */
-    private void saveFile_getCacheDir(String fileName, Bitmap bitmap){
+    private void saveFile_getCacheDir(String fileName, Img img) {
         File file = new File(activity.getCacheDir(), fileName);
         Log.d(TAG, "getCacheDir() path: " + file.getPath());
         try (ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(file))) {
-            out.writeObject(bitmap);
+            out.writeObject(img);
         } catch (IOException e) {
             Log.e(TAG, e.toString());
         } //暫存檔案，重要資料不要用cache的方法存取
+    }
+
+    private String saveToInternalStorage(Bitmap bitmapImage) {
+        ContextWrapper cw = new ContextWrapper(activity);
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        File mypath = new File(directory, "profile.jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
     }
 
     //生命週期結束，釋放記憶體

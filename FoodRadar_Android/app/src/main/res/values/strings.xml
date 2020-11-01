@@ -342,4 +342,9 @@
     <string name="textNoMyRessFound">您尚未收藏任何餐廳</string>
     <string name="textMyResList">我的收藏列表</string>
     <string name="titleResImg">餐廳照片</string>
+
+    <string name="textWarning">警告</string>
+    <string name="deleteImage">你即將要刪除圖片</string>
+    <string name="deleteImageYes">刪除</string>
+    <string name="deleteImageNo">取消</string>
 </resources>

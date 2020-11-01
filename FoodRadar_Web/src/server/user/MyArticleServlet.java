@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import server.main.ImageUtil;
@@ -28,7 +29,8 @@ public class MyArticleServlet extends HttpServlet {
 		String fromName = this.getClass().getName() + "." + Thread.currentThread().getStackTrace()[1].getMethodName();
 		pubTools.showConsoleMsg(fromName, "[START]=>MyResServlet");
 		request.setCharacterEncoding("UTF-8");
-		Gson gson = new Gson();
+//		Gson gson = new Gson();
+		Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
 		BufferedReader br = request.getReader();
 		StringBuilder jsonIn = new StringBuilder();
 		String line = null;
