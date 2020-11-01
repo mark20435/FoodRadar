@@ -6,6 +6,8 @@ public interface CouponDao {
 	
 	 int insert(Coupon coupon, byte[] image);
 	 
+	 int couponLoveInsert(int couPonId, int loginUserId);
+	 
 	 int update(Coupon coupon, byte[] image);
 	 
 	 int delete(int id);

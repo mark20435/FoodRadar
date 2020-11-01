@@ -98,7 +98,7 @@ public class CouponDetailFragment extends Fragment {
         ivCoupon = view.findViewById(R.id.ivDemo);
         ivCoupon.setImageResource(R.drawable.no_image);
         couPonStartDate = view.findViewById(R.id.couPonStartDate);
-        couPonEndDate = view.findViewById(R.id.couPonEndDate);
+       // couPonEndDate = view.findViewById(R.id.couPonEndDate);
 
         ivNoUse = view.findViewById(R.id.ivNoUse);
         String url = Common.URL_SERVER + "CouponServlet";

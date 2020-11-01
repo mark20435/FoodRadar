@@ -300,7 +300,7 @@ public class FavoriteArticleFragment extends Fragment {
 
 
             //設定點讚功能，1.會員登入判斷還沒寫，要候補
-//            boolean articleGoodStatus = article.isArticleGoodStatus();
+            boolean articleGoodStatus = article.isArticleGoodStatus();
             ImageView goodIcon = myViewHolder.ivGoodIcon;
             if (userIdBox == 0) {    //0 > 訪客，一律設為沒點讚
                 article.setArticleGoodStatus(false);

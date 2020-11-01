@@ -64,6 +64,8 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array couponEnable
+array couponType
 array textHoursArray
 array textHoursArrayWithRest
 array textHoursArrayWithSame
@@ -1765,10 +1767,12 @@ drawable googleg_standard_color_18
 drawable ic_add
 drawable ic_awesome_user_circle
 drawable ic_baseline_account_circle_24
+drawable ic_baseline_add_photo_alternate_24
 drawable ic_baseline_announcement_24
 drawable ic_baseline_arrow_back_24
 drawable ic_baseline_bookmarks_24
 drawable ic_baseline_broken_image_24
+drawable ic_baseline_build_24
 drawable ic_baseline_camera_alt_24
 drawable ic_baseline_card_giftcard_24
 drawable ic_baseline_chat_24
@@ -1961,6 +1965,7 @@ id action_category_Detail_Fragment_to_loginFragment
 id action_container
 id action_context_bar
 id action_couponFragment_to_couponDetailFragment
+id action_couponFragment_to_loginFragment
 id action_divider
 id action_favoriteArticleFragment_to_articleDetailFragment
 id action_favoriteArticleFragment_to_articleInsertFragment
@@ -2052,6 +2057,7 @@ id btDelete
 id btDemo
 id btDirect
 id btEatWhat
+id btEatWhatGone
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -2063,6 +2069,8 @@ id btMonAddHours
 id btMonAddHours2
 id btMonDeleteHours2
 id btMonDeleteHours3
+id btMtadd
+id btMtdel
 id btMyRes
 id btMyResList
 id btPickPicture
@@ -2106,7 +2114,7 @@ id btUsArMyRes
 id btUsArResＭaintain
 id btUsArSysSetup
 id btUsArUserData
-id btUsArUserＭaintain
+id btUsArUserManagement
 id btUsCoupon
 id btUse
 id btWedAddHours
@@ -2124,6 +2132,7 @@ id cardView2
 id cardView3
 id cardView4
 id cardViewAvatar
+id cardViewUserManageAvatar
 id cardview
 id category_Detail_Fragment
 id center
@@ -2181,7 +2190,6 @@ id controls_shadow
 id controls_wrapper
 id coordinator
 id cos
-id couPonEndDate
 id couPonEndDateUp
 id couPonStartDate
 id couPonStartDateUp
@@ -2193,6 +2201,7 @@ id customPanel
 id cut
 id cvArticle
 id cvUserIcon
+id cvcouPonPhoto
 id dark
 id date_picker_actions
 id decelerate
@@ -2259,6 +2268,11 @@ id etTitle
 id etUserBirth
 id etUserName
 id etUserPhone
+id etcouPonEndDate
+id etcouPonEndDateDivider
+id etcouPonInfo
+id etcouPonStartDate
+id etcouPonStartDateDivider
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2295,16 +2309,19 @@ id horizontal
 id hybrid
 id ibUseCard
 id ibcate
+id ibphotoAdd
 id icon
 id icon_group
 id icon_only
 id id_btResMaintain
 id id_rcvMyRes
+id id_rcvUserManagement
 id ifRoom
 id ignore
 id ignoreRequest
 id imMyAtResImg
 id imResImg
+id imUserManageAvatar
 id image
 id imageAlert
 id imageAlert2
@@ -2314,6 +2331,7 @@ id image_view_logo
 id image_view_state_aspect_ratio
 id image_view_state_rotate
 id image_view_state_scale
+id imcouPonPhoto
 id imgView
 id incoming
 id info
@@ -2526,6 +2544,8 @@ id scrollView2
 id scrollViewUpdate
 id scrollable
 id searchView
+id searchViewMyRes
+id searchViewUserManagement
 id search_badge
 id search_bar
 id search_button
@@ -2551,6 +2571,7 @@ id snackbar_text
 id snap
 id snapMargins
 id spCategory
+id spEnable
 id spFriEndTime
 id spFriEndTime2
 id spFriEndTime3
@@ -2587,6 +2608,7 @@ id spTueEndTime3
 id spTueStartTime
 id spTueStartTime2
 id spTueStartTime3
+id spType
 id spWedEndTime
 id spWedEndTime2
 id spWedEndTime3
@@ -2617,12 +2639,14 @@ id stretch
 id submenuarrow
 id submit_area
 id svArticleDetail
+id svMaintain
 id svMyArticle
 id svResAddress
 id svUseCard
 id swResEnable
 id swRf
 id swUsArNotifi
+id swUserManageStatus
 id swipeRefreshLayout
 id swipeRefreshLayoutFavorite
 id swipeRefreshLayoutRank
@@ -2759,9 +2783,18 @@ id tvUseInfo1
 id tvUseInfo2
 id tvUserBirth
 id tvUserBirthDivider
+id tvUserManageAccountStatus
+id tvUserManageEditTime
+id tvUserManagePhone
+id tvUserManageRegisterTime
 id tvUserName
 id tvUserPhone
 id tvWednesday
+id tvcouPonEnable
+id tvcouPonEndDate
+id tvcouPonInfo
+id tvcouPonStartDate
+id tvcouPonType
 id tvgoodCount
 id tvuserPhone
 id tvuserPwd
@@ -2778,6 +2811,7 @@ id user
 id userAreaFragment
 id userDataSetupFragment
 id userIcon
+id userManagementFragment
 id userMyArticleFragment
 id userMyCouponFragment
 id userMyResFragment
@@ -2918,6 +2952,7 @@ layout fragment_res_map
 layout fragment_res_update
 layout fragment_user_area
 layout fragment_user_data_setup
+layout fragment_user_management
 layout fragment_user_my_article
 layout fragment_user_my_coupon
 layout fragment_user_my_res
@@ -2930,6 +2965,7 @@ layout item_view_res
 layout item_view_res_detail_image
 layout item_view_res_img
 layout item_view_res_map
+layout item_view_user_management
 layout item_view_user_myarticle
 layout item_view_user_mycoupon
 layout item_view_user_myres
@@ -3166,6 +3202,7 @@ string rankArticle
 string resMaintain
 string search_menu_title
 string status_bar_notification_info_overflow
+string textAccountStatus
 string textAdd
 string textAddHours
 string textAddressError
@@ -3237,6 +3274,8 @@ string textNoRating
 string textNoRessFound
 string textNotifi
 string textOK
+string textOfDisable
+string textOfEnable
 string textOff
 string textOn
 string textOriginNotFound
@@ -3246,6 +3285,7 @@ string textPickPicture
 string textPlsInpup
 string textReadArticle
 string textRegisterCancel
+string textRegisterDate
 string textRegisterSend
 string textRegistrationToken
 string textResAddress
@@ -3265,6 +3305,8 @@ string textSearchResAgain
 string textSendGroupFcm
 string textSendSingleFcm
 string textSendSubscriber
+string textSetFail
+string textSetSuccess
 string textSubscribeFailed
 string textSubscribeHealth
 string textSubscribed
@@ -3299,7 +3341,7 @@ string title_of_mycoupon
 string title_of_myres
 string title_of_res_article_maintain
 string title_of_res_coupon_maintain
-string title_of_res_user_maintain
+string title_of_res_user_management
 string title_of_sys_setup
 string title_of_userdata
 string ucrop_crop
@@ -3313,6 +3355,7 @@ string ucrop_scale
 string user
 string userId
 string welcome
+string 開始日期
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow
