@@ -103,7 +103,6 @@ public class ResDetailFragment extends Fragment {
     private LocationRequest locationRequest;
     private Location lastLocation;
     private FusedLocationProviderClient fusedLocationClient;
-    private Button btDirect;
     //private static final int PER_ACCESS_LOCATION = 0;
     private static final int REQ_CHECK_SETTINGS = 101;
     private static final int REQ_RATING = 0;
@@ -755,7 +754,7 @@ public class ResDetailFragment extends Fragment {
             showImgs(imgs);
         }
 
-        btDirect = view.findViewById(R.id.btDirect);
+        Button btDirect = view.findViewById(R.id.btDirect);
 
         checkLocationSettings();
 
@@ -890,9 +889,19 @@ public class ResDetailFragment extends Fragment {
 //            startActivity(Intent.createChooser(sharingIntent, "chooserTitle"));
 //        });
 
-        //todo 食記相關按鈕
+        //食記相關按鈕
+        Button btReadArticle = view.findViewById(R.id.btReadArticle);
+        Button btWriteArticle = view.findViewById(R.id.btWriteArticle);
 
+        btReadArticle.setOnClickListener(v -> {
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_resDetailFragment_to_articleFragment, bundle);
+        });
 
+        btWriteArticle.setOnClickListener(v -> {
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_resDetailFragment_to_articleInsertFragment, bundle);
+        });
     }
 
     private void rating() {

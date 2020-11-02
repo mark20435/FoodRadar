@@ -28,10 +28,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
 import com.example.foodradar_android.user.MyArticle;
@@ -56,6 +58,10 @@ public class NewArticleFragment extends Fragment {
     private CommonTask articleDeleteTask;
     private NavController navController;
     private int userIdBox = Common.USER_ID;
+    private SearchView articleSearchView;
+    private Res res;
+    private String resNameSet;
+    private int resInt = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,7 +84,15 @@ public class NewArticleFragment extends Fragment {
     public void onStart() {
         super.onStart();
         //隱藏 floatingActionButton
-        Common.faButtonControl(activity, true);
+        if (userIdBox == 0) {
+            Common.faButtonControl(activity, false);
+        } else {
+            Common.faButtonControl(activity, true);
+        }
+
+        //顯示bottomNav
+        ArticleFragment.bottomNavSet(activity, 1);
+
     }
 
     // 顯示右上角的OptionMenu選單
@@ -117,7 +131,13 @@ public class NewArticleFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // SearchView articleSearchView = view.findViewById(R.id.articleSearchView);
         rvArticle = view.findViewById(R.id.rvArticle);
+        rvArticle.setItemViewCacheSize(50); //設定緩存rvArticle數量為50，避免重複利用問題
+
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+        articleSearchView = view.findViewById(R.id.articleSearchView);
+        articleSearchView.setIconifiedByDefault(false);
+        articleSearchView.setIconified(true);
+        articleSearchView.setMaxWidth(1030);
 
         rvArticle.setLayoutManager(new LinearLayoutManager(activity));
         articles = getArticle();
@@ -130,36 +150,43 @@ public class NewArticleFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
         });
 
-        // 從“我的社群活動”頁面，跳轉到“討論區”頁面並轉到文章detail頁面
-        if (MyArticle.goToMyArticleDetail == true) {
+        /* 從“我的社群活動”頁面，跳轉到“討論區”頁面並轉到文章detail頁面 */
+        if (MyArticle.goToMyArticleDetail) {
             MyArticle.goToMyArticleDetail = false;
             Navigation.findNavController(view).navigate(R.id.action_newArticleFragment_to_articleDetailFragment);
         }
 
- //         searchView
-//        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String nextText) {
-//                // 如果searchView為空字串，就顯示全部資料；否則就顯示搜尋後結果
-//                if (nextText.isEmpty()) {
-//                    showArticle(articleList);
-//                } else {
-//                    List<Article> searchArticle = new ArrayList<>();
-//                    for (Article article : articleList) {
-//                        if ((article.getArticleTitle().toUpperCase().contains(nextText.toUpperCase())) ||
-//                                (article.getResCategoryInfo().toUpperCase().contains(nextText.toUpperCase()))) {
-//                            searchArticle.add(article);
-//                        }
-//                    }
-//                    showArticle(searchArticle);
-//                }
-//                return true;
-//            }
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
+        /* searchView */
+        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String nextText) {
+                // 如果searchView為空字串，就顯示全部資料；否則就顯示搜尋後結果
+                if (nextText.isEmpty()) {
+                    showArticle(articles);
+                } else {
+                    List<Article> searchArticle = new ArrayList<>();
+                    for (Article article : articles) {
+                        if ((article.getArticleTitle().toUpperCase().contains(nextText.toUpperCase())) ||
+                                (article.getResCategoryInfo().toUpperCase().contains(nextText.toUpperCase())) ||
+                                (article.getResName().toUpperCase().contains(nextText.toUpperCase()))) {
+                            searchArticle.add(article);
+                        }
+                    }
+                    showArticle(searchArticle);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+        });
+
+        /* 指定餐廳跳轉 */
+        if (resInt == 0) {
+
+        }
     }
 
     //向server端取得Article資料
@@ -206,25 +233,25 @@ public class NewArticleFragment extends Fragment {
 
     private class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
-        private List<Article> ArticleList;
+        private List<Article> articles;
         private List<Img> imgList;
         private int imageSize;
 
         //取得圖片並設定顯示圖片尺寸設定，ArticleAdapter建構方法
         ArticleAdapter(Context context, List<Article> articleList) {
             layoutInflater = LayoutInflater.from(context);
-            ArticleList = articleList;
+            articles = articleList;
 
             //螢幕寬度當作將圖的尺寸
             imageSize = getResources().getDisplayMetrics().heightPixels;
         }
 
         public List<Article> getArticleList() {
-            return ArticleList;
+            return articles;
         }
 
         public void setArticleList(List<Article> articleList) {
-            ArticleList = articleList;
+            articles = articleList;
         }
 
         @Override
@@ -267,7 +294,7 @@ public class NewArticleFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder myViewHolder, int position) {
             //article物件 > 包裝要呈現在畫面的資料
-            final Article article = ArticleList.get(position);
+            final Article article = articles.get(position);
             Img img = new Img();
 //            final Img img = ArticleList.get(position);
             //onBindViewHolder才會向後端發出請求取得圖片
@@ -291,7 +318,14 @@ public class NewArticleFragment extends Fragment {
             myViewHolder.resCategoryInfo.setText(article.getResCategoryInfo());
             myViewHolder.articleTitle.setText(article.getArticleTitle());
             myViewHolder.resName.setText(article.getResName());
-            myViewHolder.tvArticleTime.setText(article.getArticleTime());
+
+            /* 判斷顯示是否有更新過文章，並顯示時間 */
+            if (article.getArticleTime().equals(article.getModifyTime())) {
+                myViewHolder.tvArticleTime.setText(article.getArticleTime());
+            } else {
+                myViewHolder.tvArticleTime.setText(article.getModifyTime());
+            }
+
             myViewHolder.tvCommentCount.setText(commentCount);
             myViewHolder.ivArticleCommentIcon.setImageResource(R.drawable.ic_baseline_chat_bubble_24);
 

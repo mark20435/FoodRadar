@@ -2,11 +2,15 @@ package com.example.foodradar_android.article;
 
 import android.graphics.Bitmap;
 
-public class Img {
+import java.io.Serializable;
+import java.util.List;
+
+public class Img implements Serializable {
 
     private int imgId;
     private int articleId;
     private byte[] imgByte;
+    private List<byte[]> imgByteList;
 
     public Img() {
         super();
@@ -57,4 +61,16 @@ public class Img {
         this.imgByte = imgByte;
     }
 
+    public List<byte[]> getImgByteList() {
+        return imgByteList;
+    }
+
+    public void setImgByteList(List<byte[]> imgByteList) {
+        this.imgByteList = imgByteList;
+    }
+
+    //
+    public Img(List<byte[]> imgByteList) {
+        this.imgByteList = imgByteList;
+    }
 }

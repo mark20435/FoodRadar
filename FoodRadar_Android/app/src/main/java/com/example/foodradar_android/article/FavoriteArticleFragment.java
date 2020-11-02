@@ -26,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -54,6 +55,7 @@ public class FavoriteArticleFragment extends Fragment {
     private CommonTask articleDeleteTask;
     private NavController navController;
     private int userIdBox = Common.USER_ID;
+    private SearchView articleSearchView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,14 @@ public class FavoriteArticleFragment extends Fragment {
     public void onStart() {
         super.onStart();
         //隱藏 floatingActionButton
-        Common.faButtonControl(activity, true);
+        if (userIdBox == 0) {
+            Common.faButtonControl(activity, false);
+        } else {
+            Common.faButtonControl(activity, true);
+        }
+
+        //顯示bottomNav
+        ArticleFragment.bottomNavSet(activity, 1);
 
     }
 
@@ -110,6 +119,7 @@ public class FavoriteArticleFragment extends Fragment {
         rvArticleFavorite = view.findViewById(R.id.rvArticleFavorite);
         swipeRefreshLayoutFavorite = view.findViewById(R.id.swipeRefreshLayoutFavorite);
         rvArticleFavorite.setLayoutManager(new LinearLayoutManager(activity));
+        rvArticleFavorite.setItemViewCacheSize(50); //設定緩存rvArticle數量為50，避免重複利用問題法一
         articles = getArticle();
         showArticle(articles);
 
@@ -120,12 +130,36 @@ public class FavoriteArticleFragment extends Fragment {
             swipeRefreshLayoutFavorite.setRefreshing(false);
         });
 
-        //浮動button > 跳轉至insert
-//        FloatingActionButton fbArticleInsert = view.findViewById(R.id.fbArticleInsert);
-//        fbArticleInsert.setOnClickListener(v -> Navigation.findNavController(view)
-//                .navigate(R.id.action_favoriteArticleFragment_to_articleInsertFragment));
+        /* searchView */
+        articleSearchView = view.findViewById(R.id.articleSearchView);
+        articleSearchView.setIconifiedByDefault(false);
+        articleSearchView.setIconified(true);
+        articleSearchView.setMaxWidth(1030);
+        articleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String nextText) {
+                // 如果searchView為空字串，就顯示全部資料；否則就顯示搜尋後結果
+                if (nextText.isEmpty()) {
+                    showArticle(articles);
+                } else {
+                    List<Article> searchArticle = new ArrayList<>();
+                    for (Article article : articles) {
+                        if ((article.getArticleTitle().toUpperCase().contains(nextText.toUpperCase())) ||
+                                (article.getResCategoryInfo().toUpperCase().contains(nextText.toUpperCase())) ||
+                                (article.getResName().toUpperCase().contains(nextText.toUpperCase()))) {
+                            searchArticle.add(article);
+                        }
+                    }
+                    showArticle(searchArticle);
+                }
+                return true;
+            }
 
-
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+        });
     }
 
     private List<Article> getArticle() {
@@ -171,23 +205,23 @@ public class FavoriteArticleFragment extends Fragment {
 
     private class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
-        private List<Article> ArticleList;
+        private List<Article> articles;
         private int imageSize;
 
         //取得圖片並設定顯示圖片尺寸設定，ArticleAdapter建構方法
         ArticleAdapter(Context context, List<Article> articleList) {
             layoutInflater = LayoutInflater.from(context);
-            this.ArticleList = articleList;
+            this.articles = articleList;
             //螢幕寬度當作將圖的尺寸
             imageSize = getResources().getDisplayMetrics().heightPixels;
         }
 
         public List<Article> getArticleList() {
-            return ArticleList;
+            return articles;
         }
 
         public void setArticleList(List<Article> articleList) {
-            ArticleList = articleList;
+            articles = articleList;
         }
 
         @Override
@@ -231,7 +265,7 @@ public class FavoriteArticleFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ArticleAdapter.MyViewHolder myViewHolder, int position) {
-            final Article article = ArticleList.get(position);
+            final Article article = articles.get(position);
             //onBindViewHolder才會向後端發出請求取得圖片
             //取得大圖
             String url = Common.URL_SERVER + "ImgServlet";
@@ -239,10 +273,6 @@ public class FavoriteArticleFragment extends Fragment {
             ArticleImageTask articleImageTask = new ArticleImageTask(url, articleId, imageSize, myViewHolder.imgView);
             articleImageTask.execute();
             articleImageTasks.add(articleImageTask);
-
-//            ImageTask imageTask = new ImageTask(url, articleId, imageSize, myViewHolder.imgView);
-//            imageTask.execute();
-//            imageTasks.add(imageTask);
 
             //取得使用者小圖
             String urlIcon = Common.URL_SERVER + "UserAccountServlet";
@@ -257,7 +287,14 @@ public class FavoriteArticleFragment extends Fragment {
             myViewHolder.resCategoryInfo.setText(article.getResCategoryInfo());
             myViewHolder.articleTitle.setText(article.getArticleTitle());
             myViewHolder.resName.setText(article.getResName());
-            myViewHolder.tvArticleTime.setText(article.getArticleTime());
+
+            /* 判斷顯示是否有更新過文章，並顯示時間 */
+            if (article.getArticleTime().equals(article.getModifyTime())) {
+                myViewHolder.tvArticleTime.setText(article.getArticleTime());
+            } else {
+                myViewHolder.tvArticleTime.setText(article.getModifyTime());
+            }
+
             myViewHolder.tvCommentCount.setText(commentCount);
             myViewHolder.ivArticleCommentIcon.setImageResource(R.drawable.ic_baseline_chat_bubble_24);
 

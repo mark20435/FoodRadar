@@ -29,8 +29,12 @@ public class MyArticleServlet extends HttpServlet {
 		String fromName = this.getClass().getName() + "." + Thread.currentThread().getStackTrace()[1].getMethodName();
 		pubTools.showConsoleMsg(fromName, "[START]=>MyResServlet");
 		request.setCharacterEncoding("UTF-8");
+
+//		Gson gson = new Gson();
+		Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+
 		// vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
-       Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+//       Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
        // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
        // vvvvvv 日期時間，未特別進行格式處理的寫法
        // Gson gson = new Gson();

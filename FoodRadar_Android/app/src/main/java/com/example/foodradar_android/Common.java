@@ -26,6 +26,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 
+import com.example.foodradar_android.article.Img;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.user.UserAccountAvatra;
 import com.example.foodradar_android.user.UserAccount;
@@ -65,6 +66,7 @@ public class Common {
 //    public static Integer USER_ID = 0;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
+    public static final String IMAGE_FILENAME = "foodradar_image.byte";
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -434,6 +436,18 @@ public class Common {
         }
     }
 
+    /*  */
+    public void setImage(Activity activity, Bitmap imageBitmap){
+        UserAccountAvatra userAccountAvatraOut = new UserAccountAvatra();
+        Img img = new Img();
+        img.setImgByte(bitmapToByte(imageBitmap));
+        try (ObjectOutputStream oisOut = new ObjectOutputStream(
+                activity.openFileOutput(IMAGE_FILENAME, Context.MODE_PRIVATE))) {
+            oisOut.writeObject(userAccountAvatraOut);
+        } catch (IOException e) {
+            Log.d(TAG, e.toString());
+        }
+    }
 
     // 取得使用者頭像，回傳Bitmap
     public Bitmap getUserAvatra(Activity activity){
