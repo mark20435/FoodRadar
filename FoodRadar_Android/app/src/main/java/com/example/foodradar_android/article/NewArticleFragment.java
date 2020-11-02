@@ -138,6 +138,18 @@ public class NewArticleFragment extends Fragment {
         articleSearchView.setIconifiedByDefault(false);
         articleSearchView.setIconified(true);
         articleSearchView.setMaxWidth(1030);
+        articleSearchView.setQuery("1000", false);
+
+        /* 帶bundle */
+//        List<Article> searchArticle = new ArrayList<>();
+//        for (Article article : articles) {
+//            if ((article.getArticleTitle().toUpperCase().contains(nextText.toUpperCase())) ||
+//                    (article.getResCategoryInfo().toUpperCase().contains(nextText.toUpperCase())) ||
+//                    (article.getResName().toUpperCase().contains(nextText.toUpperCase()))) {
+//                searchArticle.add(article);
+//            }
+//        }
+//        showArticle(searchArticle);
 
         rvArticle.setLayoutManager(new LinearLayoutManager(activity));
         articles = getArticle();

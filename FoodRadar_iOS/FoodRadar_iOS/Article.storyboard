@@ -27,7 +27,7 @@
                         <viewLayoutGuide key="safeArea" id="jnI-hL-RJl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="討論區" image="text.bubble" catalog="system" selectedImage="text.bubble.fill" id="2ZS-K8-FT9"/>
+                    <tabBarItem key="tabBarItem" title="討論區" image="text.bubble" catalog="system" selectedImage="text.bubble" id="2ZS-K8-FT9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q56-mr-u3J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -37,7 +37,6 @@
     </scenes>
     <resources>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
-        <image name="text.bubble.fill" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
