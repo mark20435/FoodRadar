@@ -246,6 +246,12 @@
         <action
             android:id="@+id/action_resDetailFragment_to_resImgFragment"
             app:destination="@id/resImgFragment" />
+        <action
+            android:id="@+id/action_resDetailFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_resDetailFragment_to_articleInsertFragment"
+            app:destination="@id/articleInsertFragment" />
     </fragment>
     <fragment
     android:id="@+id/couponDetailFragment"

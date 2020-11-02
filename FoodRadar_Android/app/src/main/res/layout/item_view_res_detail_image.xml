@@ -17,5 +17,6 @@
             android:layout_height="116dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/no_image" />
 </androidx.cardview.widget.CardView>
