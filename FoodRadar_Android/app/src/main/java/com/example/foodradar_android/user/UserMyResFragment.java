@@ -11,6 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,15 +29,20 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 public class UserMyResFragment extends Fragment {
     private Activity activity;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private NavController navController;
     private List<MyRes> myResList = new ArrayList<>();
     private List<UserImageTask> imageTasks= new ArrayList<>();
@@ -118,8 +124,17 @@ public class UserMyResFragment extends Fragment {
         });
 
         myResList = getMyRes();
-//        Log.d("TAG","myResList: " + myResList);
         showMyRes(myResList);
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayoutMyRes);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showMyRes(myResList);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private int getUserId(){
@@ -167,7 +182,7 @@ public class UserMyResFragment extends Fragment {
         public void onBindViewHolder(@NonNull MyResAdapter.MyViewHolder holder, int position) {
             MyRes myResBidVH = myResListAdpt.get(position);
             holder.tvResName.setText(myResBidVH.getResName());
-            holder.tvResHours.setText(getResources().getString(R.string.textResHours) + ": " + myResBidVH.getResHours());
+            holder.tvResHours.setText(getResources().getString(R.string.textResHours) + ": " + resHour(myResBidVH.getResHours()));
             holder.tvResTel.setText(getResources().getString(R.string.textResTel) + ": " + myResBidVH.getResTel());
             holder.tvResAddress.setText(getResources().getString(R.string.textResAddress) + ": " + myResBidVH.getResAddress());
 
@@ -232,7 +247,6 @@ public class UserMyResFragment extends Fragment {
             }
         }
 
-
     }
 
     private List<MyRes> getMyRes(){
@@ -287,5 +301,50 @@ public class UserMyResFragment extends Fragment {
         }
 
     }
+
+    public String resHour(String hourJson) {
+        JsonObject jsonParser = new JsonObject();
+        jsonParser = JsonParser.parseString(hourJson).getAsJsonObject();
+
+        //        List<ResHour> resHourList = new ArrayList<ResHour>();
+        List<String> resHourList = new ArrayList<String>();
+        for (Map.Entry<String, JsonElement> e : jsonParser.entrySet()) {
+//            resHourList.add(new ResHour(e.getKey(), e.getValue()));
+            resHourList.add(e.getKey());
+//            Log.d("TAG","e.getKey(): " + e.getKey() + ", value:" + e.getValue());
+        }
+
+//        Log.d("TAG" ,new SimpleDateFormat("yyyy-MM-dd EEE hh:mm:ss").format(new Date()));
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        // 獲得當前日期是一個星期的第幾天
+        int weekOfDate = cal.get(Calendar.DAY_OF_WEEK);
+        // Calendar星期日是回傳1，所以直接對應到json的7(星期日)，其餘的星期則減1後對應json
+        if (weekOfDate == 1) { weekOfDate = 7; } else { weekOfDate = weekOfDate - 1; }
+        String week1 = String.valueOf(weekOfDate) + "1";
+        String week2 = String.valueOf(weekOfDate) + "2";
+        String week3 = String.valueOf(weekOfDate) + "3";
+//        Log.d("TAG","Time: " + cal.getTime() + ", weekOfDate: " + String.valueOf(weekOfDate));
+
+        JsonObject jsonHours = JsonParser.parseString(hourJson).getAsJsonObject();
+
+        String resHour = "";
+        if (resHourList.indexOf(week1) >= 0) { resHour = jsonHours.get(week1).getAsString(); }
+        if (resHourList.indexOf(week2) >= 0) { resHour += resHour==""?"":", " + jsonHours.get(week2).getAsString(); }
+        if (resHourList.indexOf(week3) >= 0) { resHour += resHour==""?"":", " + jsonHours.get(week3).getAsString(); }
+
+        if (resHour.equals("")) { resHour = "本日公休"; }
+        return resHour;
+    }
+//    class ResHour {
+//        String openWeek;
+//        JsonElement openTime;
+//        public ResHour(String openWeek, JsonElement openTime) {
+//            this.openWeek = openWeek;
+//            this.openTime = openTime;
+//        }
+//        public String getOpenWeek() { return openWeek; }
+//        public JsonElement getOpenTime() { return openTime; }
+//    }
 
 }

@@ -308,5 +308,10 @@
         android:name="com.example.foodradar_android.res.ResImgFragment"
         android:label="fragment_res_img"
         tools:layout="@layout/fragment_res_img" />
+    <fragment
+        android:id="@+id/articleManagementFragment"
+        android:name="com.example.foodradar_android.user.ArticleManagementFragment"
+        android:label="fragment_article_management"
+        tools:layout="@layout/fragment_article_management" />
 
 </navigation>

@@ -127,6 +127,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="articleManagementFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-424" />
+                            <option name="y" value="8" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="category_Detail_Fragment">
                     <value>
                       <LayoutPositions>
@@ -363,8 +375,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
+<<<<<<< HEAD
+                            <option name="x" value="-188" />
+                            <option name="y" value="10" />
+=======
                             <option name="x" value="2252" />
                             <option name="y" value="12" />
+>>>>>>> e5194462d67adb460eadfd3a458272ccf0821d58
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -549,7 +566,11 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
+<<<<<<< HEAD
+                            <option name="x" value="12" />
+=======
                             <option name="x" value="572" />
+>>>>>>> e5194462d67adb460eadfd3a458272ccf0821d58
                             <option name="y" value="12" />
                           </Point>
                         </option>

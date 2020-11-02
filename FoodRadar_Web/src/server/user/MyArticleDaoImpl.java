@@ -122,7 +122,7 @@ public class MyArticleDaoImpl implements MyArticleDao{
 	}
 
 	@Override
-	public List<MyArticle> myArticle(int id, String action) {
+	public List<MyArticle> myArticle(int id, String articleDate, String action) {
 		/*
 		 SELECT A.articleId, A.articleTitle, A.articleTime
 		,(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END
@@ -134,15 +134,18 @@ public class MyArticleDaoImpl implements MyArticleDao{
 		// Date Time: 2020-10-14 14:34:03
 		// select statements : MyArticle
 		// String sqlStmt = "SELECT myArticleId, userId, articleId, modifyDate FROM MyArticle WHERE userId = ?;";
-		String sqlStmt = "SELECT A.articleId, A.articleTitle, A.articleTime, A.articleText ";
+		String sqlStmt = "SELECT A.articleId, A.articleTitle, A.articleTime, A.articleText, A.articleStatus ";
 		sqlStmt += ",(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END "; 
 		sqlStmt += " FROM UserAccount U WHERE U.userId =A.userId) AS 'userName'";
 		switch (action) {
 			case "getMyArticleCollect":
-				sqlStmt += " FROM Article A WHERE articleId IN (SELECT articleId FROM MyArticle WHERE userId = ?)";
+				sqlStmt += " FROM Article A WHERE articleStatus = 1 AND articleId IN (SELECT articleId FROM MyArticle WHERE userId = ?)";
 				break;
 			case "getMyArticleIsMe":
-				sqlStmt += " FROM Article A WHERE A.userId = ?";
+				sqlStmt += " FROM Article A WHERE articleStatus = 1 AND A.userId = ?";
+				break;
+			case "getArticleByUserPhone":
+				sqlStmt += " FROM Article A WHERE A.userId = ? AND date_format(A.articleTime, '%Y-%m-%d') <= ? ";
 				break;
 			default:
 				break;
@@ -156,6 +159,9 @@ public class MyArticleDaoImpl implements MyArticleDao{
 			// ResultSet rs = ps.executeQuery(sqlStmt);
 			PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
 			ps.setInt(1, id);
+			if (action.contentEquals("getArticleByUserPhone")) {
+				ps.setString(2, articleDate);	
+			}
 			ResultSet rs = ps.executeQuery();
 			// 假如有下一個欄位的話，取得其資料
 			while (rs.next()) {
@@ -164,8 +170,8 @@ public class MyArticleDaoImpl implements MyArticleDao{
 				Timestamp articleTime = rs.getTimestamp("articleTime");
 				String articleText = rs.getString("articleText");
 				String userName = rs.getString("userName");
-
-				myArticle = new MyArticle(articleId, articleTitle, articleTime, articleText, userName);
+				Boolean articleStatus = rs.getBoolean("articleStatus");
+				myArticle = new MyArticle(articleId, articleTitle, articleTime, articleText, userName, articleStatus);
 				myArticleList.add(myArticle);
 			}
 			return myArticleList;
@@ -190,7 +196,7 @@ public class MyArticleDaoImpl implements MyArticleDao{
 		 */
 		// Date Time: 2020-10-17 21:52:27
 		// select statements : Comment
-		String sqlStmt = "SELECT A.articleId, A.articleTitle, C.commentId, C.commentTime, C.commentText"; 
+		String sqlStmt = "SELECT A.articleId, A.articleTitle, C.commentId, C.commentTime, C.commentText, C.commentStatus"; 
 		sqlStmt += ",(SELECT CASE TRIM(IFNULL(userName,'')) WHEN '' THEN concat('美食雷達',U.userId,'號') ELSE userName END"; 
 		sqlStmt += " FROM UserAccount U WHERE U.userId =A.userId) AS 'userName'"; 
 		sqlStmt += " FROM `Comment` C JOIN Article A"; 
@@ -215,8 +221,9 @@ public class MyArticleDaoImpl implements MyArticleDao{
 				Timestamp commentTime = rs.getTimestamp("commentTime");
 				String commentText = rs.getString("commentText");
 				String userName = rs.getString("userName");
+				Boolean commentStatus = rs.getBoolean("commentStatus");
 
-				myArticle = new MyArticle(articleId, articleTitle, commentId, commentTime, commentText, userName);
+				myArticle = new MyArticle(articleId, articleTitle, commentId, commentTime, commentText, userName, commentStatus);
 				myArticleList.add(myArticle);
 			}
 			return myArticleList;
@@ -226,6 +233,26 @@ public class MyArticleDaoImpl implements MyArticleDao{
 		return myArticleList;
 
 	}
+	
+	@Override
+	public int setEnableStatus(Integer articleId, Boolean enableStatus) {
+		// Date Time: 2020-11-02 16:36:35
+		// update statements : UserAccount
+		int count = 0;
+		String sqlStmt = "UPDATE Article ";
+		sqlStmt += " SET articleStatus = ?";
+		sqlStmt += " WHERE articleId = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setBoolean(1, enableStatus);
+			ps.setInt(2, articleId);
+			count = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
 	
 	@Override
 	public byte[] getImage(int id) {

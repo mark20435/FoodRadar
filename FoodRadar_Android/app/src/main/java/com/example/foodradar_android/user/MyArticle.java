@@ -14,10 +14,12 @@ public class MyArticle {
     private Timestamp articleTime;
     private String articleText;
     private String userName;
+    private Boolean articleStatus;
 
     private int commentId;
     private Timestamp commentTime;
     private String commentText;
+    private Boolean commentStatus;
 
     public static boolean goToMyArticleDetail = false;
 
@@ -30,16 +32,17 @@ public class MyArticle {
     }
 
     // getAllById
-    public MyArticle(int articleId, String articleTitle, Timestamp articleTime, String articleText, String userName) {
+    public MyArticle(int articleId, String articleTitle, Timestamp articleTime, String articleText, String userName, Boolean articleStatus) {
         super();
         this.articleId = articleId;
         this.articleTitle = articleTitle;
         this.articleTime = articleTime;
         this.articleText = articleText;
         this.userName = userName;
+        this.articleStatus = articleStatus;
     }
 
-    public MyArticle (int articleId, String articleTitle, int commentId, Timestamp commentTime, String commentText, String userName) {
+    public MyArticle (int articleId, String articleTitle, int commentId, Timestamp commentTime, String commentText, String userName, Boolean commentStatus) {
         super();
         this.articleId = articleId;
         this.articleTitle = articleTitle;
@@ -47,6 +50,7 @@ public class MyArticle {
         this.commentTime = commentTime;
         this.commentText = commentText;
         this.userName = userName;
+        this.commentStatus = commentStatus;
     }
 
     public int getMyArticleId() {
@@ -129,4 +133,12 @@ public class MyArticle {
     public void setCommentText(String commentText) {
         this.commentText = commentText;
     }
+
+    public Boolean getArticleStatus() { return articleStatus; }
+
+    public void setArticleStatus(Boolean articleStatus) { this.articleStatus = articleStatus; }
+
+    public Boolean getCommentStatus() { return commentStatus; }
+
+    public void setCommentStatus(Boolean commentStatus) { this.commentStatus = commentStatus; }
 }

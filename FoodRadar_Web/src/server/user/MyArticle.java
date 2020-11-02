@@ -14,10 +14,12 @@ public class MyArticle {
 	private Timestamp articleTime;
 	private String articleText;
 	private String userName;
+	private Boolean articleStatus;
 	
 	private int commentId;
 	private Timestamp commentTime;
 	private String commentText;
+	private Boolean commentStatus;
 	
 	public MyArticle(int myArticleId, int userId, int articleId, Timestamp modifyDate) {
 		super();
@@ -27,16 +29,17 @@ public class MyArticle {
 		this.modifyDate = modifyDate;
 	}
 	
-	public MyArticle(int articleId, String articleTitle, Timestamp articleTime, String articleText, String userName) {
+	public MyArticle(int articleId, String articleTitle, Timestamp articleTime, String articleText, String userName, Boolean articleStatus) {
 		super();
 		this.articleId = articleId;
 		this.articleTitle = articleTitle;
 		this.articleTime = articleTime;
 		this.articleText = articleText;
 		this.userName = userName;
+		this.articleStatus = articleStatus;
 	}
 	
-	public MyArticle (int articleId, String articleTitle, int commentId, Timestamp commentTime, String commentText, String userName) {
+	public MyArticle (int articleId, String articleTitle, int commentId, Timestamp commentTime, String commentText, String userName, Boolean commentStatus) {
 		super();
 		this.articleId = articleId;
 		this.articleTitle = articleTitle;
@@ -44,6 +47,7 @@ public class MyArticle {
 		this.commentTime = commentTime;
 		this.commentText = commentText;
 		this.userName = userName;
+		this.commentStatus = commentStatus;		
 	}
 	
 	public int getMyArticleId() {

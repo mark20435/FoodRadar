@@ -49,10 +49,98 @@
                     <view key="view" contentMode="scaleToFill" id="fZg-1M-j5V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4s-Nd-NMk">
+                                <rect key="frame" x="0.0" y="152" width="414" height="661"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resCell" rowHeight="116" id="FUY-m6-yUJ" customClass="ResCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FUY-m6-yUJ" id="ikh-H1-N4e">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eum-gS-pXJ">
+                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="OxP-PP-f92"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSQ-Ow-BIe">
+                                                    <rect key="frame" x="116" y="11" width="65.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kN4-JA-2ME">
+                                                    <rect key="frame" x="116" y="34.5" width="65.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳電話" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-bZ-wAh">
+                                                    <rect key="frame" x="116" y="58" width="65.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳分類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crJ-Zc-0zP">
+                                                    <rect key="frame" x="116" y="81.5" width="65.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eum-gS-pXJ" firstAttribute="top" secondItem="ikh-H1-N4e" secondAttribute="top" constant="8" id="4Zq-dF-6SO"/>
+                                                <constraint firstItem="kN4-JA-2ME" firstAttribute="leading" secondItem="eum-gS-pXJ" secondAttribute="trailing" constant="8" id="8tc-cR-f1p"/>
+                                                <constraint firstItem="eum-gS-pXJ" firstAttribute="leading" secondItem="ikh-H1-N4e" secondAttribute="leading" constant="8" id="EeV-gX-uIO"/>
+                                                <constraint firstItem="RrY-bZ-wAh" firstAttribute="leading" secondItem="eum-gS-pXJ" secondAttribute="trailing" constant="8" id="G9B-ey-74n"/>
+                                                <constraint firstAttribute="bottom" secondItem="eum-gS-pXJ" secondAttribute="bottom" constant="8" id="PbL-fo-ehw"/>
+                                                <constraint firstItem="crJ-Zc-0zP" firstAttribute="leading" secondItem="eum-gS-pXJ" secondAttribute="trailing" constant="8" id="VeJ-OU-2e7"/>
+                                                <constraint firstItem="crJ-Zc-0zP" firstAttribute="top" secondItem="RrY-bZ-wAh" secondAttribute="bottom" constant="4" id="Xx4-tr-foy"/>
+                                                <constraint firstItem="WSQ-Ow-BIe" firstAttribute="leading" secondItem="eum-gS-pXJ" secondAttribute="trailing" constant="8" id="cec-VF-hGE"/>
+                                                <constraint firstItem="WSQ-Ow-BIe" firstAttribute="top" secondItem="ikh-H1-N4e" secondAttribute="topMargin" id="csg-Dw-q1U"/>
+                                                <constraint firstItem="kN4-JA-2ME" firstAttribute="top" secondItem="WSQ-Ow-BIe" secondAttribute="bottom" constant="4" id="ghT-7d-fdO"/>
+                                                <constraint firstItem="RrY-bZ-wAh" firstAttribute="top" secondItem="kN4-JA-2ME" secondAttribute="bottom" constant="4" id="uXc-3D-z9T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ivRes" destination="eum-gS-pXJ" id="iU9-UC-D8D"/>
+                                            <outlet property="lbResAddress" destination="kN4-JA-2ME" id="I5k-R1-AhM"/>
+                                            <outlet property="lbResCategoryInfo" destination="crJ-Zc-0zP" id="pbB-uw-FoX"/>
+                                            <outlet property="lbResName" destination="WSQ-Ow-BIe" id="h6d-uO-q0P"/>
+                                            <outlet property="lbResTel" destination="RrY-bZ-wAh" id="Gzh-5o-2Tn"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pL6-O0-ebq" id="3H1-WO-e5g"/>
+                                    <outlet property="delegate" destination="pL6-O0-ebq" id="QQ8-p7-cmC"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-SQ-eFM">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="nDh-N6-vn8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d4s-Nd-NMk" firstAttribute="trailing" secondItem="nDh-N6-vn8" secondAttribute="trailing" id="0Se-Qi-5TX"/>
+                            <constraint firstItem="d4s-Nd-NMk" firstAttribute="top" secondItem="u1e-SQ-eFM" secondAttribute="bottom" constant="8" id="CkM-V3-BmD"/>
+                            <constraint firstItem="d4s-Nd-NMk" firstAttribute="leading" secondItem="nDh-N6-vn8" secondAttribute="leading" id="Dsf-jj-mTw"/>
+                            <constraint firstItem="u1e-SQ-eFM" firstAttribute="trailing" secondItem="nDh-N6-vn8" secondAttribute="trailing" id="UJR-ii-Nka"/>
+                            <constraint firstItem="u1e-SQ-eFM" firstAttribute="leading" secondItem="nDh-N6-vn8" secondAttribute="leading" id="VhK-aw-6Di"/>
+                            <constraint firstItem="u1e-SQ-eFM" firstAttribute="top" secondItem="nDh-N6-vn8" secondAttribute="top" id="VzS-23-MR2"/>
+                            <constraint firstItem="nDh-N6-vn8" firstAttribute="bottom" secondItem="d4s-Nd-NMk" secondAttribute="bottom" id="dky-IX-aYJ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="餐廳資訊維護" id="IF7-gK-E7v"/>
+                    <connections>
+                        <outlet property="tableView" destination="d4s-Nd-NMk" id="vk4-AO-Kaf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krR-Gu-IwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

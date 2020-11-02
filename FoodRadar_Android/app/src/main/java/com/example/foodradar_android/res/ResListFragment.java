@@ -54,6 +54,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -445,7 +446,11 @@ public class ResListFragment extends Fragment {
                     MyRes myRes = new MyRes(0, Common.USER_ID, res.getResId(), new Timestamp(System.currentTimeMillis()));
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action", "myResInsert");
-                    jsonObject.addProperty("myres", new Gson().toJson(myRes));
+//                    jsonObject.addProperty("myres", new Gson().toJson(myRes));
+                    // vvvvvv 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
+                    Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+                    jsonObject.addProperty("myres", gson.toJson(myRes));
+                    // ^^^^^^ 直接把物件經GSON傳到後端Servlet的寫法，其中日期時間，有特別進行格式處理以免解析時格式無法確認
 
                     int count = 0;
                     try {

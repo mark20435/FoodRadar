@@ -59,7 +59,8 @@ public class MyArticleServlet extends HttpServlet {
 				|| action.equals("getMyArticleIsMe")) { // 我的發文
 			id = jsonObject.get("id").getAsInt();
 			pubTools.showConsoleMsg(action + ".id" , id.toString());
-			List<MyArticle> myArticleList = myArticleDao.myArticle(id, action);
+			String articleDate = "";
+			List<MyArticle> myArticleList = myArticleDao.myArticle(id, articleDate, action);
 			pubTools.writeText(response, gson.toJson(myArticleList));
 			
 		} else if (action.equals("getMyArticleMyComment")) { // 我的回文
@@ -67,6 +68,31 @@ public class MyArticleServlet extends HttpServlet {
 			pubTools.showConsoleMsg(action + ".id" , id.toString());
 			List<MyArticle> myArticleList = myArticleDao.myArticleMyComment(id);
 			pubTools.writeText(response, gson.toJson(myArticleList));
+			
+		} else if (action.equals("getArticleByUserPhone")) { // 會員發文管理
+			String userPhone = jsonObject.get("userPhone").getAsString();
+			String articleDate = jsonObject.get("articleDate").getAsString();
+//			UserAccountDao userAccountDao = null;
+			UserAccount userAccount = new UserAccountDaoImpl().findByPhone(userPhone);
+			id = userAccount.getUserId();
+			pubTools.showConsoleMsg(action + ".id" , id.toString());
+			List<MyArticle> myArticleList = myArticleDao.myArticle(id, articleDate, action);
+			pubTools.writeText(response, gson.toJson(myArticleList));
+
+		} else if (action.equals("setEnableStatus")) {  // 發文Enable狀態設定
+			id = jsonObject.get("id").getAsInt();
+			Boolean enableStatus = jsonObject.get("enableStatus").getAsBoolean();
+			pubTools.showConsoleMsg("id: ", id.toString());
+			pubTools.showConsoleMsg("enableStatus: ", String.valueOf(enableStatus));
+			int count = 0;
+			count = myArticleDao.setEnableStatus(id, enableStatus);
+			pubTools.writeText(response, String.valueOf(count));	
+			
+//		} else if (action.equals("getCommentByUserPhone")) { // 會員回文管理
+//			id = jsonObject.get("id").getAsInt();
+//			pubTools.showConsoleMsg(action + ".id" , id.toString());
+//			List<MyArticle> myArticleList = myArticleDao.myArticleMyComment(id);
+//			pubTools.writeText(response, gson.toJson(myArticleList));
 			
 		} else if (action.equals("getImage")) { // 先不抓圖檔，讓app端先顯示文字之後再用資料的ID去資料庫取圖
 			int imageSize = jsonObject.get("imageSize").getAsInt();
@@ -103,7 +129,7 @@ public class MyArticleServlet extends HttpServlet {
 		if (myArticleDao == null) {
 			myArticleDao = new MyArticleDaoImpl();
 		}
-		List<MyArticle> myArticleList = myArticleDao.myArticle(3,"getMyArticleCollect");
+		List<MyArticle> myArticleList = myArticleDao.myArticle(3,"","getMyArticleCollect");
 		pubTools.writeText(response, new Gson().toJson(myArticleList));
 		
 		pubTools.writeText(response, "<br><br>");
@@ -112,7 +138,10 @@ public class MyArticleServlet extends HttpServlet {
 		strList.add("3");
 		strList.add("6");
 		strList.add("9");
-		pubTools.writeText(response, new Gson().toJson(strList));		
+		pubTools.writeText(response, new Gson().toJson(strList));
+		
+		MyArticle myArticleByPhone = myArticleDao.findById(3);
+		pubTools.writeText(response, new Gson().toJson(myArticleByPhone));
 
 	}
 
