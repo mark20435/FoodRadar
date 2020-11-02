@@ -889,7 +889,7 @@ public class ResDetailFragment extends Fragment {
 //            startActivity(Intent.createChooser(sharingIntent, "chooserTitle"));
 //        });
 
-        //todo 食記相關按鈕
+        //食記相關按鈕
         Button btReadArticle = view.findViewById(R.id.btReadArticle);
         Button btWriteArticle = view.findViewById(R.id.btWriteArticle);
 
