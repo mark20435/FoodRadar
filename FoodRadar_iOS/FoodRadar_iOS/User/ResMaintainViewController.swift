@@ -7,12 +7,24 @@
 
 import UIKit
 
-class ResMaintainViewController: UIViewController {
+class ResMaintainViewController: UIViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    // 儲存所有資料
+    var allRess: [Res]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        NetworkController.shared.getAllRes { (ress) in
+            if let ress = ress {
+                self.allRess = ress
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            }
+        }
     }
     
 
@@ -26,4 +38,25 @@ class ResMaintainViewController: UIViewController {
     }
     */
 
+}
+
+extension ResMaintainViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allRess?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var res : Res
+        res = allRess![indexPath.row]
+        let cellId = "resCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! ResCell
+        cell.lbResName.text = res.resName
+        cell.lbResAddress.text = res.resAddress
+        cell.lbResTel.text = res.resTel
+        cell.lbResCategoryInfo.text = res.resCategoryInfo
+        
+        return cell
+    }
+    
+    
 }

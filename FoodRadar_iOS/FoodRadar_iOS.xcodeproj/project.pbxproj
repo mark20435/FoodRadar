@@ -20,6 +20,8 @@
 		19708783254BC7E800014DCF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19708782254BC7E800014DCF /* User.storyboard */; };
 		19FC26C3254FB9EB00BD47EC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C2254FB9EB00BD47EC /* NetworkController.swift */; };
 		19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */; };
+		19FC26CA254FE1F700BD47EC /* ResCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C9254FE1F700BD47EC /* ResCell.swift */; };
+		19FC26CD254FE38700BD47EC /* Res.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26CC254FE38700BD47EC /* Res.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		19708782254BC7E800014DCF /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		19FC26C2254FB9EB00BD47EC /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkController.swift; path = FoodRadar_iOS/NetworkController.swift; sourceTree = SOURCE_ROOT; };
 		19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResMaintainViewController.swift; sourceTree = "<group>"; };
+		19FC26C9254FE1F700BD47EC /* ResCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCell.swift; sourceTree = "<group>"; };
+		19FC26CC254FE38700BD47EC /* Res.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Res.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				19708779254BC14000014DCF /* Map.storyboard */,
+				19FC26CC254FE38700BD47EC /* Res.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				19708782254BC7E800014DCF /* User.storyboard */,
+				19FC26C9254FE1F700BD47EC /* ResCell.swift */,
 				19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */,
 			);
 			path = User;
@@ -203,8 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19FC26CA254FE1F700BD47EC /* ResCell.swift in Sources */,
 				19FC26C3254FB9EB00BD47EC /* NetworkController.swift in Sources */,
 				19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */,
+				19FC26CD254FE38700BD47EC /* Res.swift in Sources */,
 				19708765254BBFCC00014DCF /* ViewController.swift in Sources */,
 				19708761254BBFCC00014DCF /* AppDelegate.swift in Sources */,
 				19708763254BBFCC00014DCF /* SceneDelegate.swift in Sources */,
