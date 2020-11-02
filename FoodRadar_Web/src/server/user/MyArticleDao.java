@@ -20,4 +20,6 @@ public interface MyArticleDao {
 
 	byte[] getImage(int id);
 
+	int setEnableStatus(Integer id, Boolean enableStatus);
+
 }

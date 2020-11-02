@@ -154,11 +154,11 @@ public class UserMyArticleFragment extends Fragment {
             TextView tvMyAtArticleText;
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                imMyAtResImg = itemView.findViewById(R.id.imMyAtResImg);
-                tvMyAtArticleTitle = itemView.findViewById(R.id.tvMyAtArticleTitle);
-                tvMyAtArticleTime = itemView.findViewById(R.id.tvMyAtArticleTime);
-                tvMyAtUserName = itemView.findViewById(R.id.tvMyAtUserName);
-                tvMyAtArticleText = itemView.findViewById(R.id.tvMyAtArticleText);
+                imMyAtResImg = itemView.findViewById(R.id.imAtMaResImg);
+                tvMyAtArticleTitle = itemView.findViewById(R.id.tvAtMaArticleTitle);
+                tvMyAtArticleTime = itemView.findViewById(R.id.tvAtMaArticleTime);
+                tvMyAtUserName = itemView.findViewById(R.id.tvAtMaUserName);
+                tvMyAtArticleText = itemView.findViewById(R.id.tvAtMaArticleText);
             }
         }
 

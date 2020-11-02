@@ -327,5 +327,30 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		}
 		return userAccount;
 	}
+	
+	
+	@Override
+	public int getIsAdmin(int userId) {
+		int count = 0;
+		String sqlStmt = "SELECT * ";
+		sqlStmt += " FROM UserAccount WHERE isEnable = 1 AND isAdmin = 1 AND userId = ?;";
+		pubTools.showConsoleMsg("getIsAdmin.sqlStmt", sqlStmt);
+		pubTools.showConsoleMsg("getIsAdmin.userId", String.valueOf(userId));
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setInt(1, userId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.last()) {
+				count = rs.getRow();
+			}
+		} catch (SQLException e) {
+			pubTools.showConsoleMsg("getIsAdmin.SQLException", String.valueOf(e.getErrorCode()));
+			e.printStackTrace();
+		} catch (Exception e) {
+			pubTools.showConsoleMsg("getIsAdmin.Exception", String.valueOf(e.getMessage()));
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 }

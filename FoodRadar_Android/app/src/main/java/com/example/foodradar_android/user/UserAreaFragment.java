@@ -1,6 +1,7 @@
 package com.example.foodradar_android.user;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -37,13 +38,13 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     private ImageView ivUsArMyArticle;
     private Button btUsArMyArticle;
     // 會員資料設定
-//    private ImageView ivUsArUserData;
+    private ImageView ivUsArUserData;
     private Button btUsArUserData;
     // 系統設定
     private ImageView ivUsArSysSetup;
     private Button btUsArSysSetup;
     // 聯繫我們
-//    private ImageView ivUsArContactUs;
+    private ImageView ivUsArContactUs;
     private Button btUsArContactUs;
 
     @Override
@@ -106,7 +107,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         btUsArMyArticle = view.findViewById(R.id.btUsArMyArticle);
         btUsArMyArticle.setOnClickListener(this);
         // 會員資料設定
-//        ivUsArUserData = view.findViewById(R.id.ivUsArUserData);
+        ivUsArUserData = view.findViewById(R.id.ivUsArUserData);
         btUsArUserData = view.findViewById(R.id.btUsArUserData);
         btUsArUserData.setOnClickListener(this);
         // 系統設定
@@ -114,13 +115,9 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         btUsArSysSetup = view.findViewById(R.id.btUsArSysSetup);
         btUsArSysSetup.setOnClickListener(this);
         // 聯繫我們
-//        ivUsArContactUs = view.findViewById(R.id.ivUsArContactUs);
+        ivUsArContactUs = view.findViewById(R.id.ivUsArContactUs);
         btUsArContactUs = view.findViewById(R.id.btUsArContactUs);
         btUsArContactUs.setOnClickListener(this);
-
-
-        // 臨時的餐廳資訊維護進入點按鈕
-        view.findViewById(R.id.id_btResMaintain).setOnClickListener(this);
 
     }
 
@@ -129,10 +126,6 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            // 臨時的餐廳資訊維護進入點按鈕
-            case R.id.id_btResMaintain:
-                navController.navigate(R.id.action_userAreaFragment_to_resMaintainFragment);
-                break;
 
             // 我的餐廳收藏
             case R.id.btUsArMyRes:
@@ -156,6 +149,21 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
                 break;
             // 聯繫我們
             case R.id.btUsArContactUs:
+                final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_contact_us, null);
+                    alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.setView(dialogView);
+//                ImageView imAtMaResImg = dialogView.findViewById(R.id.imAtMaResImg);
+//                final Integer articleId = myAtBindVH.getArticleId(); // 文章ID
+//                UserImageTask userImageTask = new UserImageTask(MYARTICLE_SERVLET, articleId, 500, imAtMaResImg);
+//                userImageTask.execute(); // .execute() => UserImage.doInBackground
+//                imageTasks.add(userImageTask);
+////                    imAtMaResImg.setMaxWidth(imageSize);
+////                    imAtMaResImg.layout(imageSize,imageSize,imageSize,imageSize);
+////                    this.imageSize = getResources().getDisplayMetrics().widthPixels / 4; // 取得螢幕寬度當圖片尺寸的基準
+                alertDialog.show();
+
+
                 break;
             default:
                 break;
@@ -200,17 +208,17 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         btUsArMyArticle.setEnabled(setEnable);
         btUsArMyArticle.setTextColor(intTextColor);
         // 會員資料設定
-//        ivUsArUserData.setAlpha(floAlpha);
-//        btUsArUserData.setEnabled(setEnable);
-//        btUsArUserData.setTextColor(intTextColor);
+        ivUsArUserData.setAlpha(floAlpha);
+        btUsArUserData.setEnabled(setEnable);
+        btUsArUserData.setTextColor(intTextColor);
         // 系統設定
         ivUsArSysSetup.setAlpha(floAlpha);
         btUsArSysSetup.setEnabled(setEnable);
         btUsArSysSetup.setTextColor(intTextColor);
         // 聯繫我們
-//        ivUsArContactUs.setAlpha(floAlpha);
-//        btUsArContactUs.setEnabled(setEnable);
-//        btUsArMyRes.setTextColor(intTextColor);
+        ivUsArContactUs.setAlpha(floAlpha);
+        btUsArContactUs.setEnabled(setEnable);
+        btUsArMyRes.setTextColor(intTextColor);
     }
 
 }

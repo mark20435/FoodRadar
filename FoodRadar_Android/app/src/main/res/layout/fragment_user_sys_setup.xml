@@ -40,7 +40,7 @@
             android:checked="true"
             android:showText="false"
             android:switchMinWidth="72dp"
-            android:text="R.string.textNotifi"
+            android:text="@string/textNotifi"
             android:thumb="@drawable/ic_baseline_notifications_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

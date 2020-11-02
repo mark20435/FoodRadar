@@ -25,4 +25,6 @@ public interface UserAccountDao {
 
 	UserAccount findByPhone(String userPhone);
 
+	int getIsAdmin(int userId);
+
 }

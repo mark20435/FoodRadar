@@ -193,6 +193,12 @@ public class UserManagementFragment extends Fragment {
                 holder.tvUserManageAccountStatus.setTextColor(Color.RED);
             }
 
+            if (Common.USER_ID.equals(uA.getUserId())) {
+                holder.swUserManageStatus.setVisibility(View.INVISIBLE);
+                holder.tvUserManageAccountStatus.setText(strAccountStatus + "      (以管理員身份登入)");
+            }
+
+
             Integer userId = uA.getUserId(); // UserID
 //            final MyRes bookOnBVH = books.get(position);
             Log.d(TAG,"userId: " + userId);

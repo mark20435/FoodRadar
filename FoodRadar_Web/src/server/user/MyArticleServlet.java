@@ -74,7 +74,16 @@ public class MyArticleServlet extends HttpServlet {
 			pubTools.showConsoleMsg(action + ".id" , id.toString());
 			List<MyArticle> myArticleList = myArticleDao.myArticle(id, articleDate, action);
 			pubTools.writeText(response, gson.toJson(myArticleList));
-		
+
+		} else if (action.equals("setEnableStatus")) {  // 發文Enable狀態設定
+			id = jsonObject.get("id").getAsInt();
+			Boolean enableStatus = jsonObject.get("enableStatus").getAsBoolean();
+			pubTools.showConsoleMsg("id: ", id.toString());
+			pubTools.showConsoleMsg("enableStatus: ", String.valueOf(enableStatus));
+			int count = 0;
+			count = myArticleDao.setEnableStatus(id, enableStatus);
+			pubTools.writeText(response, String.valueOf(count));	
+			
 //		} else if (action.equals("getCommentByUserPhone")) { // 會員回文管理
 //			id = jsonObject.get("id").getAsInt();
 //			pubTools.showConsoleMsg(action + ".id" , id.toString());

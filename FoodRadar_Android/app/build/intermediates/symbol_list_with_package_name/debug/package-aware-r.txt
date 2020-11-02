@@ -2046,6 +2046,7 @@ id bnvBadge
 id bottom
 id bounce
 id btAdd
+id btAtMaGoArticle
 id btAutoLogin
 id btBack
 id btCancel
@@ -2267,15 +2268,11 @@ id etResTel
 id etTitle
 id etUsManageUserPhone
 id etUserName
-<<<<<<< HEAD
-=======
-id etUserPhone
 id etcouPonEndDate
 id etcouPonEndDateDivider
 id etcouPonInfo
 id etcouPonStartDate
 id etcouPonStartDateDivider
->>>>>>> 578560ff635b03f377a42e04350266fdd56c998f
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2316,14 +2313,13 @@ id ibphotoAdd
 id icon
 id icon_group
 id icon_only
-id id_btResMaintain
 id id_rcvArticleManagement
 id id_rcvMyRes
 id id_rcvUserManagement
 id ifRoom
 id ignore
 id ignoreRequest
-id imMyAtResImg
+id imAtMaResImg
 id imResImg
 id imUserManageAvatar
 id image
@@ -2647,6 +2643,7 @@ id svMaintain
 id svMyArticle
 id svResAddress
 id svUseCard
+id swArticleManageStatus
 id swResEnable
 id swRf
 id swUsArNotifi
@@ -2711,12 +2708,18 @@ id tvActwo
 id tvAddressResName
 id tvArticleText
 id tvArticleTime
+id tvAtMaArticleText
+id tvAtMaArticleTime
+id tvAtMaArticleTitle
+id tvAtMaUserName
 id tvBadgeText
 id tvCommentCount
 id tvCommentGood
 id tvCommentText
 id tvCommentTime
 id tvCommentUserName
+id tvContactUs
+id tvContanctUsTitle
 id tvCouInfo
 id tvDateTime
 id tvDetailArticleTime
@@ -2730,6 +2733,7 @@ id tvDetailUserName
 id tvDtdailResCategoryInfo
 id tvFavoriteArticle
 id tvFriday
+id tvGroupMember
 id tvImageNumber
 id tvManageArticleDate
 id tvManagerFun
@@ -2741,10 +2745,6 @@ id tvMyArticleCollect
 id tvMyArticleCollectDivider
 id tvMyArticleIsMe
 id tvMyArticleIsMeDivider
-id tvMyAtArticleText
-id tvMyAtArticleTime
-id tvMyAtArticleTitle
-id tvMyAtUserName
 id tvMyComment
 id tvMyCommentDivider
 id tvPassword
@@ -2932,6 +2932,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_contact_us
 layout dialog_res_img
 layout fragment_article
 layout fragment_article_detail
@@ -2967,6 +2968,7 @@ layout fragment_user_my_coupon
 layout fragment_user_my_res
 layout fragment_user_sys_setup
 layout item_view_article_management
+layout item_view_article_management_img
 layout item_view_category
 layout item_view_couact
 layout item_view_coupon

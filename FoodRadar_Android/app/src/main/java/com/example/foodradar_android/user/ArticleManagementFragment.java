@@ -1,10 +1,12 @@
 package com.example.foodradar_android.user;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.res.ColorStateList;
+import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,9 +29,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
@@ -53,8 +60,6 @@ public class ArticleManagementFragment extends Fragment {
     private List<MyArticle> myArticleList = new ArrayList<>();
     private List<UserImageTask> imageTasks= new ArrayList<>();
     private RecyclerView rcvArticleManagement;
-//    private RecyclerView rcvMyArticleIsMy;
-//    private RecyclerView rcvMyComment;
 
     //    private Integer userId;
     private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
@@ -66,7 +71,7 @@ public class ArticleManagementFragment extends Fragment {
 //    private ColorStateList edTextdefaultColor;
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog.OnDateSetListener dateSetListener;
-//    private Button btUsManageSearchArticle, btUsManageCancel;
+    private SwipeRefreshLayout swipeRefreshLayoutAM;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,14 +120,16 @@ public class ArticleManagementFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // item_view_article_management
 
         etUsManageUserPhone = view.findViewById(R.id.etUsManageUserPhone);
+        view.findViewById(R.id.tvUsManageUserPhone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userPhone = etUsManageUserPhone.getText().toString();
+                etUsManageUserPhone.setText(new Common().getUserPhoneByArticleManage(userPhone));
+            }
+        });
         etManageArticleDate = view.findViewById(R.id.tvManageArticleDate);
-//        tvUserBirth = view.findViewById(R.id.tvUsManageArticleDate);
-//        etUserBirth = view.findViewById(R.id.tvManageArticleDate);
-//        tvUserBirthDivider = view.findViewById(R.id.tvUserBirthDivider);
-//        edTextdefaultColor =  etManageArticleDate.getTextColors();
         etManageArticleDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()));
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -168,14 +175,36 @@ public class ArticleManagementFragment extends Fragment {
         setDatePicker();
 
 
+        swipeRefreshLayoutAM = view.findViewById(R.id.swipeRefreshLayoutArticleManagement);
+        swipeRefreshLayoutAM.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                String userPhone = etUsManageUserPhone.getText().toString();
+                String articleDate = etManageArticleDate.getText().toString();
+                swipeRefreshLayoutAM.setRefreshing(true);
+                showArticleByUserPhone(getArticleByUserPhone(userPhone, articleDate));
+                swipeRefreshLayoutAM.setRefreshing(false);
+            }
+        });
+
+
         // 搜尋會員發文
         view.findViewById(R.id.btUsManageSearchArticle)
                 .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                boolean isOpen=imm.isActive();//isOpen若返回true，則表示輸入法開啟
+                if (isOpen == true) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+                }
+
                 String userPhone = etUsManageUserPhone.getText().toString();
                 String articleDate = etManageArticleDate.getText().toString();
+                swipeRefreshLayoutAM.setRefreshing(true);
                 showArticleByUserPhone(getArticleByUserPhone(userPhone, articleDate));
+                swipeRefreshLayoutAM.setRefreshing(false);
             }
         });
 
@@ -185,33 +214,13 @@ public class ArticleManagementFragment extends Fragment {
             public void onClick(View v) {
                 etUsManageUserPhone.setText("");
                 etManageArticleDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()));
+                showArticleByUserPhone(null);
             }
         });
 
-
         rcvArticleManagement = view.findViewById(R.id.id_rcvArticleManagement);
         rcvArticleManagement.setLayoutManager(new LinearLayoutManager(activity));
-//        rcvArticleManagement.setLayoutManager(
-//                new StaggeredGridLayoutManager(1,
-//                        StaggeredGridLayoutManager.HORIZONTAL));
-
-//        rcvMyArticleIsMy = view.findViewById(R.id.rcvMyArticleIsMe);
-//        rcvMyArticleIsMy.setLayoutManager(
-//                new StaggeredGridLayoutManager(1,
-//                        StaggeredGridLayoutManager.HORIZONTAL));
-
-//        rcvMyComment = view.findViewById(R.id.rcvMyComment);
-//        rcvMyComment.setLayoutManager(
-//                new StaggeredGridLayoutManager(1,
-//                        StaggeredGridLayoutManager.HORIZONTAL));
-
-//        myArticleList = getMyArticleCollect();
-//        Log.d("TAG","myArticleList: " + myArticleList);
-//        showMyArticle(myArticleList, getMyArticleIsMe(),getMyArticleMyComment());
-
-//        String userPhone = "0900123456";
-//        showArticleByUserPhone(getArticleByUserPhone(userPhone));
-
+//        rcvArticleManagement.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
 
     }
 
@@ -245,7 +254,7 @@ public class ArticleManagementFragment extends Fragment {
             day = calendar.get(Calendar.DAY_OF_MONTH);
         }
 
-        datePickerDialog = new DatePickerDialog(activity, DatePickerDialog.THEME_HOLO_LIGHT, dateSetListener, year, month, day);
+        datePickerDialog = new DatePickerDialog(activity, DatePickerDialog.THEME_DEVICE_DEFAULT_LIGHT, dateSetListener, year, month, day);
         DatePicker datePicker = datePickerDialog.getDatePicker();
 
 
@@ -281,18 +290,22 @@ public class ArticleManagementFragment extends Fragment {
         // 自訂內部類別(MyViewHolder) 繼承 RecyclerView.ViewHolder，
         // 用來初始化在Item View裡呈現資料的元件，之後給 onBindViewHolder 呼叫並設定資料用
         class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView imMyAtResImg;
-            TextView tvMyAtArticleTitle;
-            TextView tvMyAtArticleTime;
-            TextView tvMyAtUserName;
-            TextView tvMyAtArticleText;
+            ImageView imAtMaResImg;
+            TextView tvAtMaArticleTitle;
+            TextView tvAtMaArticleTime;
+            TextView tvAtMaUserName;
+            TextView tvAtMaArticleText;
+            Switch swArticleManageStatus;
+            Button btAtMaGoArticle;
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                imMyAtResImg = itemView.findViewById(R.id.imMyAtResImg);
-                tvMyAtArticleTitle = itemView.findViewById(R.id.tvMyAtArticleTitle);
-                tvMyAtArticleTime = itemView.findViewById(R.id.tvMyAtArticleTime);
-                tvMyAtUserName = itemView.findViewById(R.id.tvMyAtUserName);
-                tvMyAtArticleText = itemView.findViewById(R.id.tvMyAtArticleText);
+                imAtMaResImg = itemView.findViewById(R.id.imAtMaResImg);
+                tvAtMaArticleTitle = itemView.findViewById(R.id.tvAtMaArticleTitle);
+                tvAtMaArticleTime = itemView.findViewById(R.id.tvAtMaArticleTime);
+                tvAtMaUserName = itemView.findViewById(R.id.tvAtMaUserName);
+                tvAtMaArticleText = itemView.findViewById(R.id.tvAtMaArticleText);
+                swArticleManageStatus = itemView.findViewById(R.id.swArticleManageStatus);
+                btAtMaGoArticle = itemView.findViewById(R.id.btAtMaGoArticle);
             }
         }
 
@@ -308,39 +321,122 @@ public class ArticleManagementFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ArticleManagementFragment.MyArticleAdapter.MyViewHolder holder, int position) {
-            MyArticle myArticleInBindViewHolder = myArticleListInAdp.get(position);
+            MyArticle myAtBindVH = myArticleListInAdp.get(position);
             Resources res = activity.getResources();
-            holder.tvMyAtArticleTitle.setText(myArticleInBindViewHolder.getArticleTitle());
+            holder.tvAtMaArticleTitle.setText(myAtBindVH.getArticleTitle());
 
-            if ( myArticleInBindViewHolder.getCommentId() == 0) {
+            String textAccountStatus = "狀態";
+            String textOfEnable = "顯示";
+            String textOfDisable = "隱藏";
+            String strAccountStatus = textAccountStatus + ": "
+                    + (myAtBindVH.getArticleStatus() ? textOfEnable : textOfDisable);
+            holder.swArticleManageStatus.setText(strAccountStatus);
 
-                String strAtArticleTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myArticleInBindViewHolder.getArticleTime());
-                holder.tvMyAtArticleTime.setText(res.getString(R.string.textArticleDate) + strAtArticleTime);
-                holder.tvMyAtUserName.setText(res.getString(R.string.textArticleWirter) + myArticleInBindViewHolder.getUserName());
-                holder.tvMyAtArticleText.setText(res.getString(R.string.textArticleText) + myArticleInBindViewHolder.getArticleText());
+            if ( myAtBindVH.getCommentId() == 0) {
+                String strAtArticleTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myAtBindVH.getArticleTime());
+                holder.tvAtMaArticleTime.setText(res.getString(R.string.textArticleDate) + ": " + strAtArticleTime);
+                holder.tvAtMaUserName.setText(res.getString(R.string.textArticleWirter) + ": " + myAtBindVH.getUserName());
+                holder.tvAtMaArticleText.setText(res.getString(R.string.textArticleText) + ": " + myAtBindVH.getArticleText());
+                holder.swArticleManageStatus.setChecked(myAtBindVH.getArticleStatus());
+                if (myAtBindVH.getArticleStatus()) {
+                    holder.swArticleManageStatus.setTextColor(Color.BLUE);
+                } else {
+                    holder.swArticleManageStatus.setTextColor(Color.RED);
+                }
             } else {
-                String strCommentTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myArticleInBindViewHolder.getCommentTime());
-                holder.tvMyAtArticleTime.setText(res.getString(R.string.textCommentDate) + strCommentTime);
-                holder.tvMyAtUserName.setText(res.getString(R.string.textArticleWirter) + myArticleInBindViewHolder.getUserName());
-                holder.tvMyAtArticleText.setText(res.getString(R.string.textCommentText) + myArticleInBindViewHolder.getCommentText());
+                String strCommentTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myAtBindVH.getCommentTime());
+                holder.tvAtMaArticleTime.setText(res.getString(R.string.textCommentDate) + ": " + strCommentTime);
+                holder.tvAtMaUserName.setText(res.getString(R.string.textArticleWirter) + ": " + myAtBindVH.getUserName());
+                holder.tvAtMaArticleText.setText(res.getString(R.string.textCommentText) + ": " + myAtBindVH.getCommentText());
+                holder.swArticleManageStatus.setChecked(myAtBindVH.getCommentStatus());
+                if (myAtBindVH.getCommentStatus()) {
+                    holder.swArticleManageStatus.setTextColor(Color.BLUE);
+                } else {
+                    holder.swArticleManageStatus.setTextColor(Color.RED);
+                }
             }
 
-//            holder.imMyAtResImg.setImageBitmap();
-            final Integer articleId = myArticleInBindViewHolder.getArticleId(); // 文章ID
+            final Integer articleId = myAtBindVH.getArticleId(); // 文章ID
             Log.d(TAG,"articleId: " + articleId);
             Log.d(TAG,"MYARTICLE_SERVLET: " + MYARTICLE_SERVLET);
-            UserImageTask userImageTask = new UserImageTask(MYARTICLE_SERVLET, articleId, imageSize, holder.imMyAtResImg);
+            UserImageTask userImageTask = new UserImageTask(MYARTICLE_SERVLET, articleId, imageSize, holder.imAtMaResImg);
             userImageTask.execute(); // .execute() => UserImage.doInBackground
             imageTasks.add(userImageTask);
 
+            // 調整文章狀態
+            holder.swArticleManageStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean isChecked = !myAtBindVH.getArticleStatus();
+                    ArticleManagementFragment amf = new ArticleManagementFragment();
+                    amf.setArticleWithConfirm(activity, holder, myAtBindVH, isChecked);
+                }
+            });
+
+            // 至討論區檢視文章
+            holder.btAtMaGoArticle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (myAtBindVH.getArticleStatus() == false) {
+                        Common.showToast(activity, "此文章已隱藏無法檢視");
+                        return;
+                    }
+
+                    // 跳轉到“討論區”頁面並轉到文章detail頁面
+                    Article.ARTICLE_ID = articleId;
+                    Article.USER_ID = myAtBindVH.getUserId();
+                    MyArticle.goToMyArticleDetail = true;
+                    navController.navigate(R.id.articleFragment);
+                }
+            });
+
+            // 檢視發文大圖
+            holder.imAtMaResImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                    View dialogView = getLayoutInflater().inflate(R.layout.item_view_article_management_img, null);
+//                    alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    alertDialog.setView(dialogView);
+                    ImageView imAtMaResImg = dialogView.findViewById(R.id.imAtMaResImg);
+                    final Integer articleId = myAtBindVH.getArticleId(); // 文章ID
+                    UserImageTask userImageTask = new UserImageTask(MYARTICLE_SERVLET, articleId, 500, imAtMaResImg);
+                    userImageTask.execute(); // .execute() => UserImage.doInBackground
+                    imageTasks.add(userImageTask);
+//                    imAtMaResImg.setMaxWidth(imageSize);
+//                    imAtMaResImg.layout(imageSize,imageSize,imageSize,imageSize);
+//                    this.imageSize = getResources().getDisplayMetrics().widthPixels / 4; // 取得螢幕寬度當圖片尺寸的基準
+                    alertDialog.show();
+                }
+            });
+
+            // 檢視發文內容
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // 從“我的社群活動”頁面，跳轉到“討論區”頁面並轉到文章detail頁面
-                    Article.ARTICLE_ID = articleId;
-                    Article.USER_ID = myArticleInBindViewHolder.getUserId();
-                    MyArticle.goToMyArticleDetail = true;
-                    navController.navigate(R.id.articleFragment);
+
+                    final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                    View dialogView = getLayoutInflater().inflate(R.layout.item_view_article_management, null);
+//                    alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    alertDialog.setView(dialogView);
+
+                    dialogView.findViewById(R.id.swArticleManageStatus).setVisibility(View.GONE);
+                    dialogView.findViewById(R.id.btAtMaGoArticle).setVisibility(View.GONE);
+                    dialogView.findViewById(R.id.imAtMaResImg).setVisibility(View.GONE);
+
+                    TextView tvAtMaArticleTitle = dialogView.findViewById(R.id.tvAtMaArticleTitle);
+                    TextView tvAtMaArticleTime = dialogView.findViewById(R.id.tvAtMaArticleTime);
+                    TextView tvAtMaUserName = dialogView.findViewById(R.id.tvAtMaUserName);
+                    TextView tvAtMaArticleText = dialogView.findViewById(R.id.tvAtMaArticleText);
+
+                    tvAtMaArticleTitle.setText(myAtBindVH.getArticleTitle());
+                    String strAtArticleTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myAtBindVH.getArticleTime());
+                    tvAtMaArticleTime.setText(res.getString(R.string.textArticleDate) + ": " + strAtArticleTime);
+                    tvAtMaUserName.setText(res.getString(R.string.textArticleWirter) + ": " + myAtBindVH.getUserName());
+                    tvAtMaArticleText.setText(res.getString(R.string.textArticleText) + ": " + myAtBindVH.getArticleText());
+
+                    alertDialog.show();
+
                 }
             });
 
@@ -402,31 +498,112 @@ public class ArticleManagementFragment extends Fragment {
             myArticleAdapter.notifyDataSetChanged();
         }
 
-//        // 我的發文
-//        UserMyArticleFragment.MyArticleAdapter myArticleAdapterIsMe
-//                = (UserMyArticleFragment.MyArticleAdapter) rcvMyArticleIsMy.getAdapter();
-////        Log.d(TAG,"rcvMyArticleIsMy: " + myArticleAdapterIsMy);
-//        if (myArticleAdapterIsMe == null){
-////            Log.d(TAG,"showMyArticleIsMeList: " + showMyArticleIsMeList);
-//            rcvMyArticleIsMy.setAdapter(new UserMyArticleFragment.MyArticleAdapter(activity, showMyArticleIsMeList));
-//        }else{
-////            Log.d(TAG,"showMyArticleIsMeList: " + showMyArticleIsMeList);
-//            myArticleAdapterIsMe.setMyArticleListAdp(showMyArticleIsMeList);
-//            myArticleAdapterIsMe.notifyDataSetChanged();
-//        }
+    }
 
-//        // 我的回文
-//        UserMyArticleFragment.MyArticleAdapter myArticleAdapterComment
-//                = (UserMyArticleFragment.MyArticleAdapter) rcvMyComment.getAdapter();
-////        Log.d(TAG,"rcvMyArticleIsMy: " + myArticleAdapterIsMy);
-//        if (myArticleAdapterComment == null){
-////            Log.d(TAG,"showMyArticleMyComment: " + showMyArticleMyComment);
-//            rcvMyComment.setAdapter(new UserMyArticleFragment.MyArticleAdapter(activity, showMyArticleMyComment));
-//        }else{
-////            Log.d(TAG,"showMyArticleMyComment: " + showMyArticleMyComment);
-//            myArticleAdapterComment.setMyArticleListAdp(showMyArticleMyComment);
-//            myArticleAdapterComment.notifyDataSetChanged();
-//        }
+
+    // 顯示詢問是否調整文章帳號狀態的對話視窗
+    public void setArticleWithConfirm(Activity activity, MyArticleAdapter.MyViewHolder holder , MyArticle mA, Boolean enableStatus) {
+
+        /* 設定positive與negative按鈕上面的文字與點擊事件監聽器 */
+        androidx.appcompat.app.AlertDialog.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+
+                        Resources res = activity.getResources();
+                        String textAccountStatus = "狀態"; // res.getString(R.string.textAccountStatus);
+                        String textOfEnable = "顯示"; // res.getString(R.string.textOfEnable);
+                        String textOfDisable = "隱藏"; // res.getString(R.string.textOfDisable);
+
+                        if (setArticleStatus(mA.getArticleId(), enableStatus)){
+                            String strAccountStatus = textAccountStatus + ": "
+                                    + (enableStatus ? textOfEnable : textOfDisable);
+                            holder.swArticleManageStatus.setText(strAccountStatus);
+
+                            if (enableStatus) {
+                                holder.swArticleManageStatus.setTextColor(Color.BLUE);
+                            } else {
+                                holder.swArticleManageStatus.setTextColor(Color.RED);
+                            }
+
+                            holder.swArticleManageStatus.setChecked(enableStatus);
+                            mA.setArticleStatus(enableStatus);
+                            Common.showToast(activity, activity.getResources().getString(R.string.textSetSuccess));
+                        } else {
+                            holder.swArticleManageStatus.setChecked(!enableStatus);
+                            mA.setArticleStatus(!enableStatus);
+                            Common.showToast(activity, activity.getResources().getString(R.string.textSetFail));
+                        }
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+//                    break;
+                    default:
+                        Common.showToast(activity, R.string.textCancel);
+                        /* 關閉對話視窗 */
+                        holder.swArticleManageStatus.setChecked(!enableStatus);
+                        dialog.cancel();
+
+                        break;
+                }
+            }
+        };
+
+//        Resources res = activity.getResources();
+
+        String txtEnable = "顯示"; // res.getString(R.string.textOfEnable);
+        String txtDisable = "隱藏"; // res.getString(R.string.textOfDisable);
+        String txtEnableStatus = (enableStatus? txtEnable : txtDisable);
+
+//        String textPhone = "手機號碼"; // getResources().getString(R.string.textUserPhone)
+//        String textRegisterDate = "註冊日期"; // getResources().getString(R.string.textRegisterDate)
+
+//        String alertMessage = "\n" + textPhone + ": " + mA.getUserPhone() + " ( ID: " + String.valueOf(uA.getUserId()) + " )";
+//        alertMessage += "\n" + textRegisterDate + ": " + mA.getCreateDate().toString();
+        String alertMessage = "\n\n" + "確認要調整這篇文章的\n狀態為“" + txtEnableStatus + "”嗎？";
+
+        String positiveText = "是，" + txtEnableStatus + "這篇文章";
+        String negativeText = "否，不調整";
+
+        new androidx.appcompat.app.AlertDialog.Builder(activity)
+                /* 設定標題 */
+                .setTitle(R.string.title_of_res_article_management)
+                /* 設定圖示 */
+                .setIcon(R.drawable.ic_baseline_build_24)
+                /* 設定訊息文字 */
+                .setMessage(alertMessage)
+                /* 設定positive與negative按鈕上面的文字與點擊事件監聽器 */
+                .setPositiveButton(positiveText, listener)
+                .setNegativeButton(negativeText, listener)
+                // 是否一定要按按鈕才能離開對話框，預設為true，設false代表必須點擊按鈕方能關閉
+                .setCancelable(true)
+                .create()
+                .show();
+
+    }
+
+    public Boolean setArticleStatus(int articleId ,Boolean enableStatus){
+
+        Log.d(TAG,"setArticleStatus.articleId: " + articleId);
+        Log.d(TAG,"setArticleStatus.enableStatus: " + enableStatus);
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "setEnableStatus");
+        jsonObject.addProperty("id", articleId);
+        jsonObject.addProperty("enableStatus", enableStatus);
+        int count = 0;
+        try {
+            String result = new CommonTask(MYARTICLE_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
+            count = Integer.parseInt(result);
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+
+        if (count == 0) {
+            return false;
+        } else {
+            return true;
+        }
 
     }
 
