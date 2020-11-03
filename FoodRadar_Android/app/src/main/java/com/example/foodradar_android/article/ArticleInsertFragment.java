@@ -39,6 +39,7 @@ import android.widget.TextView;
 
 import com.example.foodradar_android.Common;
 import com.example.foodradar_android.R;
+import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
 import com.google.gson.Gson;
@@ -72,6 +73,7 @@ public class ArticleInsertFragment extends Fragment {
     private byte[] imgbit;
     private List<Img> imgs;
     private Img img;
+    private Res res;
     private List<Bitmap> imgList;
     private Uri imageUri;
     private static final int REQ_TAKE_PICTURE = 0;  //設定拍照圖片請求狀態碼
@@ -140,14 +142,22 @@ public class ArticleInsertFragment extends Fragment {
 
         Bundle bundle = getArguments();
        newArticle = bundle.getInt("newArticle");
+       res = (Res) bundle.getSerializable("res");
 
-        //顯示餐廳資訊
-        if (newArticle == 2) {
-            tvResName.setText("店名：請選擇餐廳");
+       /* 從Mark哥的餐廳細節過來 */
+        if (res == null) {
+            /* 從選擇餐廳回來 */
+            if (newArticle == 2) {
+                tvResName.setText("店名：請選擇餐廳");
+                //將bundle內的資料(int)改成0
+                bundle.putInt("newArticle", 0);
+            } else {
+                tvResName.setText("店名：請選擇餐廳2");
+            }
+        } else {
+            tvResName.setText(res.getResCategoryInfo() + "\n" + "餐廳：" + res.getResName());
             //將bundle內的資料(int)改成0
             bundle.putInt("newArticle", 0);
-        } else {
-            tvResName.setText("店名：請選擇餐廳2");
         }
     }
 
@@ -160,7 +170,9 @@ public class ArticleInsertFragment extends Fragment {
         String resCategory = preferences.getString("Category", DEFAULT_FILE_NAME);
 
         /* 顯示餐廳資訊 */
-        if (newArticle == 0 ) {
+        Bundle bundle = getArguments();
+        Res res = (Res) (bundle != null ? bundle.getSerializable("res") : null);
+       if (newArticle == 0) {
             tvResName.setText(resCategory + "\n" + "餐廳：" + resName);
         } else {
             tvResName.setText("店名：請選擇餐廳");

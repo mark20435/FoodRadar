@@ -924,6 +924,7 @@ public class ResDetailFragment extends Fragment {
         }
     }
 
+
     private class ImgAdapter extends RecyclerView.Adapter<ResDetailFragment.ImgAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
         private List<Img> imgs;

@@ -43,6 +43,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +61,6 @@ public class NewArticleFragment extends Fragment {
     private int userIdBox = Common.USER_ID;
     private SearchView articleSearchView;
     private Res res;
-    private String resNameSet;
-    private int resInt = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class NewArticleFragment extends Fragment {
         imageTasks = new ArrayList<>();
         articleImageTasks = new ArrayList<>();
         activity = getActivity();
+
 
         // 顯示左上角的返回箭頭
         new Common();
@@ -137,23 +137,29 @@ public class NewArticleFragment extends Fragment {
         articleSearchView = view.findViewById(R.id.articleSearchView);
         articleSearchView.setIconifiedByDefault(false);
         articleSearchView.setIconified(true);
-        articleSearchView.setMaxWidth(1030);
-        articleSearchView.setQuery("1000", false);
-
-        /* 帶bundle */
-//        List<Article> searchArticle = new ArrayList<>();
-//        for (Article article : articles) {
-//            if ((article.getArticleTitle().toUpperCase().contains(nextText.toUpperCase())) ||
-//                    (article.getResCategoryInfo().toUpperCase().contains(nextText.toUpperCase())) ||
-//                    (article.getResName().toUpperCase().contains(nextText.toUpperCase()))) {
-//                searchArticle.add(article);
-//            }
-//        }
-//        showArticle(searchArticle);
+        articleSearchView.setMaxWidth(1030);    //searchView底線長度
 
         rvArticle.setLayoutManager(new LinearLayoutManager(activity));
         articles = getArticle();
         showArticle(articles);
+
+        /* 餐廳細節跳轉bundle判斷*/
+        Bundle bundle = getArguments();
+        res = (Res) (bundle != null ? bundle.getSerializable("res") : null);
+        if (res == null) {
+            showArticle(articles);
+        }
+        else {
+            articleSearchView.setQuery(res.getResName(), false);
+            List<Article> searchArticle = new ArrayList<>();
+            // 當 article.getResName() 等於 res.getResName() 顯示搜尋的文章
+            for (Article article : articles) {
+                if (article.getResName().toUpperCase().contains(res.getResName().toUpperCase())) {
+                    searchArticle.add(article);
+                }
+            }
+            showArticle(searchArticle);
+        }
 
         //swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -194,11 +200,6 @@ public class NewArticleFragment extends Fragment {
                 return false;
             }
         });
-
-        /* 指定餐廳跳轉 */
-        if (resInt == 0) {
-
-        }
     }
 
     //向server端取得Article資料
@@ -230,7 +231,7 @@ public class NewArticleFragment extends Fragment {
     private void showArticle(List<Article> articleList) {
         if (articleList == null || articleList.isEmpty()) {
             //暫定Toast，須修改錯誤時執行的動作
-            Common.showToast(activity, R.string.textNoArticleFound);
+//            Common.showToast(activity, R.string.textNoArticleFound);
             Log.e(TAG, "article:" + articleList);
         }
         ArticleAdapter articleAdapter = (ArticleAdapter) rvArticle.getAdapter();
