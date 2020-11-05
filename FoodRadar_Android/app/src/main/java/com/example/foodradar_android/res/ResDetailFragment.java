@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -83,6 +84,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class ResDetailFragment extends Fragment {
@@ -106,6 +108,8 @@ public class ResDetailFragment extends Fragment {
     //private static final int PER_ACCESS_LOCATION = 0;
     private static final int REQ_CHECK_SETTINGS = 101;
     private static final int REQ_RATING = 0;
+    private SharedPreferences preferences;
+    private final static String PREFERENCES_NAME = "Res";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -893,12 +897,22 @@ public class ResDetailFragment extends Fragment {
         Button btReadArticle = view.findViewById(R.id.btReadArticle);
         Button btWriteArticle = view.findViewById(R.id.btWriteArticle);
 
+        preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
+
         btReadArticle.setOnClickListener(v -> {
+            getActivity().getIntent().putExtra("res", res);
             Navigation.findNavController(v)
-                    .navigate(R.id.action_resDetailFragment_to_articleFragment, bundle);
+                    .navigate(R.id.action_resDetailFragment_to_articleFragment);
         });
 
         btWriteArticle.setOnClickListener(v -> {
+            preferences.edit()
+                    .putString("ResName", res.getResName())
+                    .putString("Category", res.getResCategoryInfo())
+                    .putInt("resId", res.getResId())
+                    .apply();
+            int newArticle = 0;    //狀態判斷碼  > bundle帶到insert文章
+            bundle.putInt("newArticle", newArticle);
             Navigation.findNavController(v)
                     .navigate(R.id.action_resDetailFragment_to_articleInsertFragment, bundle);
         });

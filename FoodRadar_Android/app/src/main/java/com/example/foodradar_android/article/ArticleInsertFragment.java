@@ -144,8 +144,15 @@ public class ArticleInsertFragment extends Fragment {
        newArticle = bundle.getInt("newArticle");
        res = (Res) bundle.getSerializable("res");
 
-       /* 從Mark哥的餐廳細節過來 */
-        if (res == null) {
+        String resName = "";
+        String resCategory = "";
+       if (preferences != null) {
+           resName = preferences.getString("ResName", DEFAULT_FILE_NAME);
+           resCategory = preferences.getString("Category", DEFAULT_FILE_NAME);
+       }
+
+        /* 從Mark哥的餐廳細節過來 */
+        if (preferences == null) {
             /* 從選擇餐廳回來 */
             if (newArticle == 2) {
                 tvResName.setText("店名：請選擇餐廳");
@@ -155,7 +162,7 @@ public class ArticleInsertFragment extends Fragment {
                 tvResName.setText("店名：請選擇餐廳2");
             }
         } else {
-            tvResName.setText(res.getResCategoryInfo() + "\n" + "餐廳：" + res.getResName());
+            tvResName.setText(resCategory + "\n" + "餐廳：" + resName);
             //將bundle內的資料(int)改成0
             bundle.putInt("newArticle", 0);
         }
