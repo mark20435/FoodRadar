@@ -14,6 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        // HEX #E56C69 => UIColor 站台 https://www.uicolor.io/
+//        // Navigation bar底色 #E56C69
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.90, green: 0.42, blue: 0.41, alpha: 1.00)
+        // Navigation <返回上一頁 文字顏色
+        UINavigationBar.appearance().tintColor = UIColor.white
+        // Navigation Title文字顏色 #424242
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.00)]
+        
         return true
     }
 

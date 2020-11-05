@@ -198,7 +198,7 @@ public class UserMyResFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Integer resID = myResBidVH.getResId();
-                    Common.showToast(activity,"餐廳ID: " + resID);
+//                    Common.showToast(activity,"餐廳ID: " + resID);
                     List<Res> res = new ArrayList<>();
                     CommonTask getResTask;
                     Log.d(TAG,"getResById: " + resID);
