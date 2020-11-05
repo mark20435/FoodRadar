@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JhN-m9-IMK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gN2-ap-UEY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -8,37 +8,219 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Rank Article Table View Controller-->
+        <scene sceneID="sqW-sG-AnF">
+            <objects>
+                <tableViewController id="fVb-9f-0qe" customClass="RankArticleTableViewController" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Lu-SK-gyY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="systemGreenColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="345" id="v2O-LQ-Dit" customClass="ArticleTableViewCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="345"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v2O-LQ-Dit" id="4cV-4A-fjb">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fVb-9f-0qe" id="Yrm-GM-XLA"/>
+                            <outlet property="delegate" destination="fVb-9f-0qe" id="R8R-29-eF4"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Z6-zr-kyp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="464" y="333"/>
+        </scene>
+        <!--Favorite Article Table View Controller-->
+        <scene sceneID="PPt-Ne-hIA">
+            <objects>
+                <tableViewController id="XMx-Ey-H4X" customClass="FavoriteArticleTableViewController" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CaD-XF-5gx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="systemOrangeColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="172" id="CAF-uH-AH3" customClass="ArticleTableViewCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="172"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CAF-uH-AH3" id="KqX-fY-KJd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="172"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XMx-Ey-H4X" id="gaH-Zd-9ld"/>
+                            <outlet property="delegate" destination="XMx-Ey-H4X" id="CC4-ll-dNj"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y8n-rf-M0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="463.768115942029" y="1005.1339285714286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CA1-V5-FRQ">
+            <objects>
+                <navigationController id="gN2-ap-UEY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wDf-K2-BzU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="JhN-m9-IMK" kind="relationship" relationship="rootViewController" id="84O-xB-u1j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sp7-JQ-Fjw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1104" y="99"/>
+        </scene>
         <!--討論區-->
         <scene sceneID="QUp-og-oPQ">
             <objects>
-                <viewController id="JhN-m9-IMK" sceneMemberID="viewController">
+                <viewController id="JhN-m9-IMK" customClass="ArticleViewController" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZUO-mC-GRB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="討論區" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODG-Mb-cDl">
-                                <rect key="frame" x="186" y="413" width="52" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bW4-3E-6Yq">
+                                <rect key="frame" x="0.0" y="88" width="414" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="mtF-tV-eKH"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="新進榜"/>
+                                    <segment title="排行榜"/>
+                                    <segment title="收藏榜"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changePage:" destination="JhN-m9-IMK" eventType="valueChanged" id="Rwl-Q6-uqJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xex-Pj-sUq">
+                                <rect key="frame" x="0.0" y="136" width="414" height="760"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="y2H-3h-GKC">
+                                        <rect key="frame" x="0.0" y="0.0" width="1242" height="760"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42F-Jo-i0P">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                                                <connections>
+                                                    <segue destination="jkA-lb-zTq" kind="embed" id="b2E-b7-kpq"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcK-E0-LOa">
+                                                <rect key="frame" x="414" y="0.0" width="414" height="760"/>
+                                                <connections>
+                                                    <segue destination="fVb-9f-0qe" kind="embed" id="hOr-Yd-wUk"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdb-WR-5fB">
+                                                <rect key="frame" x="828" y="0.0" width="414" height="760"/>
+                                                <connections>
+                                                    <segue destination="XMx-Ey-H4X" kind="embed" id="vhe-t3-lae"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="y2H-3h-GKC" firstAttribute="trailing" secondItem="DJr-68-tx0" secondAttribute="trailing" id="5yy-qE-S5T"/>
+                                    <constraint firstItem="y2H-3h-GKC" firstAttribute="leading" secondItem="DJr-68-tx0" secondAttribute="leading" id="GKg-Zz-hzy"/>
+                                    <constraint firstItem="42F-Jo-i0P" firstAttribute="width" secondItem="Kh3-qf-gvA" secondAttribute="width" id="Gxg-1S-wyY"/>
+                                    <constraint firstItem="y2H-3h-GKC" firstAttribute="height" secondItem="Kh3-qf-gvA" secondAttribute="height" id="KkS-Ev-xUW"/>
+                                    <constraint firstItem="y2H-3h-GKC" firstAttribute="bottom" secondItem="DJr-68-tx0" secondAttribute="bottom" id="gzf-HJ-ZGq"/>
+                                    <constraint firstItem="y2H-3h-GKC" firstAttribute="top" secondItem="DJr-68-tx0" secondAttribute="top" id="ptU-vY-FHD"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DJr-68-tx0"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Kh3-qf-gvA"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JhN-m9-IMK" id="ZKh-I2-tba"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jnI-hL-RJl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xex-Pj-sUq" firstAttribute="top" secondItem="bW4-3E-6Yq" secondAttribute="bottom" id="0QA-nQ-Jer"/>
+                            <constraint firstAttribute="bottom" secondItem="Xex-Pj-sUq" secondAttribute="bottom" id="3Gg-lV-4ue"/>
+                            <constraint firstItem="bW4-3E-6Yq" firstAttribute="leading" secondItem="ZUO-mC-GRB" secondAttribute="leading" id="LFw-hh-FPy"/>
+                            <constraint firstAttribute="trailing" secondItem="bW4-3E-6Yq" secondAttribute="trailing" id="XMW-jh-toT"/>
+                            <constraint firstItem="bW4-3E-6Yq" firstAttribute="top" secondItem="jnI-hL-RJl" secondAttribute="top" id="XWb-r6-mAw"/>
+                            <constraint firstItem="Xex-Pj-sUq" firstAttribute="trailing" secondItem="jnI-hL-RJl" secondAttribute="trailing" id="bAQ-zF-tNc"/>
+                            <constraint firstItem="Xex-Pj-sUq" firstAttribute="leading" secondItem="jnI-hL-RJl" secondAttribute="leading" id="fOT-tf-Dn4"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="討論區" image="text.bubble" catalog="system" selectedImage="text.bubble" id="2ZS-K8-FT9"/>
+                    <navigationItem key="navigationItem" title="討論區" id="lX4-y2-x9w">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="jSm-Ja-DBY"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ArticleSegmentedControl" destination="bW4-3E-6Yq" id="Tg4-lX-Jwu"/>
+                        <outlet property="scrollView" destination="Xex-Pj-sUq" id="6yf-eA-XyO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q56-mr-u3J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="106"/>
+            <point key="canvasLocation" x="-275.36231884057975" y="97.767857142857139"/>
+        </scene>
+        <!--New Article Table View Controller-->
+        <scene sceneID="Hm1-Ch-rZ1">
+            <objects>
+                <tableViewController id="jkA-lb-zTq" customClass="NewArticleTableViewController" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ItN-PD-ofh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="systemPinkColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="323" id="gYf-Vm-2bx" customClass="ArticleTableViewCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="323"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gYf-Vm-2bx" id="cvL-FK-eFT">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="323"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jkA-lb-zTq" id="2bZ-DW-CIP"/>
+                            <outlet property="delegate" destination="jkA-lb-zTq" id="TQ6-Vx-wDa"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="ItN-PD-ofh" id="ERT-iL-kPT"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3eM-VC-Lz8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="463.768115942029" y="-353.23660714285711"/>
         </scene>
     </scenes>
     <resources>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
