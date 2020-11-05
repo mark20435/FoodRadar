@@ -22,7 +22,7 @@ class NetworkController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             let decoder = JSONDecoder()
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss a"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             if let data = data,
                let ress = try? decoder.decode([Res].self, from: data) {
