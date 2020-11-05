@@ -37,7 +37,7 @@ public class ResServlet extends HttpServlet {
 		while ((line = br.readLine()) != null) {
 			jsonIn.append(line);
 		}
-		System.out.println("input: " + jsonIn);
+		System.out.println("ResServlet.input: " + jsonIn);
 
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		if (resDao == null) {
