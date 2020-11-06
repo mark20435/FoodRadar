@@ -858,7 +858,7 @@ public class ResDetailFragment extends Fragment {
                     res.setMyRes(false);
                 }
             } else {
-                MyRes myRes = new MyRes(0, Common.USER_ID, res.getResId(), new Timestamp(System.currentTimeMillis()));
+                MyRes myRes = new MyRes(0, Common.USER_ID, res.getResId(), null);
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("action", "myResInsert");
                 jsonObject.addProperty("myres", new Gson().toJson(myRes));
