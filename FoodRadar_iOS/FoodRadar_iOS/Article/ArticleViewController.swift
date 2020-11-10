@@ -29,7 +29,6 @@ class ArticleViewController: UIViewController {
         scrollView.setContentOffset(offect, animated: true)
     }
     
-
     /*
     // MARK: - Navigation
 

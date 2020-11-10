@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let common_url = "http://localhost:8080/FoodRadar_Web"
+let common_url = "http://localhost:8080/FoodRadar_Web/"
 
 func executeTask(_ url_server: URL, _ requestParam: [String: Any], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
     // requestParam值為Any就必須使用JSONSerialization.data()，而非JSONEncoder.encode()

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Article: Codable {
-    var articleId: Int
+    var articleId: Int?
     var articleTitle: String?
     var articleText: String?
     var articleTime: String?
@@ -25,15 +25,15 @@ struct Article: Codable {
     var commentCount: Int?
     var favoriteCount: Int?
     var articleGoodId: Int
-    var articleGoodStatus: Bool
+    var articleGoodStatus: Bool = true
     var articleFavoriteStatus: Bool
-    var articleImg: Data
-    var userIcon: Data
     var articleFavoriteId: Int
+    
+    /* 計算屬性 > 計算平均消費 **/
+    var avgCon: Int {
+        get {
+            return ( conAmount / conNum )
+        }
+    }
 }
 
-/* 取得文章資料(多篇文章) **/
-struct getAllById: Encodable {
-    let action = "getAllById"
-
-}

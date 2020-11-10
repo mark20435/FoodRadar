@@ -801,9 +801,9 @@ public class ArticleDetailFragment extends Fragment {
                                             int commentId = comment.getCommentId();
                                             String commentText = etComment.getText().toString().trim();
                                             /* 取得現在時間並格式化時間格式 */
-                                            SimpleDateFormat nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                            nowdate.setTimeZone(TimeZone.getTimeZone("GMT+8"));    //時區設定
-                                            String strDate = nowdate.format(new java.util.Date());    //取得現在時間
+                                            SimpleDateFormat nowDate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                            nowDate.setTimeZone(TimeZone.getTimeZone("GMT+8"));    //時區設定
+                                            String strDate = nowDate.format(new java.util.Date());    //取得現在時間
 
                                             String commentModifyTime = strDate;
                                             comment.setComment(commentId, commentText, commentModifyTime);
@@ -872,8 +872,8 @@ public class ArticleDetailFragment extends Fragment {
                 myViewHolder.ivCommentSetting.setVisibility(View.GONE);
             }
 
-            //設定 留言點讚 功能，1.會員登入判斷還沒寫，要候補 > comment
-            //2.先判斷使用者是否已點讚 > comment
+            /* 設定 留言點讚 功能 */
+            //先判斷使用者是否已點讚 > comment
 //            final CommentGood commentGood = commentGoods.get(position);
             boolean commentGoodStatus = comment.isCommentGoodStatus();
             ImageView CommentGoodIcon = myViewHolder.ivCommentGoodIcon;
@@ -891,10 +891,10 @@ public class ArticleDetailFragment extends Fragment {
             }
             myViewHolder.ivCommentGoodIcon.setImageResource(R.drawable.ic_baseline_thumb_up_24);
             myViewHolder.tvCommentGood.setText((comment.getCommentGoodCount() + ""));
-            //3.設定監聽器   >   留言點讚
+            //設定監聽器   >   留言點讚
             if (userIdBox != 0) {
                 myViewHolder.ivCommentGoodIcon.setOnClickListener(v -> {
-                    if (!comment.isCommentGoodStatus()) {
+                    if (!comment.isCommentGoodStatus()) {   //執行點讚
                         if (Common.networkConnected(activity)) {
                             String commentGoodUrl = Common.URL_SERVER + "CommentGoodServlet";
                             int insertUserId = userIdBox;
@@ -921,7 +921,7 @@ public class ArticleDetailFragment extends Fragment {
                         } else {
                             Common.showToast(activity, "取得連線失敗");
                         }
-                    } else {
+                    } else {    //執行取消讚
                         if (Common.networkConnected(activity)) {
                             String deleteGoodUrl = Common.URL_SERVER + "CommentGoodServlet";
                             JsonObject jsonObject = new JsonObject();
@@ -936,7 +936,7 @@ public class ArticleDetailFragment extends Fragment {
                             } catch (Exception e) {
                                 Log.e(TAG, e.toString());
                             }
-                            if (count == 0) { //如果選擇的資料已經沒東西
+                            if (count == 0) {
                                 Common.showToast(activity, "取消失敗");
                             } else {
                                 comment.setCommentGoodCount(comment.getCommentGoodCount() - 1);
