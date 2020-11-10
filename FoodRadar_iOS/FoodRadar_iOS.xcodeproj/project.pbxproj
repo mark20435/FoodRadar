@@ -23,6 +23,7 @@
 		19FC26CA254FE1F700BD47EC /* ResCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C9254FE1F700BD47EC /* ResCell.swift */; };
 		19FC26CD254FE38700BD47EC /* Res.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26CC254FE38700BD47EC /* Res.swift */; };
 		19FC2745255A1F5100BD47EC /* GetImagePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC2744255A1F5100BD47EC /* GetImagePost.swift */; };
+		19FC274D255A45A800BD47EC /* ResMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC274C255A45A800BD47EC /* ResMapViewController.swift */; };
 		33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		19FC26C9254FE1F700BD47EC /* ResCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCell.swift; sourceTree = "<group>"; };
 		19FC26CC254FE38700BD47EC /* Res.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Res.swift; sourceTree = "<group>"; };
 		19FC2744255A1F5100BD47EC /* GetImagePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImagePost.swift; sourceTree = "<group>"; };
+		19FC274C255A45A800BD47EC /* ResMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResMapViewController.swift; sourceTree = "<group>"; };
 		33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAreaTableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				19708779254BC14000014DCF /* Map.storyboard */,
+				19FC274C255A45A800BD47EC /* ResMapViewController.swift */,
 				19FC26CC254FE38700BD47EC /* Res.swift */,
 			);
 			path = Map;
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19FC274D255A45A800BD47EC /* ResMapViewController.swift in Sources */,
 				19FC26CA254FE1F700BD47EC /* ResCell.swift in Sources */,
 				33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */,
 				19FC2745255A1F5100BD47EC /* GetImagePost.swift in Sources */,

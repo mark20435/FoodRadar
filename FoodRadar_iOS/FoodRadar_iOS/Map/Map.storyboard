@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dYE-x4-0LB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2fJ-eq-vTe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--餐廳地圖-->
+        <!--Res Map View Controller-->
         <scene sceneID="Lz0-s4-sxV">
             <objects>
-                <viewController id="dYE-x4-0LB" sceneMemberID="viewController">
+                <viewController id="dYE-x4-0LB" customClass="ResMapViewController" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LCe-Yh-MOa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="餐廳地圖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BX8-W5-dDi">
-                                <rect key="frame" x="176" y="360" width="70" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thd-ik-Pan">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dYE-x4-0LB" id="g8y-1G-Qlf"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WF7-Mx-DT6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WF7-Mx-DT6" firstAttribute="bottom" secondItem="thd-ik-Pan" secondAttribute="bottom" id="EVc-kH-rQp"/>
+                            <constraint firstItem="WF7-Mx-DT6" firstAttribute="trailing" secondItem="thd-ik-Pan" secondAttribute="trailing" id="Gp6-3r-waV"/>
+                            <constraint firstItem="thd-ik-Pan" firstAttribute="top" secondItem="WF7-Mx-DT6" secondAttribute="top" id="K00-bN-7Kt"/>
+                            <constraint firstItem="thd-ik-Pan" firstAttribute="leading" secondItem="WF7-Mx-DT6" secondAttribute="leading" id="UA1-5m-aSo"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="餐廳地圖" image="map" catalog="system" selectedImage="map.fill" id="7cD-Gz-cF2"/>
+                    <navigationItem key="navigationItem" id="EwK-pE-ZEX"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="thd-ik-Pan" id="1vo-hu-6sX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e9-Nb-Pnb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="254" y="108"/>
+            <point key="canvasLocation" x="1163.768115942029" y="107.8125"/>
+        </scene>
+        <!--餐廳地圖-->
+        <scene sceneID="8Hm-dq-18v">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2fJ-eq-vTe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="餐廳地圖" image="map" catalog="system" selectedImage="map.fill" id="7cD-Gz-cF2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0N0-c6-eWi">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dYE-x4-0LB" kind="relationship" relationship="rootViewController" id="F1d-B9-MqL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dfz-n7-C4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="253.62318840579712" y="107.8125"/>
         </scene>
     </scenes>
     <resources>
