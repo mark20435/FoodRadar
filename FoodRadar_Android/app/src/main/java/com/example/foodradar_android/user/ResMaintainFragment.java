@@ -39,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -246,7 +247,7 @@ public class ResMaintainFragment extends Fragment {
                 myViewHolder.tvResEnable.setText(R.string.textResIsNotEnable);
             }
             myViewHolder.tvUserName.setText(String.valueOf(res.getUserName()));
-            myViewHolder.tvModifyDate.setText(res.getModifyDate().toString());
+            myViewHolder.tvModifyDate.setText(new Timestamp(res.getModifyDate().getTime() - 8 * 3600 * 1000).toString());
 
             StringBuilder resHoursDetail = new StringBuilder("星期一：");
             JsonObject jsonHours = JsonParser.parseString(res.getResHours()).getAsJsonObject();

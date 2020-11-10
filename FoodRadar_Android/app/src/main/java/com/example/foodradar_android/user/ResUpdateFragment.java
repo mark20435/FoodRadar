@@ -43,6 +43,7 @@ import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -53,9 +54,11 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -1549,7 +1552,9 @@ public class ResUpdateFragment extends Fragment {
                             resCategoryId, resEnable, userId, modifyDate);
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action", "resUpdate");
-                    jsonObject.addProperty("res", new Gson().toJson(resUpdate));
+                    //jsonObject.addProperty("res", new Gson().toJson(resUpdate));
+                    Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+                    jsonObject.addProperty("res", gson.toJson(resUpdate));
                     // 有圖才上傳
                     if (image != null) {
                         jsonObject.addProperty("imageBase64", Base64.encodeToString(image, Base64.DEFAULT));

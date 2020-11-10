@@ -142,11 +142,11 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                 if data != nil {
                     image = UIImage(data: data!)
                 }
+                //判斷如果cell的id等於images的id > 才進行讀讀取圖片 > 避免重複利用
                 if cell.imageId == images.imgId {
                     if image == nil {
                         image = UIImage(named: "noImage.jpg")
                     }
-                    
                     DispatchQueue.main.async {
                         cell.articleDetailImageView.image = image
                     }

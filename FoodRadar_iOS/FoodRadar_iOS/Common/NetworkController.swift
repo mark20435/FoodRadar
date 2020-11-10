@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkController {
     
@@ -22,13 +23,31 @@ class NetworkController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             let decoder = JSONDecoder()
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss a"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             if let data = data,
                let ress = try? decoder.decode([Res].self, from: data) {
                 completion(ress)
             } else {
                 completion(nil)
+            }
+        }.resume()
+    }
+    
+    func getImage(servletName: String, id: Int, imageSize: Int, completion: @escaping (UIImage?) -> Void) {
+        
+        let url = baseURL.appendingPathComponent(servletName)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let getImagePost = GetImagePost(id: id, imageSize: imageSize)
+        request.httpBody = try? JSONEncoder().encode(getImagePost)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let data = data,
+               let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                completion(UIImage(named: "noImage"))
             }
         }.resume()
     }

@@ -44,6 +44,7 @@
 		19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */; };
 		19FC26CA254FE1F700BD47EC /* ResCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C9254FE1F700BD47EC /* ResCell.swift */; };
 		19FC26CD254FE38700BD47EC /* Res.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26CC254FE38700BD47EC /* Res.swift */; };
+		19FC2745255A1F5100BD47EC /* GetImagePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC2744255A1F5100BD47EC /* GetImagePost.swift */; };
 		33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,10 +84,11 @@
 		1970877C254BC42700014DCF /* Coupon.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Coupon.storyboard; sourceTree = "<group>"; };
 		1970877F254BC4BC00014DCF /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
 		19708782254BC7E800014DCF /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
-		19FC26C2254FB9EB00BD47EC /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkController.swift; path = FoodRadar_iOS/NetworkController.swift; sourceTree = SOURCE_ROOT; };
+		19FC26C2254FB9EB00BD47EC /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkController.swift; path = FoodRadar_iOS/Common/NetworkController.swift; sourceTree = SOURCE_ROOT; };
 		19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResMaintainViewController.swift; sourceTree = "<group>"; };
 		19FC26C9254FE1F700BD47EC /* ResCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCell.swift; sourceTree = "<group>"; };
 		19FC26CC254FE38700BD47EC /* Res.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Res.swift; sourceTree = "<group>"; };
+		19FC2744255A1F5100BD47EC /* GetImagePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImagePost.swift; sourceTree = "<group>"; };
 		33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAreaTableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,8 +122,12 @@
 		1970875F254BBFCC00014DCF /* FoodRadar_iOS */ = {
 			isa = PBXGroup;
 			children = (
+
 				123DBCB32552D33E0051E8AA /* Common.swift */,
 				19FC26C2254FB9EB00BD47EC /* NetworkController.swift */,
+
+				19FC2743255A1F1F00BD47EC /* Common */,
+
 				19FC26C0254FB66000BD47EC /* Home */,
 				19FC26BF254FB64700BD47EC /* User */,
 				19FC26BE254FB63900BD47EC /* Coupon */,
@@ -201,6 +207,15 @@
 				19708775254BC0A800014DCF /* Home.storyboard */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		19FC2743255A1F1F00BD47EC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				19FC26C2254FB9EB00BD47EC /* NetworkController.swift */,
+				19FC2744255A1F5100BD47EC /* GetImagePost.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +309,7 @@
 				12B8B04F2556F4C5001853EB /* BigImageViewController.swift in Sources */,
 				120CB5E62558622100F86A72 /* CommentViewController.swift in Sources */,
 				33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */,
+				19FC2745255A1F5100BD47EC /* GetImagePost.swift in Sources */,
 				19FC26C3254FB9EB00BD47EC /* NetworkController.swift in Sources */,
 				19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */,
 				19FC26CD254FE38700BD47EC /* Res.swift in Sources */,
