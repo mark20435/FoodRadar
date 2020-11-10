@@ -55,6 +55,14 @@ extension ResMaintainViewController: UITableViewDataSource, UITableViewDelegate 
         cell.lbResTel.text = res.resTel
         cell.lbResCategoryInfo.text = res.resCategoryInfo
         
+        NetworkController.shared.getImage(servletName: "ResServlet", id: res.resId, imageSize: 100) { (image) in
+            if let image = image {
+                DispatchQueue.main.async {
+                    cell.ivRes.image = image
+                }
+            }
+        }
+        
         return cell
     }
     
