@@ -29,6 +29,8 @@
 		128B4E8C2554DD1A00D28A0C /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128B4E8A2554DD1A00D28A0C /* ArticleCollectionViewCell.swift */; };
 		128B4E8D2554DD1A00D28A0C /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 128B4E8B2554DD1A00D28A0C /* ArticleCollectionViewCell.xib */; };
 		12B8B04F2556F4C5001853EB /* BigImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B8B04E2556F4C5001853EB /* BigImageViewController.swift */; };
+		19461D46255B8F85000D54A5 /* ResMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19461D44255B8F85000D54A5 /* ResMapCollectionViewCell.swift */; };
+		19461D47255B8F85000D54A5 /* ResMapCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19461D45255B8F85000D54A5 /* ResMapCollectionViewCell.xib */; };
 		19708761254BBFCC00014DCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19708760254BBFCC00014DCF /* AppDelegate.swift */; };
 		19708763254BBFCC00014DCF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19708762254BBFCC00014DCF /* SceneDelegate.swift */; };
 		19708765254BBFCC00014DCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19708764254BBFCC00014DCF /* ViewController.swift */; };
@@ -72,6 +74,8 @@
 		128B4E8A2554DD1A00D28A0C /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		128B4E8B2554DD1A00D28A0C /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		12B8B04E2556F4C5001853EB /* BigImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigImageViewController.swift; sourceTree = "<group>"; };
+		19461D44255B8F85000D54A5 /* ResMapCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResMapCollectionViewCell.swift; sourceTree = "<group>"; };
+		19461D45255B8F85000D54A5 /* ResMapCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResMapCollectionViewCell.xib; sourceTree = "<group>"; };
 		1970875D254BBFCC00014DCF /* FoodRadar_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodRadar_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19708760254BBFCC00014DCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19708762254BBFCC00014DCF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19461D4C255B9146000D54A5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				19FC274C255A45A800BD47EC /* ResMapViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		19461D4D255B9160000D54A5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19708779254BC14000014DCF /* Map.storyboard */,
+				19461D44255B8F85000D54A5 /* ResMapCollectionViewCell.swift */,
+				19461D45255B8F85000D54A5 /* ResMapCollectionViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19461D4E255B91A1000D54A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19FC26CC254FE38700BD47EC /* Res.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		19708754254BBFCC00014DCF = {
 			isa = PBXGroup;
 			children = (
@@ -144,9 +174,9 @@
 		19FC26BC254FB60F00BD47EC /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				19708779254BC14000014DCF /* Map.storyboard */,
-				19FC274C255A45A800BD47EC /* ResMapViewController.swift */,
-				19FC26CC254FE38700BD47EC /* Res.swift */,
+				19461D4D255B9160000D54A5 /* Views */,
+				19461D4C255B9146000D54A5 /* ViewControllers */,
+				19461D4E255B91A1000D54A5 /* Model */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -284,6 +314,7 @@
 				1970877A254BC14000014DCF /* Map.storyboard in Resources */,
 				19708768254BBFCC00014DCF /* Main.storyboard in Resources */,
 				19708783254BC7E800014DCF /* User.storyboard in Resources */,
+				19461D47255B8F85000D54A5 /* ResMapCollectionViewCell.xib in Resources */,
 				128B4E8D2554DD1A00D28A0C /* ArticleCollectionViewCell.xib in Resources */,
 				1970877D254BC42700014DCF /* Coupon.storyboard in Resources */,
 				19708776254BC0A800014DCF /* Home.storyboard in Resources */,
@@ -304,6 +335,7 @@
 				120CB5E92558640600F86A72 /* Comment.swift in Sources */,
 				127DF3192555143E009138CF /* RankCollectionViewController.swift in Sources */,
 				123DBCAC25528C380051E8AA /* ArticleTableViewCell.swift in Sources */,
+				19461D46255B8F85000D54A5 /* ResMapCollectionViewCell.swift in Sources */,
 				127DF32725558AC3009138CF /* ArticleImageCollectionViewCell.swift in Sources */,
 				123DBCA8255268DD0051E8AA /* ArticleViewController.swift in Sources */,
 				12B8B04F2556F4C5001853EB /* BigImageViewController.swift in Sources */,
