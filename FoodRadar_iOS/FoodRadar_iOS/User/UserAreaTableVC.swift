@@ -8,6 +8,8 @@
 import UIKit
 
 class UserAreaTableVC: UITableViewController {
+    
+    var userDataArray = [UserAccountFile]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +20,14 @@ class UserAreaTableVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         navigationItem.title = "會員專區"
+        // Table隔線只顯示到有資料的部分
         tableView.tableFooterView = UIView()
+        
+        if let getUserData = UserAccountFile.readUsersFromFile() {
+            self.userDataArray = getUserData
+            COMM_USER_ID = userDataArray[0].userId
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -78,14 +87,19 @@ class UserAreaTableVC: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if let controller = segue.destination as? UserDataSetupVC {
+            controller.userAccountFile = userDataArray[0]
+        }
+        
     }
-    */
+    
 
 }

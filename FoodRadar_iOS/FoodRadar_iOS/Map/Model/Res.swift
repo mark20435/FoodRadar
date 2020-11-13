@@ -29,3 +29,8 @@ struct Res: Codable {
 struct getAllResPost: Encodable {
     let action = "getAll"
 }
+
+struct getAllResEnablePost: Encodable {
+    let action = "getAllEnable"
+    var userId: Int
+}

@@ -188,12 +188,12 @@ public class UserAccountServlet extends HttpServlet {
 		pubTools.showConsoleMsg("doGet.userAccountList" , "");
 		System.out.println("userAccountList: " + userAccountList);
 		pubTools.writeText(response, new Gson().toJson(userAccountList));
-		
+		pubTools.writeText(response, "<html><hr></html>");
 		List<String> strList = new ArrayList<String>();
 		strList.add("3");
 		strList.add("6");
 		pubTools.writeText(response, new Gson().toJson(strList));
-		
+		pubTools.writeText(response, "<html><hr></html>");
 		UserAccount userAccountFindById = userAccountDao.findById(3); // userAccountDao.findById(3);
 		pubTools.writeText(response, new Gson().toJson(userAccountFindById));
 	}

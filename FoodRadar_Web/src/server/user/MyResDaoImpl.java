@@ -149,7 +149,7 @@ public class MyResDaoImpl implements MyResDao{
 				String resHours = rs.getString("resHours");
 				String resTel = rs.getString("resTel");
 				String resAddress = rs.getString("resAddress");
-				byte[] resImg = rs.getBytes("resImg");
+				byte[] resImg = {0x20}; // rs.getBytes("resImg");
 				myres =  new MyRes(resId, resName, resHours, resTel, resAddress, resImg);
 				myResList.add(myres);
 			}

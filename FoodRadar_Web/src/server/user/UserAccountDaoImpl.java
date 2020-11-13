@@ -158,7 +158,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				Boolean allowNotifi = rs.getBoolean("allowNotifi");
 				Boolean isEnable = rs.getBoolean("isEnable");
 				Boolean isAdmin = rs.getBoolean("isAdmin");
-				byte[] userAvatar = rs.getBytes("userAvatar");
+				byte[] userAvatar = {0x20}; // rs.getBytes("userAvatar");
 				Timestamp createDate = rs.getTimestamp("createDate");
 				Timestamp modifyDate = rs.getTimestamp("modifyDate");
 
@@ -228,8 +228,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				Boolean allowNotifi = rs.getBoolean("allowNotifi");
 				Boolean isEnable = rs.getBoolean("isEnable");
 				Boolean isAdmin = rs.getBoolean("isAdmin");
-				byte[] userAvatar = null; //rs.getBytes("userAvatar");
-//				byte[] userAvatar = null;
+				byte[] userAvatar = {0x20}; //rs.getBytes("userAvatar");
 				Timestamp createDate = rs.getTimestamp("createDate");
 				Timestamp modifyDate = rs.getTimestamp("modifyDate");
 
