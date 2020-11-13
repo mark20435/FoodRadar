@@ -8,8 +8,9 @@
 import Foundation
 
 let urlUserServlet = "UserAccountServlet"
+var COMM_USER_ID = 9
 
-func login(userPhone: String, userPwd: String) -> Int {
+func Login(userPhone: String, userPwd: String , completion: @escaping (Int?) -> Void) {
 //    let url = URL(string: "http://localhost:8080/FoodRadar_Web/UserAccountServlet")
     
     var userId = 0
@@ -24,8 +25,7 @@ func login(userPhone: String, userPwd: String) -> Int {
     URLSession.shared.dataTask(with: request) { (data, response, error) in
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss a"
-//        dateFormatter.dateFormat = "yyyy-MM-dd  hh:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.calendar = Calendar(identifier: .iso8601)
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         if let data = data,
@@ -34,33 +34,15 @@ func login(userPhone: String, userPwd: String) -> Int {
             userId = userAccountArray[0].userId
 //            print(userAccount.userId, userAccount.userName)
             print("userId: \(userId)")
+            print("userName: \(userAccountArray[0].userName)")
+            COMM_USER_ID = userId
+            print("login USED_ID: \(COMM_USER_ID)")
 //            }
+            completion(userId)
+        } else {
+            completion(0)
         }
     }.resume()
-    return userId
 }
 
 
-func aaa () {
-//    //        let url = URL(string: "http://localhost:8080/FoodRadar_Web/UserAccountServlet")
-//
-//            let url = NetworkController().baseURL.appendingPathComponent(urlUserServlet)
-//
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//            let userAccount = UserAccount(allowNotifi: false, userBirth: Date(), userId: 0, userName: "joy", userPhone: "0931234568", userPwd: "123456")
-//            let registerPost = RegisterPost(userAccount: userAccount, imageBase64: image)
-//            request.httpBody = try? JSONEncoder().encode(registerPost)
-//
-//
-//            URLSession.shared.dataTask(with: request) { (data, response, error) in
-//
-//                if let data = data,
-//                   String(data: data, encoding: .utf8) == "1" {
-//                    print("ok")
-//                } else {
-//                    print("error")
-//                }
-//
-//            }.resume()
-}

@@ -22,6 +22,10 @@
 		19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */; };
 		19FC26CA254FE1F700BD47EC /* ResCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26C9254FE1F700BD47EC /* ResCell.swift */; };
 		19FC26CD254FE38700BD47EC /* Res.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FC26CC254FE38700BD47EC /* Res.swift */; };
+		33A3BB9F2559813700141001 /* MyResTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BB9E2559813700141001 /* MyResTableVC.swift */; };
+		33A3BBA32559820400141001 /* MyResTableVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BBA22559820400141001 /* MyResTableVCell.swift */; };
+		33A3BC2F255BD40C00141001 /* MyRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BC2E255BD40C00141001 /* MyRes.swift */; };
+		33A3BC33255BD68E00141001 /* UserAccountFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BC32255BD68E00141001 /* UserAccountFile.swift */; };
 		33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */; };
 		33AEB64D2553928400083F2E /* UserDataSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AEB64C2553928400083F2E /* UserDataSetupVC.swift */; };
 		33BD4AA425552556001924DD /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD4AA325552556001924DD /* UserAccount.swift */; };
@@ -46,6 +50,10 @@
 		19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResMaintainViewController.swift; sourceTree = "<group>"; };
 		19FC26C9254FE1F700BD47EC /* ResCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCell.swift; sourceTree = "<group>"; };
 		19FC26CC254FE38700BD47EC /* Res.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Res.swift; sourceTree = "<group>"; };
+		33A3BB9E2559813700141001 /* MyResTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResTableVC.swift; sourceTree = "<group>"; };
+		33A3BBA22559820400141001 /* MyResTableVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResTableVCell.swift; sourceTree = "<group>"; };
+		33A3BC2E255BD40C00141001 /* MyRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRes.swift; sourceTree = "<group>"; };
+		33A3BC32255BD68E00141001 /* UserAccountFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountFile.swift; sourceTree = "<group>"; };
 		33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAreaTableVC.swift; sourceTree = "<group>"; };
 		33AEB64C2553928400083F2E /* UserDataSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSetupVC.swift; sourceTree = "<group>"; };
 		33BD4AA325552556001924DD /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -127,13 +135,17 @@
 		19FC26BF254FB64700BD47EC /* User */ = {
 			isa = PBXGroup;
 			children = (
+				33A3BB9E2559813700141001 /* MyResTableVC.swift */,
 				19708782254BC7E800014DCF /* User.storyboard */,
+				33A3BBA22559820400141001 /* MyResTableVCell.swift */,
 				33AEB64C2553928400083F2E /* UserDataSetupVC.swift */,
 				19FC26C9254FE1F700BD47EC /* ResCell.swift */,
 				19FC26C6254FBB2D00BD47EC /* ResMaintainViewController.swift */,
 				33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */,
 				33BD4AA325552556001924DD /* UserAccount.swift */,
 				33BD4AA625553495001924DD /* UserCommon.swift */,
+				33A3BC2E255BD40C00141001 /* MyRes.swift */,
+				33A3BC32255BD68E00141001 /* UserAccountFile.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -226,10 +238,14 @@
 				33BD4AA725553495001924DD /* UserCommon.swift in Sources */,
 				33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */,
 				19FC26C3254FB9EB00BD47EC /* NetworkController.swift in Sources */,
+				33A3BC33255BD68E00141001 /* UserAccountFile.swift in Sources */,
 				19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */,
+				33A3BB9F2559813700141001 /* MyResTableVC.swift in Sources */,
 				19FC26CD254FE38700BD47EC /* Res.swift in Sources */,
 				19708765254BBFCC00014DCF /* ViewController.swift in Sources */,
 				19708761254BBFCC00014DCF /* AppDelegate.swift in Sources */,
+				33A3BBA32559820400141001 /* MyResTableVCell.swift in Sources */,
+				33A3BC2F255BD40C00141001 /* MyRes.swift in Sources */,
 				19708763254BBFCC00014DCF /* SceneDelegate.swift in Sources */,
 				33BD4AA425552556001924DD /* UserAccount.swift in Sources */,
 			);

@@ -14,6 +14,12 @@ struct UserLoginStruct: Encodable {
     let userPwd: String
 }
 
+
+struct UserAccountArray: Decodable {
+    var userAccount: UserAccount?
+}
+
+
 struct UserAccount: Codable {
     // Date Time: 2020-11-06 15:10:08
     // table name: UserAccount
@@ -28,13 +34,4 @@ struct UserAccount: Codable {
     let userAvatar: [UInt8]
     let createDate: Date?
     let modifyDate: Date?
-    
 }
-
-struct UserAccountArray: Decodable {
-    var userAccount: UserAccount?
-    
-}
-
-
-

@@ -15,12 +15,19 @@ class UserDataSetupVC: UIViewController {
     @IBOutlet weak var btRegister: UIButton!
     @IBOutlet weak var btInputLogin: UIButton!
     
+    var userAccountFile: UserAccountFile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the
 //        self.title = "會員資料設定"
 //        navigationItem.title = "會員資料設定"
+        if let userData = userAccountFile {
+//            imAvatar.image = UIImage(userData.userAvatar)
+            tfUserPhone.text = userData.userPhone
+            tfPassword.text = userData.userPwd
+        }
         
     }
     
@@ -45,13 +52,14 @@ class UserDataSetupVC: UIViewController {
             return
         }
         
-        let userId = login(userPhone: userPhone, userPwd: userPwd)
-        if userId == 0 {
-            print("Login Fail~")
-        } else {
-            print("Login OK!!!")
+        Login(userPhone: userPhone, userPwd: userPwd) { (userId) in
+            print("clickLogin.userId: \(userId ?? 0)")
+            if userId == 0 {
+                print("Login Fail~")
+            } else {
+                print("Login OK!!!")
+            }
         }
-        
         
         
     }

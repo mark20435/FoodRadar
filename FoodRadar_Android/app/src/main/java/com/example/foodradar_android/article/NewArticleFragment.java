@@ -3,6 +3,7 @@ package com.example.foodradar_android.article;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -144,8 +145,11 @@ public class NewArticleFragment extends Fragment {
         showArticle(articles);
 
         /* 餐廳細節跳轉bundle判斷*/
-        Bundle bundle = getArguments();
-        res = (Res) (bundle != null ? bundle.getSerializable("res") : null);
+        Intent intent = getActivity().getIntent();
+        if (intent != null) {
+            res = (Res) intent.getSerializableExtra("res");
+        }
+        //res = (Res) (bundle != null ? bundle.getSerializable("res") : null);
         if (res == null) {
             showArticle(articles);
         }
