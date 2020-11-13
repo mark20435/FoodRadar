@@ -45,7 +45,7 @@ public class Comment {
         this.commentId = commentId;
         this.userId = userId;
     }
-
+    //新增留言用
     public Comment(int commentId, int articleId, int userId, boolean commentStatus, String commentText) {
         super();
         this.commentId = commentId;

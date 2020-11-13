@@ -40,13 +40,12 @@ class NewArticleTableViewController: UITableViewController {
     @objc func showAllArticles() {
         var requestParam = [String : Any]()
         requestParam["action"] = "getAllById"
-        requestParam["loginUserId"] = 0
+        requestParam["loginUserId"] = 0 //先寫死(遊客)
         executeTask(self.url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     // 將輸入資料列印出來除錯用
                     print("input: \(String(data: data!, encoding: .utf8)!)")
-                    
                     if let result = try? JSONDecoder().decode([Article].self, from: data!) {
                         self.allArticle = result
                         DispatchQueue.main.async {

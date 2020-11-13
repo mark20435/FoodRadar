@@ -10,7 +10,14 @@ import UIKit
 class ResPickerTableViewController: UITableViewController {
     
     var resAddressArray = [ResAddress]()
+    
     let url_resAddress = URL(string: common_url + "ResAddressServlet")
+    
+    /* 宣告物件包裝資料帶回前一頁 **/
+    var selectRes: ResAddress?
+   
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +29,8 @@ class ResPickerTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
     
     /* 顯示餐廳資訊 **/
     @objc func showResAddress() {
@@ -66,7 +75,23 @@ class ResPickerTableViewController: UITableViewController {
         //顯示在tableViewCell上
         cell.lbResName.text = resAddress.resName
         cell.lbResAddress.text = resAddress.resAddress
+        
+        
         return cell
+    }
+    /* Step.3 要先在storyboard的cell拉線到exit > .unwind Segue **/
+    /* Step.4 prepare包裝資料 > 帶回前一頁 **/
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       super.prepare(for: segue, sender: sender)
+        //要先給 segue ID > 才能跳回前一頁
+       guard segue.identifier == "resAddressSegue" else {return}
+        
+        // 選選取的cell > 取得該 indexPath.row的資料，放入selectRes中
+       if let cell = sender as? ResPickerTableViewCell,
+          let indexPath = tableView.indexPath(for: cell) {
+           selectRes = resAddressArray[indexPath.row]
+//        print("whats this: \(selectRes)")
+       }
     }
     
     
@@ -105,14 +130,9 @@ class ResPickerTableViewController: UITableViewController {
      }
      */
     
-    /*
+    
      // MARK: - Navigation
+    
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

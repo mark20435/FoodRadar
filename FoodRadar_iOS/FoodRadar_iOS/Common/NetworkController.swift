@@ -70,5 +70,4 @@ class NetworkController {
 //        }.resume()
 //    }
 
-    
 }
