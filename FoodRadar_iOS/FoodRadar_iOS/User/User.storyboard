@@ -42,6 +42,9 @@
                                                     <state key="normal" title="    我的餐廳收藏" image="flag.circle" catalog="system">
                                                         <color key="titleColor" red="0.8942415118" green="0.42423060540000002" blue="0.41174185279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="tvt-h3-pdn" kind="show" id="tTC-wq-6vb"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -93,6 +96,9 @@
                                                     <state key="normal" title="    會員資料設定" image="person.circle" catalog="system">
                                                         <color key="titleColor" red="0.8942415118" green="0.42423060540000002" blue="0.41174185279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="aef-76-0Cu" kind="show" id="nlr-ET-qlX"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -147,6 +153,134 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yC6-aL-6h1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1233" y="106"/>
+        </scene>
+        <!--我的餐廳收藏-->
+        <scene sceneID="Fjd-gR-9n9">
+            <objects>
+                <tableViewController id="tvt-h3-pdn" customClass="MyResTableVC" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Aqr-7K-yQk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="餐廳名稱" id="mT0-ja-QYS">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyResTableVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyResTableVCell" rowHeight="144" id="pI5-3S-1Wg" customClass="MyResTableVCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="144"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pI5-3S-1Wg" id="Ohq-31-ssD">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_foodradar" translatesAutoresizingMaskIntoConstraints="NO" id="b21-cc-by5">
+                                            <rect key="frame" x="8" y="8" width="120" height="128"/>
+                                            <color key="backgroundColor" red="0.98990041019999997" green="0.76484161620000002" blue="0.76469963789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="1Wv-uA-eWk"/>
+                                                <constraint firstAttribute="height" constant="120" id="qR5-nd-i1H"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳名稱" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyR-fm-umd">
+                                            <rect key="frame" x="132" y="15" width="262" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="營業時間:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFu-EA-jal">
+                                            <rect key="frame" x="132" y="43" width="262" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聯絡電話:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csu-Nm-GGS">
+                                            <rect key="frame" x="132" y="64" width="262" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="餐廳地址:" translatesAutoresizingMaskIntoConstraints="NO" id="5z3-pc-PGY">
+                                            <rect key="frame" x="128" y="81.5" width="266" height="51.5"/>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5z3-pc-PGY" secondAttribute="trailing" id="8MA-lu-DpM"/>
+                                        <constraint firstAttribute="bottom" secondItem="b21-cc-by5" secondAttribute="bottom" constant="8" id="AVd-E9-zuz"/>
+                                        <constraint firstItem="csu-Nm-GGS" firstAttribute="top" secondItem="XFu-EA-jal" secondAttribute="bottom" constant="4" id="FqU-B7-Qvx"/>
+                                        <constraint firstItem="XFu-EA-jal" firstAttribute="leading" secondItem="fyR-fm-umd" secondAttribute="leading" id="Lqo-P1-z9V"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fyR-fm-umd" secondAttribute="trailing" id="N9d-Us-thH"/>
+                                        <constraint firstItem="fyR-fm-umd" firstAttribute="top" secondItem="Ohq-31-ssD" secondAttribute="topMargin" constant="4" id="WdS-d0-66k"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5z3-pc-PGY" secondAttribute="bottom" id="Zv6-bA-rQy"/>
+                                        <constraint firstItem="b21-cc-by5" firstAttribute="leading" secondItem="Ohq-31-ssD" secondAttribute="leading" constant="8" id="g3B-Fa-OIA"/>
+                                        <constraint firstItem="csu-Nm-GGS" firstAttribute="leading" secondItem="b21-cc-by5" secondAttribute="trailing" constant="4" id="lev-oX-oNd"/>
+                                        <constraint firstItem="fyR-fm-umd" firstAttribute="leading" secondItem="b21-cc-by5" secondAttribute="trailing" constant="4" id="oiS-WH-56R"/>
+                                        <constraint firstItem="XFu-EA-jal" firstAttribute="top" secondItem="fyR-fm-umd" secondAttribute="bottom" constant="4" id="orM-hh-Jue"/>
+                                        <constraint firstItem="5z3-pc-PGY" firstAttribute="top" secondItem="XFu-EA-jal" secondAttribute="bottom" constant="21.5" id="sJ9-xj-ybB"/>
+                                        <constraint firstItem="XFu-EA-jal" firstAttribute="trailing" secondItem="fyR-fm-umd" secondAttribute="trailing" id="tFD-bO-now"/>
+                                        <constraint firstItem="b21-cc-by5" firstAttribute="top" secondItem="Ohq-31-ssD" secondAttribute="top" constant="8" id="vtw-g3-XW6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="csu-Nm-GGS" secondAttribute="trailing" id="wiX-XG-ALG"/>
+                                        <constraint firstItem="5z3-pc-PGY" firstAttribute="leading" secondItem="b21-cc-by5" secondAttribute="trailing" id="x6E-n6-ue4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98329144719999995" green="0.8902388215" blue="0.89019423720000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <outlet property="ivMyRes" destination="b21-cc-by5" id="xUE-I5-Zvx"/>
+                                    <outlet property="lbResAddress" destination="5z3-pc-PGY" id="gDa-Vv-4Wb"/>
+                                    <outlet property="lbResHour" destination="XFu-EA-jal" id="MOU-rR-TOp"/>
+                                    <outlet property="lbResName" destination="fyR-fm-umd" id="tNa-Su-i5w"/>
+                                    <outlet property="lbResTel" destination="csu-Nm-GGS" id="d8r-y4-4Fi"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tvt-h3-pdn" id="bs9-lS-s8L"/>
+                            <outlet property="delegate" destination="tvt-h3-pdn" id="VJB-K3-Fi8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的餐廳收藏" id="3kj-VU-b0X"/>
+                    <connections>
+                        <outlet property="searchMyRes" destination="mT0-ja-QYS" id="grx-2K-EXI"/>
+                        <outlet property="tableViewMyRes" destination="Aqr-7K-yQk" id="S9V-nI-foy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Bv-t8-zAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028.985507246377" y="-573.21428571428567"/>
+        </scene>
+        <!--會員資料設定-->
+        <scene sceneID="5wF-72-fLh">
+            <objects>
+                <viewController id="aef-76-0Cu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3XB-3u-dQP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-xw-n8a">
+                                <rect key="frame" x="16" y="108" width="382" height="734"/>
+                                <connections>
+                                    <segue destination="i6b-OJ-ip3" kind="embed" id="imr-Rc-0Ar"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vT4-Fx-dVP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FgB-xw-n8a" firstAttribute="leading" secondItem="vT4-Fx-dVP" secondAttribute="leading" constant="16" id="3uv-Md-jO6"/>
+                            <constraint firstItem="FgB-xw-n8a" firstAttribute="centerX" secondItem="3XB-3u-dQP" secondAttribute="centerX" id="NzH-Mq-3o0"/>
+                            <constraint firstItem="FgB-xw-n8a" firstAttribute="top" secondItem="vT4-Fx-dVP" secondAttribute="top" constant="20" id="Rg0-kq-myp"/>
+                            <constraint firstItem="vT4-Fx-dVP" firstAttribute="bottom" secondItem="FgB-xw-n8a" secondAttribute="bottom" constant="20" id="yye-yy-Nxv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="會員資料設定" id="c8s-Q9-rQg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIV-rc-zkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2524.6376811594205" y="105.80357142857143"/>
         </scene>
         <!--餐廳資訊維護-->
         <scene sceneID="K1O-WW-OHH">
@@ -250,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krR-Gu-IwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2121.739130434783" y="105.80357142857143"/>
+            <point key="canvasLocation" x="2525" y="834"/>
         </scene>
         <!--會員專區-->
         <scene sceneID="9Wo-Tk-Anm">
@@ -275,18 +409,181 @@
             </objects>
             <point key="canvasLocation" x="385.50724637681162" y="105.80357142857143"/>
         </scene>
+        <!--ContainerView會員資料設定-->
+        <scene sceneID="zCc-xt-b3h">
+            <objects>
+                <viewController id="i6b-OJ-ip3" userLabel="ContainerView會員資料設定" customClass="UserDataSetupVC" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b4Q-Vx-4KS">
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="734"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GOW-d4-ljg">
+                                <rect key="frame" x="0.0" y="60" width="382" height="356"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyT-c8-SY7" userLabel="StackView_Logo">
+                                        <rect key="frame" x="90.5" y="0.0" width="201" height="200"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_foodradar" translatesAutoresizingMaskIntoConstraints="NO" id="2Bd-Pg-Tch">
+                                                <rect key="frame" x="0.0" y="0.0" width="201" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="3uJ-Ix-Jkr"/>
+                                                    <constraint firstAttribute="width" constant="201" id="5U5-um-w3N"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="100"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="2Bd-Pg-Tch" firstAttribute="centerX" secondItem="IyT-c8-SY7" secondAttribute="centerX" id="FqO-tI-RVa"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-YB-rgH" userLabel="StackView_手機號碼">
+                                        <rect key="frame" x="8" y="216" width="366" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手機號碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LbI-b8-maJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="314.5" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" (必填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-WG-GrU">
+                                                <rect key="frame" x="314.5" y="0.0" width="51.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjP-Ef-vi4" userLabel="StackView_密碼">
+                                        <rect key="frame" x="8" y="266" width="366" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YbD-ne-a1U">
+                                                <rect key="frame" x="0.0" y="0.0" width="314.5" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" (必填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07F-Kq-AYs">
+                                                <rect key="frame" x="314.5" y="0.0" width="51.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Psn-GO-VAd" userLabel="StackView_按鈕">
+                                        <rect key="frame" x="61" y="316" width="260" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SnI-lc-qVV">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                                <color key="backgroundColor" red="0.8942415118" green="0.42423060540000002" blue="0.41174185279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Ac1-gB-7aa"/>
+                                                    <constraint firstAttribute="width" constant="120" id="Yyf-H7-EGC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="tintColor" red="0.99372571239999996" green="0.99372571239999996" blue="0.99372571239999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="會員登入"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="clickLogin:" destination="i6b-OJ-ip3" eventType="touchUpInside" id="fmd-K8-CL7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5U-P8-pae">
+                                                <rect key="frame" x="140" y="0.0" width="120" height="40"/>
+                                                <color key="backgroundColor" red="0.8942415118" green="0.42423060540000002" blue="0.41174185279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="XOB-lr-3vb"/>
+                                                    <constraint firstAttribute="height" constant="40" id="YQT-i1-OEP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="tintColor" red="0.99372571239999996" green="0.99372571239999996" blue="0.99372571239999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="會員註冊"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="clickRegister:" destination="i6b-OJ-ip3" eventType="touchUpInside" id="r1j-Df-1sb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jjP-Ef-vi4" firstAttribute="leading" secondItem="PPR-YB-rgH" secondAttribute="leading" id="Miy-Wr-CRT"/>
+                                    <constraint firstAttribute="trailing" secondItem="PPR-YB-rgH" secondAttribute="trailing" constant="8" id="dGF-rJ-w0R"/>
+                                    <constraint firstItem="PPR-YB-rgH" firstAttribute="leading" secondItem="GOW-d4-ljg" secondAttribute="leading" constant="8" id="qUi-xY-g38"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZ4-60-Ou4">
+                                <rect key="frame" x="16" y="424" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="自動輸入登入"/>
+                                <connections>
+                                    <action selector="ckickInputLogin:" destination="i6b-OJ-ip3" eventType="touchUpInside" id="CKY-7u-tqk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f6N-zd-0Rd"/>
+                        <color key="backgroundColor" red="0.9882352941176471" green="0.93333333333333335" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GOW-d4-ljg" firstAttribute="top" secondItem="f6N-zd-0Rd" secondAttribute="top" constant="16" id="Bpb-hR-Lbu"/>
+                            <constraint firstItem="GOW-d4-ljg" firstAttribute="leading" secondItem="f6N-zd-0Rd" secondAttribute="leading" id="H2U-8D-QgG"/>
+                            <constraint firstItem="f6N-zd-0Rd" firstAttribute="trailing" secondItem="GOW-d4-ljg" secondAttribute="trailing" id="baA-pj-pc5"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                <real key="value" value="0.20000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                <size key="value" width="4" height="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="btInputLogin" destination="tZ4-60-Ou4" id="Hcs-eM-EzQ"/>
+                        <outlet property="btLogin" destination="SnI-lc-qVV" id="HT8-Yw-fRr"/>
+                        <outlet property="btRegister" destination="K5U-P8-pae" id="bmh-NB-x3e"/>
+                        <outlet property="imAvatar" destination="2Bd-Pg-Tch" id="D40-l5-D4V"/>
+                        <outlet property="tfPassword" destination="YbD-ne-a1U" id="fol-Dv-Y4I"/>
+                        <outlet property="tfUserPhone" destination="LbI-b8-maJ" id="kAd-gb-TLZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdl-nc-fX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3270" y="106"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bookmark.circle" catalog="system" width="128" height="121"/>
         <image name="flag.circle" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="logo_foodradar" width="209" height="208"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
