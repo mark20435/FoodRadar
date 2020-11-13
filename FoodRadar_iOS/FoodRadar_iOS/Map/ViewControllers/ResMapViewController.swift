@@ -24,7 +24,7 @@ class ResMapViewController: UIViewController {
 
         manager.requestWhenInUseAuthorization()
         
-        NetworkController.shared.getAllResEnable(userId: 3) { (ress) in
+        NetworkController.shared.getAllResEnable(userId: COMM_USER_ID) { (ress) in
             if let ress = ress {
                 self.allRess = ress
                 DispatchQueue.main.async {
@@ -108,8 +108,13 @@ extension ResMapViewController: MKMapViewDelegate {
             
             mapView.setRegion(region, animated: true)
         }
-        
-        
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annoIndex = allRess?.firstIndex(where: { (res) -> Bool in
+            return res.resName.hasPrefix(String((view.annotation?.title)!!))
+        }) else { return }
+        cvResMap.scrollToItem(at: IndexPath(item: annoIndex, section: 0), at: .left, animated: true)
     }
     
     func addMarker() {
