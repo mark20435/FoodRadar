@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Fri Nov 06 13:33:01 CST 2020
 path.3=classes.dex
 path.2=classes.dex
 =======
 #Fri Nov 06 08:56:31 CST 2020
+=======
+#Wed Nov 11 15:24:35 CST 2020
+>>>>>>> c4c911db57603584ef1b66e563c1b306da4a75a8
 base.0=/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 >>>>>>> 849f41b9a09b6d9d3d0588412dd38d22b9888e57
 path.1=classes.dex
