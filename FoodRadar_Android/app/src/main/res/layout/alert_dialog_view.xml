@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="當您領取優惠券後，將收藏至您的收藏優惠券專區。收藏時請注意優惠券上的限制條件，如：『最低消費人數：2人』。\n兌換優惠券：要使用優惠券時，只要到優惠餐廳，請店員點選『兌換』即可。成功獲得優惠。"
+        android:text="當您領取優惠券後，將收藏至您的收藏優惠券專區。收藏時請注意優惠券上的限制條件，如：『最低消費人數：2人』。\n兌換優惠券：要使用優惠券時，只要到優惠餐廳，請店員點選『打勾』即可。成功獲得優惠。"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,8 @@
         android:src="@drawable/no_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUseInfo1" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUseInfo1"
+        app:srcCompat="@drawable/no_image" />
 
     <TextView
         android:id="@+id/tvUseInfo2"
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="按下『兌換』後，就能得到店家招待的特別折扣或餐點囉！"
+        android:text="按下『打勾』後，就能得到店家招待的特別折扣或餐點囉！"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,10 +74,11 @@
         android:layout_height="199dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/no_image"
+        android:src="@drawable/use_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUseInfo2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUseInfo2"
+        app:srcCompat="@drawable/use_image" />
 
     <ImageButton
         android:id="@+id/ibUseCard"

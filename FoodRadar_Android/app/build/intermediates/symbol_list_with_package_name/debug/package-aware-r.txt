@@ -1753,6 +1753,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable couponconfig
 drawable cucate
 drawable demo_res_img
 drawable design_bottom_navigation_item_background
@@ -1850,7 +1851,9 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable righttick
 drawable test_custom_background
+drawable tick
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable ucrop_crop
@@ -1901,6 +1904,7 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
+id UseCoupon
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -1960,11 +1964,15 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
-id action_category_Detail_Fragment_to_loginFragment
 id action_container
 id action_context_bar
+id action_couponEditFragment_to_couponMaintainFragment
+id action_couponEditFragment_to_couponUpdataFragment
+id action_couponFragment_to_category_Detail_Fragment
 id action_couponFragment_to_couponDetailFragment
 id action_couponFragment_to_loginFragment
+id action_couponMaintainFragment_to_resAddressFragment
+id action_couponUpdataFragment_to_resAddressFragment
 id action_divider
 id action_favoriteArticleFragment_to_articleDetailFragment
 id action_favoriteArticleFragment_to_articleInsertFragment
@@ -2007,6 +2015,7 @@ id action_userAreaFragment_to_userMyResFragment
 id action_userAreaFragment_to_userSysSetupFragment
 id action_userMyCouponFragment_to_couponDetailFragment
 id action_userMyResFragment_to_resDetailFragment
+id action_userSysSetupFragment_to_couponEditFragment
 id action_userSysSetupFragment_to_fcmFragment
 id actions
 id activity_chooser_view_content
@@ -2056,6 +2065,7 @@ id btDemo
 id btDirect
 id btEatWhat
 id btEatWhatGone
+id btEditAdd
 id btFriAddHours
 id btFriAddHours2
 id btFriDeleteHours2
@@ -2072,6 +2082,7 @@ id btMtdel
 id btMyRes
 id btMyResList
 id btPickPicture
+id btPlaceRes
 id btReadArticle
 id btRegisterOrChang
 id btResRating
@@ -2100,7 +2111,8 @@ id btTueAddHours
 id btTueAddHours2
 id btTueDeleteHours2
 id btTueDeleteHours3
-id btUpCoupon
+id btUpdataAdd
+id btUpdataCancel
 id btUpdate
 id btUsArArticleＭaintain
 id btUsArContactUs
@@ -2188,16 +2200,19 @@ id controls_shadow
 id controls_wrapper
 id coordinator
 id cos
-id couPonEndDateUp
+id couPonEndDate
 id couPonStartDate
 id couPonStartDateUp
 id couponDetailFragment
+id couponEditFragment
 id couponFragment
 id couponMaintainFragment
+id couponUpdataFragment
 id custom
 id customPanel
 id cut
 id cvArticle
+id cvEditCoupon
 id cvUserIcon
 id cvcouPonPhoto
 id dark
@@ -2356,6 +2371,7 @@ id ivDetailFavoriteIcon
 id ivDetailGoodIcon
 id ivDetailSetting
 id ivDetailUserIcon
+id ivEditCoupon
 id ivFavoriteIcon
 id ivGoodIcon
 id ivImage
@@ -2518,6 +2534,7 @@ id rvArticleImage
 id rvArticleRank
 id rvComment
 id rvCoupon
+id rvEditCoupon
 id rvImage
 id rvImagePick
 id rvInsertImage
@@ -2720,8 +2737,11 @@ id tvDetailGoodCount
 id tvDetailResName
 id tvDetailUserName
 id tvDtdailResCategoryInfo
+id tvEditCouInfo
+id tvEditResName
 id tvFavoriteArticle
 id tvFriday
+id tvId
 id tvImageNumber
 id tvManagerFun
 id tvModifyDate
@@ -2741,6 +2761,8 @@ id tvMyCommentDivider
 id tvPassword
 id tvPasswordConfirm
 id tvPeople
+id tvPlaceRes
+id tvPlaceResDivider
 id tvResAddress
 id tvResCategoryInfo
 id tvResDistance
@@ -2805,6 +2827,7 @@ id uniform
 id unlabeled
 id up
 id upCouInfo
+id update
 id useLogo
 id user
 id userAreaFragment
@@ -2932,7 +2955,9 @@ layout fragment_category__detail_
 layout fragment_china_restaurant
 layout fragment_coupon
 layout fragment_coupon_detail
+layout fragment_coupon_edit
 layout fragment_coupon_maintain
+layout fragment_coupon_updata
 layout fragment_favorite_article
 layout fragment_fcm_item
 layout fragment_insert_image
@@ -2959,6 +2984,7 @@ layout fragment_user_sys_setup
 layout item_view_category
 layout item_view_couact
 layout item_view_coupon
+layout item_view_editcoupon
 layout item_view_main
 layout item_view_res
 layout item_view_res_detail_image
@@ -3045,6 +3071,7 @@ menu appbar_menu
 menu article_insert_menu
 menu article_menu
 menu comment_setting_menu
+menu coupon_popupmenu
 menu menu
 menu photo_source_menu
 menu res_list_menu
@@ -3122,6 +3149,10 @@ string coupon
 string default_notification_channel_id
 string default_notification_channel_name
 string default_web_client_id
+string editAddCoupon
+string editCoupon
+string editCouponAdd
+string editDelcoupon
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string ezFcm
@@ -3141,6 +3172,7 @@ string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string home
 string icon_content_description
+string id_num
 string invalid_password
 string invalid_username
 string item_view_role_description
@@ -3211,6 +3243,8 @@ string textChangPassword
 string textClear
 string textCommentDate
 string textCommentText
+string textCouponEnd
+string textCouponStart
 string textData
 string textDatePicker
 string textDateTime
@@ -3319,6 +3353,8 @@ string textUpdateRes
 string textUpdateResRatingFail
 string textUpdateResRatingSuccess
 string textUpdateSuccess
+string textUpdateUseLose
+string textUpdateUseOk
 string textUserBirth
 string textUserChangConfrim
 string textUserPassword
@@ -3336,6 +3372,7 @@ string title_of_mycoupon
 string title_of_myres
 string title_of_res_article_maintain
 string title_of_res_coupon_maintain
+string title_of_res_coupon_update
 string title_of_res_user_management
 string title_of_sys_setup
 string title_of_userdata

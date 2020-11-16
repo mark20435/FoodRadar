@@ -61,9 +61,11 @@ public class CategoryFragment extends Fragment {
     public void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
+        new Common();
+        Common.setBackArrow(true, activity);
+        setHasOptionsMenu(true);
         imageTasks = new ArrayList<>();
 //        mains = getMains();
-        setHasOptionsMenu(true);
         navController = Navigation.findNavController(activity, R.id.mainFragment);
     }
 
@@ -254,6 +256,7 @@ public class CategoryFragment extends Fragment {
 //                    toast.setDuration(Toast.LENGTH_SHORT);
 //                    toast.show();
                     bundle.putString("categoryType", categoryType);
+
                     Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_chinaRestaurantFragment, bundle);
                 }
             });

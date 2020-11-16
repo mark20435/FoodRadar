@@ -269,7 +269,7 @@ public class FavoriteArticleFragment extends Fragment {
                 article.setArticleGoodStatus(false);
                 goodIcon.setColorFilter(Color.parseColor("#424242"));
             } else { //否則就判斷是否有點讚
-                if (article.isArticleGoodStatus()) {
+                if (article.isArticleGoodStatus() == true) {
                     goodIcon.setColorFilter(Color.parseColor("#1877F2"));
                     article.setArticleGoodStatus(true);
                 } else {

@@ -11,16 +11,20 @@
     <string name="appbar">完成</string>
     <string name="ezLogin">登入</string>
     <string name="ezLogout">登出</string>
+    <string name="editCouponAdd">新增優惠券</string>
+    <string name="editCoupon">維護優惠券</string>
+    <string name="editDelcoupon">優惠券刪除</string>
+    <string name="editAddCoupon">新建優惠券</string>
+    <string name="id_num">ID_Number</string>
     <string-array name="couponType">
-        <item>公告</item>
-        <item>優惠券</item>
+        <item>優惠券活動</item>
+        <item>公告活動</item>
     </string-array>
 
     <string-array name="couponEnable">
-        <item>使用</item>
-        <item>未使用</item>
+        <item>使用優惠券</item>
+        <item>未使用優惠券</item>
     </string-array>
-
 
 
     <string name="textEatWhat">今天吃什麼</string>
@@ -112,6 +116,8 @@
     <string name="textHoursError">營業時間輸入錯誤</string>
     <string name="textUpdateFail">修改失敗</string>
     <string name="textUpdateSuccess">修改成功</string>
+    <string name="textUpdateUseLose">優惠券使用失敗</string>
+    <string name="textUpdateUseOk">優惠券使用成功</string>
     <string name="textResRating">餐廳評價</string>
     <string name="textSearchResAgain">重新查詢附近餐廳</string>
 
@@ -318,6 +324,7 @@
     <string name="textMustInput">不可為空白</string>
     <string name="textPasswordConfirmErr">確認密碼與密碼不符</string>
     <string name="title_of_res_coupon_maintain">餐廳優惠管理</string>
+    <string name="title_of_res_coupon_update">餐廳優惠維護</string>
     <string name="title_of_res_user_management">會員管理</string>
     <string name="title_of_res_article_maintain">會員發文管理</string>
     <string name="textImageNumber">照片數量</string>
@@ -328,6 +335,8 @@
     <string name="textOriginNotFound">找不到起點</string>
     <string name="textDestinationNotFound">找不到目的地</string>
     <string name="textUserBirth">出生日期</string>
+    <string name="textCouponStart">優惠券開始日期</string>
+    <string name="textCouponEnd">優惠券結束日期</string>
     <string name="textNotifi">推播通知</string>
     <string name="textOn">開啟</string>
     <string name="textOff">關閉</string>

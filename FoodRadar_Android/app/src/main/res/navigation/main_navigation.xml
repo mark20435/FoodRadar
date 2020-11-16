@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_couponFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_couponFragment_to_category_Detail_Fragment"
+            app:destination="@id/category_Detail_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/userAreaFragment"
@@ -92,6 +95,9 @@
         <action
             android:id="@+id/action_userSysSetupFragment_to_fcmFragment"
             app:destination="@id/fcmFragment" />
+        <action
+            android:id="@+id/action_userSysSetupFragment_to_couponEditFragment"
+            app:destination="@id/couponEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/userMyResFragment"
@@ -205,11 +211,7 @@
         android:id="@+id/category_Detail_Fragment"
         android:name="com.example.foodradar_android.main.Category_Detail_Fragment"
         android:label="fragment_category__detail_"
-        tools:layout="@layout/fragment_category__detail_" >
-        <action
-            android:id="@+id/action_category_Detail_Fragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_category__detail_" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.foodradar_android.main.LoginFragment"
@@ -256,7 +258,11 @@
         android:id="@+id/couponMaintainFragment"
         android:name="com.example.foodradar_android.coupon.CouponMaintainFragment"
         android:label="fragment_coupon_maintain"
-        tools:layout="@layout/fragment_coupon_maintain" />
+        tools:layout="@layout/fragment_coupon_maintain" >
+        <action
+            android:id="@+id/action_couponMaintainFragment_to_resAddressFragment"
+            app:destination="@id/resAddressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resListFragment"
         android:name="com.example.foodradar_android.res.ResListFragment"
@@ -302,5 +308,26 @@
         android:name="com.example.foodradar_android.res.ResImgFragment"
         android:label="fragment_res_img"
         tools:layout="@layout/fragment_res_img" />
+    <fragment
+        android:id="@+id/couponEditFragment"
+        android:name="com.example.foodradar_android.coupon.CouponEditFragment"
+        android:label="fragment_coupon_edit"
+        tools:layout="@layout/fragment_coupon_edit" >
+        <action
+            android:id="@+id/action_couponEditFragment_to_couponMaintainFragment"
+            app:destination="@id/couponMaintainFragment" />
+        <action
+            android:id="@+id/action_couponEditFragment_to_couponUpdataFragment"
+            app:destination="@id/couponUpdataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/couponUpdataFragment"
+        android:name="com.example.foodradar_android.coupon.CouponUpdataFragment"
+        android:label="fragment_coupon_updata"
+        tools:layout="@layout/fragment_coupon_updata" >
+        <action
+            android:id="@+id/action_couponUpdataFragment_to_resAddressFragment"
+            app:destination="@id/resAddressFragment" />
+    </fragment>
 
 </navigation>

@@ -1,8 +1,9 @@
 package com.example.foodradar_android.user;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class MyCoupon {
+public class MyCoupon implements Serializable {
     private int myCouponId;
     private int userId;
     private int couPonId;

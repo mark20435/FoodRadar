@@ -1,6 +1,7 @@
 package com.example.foodradar_android.coupon;
 
 import android.widget.Button;
+import android.widget.Spinner;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -20,8 +21,11 @@ public class Coupon implements Serializable {
     private Button btCollect;
     private boolean couponLoveStatus;
     private int loveCount;
+    private boolean spTypeBoolean;
+    private boolean spEnableBoolean;
 
-    public Coupon(int id, int userId, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect, boolean couponLoveStatus, int loveCount) {
+
+    public Coupon(int id, int userId, int couPonId, int resId, String resName, String couPonInfo, String couPonStartDate, String couPonEndDate, boolean couPonType, boolean couPonEnable, Timestamp date, Button btCollect, boolean CouPonLoveStatus, int loveCount, boolean spType, boolean spEnable) {
         this.id = id;
         this.couPonId = couPonId;
         this.resId = resId;
@@ -36,6 +40,94 @@ public class Coupon implements Serializable {
         this.btCollect = btCollect;
         this.couponLoveStatus = couponLoveStatus;
         this.loveCount = loveCount;
+        this.spTypeBoolean = spTypeBoolean;
+        this.spEnableBoolean = spEnableBoolean;
+
+    }
+    public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+                  String couPonInfo, boolean couPonEnable, Integer userId) {
+        this.couPonId = couPonId;
+        this.resId = resId;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+        this.couPonInfo = couPonInfo;
+        this.couPonEnable = couPonEnable;
+        this.userId = userId;
+    }
+    public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+                  String couPonInfo, boolean couPonEnable, Integer userId, boolean couponLoveStatus) {
+        this.couPonId = couPonId;
+        this.resId = resId;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+        this.couPonInfo = couPonInfo;
+        this.couPonEnable = couPonEnable;
+        this.userId = userId;
+        this.couponLoveStatus = couponLoveStatus;
+
+    }
+    public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+                  String couPonInfo, boolean couPonEnable, Integer userId, String resName) {
+        this.couPonId = couPonId;
+        this.resId = resId;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+        this.couPonInfo = couPonInfo;
+        this.couPonEnable = couPonEnable;
+        this.userId = userId;
+        this.resName = resName;
+    }
+    public Coupon(int couPonId, int resId, String couPonStartDate, String couPonEndDate, boolean couPonType, String couPonInfo, boolean couPonEnable, int userId) {
+        this.resId = resId;
+        this.couPonId = couPonId;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.couPonType = couPonType;
+        this.couPonEnable = couPonEnable;
+        this.couPonInfo = couPonInfo;
+        this.userId = userId;
+
+    }
+
+//    public Coupon(int id, int resId, String couPonStartDate, String couPonEndDate, boolean couPonType, String couPonInfo, boolean couPonEnable, int userId) {
+//        this.id = id;
+//        this.resId = resId;
+//        this.couPonStartDate = couPonStartDate;
+//        this.couPonEndDate = couPonEndDate;
+//        this.couPonType = couPonType;
+//        this.couPonInfo = couPonInfo;
+//        this.couPonEnable = couPonEnable;
+//        this.userId = userId;
+//    }
+
+    public Coupon(int resId, String couPonStartDate, String couPonEndDate, boolean spTypeBoolean, String couPonInfo, boolean spEnableBoolean, int userId) {
+        this.resId = resId;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.spTypeBoolean = spTypeBoolean;
+        this.couPonInfo = couPonInfo;
+        this.spEnableBoolean = spEnableBoolean;
+        this.userId = userId;
+    }
+
+
+    public boolean isSpTypeBoolean() {
+        return spTypeBoolean;
+    }
+
+    public void setSpTypeBoolean(boolean spTypeBoolean) {
+        this.spTypeBoolean = spTypeBoolean;
+    }
+
+    public boolean isSpEnableBoolean() {
+        return spEnableBoolean;
+    }
+
+    public void setSpEnableBoolean(boolean spEnableBoolean) {
+        this.spEnableBoolean = spEnableBoolean;
     }
 
     public int getLoveCount() {
@@ -46,11 +138,11 @@ public class Coupon implements Serializable {
         this.loveCount = loveCount;
     }
 
-    public boolean isCouponLoveStatus() {
+    public boolean isCouPonLoveStatus() {
         return couponLoveStatus;
     }
 
-    public void setCouponLoveStatus(boolean couponLoveStatus) {
+    public void setCouPonLoveStatus(boolean couPonLoveStatus) {
         this.couponLoveStatus = couponLoveStatus;
     }
 

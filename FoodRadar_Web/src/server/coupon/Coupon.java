@@ -16,31 +16,123 @@ public class Coupon {
     private String couPonStartDate;
     private String couPonEndDate;
     private Button btCollect;
+    private Boolean spTypeBoolean;
+    private Boolean spEnableBoolean;
     private Boolean couPonEnable;
     private Boolean couPonType;
     private Boolean couponLoveStatus;
     private int loveCount;
+    private String resName;
     
     
+    public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+			String couPonInfo, boolean couPonEnable, Integer userId, Boolean couponLoveStatus) {
+		this.couPonId = couPonId;
+		this.resId = resId;
+		this.couPonStartDate = couPonStartDate;
+		this.couPonEndDate = couPonEndDate;
+		this.couPonType = couPonType;
+		this.couPonInfo = couPonInfo;
+		this.couPonEnable = couPonEnable;
+		this.userId = userId;
+		this.couponLoveStatus = couponLoveStatus;
+		
+	}
+    
+    public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+			String couPonInfo, boolean couPonEnable, Integer userId) {
+		this.couPonId = couPonId;
+		this.resId = resId;
+		this.couPonStartDate = couPonStartDate;
+		this.couPonEndDate = couPonEndDate;
+		this.couPonType = couPonType;
+		this.couPonInfo = couPonInfo;
+		this.couPonEnable = couPonEnable;
+		this.userId = userId;
+		
+	}
+	
+	public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
+			String couPonInfo, boolean couPonEnable, Integer userId, String resName) {
+		this.couPonId = couPonId;
+		this.resId = resId;
+		this.couPonStartDate = couPonStartDate;
+		this.couPonEndDate = couPonEndDate;
+		this.couPonType = couPonType;
+		this.couPonInfo = couPonInfo;
+		this.couPonEnable = couPonEnable;
+		this.userId = userId;
+		this.resName = resName;
+	}
 
-    public Coupon(Integer id, int couPonId, int resId, int userId, String resName, String couPonInfo,
-    		Timestamp date, Button btCollect, Boolean couPonEnable, String couPonStartDate, String couPonEndDate, 
-    		Boolean couPonType, Boolean couponLoveStatus, int loveCount) {
-        this.id = id;
-        this.userId = userId;
-        this.couPonInfo = couPonInfo;
-        this.date = date;
-        this.btCollect = btCollect;
-        this.couPonEnable = couPonEnable;
+//    public Coupon(Integer id, int couPonId, int resId, int userId, String resName, String couPonInfo,
+//    		Timestamp date, Button btCollect, Boolean couPonEnable, String couPonStartDate, String couPonEndDate, 
+//    		Boolean couPonType, Boolean couponLoveStatus, int loveCount) {
+//        this.id = id;
+//        this.userId = userId;
+//        this.couPonInfo = couPonInfo;
+//        this.date = date;
+//        this.btCollect = btCollect;
+//        this.couPonEnable = couPonEnable;
+//        this.couPonStartDate = couPonStartDate;
+//        this.couPonEndDate = couPonEndDate;
+//        this.couPonType = couPonType;
+//        this.couponLoveStatus = couponLoveStatus;
+//        this.loveCount = loveCount;
+//        
+//    }
+    public Coupon(Integer resId, String couPonStartDate, String couPonEndDate, Boolean couPonType,
+			String couPonInfo, Boolean couPonEnable, Integer couPonId) {
+		this.resId = resId;
+		this.couPonStartDate = couPonStartDate;
+		this.couPonEndDate = couPonEndDate;
+		this.couPonType = couPonType;
+		this.couPonInfo = couPonInfo;
+		this.couPonEnable = couPonEnable;
+		this.couPonId = couPonId;
+		
+	}
+    
+    public Coupon(int couPonId, int resId, String couPonStartDate, String couPonEndDate, boolean couPonType, String couPonInfo, boolean couPonEnable, int userId) {
+        this.resId = resId;
+        this.couPonId = couPonId;
         this.couPonStartDate = couPonStartDate;
         this.couPonEndDate = couPonEndDate;
         this.couPonType = couPonType;
-        this.couponLoveStatus = couponLoveStatus;
-        this.loveCount = loveCount;
-        
-    }
+        this.couPonInfo = couPonInfo;
+        this.couPonEnable = couPonEnable;
+        this.userId = userId;
 
-    public Boolean getCouponLoveStatus() {
+    }
+    
+    public Coupon(int resId, String couPonStartDate, String couPonEndDate, boolean spTypeBoolean, String couPonInfo, boolean spEnableBoolean, int userId) {
+        this.resId = resId;
+        this.couPonStartDate = couPonStartDate;
+        this.couPonEndDate = couPonEndDate;
+        this.spTypeBoolean = spTypeBoolean;
+        this.spEnableBoolean = spEnableBoolean;
+        this.couPonInfo = couPonInfo;
+        this.userId = userId;
+
+    }
+    
+    public Boolean getSpTypeBoolean() {
+		return spTypeBoolean;
+	}
+
+	public void setSpTypeBoolean(Boolean spTypeBoolean) {
+		this.spTypeBoolean = spTypeBoolean;
+	}
+
+	public Boolean getSpEnableBoolean() {
+		return spEnableBoolean;
+	}
+
+	public void setSpEnableBoolean(Boolean spEnableBoolean) {
+		this.spEnableBoolean = spEnableBoolean;
+	}
+
+	public Boolean getCouponLoveStatus() {
 		return couponLoveStatus;
 	}
 
@@ -80,47 +172,40 @@ public class Coupon {
 		this.couPonInfo = couPonInfo;
 	}
 
-	public Coupon(Integer resId, String couPonInfo, String couPonStartDate, String couPonEndDate,
-			String couPonType, boolean couPonEnable, int couponId) {
-		// TODO Auto-generated constructor stub
-	}
+//	public Coupon(Integer resId, String couPonInfo, String couPonStartDate, String couPonEndDate,
+//			String couPonType, boolean couPonEnable, int couponId) {
+//		// TODO Auto-generated constructor stub
+//	}
 
-	public Coupon(int id, String couPonStartDate, String couPonEndDate, Boolean couPonType, String couPonInfo) {
-		this.id = id;
-        this.couPonInfo = couPonInfo;
-        this.couPonStartDate = couPonStartDate;
-        this.couPonEndDate = couPonEndDate;
-        this.couPonType = couPonType;
-		
-	}
 
-	public Coupon(int id, Integer couponId, String couPonStartDate, String couPonEndDate, String couPonType,
-			String couPonInfo, boolean couPonEnable, Integer resId) {
-		// TODO Auto-generated constructor stub
-	}
 
-	public Coupon(Integer resId, String couPonStartDate, String couPonEndDate, Boolean couPonType,
-			String couPonInfo, Boolean couPonEnable, Integer couPonId) {
-		// TODO Auto-generated constructor stub
-	}
+//	public Coupon(int id, Integer couponId, String couPonStartDate, String couPonEndDate, String couPonType,
+//			String couPonInfo, boolean couPonEnable, Integer resId) {
+//		// TODO Auto-generated constructor stub
+//	}
+//
 
-	
-
-	public Coupon(int couPonId, Integer resId, String couPonStartDate, String couPonEndDate, boolean couPonType,
-			String couPonInfo, boolean couPonEnable, Integer userId) {
-		this.couPonId = couPonId;
-		this.resId = resId;
-		this.couPonStartDate = couPonStartDate;
-		this.couPonEndDate = couPonEndDate;
-		this.couPonType = couPonType;
-		this.couPonInfo = couPonInfo;
-		this.couPonEnable = couPonEnable;
-		this.userId = userId;
-		
-	}
+//	public Coupon(int couPonId, int resId, String couPonStartDate, String couPonEndDate, Boolean couPonType,
+//			String couPonInfo, int userId) {
+//		this.couPonId = couPonId;
+//		this.resId = resId;
+//		this.couPonStartDate = couPonStartDate;
+//		this.couPonEndDate = couPonEndDate;
+//		this.couPonType = couPonType;
+//		this.couPonInfo = couPonInfo;
+//		this.userId = userId;
+//	}
 
 	public int getCouPonId() {
 		return couPonId;
+	}
+
+	public String getResName() {
+		return resName;
+	}
+
+	public void setResName(String resName) {
+		this.resName = resName;
 	}
 
 	public void setCouPonId(int couPonId) {
