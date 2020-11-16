@@ -14,6 +14,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,18 +41,35 @@ public class ArticleFragment extends Fragment {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         // 顯示左上角的返回箭頭
-//        new Common();
-//        Common.setBackArrow(false, activity);
-//        setHasOptionsMenu(true);
-//        navController =
-//                Navigation.findNavController(activity, R.id.mainFragment);
+        new Common();
+        Common.setBackArrow(true, activity);
+        setHasOptionsMenu(true);
+        navController =
+                Navigation.findNavController(activity, R.id.mainFragment);
     }
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//    }
+
+    // 顯示右上角的OptionMenu選單
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        inflater.inflate(R.menu.appbar_menu,menu);  // 從res取用選項的清單“R.menu.my_menu“
+//            super.onCreateOptionsMenu(menu, inflater);
+    }
+    // 顯示右上角的OptionMenu選單
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+//            case R.id.Finish:
+//                navController.navigate(R.id.action_userAreaFragment_to_userDataSetupFragment);
+//                break;
+            case android.R.id.home:
+                navController.popBackStack();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, ViewGroup container,

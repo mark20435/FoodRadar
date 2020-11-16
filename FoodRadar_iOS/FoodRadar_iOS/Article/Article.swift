@@ -36,4 +36,26 @@ struct Article: Codable {
         }
     }
 }
+/* 新增文章用 **/
+struct ArticleInsert: Codable {
+    var articleId: Int?
+    var articleTitle: String?
+    var articleText: String?
+    var conAmount: Int?
+    var conNum: Int?
+    var resId: Int?
+    var userId: Int?
+    var articleStatus: Bool
+}
+
+/* 刪除文章用 **/
+struct ArticleDelete: Codable {
+    var articleStatus: Bool
+    var articleId: Int?
+}
+/* 取得文章Array **/
+struct getAllById: Encodable {
+    let action = "getAllById"
+    var loginUserId: Int
+}
 

@@ -89,6 +89,11 @@ public class Article {
         this.articleId = articleId;
 	}
 	
+	  //刪除文章用
+    public void setStatus(boolean articleStatus){
+        this.articleStatus = articleStatus;
+    }
+	
 	//點讚
     public Article(int articleGoodId,int userId , int articleId) {
         super();
