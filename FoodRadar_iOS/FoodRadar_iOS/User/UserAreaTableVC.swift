@@ -9,9 +9,10 @@ import UIKit
 
 class UserAreaTableVC: UITableViewController {
     
-    var userDataArray = [UserAccountFile]()
+    var userAccount: UserAccount?
 
     override func viewDidLoad() {
+//        print("UserAreaTableVC viewDidLoad")
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -23,10 +24,22 @@ class UserAreaTableVC: UITableViewController {
         // Table隔線只顯示到有資料的部分
         tableView.tableFooterView = UIView()
         
-        if let getUserData = UserAccountFile.readUsersFromFile() {
-            self.userDataArray = getUserData
-            COMM_USER_ID = userDataArray[0].userId
-        }
+//        if let userAccount = UserAccount.readUsersFromFile() {
+//            self.userAccount = userAccount[0]
+//            COMM_USER_ID = userAccount[0].userId
+//        }
+//        print("UserAreaTableVC viewDidLoad end")
+        
+//        if let tabItems = tabBarController?.tabBar.items {
+//            // In this case we want to modify the badge number of the third tab:
+//            let tabItem = tabItems[4]
+//            if COMM_USER_ID == 0 {
+//                tabItem.badgeValue = nil
+//            } else {
+//                tabItem.badgeValue = String(COMM_USER_ID)
+//            }
+//        }
+        
         
     }
 
@@ -89,17 +102,21 @@ class UserAreaTableVC: UITableViewController {
 
     
     // MARK: - Navigation
-
+/*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
-        if let controller = segue.destination as? UserDataSetupVC {
-            controller.userAccountFile = userDataArray[0]
-        }
+//
+//        print("prepare", userAccount, segue.destination, segue.destination.children)
+//        if let controller = segue.destination as? UserDataSetupVC {
+//            controller.userAccount = userAccount
+//        }
+//        print("prepare end")
+
         
     }
+ */
     
 
 }

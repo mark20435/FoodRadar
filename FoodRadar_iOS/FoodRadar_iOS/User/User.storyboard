@@ -165,7 +165,7 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="餐廳名稱" id="mT0-ja-QYS">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" textContentType="name"/>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyResTableVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyResTableVCell" rowHeight="144" id="pI5-3S-1Wg" customClass="MyResTableVCell" customModule="FoodRadar_iOS" customModuleProvider="target">
@@ -261,7 +261,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-xw-n8a">
-                                <rect key="frame" x="16" y="108" width="382" height="734"/>
+                                <rect key="frame" x="16" y="108" width="382" height="685"/>
                                 <connections>
                                     <segue destination="i6b-OJ-ip3" kind="embed" id="imr-Rc-0Ar"/>
                                 </connections>
@@ -280,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIV-rc-zkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2524.6376811594205" y="105.80357142857143"/>
+            <point key="canvasLocation" x="2374" y="106"/>
         </scene>
         <!--餐廳資訊維護-->
         <scene sceneID="K1O-WW-OHH">
@@ -291,7 +291,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4s-Nd-NMk">
-                                <rect key="frame" x="0.0" y="152" width="414" height="710"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="661"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resCell" rowHeight="116" id="FUY-m6-yUJ" customClass="ResCell" customModule="FoodRadar_iOS" customModuleProvider="target">
@@ -392,6 +392,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LbU-3a-tpc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="會員專區" image="person" catalog="system" selectedImage="person.fill" id="WJB-Y7-FZV"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="peP-29-our">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -414,7 +415,7 @@
             <objects>
                 <viewController id="i6b-OJ-ip3" userLabel="ContainerView會員資料設定" customClass="UserDataSetupVC" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b4Q-Vx-4KS">
-                        <rect key="frame" x="0.0" y="0.0" width="382" height="734"/>
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="685"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GOW-d4-ljg">
@@ -443,35 +444,35 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-YB-rgH" userLabel="StackView_手機號碼">
                                         <rect key="frame" x="8" y="216" width="366" height="34"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手機號碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LbI-b8-maJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="314.5" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="tel"/>
-                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" (必填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-WG-GrU">
-                                                <rect key="frame" x="314.5" y="0.0" width="51.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="51.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手機號碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LbI-b8-maJ">
+                                                <rect key="frame" x="51.5" y="0.0" width="314.5" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjP-Ef-vi4" userLabel="StackView_密碼">
                                         <rect key="frame" x="8" y="266" width="366" height="34"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YbD-ne-a1U">
-                                                <rect key="frame" x="0.0" y="0.0" width="314.5" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" (必填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07F-Kq-AYs">
-                                                <rect key="frame" x="314.5" y="0.0" width="51.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="51.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YbD-ne-a1U">
+                                                <rect key="frame" x="51.5" y="0.0" width="314.5" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Psn-GO-VAd" userLabel="StackView_按鈕">
@@ -557,6 +558,8 @@
                         <outlet property="btLogin" destination="SnI-lc-qVV" id="HT8-Yw-fRr"/>
                         <outlet property="btRegister" destination="K5U-P8-pae" id="bmh-NB-x3e"/>
                         <outlet property="imAvatar" destination="2Bd-Pg-Tch" id="D40-l5-D4V"/>
+                        <outlet property="labPassword" destination="07F-Kq-AYs" id="CI1-0j-CWt"/>
+                        <outlet property="labPhone" destination="ezh-WG-GrU" id="6Fj-Jr-ZxW"/>
                         <outlet property="tfPassword" destination="YbD-ne-a1U" id="fol-Dv-Y4I"/>
                         <outlet property="tfUserPhone" destination="LbI-b8-maJ" id="kAd-gb-TLZ"/>
                     </connections>

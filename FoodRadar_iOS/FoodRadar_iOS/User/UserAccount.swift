@@ -34,4 +34,36 @@ struct UserAccount: Codable {
     let userAvatar: [UInt8]
     let createDate: Date?
     let modifyDate: Date?
+    
+    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static func readUsersFromFile() -> [Self]? {
+        let propertyDecoder = PropertyListDecoder()
+        let url = Self.documentsDirectory.appendingPathComponent("foodRadarUser")
+        
+        if let data = try? Data(contentsOf: url),
+           let userData = try? propertyDecoder.decode([Self].self, from: data) {
+            return userData
+        } else {
+            return nil
+        }
+    }
+    
+    
+    static func saveToFile(userData: [Self]) {
+        let propertyEncoder = PropertyListEncoder()
+        if let data = try? propertyEncoder.encode(userData) {
+           let url = Self.documentsDirectory.appendingPathComponent("foodRadarUser")
+            try? data.write(to: url)
+        }
+    }
+    
+    static func removeFromFile() {
+        
+        let url = Self.documentsDirectory.appendingPathComponent("foodRadarUser")
+        try! FileManager.default.removeItem(at: url)
+        
+    }
+    
 }
+

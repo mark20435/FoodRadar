@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class MyResTableVC: UITableViewController {
+class MyResTableVC: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchMyRes: UISearchBar!
     
@@ -17,6 +17,7 @@ class MyResTableVC: UITableViewController {
     
     let urlMyResServlet = "MyResServlet"
     var myResArray: [MyRes]?
+    var myResArrayAll: [MyRes]?
     
 //    let cellReuseIdentifier = "cell"  // 表頭高度
 //    let cellSpacingHeight: CGFloat = 50  // 表頭高度
@@ -29,6 +30,7 @@ class MyResTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchMyRes.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,6 +49,7 @@ class MyResTableVC: UITableViewController {
         getMyRes(userId: COMM_USER_ID) { (myResArray) in
             if let myResArray = myResArray {
                 self.myResArray = myResArray
+                self.myResArrayAll = self.myResArray
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -134,7 +137,7 @@ class MyResTableVC: UITableViewController {
             if let dataFromDb = dataTask,
                let myResArray = try? decoder.decode([MyRes].self, from: dataFromDb) {
 
-                print("resId: \(myResArray[0].resId)")
+//                print("resId: \(myResArray[0].resId)")
                 complection (myResArray)
              
             } else {
@@ -145,24 +148,24 @@ class MyResTableVC: UITableViewController {
     
     
     
-    func getImageMyRes(resId: Int,complection: @escaping (UIImage?) -> Void) {
-        
-        let url = NetworkController().baseURL.appendingPathComponent(urlMyResServlet)
-        let imageSize = 400
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        let getImagePost = MyResGetImageStruct(id: resId, imageSize: imageSize)
-        request.httpBody = try? JSONEncoder().encode(getImagePost)
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data,
-               let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.view.backgroundColor = UIColor(patternImage: image)
-                }
-            }
-        }.resume()
-    }
+//    func getImageMyRes(resId: Int,complection: @escaping (UIImage?) -> Void) {
+//
+//        let url = NetworkController().baseURL.appendingPathComponent(urlMyResServlet)
+//        let imageSize = 400
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//
+//        let getImagePost = MyResGetImageStruct(id: resId, imageSize: imageSize)
+//        request.httpBody = try? JSONEncoder().encode(getImagePost)
+//        URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            if let data = data,
+//               let image = UIImage(data: data) {
+//                DispatchQueue.main.async {
+//                    self.view.backgroundColor = UIColor(patternImage: image)
+//                }
+//            }
+//        }.resume()
+//    }
 
     
     func resHour (_ hourJson: String) -> String {
@@ -231,4 +234,26 @@ class MyResTableVC: UITableViewController {
         maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: horizontalPadding, dy: verticalPadding/2)
         cell.layer.mask = maskLayer
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchBar.text ?? ""
+        // 如果搜尋條件為空字串，就顯示原始資料；否則就顯示搜尋後結果
+        if text == "" {
+            myResArray = myResArrayAll
+        } else {
+            // 搜尋原始資料內有無包含關鍵字(不區別大小寫)
+            myResArray = myResArrayAll!.filter({ (myResArray) -> Bool in
+                return myResArray.resName.uppercased().contains(text.uppercased())
+            })
+        }
+        tableView.reloadData()
+    }
+    
+    // 點擊鍵盤上的Search按鈕時將鍵盤隱藏
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    
+    
 }
