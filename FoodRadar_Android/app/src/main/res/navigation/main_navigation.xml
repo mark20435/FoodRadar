@@ -315,7 +315,6 @@
         android:label="fragment_res_img"
         tools:layout="@layout/fragment_res_img" />
     <fragment
-<<<<<<< HEAD
         android:id="@+id/couponEditFragment"
         android:name="com.example.foodradar_android.coupon.CouponEditFragment"
         android:label="fragment_coupon_edit"
@@ -336,11 +335,11 @@
             android:id="@+id/action_couponUpdataFragment_to_resAddressFragment"
             app:destination="@id/resAddressFragment" />
     </fragment>
-=======
+    <fragment
         android:id="@+id/articleManagementFragment"
         android:name="com.example.foodradar_android.user.ArticleManagementFragment"
         android:label="fragment_article_management"
         tools:layout="@layout/fragment_article_management" />
->>>>>>> ae4ec2291af1d8d159ec49fff9d5e744057735ea
+
 
 </navigation>

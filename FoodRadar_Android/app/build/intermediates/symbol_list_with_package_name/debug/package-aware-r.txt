@@ -2539,11 +2539,8 @@ id rvArticleImage
 id rvArticleRank
 id rvComment
 id rvCoupon
-<<<<<<< HEAD
-id rvEditCoupon
-=======
 id rvDefaultImage
->>>>>>> ae4ec2291af1d8d159ec49fff9d5e744057735ea
+id rvEditCoupon
 id rvImage
 id rvImagePick
 id rvInsertImage
@@ -2759,11 +2756,8 @@ id tvEditCouInfo
 id tvEditResName
 id tvFavoriteArticle
 id tvFriday
-<<<<<<< HEAD
-id tvId
-=======
 id tvGroupMember
->>>>>>> ae4ec2291af1d8d159ec49fff9d5e744057735ea
+id tvId
 id tvImageNumber
 id tvManageArticleDate
 id tvManagerFun
@@ -3171,16 +3165,13 @@ string coupon
 string default_notification_channel_id
 string default_notification_channel_name
 string default_web_client_id
-<<<<<<< HEAD
+string deleteImage
+string deleteImageNo
+string deleteImageYes
 string editAddCoupon
 string editCoupon
 string editCouponAdd
 string editDelcoupon
-=======
-string deleteImage
-string deleteImageNo
-string deleteImageYes
->>>>>>> ae4ec2291af1d8d159ec49fff9d5e744057735ea
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string ezFcm

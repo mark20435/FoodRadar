@@ -78,12 +78,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ivDemoUp"
             android:layout_alignStart="@id/ivDemoUp"
-            android:layout_marginStart="80dp"
+            android:layout_marginEnd="8dp"
             android:text="開始日期"
             android:textColor="#555555"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="@+id/upCouInfo"
-            card_view:layout_constraintStart_toEndOf="@+id/upCouInfo"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/upCouInfo" />
 
 <!--        <TextView-->
