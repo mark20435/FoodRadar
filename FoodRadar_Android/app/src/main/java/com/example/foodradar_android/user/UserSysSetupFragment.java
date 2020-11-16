@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -116,15 +117,13 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
             }
         });
 
-//        Button button;
-//        button = view.findViewById(R.id.id_btResMaintain);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                navController.navigate(R.id.action_userAreaFragment_to_userSysSetupFragment);
-//
-//            }
-//        });
+
+        // 非管理員角色關閉系統設定
+        view.findViewById(R.id.constvUsArManagerFun).setVisibility(View.INVISIBLE);
+        if (new Common().getIsAdmin(activity) == true) {
+            view.findViewById(R.id.constvUsArManagerFun).setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -147,7 +146,7 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
                 break;
             // 會員發文管理
             case R.id.btUsArArticleＭaintain:
-//                navController.navigate(R.id.);
+                navController.navigate(R.id.articleManagementFragment);
                 break;
             // 訊息推撥設定
             case R.id.btUsArMessageSend:

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="ArticleCollectionViewCell" id="gTV-IL-0wX" customClass="ArticleCollectionViewCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="330"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="330"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dIV-bQ-Fm3">
+                        <rect key="frame" x="8" y="6.5" width="20" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="08b-dM-OXx"/>
+                            <constraint firstAttribute="height" constant="20" id="avd-JN-AB9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發文時間：2020/08/31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhR-gI-ZLZ">
+                        <rect key="frame" x="276" y="8.5" width="107" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dpV-ug-7qX" userLabel="MessageStackView">
+                        <rect key="frame" x="293" y="76.5" width="20" height="18"/>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文青的女子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLI-jx-M8e">
+                        <rect key="frame" x="40" y="11" width="61.5" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="西式料理餐廳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9k-HJ-55m">
+                        <rect key="frame" x="12" y="34" width="61.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="巷弄間咖啡，度過輕鬆的早安 台北/高雄/桃園" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3n-nX-gHL">
+                        <rect key="frame" x="10" y="54" width="363.5" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳：LuffyCoffee路咖啡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdC-GT-mgo">
+                        <rect key="frame" x="12" y="77.5" width="162.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="b3e-G0-geQ" userLabel="FavoriteStackView">
+                        <rect key="frame" x="337" y="95.5" width="39" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUK-QC-uPL">
+                                <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="z0d-ZL-Rih">
+                                <rect key="frame" x="19" y="1.5" width="20" height="17.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="2yE-6b-v8w"/>
+                                    <constraint firstAttribute="height" constant="20" id="Sio-Iy-BDc"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="JfO-Kw-Mkl" userLabel="MessageStackView">
+                        <rect key="frame" x="292" y="95.5" width="39" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3E-7T-poP">
+                                <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qUb-oZ-iZb">
+                                <rect key="frame" x="19" y="0.5" width="20" height="19.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Pdl-zy-JnW"/>
+                                    <constraint firstAttribute="width" constant="20" id="XlO-34-vly"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wqX-Ph-nbt" userLabel="GoodStackView">
+                        <rect key="frame" x="247" y="95.5" width="39" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DI-Ci-SUu">
+                                <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hand.thumbsup" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Skx-as-sfR">
+                                <rect key="frame" x="19" y="-1" width="20" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="LEv-m2-2qw"/>
+                                    <constraint firstAttribute="width" constant="20" id="fMt-PE-1mU"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mSe-fW-RN1">
+                        <rect key="frame" x="10" y="120.5" width="370" height="198"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94117647058823528" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="JfO-Kw-Mkl" firstAttribute="top" secondItem="v3n-nX-gHL" secondAttribute="bottom" constant="20" id="22Q-ih-AbY"/>
+                <constraint firstItem="dpV-ug-7qX" firstAttribute="top" secondItem="rhR-gI-ZLZ" secondAttribute="bottom" constant="53" id="2f1-fe-lcX"/>
+                <constraint firstAttribute="trailing" secondItem="mSe-fW-RN1" secondAttribute="trailing" constant="10" id="3Zk-LJ-T5L"/>
+                <constraint firstItem="i9k-HJ-55m" firstAttribute="top" secondItem="dIV-bQ-Fm3" secondAttribute="bottom" constant="8" id="6fN-UO-Yw0"/>
+                <constraint firstItem="b3e-G0-geQ" firstAttribute="leading" secondItem="JfO-Kw-Mkl" secondAttribute="trailing" constant="6" id="6wZ-ol-X0M"/>
+                <constraint firstItem="wqX-Ph-nbt" firstAttribute="top" secondItem="v3n-nX-gHL" secondAttribute="bottom" constant="20" id="DJx-Ie-UTH"/>
+                <constraint firstAttribute="trailing" secondItem="rhR-gI-ZLZ" secondAttribute="trailing" constant="7" id="GlR-gf-evA"/>
+                <constraint firstAttribute="bottom" secondItem="mSe-fW-RN1" secondAttribute="bottom" constant="10" id="H7P-Qs-tO0"/>
+                <constraint firstItem="i9k-HJ-55m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="I3b-vY-ARo"/>
+                <constraint firstItem="fdC-GT-mgo" firstAttribute="top" secondItem="v3n-nX-gHL" secondAttribute="bottom" constant="2" id="IeC-Pb-xbi"/>
+                <constraint firstAttribute="trailing" secondItem="b3e-G0-geQ" secondAttribute="trailing" constant="14" id="K19-fW-u39"/>
+                <constraint firstItem="mSe-fW-RN1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Mbn-LJ-gR3"/>
+                <constraint firstItem="dpV-ug-7qX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="76.5" id="P1x-Hi-VPf"/>
+                <constraint firstItem="rhR-gI-ZLZ" firstAttribute="centerY" secondItem="dIV-bQ-Fm3" secondAttribute="centerY" id="PBq-Bb-uDI"/>
+                <constraint firstItem="XLI-jx-M8e" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="11" id="Q3J-Le-zyh"/>
+                <constraint firstItem="dIV-bQ-Fm3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Q7k-xD-QP6"/>
+                <constraint firstItem="dIV-bQ-Fm3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="QFt-xZ-YYx"/>
+                <constraint firstItem="mSe-fW-RN1" firstAttribute="top" secondItem="b3e-G0-geQ" secondAttribute="bottom" constant="4" id="ScC-M8-9Lc"/>
+                <constraint firstItem="JfO-Kw-Mkl" firstAttribute="leading" secondItem="wqX-Ph-nbt" secondAttribute="trailing" constant="6" id="SmO-Wn-aEM"/>
+                <constraint firstItem="v3n-nX-gHL" firstAttribute="top" secondItem="i9k-HJ-55m" secondAttribute="bottom" constant="8" id="X6q-DQ-dqE"/>
+                <constraint firstItem="dpV-ug-7qX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="293" id="fBR-tx-L83"/>
+                <constraint firstItem="v3n-nX-gHL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="gfT-ev-koo"/>
+                <constraint firstItem="b3e-G0-geQ" firstAttribute="top" secondItem="v3n-nX-gHL" secondAttribute="bottom" constant="20" id="hhs-z1-h2A"/>
+                <constraint firstItem="dpV-ug-7qX" firstAttribute="bottom" secondItem="fdC-GT-mgo" secondAttribute="bottom" id="jZI-pw-HnT"/>
+                <constraint firstItem="fdC-GT-mgo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="ohW-JX-PYb"/>
+                <constraint firstAttribute="trailing" secondItem="dpV-ug-7qX" secondAttribute="trailing" constant="77" id="vmW-2q-zqa"/>
+                <constraint firstItem="rhR-gI-ZLZ" firstAttribute="centerY" secondItem="XLI-jx-M8e" secondAttribute="centerY" id="xSh-qD-IIj"/>
+                <constraint firstItem="XLI-jx-M8e" firstAttribute="leading" secondItem="dIV-bQ-Fm3" secondAttribute="trailing" constant="12" id="zQu-Nb-cwp"/>
+            </constraints>
+            <size key="customSize" width="379" height="333"/>
+            <connections>
+                <outlet property="articleTitle" destination="v3n-nX-gHL" id="S2K-IZ-CCA"/>
+                <outlet property="ivArticleCommentIcon" destination="qUb-oZ-iZb" id="tTA-z4-OVB"/>
+                <outlet property="ivArticleImage" destination="mSe-fW-RN1" id="ewh-MZ-6r0"/>
+                <outlet property="ivFavoriteIcon" destination="z0d-ZL-Rih" id="O5i-W5-FY9"/>
+                <outlet property="ivGoodIcon" destination="Skx-as-sfR" id="QSo-Al-9hT"/>
+                <outlet property="lbArticleTime" destination="rhR-gI-ZLZ" id="ytD-t8-fnl"/>
+                <outlet property="lbCommentCount" destination="B3E-7T-poP" id="XLm-ux-ABK"/>
+                <outlet property="lbFavoriteArticle" destination="oUK-QC-uPL" id="Mwu-w3-o0Y"/>
+                <outlet property="lbgoodCount" destination="3DI-Ci-SUu" id="8oY-Zk-fOj"/>
+                <outlet property="resCategoryInfo" destination="i9k-HJ-55m" id="qlq-9m-WIb"/>
+                <outlet property="resName" destination="fdC-GT-mgo" id="fPQ-6q-g05"/>
+                <outlet property="userIcon" destination="PBq-Bb-uDI" id="ap8-v8-7W2"/>
+                <outlet property="userName" destination="XLI-jx-M8e" id="75y-hV-eSh"/>
+            </connections>
+            <point key="canvasLocation" x="-100" y="108"/>
+        </collectionViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文青的女子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Kv-Im-QMe">
+            <rect key="frame" x="0.0" y="0.0" width="61.5" height="14.5"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="-525" y="77"/>
+        </label>
+    </objects>
+    <resources>
+        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
+    </resources>
+</document>

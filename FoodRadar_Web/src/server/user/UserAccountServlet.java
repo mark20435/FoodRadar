@@ -160,6 +160,13 @@ public class UserAccountServlet extends HttpServlet {
 			out.println(jsonOut);
 			out.close();
 			
+		} else if (action.equals("getIsAdmin")) {  // 使用者資料修改
+			id = jsonObject.get("id").getAsInt();
+			pubTools.showConsoleMsg("id: ", id.toString());
+			int count = 0;
+			count = userAccountDao.getIsAdmin(id);
+			pubTools.writeText(response, String.valueOf(count));
+			
 //		} else if (action.equals("userAccountDelete")) {
 //			Integer userId = jsonObject.get("userId").getAsInt();
 //			Integer resId = jsonObject.get("resId").getAsInt();int count = 0;
@@ -181,12 +188,12 @@ public class UserAccountServlet extends HttpServlet {
 		pubTools.showConsoleMsg("doGet.userAccountList" , "");
 		System.out.println("userAccountList: " + userAccountList);
 		pubTools.writeText(response, new Gson().toJson(userAccountList));
-		
+		pubTools.writeText(response, "<html><hr></html>");
 		List<String> strList = new ArrayList<String>();
 		strList.add("3");
 		strList.add("6");
 		pubTools.writeText(response, new Gson().toJson(strList));
-		
+		pubTools.writeText(response, "<html><hr></html>");
 		UserAccount userAccountFindById = userAccountDao.findById(3); // userAccountDao.findById(3);
 		pubTools.writeText(response, new Gson().toJson(userAccountFindById));
 	}

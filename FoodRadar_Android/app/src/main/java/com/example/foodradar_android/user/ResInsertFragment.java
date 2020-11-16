@@ -45,6 +45,7 @@ import com.example.foodradar_android.main.Category;
 import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.yalantis.ucrop.UCrop;
@@ -1200,7 +1201,9 @@ public class ResInsertFragment extends Fragment {
                             resCategoryId, resEnable, userId, modifyDate);
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty("action", "resInsert");
-                    jsonObject.addProperty("res", new Gson().toJson(res));
+                    //jsonObject.addProperty("res", new Gson().toJson(res));
+                    Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create();
+                    jsonObject.addProperty("res", gson.toJson(res));
                     // 有圖才上傳
                     if (image != null) {
                         jsonObject.addProperty("imageBase64", Base64.encodeToString(image, Base64.DEFAULT));

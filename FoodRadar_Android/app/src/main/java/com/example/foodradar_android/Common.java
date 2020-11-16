@@ -26,6 +26,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 
+import com.example.foodradar_android.article.Img;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.user.UserAccountAvatra;
 import com.example.foodradar_android.user.UserAccount;
@@ -65,6 +66,7 @@ public class Common {
 //    public static Integer USER_ID = 0;
     private Activity activity;
     public static final String USER_AVATAR_FILENAME = "foodradar_avatar.byte";
+    public static final String IMAGE_FILENAME = "foodradar_image.byte";
 
     public static boolean networkConnected(Activity activity) {
         ConnectivityManager connectivityManager =
@@ -434,6 +436,18 @@ public class Common {
         }
     }
 
+    /*  */
+    public void setImage(Activity activity, Bitmap imageBitmap){
+        UserAccountAvatra userAccountAvatraOut = new UserAccountAvatra();
+        Img img = new Img();
+        img.setImgByte(bitmapToByte(imageBitmap));
+        try (ObjectOutputStream oisOut = new ObjectOutputStream(
+                activity.openFileOutput(IMAGE_FILENAME, Context.MODE_PRIVATE))) {
+            oisOut.writeObject(userAccountAvatraOut);
+        } catch (IOException e) {
+            Log.d(TAG, e.toString());
+        }
+    }
 
     // 取得使用者頭像，回傳Bitmap
     public Bitmap getUserAvatra(Activity activity){
@@ -650,5 +664,39 @@ public class Common {
     }
 */
     // ^^^^^^ 產生 Badge 的Layout與View
+
+    public String getUserPhoneByArticleManage(String userPhone) {
+        if (userPhone.trim().isEmpty()) {
+            userPhone = "0900123456"; // 3號使用者
+        } else if (userPhone.equals("0900123456")){
+            userPhone = "0929020629"; // 6號使用者
+        } else {
+            userPhone = "0900123456";
+        }
+
+        return userPhone;
+    }
+
+
+    // 設定系統管理畫面狀態
+    public Boolean getIsAdmin(Activity activity){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "getIsAdmin");
+        jsonObject.addProperty("id", USER_ID);
+        int count = 0;
+        try {
+            String result = new CommonTask(USERACCOUNT_SERVLET, jsonObject.toString()).execute().get(); // Insert可等待回應確認是否新增成功
+            count = Integer.parseInt(result);
+            Log.d(TAG,"getIsAdmin.count: " + String.valueOf(count));
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+        if (count == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
 }

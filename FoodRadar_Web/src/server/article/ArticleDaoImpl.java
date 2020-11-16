@@ -57,19 +57,16 @@ public class ArticleDaoImpl implements ArticleDao {
 	public int update(Article article) {
 		int count = 0;
 		String sql = "";
-		sql = "UPDATE Article SET articleTitle = ?, articleText = ?, modifyTime = ?, resId = ?,"
-				+ "userId = ?, conAmount = ?, conNum = ?, articleStatus = ?  WHERE articleId = ?; ";
+		sql = "UPDATE Article SET articleTitle = ?, articleText = ?, modifyTime = ?,"
+				+ "conAmount = ?, conNum = ?  WHERE articleId = ?; ";
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setString(1, article.getArticleTitle());
 			ps.setString(2, article.getArticleText());
 			ps.setString(3, article.getModifyTime());
-			ps.setInt(4, article.getResId());
-			ps.setInt(5, article.getUserId());
-			ps.setInt(6, article.getConAmount());
-			ps.setInt(7, article.getConNum());
-			ps.setBoolean(8, article.isArticleStatus());
-			ps.setInt(9, article.getArticleId());
+			ps.setInt(4, article.getConAmount());
+			ps.setInt(5, article.getConNum());
+			ps.setInt(6, article.getArticleId());
 			// executeUpdate > 回傳int，更新資訊影響資料的筆數
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
@@ -119,6 +116,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				",A.conAmount as 'conAmount'\n" + 
 				",A.conNum as 'conNum'\n" + 
 				",A.articleStatus as 'articleStatus'\n" + 
+				",A.modifyTime as 'modifyTime'\n" + 
 				" FROM Article A\n" + 
 				" join UserAccount UA on A.userId = UA.userId\n" + 
 				" join Res R on A.resId = R.resId\n" + 
@@ -150,9 +148,10 @@ public class ArticleDaoImpl implements ArticleDao {
 					int userId = rs.getInt("userId");
 					int conAmount = rs.getInt("conAmount");
 					int conNum = rs.getInt("conNum");
+					String modifyTime = rs.getString("modifyTime");
 					article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
 							articleGoodCount, commentCount, favoriteCount, articleGoodStatus, aritcleFavoriteStatus,
-							articleId, resId, userId, conAmount, conNum, articleStatus);
+							articleId, resId, userId, conAmount, conNum, articleStatus, modifyTime);
 //					articleList.add(article);
 				} else {
 					return null;
@@ -213,6 +212,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				+ ",A.articleId as 'articleId'\n" 
 				+ ",A.resId as 'resId'\n" + ",A.userId as 'userId'\n"
 				+ ",A.conAmount as 'conAmount'\n" + ",A.conNum as 'conNum'\n" + ",A.articleStatus as 'articleStatus'\n"
+				+ ",A.modifyTime as 'modifyTime'\n" 
 				+ " FROM Article A\n" + " join UserAccount UA on A.userId = UA.userId\n"
 				+ " join Res R on A.resId = R.resId\n" 
 //				+ " join Img I on A.articleId = I.articleId\n"
@@ -244,9 +244,10 @@ public class ArticleDaoImpl implements ArticleDao {
 					int userId = rs.getInt("userId");
 					int conAmount = rs.getInt("conAmount");
 					int conNum = rs.getInt("conNum");
+					String modifyTime = rs.getString("modifyTime");
 					article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
 							articleGoodCount, commentCount, favoriteCount, articleGoodStatus, aritcleFavoriteStatus,
-							articleId, resId, userId, conAmount, conNum, articleStatus);
+							articleId, resId, userId, conAmount, conNum, articleStatus, modifyTime);
 					articleList.add(article);
 				} else {
 					return null;
@@ -384,6 +385,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				+ ",(select case count(*) when 0 then 0 else 1 end from MyArticle MA where MA.articleId = A.articleId and MA.userId = ? ) as 'articleFavoriteStatus'\n"
 				+ ",A.articleId as 'articleId'\n" + ",A.resId as 'resId'\n" + ",A.userId as 'userId'\n"
 				+ ",A.conAmount as 'conAmount'\n" + ",A.conNum as 'conNum'\n" + ",A.articleStatus as 'articleStatus'\n"
+				+ ",A.modifyTime as 'modifyTime'\n" 
 				+ " FROM Article A\n" + " join UserAccount UA on A.userId = UA.userId\n"
 				+ " join Res R on A.resId = R.resId\n" 
 //				+ " join Img I on A.articleId = I.articleId\n"
@@ -416,9 +418,10 @@ public class ArticleDaoImpl implements ArticleDao {
 					int userId = rs.getInt("userId");
 					int conAmount = rs.getInt("conAmount");
 					int conNum = rs.getInt("conNum");
+					String modifyTime = rs.getString("modifyTime");
 					article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
 							articleGoodCount, commentCount, favoriteCount, articleGoodStatus, aritcleFavoriteStatus,
-							articleId, resId, userId, conAmount, conNum, articleStatus);
+							articleId, resId, userId, conAmount, conNum, articleStatus, modifyTime);
 					articleList.add(article);
 				} else {
 					return null;
@@ -448,6 +451,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				+ ",(select case count(*) when 0 then 0 else 1 end from MyArticle MA where MA.articleId = A.articleId and MA.userId = ? ) as 'articleFavoriteStatus'\n"
 				+ ",A.articleId as 'articleId'\n" + ",A.resId as 'resId'\n" + ",A.userId as 'userId'\n"
 				+ ",A.conAmount as 'conAmount'\n" + ",A.conNum as 'conNum'\n" + ",A.articleStatus as 'articleStatus'\n"
+				+ ",A.modifyTime as 'modifyTime'\n" 
 				+ " FROM Article A\n" + " join UserAccount UA on A.userId = UA.userId\n"
 				+ " join Res R on A.resId = R.resId\n" 
 //				+ " join Img I on A.articleId = I.articleId\n"
@@ -479,9 +483,10 @@ public class ArticleDaoImpl implements ArticleDao {
 					int userId = rs.getInt("userId");
 					int conAmount = rs.getInt("conAmount");
 					int conNum = rs.getInt("conNum");
+					String modifyTime = rs.getString("modifyTime");
 					article = new Article(userName, resCategoryInfo, articleTime, articleTitle, articleText, resName,
 							articleGoodCount, commentCount, favoriteCount, articleGoodStatus, aritcleFavoriteStatus,
-							articleId, resId, userId, conAmount, conNum, articleStatus);
+							articleId, resId, userId, conAmount, conNum, articleStatus, modifyTime);
 					articleList.add(article);
 				} else {
 					return null;

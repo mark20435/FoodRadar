@@ -25,7 +25,7 @@
 
 <!--        android:background="#FDC3C3"-->
         <ImageView
-            android:id="@+id/imMyAtResImg"
+            android:id="@+id/imAtMaResImg"
             android:layout_width="108dp"
             android:layout_height="108dp"
             android:layout_marginStart="12dp"
@@ -40,48 +40,48 @@
             app:srcCompat="@drawable/logo_foodradar" />
 
         <TextView
-            android:id="@+id/tvMyAtArticleTitle"
+            android:id="@+id/tvAtMaArticleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="[主旨]"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imMyAtResImg"
+            app:layout_constraintStart_toEndOf="@+id/imAtMaResImg"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvMyAtArticleTime"
+            android:id="@+id/tvAtMaArticleTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="@string/textArticleDate"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imMyAtResImg"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyAtArticleTitle" />
+            app:layout_constraintStart_toEndOf="@+id/imAtMaResImg"
+            app:layout_constraintTop_toBottomOf="@+id/tvAtMaArticleTitle" />
 
         <TextView
-            android:id="@+id/tvMyAtUserName"
+            android:id="@+id/tvAtMaUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="@string/textArticleWirter"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imMyAtResImg"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyAtArticleTime" />
+            app:layout_constraintStart_toEndOf="@+id/imAtMaResImg"
+            app:layout_constraintTop_toBottomOf="@+id/tvAtMaArticleTime" />
 
         <TextView
-            android:id="@+id/tvMyAtArticleText"
+            android:id="@+id/tvAtMaArticleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="@string/textArticleText"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imMyAtResImg"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyAtUserName" />
+            app:layout_constraintStart_toEndOf="@+id/imAtMaResImg"
+            app:layout_constraintTop_toBottomOf="@+id/tvAtMaUserName" />
 
 
         <!--    <TextView-->

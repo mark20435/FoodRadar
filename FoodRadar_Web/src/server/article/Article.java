@@ -29,10 +29,10 @@ public class Article {
 		super();
 	}
 
-	//ArticleList頁面(新進榜，排行榜，收藏榜)
+	//ArticleList頁面(新進榜，排行榜，收藏榜，內文)
 	public Article(String userName, String resCategoryInfo, String articleTime, String articleTitle, String articleText,
 			String resName,int articleGoodCount, int commentCount, int favoriteCount,boolean articleGoodStatus ,boolean articleFavoriteStatus , 
-			int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus) {
+			int articleId, int resId, int userId, int conAmount, int conNum, boolean articleStatus, String modifyTime) {
 		super();
 		this.articleTitle = articleTitle;
 		this.articleTime = articleTime;
@@ -51,6 +51,7 @@ public class Article {
         this.articleStatus = articleStatus;
         this.articleGoodStatus = articleGoodStatus;
         this.articleFavoriteStatus = articleFavoriteStatus;
+        this.modifyTime = modifyTime;
 	}
 	
 	   //建構子，發文用
@@ -68,10 +69,30 @@ public class Article {
         this.articleStatus = articleStatus;
     }
     
+    //更新文章用
+    public  Article(int articleId, String articleTitle, String articleText, int conNum,
+                    int conAmount,int resId, int userId, boolean articleStatus, String modifyTime){
+        super();
+        this.articleId = articleId;
+        this.articleTitle = articleTitle;
+        this.articleText = articleText;
+        this.conNum = conNum;
+        this.conAmount = conAmount;
+        this.resId = resId;
+        this.userId = userId;
+        this.articleStatus = articleStatus;
+        this.modifyTime = modifyTime;
+    }
+    
 	public Article(int articleId) {
 		super();
         this.articleId = articleId;
 	}
+	
+	  //刪除文章用
+    public void setStatus(boolean articleStatus){
+        this.articleStatus = articleStatus;
+    }
 	
 	//點讚
     public Article(int articleGoodId,int userId , int articleId) {

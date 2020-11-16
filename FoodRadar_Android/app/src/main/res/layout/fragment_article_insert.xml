@@ -31,7 +31,7 @@
         android:background="@null"
         android:drawableBottom="@drawable/edit_text_line"
         android:ems="10"
-        android:hint="消費金額(NT)"
+        android:hint="消費金額 (NT)"
         android:inputType="numberSigned"
         android:textAlignment="center"
         android:textSize="12sp"
@@ -75,17 +75,20 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="380dp"
+        android:layout_width="wrap_content"
         android:layout_height="240dp"
         android:layout_marginTop="12dp"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
         app:layout_constraintStart_toStartOf="@+id/tvResName"
         app:layout_constraintTop_toBottomOf="@+id/tvResName">
 
         <EditText
             android:id="@+id/etArticleText"
             android:layout_width="380dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/article_insert_text"
+            android:gravity="top|left"
             android:hint="請輸入內文"
             android:inputType="textMultiLine"
             android:textSize="12sp" />

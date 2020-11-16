@@ -49,7 +49,7 @@ public class UserMyArticleFragment extends Fragment {
     //    private Integer userId;
     private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
     private String MYARTICLE_SERVLET = URL_SERVER + "MyArticleServlet";
-    private Integer imageSize = 500;
+    private Integer imageSize = 100;
     final private String TAG = "UserMyArticleFragment";
 
     @Override
@@ -154,11 +154,11 @@ public class UserMyArticleFragment extends Fragment {
             TextView tvMyAtArticleText;
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                imMyAtResImg = itemView.findViewById(R.id.imMyAtResImg);
-                tvMyAtArticleTitle = itemView.findViewById(R.id.tvMyAtArticleTitle);
-                tvMyAtArticleTime = itemView.findViewById(R.id.tvMyAtArticleTime);
-                tvMyAtUserName = itemView.findViewById(R.id.tvMyAtUserName);
-                tvMyAtArticleText = itemView.findViewById(R.id.tvMyAtArticleText);
+                imMyAtResImg = itemView.findViewById(R.id.imAtMaResImg);
+                tvMyAtArticleTitle = itemView.findViewById(R.id.tvAtMaArticleTitle);
+                tvMyAtArticleTime = itemView.findViewById(R.id.tvAtMaArticleTime);
+                tvMyAtUserName = itemView.findViewById(R.id.tvAtMaUserName);
+                tvMyAtArticleText = itemView.findViewById(R.id.tvAtMaArticleText);
             }
         }
 
@@ -181,14 +181,14 @@ public class UserMyArticleFragment extends Fragment {
             if ( myArticleInBindViewHolder.getCommentId() == 0) {
 
                 String strAtArticleTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myArticleInBindViewHolder.getArticleTime());
-                holder.tvMyAtArticleTime.setText(res.getString(R.string.textArticleDate) + strAtArticleTime);
-                holder.tvMyAtUserName.setText(res.getString(R.string.textArticleWirter) + myArticleInBindViewHolder.getUserName());
-                holder.tvMyAtArticleText.setText(res.getString(R.string.textArticleText) + myArticleInBindViewHolder.getArticleText());
+                holder.tvMyAtArticleTime.setText(res.getString(R.string.textArticleDate) + ": " + strAtArticleTime);
+                holder.tvMyAtUserName.setText(res.getString(R.string.textArticleWirter) + ": " + myArticleInBindViewHolder.getUserName());
+                holder.tvMyAtArticleText.setText(res.getString(R.string.textArticleText) + ": " + myArticleInBindViewHolder.getArticleText());
             } else {
                 String strCommentTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(myArticleInBindViewHolder.getCommentTime());
-                holder.tvMyAtArticleTime.setText(res.getString(R.string.textCommentDate) + strCommentTime);
-                holder.tvMyAtUserName.setText(res.getString(R.string.textArticleWirter) + myArticleInBindViewHolder.getUserName());
-                holder.tvMyAtArticleText.setText(res.getString(R.string.textCommentText) + myArticleInBindViewHolder.getCommentText());
+                holder.tvMyAtArticleTime.setText(res.getString(R.string.textCommentDate) + ": " + strCommentTime);
+                holder.tvMyAtUserName.setText(res.getString(R.string.textArticleWirter) + ": " + myArticleInBindViewHolder.getUserName());
+                holder.tvMyAtArticleText.setText(res.getString(R.string.textCommentText) + ": " + myArticleInBindViewHolder.getCommentText());
             }
 
 //            holder.imMyAtResImg.setImageBitmap();

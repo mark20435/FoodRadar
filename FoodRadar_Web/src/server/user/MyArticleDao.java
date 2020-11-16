@@ -13,11 +13,13 @@ public interface MyArticleDao {
 
 	MyArticle findById(int id);
 
-	List<MyArticle> myArticle(int id, String action);
+	List<MyArticle> myArticle(int id, String articleDate, String action);
 	
 	List<MyArticle> myArticleMyComment(int id);
 	
 
 	byte[] getImage(int id);
+
+	int setEnableStatus(Integer id, Boolean enableStatus);
 
 }

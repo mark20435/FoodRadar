@@ -326,7 +326,7 @@
     <string name="title_of_res_coupon_maintain">餐廳優惠管理</string>
     <string name="title_of_res_coupon_update">餐廳優惠維護</string>
     <string name="title_of_res_user_management">會員管理</string>
-    <string name="title_of_res_article_maintain">會員發文管理</string>
+    <string name="title_of_res_article_management">會員發文管理</string>
     <string name="textImageNumber">照片數量</string>
     <string name="textReadArticle">觀看食記</string>
     <string name="textWriteArticle">撰寫食記</string>
@@ -350,13 +350,13 @@
     <string name="textResMap">餐廳地圖</string>
     <string name="textNoRating">尚無評價</string>
     <string name="textMyArticleCollect">我的文章收藏</string>
-    <string name="textArticleWirter">"發文者："</string>
-    <string name="textArticleDate">"發表日期："</string>
-    <string name="textArticleText">"內文："</string>
+    <string name="textArticleWirter">"發文者"</string>
+    <string name="textArticleDate">"發文日期"</string>
+    <string name="textArticleText">"內文"</string>
     <string name="textMyArticleIsMy">我的發文</string>
     <string name="textMyComment">我的回文</string>
-    <string name="textCommentDate">"回文日期："</string>
-    <string name="textCommentText">"回文："</string>
+    <string name="textCommentDate">"回文日期"</string>
+    <string name="textCommentText">"回文"</string>
     <string name="textRegisterDate">"註冊日期"</string>
     <string name="textAccountStatus">"帳號狀態"</string>
     <string name="textOfEnable">"啟用"</string>
@@ -369,8 +369,15 @@
     <string name="textNoMyRessFound">您尚未收藏任何餐廳</string>
     <string name="textMyResList">我的收藏列表</string>
     <string name="titleResImg">餐廳照片</string>
+
+    <string name="textWarning">警告</string>
+    <string name="deleteImage">你即將要刪除圖片</string>
+    <string name="deleteImageYes">刪除</string>
+    <string name="deleteImageNo">取消</string>
+
     <string name="開始日期">開始日期</string>
     <string name="textSetSuccess">設定成功</string>
     <string name="textSetFail">設定未完成</string>
+    <string name="textSearchArticle">搜尋會員發文</string>
 
 </resources>

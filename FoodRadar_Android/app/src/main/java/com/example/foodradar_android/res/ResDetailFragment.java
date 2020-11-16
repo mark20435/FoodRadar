@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -83,6 +84,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class ResDetailFragment extends Fragment {
@@ -103,10 +105,11 @@ public class ResDetailFragment extends Fragment {
     private LocationRequest locationRequest;
     private Location lastLocation;
     private FusedLocationProviderClient fusedLocationClient;
-    private Button btDirect;
     //private static final int PER_ACCESS_LOCATION = 0;
     private static final int REQ_CHECK_SETTINGS = 101;
     private static final int REQ_RATING = 0;
+    private SharedPreferences preferences;
+    private final static String PREFERENCES_NAME = "Res";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -203,32 +206,34 @@ public class ResDetailFragment extends Fragment {
 
         tvResName.setText(res.getResName());
         Float rating = res.getRating();
-        if (rating >= 0) {
-            tvResRating.setText(String.format("%.1f", rating));
-            if (rating < 0.75) {
-                ratingBar.setRating(0.5f);
-            } else if (rating < 1.25) {
-                ratingBar.setRating(1f);
-            } else if (rating < 1.75) {
-                ratingBar.setRating(1.5f);
-            } else if (rating < 2.25) {
-                ratingBar.setRating(2f);
-            } else if (rating < 2.75) {
-                ratingBar.setRating(2.5f);
-            } else if (rating < 3.25) {
-                ratingBar.setRating(3f);
-            } else if (rating < 3.75) {
-                ratingBar.setRating(3.5f);
-            } else if (rating < 4.25) {
-                ratingBar.setRating(4f);
-            } else if (rating < 4.75) {
-                ratingBar.setRating(4.5f);
+        if (rating != null) {
+            if (rating >= 0) {
+                tvResRating.setText(String.format("%.1f", rating));
+                if (rating < 0.75) {
+                    ratingBar.setRating(0.5f);
+                } else if (rating < 1.25) {
+                    ratingBar.setRating(1f);
+                } else if (rating < 1.75) {
+                    ratingBar.setRating(1.5f);
+                } else if (rating < 2.25) {
+                    ratingBar.setRating(2f);
+                } else if (rating < 2.75) {
+                    ratingBar.setRating(2.5f);
+                } else if (rating < 3.25) {
+                    ratingBar.setRating(3f);
+                } else if (rating < 3.75) {
+                    ratingBar.setRating(3.5f);
+                } else if (rating < 4.25) {
+                    ratingBar.setRating(4f);
+                } else if (rating < 4.75) {
+                    ratingBar.setRating(4.5f);
+                } else {
+                    ratingBar.setRating(5f);
+                }
             } else {
-                ratingBar.setRating(5f);
+                tvResRating.setText(R.string.textNoRating);
+                ratingBar.setVisibility(View.GONE);
             }
-        } else {
-            tvResRating.setText(R.string.textNoRating);
-            ratingBar.setVisibility(View.GONE);
         }
         tvResCategoryInfo.setText(res.getResCategoryInfo());
         tvResAddress.setText(res.getResAddress());
@@ -755,7 +760,7 @@ public class ResDetailFragment extends Fragment {
             showImgs(imgs);
         }
 
-        btDirect = view.findViewById(R.id.btDirect);
+        Button btDirect = view.findViewById(R.id.btDirect);
 
         checkLocationSettings();
 
@@ -855,7 +860,7 @@ public class ResDetailFragment extends Fragment {
                     res.setMyRes(false);
                 }
             } else {
-                MyRes myRes = new MyRes(0, Common.USER_ID, res.getResId(), new Timestamp(System.currentTimeMillis()));
+                MyRes myRes = new MyRes(0, Common.USER_ID, res.getResId(), null);
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("action", "myResInsert");
                 jsonObject.addProperty("myres", new Gson().toJson(myRes));
@@ -890,9 +895,29 @@ public class ResDetailFragment extends Fragment {
 //            startActivity(Intent.createChooser(sharingIntent, "chooserTitle"));
 //        });
 
-        //todo 食記相關按鈕
+        //食記相關按鈕
+        Button btReadArticle = view.findViewById(R.id.btReadArticle);
+        Button btWriteArticle = view.findViewById(R.id.btWriteArticle);
 
+        preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
 
+        btReadArticle.setOnClickListener(v -> {
+            getActivity().getIntent().putExtra("res", res);
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_resDetailFragment_to_articleFragment);
+        });
+
+        btWriteArticle.setOnClickListener(v -> {
+            preferences.edit()
+                    .putString("ResName", res.getResName())
+                    .putString("Category", res.getResCategoryInfo())
+                    .putInt("resId", res.getResId())
+                    .apply();
+            int newArticle = 0;    //狀態判斷碼  > bundle帶到insert文章
+            bundle.putInt("newArticle", newArticle);
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_resDetailFragment_to_articleInsertFragment, bundle);
+        });
     }
 
     private void rating() {
@@ -914,6 +939,7 @@ public class ResDetailFragment extends Fragment {
             }
         }
     }
+
 
     private class ImgAdapter extends RecyclerView.Adapter<ResDetailFragment.ImgAdapter.MyViewHolder> {
         private LayoutInflater layoutInflater;
