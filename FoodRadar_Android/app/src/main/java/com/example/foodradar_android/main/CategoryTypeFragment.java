@@ -30,6 +30,8 @@ import com.example.foodradar_android.R;
 import com.example.foodradar_android.res.Res;
 import com.example.foodradar_android.task.CommonTask;
 import com.example.foodradar_android.task.ImageTask;
+import com.example.foodradar_android.user.MyRes;
+import com.example.foodradar_android.user.UserImageTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -47,6 +49,7 @@ public class CategoryTypeFragment extends Fragment {
     private ImageView ibcate;
     private TextView resSecName;
     private List<Res> ress;
+    private List<MyRes> myResList = new ArrayList<>();
     private List<ImageTask> imageTasks;
     private ImageTask imageTask;
     private int imageSize;
@@ -54,6 +57,8 @@ public class CategoryTypeFragment extends Fragment {
     private CommonTask ResDeleteTask;
     private int categoryId;
     private int resId;
+    private String URL_SERVER = "http://10.0.2.2:8080/FoodRadar_Web/";
+    private String MYRES_SERVLET = URL_SERVER + "MyResServlet";
 
 
 
@@ -62,10 +67,13 @@ public class CategoryTypeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-        navController = Navigation.findNavController(activity, R.id.mainFragment);
-        imageTasks = new ArrayList<>();
+        new Common();
         Common.setBackArrow(true, activity);
         setHasOptionsMenu(true);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
+        imageTasks = new ArrayList<>();
+
+
     }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -84,6 +92,7 @@ public class CategoryTypeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_china_restaurant, container, false);
 
     }
@@ -95,7 +104,7 @@ public class CategoryTypeFragment extends Fragment {
         Bundle bundle = getArguments();
         categoryId = bundle.getInt("resId");
 
-        Category category = (Category) bundle.getSerializable("category");
+        Category category = (Category)bundle.getSerializable("category");
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
@@ -126,8 +135,7 @@ public class CategoryTypeFragment extends Fragment {
         //Bundle bundle = new Bundle();
 //        Common.showToast(activity,"TEST");
 //        Common.showToast(activity,bundle.getString("categoryType"));
-        //activity.setTitle(category.getInfo());
-        activity.setTitle(bundle.getString("categoryType"));
+        activity.setTitle(category.getInfo());
     }
 
     private List<Res> getRess() {
@@ -180,6 +188,7 @@ public class CategoryTypeFragment extends Fragment {
     private class ResAdapter extends RecyclerView.Adapter<ResAdapter.MyViewHolder>{
         private LayoutInflater layoutInflater;
         private List<Res> ress;
+
         private int imageSize;
 
         ResAdapter(Context context, List<Res> ress){
@@ -192,10 +201,15 @@ public class CategoryTypeFragment extends Fragment {
         }
         public class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
+            TextView tvResName, tvResHours, tvResTel, tvResAddress;
             TextView resSecName;
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.ibcate);
+                tvResName = itemView.findViewById(R.id.tvResName);
+                tvResHours = itemView.findViewById(R.id.tvResHours);
+                tvResTel = itemView.findViewById(R.id.tvResTel);
+                tvResAddress = itemView.findViewById(R.id.tvResAddress);
                 resSecName = itemView.findViewById(R.id.resSecName);
             }
         }
@@ -213,25 +227,55 @@ public class CategoryTypeFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ResAdapter.MyViewHolder myViewHolder, int position) {
-            final Res res = ress.get(position);
+            Res res = ress.get(position);
+           // myViewHolder.tvResName.setText(res.getResName());
+           // myViewHolder.tvResHours.setText(getResources().getString(R.string.textResHours)) + ": " + res.getResHours());
+           // myViewHolder.tvResTel.setText(getResources().getString(R.string.textResTel)) + ": " + res.getResTel();
+           // myViewHolder.tvResAddress.setText(getResources().getString(R.string.textResAddress) + ": " + res.getResAddress());
+
+            Integer resID = res.getResId(); // 餐廳ID
             String url = Common.URL_SERVER + "ResServlet";
             int id = res.getResId();
-            Log.d(TAG, "id: " + res.getResId());
-            Log.d(TAG, "id: " + res.getResName());
-
+//            Log.d(TAG, "id: " + res.getResId());
+//            Log.d(TAG, "id: " + res.getResName());
+//
             myViewHolder.resSecName.setText(res.getResName());
-
-            ImageTask imageTaskBVH = new ImageTask(url, id, imageSize, myViewHolder.imageView);
-            imageTaskBVH.execute();
-            Log.d(TAG, "imageTask: " + imageTaskBVH);
-            imageTasks.add(imageTaskBVH);
+//
+            ImageTask imageTask = new ImageTask(url, id, imageSize, myViewHolder.imageView);
+            imageTask.execute();
+            //Log.d(TAG, "imageTask: " + imageTaskBVH);
+            imageTasks.add(imageTask);
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
 
                 @Override
                 public void onClick(View view) {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("res", res);
+                    Integer resID = res.getResId();
+                    List<Res> resBidVH = new ArrayList<>();
+                    CommonTask getResTask;
+
+                    if (Common.networkConnected(activity)) {
+                        String url = MYRES_SERVLET;
+                        Log.d(TAG, "getResById.url: " + url);
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty("action", "getResById");
+                        jsonObject.addProperty("id", resID);
+                        jsonObject.addProperty("userId", Common.USER_ID);
+                        String jsonOut = jsonObject.toString();
+                        Log.d(TAG, "getResById.jsonOut: " + jsonOut);
+                        getResTask = new CommonTask(url, jsonOut);
+                        try {
+                            String jsonIn = getResTask.execute().get();
+                            Log.d(TAG, "getResById.jsonIn: " + jsonIn);
+                            Type listType = new TypeToken<List<Res>>() {
+                            }.getType();
+                            resBidVH = new Gson().fromJson(jsonIn, listType);
+                        } catch (Exception e) {
+                            Log.e(TAG, e.toString());
+                        }
+                    } else {
+                        Common.showToast(activity, R.string.textNoNetwork);
+                    }
 
                     //Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
                     if (getUserId() <= 0) {
@@ -242,7 +286,9 @@ public class CategoryTypeFragment extends Fragment {
                         d.setPositiveButton("登入會員", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                navController.navigate(R.id.action_CategoryTypeFragment_to_userDataSetupFragment, bundle);
+//                                Bundle bundle = new Bundle();
+//                                bundle.putSerializable("res", res);
+                                navController.navigate(R.id.action_CategoryTypeFragment_to_userDataSetupFragment);
                             }
                         });
                         d.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -253,8 +299,14 @@ public class CategoryTypeFragment extends Fragment {
                         });
                         d.setCancelable(false) // 必須點擊按鈕方能關閉，預設為true
                                 .show();
-                    }else if (getUserId() > 0){
-                        Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
+                    } else if (getUserId() > 0 && resBidVH != null) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("res", resBidVH.get(0));
+                        Navigation.findNavController(view)
+                                .navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
+                        //Navigation.findNavController(view).navigate(R.id.action_CategoryTypeFragment_to_resDetailFragment, bundle);
+                    } else {
+                        Common.showToast(activity, R.string.textNoRessFound);
                     }
                 }
         });

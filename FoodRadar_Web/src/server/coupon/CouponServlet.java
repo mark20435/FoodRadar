@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import io.opencensus.common.ServerStatsFieldEnums.Id;
 import server.category.Category;
 import server.main.ImageUtil;
 import server.ress.Res;
@@ -50,12 +51,21 @@ public class CouponServlet extends HttpServlet {
 			couponDao = new CouponDaoImpl();
 		}		
 		String action = jsonObject.get("action").getAsString();
+		System.out.println("action: " + action);
 		int id;
 		Coupon coupon;
 		byte[] image;
-
+		System.out.println("getAll: " + toString());
 		if (action.equals("getAll")) {
-			List<Coupon> coupons = couponDao.getAll();
+			int userId = jsonObject.get("userId").getAsInt();
+			List<Coupon> coupons = couponDao.getAll(userId);
+			writeText(response, gson.toJson(coupons));
+			
+		}else if(action.equals("getAllcouPonType")) {
+			int userId = jsonObject.get("userId").getAsInt();
+			Boolean couPonType = jsonObject.get("couPonType").getAsBoolean();
+			List<Coupon> coupons = couponDao.getAllcouPonType(userId, couPonType);
+			System.out.println("coupons:" + coupons);
 			writeText(response, gson.toJson(coupons));
 //		} else if (action.equals("getAllEnable")) {
 //			List<Coupon> coupons = couponDao.getAllEnable();
@@ -72,11 +82,11 @@ public class CouponServlet extends HttpServlet {
 				os.write(image);}
 		
 		} else if (action.equals("couponInsert") || action.equals("couponUpdate")) {
-			String couponJson = jsonObject.get("coupon").getAsString();
 			
+			String couponJson = jsonObject.get("coupon").getAsString();
+			System.out.println("couponJson = " + couponJson);
 			coupon = gson.fromJson(couponJson, Coupon.class);
 			image = null;
-		
 			if (jsonObject.get("imageBase64") != null) {
 				String imageBase64 = jsonObject.get("imageBase64").getAsString();
 				if (imageBase64 != null && !imageBase64.isEmpty()) {
@@ -84,27 +94,28 @@ public class CouponServlet extends HttpServlet {
 				}
 			}
 			int count = 0;
-			if (action.equals("couponInsert")) {
+			if (action.equals("couponInsert")) {	
 				count = couponDao.insert(coupon, image);
-			} else if (action.equals("couponUpdate")) {
+			} else if (action.equals("couponUpdate")) {			
 				count = couponDao.update(coupon, image);
 			}
 			writeText(response, String.valueOf(count));
 			
-		}else if(action.equals("couponLoveInsert")) {
-			
-			int couPonId = jsonObject.get("couPonId").getAsInt();
-			int loginUserId = jsonObject.get("loginUserId").getAsInt();
-			int count = 0;
-			if (action.equals("couponLoveInsert")) {
-				count = couponDao.couponLoveInsert(couPonId, loginUserId);
-			}
-			writeText(response, String.valueOf(count));
-		
 		} else if (action.equals("couponDelete")) {
 			int couponId = jsonObject.get("couPonId").getAsInt();
 			int count = couponDao.delete(couponId);
 			writeText(response, String.valueOf(count));
+			
+		} else if(action.equals("couponLoveInsert")) {
+			int loginUserId = jsonObject.get("loginUserId").getAsInt();
+			int couPonId = jsonObject.get("couPonId").getAsInt();
+			int count = 0;
+			if (action.equals("couponLoveInsert")) {
+				count = couponDao.couponLoveInsert(loginUserId, couPonId);
+			}
+			
+			writeText(response, String.valueOf(count));
+		
 //		} else if (action.equals("couponfindById")) {
 //			id = jsonObject.get("couponid").getAsInt();
 //			List<Coupon> coupons = couponDao.couponfindById(id);	
@@ -127,7 +138,7 @@ public class CouponServlet extends HttpServlet {
 		if(couponDao == null) {
 			couponDao = new CouponDaoImpl();
 		}
-		List<Coupon> coupons = couponDao.getAll();
+		List<Coupon> coupons = couponDao.getAll(3);
 		writeText(response, new Gson().toJson(coupons));
 	}
 }

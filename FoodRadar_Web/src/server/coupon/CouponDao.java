@@ -6,7 +6,7 @@ public interface CouponDao {
 	
 	 int insert(Coupon coupon, byte[] image);
 	 
-	 int couponLoveInsert(int couPonId, int loginUserId);
+	 int couponLoveInsert(int loginUserId, int couPonId);
 	 
 	 int update(Coupon coupon, byte[] image);
 	 
@@ -14,12 +14,16 @@ public interface CouponDao {
 	 
 	 Coupon findById(int id);
 	 
-	 List<Coupon> getAll();
+	 List<Coupon> getAll(int userId);
 	 
-	 List<Coupon> getAllEnable(int cupUserId);
+	 List<Coupon> getAllEnable(int cupuserId);
+	 
+	 List<Coupon> getAllcouPonType(int userId, Boolean couPonType);
 	 
 	// List<Coupon> couponfindById(int couponId);
 	 
 	 byte[] getImage(int id);
+	 
+	 
 
 }

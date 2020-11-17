@@ -20,6 +20,13 @@ public interface MyCouponDao {
 	
 	byte[] getImage(int id);
 	
-	List<Coupon> getCouponById(Integer id, Integer userId);
+	
+	List<MyCoupon> getCouponById(Integer userId, Integer couPonId);
+
+	int setcouPonIsUsedStatus(int userId, Boolean couPonIsUsedStatus);
+
+	int isusedupdate(Integer couPonId, Integer userId, Boolean couPonIsUsed);
+
+	
 
 }

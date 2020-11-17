@@ -79,6 +79,9 @@
                                                     <state key="normal" title="    我的社群活動" image="star.circle" catalog="system">
                                                         <color key="titleColor" red="0.8942415118" green="0.42423060540000002" blue="0.41174185279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="x6f-T1-n3Q" kind="show" id="RRd-qt-bfG"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -136,6 +139,9 @@
                                                     <state key="normal" title="     聯繫我們" image="info.circle" catalog="system">
                                                         <color key="titleColor" red="0.8942415118" green="0.42423060540000002" blue="0.41174185279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="clickContanctUs:" destination="JCq-yy-Lzi" eventType="touchUpInside" id="m2F-Kv-gzM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -154,11 +160,118 @@
             </objects>
             <point key="canvasLocation" x="1233" y="106"/>
         </scene>
+        <!--我的社群活動-->
+        <scene sceneID="9rC-JH-sZR">
+            <objects>
+                <viewController id="x6f-T1-n3Q" customClass="MyArticleVController" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Exq-dF-V9F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="brA-By-wvR">
+                                <rect key="frame" x="16" y="143" width="382" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyArticleVCell" rowHeight="160" id="XCB-bs-ujh" customClass="MyArticleVCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="382" height="160"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XCB-bs-ujh" id="ksg-Zg-Urt">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="主旨" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbS-X4-Obq">
+                                                    <rect key="frame" x="152" y="11" width="210" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="發文日期" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztf-ZJ-TKx">
+                                                    <rect key="frame" x="168" y="43" width="188" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="發文者" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyd-Kh-FLq">
+                                                    <rect key="frame" x="167" y="68" width="188" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_foodradar" translatesAutoresizingMaskIntoConstraints="NO" id="nMn-tf-yDw">
+                                                    <rect key="frame" x="8" y="8" width="130" height="144"/>
+                                                    <color key="backgroundColor" red="0.98990041019999997" green="0.76484161620000002" blue="0.76469963789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="130" id="HMq-hM-pyl"/>
+                                                        <constraint firstAttribute="height" constant="130" id="a0g-dd-YP7"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="內文" translatesAutoresizingMaskIntoConstraints="NO" id="Und-jo-0Ie">
+                                                    <rect key="frame" x="163" y="89" width="211" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nMn-tf-yDw" firstAttribute="leading" secondItem="ksg-Zg-Urt" secondAttribute="leading" constant="8" id="YRE-Uo-kfo"/>
+                                                <constraint firstAttribute="bottom" secondItem="nMn-tf-yDw" secondAttribute="bottom" constant="8" id="ZGq-6V-JWp"/>
+                                                <constraint firstItem="nMn-tf-yDw" firstAttribute="top" secondItem="ksg-Zg-Urt" secondAttribute="top" constant="8" id="am3-nb-0Kx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98329144719999995" green="0.8902388215" blue="0.89019423720000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <outlet property="imageArticle" destination="nMn-tf-yDw" id="EeG-TX-uXD"/>
+                                            <outlet property="labelArticleText" destination="Und-jo-0Ie" id="zrO-Cb-pFm"/>
+                                            <outlet property="labelArticleTime" destination="ztf-ZJ-TKx" id="VBU-DB-cs9"/>
+                                            <outlet property="labelArticleTitle" destination="fbS-X4-Obq" id="7bg-8z-gJx"/>
+                                            <outlet property="labelUserName" destination="Tyd-Kh-FLq" id="2jY-yg-s1y"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8MC-N2-uCL">
+                                <rect key="frame" x="16" y="104" width="382" height="32"/>
+                                <segments>
+                                    <segment title="我的文章收藏"/>
+                                    <segment title="我的發文"/>
+                                    <segment title="我的回文"/>
+                                </segments>
+                                <connections>
+                                    <action selector="clickMyArticleSegment:" destination="x6f-T1-n3Q" eventType="valueChanged" id="jmN-V3-QL8"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RH9-dQ-cGl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="brA-By-wvR" firstAttribute="bottom" secondItem="RH9-dQ-cGl" secondAttribute="bottom" id="41h-Iv-Oro"/>
+                            <constraint firstItem="8MC-N2-uCL" firstAttribute="leading" secondItem="RH9-dQ-cGl" secondAttribute="leading" constant="16" id="5Kg-03-IEB"/>
+                            <constraint firstItem="RH9-dQ-cGl" firstAttribute="trailing" secondItem="brA-By-wvR" secondAttribute="trailing" constant="16" id="914-c9-LN6"/>
+                            <constraint firstItem="RH9-dQ-cGl" firstAttribute="trailing" secondItem="8MC-N2-uCL" secondAttribute="trailing" constant="16" id="KjV-F6-Jp8"/>
+                            <constraint firstItem="brA-By-wvR" firstAttribute="top" secondItem="8MC-N2-uCL" secondAttribute="bottom" constant="8" id="MRX-uN-oeT"/>
+                            <constraint firstItem="brA-By-wvR" firstAttribute="leading" secondItem="RH9-dQ-cGl" secondAttribute="leading" constant="16" id="o6u-mp-5sE"/>
+                            <constraint firstItem="8MC-N2-uCL" firstAttribute="top" secondItem="RH9-dQ-cGl" secondAttribute="top" constant="16" id="sTs-lH-h7V"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的社群活動" id="yo9-8z-PNK"/>
+                    <connections>
+                        <outlet property="myArticleSegment" destination="8MC-N2-uCL" id="cwp-VU-g2X"/>
+                        <outlet property="myArticleTableView" destination="brA-By-wvR" id="qty-0y-v7Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2JM-4i-Hsa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2324.6376811594205" y="158.70535714285714"/>
+        </scene>
         <!--我的餐廳收藏-->
         <scene sceneID="Fjd-gR-9n9">
             <objects>
                 <tableViewController id="tvt-h3-pdn" customClass="MyResTableVC" customModule="FoodRadar_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Aqr-7K-yQk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Aqr-7K-yQk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -168,15 +281,15 @@
                             <textInputTraits key="textInputTraits" textContentType="name"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyResTableVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyResTableVCell" rowHeight="144" id="pI5-3S-1Wg" customClass="MyResTableVCell" customModule="FoodRadar_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="144"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyResTableVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyResTableVCell" rowHeight="160" id="pI5-3S-1Wg" customClass="MyResTableVCell" customModule="FoodRadar_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pI5-3S-1Wg" id="Ohq-31-ssD">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_foodradar" translatesAutoresizingMaskIntoConstraints="NO" id="b21-cc-by5">
-                                            <rect key="frame" x="8" y="8" width="120" height="128"/>
+                                            <rect key="frame" x="8" y="8" width="120" height="144"/>
                                             <color key="backgroundColor" red="0.98990041019999997" green="0.76484161620000002" blue="0.76469963789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="120" id="1Wv-uA-eWk"/>
@@ -202,7 +315,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="餐廳地址:" translatesAutoresizingMaskIntoConstraints="NO" id="5z3-pc-PGY">
-                                            <rect key="frame" x="128" y="81.5" width="266" height="51.5"/>
+                                            <rect key="frame" x="128" y="81.5" width="266" height="67.5"/>
                                             <color key="textColor" systemColor="labelColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -280,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIV-rc-zkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2374" y="106"/>
+            <point key="canvasLocation" x="1200" y="929"/>
         </scene>
         <!--餐廳資訊維護-->
         <scene sceneID="K1O-WW-OHH">
@@ -384,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krR-Gu-IwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2525" y="834"/>
+            <point key="canvasLocation" x="2480" y="928"/>
         </scene>
         <!--會員專區-->
         <scene sceneID="9Wo-Tk-Anm">
@@ -566,7 +679,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdl-nc-fX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3270" y="106"/>
+            <point key="canvasLocation" x="1790" y="929"/>
         </scene>
     </scenes>
     <resources>

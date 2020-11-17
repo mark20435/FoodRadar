@@ -42,9 +42,26 @@ public class MyCouponDaoImpl implements MyCouponDao{
 	}
 
 	@Override
-	public int update(MyCoupon mycoupon) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int isusedupdate(Integer couPonId, Integer userId, Boolean couPonIsUsed) {
+		int count = 0;
+		String sql = "UPDATE MyCouPon SET couPonIsUsed = ? " 
+		+ "WHERE couPonId = ? AND userId = ?;";
+		if (couPonIsUsed = true) {
+			couPonIsUsed.equals(1);
+		}else {
+			couPonIsUsed.equals(0);
+		}
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql);) {		
+			ps.setBoolean(1, couPonIsUsed);
+			ps.setInt(2, couPonId);
+			ps.setInt(3, userId);
+			
+			count = ps.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	@Override
@@ -85,7 +102,52 @@ public class MyCouponDaoImpl implements MyCouponDao{
 		}
 		return mycoupon;
 	}
-
+	@Override
+	public List<MyCoupon> getCouponById(Integer userId, Integer couPonId) {
+		MyCoupon mycoupon = null;
+		CouponDao couponDao = new CouponDaoImpl();
+		List<MyCoupon> myCouponList = new ArrayList<MyCoupon>();
+		String sqlStmt = "SELECT myCouPonId, userId, couPonId, couPonIsUsed, modifyDate "  
+				    + "FROM MyCouPon"
+				   // + ",(select ResName from Res R where R.resId = C.resId) as 'ResName'\n"
+				    + "WHERE couPonIsUsed = 0 AND userId = 3;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);
+				){
+			ps.setInt(1, userId);
+			ps.setInt(2, couPonId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int myCouPonId = rs.getInt("myCouPonId");
+				int userIdfromDB = rs.getInt("userId");
+				int couPonIdfromDB = rs.getInt("couPonId");
+				boolean couPonIsUsed = rs.getBoolean("couPonIsUsed");
+				Timestamp modifyDate = rs.getTimestamp("modifyDate");				
+				mycoupon = new MyCoupon(myCouPonId, userIdfromDB, couPonIdfromDB, couPonIsUsed, modifyDate);
+				myCouponList.add(mycoupon);	
+				
+			}
+			return myCouponList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+ 		
+		return myCouponList;
+	}
+			
+//		myCouponList = couponDao.getAllEnable(userId);
+//		
+//		List<Coupon> couponListById = new ArrayList<Coupon>();
+//		for (Coupon getCoupon : couponList) {
+//			Integer resID = getCoupon.getCouPonId();
+//			if (resID.equals(id)) {
+//				couponListById.add(getCoupon);
+//				break;
+//			}
+//			
+//		}
+//		return couponListById;
+//	}
 	@Override
 	public List<MyCoupon> getAll() {
 		String sqlStmt = "SELECT myCouPonId, userId, couPonId, couPonIsUsed, modifyDate FROM MyCouPon;";
@@ -119,7 +181,7 @@ public class MyCouponDaoImpl implements MyCouponDao{
 		
 		String sqlStmt = "SELECT Cp.couPonId, Cp.resId, Cp.couPonStartDate, Cp.couPonEndDate, Cp.couPonType, Cp.couPonInfo, Cp.couPonPhoto, Cp.couPonEnable, Cp.userId " + 
 		       " FROM MyCouPon Mp Join CouPon Cp ON Mp.couPonId = Cp.couPonId " + 
-				" WHERE Mp.couPonIsUsed = 0 AND Cp.couPonType = 1 AND Cp.couPonEnable = 1 AND Mp.userId = ?;";
+				" WHERE Mp.couPonIsUsed = 0 AND Cp.couPonType = 0 AND Cp.couPonEnable = 1 AND Mp.userId = ?;";
 		new PubTools().showConsoleMsg("MyCouponDaoImpl.getAllById.sqlStmt", sqlStmt);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sqlStmt);
@@ -148,7 +210,7 @@ public class MyCouponDaoImpl implements MyCouponDao{
  		
 		return myCouponList;
 	}
-
+	
 	@Override
 	public byte[] getImage(int id) {
 		String sql = "SELECT couPonPhoto FROM CouPon WHERE couPonId = ?;";
@@ -169,25 +231,28 @@ public class MyCouponDaoImpl implements MyCouponDao{
 		return image;
 	}
 
-	@Override
-	public List<Coupon> getCouponById(Integer id, Integer userId) {
-		Coupon coupon = null;
-		CouponDao couponDao = new CouponDaoImpl();
-		List<Coupon> couponList = new ArrayList<Coupon>();
-		couponList = couponDao.getAllEnable(userId);
-		
-		List<Coupon> couponListById = new ArrayList<Coupon>();
-		for (Coupon getCoupon : couponList) {
-			Integer resID = getCoupon.getCouPonId();
-			if (resID.equals(id)) {
-				couponListById.add(getCoupon);
-				break;
-			}
-			
-		}
-		return couponListById;
-	}
 	
+	@Override
+	public int setcouPonIsUsedStatus(int userId, Boolean couPonIsUsedStatus) {
+		int count = 0;
+		String sqlStmt = "UPDATE MyCoupon";
+		sqlStmt += " SET couPonIsUsed = ?, modifyDate = now()";
+		sqlStmt += " WHERE userId = ?;";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement ps = connection.prepareStatement(sqlStmt);) {
+			ps.setBoolean(1, couPonIsUsedStatus);
+			ps.setInt(2, userId);
+			count = ps.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	@Override
+	public int update(MyCoupon mycoupon) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

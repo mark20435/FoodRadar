@@ -116,7 +116,7 @@ class MyResTableVC: UITableViewController, UISearchBarDelegate {
     
     func getMyRes (userId: Int, complection: @escaping ([MyRes]?) -> Void ) {
         
-        print("fetchMyRes.userId: \(userId)")
+        print("getMyRes.userId: \(userId)")
         
         let url = NetworkController().baseURL.appendingPathComponent(urlMyResServlet)
 

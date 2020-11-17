@@ -42,7 +42,20 @@ class UserAreaTableVC: UITableViewController {
         
         
     }
-
+    @IBAction func clickContanctUs(_ sender: Any) {
+        
+        let controller = UIAlertController(title: "聯繫我們", message: "※團隊成員※\n高新緯 tep101_01@tibame.com.tw\n陳暘璿 tep101_05@tibame.com.tw\n王瑞琦 tep101_08@tibame.com.tw\n簡輝峰 tep101_09@tibame.com.tw", preferredStyle: .alert)
+        // preferredStyle: .alert  => 顯示在中間
+//        let okAction = UIAlertAction(title: "關閉", style: .default) { (_) in
+//
+//        }
+//        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "關閉", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+        
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
