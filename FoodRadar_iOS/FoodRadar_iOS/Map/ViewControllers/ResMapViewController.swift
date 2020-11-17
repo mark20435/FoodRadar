@@ -115,6 +115,9 @@ extension ResMapViewController: MKMapViewDelegate {
             return res.resName.hasPrefix(String((view.annotation?.title)!!))
         }) else { return }
         cvResMap.scrollToItem(at: IndexPath(item: annoIndex, section: 0), at: .left, animated: true)
+        
+        let curRes = allRess![annoIndex]
+        moveRegion(lat: curRes.resLat, lon: curRes.resLon)
     }
     
     func addMarker() {
