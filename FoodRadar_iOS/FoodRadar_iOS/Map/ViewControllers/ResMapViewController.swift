@@ -30,6 +30,11 @@ class ResMapViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.cvResMap.reloadData()
                     self.addMarker()
+                    
+                    let annos = self.mapView.annotations.filter{
+                        $0.title == ress[0].resName
+                    }
+                    self.mapView.selectAnnotation(annos[0], animated: true)
                 }
                 
             }

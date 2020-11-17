@@ -208,7 +208,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		// select statements : UserAccount
 		String sqlStmt = "SELECT userId, userPhone, userPwd, userBirth, userName, ";
 		sqlStmt += " allowNotifi, isEnable, isAdmin, userAvatar, createDate, modifyDate ";
-		sqlStmt += " FROM UserAccount WHERE userPhone = ? AND userPwd = ? LIMIT 1;";
+		sqlStmt += " FROM UserAccount WHERE isEnable = 1 AND userPhone = ? AND userPwd = ? LIMIT 1;";
 		UserAccount userAccount = null;
 		List<UserAccount> userAccountList = new ArrayList<>();
 		pubTools.showConsoleMsg("userLogin.sqlStmt", sqlStmt);
