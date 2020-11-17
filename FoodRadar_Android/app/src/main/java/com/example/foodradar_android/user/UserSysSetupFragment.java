@@ -135,7 +135,10 @@ public class UserSysSetupFragment extends Fragment implements View.OnClickListen
                 break;
             // 餐廳優惠管理
             case R.id.btUsArCouponＭaintain:
-                navController.navigate(R.id.couponMaintainFragment);
+                Bundle bundle = new Bundle();
+                int newArticle = 2;    //狀態判斷碼  > bundle帶到優惠管理
+                bundle.putInt("newArticle", newArticle);
+                navController.navigate(R.id.couponEditFragment);
                 break;
             // 會員管理
             case R.id.btUsArUserManagement:

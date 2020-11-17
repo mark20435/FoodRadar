@@ -79,6 +79,17 @@ public class MyCouponServlet extends HttpServlet {
 		count = myCouponDao.insert(mycoupon);
 		pubTools.writeText(response, String.valueOf(count));
 		
+	}else if (action.equals("isUsedUpdate")) { //店家使用優惠券按鈕
+		Integer couPonId = jsonObject.get("couPonId").getAsInt();
+		Integer userId = jsonObject.get("userId").getAsInt();
+		Boolean couPonIsUsed = jsonObject.get("couPonIsUsed").getAsBoolean();
+		
+		pubTools.showConsoleMsg("id: ", id.toString());
+		pubTools.showConsoleMsg("couPonIsUsed: ", String.valueOf(couPonIsUsed));
+		int count = 0;
+		count = myCouponDao.isusedupdate(couPonId, userId, couPonIsUsed);
+		pubTools.writeText(response, String.valueOf(count));
+		
 	}else if (action.equals("myCouponDelete")) {
 		Integer userId = jsonObject.get("userId").getAsInt();
 		Integer couPonId = jsonObject.get("couPonId").getAsInt();
@@ -87,11 +98,19 @@ public class MyCouponServlet extends HttpServlet {
 		pubTools.writeText(response, String.valueOf(count));
 		
 	}else if (action.equals("getCouponById")) {
-		id = jsonObject.get("id").getAsInt();
 		Integer userId = jsonObject.get("userId").getAsInt();
-		List<Coupon> couponList = myCouponDao.getCouponById(id, userId);
+		Integer couPonId = jsonObject.get("couPonId").getAsInt();
+		List<MyCoupon> couponList = myCouponDao.getCouponById(userId, couPonId);
 		pubTools.writeText(response, String.valueOf(couponList));
 		
+	}else if (action.equals("setcouPonIsUsedStatus")) {
+		id = jsonObject.get("userId").getAsInt();
+		Boolean couPonIsUsedStatus = jsonObject.get("couPonIsUsedStatus").getAsBoolean();
+		pubTools.showConsoleMsg("userId: ", id.toString());
+		pubTools.showConsoleMsg("couPonIsUsedStatus: ", String.valueOf(couPonIsUsedStatus));
+		int count = 0;
+		//count = MyCouponDao.setcouPonIsUsedStatus(id, couPonIsUsedStatus);
+		pubTools.writeText(response, String.valueOf(count));
 	}
     }
     

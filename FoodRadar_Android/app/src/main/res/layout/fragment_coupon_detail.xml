@@ -58,13 +58,13 @@
         android:backgroundTint="@color/mainBlue"
         android:clickable="true"
         android:foregroundTint="@color/mainBlue"
-        android:src="@drawable/ic_add"
-        android:tint="@color/mainLightBlue"
-        app:backgroundTint="@color/mainBlue"
+        android:src="@drawable/righttick"
+
+        app:backgroundTint="@color/colorAccent"
         app:elevation="6dp"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/mainLightBlue" />
+        app:rippleColor="@color/design_default_color_secondary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
