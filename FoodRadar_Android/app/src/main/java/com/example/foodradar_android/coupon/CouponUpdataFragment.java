@@ -246,7 +246,7 @@ public class CouponUpdataFragment extends Fragment implements DatePickerDialog.O
                         //spTypeBoolean = getResources().toString().equals(0);
                         spTypeBoolean = false;
 //                        spType.getSelectedItem().toString().equals("公告");
-                        Common.showToast(activity, "優惠券活動");
+                       // Common.showToast(activity, "優惠券活動");
                         break;
 
                     case 1:
@@ -254,7 +254,7 @@ public class CouponUpdataFragment extends Fragment implements DatePickerDialog.O
                         //spTypeBoolean = getResources().toString().equals(1);
                         spTypeBoolean = true;
 //                        spType.getSelectedItem().toString().equals("優惠券");
-                        Common.showToast(activity, "公告活動");
+                       // Common.showToast(activity, "公告活動");
                         break;
                 }
             }
@@ -274,13 +274,13 @@ public class CouponUpdataFragment extends Fragment implements DatePickerDialog.O
                     case 0:
                         spEnableBoolean = false;
                         //spEnable.getSelectedItem().toString().equals("使用");
-                        Common.showToast(activity, "使用優惠券");
+                        //Common.showToast(activity, "使用優惠券");
                         break;
 
                     case 1:
                         spEnableBoolean = true;
                         //spEnable.getSelectedItem().toString().equals("未使用");
-                        Common.showToast(activity, "未使用優惠券");
+                        //Common.showToast(activity, "未使用優惠券");
                         break;
                 }
             }

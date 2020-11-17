@@ -27,6 +27,7 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim fade_in
 anim fragment_close_enter
 anim fragment_close_exit
 anim fragment_fade_enter
@@ -2341,6 +2342,7 @@ id ignoreRequest
 id imAtMaResImg
 id imResImg
 id imUserManageAvatar
+id imWelcome
 id image
 id imageAlert
 id imageAlert2
@@ -2859,6 +2861,7 @@ id view_offset_helper
 id view_overlay
 id visible
 id visible_removing_fragment_view_tag
+id welcomeFragment
 id wide
 id withText
 id withinBounds
@@ -2995,6 +2998,7 @@ layout fragment_user_my_article
 layout fragment_user_my_coupon
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout fragment_welcome
 layout item_view_article_management
 layout item_view_article_management_img
 layout item_view_category
@@ -3314,6 +3318,7 @@ string textNoArticleFound
 string textNoCameraApp
 string textNoCommentFound
 string textNoCouponsFound
+string textNoFindCoupon
 string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound

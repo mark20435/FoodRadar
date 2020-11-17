@@ -208,17 +208,17 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         btUsArMyArticle.setEnabled(setEnable);
         btUsArMyArticle.setTextColor(intTextColor);
         // 會員資料設定
-        ivUsArUserData.setAlpha(floAlpha);
-        btUsArUserData.setEnabled(setEnable);
-        btUsArUserData.setTextColor(intTextColor);
+//        ivUsArUserData.setAlpha(floAlpha);
+//        btUsArUserData.setEnabled(setEnable);
+//        btUsArUserData.setTextColor(intTextColor);
         // 系統設定
         ivUsArSysSetup.setAlpha(floAlpha);
         btUsArSysSetup.setEnabled(setEnable);
         btUsArSysSetup.setTextColor(intTextColor);
         // 聯繫我們
-        ivUsArContactUs.setAlpha(floAlpha);
-        btUsArContactUs.setEnabled(setEnable);
-        btUsArMyRes.setTextColor(intTextColor);
+//        ivUsArContactUs.setAlpha(floAlpha);
+//        btUsArContactUs.setEnabled(setEnable);
+//        btUsArMyRes.setTextColor(intTextColor);
     }
 
 }
