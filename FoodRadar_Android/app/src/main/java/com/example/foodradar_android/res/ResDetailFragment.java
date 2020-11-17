@@ -902,9 +902,11 @@ public class ResDetailFragment extends Fragment {
         preferences = activity.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
 
         btReadArticle.setOnClickListener(v -> {
+            String showArticle = "SHOW_BACK";    //狀態判斷碼  > bundle帶到文章List
+            bundle.putString("showArticle", showArticle);
             getActivity().getIntent().putExtra("res", res);
             Navigation.findNavController(v)
-                    .navigate(R.id.action_resDetailFragment_to_articleFragment);
+                    .navigate(R.id.action_resDetailFragment_to_articleFragment, bundle);
         });
 
         btWriteArticle.setOnClickListener(v -> {
