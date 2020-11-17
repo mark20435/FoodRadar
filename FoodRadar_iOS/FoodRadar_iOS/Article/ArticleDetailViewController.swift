@@ -12,7 +12,7 @@ struct GetImage: Encodable {
     let action = "getImage"
     let id: Int
     let imageSize: Double
-    
+
 }
 
 class ArticleDetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -33,44 +33,87 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var btArticleFavorite: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var imageFlowLayout: UICollectionViewFlowLayout!
-    
     @IBOutlet weak var btComment: UIButton!
-
-    @IBOutlet weak var btSetting: UIButton!
     
-    var articleDetail: Article!
+    var articleDetail: Article! //前頁帶過來的articleId
+    var articleShow : Article!  //後端抓的資料
     var articleImage = [Image]()
     var image: Image!
     let url_image = URL(string: common_url + "ImgServlet")
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
     let url_server = URL(string: common_url + "ArticleServlet")
+    /* 宣告物件包裝資料 > 帶到update **/
+    var updateArticle: Article?
+    var loginUserId  = COMM_USER_ID
+//    var goodCountResult: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //設定標題為 文章主題
-        self.title = articleDetail.articleTitle
         // Do any additional setup after loading the view.
+        //只有發文的使用者才會顯示
+        if loginUserId == articleDetail.userId {
+            /* 設定右上ItemButton **/
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(systemName: "ellipsis.rectangle"),style: .plain, target: self, action: #selector(clickSetting))
+        }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(systemName: "ellipsis.rectangle"),style: .plain, target: self, action: #selector(clickSetting))
+    }
+    override func viewWillAppear(_ animated: Bool) {
+            showArticle()
+            getImage()
+            getIcon()
+            imageCollectionView.reloadData()
         
-        showArticle()
-        getImage()
-        getIcon()
     }
     
-    /* 顯示文章資料 **/
-    func showArticle () {
-        userName.text = articleDetail.userName
-        resCategoryInfo.text = articleDetail.resCategoryInfo
-        articleTime.text = articleDetail.articleTime
-        articleTitle.text = articleDetail.articleTitle
-        resName.text = "店名：\(articleDetail.resName ?? "請選擇餐廳")"
-        articleText.text = articleDetail.articleText
-        articleGoodCount.text = String(articleDetail.articleGoodCount ?? 0)
-        articleCommentCount.text = String(articleDetail.commentCount ?? 0)
-        articleFavoriteCount.text = String(articleDetail.favoriteCount ?? 0)
-        avgCon.text = "平均消費：\(String(articleDetail.avgCon)) /人"
-        
+    /* 抓取文章資料 **/
+    @objc func showArticle() {
+        var requestParam = [String : Any]()
+        requestParam["action"] = "findById"
+        requestParam["articleId"] = articleDetail?.articleId
+        requestParam["loginUserId"] = loginUserId
+        executeTask(url_server!, requestParam) { (data, response, error) in
+            if error == nil {
+                if data != nil {
+                    // 將輸入資料列印出來除錯用
+                    print("input: \(String(data: data!, encoding: .utf8)!)")
+                    if let result = try? JSONDecoder().decode(Article.self, from: data!) {
+                        DispatchQueue.main.async {
+                            self.articleShow = result
+                            self.userName.text = self.articleShow.userName
+                            self.resCategoryInfo.text = self.articleShow.resCategoryInfo
+                            self.articleTime.text = self.articleShow.articleTime
+                            self.articleTitle.text = self.articleShow.articleTitle
+                            self.resName.text = "店名：\(self.articleShow.resName ?? "請選擇餐廳")"
+                            self.articleText.text = self.articleShow.articleText
+                            self.articleCommentCount.text = String(self.articleShow.commentCount ?? 0)
+                            self.articleFavoriteCount.text = String(self.articleShow.favoriteCount ?? 0)
+                            self.avgCon.text = "平均消費：\(String(self.articleShow.avgCon)) /人"
+                            //設定標題為 文章主題
+                            self.title = self.articleShow.articleTitle
+                            /* 遊客 > 不給點讚，也顯示未點讚 **/
+                            if self.loginUserId <= 0 {
+                                self.articleShow.articleGoodStatus = false
+                                self.btArticleGood.isSelected = false
+                                self.btArticleGood.isEnabled = false
+                            } else {
+                                /* 不是遊客 > 判定是否有點讚 **/
+                                if (self.articleShow.articleGoodStatus ) {
+                                    self.articleShow.articleGoodStatus = true
+                                    self.btArticleGood.isSelected = true
+                                } else {
+                                    self.articleShow.articleGoodStatus = false
+                                    self.btArticleGood.isSelected = false
+                                }
+                            }
+                            //初始>先取得點讚數
+                            self.articleGoodCount.text = String(self.articleDetail.articleGoodCount ?? 0)
+                        }
+                    }
+                }
+            }else {
+                print(error!.localizedDescription)
+            }
+        }
     }
     
     /* 抓取圖片資料 **/
@@ -83,7 +126,6 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                 if data != nil {
                     // 將輸入資料列印出來除錯用
                     print("input: \(String(data: data!, encoding: .utf8)!)")
-                    
                     if let result = try? JSONDecoder().decode([Image].self, from: data!) {
                         self.articleImage = result
                         DispatchQueue.main.async {
@@ -133,7 +175,7 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
         var requestParam = [String: Any]()
         requestParam["action"] = "getImage"
         requestParam["id"] = images.imgId
-        requestParam["imageSize"] = cell.frame.width * 7
+        requestParam["imageSize"] = cell.frame.width * 4
         var image: UIImage?
         //先設定預設圖檔為"noImage.jpg"
         cell.articleDetailImageView.image = UIImage(named: "noImage.jpg")
@@ -153,43 +195,38 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                         cell.articleDetailImageView.image = image
                     }
                 }
-                
             } else {
                 print(error!.localizedDescription)
             }
         }
         return cell
-}
+    }
     /* 設定顯示大圖 **/
     @IBSegueAction func setBigImage(_ coder: NSCoder) -> BigImageViewController? {
-      let controller = BigImageViewController(coder: coder)
+        let controller = BigImageViewController(coder: coder)
         if let item = imageCollectionView.indexPathsForSelectedItems?.first?.item {
             let images = articleImage[item]
             controller?.imageId = images.imgId
-    }
+        }
         return controller
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "CommentSugue" {
-//            let comment = articleDetail.articleId
-//            let controller = segue.destination as! CommentViewController
-//            controller.articleId = comment
-//        }
-//    }
     /* 文章點讚功能 **/
     @IBAction func articleGood(_ sender: UIButton) {
-        //判斷選取狀態
-        sender.isSelected.toggle()  //.toggle() 反轉狀態
-        sender.isSelected = true //有被選擇
-        sender.isSelected = false //沒被選擇
+        if (self.articleDetail.articleGoodStatus ) {
+            sender.isSelected = true
+            cancelGood()
+        } else {
+            sender.isSelected = false
+            setGood()
+        }
     }
+    
     /* 文章收藏功能 **/
     @IBAction func articleFavorite(_ sender: UIButton) {
         //判斷選取狀態
         sender.isSelected.toggle()
     }
-    
     
     /* 留言區 **/
     @IBAction func setComment(_ sender: Any) {
@@ -224,16 +261,17 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
     
     /* 跳頁 > 編輯文章方法 **/
     func settingArticle() {
-        performSegue(withIdentifier: "UpdateArticleViewController", sender: nil)
+        let toUpdate = UIStoryboard(name: "Article", bundle: nil).instantiateViewController(withIdentifier: "UpdateArticleViewController") as! UpdateArticleViewController
+        toUpdate.articleInfo = articleShow
+        self.navigationController?.pushViewController(toUpdate, animated: true)
     }
     
     /* 刪除文章方法 **/
     func deleteArticle() {
         let controller = UIAlertController(title: "警告", message: "你要刪除文章嗎？", preferredStyle: .alert)
-        
         /* 刪除文章資料 **/
         let articleId = articleDetail.articleId
-      let articleDelete = ArticleDelete(articleStatus: false, articleId: articleId)
+        let articleDelete = ArticleDelete(articleStatus: false, articleId: articleId)
         //確認 > 執行刪除方法
         let yesAction = UIAlertAction(title: "是的", style: .destructive) { (_) in
             var requestParam = [String : Any]()
@@ -260,13 +298,59 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
         }
         controller.addAction(yesAction)
         //取消
-        let noAction = UIAlertAction(title: "我再想想", style: .cancel, handler: nil)
+        let noAction = UIAlertAction(title: "我再想想", style: .default, handler: nil)
         controller.addAction(noAction)
         present(controller, animated: true, completion: nil)
     }
-}
-
-extension ArticleDetailViewController {
+    
+    /* 點讚方法 **/
+    func setGood () {
+        var requestParam = [String : Any]()
+        requestParam["action"] = "articleGoodInsert"
+        requestParam["articleId"] = articleDetail.articleId
+        requestParam["loginUserId"] = loginUserId
+        executeTask(self.url_server!, requestParam) { (data, response, error) in
+            if error == nil {
+                if data != nil {
+                    if let result = String(data: data! , encoding: .utf8) {
+                        if Int(result) != nil {
+                            DispatchQueue.main.async {
+                                let goodPlus = self.articleShow.articleGoodCount! + 1
+                                self.articleGoodCount.text = String(goodPlus)
+                                self.btArticleGood.isSelected.toggle()
+                                self.articleDetail.articleGoodStatus = true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /* 取消讚方法 **/
+    func cancelGood () {
+        var requestParam = [String : Any]()
+        requestParam["action"] = "articleGoodDelete"
+        requestParam["articleId"] = articleDetail.articleId
+        requestParam["userId"] = loginUserId
+        executeTask(self.url_server!, requestParam) { (data, response, error) in
+            if error == nil {
+                if data != nil {
+                    if let result = String(data: data! , encoding: .utf8) {
+                        if Int(result) != nil {
+                            DispatchQueue.main.async {
+                                let goodLess = self.articleShow.articleGoodCount! - 1
+                                self.articleGoodCount.text = String(goodLess)
+                                self.btArticleGood.isSelected.toggle()
+                                self.articleDetail.articleGoodStatus = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 }
+
+
 

@@ -10,7 +10,6 @@ import PhotosUI
 
 class InsertArticleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
-    
     @IBOutlet weak var tfConMum: UITextField!
     @IBOutlet weak var tfConAmount: UITextField!
     @IBOutlet weak var tfArticleTitle: UITextField!
@@ -30,11 +29,11 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
     
     let url_article = URL(string: common_url + "ArticleServlet")
     let url_image = URL(string: common_url + "ImgServlet")
+    let loginUserId = COMM_USER_ID  //登入userId
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "發文"
-        
         tfConMum.delegate = self
         tfConAmount.delegate = self
     }
@@ -50,7 +49,15 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
                 if char > 57 { return false }
             }
         }
-     return true
+        return true
+    }
+    /* 關掉鍵盤 **/
+    @IBAction func didEndOnExit(_ sender: Any) {
+    }
+    /* 關掉鍵盤 **/
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tvArticleText.resignFirstResponder()
+        self.view?.endEditing(false)
     }
     
     /* collectionView長度 **/
@@ -64,11 +71,9 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
         //判斷第一個item要執行的動作
         if indexPath.item == 0 {
             cell.imageview.image = UIImage(systemName: "camera.circle")
-      
         } else {
             cell.imageview.image = images[indexPath.item - 1]
-            
-    }
+        }
         return cell
     }
     
@@ -89,69 +94,66 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
     }
     /* 上傳文章 **/
     @IBAction func insertArticle(_ sender: Any) {
-        let articleTitle = tfArticleTitle == nil ? "" : tfArticleTitle.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let articleText = tvArticleText == nil ? "" : tvArticleText.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        let conNum = Int(tfConMum.text ?? "")
-        let conAmount = Int(tfConAmount.text ?? "")
-
-        /* 上傳文章資料>包成類別 **/
-      let articleInsert = ArticleInsert(articleId: 0, articleTitle: articleTitle, articleText: articleText, conAmount: conAmount, conNum: conNum, resId: resId, userId: 5, articleStatus: true)
-        
-        var requestParam = [String: Any]()
-        
-        /* 連線後端 **/
-        requestParam["action"] = "articleInsert"
-        requestParam["article"] = try! String(data: JSONEncoder().encode(articleInsert), encoding: .utf8)
-        executeTask(self.url_article!, requestParam) { (data, response, error) in
-            if error == nil {
-                if data != nil {
-                    if let result = String( data: data!, encoding: .utf8 ) {
-                        if Int(result) != nil {
-//                            DispatchQueue.main.async {
+        if loginUserId != 0 {
+            let articleTitle = tfArticleTitle == nil ? "" : tfArticleTitle.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            let articleText = tvArticleText == nil ? "" : tvArticleText.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            let conNum = Int(tfConMum.text ?? "")
+            let conAmount = Int(tfConAmount.text ?? "")
+            /* 上傳文章資料 **/
+            let articleInsert = ArticleInsert(articleId: 0, articleTitle: articleTitle, articleText: articleText, conAmount: conAmount, conNum: conNum, resId: resId, userId: loginUserId, articleStatus: true)
+            var requestParam = [String: Any]()
+            /* 連線後端 **/
+            requestParam["action"] = "articleInsert"
+            requestParam["article"] = try! String(data: JSONEncoder().encode(articleInsert), encoding: .utf8)
+            executeTask(self.url_article!, requestParam) { (data, response, error) in
+                if error == nil {
+                    if data != nil {
+                        if let result = String( data: data!, encoding: .utf8 ) {
+                            if Int(result) != nil {
+                                //                            DispatchQueue.main.async {
                                 //新增成功返回前一頁
-//                                if count != 0 {
-//                                    self.navigationController?.popViewController(animated: true)
-//                                } else {
-//                                    //新增失敗時動作
-//                                    return
-//                                }
-//                            }
+                                //                                if count != 0 {
+                                //                                    self.navigationController?.popViewController(animated: true)
+                                //                                } else {
+                                //                                    //新增失敗時動作
+                                //                                    return
+                                //                                }
+                                //                            }
+                            }
                         }
                     }
+                } else {
+                    print(error!.localizedDescription)
                 }
-            } else {
-                print(error!.localizedDescription)
             }
-        }
-        
-        /* 上傳圖片 **/
-        let imageInsert = Image(articleId: 0, imgId: 0)
-        
-        requestParam["action"] = "findByIdMax"
-        requestParam["img"] = try! String(data: JSONEncoder().encode(imageInsert), encoding: .utf8)
-
-            for i in 0...images.count - 1 {
-               let imageByte = self.images[i]
-                requestParam["imageBase64"] = imageByte.jpegData(compressionQuality: 1.0)!.base64EncodedString()
-                executeTask(self.url_image!, requestParam) { (data, response, error) in
-                    if error == nil {
-                        if data != nil {
-                            if let result = String(data: data!, encoding: .utf8) {
-                                if let count = Int(result) {
-                                    DispatchQueue.main.async {
-                                        // 新增成功則回前頁
-                                        if count != 0 {                                            self.navigationController?.popViewController(animated: true)
+            
+            /* 上傳圖片 **/
+            if images.count == 0 {
+                self.navigationController?.popViewController(animated: true)
+            } else {let imageInsert = Image(articleId: 0, imgId: 0)
+                requestParam["action"] = "findByIdMax"
+                requestParam["img"] = try! String(data: JSONEncoder().encode(imageInsert), encoding: .utf8)
+                for i in 0...images.count - 1 {
+                    let imageByte = self.images[i]
+                    requestParam["imageBase64"] = imageByte.jpegData(compressionQuality: 1.0)!.base64EncodedString()
+                    executeTask(self.url_image!, requestParam) { (data, response, error) in
+                        if error == nil {
+                            if data != nil {
+                                if let result = String(data: data!, encoding: .utf8) {
+                                    if let count = Int(result) {
+                                        DispatchQueue.main.async {
+                                            // 新增成功則回前頁
+                                            if count != 0 {                                            self.navigationController?.popViewController(animated: true)
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-            }
+                } }
         }
-        
     }
-
 }
 
 /* 擴展 > 選擇照片 **/
@@ -176,8 +178,8 @@ extension InsertArticleViewController: PHPickerViewControllerDelegate {
         }
     }
     
-    /* step1-1.要先在第一頁宣告unwindSegue方法() **/
-    /* 要加 @IBAction > 但先不用關聯UI元件 由第二頁的cell拉線到exit關聯 **/
+    /* step1-1.要先在第一頁(皆值的頁面)宣告unwindSegue方法() **/
+    /* 要加 @IBAction > 但先不用關聯UI元件 由第二頁(送值的頁面)的cell拉線到exit關聯 **/
     @IBAction func unwindToInsertArticleViewController(_ unwindSegue: UIStoryboardSegue) {
         /* step1-2.宣告物件 > unwindSegue的資料，轉型為第二頁的Controller **/
         if let sourceViewController = unwindSegue.source as? ResPickerTableViewController {
@@ -186,6 +188,13 @@ extension InsertArticleViewController: PHPickerViewControllerDelegate {
             lbResCategoryInfo.text = sourceViewController.selectRes?.resCategoryInfo
             resId = sourceViewController.selectRes?.resId
         }
+    }
+    /* 收回鍵盤 **/
+    func hideKeyboard() {
+        tfConMum.resignFirstResponder()
+        tfArticleTitle.resignFirstResponder()
+        tvArticleText.resignFirstResponder()
+        tfConAmount.resignFirstResponder()
     }
 }
 

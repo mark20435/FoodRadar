@@ -1959,6 +1959,7 @@ id action_articleInsertFragment_to_articleFragment
 id action_articleInsertFragment_to_insertImageFragment
 id action_articleInsertFragment_to_resAddressFragment
 id action_articleInsertFragment_to_resAddressFragment2
+id action_articleUpdateFragment_to_articleDetailFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -3098,6 +3099,7 @@ menu res_list_menu
 menu res_map_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation article_navigation
 navigation main_navigation

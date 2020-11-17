@@ -25,7 +25,7 @@ struct Article: Codable {
     var commentCount: Int?
     var favoriteCount: Int?
     var articleGoodId: Int
-    var articleGoodStatus: Bool = true
+    var articleGoodStatus: Bool 
     var articleFavoriteStatus: Bool
     var articleFavoriteId: Int
     
@@ -48,6 +48,16 @@ struct ArticleInsert: Codable {
     var articleStatus: Bool
 }
 
+/* 更新文章用 **/
+struct ArticleUpdate: Codable {
+    var articleText: String?
+    var articleTitle: String?
+    var modifyTime: String?
+    var conNum: Int?
+    var conAmount: Int?
+    var articleId: Int?
+}
+
 /* 刪除文章用 **/
 struct ArticleDelete: Codable {
     var articleStatus: Bool
@@ -58,4 +68,5 @@ struct getAllById: Encodable {
     let action = "getAllById"
     var loginUserId: Int
 }
+
 

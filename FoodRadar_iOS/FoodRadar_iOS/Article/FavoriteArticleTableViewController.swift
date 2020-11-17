@@ -121,7 +121,11 @@ class FavoriteArticleTableViewController: UITableViewController {
         
         cell.articleTitle.text = article.articleTitle
         cell.userName.text = article.userName
-        cell.lbArticleTime.text = article.modifyTime
+        if article.modifyTime != article.articleTime {
+            cell.lbArticleTime.text = "修改時間：\(article.modifyTime!)"
+        } else {
+            cell.lbArticleTime.text = "發文時間：\(article.articleTime!)"
+        }
         cell.resCategoryInfo.text = article.resCategoryInfo
         cell.resName.text = article.resName
         cell.lbgoodCount.text = String(article.articleGoodCount ?? 0)

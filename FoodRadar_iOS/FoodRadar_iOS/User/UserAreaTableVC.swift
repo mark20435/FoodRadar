@@ -9,9 +9,10 @@ import UIKit
 
 class UserAreaTableVC: UITableViewController {
     
-    var userDataArray = [UserAccountFile]()
+    var userAccount: UserAccount?
 
     override func viewDidLoad() {
+//        print("UserAreaTableVC viewDidLoad")
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -23,13 +24,38 @@ class UserAreaTableVC: UITableViewController {
         // Table隔線只顯示到有資料的部分
         tableView.tableFooterView = UIView()
         
-        if let getUserData = UserAccountFile.readUsersFromFile() {
-            self.userDataArray = getUserData
-            COMM_USER_ID = userDataArray[0].userId
-        }
+//        if let userAccount = UserAccount.readUsersFromFile() {
+//            self.userAccount = userAccount[0]
+//            COMM_USER_ID = userAccount[0].userId
+//        }
+//        print("UserAreaTableVC viewDidLoad end")
+        
+//        if let tabItems = tabBarController?.tabBar.items {
+//            // In this case we want to modify the badge number of the third tab:
+//            let tabItem = tabItems[4]
+//            if COMM_USER_ID == 0 {
+//                tabItem.badgeValue = nil
+//            } else {
+//                tabItem.badgeValue = String(COMM_USER_ID)
+//            }
+//        }
+        
         
     }
-
+    @IBAction func clickContanctUs(_ sender: Any) {
+        
+        let controller = UIAlertController(title: "聯繫我們", message: "※團隊成員※\n高新緯 tep101_01@tibame.com.tw\n陳暘璿 tep101_05@tibame.com.tw\n王瑞琦 tep101_08@tibame.com.tw\n簡輝峰 tep101_09@tibame.com.tw", preferredStyle: .alert)
+        // preferredStyle: .alert  => 顯示在中間
+//        let okAction = UIAlertAction(title: "關閉", style: .default) { (_) in
+//
+//        }
+//        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "關閉", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+        
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,17 +115,21 @@ class UserAreaTableVC: UITableViewController {
 
     
     // MARK: - Navigation
-
+/*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
-        if let controller = segue.destination as? UserDataSetupVC {
-            controller.userAccountFile = userDataArray[0]
-        }
+//
+//        print("prepare", userAccount, segue.destination, segue.destination.children)
+//        if let controller = segue.destination as? UserDataSetupVC {
+//            controller.userAccount = userAccount
+//        }
+//        print("prepare end")
+
         
     }
+ */
     
 
 }

@@ -35,17 +35,44 @@ public class ArticleFragment extends Fragment {
     public FloatingActionButton fbArticleInsert;
     public BottomNavigationView articleNavigation;
     public MenuItem articleFragment;
-
+    private String showArticle; //從餐聽跳過來
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
         // 顯示左上角的返回箭頭
-        new Common();
-        Common.setBackArrow(true, activity);
-        setHasOptionsMenu(true);
-        navController =
-                Navigation.findNavController(activity, R.id.mainFragment);
+//        new Common();
+//        Common.setBackArrow(true, activity);
+//        setHasOptionsMenu(true);
+//        navController =
+//                Navigation.findNavController(activity, R.id.mainFragment);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle bundle = getArguments();
+        //先判斷bundle是否為空值，否則會閃退
+        if (bundle != null) {
+            showArticle = bundle.getString("showArticle");
+        }
+        //先判斷showArticle是否為空值，否則會閃退
+        if (showArticle != null) {
+            if (showArticle.equals("SHOW_BACK")) {
+                // 顯示左上角的返回箭頭
+                new Common();
+                Common.setBackArrow(true, activity);
+                setHasOptionsMenu(true);
+                navController =
+                        Navigation.findNavController(activity, R.id.mainFragment);
+            } else {
+                new Common();
+                Common.setBackArrow(false, activity);
+                setHasOptionsMenu(true);
+                navController =
+                        Navigation.findNavController(activity, R.id.mainFragment);
+            }
+        }
     }
 
     // 顯示右上角的OptionMenu選單

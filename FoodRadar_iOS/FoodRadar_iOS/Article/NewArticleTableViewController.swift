@@ -7,23 +7,37 @@
 
 import UIKit
 
-class NewArticleTableViewController: UITableViewController {
+class NewArticleTableViewController: UITableViewController, UISearchBarDelegate {
   
     var allArticle = [Article]()
+    var searchArticle = [Article]()
     let url_server = URL(string: common_url + "ArticleServlet")
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
     let url_image = URL(string: common_url + "ImgServlet")
+    var loginUserId  = COMM_USER_ID
+    
+    @IBOutlet var newArticleTableView: UITableView!
+    @IBOutlet weak var ArticleSearchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         /* 連接到xib的Cell **/
         self.tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    /* 搜尋功能(輸入) **/
+    func searchArticle(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchText = searchBar.text ?? ""
+        if searchText == "" {
+            searchArticle = allArticle //沒輸入搜尋文字時顯示全部
+        } else {
+            //透過輸入的文字搜尋歌單(uppercased() > 無論大小寫)
+            searchArticle = allArticle.filter({ (Article) -> Bool in
+                Article.articleTitle!.uppercased().contains(searchText.uppercased())
+            })
+        }
+        newArticleTableView.reloadData()
+      
     }
     
     /* 顯示抓取的資料 **/
@@ -32,15 +46,14 @@ class NewArticleTableViewController: UITableViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
-        
         showAllArticles()
     }
     
-    /* 抓取資料的方法 **/
+    /* 抓取文章的方法 **/
     @objc func showAllArticles() {
         var requestParam = [String : Any]()
         requestParam["action"] = "getAllById"
-        requestParam["loginUserId"] = 0 //先寫死(遊客)
+        requestParam["loginUserId"] = loginUserId 
         executeTask(self.url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
@@ -98,9 +111,7 @@ class NewArticleTableViewController: UITableViewController {
                 print(error!.localizedDescription)
             }
         }
-        
         /* 取得User大頭圖 **/
-//        var requestParamUser = [String: Any]()
         requestParam["action"] = "getImage"
         requestParam["id"] = article.userId
         //imageSize > 圖片尺寸
@@ -122,13 +133,16 @@ class NewArticleTableViewController: UITableViewController {
         
         cell.articleTitle.text = article.articleTitle
         cell.userName.text = article.userName
-        cell.lbArticleTime.text = article.modifyTime
+        if article.modifyTime != article.articleTime {
+            cell.lbArticleTime.text = "修改時間：\(article.modifyTime!)"
+        } else {
+            cell.lbArticleTime.text = "發文時間：\(article.articleTime!)"
+        }
         cell.resCategoryInfo.text = article.resCategoryInfo
         cell.resName.text = article.resName
         cell.lbgoodCount.text = String(article.articleGoodCount ?? 0)
         cell.lbCommentCount.text = String(article.commentCount ?? 0)
         cell.lbFavoriteArticle.text = String(article.favoriteCount ?? 0)
-    
         return cell
     }
 

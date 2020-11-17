@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -270,8 +271,6 @@ public class ArticleDetailFragment extends Fragment {
                                 bundle.putString("conAmount", conAmountStr); //平均消費
                                 bundle.putString("resName", resName);   //餐廳名稱
                                 bundle.putString("resCategory", resCategory);   //餐廳種類
-
-
                                 Navigation.findNavController(v).navigate(R.id.action_articleDetailFragment_to_articleUpdateFragment, bundle);
 
                             } else {
