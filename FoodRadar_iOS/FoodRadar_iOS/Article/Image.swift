@@ -11,3 +11,4 @@ struct Image: Codable {
     var articleId: Int?
     var imgId: Int?
 }
+

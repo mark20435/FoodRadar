@@ -55,7 +55,7 @@ public class Category_Detail_Fragment extends Fragment {
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_category_Detail_Fragment_to_loginFragment);
+                //navController.navigate(R.id.action_category_Detail_Fragment_to_loginFragment);
             }
         });
 

@@ -149,24 +149,25 @@ public class UserMyCouponFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyCouponAdapter.MyViewHolder holder, int position) {
-            MyCoupon myCouponBidVH = myCouponListAdpt.get(position);
+            final MyCoupon myCouponBidVH = myCouponListAdpt.get(position);
             holder.myCouponInfo.setText(myCouponBidVH.getCouPonInfo());
 
             //int id = myCouponBidVH.getMyCouponId();
             Integer couPonId = myCouponBidVH.getCouPonId();
-            Log.d("TAG", "couPonId: " + couPonId);
+           // Log.d("TAG", "couPonId: " + couPonId);
             ImageTask imageTask = new ImageTask(MYCOUPON_SERVLET, couPonId, imageSize, holder.myCouponPhoto);
             imageTask.execute();
             imageTasks.add(imageTask);
 
-//            Integer couponID = myCouponBidVH.getCouPonId();
+
 //            List<Coupon> coupon = new ArrayList<>();
+//            Integer couponID = myCouponBidVH.getCouPonId();
 //            CommonTask getCouponTask;
 //            if (Common.networkConnected(activity)) {
 //                String url = MYCOUPON_SERVLET;
 //                Log.d(TAG,"getCouponById.url: " + url);
 //                JsonObject jsonObject = new JsonObject();
-//                jsonObject.addProperty("action", "getCouponById");
+//                jsonObject.addProperty("action", "getAllById");
 //                jsonObject.addProperty("id",couponID);
 //                jsonObject.addProperty("userId",Common.USER_ID);
 //                String jsonOut = jsonObject.toString();
@@ -189,10 +190,10 @@ public class UserMyCouponFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable("coupon", coupon);
-//                        Navigation.findNavController(v)
-//                                .navigate(R.id.action_userMyCouponFragment_to_couponDetailFragment, bundle);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("myCouponBidVH", myCouponBidVH);
+                        Navigation.findNavController(v)
+                                .navigate(R.id.action_userMyCouponFragment_to_couponDetailFragment, bundle);
 
                         //Common.showToast(activity, R.string.textNoRessFound);
 
@@ -234,12 +235,12 @@ public class UserMyCouponFragment extends Fragment {
             Common.showToast(activity,"NetworkConnected: fail");
         }
         //getmyCouponList.get(0).getCouPonId();
-        Log.d(TAG, "couPonIdList: " + getmyCouponList.get(0).getCouPonId());
+       // Log.d(TAG, "couPonIdList: " + getmyCouponList.get(0).getCouPonId());
         return getmyCouponList;
     }
 
     private void showmyCoupon(List<MyCoupon> showmyCouponList) {
-        Log.d(TAG, "couPonIdListshow: " + showmyCouponList.get(0).getCouPonId());
+        //Log.d(TAG, "couPonIdListshow: " + showmyCouponList.get(0).getCouPonId());
         MyCouponAdapter myCouponAdapter = (MyCouponAdapter) rcvMyCoupon.getAdapter();
         if (myCouponAdapter == null){
             rcvMyCoupon.setAdapter(new MyCouponAdapter(activity, showmyCouponList));

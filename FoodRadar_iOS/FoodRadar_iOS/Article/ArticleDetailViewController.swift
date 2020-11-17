@@ -7,10 +7,7 @@
 
 import UIKit
 
-//requestParam["action"] = "getImage"
-//requestParam["id"] = images.imgId
-//requestParam["imageSize"] = cell.frame.width
-
+/* 宣告一類別 > 取得當前的圖片資料 **/
 struct GetImage: Encodable {
     let action = "getImage"
     let id: Int
@@ -38,19 +35,24 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var imageFlowLayout: UICollectionViewFlowLayout!
     
     @IBOutlet weak var btComment: UIButton!
-    
+
+    @IBOutlet weak var btSetting: UIButton!
     
     var articleDetail: Article!
     var articleImage = [Image]()
     var image: Image!
     let url_image = URL(string: common_url + "ImgServlet")
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
+    let url_server = URL(string: common_url + "ArticleServlet")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //設定標題為 文章主題
         self.title = articleDetail.articleTitle
         // Do any additional setup after loading the view.
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(systemName: "ellipsis.rectangle"),style: .plain, target: self, action: #selector(clickSetting))
+        
         showArticle()
         getImage()
         getIcon()
@@ -135,7 +137,7 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
         var image: UIImage?
         //先設定預設圖檔為"noImage.jpg"
         cell.articleDetailImageView.image = UIImage(named: "noImage.jpg")
-        
+        //宣告cell.imageId > 取得當前imgId
         cell.imageId = images.imgId!
         executeTask(url_image!, requestParam) { (data, response, error) in
             if error == nil {
@@ -175,7 +177,20 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
 //            controller.articleId = comment
 //        }
 //    }
-
+    /* 文章點讚功能 **/
+    @IBAction func articleGood(_ sender: UIButton) {
+        //判斷選取狀態
+        sender.isSelected.toggle()  //.toggle() 反轉狀態
+        sender.isSelected = true //有被選擇
+        sender.isSelected = false //沒被選擇
+    }
+    /* 文章收藏功能 **/
+    @IBAction func articleFavorite(_ sender: UIButton) {
+        //判斷選取狀態
+        sender.isSelected.toggle()
+    }
+    
+    
     /* 留言區 **/
     @IBAction func setComment(_ sender: Any) {
     }
@@ -188,5 +203,70 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
         controller?.userId = userId
         return controller
     }
+    
+    @objc func clickSetting() {
+        let controller = UIAlertController(title: "文章設定", message: "請選擇", preferredStyle: .actionSheet)
+        //編輯文章
+        let settingAction = UIAlertAction(title: "編輯文章", style: .default) { (_) in
+            self.settingArticle()
+        }
+        controller.addAction(settingAction)
+        //刪除文章
+        let deleteAction = UIAlertAction(title: "刪除文章", style: .destructive) { [self] (_) in
+            self.deleteArticle()
+        }
+        controller.addAction(deleteAction)
+        //取消
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)    
+    }
+    
+    /* 跳頁 > 編輯文章方法 **/
+    func settingArticle() {
+        performSegue(withIdentifier: "UpdateArticleViewController", sender: nil)
+    }
+    
+    /* 刪除文章方法 **/
+    func deleteArticle() {
+        let controller = UIAlertController(title: "警告", message: "你要刪除文章嗎？", preferredStyle: .alert)
+        
+        /* 刪除文章資料 **/
+        let articleId = articleDetail.articleId
+      let articleDelete = ArticleDelete(articleStatus: false, articleId: articleId)
+        //確認 > 執行刪除方法
+        let yesAction = UIAlertAction(title: "是的", style: .destructive) { (_) in
+            var requestParam = [String : Any]()
+            requestParam["action"] = "articleDelete"
+            requestParam["article"] = try! String(data: JSONEncoder().encode(articleDelete), encoding: .utf8)
+            executeTask(self.url_server!, requestParam) { (data, response, error) in
+                if error == nil {
+                    if data != nil {
+                        // 將輸入資料列印出來除錯用
+                        print("input: \(String(data: data!, encoding: .utf8)!)")
+                        
+                        if let result = String(data: data!, encoding: .utf8) {
+                            if let count = Int(result) {
+                                if count != 0 {
+                                    DispatchQueue.main.async {
+                                        self.navigationController!.popViewController(animated: true)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        controller.addAction(yesAction)
+        //取消
+        let noAction = UIAlertAction(title: "我再想想", style: .cancel, handler: nil)
+        controller.addAction(noAction)
+        present(controller, animated: true, completion: nil)
+    }
+}
+
+extension ArticleDetailViewController {
+    
 }
 

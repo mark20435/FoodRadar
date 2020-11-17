@@ -71,6 +71,13 @@ public class MyCoupon {
 		this.couPonPhoto = couPonPhoto;
 		this.couPonEnable = couPonEnable;
 	}
+	
+	public MyCoupon(int couPonId, int userId, Boolean couPonIsUsed) {
+		this.userId = userId;
+		this.couPonIsUsed = couPonIsUsed;
+		this.couPonId = couPonId;
+		
+	}
 
 	public int getId() {
 		return id;

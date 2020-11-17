@@ -20,3 +20,24 @@ struct Comment: Codable {
     var commentGoodId: Int?
     var commentGoodCount: Int?
 }
+/* 刪除留言 **/
+struct DeleteComment: Codable {
+    var commentStatus: Bool?
+    var commentId: Int?
+}
+
+/* 新增留言 **/
+struct InsertComment: Codable {
+    var commentId: Int?
+    var articleId: Int?
+    var userId: Int?
+    var commentStatus: Bool?
+    var commentText: String?
+}
+
+/* 更新留言 **/
+struct UpdateComment: Codable {
+    var commentId: Int?
+    var commentText: String?
+    var commentModifyTime: String?
+}
