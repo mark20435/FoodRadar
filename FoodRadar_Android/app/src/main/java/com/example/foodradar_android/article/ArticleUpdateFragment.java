@@ -93,14 +93,23 @@ public class ArticleUpdateFragment extends Fragment {
         activity = getActivity();
         imageTasks = new ArrayList<>();
         imgs = new ArrayList<>();
+    }
 
+
+    //隱藏bottomNav
+    @Override
+    public void onStart() {
+        super.onStart();
         /* 顯示ActionBar */
         setHasOptionsMenu(true);
         /* 左上返回鍵 */
         Common.setBackArrow(false, activity);
         setHasOptionsMenu(true);
         navController = Navigation.findNavController(activity, R.id.mainFragment);
+
+        ArticleFragment.bottomNavSet(activity, 0);
     }
+
 
     /* 右上角，送出按鈕 */
     @Override
@@ -201,8 +210,12 @@ public class ArticleUpdateFragment extends Fragment {
                 } else {
                     Common.showToast(activity, "連線失敗");
                 }
-                /* 結束動作後返回前一頁 */
-                getFragmentManager().popBackStack();
+                /* 結束動作後返回前一頁 > 第二次進Update會閃退 */
+//                if (getFragmentManager() != null) {
+//                    getFragmentManager().popBackStack();
+//                }
+                //方法為新增頁面 > 暫時解
+                Navigation.findNavController(getView()).navigate(R.id.action_articleUpdateFragment_to_articleDetailFragment);
                 break;
 
             /* 預設 */
@@ -217,13 +230,6 @@ public class ArticleUpdateFragment extends Fragment {
                              Bundle savedInstanceState) {
         activity.setTitle("更新文章");
         return inflater.inflate(R.layout.fragment_article_update, container, false);
-    }
-
-    //隱藏bottomNav
-    @Override
-    public void onStart() {
-        super.onStart();
-        ArticleFragment.bottomNavSet(activity, 0);
     }
 
     @Override

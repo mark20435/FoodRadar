@@ -15,8 +15,6 @@ class ResPickerTableViewController: UITableViewController {
     
     /* 宣告物件包裝資料帶回前一頁 **/
     var selectRes: ResAddress?
-   
-
     
     
     override func viewDidLoad() {
@@ -75,7 +73,6 @@ class ResPickerTableViewController: UITableViewController {
         //顯示在tableViewCell上
         cell.lbResName.text = resAddress.resName
         cell.lbResAddress.text = resAddress.resAddress
-        
         
         return cell
     }
