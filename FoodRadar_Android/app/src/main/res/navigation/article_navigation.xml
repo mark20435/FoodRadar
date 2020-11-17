@@ -80,5 +80,9 @@
         android:id="@+id/articleUpdateFragment"
         android:name="com.example.foodradar_android.article.ArticleUpdateFragment"
         android:label="fragment_article_update"
-        tools:layout="@layout/fragment_article_update" />
+        tools:layout="@layout/fragment_article_update" >
+        <action
+            android:id="@+id/action_articleUpdateFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
 </navigation>

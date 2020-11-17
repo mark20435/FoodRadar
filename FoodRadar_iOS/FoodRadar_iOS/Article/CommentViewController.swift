@@ -17,6 +17,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     let url_comment = URL(string: common_url + "CommentServlet")
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
     
+    var loginUserId  = COMM_USER_ID
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getComment()
@@ -37,7 +39,11 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
         cell.userName.text = comment.userName
         cell.commentText.text = comment.commentText
-        cell.commentTime.text = comment.commentTime
+        if comment.commentModifyTime != comment.commentTime {
+            cell.commentTime.text = comment.commentModifyTime
+        } else {
+            cell.commentTime.text = comment.commentTime
+        }
         cell.commentGoodCount.text = String(comment.commentGoodCount ?? 0)
         
         /* 取得使用者大頭 **/
@@ -92,7 +98,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         let update = UIContextualAction(style: .normal, title: "編輯") { (action, view, bool) in
             let controller = UIAlertController(title: "編輯留言", message: " ", preferredStyle: .alert)
             controller.addTextField { (textField) in
-               textField.placeholder = "請輸入留言"
+                let comment = self.commentArray[indexPath.row]
+                textField.text = comment.commentText
             }
             let okAction = UIAlertAction(title: "送出", style: .destructive) { (_) in
                 let comment = controller.textFields?[0].text
@@ -105,7 +112,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.present(controller, animated: true, completion: nil)
             self.getComment()
         }
-        update.backgroundColor = .lightGray // 改變背景色
+        
+        update.backgroundColor = #colorLiteral(red: 0.925793469, green: 0.5111739635, blue: 0.4860615134, alpha: 1) // 改變背景色
         
         /* 刪除留言功能 **/
         let delete = UIContextualAction(style: .destructive, title: "刪除") { (action, view, bool) in
@@ -131,17 +139,19 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         let swipeAction = UISwipeActionsConfiguration(actions: [delete, update])
         //是否開啟滑倒底執行的動作 > 執行第一個動作(delete)
         swipeAction.performsFirstActionWithFullSwipe = true
+        if loginUserId == commentArray[indexPath.row].userId {
+            return swipeAction
+        } else {
+            return nil
+        }
         
-        return swipeAction
     }
     
     /* 編輯留言 **/
     func updateComment(_ indexPath: IndexPath, _ comment: String) {
 //        let comment = commentTableView.indexPathForSelectedRow
         let updateComment = commentArray[indexPath.row]
-        print("UPUPUPUP\(updateComment)")
         let commentId = updateComment.commentId
-        print("IDIDIIDIID\(commentId ?? 0)")
         let commentText = comment
         //設定時間格式，並轉為字串
         let dateFormatter = DateFormatter()
@@ -169,10 +179,11 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     /* 送出留言 **/
     @IBAction func sendComment(_ sender: UIButton) {
+        if loginUserId > 0 {
         //輸入留言資料
         let commentText = tfComment == nil ? "" : tfComment.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         //存成類別 > userId等Blues弄完要補
-        let insertComment = InsertComment(commentId: 0, articleId: articleId, userId: userId, commentStatus: true, commentText: commentText)
+        let insertComment = InsertComment(commentId: 0, articleId: articleId, userId: loginUserId, commentStatus: true, commentText: commentText)
         var requestParam = [String: Any]()
         requestParam["action"] = "commentInsert"
         requestParam["comment"] = try? String(data: JSONEncoder().encode(insertComment), encoding: .utf8)
@@ -189,6 +200,13 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             }
+        }
+        } else if (loginUserId <= 0) {
+            let controller = UIAlertController(title: "請先登入", message: "你還沒登入喔！", preferredStyle: .alert)
+            //取消
+            let noAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+            controller.addAction(noAction)
+            present(controller, animated: true, completion: nil)
         }
     }
     

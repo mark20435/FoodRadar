@@ -22,6 +22,8 @@
 		123DBCAC25528C380051E8AA /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DBCAA25528C380051E8AA /* ArticleTableViewCell.swift */; };
 		123DBCAD25528C380051E8AA /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123DBCAB25528C380051E8AA /* ArticleTableViewCell.xib */; };
 		123DBCB42552D33E0051E8AA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DBCB32552D33E0051E8AA /* Common.swift */; };
+		124E53C2255FD47A0053DA55 /* UpdateShowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124E53C1255FD4790053DA55 /* UpdateShowImageCollectionViewCell.swift */; };
+		124E53C5255FD4960053DA55 /* UpdateInsertImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124E53C4255FD4960053DA55 /* UpdateInsertImageCollectionViewCell.swift */; };
 		126CD15A255A7979008FC50A /* InsertImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126CD159255A7979008FC50A /* InsertImageView.swift */; };
 		127DF3192555143E009138CF /* RankCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127DF3182555143E009138CF /* RankCollectionViewController.swift */; };
 		127DF31C25551EE6009138CF /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127DF31B25551EE6009138CF /* ArticleDetailViewController.swift */; };
@@ -80,6 +82,8 @@
 		123DBCAA25528C380051E8AA /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		123DBCAB25528C380051E8AA /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
 		123DBCB32552D33E0051E8AA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		124E53C1255FD4790053DA55 /* UpdateShowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateShowImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		124E53C4255FD4960053DA55 /* UpdateInsertImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsertImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		126CD159255A7979008FC50A /* InsertImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertImageView.swift; sourceTree = "<group>"; };
 		127DF3182555143E009138CF /* RankCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewController.swift; sourceTree = "<group>"; };
 		127DF31B25551EE6009138CF /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		33A3BB9E2559813700141001 /* MyResTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResTableVC.swift; sourceTree = "<group>"; };
 		33A3BBA22559820400141001 /* MyResTableVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResTableVCell.swift; sourceTree = "<group>"; };
 		33A3BC2E255BD40C00141001 /* MyRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRes.swift; sourceTree = "<group>"; };
+		33A3BC32255BD68E00141001 /* UserAccountFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountFile.swift; sourceTree = "<group>"; };
 		33AEB6472552AB9F00083F2E /* UserAreaTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAreaTableVC.swift; sourceTree = "<group>"; };
 		33AEB64C2553928400083F2E /* UserDataSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSetupVC.swift; sourceTree = "<group>"; };
 		33BD4AA325552556001924DD /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 			children = (
 				1970875F254BBFCC00014DCF /* FoodRadar_iOS */,
 				1970875E254BBFCC00014DCF /* Products */,
+				33D8C653256367480036F31C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				1970877F254BC4BC00014DCF /* Article.storyboard */,
+				124E53C1255FD4790053DA55 /* UpdateShowImageCollectionViewCell.swift */,
+				124E53C4255FD4960053DA55 /* UpdateInsertImageCollectionViewCell.swift */,
 				1292F214255D3D7400EAF496 /* UpdateArticleViewController.swift */,
 				126CD159255A7979008FC50A /* InsertImageView.swift */,
 				120CB5E52558622100F86A72 /* CommentViewController.swift */,
@@ -284,6 +292,14 @@
 				19FC2744255A1F5100BD47EC /* GetImagePost.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		33D8C653256367480036F31C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				33A3BC32255BD68E00141001 /* UserAccountFile.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,7 +403,10 @@
 				33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */,
 				19FC2745255A1F5100BD47EC /* GetImagePost.swift in Sources */,
 				19FC26C3254FB9EB00BD47EC /* NetworkController.swift in Sources */,
+				33A3BC33255BD68E00141001 /* UserAccountFile.swift in Sources */,
+				124E53C2255FD47A0053DA55 /* UpdateShowImageCollectionViewCell.swift in Sources */,
 				19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */,
+				124E53C5255FD4960053DA55 /* UpdateInsertImageCollectionViewCell.swift in Sources */,
 				33A3BB9F2559813700141001 /* MyResTableVC.swift in Sources */,
 				19FC26CD254FE38700BD47EC /* Res.swift in Sources */,
 				19461D56255E1A3E000D54A5 /* ResListCollectionViewController.swift in Sources */,
