@@ -63,8 +63,8 @@
 32-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:21:9-43
 33        android:label="@string/app_name"
 33-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:22:9-41
-34        android:roundIcon="@mipmap/ic_launcher_round"
-34-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:23:9-54
+34        android:roundIcon="@mipmap/ic_launcher"
+34-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:23:9-48
 35        android:supportsRtl="true"
 35-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:24:9-35
 36        android:testOnly="true"

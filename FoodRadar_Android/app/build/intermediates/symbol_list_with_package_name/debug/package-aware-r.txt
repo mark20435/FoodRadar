@@ -3095,6 +3095,7 @@ menu res_list_menu
 menu res_map_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation article_navigation
 navigation main_navigation
