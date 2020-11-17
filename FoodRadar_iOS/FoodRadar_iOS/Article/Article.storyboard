@@ -642,8 +642,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="RPM-O0-aIN"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oCZ-fa-6AE">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oCZ-fa-6AE">
+                                    <size key="itemSize" width="250" height="250"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -915,7 +915,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="bq8-KK-a5D"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b1s-ow-l58">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b1s-ow-l58">
                                     <size key="itemSize" width="70" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -923,14 +923,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UpdateInsertImageCollectionViewCell" id="OZJ-hr-kyH" customClass="UpdateInsertImageCollectionViewCell" customModule="FoodRadar_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="5" width="65" height="65"/>
+                                        <rect key="frame" x="0.0" y="2.5" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tRQ-FQ-55F">
-                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SSd-cY-PdJ">
-                                                    <rect key="frame" x="0.0" y="0.5" width="65" height="64"/>
+                                                    <rect key="frame" x="0.0" y="0.5" width="70" height="69"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="HYD-eW-PIG"/>
                                                         <constraint firstAttribute="height" constant="65" id="cwi-er-nKQ"/>
