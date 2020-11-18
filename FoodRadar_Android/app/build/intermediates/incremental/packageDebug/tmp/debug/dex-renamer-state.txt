@@ -1,4 +1,4 @@
-#Tue Nov 17 15:15:42 CST 2020
+#Wed Nov 18 13:08:27 CST 2020
 base.0=/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

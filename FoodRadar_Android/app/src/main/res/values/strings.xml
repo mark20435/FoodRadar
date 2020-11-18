@@ -15,6 +15,7 @@
     <string name="editCoupon">維護優惠券</string>
     <string name="editDelcoupon">優惠券刪除</string>
     <string name="editAddCoupon">新建優惠券</string>
+    <string name="textNoFindCoupon">請新增優惠券</string>
     <string name="id_num">ID_Number</string>
     <string-array name="couponType">
         <item>優惠券活動</item>
@@ -22,8 +23,8 @@
     </string-array>
 
     <string-array name="couponEnable">
-        <item>使用優惠券</item>
-        <item>未使用優惠券</item>
+        <item>不可收藏</item>
+        <item>可收藏</item>
     </string-array>
 
 

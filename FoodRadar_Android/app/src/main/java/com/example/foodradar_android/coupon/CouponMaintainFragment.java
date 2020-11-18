@@ -311,13 +311,13 @@ public class CouponMaintainFragment extends Fragment implements DatePickerDialog
                     case 0:
                         spTypeBoolean = false;
 //                        spType.getSelectedItem().toString().equals("公告");
-                        Common.showToast(activity, "優惠券活動");
+                        //Common.showToast(activity, "優惠券活動");
                         break;
 
                     case 1:
                         spTypeBoolean = true;
 //                        spType.getSelectedItem().toString().equals("優惠券");
-                        Common.showToast(activity, "公告活動");
+                        //Common.showToast(activity, "公告活動");
                         break;
                 }
             }
@@ -335,13 +335,13 @@ public class CouponMaintainFragment extends Fragment implements DatePickerDialog
                     case 0://使用狀態時、顯示優惠券、收藏也看不到我的收藏。
                        spEnableBoolean = false;
                        //spEnable.getSelectedItem().toString().equals(0);
-                        Common.showToast(activity, "使用優惠券");
+                       // Common.showToast(activity, "使用優惠券");
                         break;
 
                     case 1://未使用狀態 == 上架狀態、顯示優惠券、可以收藏也看的到我的收藏。
                         spEnableBoolean = true;
                         //spEnable.getSelectedItem().toString().equals("未使用");
-                        Common.showToast(activity, "未使用優惠券");
+                        //Common.showToast(activity, "未使用優惠券");
                         break;
                 }
 
