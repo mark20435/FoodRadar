@@ -27,6 +27,12 @@ class ArticleTableViewCell: UITableViewCell {
         // Initialization code
         
     }
+    /* 解決重複利用 **/
+    var task: URLSessionDataTask?
+    override func prepareForReuse() {
+        super.prepareForReuse() //重複利用之前呼叫
+        task?.cancel()  //先清除，以便重新reload
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

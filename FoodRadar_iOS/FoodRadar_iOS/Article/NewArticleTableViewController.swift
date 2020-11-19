@@ -15,7 +15,6 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
     let url_image = URL(string: common_url + "ImgServlet")
     var loginUserId  = COMM_USER_ID
-    
     @IBOutlet var newArticleTableView: UITableView!
     @IBOutlet weak var ArticleSearchBar: UISearchBar!
     
@@ -23,23 +22,49 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
         super.viewDidLoad()
         /* 連接到xib的Cell **/
         self.tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+        /* 程式設定tableView Header 的高度，避免searchBar擋住tableView **/
+        //註，searchBar要用view包住，不能直接放，避免畫面跑版
+        self.tableView.tableHeaderView?.frame.size = CGSize(width: self.tableView.bounds.width, height: 56)
+        ArticleSearchBar.delegate = self
+        newArticleTableView.delegate = self
+        
+        tableViewAddRefreshControl()    //呼叫下拉更新
     }
     
-    /* 搜尋功能(輸入) **/
-    func searchArticle(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    /* 下拉更新 **/
+    func tableViewAddRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "下拉更新")
+        refreshControl.addTarget(self, action: #selector(showAllArticles), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+    
+    /* searchBar搜尋設定 **/
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchText = searchBar.text ?? ""
         if searchText == "" {
             searchArticle = allArticle //沒輸入搜尋文字時顯示全部
         } else {
-            //透過輸入的文字搜尋歌單(uppercased() > 無論大小寫)
+            //透過輸入的文字搜尋內容(uppercased() > 無論大小寫)
             searchArticle = allArticle.filter({ (Article) -> Bool in
-                Article.articleTitle!.uppercased().contains(searchText.uppercased())
+               return Article.articleTitle!.uppercased().contains(searchText.uppercased()) ||
+                    Article.resName!.uppercased().contains(searchText.uppercased())
             })
         }
         newArticleTableView.reloadData()
-      
     }
-    
+    /* 滑動時關閉鍵盤 **/
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊Gone關掉鍵盤 **/
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊旁邊關掉鍵盤 **/
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view?.endEditing(true)
+    }
     /* 顯示抓取的資料 **/
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,14 +79,23 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
         var requestParam = [String : Any]()
         requestParam["action"] = "getAllById"
         requestParam["loginUserId"] = loginUserId 
-        executeTask(self.url_server!, requestParam) { (data, response, error) in
+        _ = executeTask(self.url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     // 將輸入資料列印出來除錯用
                     print("input: \(String(data: data!, encoding: .utf8)!)")
                     if let result = try? JSONDecoder().decode([Article].self, from: data!) {
                         self.allArticle = result
+                        self.searchArticle = result
                         DispatchQueue.main.async {
+                            //宣告物件執行refreshControl
+                            if let control = self.tableView.refreshControl {
+                                if control.isRefreshing {
+                                    //假如已執行拉更新動作時，停止下拉
+                                    control.endRefreshing()
+                                }
+                            }
+                            //抓到資料時重新更新資料
                             self.tableView.reloadData()
                         }
                     }
@@ -80,15 +114,13 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
     /* tableView長度限制 */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return allArticle.count
+        return searchArticle.count
     }
     
     /* 顯示xib到tableView上 **/
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as! ArticleTableViewCell
-        
-        let article = allArticle[indexPath.row]
+        let article = searchArticle[indexPath.row]
         /* 取得餐廳圖片 **/
         var requestParam = [String: Any]()
         requestParam["action"] = "getImageByArticleId"
@@ -98,7 +130,7 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
         //先預設圖檔為noImage.jpg > 防止重複利用
         cell.ivArticleImage.image = UIImage(named: "noImage.jpg")
         var image: UIImage?
-        executeTask(url_image!, requestParam) { data, response, error in
+        cell.task = executeTask(url_image!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     image = UIImage(data: data!)
@@ -117,7 +149,7 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
         //imageSize > 圖片尺寸
         requestParam["imageSize"] = cell.frame.width
         var userIcon: UIImage?
-        executeTask(url_userAccount!, requestParam) { data, response, error in
+        cell.task = executeTask(url_userAccount!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     userIcon = UIImage(data: data!)
@@ -148,7 +180,7 @@ class NewArticleTableViewController: UITableViewController, UISearchBarDelegate 
 
     /* 包裝資料到Detail **/
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedArticle = allArticle[indexPath.row]
+        let selectedArticle = searchArticle[indexPath.row]
         if let viewController = storyboard?.instantiateViewController(identifier: "ArticleDetailViewController") as? ArticleDetailViewController {
             viewController.articleDetail = selectedArticle
             navigationController?.pushViewController(viewController, animated: true)

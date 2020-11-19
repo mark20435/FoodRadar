@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IIt-2v-wZS">
-                        <rect key="frame" x="8" y="8.5" width="20" height="19"/>
+                        <rect key="frame" x="6" y="4.5" width="24" height="23"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="Y2R-bk-hoC"/>
-                            <constraint firstAttribute="height" constant="20" id="cHg-as-yQk"/>
+                            <constraint firstAttribute="width" constant="24" id="Y2R-bk-hoC"/>
+                            <constraint firstAttribute="height" constant="24" id="cHg-as-yQk"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -30,13 +31,19 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文青的女子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVY-ip-Wcy">
-                        <rect key="frame" x="36" y="11" width="61.5" height="14.5"/>
+                        <rect key="frame" x="38" y="7" width="61.5" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="dod-kv-ilu"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="發文時間：2020/08/31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bae-GK-umO">
-                        <rect key="frame" x="275" y="11" width="107" height="12"/>
+                        <rect key="frame" x="275" y="11" width="107" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="SUR-Xq-noe"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,20 +54,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="巷弄間咖啡，度過輕鬆的早安 台北/高雄/桃園" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTh-LJ-TyC">
-                        <rect key="frame" x="8" y="50" width="363.5" height="21.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTh-LJ-TyC">
+                        <rect key="frame" x="8" y="50" width="366" height="25.5"/>
+                        <attributedString key="attributedText">
+                            <fragment content="巷弄間咖啡，度過輕鬆的早安 台北/高雄/桃園">
+                                <attributes>
+                                    <color key="NSColor" systemColor="systemPinkColor"/>
+                                    <font key="NSFont" size="18" name="STHeitiTC-Medium"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳：LuffyCoffee路咖啡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lff-Oc-xhp">
-                        <rect key="frame" x="8" y="75.5" width="162.5" height="17"/>
+                        <rect key="frame" x="8" y="79.5" width="162.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="daj-Eo-dfu" userLabel="FavoriteStackView">
-                        <rect key="frame" x="343" y="75.5" width="39" height="20"/>
+                        <rect key="frame" x="343" y="79.5" width="39" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB7-K1-76W">
                                 <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
@@ -79,7 +92,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FCc-dN-igb" userLabel="MessageStackView">
-                        <rect key="frame" x="292" y="75.5" width="39" height="20"/>
+                        <rect key="frame" x="292" y="79.5" width="39" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1V-Mr-l1w">
                                 <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
@@ -98,7 +111,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Iij-wa-0BY" userLabel="GoodStackView">
-                        <rect key="frame" x="241" y="75.5" width="39" height="20"/>
+                        <rect key="frame" x="241" y="79.5" width="39" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wB1-DA-f6t">
                                 <rect key="frame" x="0.0" y="0.0" width="15" height="20"/>
@@ -117,7 +130,7 @@
                         </subviews>
                     </stackView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="L44-wP-H2u">
-                        <rect key="frame" x="10" y="100.5" width="370" height="218"/>
+                        <rect key="frame" x="10" y="104.5" width="370" height="214"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="20"/>
@@ -127,7 +140,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="GTw-iW-ScN" firstAttribute="top" secondItem="IIt-2v-wZS" secondAttribute="bottom" constant="8" id="0SF-qj-AV2"/>
-                    <constraint firstItem="VVY-ip-Wcy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="1Og-iB-CwT"/>
+                    <constraint firstItem="VVY-ip-Wcy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="1Og-iB-CwT"/>
                     <constraint firstItem="VVY-ip-Wcy" firstAttribute="leading" secondItem="IIt-2v-wZS" secondAttribute="trailing" constant="8" id="2eF-1A-UbL"/>
                     <constraint firstItem="FCc-dN-igb" firstAttribute="leading" secondItem="Iij-wa-0BY" secondAttribute="trailing" constant="12" id="6Mv-0g-Iqf"/>
                     <constraint firstItem="bae-GK-umO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="6gp-bO-Rh6"/>
@@ -144,9 +157,9 @@
                     <constraint firstItem="Iij-wa-0BY" firstAttribute="top" secondItem="yTh-LJ-TyC" secondAttribute="bottom" constant="4" id="gfI-U3-yEM"/>
                     <constraint firstItem="yTh-LJ-TyC" firstAttribute="top" secondItem="GTw-iW-ScN" secondAttribute="bottom" constant="2" id="jq2-GE-zSO"/>
                     <constraint firstItem="yTh-LJ-TyC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="kbU-Zm-mKj"/>
-                    <constraint firstItem="IIt-2v-wZS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="mEe-oy-k6n"/>
+                    <constraint firstItem="IIt-2v-wZS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="mEe-oy-k6n"/>
                     <constraint firstItem="L44-wP-H2u" firstAttribute="top" secondItem="daj-Eo-dfu" secondAttribute="bottom" constant="4" id="nP6-cI-OTX"/>
-                    <constraint firstItem="IIt-2v-wZS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="o2J-HR-HlJ"/>
+                    <constraint firstItem="IIt-2v-wZS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="o2J-HR-HlJ"/>
                     <constraint firstAttribute="bottom" secondItem="L44-wP-H2u" secondAttribute="bottom" constant="10" id="wiF-TF-iTM"/>
                 </constraints>
             </tableViewCellContentView>
@@ -176,5 +189,8 @@
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="photo" catalog="system" width="128" height="93"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
