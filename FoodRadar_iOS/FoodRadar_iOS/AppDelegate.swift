@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.white
         // Navigation Title文字顏色 #424242
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.00)]
+        //開頭過場動畫
+        Thread.sleep(forTimeInterval: 1)
         
         return true
     }
