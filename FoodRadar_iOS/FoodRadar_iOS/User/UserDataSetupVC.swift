@@ -55,6 +55,7 @@ class UserDataSetupVC: UIViewController {
             labPhone.text = "姓名："
             labPhone.textColor = UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.00)
             tfUserPhone.text = userAccount?.userName
+            tfUserPhone.isEnabled = false
             
             labPassword.text = "生日："
             labPassword.textColor = UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.00)
@@ -64,6 +65,7 @@ class UserDataSetupVC: UIViewController {
             let userBirth = dataFormatter.string(from: (userAccount?.userBirth)!)
             tfPassword.text = userBirth
             tfPassword.isSecureTextEntry = false
+            tfPassword.isEnabled = false
             
             btLogin.setTitle("登出", for: UIControl.State.normal)
             btRegister.isHidden = true
@@ -74,15 +76,18 @@ class UserDataSetupVC: UIViewController {
             labPhone.text = "*必填 "
             labPhone.textColor = UIColor(red: 0.90, green: 0.42, blue: 0.41, alpha: 1.00)
             tfUserPhone.text = ""
+            tfUserPhone.isEnabled = true
             
             labPassword.text = "*必填 "
             labPassword.textColor = UIColor(red: 0.90, green: 0.42, blue: 0.41, alpha: 1.00)
             tfPassword.text = ""
             tfPassword.isSecureTextEntry = true
+            tfPassword.isEnabled = true
             
             btLogin.setTitle("會員登入", for: UIControl.State.normal)
             btRegister.setTitle("清除", for: UIControl.State.normal)
             btRegister.isHidden = false
+            
             
         }
         
