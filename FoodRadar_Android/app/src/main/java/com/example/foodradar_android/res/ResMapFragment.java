@@ -273,6 +273,7 @@ public class ResMapFragment extends Fragment {
                         moveMap(new LatLng(myRess.get(0).getResLat(), myRess.get(0).getResLon()));
                         btMyRes.setText(R.string.textNearRess);
                     } else {
+                        btSearchResAgain.performClick();
                         Common.showToast(activity, R.string.textNoMyRessFound);
                     }
 
