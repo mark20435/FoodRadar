@@ -2938,6 +2938,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_res_rating
+layout activity_welcome
 layout alert_dialog_view
 layout article_comment_view
 layout article_image_check
