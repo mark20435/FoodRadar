@@ -30,6 +30,11 @@ class ResMapViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.cvResMap.reloadData()
                     self.addMarker()
+                    
+                    let annos = self.mapView.annotations.filter{
+                        $0.title == ress[0].resName
+                    }
+                    self.mapView.selectAnnotation(annos[0], animated: true)
                 }
                 
             }
@@ -115,6 +120,9 @@ extension ResMapViewController: MKMapViewDelegate {
             return res.resName.hasPrefix(String((view.annotation?.title)!!))
         }) else { return }
         cvResMap.scrollToItem(at: IndexPath(item: annoIndex, section: 0), at: .left, animated: true)
+        
+        let curRes = allRess![annoIndex]
+        moveRegion(lat: curRes.resLat, lon: curRes.resLon)
     }
     
     func addMarker() {

@@ -226,7 +226,7 @@ public class CouponFragment extends Fragment {
 
     private void showCoupons(List<Coupon> coupons) {
         if (coupons == null || coupons.isEmpty()) {
-            Common.showToast(activity, R.string.textNoCouponsFound);
+            Common.showToast(activity, R.string.textNoFindCoupon);
         }
         CouponAdapter couponAdapter = (CouponAdapter) rvSample.getAdapter();
 
@@ -343,7 +343,7 @@ public class CouponFragment extends Fragment {
 
     private void showCouacts(List<Coupon> couacts) {
         if (couacts == null || couacts.isEmpty()) {
-            Common.showToast(activity, R.string.textNoCouponsFound);
+            Common.showToast(activity, R.string.textNoFindCoupon);
         }
         CouactAdapter couactAdapter = (CouactAdapter) rvCoupon.getAdapter();
 

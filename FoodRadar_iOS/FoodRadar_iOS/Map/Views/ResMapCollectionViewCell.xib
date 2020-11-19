@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ResMapCollectionViewCell" customModule="FoodRadar_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AI5-YP-4h3">
-                        <rect key="frame" x="8" y="8" width="100" height="100"/>
+                        <rect key="frame" x="8" y="8" width="100" height="98"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="6c1-s7-zLT"/>
                         </constraints>
@@ -49,6 +50,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Ubh-GN-36f" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="3Pb-dk-0dn"/>
                 <constraint firstItem="AI5-YP-4h3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Ce1-W2-t24"/>
@@ -56,14 +58,19 @@
                 <constraint firstItem="AI5-YP-4h3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="KEI-n1-T29"/>
                 <constraint firstAttribute="bottom" secondItem="AI5-YP-4h3" secondAttribute="bottom" constant="8" id="adD-FB-805"/>
             </constraints>
-            <size key="customSize" width="213" height="50"/>
+            <size key="customSize" width="213" height="48"/>
             <connections>
                 <outlet property="ivRes" destination="AI5-YP-4h3" id="5lt-Yl-JHm"/>
                 <outlet property="lbResAddress" destination="g0T-vb-F6r" id="uFb-se-QPL"/>
                 <outlet property="lbResCategoryInfo" destination="1Xm-Y4-LCP" id="8Je-Jz-tRh"/>
                 <outlet property="lbResName" destination="V4O-TT-QeQ" id="zMJ-X2-Nhp"/>
             </connections>
-            <point key="canvasLocation" x="-109.42028985507247" y="88.392857142857139"/>
+            <point key="canvasLocation" x="-110.14492753623189" y="89.0625"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

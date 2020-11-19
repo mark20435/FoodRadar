@@ -340,6 +340,11 @@
         android:name="com.example.foodradar_android.user.ArticleManagementFragment"
         android:label="fragment_article_management"
         tools:layout="@layout/fragment_article_management" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.foodradar_android.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
 
 
 </navigation>

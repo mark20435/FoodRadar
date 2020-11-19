@@ -175,8 +175,8 @@ public class LoginFragment extends Fragment {
         view.findViewById(R.id.btAutoLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String  userPhone = "0900123456";
-                String userPwd = "P@ssw0rd";
+                String  userPhone = "0900888888";
+                String userPwd = "888888";
                 userphone.setText(userPhone);
                 etUserPwd.setText(userPwd);
             }
