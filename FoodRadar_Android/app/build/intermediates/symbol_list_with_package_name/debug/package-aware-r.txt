@@ -27,6 +27,7 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim fade_in
 anim fragment_close_enter
 anim fragment_close_exit
 anim fragment_fade_enter
@@ -2342,6 +2343,7 @@ id ignoreRequest
 id imAtMaResImg
 id imResImg
 id imUserManageAvatar
+id imWelcome
 id image
 id imageAlert
 id imageAlert2
@@ -2860,6 +2862,7 @@ id view_offset_helper
 id view_overlay
 id visible
 id visible_removing_fragment_view_tag
+id welcomeFragment
 id wide
 id withText
 id withinBounds
@@ -2935,6 +2938,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_res_rating
+layout activity_welcome
 layout alert_dialog_view
 layout article_comment_view
 layout article_image_check
@@ -2996,6 +3000,7 @@ layout fragment_user_my_article
 layout fragment_user_my_coupon
 layout fragment_user_my_res
 layout fragment_user_sys_setup
+layout fragment_welcome
 layout item_view_article_management
 layout item_view_article_management_img
 layout item_view_category
@@ -3095,6 +3100,7 @@ menu res_list_menu
 menu res_map_menu
 menu ucrop_menu_activity
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation article_navigation
 navigation main_navigation
@@ -3315,6 +3321,7 @@ string textNoArticleFound
 string textNoCameraApp
 string textNoCommentFound
 string textNoCouponsFound
+string textNoFindCoupon
 string textNoImagePickerApp
 string textNoImgFound
 string textNoMainFound
