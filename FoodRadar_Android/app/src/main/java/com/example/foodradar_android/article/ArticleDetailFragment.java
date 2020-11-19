@@ -647,6 +647,7 @@ public class ArticleDetailFragment extends Fragment {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "findCommentById");
             jsonObject.addProperty("articleId", articleIdBox);
+            jsonObject.addProperty("loginUserId", userIdBox);
             String jsonOut = jsonObject.toString();
             commentGetAllTask = new CommonTask(url, jsonOut);
             try {
@@ -749,7 +750,6 @@ public class ArticleDetailFragment extends Fragment {
             } else {
                 myViewHolder.tvCommentTime.setText(comment.getCommentTime());
             }
-
 
             //非留言的使用者，隱藏setting選項
             myViewHolder.ivCommentSetting.setImageResource(R.drawable.ic_baseline_more_vert_24);//設定功能，後要做optionMenu
@@ -874,13 +874,14 @@ public class ArticleDetailFragment extends Fragment {
             /* 設定 留言點讚 功能 */
             //先判斷使用者是否已點讚 > comment
 //            final CommentGood commentGood = commentGoods.get(position);
-            boolean commentGoodStatus = comment.isCommentGoodStatus();
+//            boolean commentGoodStatus = comment.isCommentGoodStatus();
             ImageView CommentGoodIcon = myViewHolder.ivCommentGoodIcon;
             if (userIdBox == 0) {
                 comment.setCommentGoodStatus(false);
                 CommentGoodIcon.setColorFilter(Color.parseColor("#424242"));
             } else {
-                if (commentGoodStatus) {
+                Log.d(TAG, "c8 c8 8c 8c8 c8 : " + comment.isCommentGoodStatus());
+                if (comment.isCommentGoodStatus() == true) {
                     CommentGoodIcon.setColorFilter(Color.parseColor("#1877F2"));
                     comment.setCommentGoodStatus(true);
                 } else {
@@ -896,9 +897,8 @@ public class ArticleDetailFragment extends Fragment {
                     if (!comment.isCommentGoodStatus()) {   //執行點讚
                         if (Common.networkConnected(activity)) {
                             String commentGoodUrl = Common.URL_SERVER + "CommentGoodServlet";
-                            int insertUserId = userIdBox;
                             int insertcommentId = comment.getCommentId();
-                            Comment commentGood1 = new Comment(insertUserId, insertcommentId);
+                            Comment commentGood1 = new Comment(userIdBox, insertcommentId);
                             JsonObject jsonObject = new JsonObject();
                             jsonObject.addProperty("action", "commentGoodInsert");
                             jsonObject.addProperty("commentGood", new Gson().toJson(commentGood1));
@@ -926,7 +926,7 @@ public class ArticleDetailFragment extends Fragment {
                             JsonObject jsonObject = new JsonObject();
                             jsonObject.addProperty("action", "commentGoodDelete");
                             jsonObject.addProperty("commentId", comment.getCommentId());
-                            jsonObject.addProperty("userId", comment.getUserId());
+                            jsonObject.addProperty("userId", userIdBox);
                             int count = 0;
                             try {
                                 commentDeleteTask = new CommonTask(deleteGoodUrl, jsonObject.toString());

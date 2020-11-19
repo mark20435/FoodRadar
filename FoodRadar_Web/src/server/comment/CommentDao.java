@@ -12,7 +12,7 @@ public interface CommentDao {
 	int delete(Comment comment);
 	
 	//文章內文顯示留言資訊
-	List<Comment> findCommentById(int articleId);
+	List<Comment> findCommentById(int articleId, int loginUserId);
 
 	List<Comment> getAll();
 	

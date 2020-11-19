@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:9-40:20
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:47:9-55:20
 	android:grantUriPermissions
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:36:13-47
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:13-47
 	android:authorities
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:13-60
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:49:13-60
 	android:exported
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:35:13-37
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:50:13-37
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:33:13-62
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:13-62
 manifest
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/f55ebc935a71591a0445ffdfa0e2fc63/navigation-ui-2.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/f742569d2e472539ff7d78126bf3d4e3/material-1.3.0-alpha01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/ab85526578c1a1c79e369145a43eaf22/constraintlayout-2.0.2/AndroidManifest.xml:2:1-11:12
@@ -96,22 +96,22 @@ MERGED from [androidx.print:print:1.0.0] /Users/hsinweikao/.gradle/caches/transf
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/89a30b0420b25da4ad14527fa83e688b/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/49f63e7fc81c6c5217664ab19df01de3/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/288ecb127e3acdaede3c207723bee5ce/jetified-transport-api-2.2.0/AndroidManifest.xml:15:1-22:12
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
-INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
+INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
 	package
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:4:5-44
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-82:12
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:1-90:12
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:2:11-69
@@ -186,7 +186,7 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao
 	android:required
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-32
 application
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-80:19
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-88:19
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/f742569d2e472539ff7d78126bf3d4e3/material-1.3.0-alpha01/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.3.0-alpha01] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/f742569d2e472539ff7d78126bf3d4e3/material-1.3.0-alpha01/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/ab85526578c1a1c79e369145a43eaf22/constraintlayout-2.0.2/AndroidManifest.xml:9:5-20
@@ -269,84 +269,92 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/hsin
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:25:9-40
 	android:usesCleartextTraffic
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:26:9-44
-activity#com.example.foodradar_android.res.ResRatingActivity
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:9-30:60
-	android:launchMode
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:29:13-43
-	android:theme
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:13-58
+activity#com.example.foodradar_android.WelcomeActivity
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:9-36:20
+	android:label
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:29:19-51
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:19-56
-meta-data#com.google.firebase.messaging.default_notification_icon
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:41:9-43:67
-	android:resource
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:43:13-64
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:42:13-83
-meta-data#com.google.firebase.messaging.default_notification_color
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:46:9-48:53
-	android:resource
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:13-50
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:47:13-84
-meta-data#com.google.firebase.messaging.default_notification_channel_id
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:49:9-51:71
-	android:value
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:13-68
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:50:13-89
-meta-data#com.google.android.gms.version
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:52:9-54:69
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f506cbc6066c8487b8ddadb9d481e1/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f506cbc6066c8487b8ddadb9d481e1/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-	android:value
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:54:13-66
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:53:13-58
-meta-data#com.google.android.geo.API_KEY
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:55:9-57:71
-	android:value
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:57:13-68
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:56:13-58
-activity#com.yalantis.ucrop.UCropActivity
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:60:9-62:72
-	android:theme
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:62:13-69
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:61:13-60
-activity#com.example.foodradar_android.main.MainActivity
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:63:9-72:20
-	android:windowSoftInputMode
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:65:13-52
-	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:64:13-46
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:19-50
 intent-filter#action:name:android.intent.action.MAIN+action:name:android.intent.action.VIEW+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:66:13-71:29
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:13-35:29
 action#android.intent.action.MAIN
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:67:17-69
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:17-69
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:67:25-66
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:25-66
 action#android.intent.action.VIEW
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:68:17-69
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:68:25-66
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:70:17-77
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:17-77
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:70:27-74
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:27-74
+activity#com.example.foodradar_android.main.MainActivity
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:9-41:20
+	android:screenOrientation
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:39:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:40:13-52
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:38:13-46
+activity#com.example.foodradar_android.res.ResRatingActivity
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:42:9-45:61
+	android:launchMode
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:44:13-43
+	android:theme
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:45:13-58
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:43:13-50
+meta-data#com.google.firebase.messaging.default_notification_icon
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:57:9-59:67
+	android:resource
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:59:13-64
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:58:13-83
+meta-data#com.google.firebase.messaging.default_notification_color
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:64:9-66:53
+	android:resource
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:66:13-50
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:65:13-84
+meta-data#com.google.firebase.messaging.default_notification_channel_id
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:67:9-69:71
+	android:value
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:69:13-68
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:68:13-89
+meta-data#com.google.android.gms.version
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:70:9-72:69
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f506cbc6066c8487b8ddadb9d481e1/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f506cbc6066c8487b8ddadb9d481e1/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:72:13-66
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:71:13-58
+meta-data#com.google.android.geo.API_KEY
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:73:9-75:71
+	android:value
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:75:13-68
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:74:13-58
+activity#com.yalantis.ucrop.UCropActivity
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:77:9-79:72
+	android:theme
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:79:13-69
+	android:name
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:78:13-60
 service#com.example.foodradar_android.MyFCMService
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:73:9-79:19
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:81:9-87:19
 	android:exported
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:75:13-37
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:83:13-37
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:74:13-41
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:82:13-41
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:76:13-78:29
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:84:13-86:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:77:17-78
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:17-78
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:77:25-75
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:25-75
 uses-sdk
 INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
@@ -524,11 +532,11 @@ INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Androi
 		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:13-39:58
+ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:52:13-54:58
 	android:resource
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:39:17-55
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:54:17-55
 	android:name
-		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:38:17-67
+		ADDED from /Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:53:17-67
 service#com.google.firebase.messaging.FirebaseMessagingService
 ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:28:9-35:19
 	android:exported

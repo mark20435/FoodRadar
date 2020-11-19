@@ -79,8 +79,9 @@ public class CommentServlet extends HttpServlet {
 //		}
 		// 判斷client端行為4 > 查詢findCommentById > 文章內文
 		else if (action.equals("findCommentById")) {
-			int id = jsonObject.get("articleId").getAsInt();
-			List<Comment> comment = commentDao.findCommentById(id);
+			int articleId = jsonObject.get("articleId").getAsInt();
+			int userIdId = jsonObject.get("loginUserId").getAsInt();
+			List<Comment> comment = commentDao.findCommentById(articleId, userIdId);
 			writeText(response, gson.toJson(comment));
 		}
 		// 判斷client端行為 > 查詢findById > 留言內文

@@ -81,7 +81,7 @@ public class CommentDaoImpl implements CommentDao {
 
 	// 顯示文章留言(包含點讚)
 	@Override
-	public List<Comment> findCommentById(int articleId) {
+	public List<Comment> findCommentById(int articleId, int userId) {
 		List<Comment> commentList = new ArrayList<Comment>();
 		System.out.println("articleId: " + articleId);
 		String sql = "select \n" + "C.commentId as 'commentId'\n" + ",C.articleId as 'articleId'\n"
@@ -89,18 +89,19 @@ public class CommentDaoImpl implements CommentDao {
 				+ ",C.commentStatus as 'commentStatus'\n" + ",C.commentText as 'commentText'\n"
 				+ ",C.commentTime as  'commentTime'\n" + ",UA.userName as 'userName'\n"
 				+ ",(select count(*) from CommentGood CG where CG.commentId = C.commentId) as 'commentGoodCount'\n"
-				+ ",(select case count(*) when 0 then 0 else 1 end from CommentGood CG where CG.commentId = C.commentId and CG.userId = C.userId ) as 'commentGoodStatus'\n"
+				+ ",(select case count(*) when 0 then 0 else 1 end from CommentGood CG where CG.commentId = C.commentId and CG.userId = ? ) as 'commentGoodStatus'\n"
 				+ "FROM Comment C \n" + "join UserAccount UA on C.userId = UA.userId\n"
-				+ "where C.commentStatus = 1 and C.articleId =  ? \n" + "ORDER BY commentTime ASC ;";
+				+ "where C.commentStatus = 1 and C.articleId =  ?  \n" + "ORDER BY commentTime ASC ;";
 		System.out.println("sql: " + sql);
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setInt(1, articleId);
+			ps.setInt(1, userId);
+			ps.setInt(2, articleId);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int commentId = rs.getInt("commentId");
 				String commentTime = rs.getString("commentTime");
-				int userId = rs.getInt("userId");
+				int commentUserId = rs.getInt("userId");
 //				int articleId = rs.getInt("articleId");
 				String commentModifyTime = rs.getString("commentModifyTime");
 				boolean commentStatus = rs.getBoolean("commentStatus");
@@ -109,7 +110,7 @@ public class CommentDaoImpl implements CommentDao {
 //				int commentGoodId = 1; // rs.getInt("commentGoodId");
 				boolean commentGoodStatus = rs.getBoolean("commentGoodStatus");
 				int commentGoodCount = rs.getInt("commentGoodCount");
-				Comment comment = new Comment(commentId, commentTime, articleId, userId, commentModifyTime,
+				Comment comment = new Comment(commentId, commentTime, articleId, commentUserId, commentModifyTime,
 						commentStatus, commentText, userName, commentGoodStatus, commentGoodCount);
 				commentList.add(comment);
 

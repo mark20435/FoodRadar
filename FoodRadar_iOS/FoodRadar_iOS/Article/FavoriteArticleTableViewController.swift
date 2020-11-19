@@ -7,24 +7,62 @@
 
 import UIKit
 
-class FavoriteArticleTableViewController: UITableViewController {
+class FavoriteArticleTableViewController: UITableViewController, UISearchBarDelegate {
     
       var allArticle = [Article]()
+      var searchArticle = [Article]()
       let url_server = URL(string: common_url + "ArticleServlet")
       let url_userAccount = URL(string: common_url + "UserAccountServlet")
       let url_image = URL(string: common_url + "ImgServlet")
+    @IBOutlet weak var favoriteArticleSearchBar: UISearchBar!
+    @IBOutlet var favoriteTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* 連接到xib的Cell **/
         self.tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        /* 程式設定tableView Header 的高度，避免searchBar擋住tableView **/
+        //註，searchBar要用view包住，不能直接放，避免畫面跑版
+        self.favoriteTableView.tableHeaderView?.frame.size = CGSize(width: self.tableView.bounds.width, height: 56)
+        favoriteTableView.delegate = self
+        favoriteArticleSearchBar.delegate = self
+        
+        tableViewAddRefreshControl()    //呼叫下拉更新
+    }
+    
+    /* 下拉更新 **/
+    func tableViewAddRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "下拉更新")
+        refreshControl.addTarget(self, action: #selector(showAllArticles), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+    
+    /* 搜尋設定 **/
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchText = searchBar.text ?? ""
+        if searchText == "" {
+            searchArticle = allArticle
+        } else {
+            searchArticle = allArticle.filter({ (Article) -> Bool in
+                return Article.articleTitle!.uppercased().contains(searchText.uppercased()) ||
+                    Article.resName!.uppercased().contains(searchText.uppercased())
+            })
+        }
+        favoriteTableView.reloadData()
+    }
+    /* 滑動時隱藏鍵盤 **/
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊虛擬鍵盤的按鈕時隱藏鍵盤 **/
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊空白處隱藏鍵盤 **/
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view?.endEditing(true)
     }
     
     /* 顯示抓取的資料 **/
@@ -33,7 +71,6 @@ class FavoriteArticleTableViewController: UITableViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
-        
         showAllArticles()
     }
     
@@ -42,14 +79,21 @@ class FavoriteArticleTableViewController: UITableViewController {
         var requestParam = [String : Any]()
         requestParam["action"] = "getAllByIdFavorite"
         requestParam["loginUserId"] = 0 //先寫死(遊客)
-        executeTask(self.url_server!, requestParam) { (data, response, error) in
+        _ = executeTask(self.url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     // 將輸入資料列印出來除錯用
                     print("input: \(String(data: data!, encoding: .utf8)!)")
                     if let result = try? JSONDecoder().decode([Article].self, from: data!) {
                         self.allArticle = result
+                        self.searchArticle = result
                         DispatchQueue.main.async {
+                            if let control = self.tableView.refreshControl {
+                                //假如已經正在執行下拉更新，停止下拉
+                                if control.isRefreshing {
+                                    control.endRefreshing()
+                                }
+                            }
                             self.tableView.reloadData()
                         }
                     }
@@ -67,14 +111,14 @@ class FavoriteArticleTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return allArticle.count
+        return searchArticle.count
     }
     
     /* 顯示xib到tableView上 **/
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as! ArticleTableViewCell
         
-        let article = allArticle[indexPath.row]
+        let article = searchArticle[indexPath.row]
         /* 取得餐廳圖片 **/
         var requestParam = [String: Any]()
         requestParam["action"] = "getImageByArticleId"
@@ -84,7 +128,7 @@ class FavoriteArticleTableViewController: UITableViewController {
         //先預設圖檔為noImage.jpg > 防止重複利用
         cell.ivArticleImage.image = UIImage(named: "noImage.jpg")
         var image: UIImage?
-        executeTask(url_image!, requestParam) { data, response, error in
+        cell.task = executeTask(url_image!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     image = UIImage(data: data!)
@@ -105,7 +149,7 @@ class FavoriteArticleTableViewController: UITableViewController {
         //imageSize > 圖片尺寸
         requestParam["imageSize"] = cell.frame.width
         var userIcon: UIImage?
-        executeTask(url_userAccount!, requestParam) { data, response, error in
+        cell.task = executeTask(url_userAccount!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     userIcon = UIImage(data: data!)
@@ -137,7 +181,7 @@ class FavoriteArticleTableViewController: UITableViewController {
     
     /* 包裝資料到Detail **/
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedArticle = allArticle[indexPath.row]
+        let selectedArticle = searchArticle[indexPath.row]
         if let viewController = storyboard?.instantiateViewController(identifier: "ArticleDetailViewController") as? ArticleDetailViewController {
             viewController.articleDetail = selectedArticle
             navigationController?.pushViewController(viewController, animated: true)
