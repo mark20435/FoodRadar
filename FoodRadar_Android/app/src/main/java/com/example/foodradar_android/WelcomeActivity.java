@@ -26,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity implements Animation.Anim
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         imageView = (ImageView)findViewById(R.id.imWelcome);
+        imageView.setAlpha(0.1f);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         animation.setFillEnabled(true);
         animation.setFillAfter(true);
