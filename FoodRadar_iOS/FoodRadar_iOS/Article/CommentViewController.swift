@@ -10,21 +10,29 @@ import UIKit
 class CommentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tfComment: UITextField!
     @IBOutlet weak var commentTableView: UITableView!
-    
     var commentArray = [Comment]()
+    var commentFavorite: Bool?
     var articleId: Int?
     var userId: Int?    //要顯示user資訊用
     let url_comment = URL(string: common_url + "CommentServlet")
+    let url_commentGood = URL(string: common_url + "CommentGoodServlet")
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
-    
+    let url_server = URL(string: common_url + "ArticleServlet")
     var loginUserId  = COMM_USER_ID
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getComment()
         addKeyboardObserver()   //keyboard設定
+        tableViewAddRefreshControl() //呼叫下拉更新
     }
-    
+    /* 下拉更新 **/
+    func tableViewAddRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "下拉更新")
+        refreshControl.addTarget(self, action: #selector(getComment), for: .valueChanged)
+        commentTableView.refreshControl = refreshControl
+    }
     override func viewWillAppear(_ animated: Bool) {
         getComment()
     }
@@ -35,17 +43,33 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     /* tableView內容 **/
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
-        let comment = commentArray[indexPath.row]
-    
+        var comment = commentArray[indexPath.row]
+        cell.comment = comment  //cell接收 cell的資料
         cell.userName.text = comment.userName
         cell.commentText.text = comment.commentText
+        //顯示留言更新時間
         if comment.commentModifyTime != comment.commentTime {
             cell.commentTime.text = comment.commentModifyTime
         } else {
             cell.commentTime.text = comment.commentTime
         }
-        cell.commentGoodCount.text = String(comment.commentGoodCount ?? 0)
+        //顯示點讚狀態       //遊客不給點讚
+        if COMM_USER_ID <= 0 {
+//            comment.commentGoosStatus = false
+            cell.commentGoodIcon.isSelected = false
+            cell.commentGoodIcon.isEnabled = false
+        } else {
+            if comment.commentGoodStatus == true {
+                cell.commentGoodIcon.isSelected = true
+                comment.commentGoodStatus = true
+            } else {
+                cell.commentGoodIcon.isSelected = false
+                comment.commentGoodStatus = true
+            }
+        }
         
+        //顯示點讚數
+        cell.lbCommentGoodCount.text = String(comment.commentGoodCount ?? 0)
         /* 取得使用者大頭 **/
                 var requestParam = [String: Any]()
                 requestParam["action"] = "getImage"
@@ -53,7 +77,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //imageSize > 圖片尺寸
                 requestParam["imageSize"] = cell.frame.width
                 var userIcon: UIImage?
-        executeTask(url_userAccount!, requestParam) { data, response, error in
+        cell.task = executeTask(url_userAccount!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     userIcon = UIImage(data: data!)
@@ -62,6 +86,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
                     userIcon = UIImage(named: "noImage.jpg")
                 }
                 DispatchQueue.main.async { cell.userIcon?.image = userIcon }
+                
             } else {
                 print(error!.localizedDescription)
             }
@@ -69,27 +94,43 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let good = commentArray[indexPath.row]
+        
+        print("5566::\(indexPath.row)")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
+        cell.commentGoodIcon.isSelected = good.commentGoodStatus ?? false
+        
+    }
+    
     /* 取得留言方法 **/
     @objc func getComment() {
         var requestParam = [String : Any]()
         requestParam["action"] = "findCommentById"
         requestParam["articleId"] = articleId
-        executeTask(self.url_comment!, requestParam) { (data, response, error) in
+        requestParam["loginUserId"] = COMM_USER_ID
+        _ = executeTask(self.url_comment!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     // 將輸入資料列印出來除錯用
                     print("input: \(String(data: data!, encoding: .utf8)!)")
-                    
                     if let result = try? JSONDecoder().decode([Comment].self, from: data!) {
                         self.commentArray = result
                         DispatchQueue.main.async {
+                            print("測試留言點讚：\(dump(self.commentArray))")
+                            //宣告物件執行refreshControl
+                            if let control = self.commentTableView.refreshControl {
+                                if control.isRefreshing {
+                                    //假如已執行拉更新動作時，停止下拉
+                                    control.endRefreshing()
+                                }
+                            }
                             self.commentTableView.reloadData()
                         }
                     }
                 }
             }
         }
-        
     }
     
     /* 左滑更新及刪除 **/
@@ -123,7 +164,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             var requestParam = [String: Any]()
             requestParam["action"] = "commentDelete"
             requestParam["comment"] = try! String(data: JSONEncoder().encode(comment), encoding: .utf8)
-            executeTask(self.url_comment!, requestParam) { (data, response, error) in
+            _  = executeTask(self.url_comment!, requestParam) { (data, response, error) in
                 if error == nil {
                     if data != nil {
                         // 將輸入資料列印出來除錯用
@@ -162,7 +203,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         var requestParam = [String: Any]()
         requestParam["action"] = "commentUpdate"
         requestParam["comment"] = try! String(data: JSONEncoder().encode(commentUpdate), encoding: .utf8)
-        executeTask(self.url_comment!, requestParam) { (data, response, error) in
+        _ = executeTask(self.url_comment!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     if let result = String(data: data!, encoding: .utf8) {
@@ -187,7 +228,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         var requestParam = [String: Any]()
         requestParam["action"] = "commentInsert"
         requestParam["comment"] = try? String(data: JSONEncoder().encode(insertComment), encoding: .utf8)
-        executeTask(self.url_comment!, requestParam) { (data, response, error) in
+            _ = executeTask(self.url_comment!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     if let result = String(data: data!, encoding: .utf8) {

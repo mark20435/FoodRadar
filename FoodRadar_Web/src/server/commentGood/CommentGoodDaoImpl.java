@@ -30,14 +30,14 @@ public class CommentGoodDaoImpl implements CommentGoodDao {
 		String sql = "INSERT INTO CommentGood (commentId, userId)\n"
 				+ "(SELECT ? ,? FROM CommentGood\n"
 				+ " WHERE NOT EXISTS(SELECT * FROM CommentGood WHERE commentId = ? AND userId = ?) LIMIT 1\n"
-				+ ");";
-		System.out.println("sql = " + sql);
+				+ ");";	
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, commentGood.getCommentId());
 			ps.setInt(2, commentGood.getUserId());
 			ps.setInt(3, commentGood.getCommentId());
-			ps.setInt(4, commentGood.getUserId());
+			ps.setInt(4, commentGood.getUserId());	
+			System.out.println("### sql::" + ps.toString());
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

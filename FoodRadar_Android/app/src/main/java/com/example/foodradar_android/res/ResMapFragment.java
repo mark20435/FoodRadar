@@ -706,6 +706,9 @@ public class ResMapFragment extends Fragment {
             if (res.isMyRes()) {
                 myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_24);
                 myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#1877F2"));
+            } else {
+                myViewHolder.ivMyRes.setImageResource(R.drawable.ic_baseline_turned_in_not_24);
+                myViewHolder.ivMyRes.setColorFilter(Color.parseColor("#424242"));
             }
 
             myViewHolder.ivMyRes.setOnClickListener(v -> {

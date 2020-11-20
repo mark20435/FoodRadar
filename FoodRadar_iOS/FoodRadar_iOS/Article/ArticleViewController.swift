@@ -10,8 +10,6 @@ import UIKit
 class ArticleViewController: UIViewController {
     
     @IBOutlet weak var toDetail: UIBarButtonItem!
-    
-    var loginUserId  = COMM_USER_ID
 
     /* 控制頁面UISegmented **/
     @IBOutlet weak var ArticleSegmentedControl: UISegmentedControl!
@@ -22,7 +20,17 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //遊客不能點擊發文
-        if loginUserId <= 0 {
+        if COMM_USER_ID > 0 {
+            self.toDetail.isEnabled = true
+        } else {
+            self.toDetail.isEnabled = false
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        //遊客不能點擊發文
+        if COMM_USER_ID > 0 {
+            self.toDetail.isEnabled = true
+        } else {
             self.toDetail.isEnabled = false
         }
     }

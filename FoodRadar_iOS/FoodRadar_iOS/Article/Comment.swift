@@ -12,7 +12,7 @@ struct Comment: Codable {
     var commentTime: String?
     var articleId: Int?
     var userId: Int?
-    var commentGoosStatus: Bool?
+    var commentGoodStatus: Bool?
     var commentModifyTime: String?
     var commentStatus: Bool?
     var commentText: String?
@@ -40,4 +40,10 @@ struct UpdateComment: Codable {
     var commentId: Int?
     var commentText: String?
     var commentModifyTime: String?
+}
+
+/* 點讚 **/
+struct SetCommentGood: Codable {
+    var userId: Int?
+    var commentId: Int?
 }

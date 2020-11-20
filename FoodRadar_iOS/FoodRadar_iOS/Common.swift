@@ -10,7 +10,7 @@ import UIKit
 
 let common_url = "http://localhost:8080/FoodRadar_Web/"
 
-func executeTask(_ url_server: URL, _ requestParam: [String: Any], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+func executeTask(_ url_server: URL, _ requestParam: [String: Any], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
     // requestParam值為Any就必須使用JSONSerialization.data()，而非JSONEncoder.encode()
     let jsonData = try! JSONSerialization.data(withJSONObject: requestParam)
     var request = URLRequest(url: url_server)
@@ -20,6 +20,7 @@ func executeTask(_ url_server: URL, _ requestParam: [String: Any], completionHan
     let sessionData = URLSession.shared
     let task = sessionData.dataTask(with: request, completionHandler: completionHandler)
     task.resume()
+    return task
 }
 
 func showSimpleAlert(message: String, viewController: UIViewController) {

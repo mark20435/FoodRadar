@@ -7,9 +7,13 @@
 
 import UIKit
 
-class RankTableViewController: UITableViewController {
+class RankTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet weak var RankArticleSearchBar: UISearchBar!
+    @IBOutlet var rankTableView: UITableView!
     
     var allArticle = [Article]()
+    var searchArticle = [Article]()
     let url_server = URL(string: common_url + "ArticleServlet")
     let url_userAccount = URL(string: common_url + "UserAccountServlet")
     let url_image = URL(string: common_url + "ImgServlet")
@@ -18,19 +22,61 @@ class RankTableViewController: UITableViewController {
         super.viewDidLoad()
         /* 連接到xib的Cell **/
         self.tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Do any additional setup after loading the view.
+        /* 程式設定tableView Header 的高度，避免searchBar擋住tableView **/
+        //註，searchBar要用view包住，不能直接放，避免畫面跑版
+        self.tableView.tableHeaderView?.frame.size = CGSize(width: self.tableView.bounds.width, height: 56)
+        RankArticleSearchBar.delegate = self
+        rankTableView.delegate = self
+        
+        tableViewAddRefreshControl() //呼叫下拉更新
     }
+    
+    /* 下拉更新 **/
+    func tableViewAddRefreshControl() {
+        let controller = UIRefreshControl()   //加入下拉更新UI元件功能
+        //設定下拉樣式
+        controller.attributedTitle = NSAttributedString(string: "下拉更新")
+        //設定下拉目的
+        controller.addTarget(self, action: #selector(showAllArticles), for: .valueChanged)
+        //執行
+        self.tableView.refreshControl = controller
+    }
+    
+    /* search搜尋設定 **/
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchText = searchBar.text ?? ""
+        if searchText == "" {
+            searchArticle = allArticle
+        } else {
+            //透過輸入的文字搜尋內容(uppercased() > 無論大小寫)
+            searchArticle = allArticle.filter({ (Article) -> Bool in
+              return  Article.articleTitle!.uppercased().contains(searchText.uppercased()) ||
+                Article.resName!.uppercased().contains(searchText.uppercased())
+            })
+        }
+        rankTableView.reloadData()
+    }
+    
+    /* 滑動收鍵盤 **/
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊按鈕收鍵盤 **/
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊空白處收鍵盤 **/
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view?.endEditing(true)
+    }
+    
     /* 顯示抓取的資料 **/
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //?
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
-        
         showAllArticles()
     }
     
@@ -39,14 +85,21 @@ class RankTableViewController: UITableViewController {
         var requestParam = [String : Any]()
         requestParam["action"] = "getAllByIdRank"
         requestParam["loginUserId"] = 0 //先寫死(遊客)
-        executeTask(self.url_server!, requestParam) { (data, response, error) in
+        _ = executeTask(self.url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     // 將輸入資料列印出來除錯用
                     print("input: \(String(data: data!, encoding: .utf8)!)")
                     if let result = try? JSONDecoder().decode([Article].self, from: data!) {
                         self.allArticle = result
+                        self.searchArticle = result
                         DispatchQueue.main.async {
+                            if let refrash = self.tableView.refreshControl {
+                                //假如已經正在執行下拉更新，中止下拉動作
+                                if refrash.isRefreshing {
+                                    refrash.endRefreshing()
+                                }
+                            }
                             self.tableView.reloadData()
                         }
                     }
@@ -65,15 +118,13 @@ class RankTableViewController: UITableViewController {
     /* tableView長度限制 */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return allArticle.count
+        return searchArticle.count
     }
     
     /* 顯示xib到tableView上 **/
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as! ArticleTableViewCell
-        
-        let article = allArticle[indexPath.row]
+        let article = searchArticle[indexPath.row]
         /* 取得餐廳圖片 **/
         var requestParam = [String: Any]()
         requestParam["action"] = "getImageByArticleId"
@@ -83,7 +134,7 @@ class RankTableViewController: UITableViewController {
         //先預設圖檔為noImage.jpg > 防止重複利用
         cell.ivArticleImage.image = UIImage(named: "noImage.jpg")
         var image: UIImage?
-        executeTask(url_image!, requestParam) { data, response, error in
+        cell.task = executeTask(url_image!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     image = UIImage(data: data!)
@@ -103,7 +154,7 @@ class RankTableViewController: UITableViewController {
         //imageSize > 圖片尺寸
         requestParam["imageSize"] = cell.frame.width
         var userIcon: UIImage?
-        executeTask(url_userAccount!, requestParam) { data, response, error in
+        cell.task = executeTask(url_userAccount!, requestParam) { data, response, error in
             if error == nil {
                 if data != nil {
                     userIcon = UIImage(data: data!)
@@ -133,7 +184,7 @@ class RankTableViewController: UITableViewController {
     
     /* 包裝資料到Detail **/
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedArticle = allArticle[indexPath.row]
+        let selectedArticle = searchArticle[indexPath.row]
         if let viewController = storyboard?.instantiateViewController(identifier: "ArticleDetailViewController") as? ArticleDetailViewController {
             viewController.articleDetail = selectedArticle
             navigationController?.pushViewController(viewController, animated: true)

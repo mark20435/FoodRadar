@@ -403,7 +403,6 @@
 				33AEB6482552AB9F00083F2E /* UserAreaTableVC.swift in Sources */,
 				19FC2745255A1F5100BD47EC /* GetImagePost.swift in Sources */,
 				19FC26C3254FB9EB00BD47EC /* NetworkController.swift in Sources */,
-				33A3BC33255BD68E00141001 /* UserAccountFile.swift in Sources */,
 				124E53C2255FD47A0053DA55 /* UpdateShowImageCollectionViewCell.swift in Sources */,
 				19FC26C7254FBB2D00BD47EC /* ResMaintainViewController.swift in Sources */,
 				124E53C5255FD4960053DA55 /* UpdateInsertImageCollectionViewCell.swift in Sources */,

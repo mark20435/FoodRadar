@@ -9,6 +9,7 @@ import Foundation
 
 let urlUserServlet = "UserAccountServlet"
 var COMM_USER_ID = 0
+
 func Login(userPhone: String, userPwd: String , completion: @escaping (Int?) -> Void) {
 //    let url = URL(string: "http://localhost:8080/FoodRadar_Web/UserAccountServlet")
     

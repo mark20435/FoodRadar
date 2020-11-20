@@ -72,8 +72,11 @@ class UpdateArticleViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case showImageCollectionView:
+            print("count", articleImage.count )
             return articleImage.count
         default:
+            print("count", imagesInsert.count+1 )
+
             return imagesInsert.count == 0 ? 1 : imagesInsert.count + 1
         }
     }
@@ -118,6 +121,7 @@ class UpdateArticleViewController: UIViewController, UICollectionViewDataSource,
             return cell
             
         default:
+            print("cell", indexPath.item)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(UpdateInsertImageCollectionViewCell.self)", for: indexPath) as! UpdateInsertImageCollectionViewCell
             //判斷第一個item要執行的動作
             if indexPath.item == 0 {
@@ -279,6 +283,7 @@ class UpdateArticleViewController: UIViewController, UICollectionViewDataSource,
             let imageInsert = Image(articleId: articleInfo?.articleId, imgId: 0)
             requestParam["action"] = "imgInsert"
             requestParam["img"] = try! String(data: JSONEncoder().encode(imageInsert), encoding: .utf8)
+            var uploadCount = 0
             for i in 0...imagesInsert.count - 1 {
                 let imageByte = self.imagesInsert[i]
                 requestParam["imageBase64"] = imageByte.jpegData(compressionQuality: 1.0)!.base64EncodedString()
@@ -287,8 +292,9 @@ class UpdateArticleViewController: UIViewController, UICollectionViewDataSource,
                         if data != nil {
                             if let result = String(data: data!, encoding: .utf8) {
                                 if let count = Int(result) {
+                                    uploadCount += 1
                                     DispatchQueue.main.async {
-                                        if count != 0 {                                            self.navigationController?.popViewController(animated: true)
+                                        if uploadCount == self.imagesInsert.count  {self.navigationController?.popViewController(animated: true)
                                         }
                                     }
                                 }
@@ -317,18 +323,24 @@ extension UpdateArticleViewController: PHPickerViewControllerDelegate {
         //選擇圖片後回到前一頁
         dismiss(animated: true)
         let itemProviders = results.map(\.itemProvider)
+        var count = 0
         for itemProvider in itemProviders where itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
                 guard let self = self,
                       let image = image as? UIImage else { return }
                 self.imagesInsert.append(image)
+                count += 1
+                if itemProviders.count == count {
+                    DispatchQueue.main.async {
+                        print("reload", self.imagesInsert.count)
+                        self.insertImageCollectionView.reloadData()
+                    }
+                }
             }
         }
         //執行緒相關 > async為非同步，並不保證會同步執行
         //asyncAfter(deadline: .now() + 0.5) > 延後0.5秒才執行，確保圖片能顯示
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.insertImageCollectionView.reloadData()
-        }
+       
     }
     /* 收回鍵盤 **/
     func hideKeyboard() {
