@@ -38,3 +38,13 @@ struct MyArticleGetAllById: Codable {
     let articleStatus: Bool
 }
 
+struct MyArticleMyComment: Codable {
+    let articleId: Int
+    let articleTitle: String    
+    let commentId: Int
+    let commentTime: Date?
+    let commentText: String
+    let userName: String
+    let commentStatus: Bool
+}
+

@@ -14,13 +14,17 @@ class MyArticleVController: UIViewController {
     
     let urlMyArticleServlet = "MyArticleServlet"
     var myArticleArray: [MyArticleGetAllById]?
+    var myArticleMyCommentArray: [MyArticleMyComment]?
 //    var myArticleArrayAll: [MyArticleGetAllById]?
+    var segmentIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         myArticleTableView.dataSource = self
         myArticleTableView.delegate = self
 
+        segmentIndex = 0
+        
         // Do any additional setup after loading the view.
 //        print("USER_ID(1): \(COMM_USER_ID)")
         
@@ -50,9 +54,10 @@ class MyArticleVController: UIViewController {
     }
     */
 
-    @IBAction func clickMyArticleSegment(_ sender: Any) {
+    @IBAction func clickMyArticleSegment(_ sender: UISegmentedControl) {
         
-        let segmentIndex = myArticleSegment.selectedSegmentIndex
+        segmentIndex = sender.selectedSegmentIndex
+        print ("sender.segmentIndex",segmentIndex)
         switch segmentIndex {
         case 0:
             getMyArticleGetAllById(userId: COMM_USER_ID) { (myArticleArray) in
@@ -76,9 +81,9 @@ class MyArticleVController: UIViewController {
                 }
             }
         case 2:
-            getMyArticleMyComment(userId: COMM_USER_ID) { (myArticleArray) in
-                if let myArticleArray = myArticleArray {
-                    self.myArticleArray = myArticleArray
+            getMyArticleMyComment(userId: COMM_USER_ID) { (myArticleMyCommentArray) in
+                if let myArticleMyCommentArray = myArticleMyCommentArray {
+                    self.myArticleMyCommentArray = myArticleMyCommentArray
                     dump(self.myArticleArray)
                     DispatchQueue.main.async {
                         self.myArticleTableView.reloadData()
@@ -94,46 +99,88 @@ class MyArticleVController: UIViewController {
 extension MyArticleVController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        myArticleArray?.count ?? 0
+        var returnCnt = 0
+        if segmentIndex == 0 || segmentIndex == 1 {
+            returnCnt = myArticleArray?.count ?? 0
+        } else if segmentIndex == 2 {
+            returnCnt = myArticleMyCommentArray?.count ?? 0
+        }
+        return returnCnt
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(MyArticleVCell.self)", for: indexPath) as!
             MyArticleVCell
-        let myArticleGetAllById = myArticleArray?[indexPath.row]
         
-        cell.labelArticleTitle.text = myArticleGetAllById?.articleTitle
+//        print("segmentIndex",segmentIndex)
+        if segmentIndex == 0 || segmentIndex == 1 {
         
-        let dataFormatter = DateFormatter()
-        dataFormatter.locale = Locale(identifier: "zh_Hant_TW")
-        dataFormatter.dateFormat = "YYYY-MM-dd"
-        let articleTime = dataFormatter.string(from: (myArticleGetAllById?.articleTime)!)
-        cell.labelArticleTime.text = "發文日期: " + articleTime
-        
-        cell.labelUserName.text = "發文者: " + myArticleGetAllById!.userName
-        cell.labelArticleText.text = "內文: " + myArticleGetAllById!.articleText
-        
-        cell.imageView?.contentMode = .scaleAspectFill
-        let url = NetworkController().baseURL.appendingPathComponent(urlMyArticleServlet)
-        let imageSize = 400
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        let getImagePost = MyResGetImageStruct(id: myArticleGetAllById?.articleId ?? 0, imageSize: imageSize)
-        request.httpBody = try? JSONEncoder().encode(getImagePost)
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                DispatchQueue.main.async {
-//                    cell.ivMyRes?.image = nil
-                    cell.imageArticle?.image = UIImage(data: data)
-//                    self.tableView.reloadData()
+            let myArticleGetAllById = myArticleArray?[indexPath.row]
+            
+            cell.labelArticleTitle.text = myArticleGetAllById?.articleTitle
+            
+            let dataFormatter = DateFormatter()
+            dataFormatter.locale = Locale(identifier: "zh_Hant_TW")
+            dataFormatter.dateFormat = "YYYY-MM-dd"
+            let articleTime = dataFormatter.string(from: (myArticleGetAllById?.articleTime)!)
+            cell.labelArticleTime.text = "發文日期: " + articleTime
+            
+            cell.labelUserName.text = "發文者: " + myArticleGetAllById!.userName
+            cell.labelArticleText.text = "內文: " + myArticleGetAllById!.articleText
+            
+            cell.imageView?.contentMode = .scaleAspectFill
+            let url = NetworkController().baseURL.appendingPathComponent(urlMyArticleServlet)
+            let imageSize = 400
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            let getImagePost = MyResGetImageStruct(id: myArticleGetAllById?.articleId ?? 0, imageSize: imageSize)
+            request.httpBody = try? JSONEncoder().encode(getImagePost)
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    DispatchQueue.main.async {
+    //                    cell.ivMyRes?.image = nil
+                        cell.imageArticle?.image = UIImage(data: data)
+    //                    self.tableView.reloadData()
+                    }
                 }
-            }
-//            else {
-//                cell.imageView?.image = UIImage(named: "logo_foodradar")
-//            }
-        }.resume()
+    //            else {
+    //                cell.imageView?.image = UIImage(named: "logo_foodradar")
+    //            }
+            }.resume()
+        
+        } else if segmentIndex == 2 {
+            let myArticleMyComment = myArticleMyCommentArray?[indexPath.row]
+            
+            cell.labelArticleTitle.text = myArticleMyComment?.articleTitle
+            
+            let dataFormatter = DateFormatter()
+            dataFormatter.locale = Locale(identifier: "zh_Hant_TW")
+            dataFormatter.dateFormat = "YYYY-MM-dd"
+            let articleTime = dataFormatter.string(from: (myArticleMyComment?.commentTime)!)
+            cell.labelArticleTime.text = "回文日期: " + articleTime
+            
+            cell.labelUserName.text = "發文者: " + myArticleMyComment!.userName
+            cell.labelArticleText.text = "回文: " + myArticleMyComment!.commentText
+            
+            cell.imageView?.contentMode = .scaleAspectFill
+            let url = NetworkController().baseURL.appendingPathComponent(urlMyArticleServlet)
+            let imageSize = 400
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            let getImagePost = MyResGetImageStruct(id: myArticleMyComment?.articleId ?? 0, imageSize: imageSize)
+            request.httpBody = try? JSONEncoder().encode(getImagePost)
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    DispatchQueue.main.async {
+                        cell.imageArticle?.image = UIImage(data: data)
+                    }
+                }
+                
+            }.resume()
+        }
         
         return cell
     }
@@ -220,7 +267,7 @@ extension MyArticleVController {
     }
     
     
-    func getMyArticleMyComment (userId: Int, complection: @escaping ([MyArticleGetAllById]?) -> Void ) {
+    func getMyArticleMyComment (userId: Int, complection: @escaping ([MyArticleMyComment]?) -> Void ) {
         
         print("getMyArticleMyComment.userId: \(userId)")
         
@@ -239,11 +286,11 @@ extension MyArticleVController {
             dateFormatter.calendar = Calendar(identifier: .iso8601)
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             if let dataFromDb = dataTask,
-               let myArticleArray = try? decoder.decode([MyArticleGetAllById].self, from: dataFromDb) {
-//                        print("data:\(String(data: dataFromDb, encoding: .utf8))")
+               let myArticleMyCommentArray = try? decoder.decode([MyArticleMyComment].self, from: dataFromDb) {
+                        print("data:\(String(data: dataFromDb, encoding: .utf8))")
 
 //                print("resId: \(myResArray[0].resId)")
-                complection (myArticleArray)
+                complection (myArticleMyCommentArray)
              
             } else {
                 complection (nil)
