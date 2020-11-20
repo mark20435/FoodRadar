@@ -1720,6 +1720,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable android_pixel2
+drawable androidpixl2
 drawable article_insert_text
 drawable avd_hide_password
 drawable avd_show_password
