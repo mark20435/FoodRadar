@@ -124,6 +124,9 @@ class UserDataSetupVC: UIViewController {
                 print("clickLogin.userId: \(userId ?? 0)")
                 if userId == 0 {
                     logInStatus = false
+                    DispatchQueue.main.async {
+                        self.view.showToast(text: "登入失敗")
+                    }
                     print("Login Fail~")
                 } else {
                     if let userData = UserAccount.readUsersFromFile() {
@@ -132,6 +135,9 @@ class UserDataSetupVC: UIViewController {
                         logInStatus = COMM_USER_ID == 0 ? false : true
                     } else {
                         logInStatus = false
+                    }
+                    DispatchQueue.main.async {
+                        self.view.showToast(text: "登入成功")
                     }
                     print("Login OK!!!")
                 }
@@ -165,3 +171,70 @@ class UserDataSetupVC: UIViewController {
     }
     
 }
+
+extension UIView {
+
+    func showToast(text: String){
+        
+        self.hideToast()
+        let toastLb = UILabel()
+        toastLb.numberOfLines = 0
+        toastLb.lineBreakMode = .byWordWrapping
+        toastLb.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        toastLb.textColor = UIColor.white
+        toastLb.layer.cornerRadius = 10.0
+        toastLb.textAlignment = .center
+        toastLb.font = UIFont.systemFont(ofSize: 15.0)
+        toastLb.text = text
+        toastLb.layer.masksToBounds = true
+        toastLb.tag = 9999//tag：hideToast實用來判斷要remove哪個label
+        
+        let maxSize = CGSize(width: self.bounds.width - 40, height: self.bounds.height)
+        var expectedSize = toastLb.sizeThatFits(maxSize)
+        var lbWidth = maxSize.width
+        var lbHeight = maxSize.height
+        if maxSize.width >= expectedSize.width{
+            lbWidth = expectedSize.width
+        }
+        if maxSize.height >= expectedSize.height{
+            lbHeight = expectedSize.height
+        }
+        expectedSize = CGSize(width: lbWidth, height: lbHeight)
+        toastLb.frame = CGRect(x: ((self.bounds.size.width)/2) - ((expectedSize.width + 20)/2), y: self.bounds.height - expectedSize.height - 40 - 20, width: expectedSize.width + 20, height: expectedSize.height + 20)
+        self.addSubview(toastLb)
+        
+        UIView.animate(withDuration: 1.5, delay: 1.5, animations: {
+            toastLb.alpha = 0.0
+        }) { (complete) in
+            toastLb.removeFromSuperview()
+        }
+    }
+    
+    func hideToast(){
+        for view in self.subviews{
+            if view is UILabel , view.tag == 9999{
+                view.removeFromSuperview()
+            }
+        }
+    }
+    
+    /*
+     // https://medium.com/@j847676/swift-4-%E8%87%AA%E5%88%B6%E7%B0%A1%E6%98%93toast-%E6%96%87%E5%AD%97%E6%8F%90%E7%A4%BA-a1ced67edcda
+     
+     class MainVC: UIViewController {
+         
+         override func viewDidLoad() {
+             super.viewDidLoad()
+             
+             //就一行而已，在任何你想用的地方使用吧
+             self.view.showToast(text: "這是一個Toast的範例")
+           
+             //也可以直接在keyWindow呈現
+             UIApplication.shared.keyWindow?.showToast(text: "這是一個Toast的範例")
+
+         }
+     }
+     */
+    
+}
+
