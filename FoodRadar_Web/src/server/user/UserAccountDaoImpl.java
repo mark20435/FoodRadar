@@ -235,6 +235,22 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				userAccount = new UserAccount(userId, userPhoneFromDB, userPwdFromDB, userBirth, userName, allowNotifi, isEnable,
 						isAdmin, userAvatar, createDate, modifyDate);
 				userAccountList.add(userAccount);
+			} else {
+				int userId = 0;
+				String userPhoneFromDB = "";
+				String userPwdFromDB = "";
+				Timestamp userBirth = Timestamp.valueOf("1970-01-01 12:00:00");
+				String userName = "LoginFail";
+				Boolean allowNotifi = true;
+				Boolean isEnable = false;
+				Boolean isAdmin = false;
+				byte[] userAvatar = {0x20};
+				Timestamp createDate = Timestamp.valueOf("1970-01-01 12:00:00");
+				Timestamp modifyDate = Timestamp.valueOf("1970-01-01 12:00:00");
+
+				userAccount = new UserAccount(userId, userPhoneFromDB, userPwdFromDB, userBirth, userName, allowNotifi, isEnable,
+						isAdmin, userAvatar, createDate, modifyDate);
+				userAccountList.add(userAccount);
 			}
 			pubTools.showConsoleMsg("userLogin.userAccountList.userId", String.valueOf(userAccount.getUserId()));
 			return userAccountList;
