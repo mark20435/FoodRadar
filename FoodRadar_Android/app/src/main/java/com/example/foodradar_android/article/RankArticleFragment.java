@@ -122,6 +122,7 @@ public class RankArticleFragment extends Fragment {
         //swipeRefreshLayout
         swipeRefreshLayoutRank.setOnRefreshListener(() -> {
             swipeRefreshLayoutRank.setRefreshing(true);
+            articles = getArticle();
             showArticle(articles);
             swipeRefreshLayoutRank.setRefreshing(false);
         });

@@ -33,6 +33,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -88,7 +89,7 @@ public class ArticleInsertFragment extends Fragment {
     private SharedPreferences preferences;
     private String conNumStr, conAmountStr, articleTitle, articleText;
     private int newArticle;
-
+    private Button strButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -129,6 +130,33 @@ public class ArticleInsertFragment extends Fragment {
         conAmountStr = etConAmount.getText().toString().trim();
         articleTitle = etArticleTitle.getText().toString().trim();
         articleText = etArticleText.getText().toString().trim();
+
+        //隱藏按鈕 > 點擊設定
+        strButton = view.findViewById(R.id.strButton);
+        strButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etArticleTitle.setText("聚馥園│烤鴨兩吃划算又美味，肴豬腳也值得一試");
+                etArticleText.setText("店名： 聚馥園餐廳\n" +
+                        "地址： 台北市中山區南京東路三段219號3樓\n" +
+                        "電話： 02-2718-5588\n" +
+                        "價格： 600-1000 /人\n" +
+                        "營業時間：11:00–14:00, 17:00–21:30\n" +
+                        "\n" +
+                        "文學大師梁實秋在他的《雅舍談吃》裡寫了《生炒鱔魚絲》，少數我覺得大師你還是別吃這道菜的文章之一 (大笑)，他寫道『那鱔魚雖名為炒，卻不是生炒，是煮熟之後再炒，已經十分油膩。上桌之後侍者還要手持一隻又 黑又髒的搪瓷碗（希望不是漱口杯），澆上一股子沸開的油，噝啦一聲，油直冒泡，然後就有熱心人用筷子亂攪拌一陣，還有熱心人猛撒胡椒粉。那鱔魚當中時常羼 上大量筍絲茭白絲之類，有喧賓奪主之勢』\n" +
+                        "\n" +
+                        "清炒鱔糊是上海菜中偏寧波菜的作法，昔日上海隆記菜飯還在時，就有此一道，這菜 的特色是鱔魚要先煮到五分熟，然後搭配上醬油、鹽、白糖、薑茸、紹酒和上湯的醬汁，把鱔魚『上色』，然後用太白粉勾芡 (有人說不要這道過程, 看人啦 ) ，這時候就可以上桌。然後接下來外場拎著一壺滾燙的熱油，澆上去!! 瞬間油香與爆香的鱔魚味超香的。要盡快拌開，然後就是超棒的清炒鱔糊。至於梁實秋大師吃飯時當時台灣的各式中菜還是黃金期，為什麼會吃到如此黑店，還胡椒 粉筍絲什麼的，實在是亂七八糟\n" +
+                        "這邊的清炒鱔糊嘛，味道有及格，但考慮到做法必需要扣分。因為它一上來就是澆上油的，少了這味桌邊表演，就實在讓人傷心。\n" +
+                        "\n" +
+                        "\n" +
+                        "嚴格說台灣的中菜常常亂七八糟混，可說是聚集各地菜色五湖四海啥都有，所以一間好像是江浙菜的餐廳吃烤鴨你也別想太多，很正常\n" +
+                        "這邊的鴨子相當巨大，不像中山北路某間烤鴨，給人看都很大，吃的時候沒幾片肉。\n" +
+                        "\n" +
+                        "以前台灣的上海館子大概不會炒這道菜就代表主廚手藝不好(笑)，這道菜來源有兩種說法，有一說是來自於西湖的龍井蝦仁，又有人引梁實秋說 法是上海靜安賓館引自閔菜(福建菜) 製作而成。我個人覺得偏向前者，畢竟吃過的福建菜色的蝦子都與這道菜差距甚遠。這道菜要用河蝦，炒的火喉是重點，太過頭就吃來蝦有點硬，但想要保持軟度， 那又可能沒煮熟害大家拉肚子，河蝦問題又比海蝦更麻煩，然後還有人寫這道菜給我寫Q彈，你廣東人啊，誰家的清炒蝦仁是Q彈的你加硼砂嘛?  吃東西寫食記可以不要那麼外行嘛? 不懂吃，舌頭又不好你可以google 啊!! ( 這樣想起某人，表示上海菜飯要綠綠的才道地，道你家的地，莫名其妙 ) (半夜寫文心情差)\n" +
+                        "\n" +
+                        "吃的時候可以單吃，再沾一點白醋，就好吃了。不過這邊的，稍為再加油一點吧\n");
+            }
+        });
 
         //跳轉至，選擇餐廳頁面(外)
         ivPlaceIcon = view.findViewById(R.id.ivPlaceIcon);

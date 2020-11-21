@@ -96,9 +96,9 @@ public class ArticleDetailFragment extends Fragment {
         imageTasks = new ArrayList<>();
         imgs = new ArrayList<>();
         // 顯示左上角的返回箭頭
-//        new Common().setBackArrow(true, activity);
-//        setHasOptionsMenu(true);
-//        navController = Navigation.findNavController(activity, R.id.mainFragment);
+        new Common().setBackArrow(false, activity);
+        setHasOptionsMenu(false);
+        navController = Navigation.findNavController(activity, R.id.mainFragment);
     }
 
     @Override

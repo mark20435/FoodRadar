@@ -49,9 +49,9 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.commentText.text = comment.commentText
         //顯示留言更新時間
         if comment.commentModifyTime != comment.commentTime {
-            cell.commentTime.text = comment.commentModifyTime
+            cell.commentTime.text = "已編輯：\(comment.commentModifyTime!)"
         } else {
-            cell.commentTime.text = comment.commentTime
+            cell.commentTime.text = "留言時間：\(comment.commentTime!)"
         }
         //顯示點讚狀態       //遊客不給點讚
         if COMM_USER_ID <= 0 {
@@ -271,6 +271,19 @@ extension CommentViewController {
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    /* 滑動時關閉鍵盤 **/
+     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊Gone關掉鍵盤 **/
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view?.endEditing(true)
+    }
+    /* 點擊旁邊關掉鍵盤 **/
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view?.endEditing(true)
     }
     
     /* 鍵盤顯示設定 **/

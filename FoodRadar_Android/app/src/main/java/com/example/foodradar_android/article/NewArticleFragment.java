@@ -166,11 +166,20 @@ public class NewArticleFragment extends Fragment {
         }
 
         //swipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            swipeRefreshLayout.setRefreshing(true);
-            showArticle(articles);
-            swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                articles = getArticle();
+                showArticle(articles);
+                swipeRefreshLayout.setRefreshing(false);
+            }
         });
+//        swipeRefreshLayout.setOnRefreshListener(() -> {
+//            swipeRefreshLayout.setRefreshing(true);
+//            showArticle(articles);
+//            swipeRefreshLayout.setRefreshing(false);
+//        });
 
         /* 從“我的社群活動”頁面，跳轉到“討論區”頁面並轉到文章detail頁面 */
         if (MyArticle.goToMyArticleDetail) {

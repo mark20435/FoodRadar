@@ -76,7 +76,7 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                     if let result = try? JSONDecoder().decode(Article.self, from: data!) {
                         DispatchQueue.main.async {
                             self.articleShow = result
-                            
+                            self.articleDetail = result
                             self.userName.text = self.articleShow.userName
                             self.resCategoryInfo.text = self.articleShow.resCategoryInfo
                             
@@ -104,14 +104,14 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                                 self.btArticleFavorite.isEnabled = false
                             } else {
                                 /* 不是遊客 > 判定是否有點讚(收藏) **/
-                                if (self.articleShow.articleGoodStatus ) {  //點讚
+                                if (self.articleShow.articleGoodStatus == true ) {  //點讚
                                     self.articleShow.articleGoodStatus = true
                                     self.btArticleGood.isSelected = true
                                 } else {
                                     self.articleShow.articleGoodStatus = false
                                     self.btArticleGood.isSelected = false
                                 }
-                                if (self.articleShow.articleFavoriteStatus ) {  //收藏
+                                if (self.articleShow.articleFavoriteStatus == true ) {  //收藏
                                     self.articleShow.articleFavoriteStatus = true
                                     self.btArticleFavorite.isSelected = true
                                 } else {
@@ -227,13 +227,15 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
     
     /* 呼叫文章點讚功能 **/
     @IBAction func articleGood(_ sender: UIButton) {
-        if self.articleDetail.articleGoodStatus {
-            sender.isSelected = true
-            cancelGood()
-        } else {
-            sender.isSelected = false
-            setGood()
-        }
+            if self.articleDetail.articleGoodStatus == true {
+                print("點讚狀態cancel：：：：：\(self.articleDetail.articleGoodStatus)")
+                sender.isSelected = true
+                cancelGood()
+            } else {
+                print("點讚狀態set：：：：：\(self.articleDetail.articleGoodStatus)")
+                sender.isSelected = false
+                setGood()
+            }
     }
     
     /* 呼叫文章收藏功能 **/
@@ -339,7 +341,7 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                                 //把articleShow.articleGoodCount加1後，再丟回articleShow.articleGoodCount
                                 self.articleShow.articleGoodCount =  self.articleShow.articleGoodCount! + 1
                                 self.articleGoodCount.text = String(self.articleShow.articleGoodCount!)
-                                self.btArticleGood.isSelected.toggle()
+                                self.btArticleGood.isSelected = true
                                 self.articleDetail.articleGoodStatus = true
                             }
                         }
@@ -365,7 +367,7 @@ class ArticleDetailViewController: UIViewController, UICollectionViewDataSource,
                                 //把articleShow.articleGoodCount減1後，再丟回articleShow.articleGoodCount
                                 self.articleShow.articleGoodCount =  self.articleShow.articleGoodCount! - 1
                                 self.articleGoodCount.text = String(self.articleShow.articleGoodCount!)
-                                self.btArticleGood.isSelected.toggle()
+                                self.btArticleGood.isSelected = false
                                 self.articleDetail.articleGoodStatus = false
                             }
                         }

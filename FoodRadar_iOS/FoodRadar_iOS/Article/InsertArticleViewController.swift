@@ -19,6 +19,7 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var InsertImageCollectionViewController: UICollectionView!
     @IBOutlet weak var UICollectionViewFlowLayout: UICollectionViewFlowLayout!
     
+    
     var articleDetail: Article?
     var imageArray = [Image]()
     var image: Image?
@@ -92,6 +93,43 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
             }
         }
     }
+    /* 假PO文假按鈕 **/
+    @IBAction func setText(_ sender: UIButton) {
+        tfArticleTitle.text = "中山|大和日本料理 南京復興＠CP爆表😘"
+        tvArticleText.text = """
+ 一餐豐盛的日本料理，希望選擇多、價格清晰、又不傷荷包
+    
+    來「大和日本料理」就對拉～無限次的回訪～
+
+    座位多、有包廂、有吧檯💕
+
+    一個人 or 兩個人 or 家庭 or team聚 or 招待客戶
+
+    都可以預訂好合適的座席
+
+    座位數多、姨姨服務團手腳超快，沒訂位也不用擔心等超久
+
+    （對～每次都是突然很想吃、直接去現場等 ！！！）
+
+    入座很快，但若點炸物，上餐會等比較久
+
+    雖然翻桌速度超群，但不至於給用餐的人帶來壓力
+
+    （只是偶爾最後的點心會太早上桌）
+
+    他們家的食材都很新鮮，會收取10%的服務費
+
+    (但不知道是客人太多還是大姐們都累了，服務有待加強。)
+
+    喜歡吃新鮮的日式美食不妨來大和試試看喲💁🏽
+
+
+    地址: 台北市中山區復興北路176號
+
+    電話:(02)2547-2550
+"""
+}
+    
     /* 上傳文章 **/
     @IBAction func insertArticle(_ sender: Any) {
         if loginUserId != 0 {

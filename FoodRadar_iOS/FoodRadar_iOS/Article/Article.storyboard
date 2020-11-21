@@ -299,10 +299,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="輸入點文字吧～" translatesAutoresizingMaskIntoConstraints="NO" id="CgR-b7-Wx6">
-                                <rect key="frame" x="15" y="277.5" width="379" height="260"/>
+                                <rect key="frame" x="15" y="277.5" width="379" height="330"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="260" id="FvG-aj-qim"/>
+                                    <constraint firstAttribute="height" constant="330" id="FvG-aj-qim"/>
                                 </constraints>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <fontDescription key="fontDescription" name=".PingFangTC-Regular" family=".AppleTraditionalChineseFont" pointSize="14"/>
@@ -315,7 +315,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OQw-UE-tsU">
-                                <rect key="frame" x="0.0" y="537.5" width="414" height="180"/>
+                                <rect key="frame" x="0.0" y="607.5" width="414" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="Yfb-16-UWj"/>
@@ -342,7 +342,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="15"/>
+                                                            <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
@@ -364,6 +364,16 @@
                                     <outlet property="delegate" destination="8aC-zs-P0S" id="tzL-S5-96Z"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPh-Ty-R8O">
+                                <rect key="frame" x="311" y="108" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="6i3-EB-p1l"/>
+                                    <constraint firstAttribute="width" constant="25" id="xJI-T4-zPC"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="setText:" destination="8aC-zs-P0S" eventType="touchUpInside" id="bXM-bb-UC7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4jL-sL-Eyp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -378,10 +388,12 @@
                             <constraint firstItem="B7k-DS-p81" firstAttribute="top" secondItem="4jL-sL-Eyp" secondAttribute="top" constant="20" id="Kax-f0-eep"/>
                             <constraint firstItem="fRv-7S-U7r" firstAttribute="leading" secondItem="kSs-p4-gjC" secondAttribute="trailing" constant="15" id="OgH-AG-fOG"/>
                             <constraint firstItem="OQw-UE-tsU" firstAttribute="leading" secondItem="4jL-sL-Eyp" secondAttribute="leading" id="Tkh-Ud-zmR"/>
+                            <constraint firstItem="GPh-Ty-R8O" firstAttribute="top" secondItem="4jL-sL-Eyp" secondAttribute="top" constant="20" id="X1R-5U-gqk"/>
                             <constraint firstItem="CgR-b7-Wx6" firstAttribute="leading" secondItem="4jL-sL-Eyp" secondAttribute="leading" constant="15" id="XYj-6U-lH3"/>
                             <constraint firstItem="1bo-9T-TkO" firstAttribute="leading" secondItem="4jL-sL-Eyp" secondAttribute="leading" constant="20" id="dB0-N4-MDd"/>
                             <constraint firstItem="4jL-sL-Eyp" firstAttribute="trailing" secondItem="B7k-DS-p81" secondAttribute="trailing" constant="16" id="feh-PT-rPf"/>
                             <constraint firstItem="4jL-sL-Eyp" firstAttribute="trailing" secondItem="CgR-b7-Wx6" secondAttribute="trailing" constant="20" id="fvn-KE-qNH"/>
+                            <constraint firstItem="B7k-DS-p81" firstAttribute="leading" secondItem="GPh-Ty-R8O" secondAttribute="trailing" constant="26" id="q6M-RW-BTn"/>
                             <constraint firstItem="kSs-p4-gjC" firstAttribute="leading" secondItem="4jL-sL-Eyp" secondAttribute="leading" constant="20" id="ryT-dY-1Ng"/>
                             <constraint firstItem="41t-kg-SSC" firstAttribute="leading" secondItem="4jL-sL-Eyp" secondAttribute="leading" constant="20" id="sVA-TW-uh9"/>
                             <constraint firstItem="41t-kg-SSC" firstAttribute="top" secondItem="XGm-Hk-vJC" secondAttribute="bottom" constant="6" id="tdL-6G-lXi"/>
@@ -552,11 +564,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文章發表時間：2020/08/08" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaH-qv-eHs">
-                                <rect key="frame" x="256.5" y="58" width="141.5" height="16"/>
+                                <rect key="frame" x="244.5" y="58" width="153.5" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="ZsL-Vh-WQ2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -665,7 +677,7 @@
 
 心歡迎持續了嗚嗚難好意思是，哈哈嗯嗯形容，我那不出，麵的沒，泡得很我就者對方的麼一沒有什那種，爺爺真的我不能。</string>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4K3-Tn-SoK">
@@ -702,7 +714,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="20"/>
+                                                            <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
@@ -715,13 +727,13 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="25"/>
+                                                    <integer key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </collectionViewCellContentView>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="25"/>
+                                                <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>

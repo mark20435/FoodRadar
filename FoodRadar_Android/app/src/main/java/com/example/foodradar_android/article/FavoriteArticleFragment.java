@@ -126,6 +126,7 @@ public class FavoriteArticleFragment extends Fragment {
         //swipeRefreshLayout
         swipeRefreshLayoutFavorite.setOnRefreshListener(() -> {
             swipeRefreshLayoutFavorite.setRefreshing(true);
+            articles = getArticle();
             showArticle(articles);
             swipeRefreshLayoutFavorite.setRefreshing(false);
         });
