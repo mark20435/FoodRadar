@@ -138,7 +138,7 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
             let conNum = Int(tfConMum.text ?? "")
             let conAmount = Int(tfConAmount.text ?? "")
             /* 上傳文章資料 **/
-            if articleTitle == "" || articleText == "" || String(conNum!) == ""  || String(conAmount!) == "" {
+            if articleTitle == "" || articleText == "" || tfConMum.text == ""  || tfConAmount.text == "" || lbResName.text == "請選擇餐廳" || lbResCategoryInfo.text ==  "餐廳類型" {
                 let controller = UIAlertController(title: "沒東西喔～", message: "你沒輸入資料！", preferredStyle: .alert)
                 //取消
                 let noAction = UIAlertAction(title: "好的", style: .default, handler: nil)
