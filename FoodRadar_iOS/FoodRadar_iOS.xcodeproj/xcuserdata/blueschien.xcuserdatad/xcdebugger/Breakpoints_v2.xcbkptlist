@@ -3,4 +3,86 @@
    uuid = "1A8B8A74-2194-4218-8BCC-45B1F9B11655"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A50FF5C8-9CDD-425D-8373-9DC5A0FEA49B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodRadar_iOS/User/UserDataSetupVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "SetUI(uiStatus:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A50FF5C8-9CDD-425D-8373-9DC5A0FEA49B - f811bcf9942e2d8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoodRadar_iOS.UserDataSetupVC.SetUI(uiStatus: Swift.Bool) -&gt; ()"
+                  moduleName = "FoodRadar_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_iOS/FoodRadar_iOS/User/UserDataSetupVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "5619">
+               </Location>
+               <Location
+                  uuid = "A50FF5C8-9CDD-425D-8373-9DC5A0FEA49B - 73a9778d5fff0871"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in FoodRadar_iOS.UserDataSetupVC.SetUI(uiStatus: Swift.Bool) -&gt; ()"
+                  moduleName = "FoodRadar_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_iOS/FoodRadar_iOS/User/UserDataSetupVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "53359CCD-0581-4915-85C2-D6BF1172592C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodRadar_iOS/User/UserDataSetupVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "SetUI(uiStatus:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9735390A-947C-45CF-A27E-350C9A56278E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoodRadar_iOS/User/UserDataSetupVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "SetUI(uiStatus:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

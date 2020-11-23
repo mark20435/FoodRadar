@@ -20,6 +20,14 @@ struct UserAccountArray: Decodable {
 }
 
 
+struct UserAvatarStruct: Encodable {
+    let action = "getImage"
+    let imageSize: Int
+    let id: Int
+}
+
+
+
 struct UserAccount: Codable {
     // Date Time: 2020-11-06 15:10:08
     // table name: UserAccount

@@ -114,6 +114,10 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         ivUsArSysSetup = view.findViewById(R.id.ivUsArSysSetup);
         btUsArSysSetup = view.findViewById(R.id.btUsArSysSetup);
         btUsArSysSetup.setOnClickListener(this);
+        // 非管理員角色關閉系統設定
+        if (new Common().getIsAdmin(activity) == true) {
+            activity.findViewById(R.id.constvUsArSysSetup).setVisibility(View.VISIBLE);
+        }
         // 聯繫我們
         ivUsArContactUs = view.findViewById(R.id.ivUsArContactUs);
         btUsArContactUs = view.findViewById(R.id.btUsArContactUs);
@@ -212,9 +216,13 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 //        btUsArUserData.setEnabled(setEnable);
 //        btUsArUserData.setTextColor(intTextColor);
         // 系統設定
-        ivUsArSysSetup.setAlpha(floAlpha);
-        btUsArSysSetup.setEnabled(setEnable);
-        btUsArSysSetup.setTextColor(intTextColor);
+//        ivUsArSysSetup.setAlpha(floAlpha);
+//        btUsArSysSetup.setEnabled(setEnable);
+//        btUsArSysSetup.setTextColor(intTextColor);
+        // 非管理員角色關閉系統設定
+        if (new Common().getIsAdmin(activity) == true) {
+            activity.findViewById(R.id.constvUsArSysSetup).setVisibility(View.VISIBLE);
+        }
         // 聯繫我們
 //        ivUsArContactUs.setAlpha(floAlpha);
 //        btUsArContactUs.setEnabled(setEnable);

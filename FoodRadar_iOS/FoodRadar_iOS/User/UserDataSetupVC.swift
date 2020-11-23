@@ -70,6 +70,21 @@ class UserDataSetupVC: UIViewController {
             btLogin.setTitle("登出", for: UIControl.State.normal)
             btRegister.isHidden = true
             
+            let url = NetworkController().baseURL.appendingPathComponent("UserAccountServlet")
+            let imageSize = 400
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            let getImagePost = UserAvatarStruct(imageSize: imageSize, id: COMM_USER_ID)
+            request.httpBody = try? JSONEncoder().encode(getImagePost)
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    DispatchQueue.main.async {
+                        self.imAvatar.image = UIImage(data: data)
+                    }
+                }
+            }.resume()
+            
         
         } else { // false 登出狀態
             
@@ -136,6 +151,24 @@ class UserDataSetupVC: UIViewController {
                     } else {
                         logInStatus = false
                     }
+                    
+                    
+//                    imAvatar.contentMode = .scaleAspectFill
+                    let url = NetworkController().baseURL.appendingPathComponent("UserAccountServlet")
+                    let imageSize = 400
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    
+                    let getImagePost = UserAvatarStruct(imageSize: imageSize, id: COMM_USER_ID)
+                    request.httpBody = try? JSONEncoder().encode(getImagePost)
+                    URLSession.shared.dataTask(with: request) { (data, response, error) in
+                        if let data = data {
+                            DispatchQueue.main.async {
+                                imAvatar.image = UIImage(data: data)
+                            }
+                        }
+                    }.resume()
+                    
                     DispatchQueue.main.async {
                         self.view.showToast(text: "登入成功")
                     }
@@ -154,6 +187,7 @@ class UserDataSetupVC: UIViewController {
             LogOut()
             logInStatus = false
             SetUI(uiStatus: logInStatus)
+            self.imAvatar.image = UIImage(systemName: "person.crop.circle")
             
         } // if logInStatus == false
         
