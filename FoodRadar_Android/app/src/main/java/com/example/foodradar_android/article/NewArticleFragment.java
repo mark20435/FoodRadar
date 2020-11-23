@@ -119,7 +119,6 @@ public class NewArticleFragment extends Fragment {
         return true;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -149,6 +148,7 @@ public class NewArticleFragment extends Fragment {
         if (intent != null) {
             res = (Res) intent.getSerializableExtra("res");
         }
+        intent.removeExtra("res");  //清空intent > 避免bundle一直存在
         //res = (Res) (bundle != null ? bundle.getSerializable("res") : null);
         if (res == null) {
             showArticle(articles);
