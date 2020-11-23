@@ -138,59 +138,60 @@ class InsertArticleViewController: UIViewController, UICollectionViewDelegate, U
             let conNum = Int(tfConMum.text ?? "")
             let conAmount = Int(tfConAmount.text ?? "")
             /* 上傳文章資料 **/
-            let articleInsert = ArticleInsert(articleId: 0, articleTitle: articleTitle, articleText: articleText, conAmount: conAmount, conNum: conNum, resId: resId, userId: loginUserId, articleStatus: true)
-            var requestParam = [String: Any]()
-            /* 連線後端 **/
-            requestParam["action"] = "articleInsert"
-            requestParam["article"] = try! String(data: JSONEncoder().encode(articleInsert), encoding: .utf8)
-            executeTask(self.url_article!, requestParam) { (data, response, error) in
-                if error == nil {
-                    if data != nil {
-                        if let result = String( data: data!, encoding: .utf8 ) {
-                            if Int(result) != nil {
-                                //                            DispatchQueue.main.async {
-                                //新增成功返回前一頁
-                                //                                if count != 0 {
-                                //                                    self.navigationController?.popViewController(animated: true)
-                                //                                } else {
-                                //                                    //新增失敗時動作
-                                //                                    return
-                                //                                }
-                                //                            }
+            if articleTitle == "" || articleText == "" || tfConMum.text == ""  || tfConAmount.text == "" || lbResName.text == "請選擇餐廳" || lbResCategoryInfo.text ==  "餐廳類型" {
+                let controller = UIAlertController(title: "沒東西喔～", message: "你沒輸入資料！", preferredStyle: .alert)
+                //取消
+                let noAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+                controller.addAction(noAction)
+                present(controller, animated: true, completion: nil)
+
+            } else {
+                let articleInsert = ArticleInsert(articleId: 0, articleTitle: articleTitle, articleText: articleText, conAmount: conAmount, conNum: conNum, resId: resId, userId: loginUserId, articleStatus: true)
+                var requestParam = [String: Any]()
+                /* 連線後端 **/
+                requestParam["action"] = "articleInsert"
+                requestParam["article"] = try! String(data: JSONEncoder().encode(articleInsert), encoding: .utf8)
+                executeTask(self.url_article!, requestParam) { (data, response, error) in
+                    if error == nil {
+                        if data != nil {
+                            if let result = String( data: data!, encoding: .utf8 ) {
+                                if Int(result) != nil {
+                                }
                             }
                         }
+                    } else {
+                        print(error!.localizedDescription)
                     }
-                } else {
-                    print(error!.localizedDescription)
                 }
-            }
-            
-            /* 上傳圖片 **/
-            if images.count == 0 {
-                self.navigationController?.popViewController(animated: true)
-            } else {let imageInsert = Image(articleId: 0, imgId: 0)
-                requestParam["action"] = "findByIdMax"
-                requestParam["img"] = try! String(data: JSONEncoder().encode(imageInsert), encoding: .utf8)
-                for i in 0...images.count - 1 {
-                    let imageByte = self.images[i]
-                    requestParam["imageBase64"] = imageByte.jpegData(compressionQuality: 1.0)!.base64EncodedString()
-                    executeTask(self.url_image!, requestParam) { (data, response, error) in
-                        if error == nil {
-                            if data != nil {
-                                if let result = String(data: data!, encoding: .utf8) {
-                                    if let count = Int(result) {
-                                        DispatchQueue.main.async {
-                                            // 新增成功則回前頁
-                                            if count != 0 {                                            self.navigationController?.popViewController(animated: true)
+                
+                /* 上傳圖片 **/
+                if images.count == 0 {
+                    self.navigationController?.popViewController(animated: true)
+                } else {let imageInsert = Image(articleId: 0, imgId: 0)
+                    requestParam["action"] = "findByIdMax"
+                    requestParam["img"] = try! String(data: JSONEncoder().encode(imageInsert), encoding: .utf8)
+                    for i in 0...images.count - 1 {
+                        let imageByte = self.images[i]
+                        requestParam["imageBase64"] = imageByte.jpegData(compressionQuality: 1.0)!.base64EncodedString()
+                        executeTask(self.url_image!, requestParam) { (data, response, error) in
+                            if error == nil {
+                                if data != nil {
+                                    if let result = String(data: data!, encoding: .utf8) {
+                                        if let count = Int(result) {
+                                            DispatchQueue.main.async {
+                                                // 新增成功則回前頁
+                                                if count != 0 {                                            self.navigationController?.popViewController(animated: true)
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-                } }
-        }
+                    } }
+            }
+            }
+ 
     }
 }
 
