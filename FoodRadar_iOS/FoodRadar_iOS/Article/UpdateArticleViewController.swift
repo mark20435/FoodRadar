@@ -35,7 +35,7 @@ class UpdateArticleViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         self.title = "編輯文章"
         /* 設定右上ItemButton **/
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(systemName: "checkmark.circle"),style: .plain, target: self, action: #selector(clickSend))
+         navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(systemName: "checkmark.circle"),style: .plain, target: self, action: #selector(clickSend))
         
         lbResName.text = articleInfo?.resName
         lbResCategoryInfo.text = articleInfo?.resCategoryInfo
