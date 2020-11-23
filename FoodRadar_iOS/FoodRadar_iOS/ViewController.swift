@@ -20,7 +20,8 @@ class ViewController: UIViewController {
             COMM_USER_ID = 0
         }
         
-        SetBadge ()
+        // 關閉 Badge 功能
+//        SetBadge ()
         
     }
     

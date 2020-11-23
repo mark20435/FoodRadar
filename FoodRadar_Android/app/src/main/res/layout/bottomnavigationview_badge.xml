@@ -7,17 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--設定Bottom Navigation View 的 Badge(訊息數量提示)-->
+<!--  android:layout_width="19dp"  -->
+<!--  android:background="@drawable/button_circle_camera"  -->
+<!--  android:textColor="#FFFFFF"  -->
     <TextView
         android:id="@+id/tvBadgeText"
-        android:layout_width="19dp"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="4dp"
-        android:background="@drawable/button_circle_camera"
         android:gravity="center"
         android:paddingBottom="2dp"
         android:text="XX"
-        android:textColor="#FFFFFF"
+        android:textColor="#0000FF"
         android:textSize="12sp"
         android:textStyle="bold"
 

@@ -15,20 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp">
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvSetNotifi"-->
-<!--            style="@style/style_user_area_button"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:text="推播通知(啟用中)"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvSetNotifi"-->
+        <!--            style="@style/style_user_area_button"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:text="推播通知(啟用中)"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <Switch
             android:id="@+id/swUsArNotifi"
@@ -50,17 +51,17 @@
 
 
         <!--        <TextView-->
-<!--            android:id="@+id/tvUsArSetNotifidivider"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:layout_marginStart="128dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:background="@color/mainPink"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/constvUsArSetNotifi"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <!--            android:id="@+id/tvUsArSetNotifidivider"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="1dp"-->
+        <!--            android:layout_marginStart="128dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:background="@color/mainPink"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/constvUsArSetNotifi"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 管理員功能區 -->
@@ -257,6 +258,7 @@
             android:id="@+id/constvUsArMessageSend"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constvUsArArticleＭaintain">

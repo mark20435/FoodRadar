@@ -547,6 +547,16 @@ public class Common {
 //            ((ViewGroup)tvBadgeText.getParent()).removeView(tvBadgeText); // <- fix
 //        }
 
+
+        if (badgeText.equals("0")) {
+            badgeText = "";
+        } else {
+            badgeText = "";
+            if ( getIsAdmin(activity) == true) {
+                badgeText = "管理";
+            }
+        }
+
         // find id 取得 BottomNavigationView
         BottomNavigationView bottomNavigationView = activity.findViewById(R.id.BottomNavigation);
         // 取出BottomNavigationView的 Child MenuView
@@ -669,7 +679,7 @@ public class Common {
         if (userPhone.trim().isEmpty()) {
             userPhone = "0900123456"; // 3號使用者
         } else if (userPhone.equals("0900123456")){
-            userPhone = "0929020629"; // 6號使用者
+            userPhone = "0900666666"; // 6號使用者
         } else {
             userPhone = "0900123456";
         }

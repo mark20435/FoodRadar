@@ -323,6 +323,13 @@ public class UserDataSetupFragment extends Fragment implements View.OnClickListe
 
                 String userPhone = "0900123456";
                 String userPwd = "P@ssw0rd";
+                if (etUserPhone.getText().toString().equals("0900123456")) {
+                    userPhone = "0900222222";
+                    userPwd = "222222";
+                } else if (etUserPhone.getText().toString().equals("0900222222")) {
+                    userPhone = "0900999999";
+                    userPwd = "999999";
+                }
                 etUserPhone.setText(userPhone);
                 etPassword.setText(userPwd);
             }
