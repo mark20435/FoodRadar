@@ -6,180 +6,180 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="19"
-8-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml
+8-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml
+9-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-11-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:5-79
-11-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:22-76
+11-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:5-79
+11-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:22-76
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:7:5-67
-12-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:7:22-64
+12-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:7:5-67
+12-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:7:22-64
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:5-79
-13-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:22-76
+13-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:5-79
+13-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:6:22-76
 14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-14-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:9:5-81
-14-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:9:22-78
+14-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:9:5-81
+14-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:9:22-78
 15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Android 10開始，使用全螢幕的Intent需要加 -->
-15-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:10:5-79
-15-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:10:22-76
+15-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:10:5-79
+15-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:10:22-76
 16    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- 選取照片需user同意存取外部儲存體的公開檔案 -->
-16-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:11:5-81
-16-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:11:22-78
+16-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:11:5-81
+16-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:11:22-78
 17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-17-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:12:5-80
-17-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:12:22-77
+17-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:12:5-80
+17-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:12:22-77
 18
 19    <uses-feature android:name="android.hardware.camera" />
-19-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:5-60
-19-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:19-57
+19-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:5-60
+19-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:14:19-57
 20    <uses-feature
-20-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:15:5-17:35
+20-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:15:5-17:35
 21        android:glEsVersion="0x00020000"
-21-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:9-41
+21-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:16:9-41
 22        android:required="true" />
-22-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-32
+22-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:17:9-32
 23
 24    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-24-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:24:5-68
-24-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:24:22-65
+24-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:24:5-68
+24-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:24:22-65
 25    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-25-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:26:5-82
-25-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:26:22-79
+25-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:26:5-82
+25-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:26:22-79
 26    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-26-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:26:5-110
-26-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:26:22-107
+26-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:26:5-110
+26-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:26:22-107
 27
 28    <application
-28-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-88:19
+28-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:19:5-88:19
 29        android:allowBackup="true"
-29-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:20:9-35
+29-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:20:9-35
 30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-30-->[androidx.core:core:1.3.1] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/54f7c82b28c6041824a830882f5af551/core-1.3.1/AndroidManifest.xml:24:18-86
+30-->[androidx.core:core:1.3.1] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/54f7c82b28c6041824a830882f5af551/core-1.3.1/AndroidManifest.xml:24:18-86
 31        android:debuggable="true"
 32        android:icon="@mipmap/ic_launcher"
-32-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:21:9-43
+32-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:21:9-43
 33        android:label="@string/app_name"
-33-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:22:9-41
+33-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:22:9-41
 34        android:roundIcon="@mipmap/ic_launcher"
-34-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:23:9-48
+34-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:23:9-48
 35        android:supportsRtl="true"
-35-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:24:9-35
+35-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:24:9-35
 36        android:testOnly="true"
 37        android:theme="@style/AppTheme"
-37-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:25:9-40
+37-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:25:9-40
 38        android:usesCleartextTraffic="true" >
-38-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:26:9-44
+38-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:26:9-44
 39        <activity
-39-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:9-36:20
+39-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:9-36:20
 40            android:name="com.example.foodradar_android.WelcomeActivity"
-40-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:19-50
+40-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:28:19-50
 41            android:label="@string/app_name" >
-41-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:29:19-51
+41-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:29:19-51
 42            <intent-filter>
-42-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:13-35:29
+42-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:30:13-35:29
 43                <action android:name="android.intent.action.MAIN" />
-43-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:17-69
-43-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:25-66
+43-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:17-69
+43-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:31:25-66
 44                <action android:name="android.intent.action.VIEW" />
-44-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:17-69
-44-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:25-66
+44-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:17-69
+44-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:32:25-66
 45
 46                <category android:name="android.intent.category.LAUNCHER" />
-46-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:17-77
-46-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:27-74
+46-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:17-77
+46-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:34:27-74
 47            </intent-filter>
 48        </activity>
 49        <activity
-49-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:9-41:20
+49-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:37:9-41:20
 50            android:name="com.example.foodradar_android.main.MainActivity"
-50-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:38:13-46
+50-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:38:13-46
 51            android:screenOrientation="portrait"
-51-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:39:13-49
+51-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:39:13-49
 52            android:windowSoftInputMode="adjustPan" >
-52-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:40:13-52
+52-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:40:13-52
 53        </activity>
 54        <activity
-54-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:42:9-45:61
+54-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:42:9-45:61
 55            android:name="com.example.foodradar_android.res.ResRatingActivity"
-55-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:43:13-50
+55-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:43:13-50
 56            android:launchMode="singleTop"
-56-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:44:13-43
+56-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:44:13-43
 57            android:theme="@style/Theme.AppCompat.Dialog" />
-57-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:45:13-58
+57-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:45:13-58
 58
 59        <provider
 60            android:name="androidx.core.content.FileProvider"
-60-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:13-62
+60-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:48:13-62
 61            android:authorities="com.example.foodradar_android.provider"
-61-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:49:13-60
+61-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:49:13-60
 62            android:exported="false"
-62-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:50:13-37
+62-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:50:13-37
 63            android:grantUriPermissions="true" >
-63-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:13-47
+63-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:51:13-47
 64            <meta-data
-64-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:52:13-54:58
+64-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:52:13-54:58
 65                android:name="android.support.FILE_PROVIDER_PATHS"
-65-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:53:17-67
+65-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:53:17-67
 66                android:resource="@xml/provider_paths" />
-66-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:54:17-55
+66-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:54:17-55
 67        </provider>
 68
 69        <meta-data
-69-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:57:9-59:67
+69-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:57:9-59:67
 70            android:name="com.google.firebase.messaging.default_notification_icon"
-70-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:58:13-83
+70-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:58:13-83
 71            android:resource="@android:drawable/ic_dialog_info" />
-71-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:59:13-64
+71-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:59:13-64
 72        <!--
 73 Set color used with incoming notification messages. This is used when no color is set for the incoming
 74             notification message. See README(https://goo.gl/6BKBk7) for more.
 75        -->
 76        <meta-data
-76-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:64:9-66:53
+76-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:64:9-66:53
 77            android:name="com.google.firebase.messaging.default_notification_color"
-77-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:65:13-84
+77-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:65:13-84
 78            android:resource="@color/colorAccent" />
-78-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:66:13-50
+78-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:66:13-50
 79        <meta-data
-79-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:67:9-69:71
+79-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:67:9-69:71
 80            android:name="com.google.firebase.messaging.default_notification_channel_id"
-80-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:68:13-89
+80-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:68:13-89
 81            android:value="@string/default_notification_channel_id" />
-81-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:69:13-68
+81-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:69:13-68
 82        <meta-data
-82-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:70:9-72:69
+82-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:70:9-72:69
 83            android:name="com.google.android.gms.version"
-83-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:71:13-58
+83-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:71:13-58
 84            android:value="@integer/google_play_services_version" />
-84-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:72:13-66
+84-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:72:13-66
 85        <meta-data
-85-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:73:9-75:71
+85-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:73:9-75:71
 86            android:name="com.google.android.geo.API_KEY"
-86-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:74:13-58
+86-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:74:13-58
 87            android:value="AIzaSyCycZkI4Z2MZYuoJmnkogb5SdZVUF2WgI0" />
-87-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:75:13-68
+87-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:75:13-68
 88
 89        <activity
-89-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:77:9-79:72
+89-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:77:9-79:72
 90            android:name="com.yalantis.ucrop.UCropActivity"
-90-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:78:13-60
+90-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:78:13-60
 91            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-91-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:79:13-69
+91-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:79:13-69
 92
 93        <service
-93-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:81:9-87:19
+93-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:81:9-87:19
 94            android:name="com.example.foodradar_android.MyFCMService"
-94-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:82:13-41
+94-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:82:13-41
 95            android:exported="false" >
-95-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:83:13-37
+95-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:83:13-37
 96            <intent-filter>
-96-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:84:13-86:29
+96-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:84:13-86:29
 97                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-97-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:17-78
-97-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:25-75
+97-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:17-78
+97-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:25-75
 98            </intent-filter>
 99        </service>
 100        <!--
@@ -187,208 +187,208 @@
 102             but set to not exported to explicitly avoid allowing another app to call it.
 103        -->
 104        <service
-104-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:28:9-35:19
+104-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:28:9-35:19
 105            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-105-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:29:13-82
+105-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:29:13-82
 106            android:directBootAware="true"
-106-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:30:13-43
+106-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:30:13-43
 107            android:exported="false" >
-107-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:31:13-37
+107-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:31:13-37
 108            <intent-filter android:priority="-500" >
-108-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:84:13-86:29
+108-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:84:13-86:29
 109                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-109-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:17-78
-109-->/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:25-75
+109-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:17-78
+109-->/Users/hsinweikao/AndroidStudioProjects/FoodRadar/FoodRadar_Android/app/src/main/AndroidManifest.xml:85:25-75
 110            </intent-filter>
 111        </service>
 112        <service
-112-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:36:9-42:19
+112-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:36:9-42:19
 113            android:name="com.google.firebase.components.ComponentDiscoveryService"
-113-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:37:13-84
+113-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:37:13-84
 114            android:directBootAware="true"
-114-->[com.google.firebase:firebase-common:19.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+114-->[com.google.firebase:firebase-common:19.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
 115            android:exported="false" >
-115-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:38:13-37
+115-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:38:13-37
 116            <meta-data
-116-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:39:13-41:85
+116-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:39:13-41:85
 117                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-117-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:40:17-119
+117-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:40:17-119
 118                android:value="com.google.firebase.components.ComponentRegistrar" />
-118-->[com.google.firebase:firebase-messaging:20.2.4] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:41:17-82
+118-->[com.google.firebase:firebase-messaging:20.2.4] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8643e1a8aa7721a64fd3d19b837776c0/jetified-firebase-messaging-20.2.4/AndroidManifest.xml:41:17-82
 119            <meta-data
-119-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:36:13-38:85
+119-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:36:13-38:85
 120                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-120-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:37:17-109
+120-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:37:17-109
 121                android:value="com.google.firebase.components.ComponentRegistrar" />
-121-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:38:17-82
+121-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:38:17-82
 122            <meta-data
-122-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:30:13-32:85
+122-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:30:13-32:85
 123                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-123-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:31:17-139
+123-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:31:17-139
 124                android:value="com.google.firebase.components.ComponentRegistrar" />
-124-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:32:17-82
+124-->[com.google.android.gms:play-services-measurement-api:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/e5835bb1e68afbd3bb64212f4025fa6a/jetified-play-services-measurement-api-17.2.0/AndroidManifest.xml:32:17-82
 125            <meta-data
-125-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:32:13-34:85
+125-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:32:13-34:85
 126                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-126-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:33:17-96
+126-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:33:17-96
 127                android:value="com.google.firebase.components.ComponentRegistrar" />
-127-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:34:17-82
+127-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:34:17-82
 128            <meta-data
-128-->[com.google.firebase:firebase-datatransport:17.0.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/7303327eca8ee219ebac70efb10cff1d/jetified-firebase-datatransport-17.0.3/AndroidManifest.xml:28:13-30:85
+128-->[com.google.firebase:firebase-datatransport:17.0.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/7303327eca8ee219ebac70efb10cff1d/jetified-firebase-datatransport-17.0.3/AndroidManifest.xml:28:13-30:85
 129                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-129-->[com.google.firebase:firebase-datatransport:17.0.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/7303327eca8ee219ebac70efb10cff1d/jetified-firebase-datatransport-17.0.3/AndroidManifest.xml:29:17-115
+129-->[com.google.firebase:firebase-datatransport:17.0.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/7303327eca8ee219ebac70efb10cff1d/jetified-firebase-datatransport-17.0.3/AndroidManifest.xml:29:17-115
 130                android:value="com.google.firebase.components.ComponentRegistrar" />
-130-->[com.google.firebase:firebase-datatransport:17.0.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/7303327eca8ee219ebac70efb10cff1d/jetified-firebase-datatransport-17.0.3/AndroidManifest.xml:30:17-82
+130-->[com.google.firebase:firebase-datatransport:17.0.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/7303327eca8ee219ebac70efb10cff1d/jetified-firebase-datatransport-17.0.3/AndroidManifest.xml:30:17-82
 131            <meta-data
-131-->[com.google.firebase:firebase-installations:16.3.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/52f141b766ae6dcffc1e03a79e39caf5/jetified-firebase-installations-16.3.3/AndroidManifest.xml:17:13-19:85
+131-->[com.google.firebase:firebase-installations:16.3.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f141b766ae6dcffc1e03a79e39caf5/jetified-firebase-installations-16.3.3/AndroidManifest.xml:17:13-19:85
 132                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-132-->[com.google.firebase:firebase-installations:16.3.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/52f141b766ae6dcffc1e03a79e39caf5/jetified-firebase-installations-16.3.3/AndroidManifest.xml:18:17-127
+132-->[com.google.firebase:firebase-installations:16.3.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f141b766ae6dcffc1e03a79e39caf5/jetified-firebase-installations-16.3.3/AndroidManifest.xml:18:17-127
 133                android:value="com.google.firebase.components.ComponentRegistrar" />
-133-->[com.google.firebase:firebase-installations:16.3.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/52f141b766ae6dcffc1e03a79e39caf5/jetified-firebase-installations-16.3.3/AndroidManifest.xml:19:17-82
+133-->[com.google.firebase:firebase-installations:16.3.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/52f141b766ae6dcffc1e03a79e39caf5/jetified-firebase-installations-16.3.3/AndroidManifest.xml:19:17-82
 134        </service> <!-- Needs to be explicitly declared on P+ -->
 135        <uses-library
-135-->[com.google.android.gms:play-services-maps:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/ee98958bc3357d6fc4f28357c8039960/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+135-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/ee98958bc3357d6fc4f28357c8039960/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
 136            android:name="org.apache.http.legacy"
-136-->[com.google.android.gms:play-services-maps:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/ee98958bc3357d6fc4f28357c8039960/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+136-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/ee98958bc3357d6fc4f28357c8039960/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
 137            android:required="false" />
-137-->[com.google.android.gms:play-services-maps:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/ee98958bc3357d6fc4f28357c8039960/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+137-->[com.google.android.gms:play-services-maps:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/ee98958bc3357d6fc4f28357c8039960/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
 138
 139        <activity
-139-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:24:9-31:50
+139-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:24:9-31:50
 140            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-140-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:25:13-85
+140-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:25:13-85
 141            android:excludeFromRecents="true"
-141-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:26:13-46
+141-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:26:13-46
 142            android:exported="true"
-142-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:27:13-36
+142-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:27:13-36
 143            android:launchMode="singleTask"
-143-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:28:13-44
+143-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:28:13-44
 144            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
-144-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:29:13-102
+144-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:29:13-102
 145            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-145-->[com.google.firebase:firebase-auth:18.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:30:13-72
+145-->[com.google.firebase:firebase-auth:18.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/63f7f8359dc8a49c9b8c902c6103b823/jetified-firebase-auth-18.1.0/AndroidManifest.xml:30:13-72
 146
 147        <receiver
-147-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:37:9-44:20
+147-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:37:9-44:20
 148            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-148-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:38:13-78
+148-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:38:13-78
 149            android:exported="true"
-149-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:39:13-36
+149-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:39:13-36
 150            android:permission="com.google.android.c2dm.permission.SEND" >
-150-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:40:13-73
+150-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:40:13-73
 151            <intent-filter>
-151-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:41:13-43:29
+151-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:41:13-43:29
 152                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-152-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:42:17-81
-152-->[com.google.firebase:firebase-iid:20.2.3] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:42:25-78
+152-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:42:17-81
+152-->[com.google.firebase:firebase-iid:20.2.3] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/a7cef4626bffb2c620bd628aedd177c8/jetified-firebase-iid-20.2.3/AndroidManifest.xml:42:25-78
 153            </intent-filter>
 154        </receiver>
 155        <receiver
-155-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:29:9-33:20
+155-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:29:9-33:20
 156            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-156-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:30:13-85
+156-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:30:13-85
 157            android:enabled="true"
-157-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:31:13-35
+157-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:31:13-35
 158            android:exported="false" >
-158-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:32:13-37
+158-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:32:13-37
 159        </receiver>
 160        <receiver
-160-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:34:9-42:20
+160-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:34:9-42:20
 161            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
-161-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:35:13-100
+161-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:35:13-100
 162            android:enabled="true"
-162-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:36:13-35
+162-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:36:13-35
 163            android:exported="true"
-163-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:37:13-36
+163-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:37:13-36
 164            android:permission="android.permission.INSTALL_PACKAGES" >
-164-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:38:13-69
+164-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:38:13-69
 165            <intent-filter>
-165-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:39:13-41:29
+165-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:39:13-41:29
 166                <action android:name="com.android.vending.INSTALL_REFERRER" />
-166-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:40:17-79
-166-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:40:25-76
+166-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:40:17-79
+166-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:40:25-76
 167            </intent-filter>
 168        </receiver>
 169
 170        <service
-170-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:44:9-47:40
+170-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:44:9-47:40
 171            android:name="com.google.android.gms.measurement.AppMeasurementService"
-171-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:45:13-84
+171-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:45:13-84
 172            android:enabled="true"
-172-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:46:13-35
+172-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:46:13-35
 173            android:exported="false" />
-173-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:47:13-37
+173-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:47:13-37
 174        <service
-174-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:48:9-52:72
+174-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:48:9-52:72
 175            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-175-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:49:13-87
+175-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:49:13-87
 176            android:enabled="true"
-176-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:50:13-35
+176-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:50:13-35
 177            android:exported="false"
-177-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:51:13-37
+177-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:51:13-37
 178            android:permission="android.permission.BIND_JOB_SERVICE" />
-178-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:52:13-69
+178-->[com.google.android.gms:play-services-measurement:17.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/5a58d53491cc7c4374ed632ebb4f7ae9/jetified-play-services-measurement-17.2.0/AndroidManifest.xml:52:13-69
 179
 180        <provider
-180-->[com.google.firebase:firebase-common:19.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+180-->[com.google.firebase:firebase-common:19.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
 181            android:name="com.google.firebase.provider.FirebaseInitProvider"
-181-->[com.google.firebase:firebase-common:19.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+181-->[com.google.firebase:firebase-common:19.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
 182            android:authorities="com.example.foodradar_android.firebaseinitprovider"
-182-->[com.google.firebase:firebase-common:19.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+182-->[com.google.firebase:firebase-common:19.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
 183            android:exported="false"
-183-->[com.google.firebase:firebase-common:19.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+183-->[com.google.firebase:firebase-common:19.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
 184            android:initOrder="100" />
-184-->[com.google.firebase:firebase-common:19.3.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+184-->[com.google.firebase:firebase-common:19.3.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/fbcc26f319f540808f1be431db3bab9d/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
 185
 186        <activity
-186-->[com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+186-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
 187            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-187-->[com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+187-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
 188            android:exported="false"
-188-->[com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+188-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
 189            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-189-->[com.google.android.gms:play-services-base:17.0.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+189-->[com.google.android.gms:play-services-base:17.0.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/eb4b2f66ebb7cd7fd62f21a7915862ed/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
 190
 191        <service
-191-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:29:9-35:19
+191-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:29:9-35:19
 192            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-192-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:30:13-103
+192-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:30:13-103
 193            android:exported="false" >
-193-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:31:13-37
+193-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:31:13-37
 194            <meta-data
-194-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:32:13-34:39
+194-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:32:13-34:39
 195                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-195-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:33:17-94
+195-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:33:17-94
 196                android:value="cct" />
-196-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:34:17-36
+196-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/8d253aa1a747c73fbf1ba3a090330ba7/jetified-transport-backend-cct-2.2.0/AndroidManifest.xml:34:17-36
 197        </service>
 198        <service
-198-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:26:9-30:19
+198-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:26:9-30:19
 199            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-199-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:27:13-117
+199-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:27:13-117
 200            android:exported="false"
-200-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:28:13-37
+200-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:28:13-37
 201            android:permission="android.permission.BIND_JOB_SERVICE" >
-201-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:29:13-69
+201-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:29:13-69
 202        </service>
 203
 204        <receiver
-204-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:32:9-34:40
+204-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:32:9-34:40
 205            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-205-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:33:13-132
+205-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:33:13-132
 206            android:exported="false" />
-206-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:34:13-37
+206-->[com.google.android.datatransport:transport-runtime:2.2.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/3319a245cae41e8a9916db797a592e16/jetified-transport-runtime-2.2.0/AndroidManifest.xml:34:13-37
 207
 208        <provider
-208-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:23:9-27:43
+208-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:23:9-27:43
 209            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-209-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:24:13-79
+209-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:24:13-79
 210            android:authorities="com.example.foodradar_android.lifecycle-process"
-210-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:25:13-69
+210-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:25:13-69
 211            android:exported="false"
-211-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:26:13-37
+211-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:26:13-37
 212            android:multiprocess="true" />
-212-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/blueschien/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:27:13-40
+212-->[androidx.lifecycle:lifecycle-process:2.1.0] /Users/hsinweikao/.gradle/caches/transforms-2/files-2.1/82d7ad5f6f07100868d206265b29b8c4/jetified-lifecycle-process-2.1.0/AndroidManifest.xml:27:13-40
 213    </application>
 214
 215</manifest>
