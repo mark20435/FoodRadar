@@ -77,7 +77,6 @@ public class NewArticleFragment extends Fragment {
         setHasOptionsMenu(false);
         navController =
                 Navigation.findNavController(activity, R.id.mainFragment);
-
     }
 
     //顯示floating
@@ -347,9 +346,9 @@ public class NewArticleFragment extends Fragment {
 
             /* 判斷顯示是否有更新過文章，並顯示時間 */
             if (article.getArticleTime().equals(article.getModifyTime())) {
-                myViewHolder.tvArticleTime.setText(article.getArticleTime());
+                myViewHolder.tvArticleTime.setText("發表時間：" + article.getArticleTime());
             } else {
-                myViewHolder.tvArticleTime.setText(article.getModifyTime());
+                myViewHolder.tvArticleTime.setText("修改時間：" + article.getModifyTime());
             }
 
             myViewHolder.tvCommentCount.setText(commentCount);
