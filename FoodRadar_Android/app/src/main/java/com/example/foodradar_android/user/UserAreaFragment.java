@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.solver.state.State;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -43,6 +45,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
     // 系統設定
     private ImageView ivUsArSysSetup;
     private Button btUsArSysSetup;
+    private ConstraintLayout constraintLayout;
     // 聯繫我們
     private ImageView ivUsArContactUs;
     private Button btUsArContactUs;
@@ -115,8 +118,9 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         btUsArSysSetup = view.findViewById(R.id.btUsArSysSetup);
         btUsArSysSetup.setOnClickListener(this);
         // 非管理員角色關閉系統設定
-        if (new Common().getIsAdmin(activity) == true) {
-            activity.findViewById(R.id.constvUsArSysSetup).setVisibility(View.VISIBLE);
+        constraintLayout = view.findViewById(R.id.constvUsArSysSetup);
+        if (new Common().getIsAdmin(activity)) {
+            constraintLayout.setVisibility(View.VISIBLE);
         }
         // 聯繫我們
         ivUsArContactUs = view.findViewById(R.id.ivUsArContactUs);
@@ -187,6 +191,7 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
         Common.setBackArrow(false, activity);
     }
 
+
     // 畫面功能Enable控制
     private void setButton(boolean setEnable) {
         Integer intTextColor = 0;
@@ -220,8 +225,8 @@ public class UserAreaFragment extends Fragment implements View.OnClickListener {
 //        btUsArSysSetup.setEnabled(setEnable);
 //        btUsArSysSetup.setTextColor(intTextColor);
         // 非管理員角色關閉系統設定
-        if (new Common().getIsAdmin(activity) == true) {
-            activity.findViewById(R.id.constvUsArSysSetup).setVisibility(View.VISIBLE);
+        if (new Common().getIsAdmin(activity)) {
+            constraintLayout.setVisibility(View.VISIBLE);
         }
         // 聯繫我們
 //        ivUsArContactUs.setAlpha(floAlpha);

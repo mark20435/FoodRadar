@@ -171,6 +171,7 @@ class MyResTableVC: UITableViewController, UISearchBarDelegate {
     func resHour (_ hourJson: String) -> String {
         let data = hourJson.data(using: .utf8)!
 //        print("hourJson: " + hourJson)
+// '{"11": "11:30~14:30","12": "17:00~22:00","21": "11:30~14:30","22": "17:00~22:00","31": "11:30~14:30","32": "17:00~22:00","41": "11:30~14:30","42": "17:00~22:00","51": "11:30~14:30","52": "17:00~22:00","61": "11:30~14:30","62": "17:00~22:00","71": "11:30~14:30","72": "17:00~22:00"}'
         
         if let dic = try? JSONDecoder().decode([String: String].self, from: data) {
             var resHourList: [[String]] = [[String]]()

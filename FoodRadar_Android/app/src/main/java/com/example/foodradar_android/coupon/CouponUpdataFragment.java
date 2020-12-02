@@ -348,6 +348,7 @@ public class CouponUpdataFragment extends Fragment implements DatePickerDialog.O
                 if (Common.networkConnected(activity)) {
                     String url = Common.URL_SERVER + "CouponServlet";
                     int id = coupon.getCouPonId();
+                    resId = coupon.getResId();
 //                    coupon.setFields(couPonId, couPonStartDate, couPonEndDate, spTypeBoolean, spEnableBoolean, couPonInfo, userIdBox);
                     coupon = new Coupon(id, resId, couPonStartDate, couPonEndDate, spTypeBoolean, couPonInfo, spEnableBoolean, userIdBox);
 //                    Coupon coupon = new Coupon(couPonStartDate, couPonEndDate, spTypeBoolean, spEnableBoolean, couPonInfo, userIdBox);

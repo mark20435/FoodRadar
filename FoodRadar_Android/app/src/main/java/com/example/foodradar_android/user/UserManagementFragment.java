@@ -194,6 +194,7 @@ public class UserManagementFragment extends Fragment {
             }
 
             if (Common.USER_ID.equals(uA.getUserId())) {
+                Log.d("TAG","uA.getUserId(): " + uA.getUserId());
                 holder.swUserManageStatus.setVisibility(View.INVISIBLE);
                 holder.tvUserManageAccountStatus.setText(strAccountStatus + "      (以管理員身份登入)");
             }
