@@ -1,4 +1,4 @@
-#Tue Nov 24 18:40:15 CST 2020
+#Wed Dec 02 15:02:22 CST 2020
 base.0=/Users/blueschien/Downloads/MyGitHub/20200907_1313_FR/FoodRadar_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

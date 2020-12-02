@@ -135,6 +135,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     /* 左滑更新及刪除 **/
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var comment: String?
         /* 編輯留言動作 **/
         let update = UIContextualAction(style: .normal, title: "編輯") { (action, view, bool) in
             let controller = UIAlertController(title: "編輯留言", message: " ", preferredStyle: .alert)
@@ -143,8 +144,14 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 textField.text = comment.commentText
             }
             let okAction = UIAlertAction(title: "送出", style: .destructive) { (_) in
-                let comment = controller.textFields?[0].text
+                comment = controller.textFields?[0].text
+                //假如沒輸入留言，就直接return(沒修改，更新狀態也不會變)
+            if comment?.count != 0 {
                 self.updateComment(indexPath, comment ?? "沒有資料")
+            } else {
+                return
+            }
+               
             }
             controller.addAction(okAction)
             
@@ -185,7 +192,6 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             return nil
         }
-        
     }
     
     /* 編輯留言 **/
@@ -198,10 +204,9 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         let timeString = dateFormatter.string(from: Date())
-        
         let commentUpdate = UpdateComment(commentId: commentId, commentText: commentText, commentModifyTime: timeString)
         var requestParam = [String: Any]()
-        requestParam["action"] = "commentUpdate"
+     requestParam["action"] = "commentUpdate"
         requestParam["comment"] = try! String(data: JSONEncoder().encode(commentUpdate), encoding: .utf8)
         _ = executeTask(self.url_comment!, requestParam) { (data, response, error) in
             if error == nil {
@@ -220,28 +225,36 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     /* 送出留言 **/
     @IBAction func sendComment(_ sender: UIButton) {
-        if loginUserId > 0 {
-        //輸入留言資料
         let commentText = tfComment == nil ? "" : tfComment.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        //存成類別 > userId等Blues弄完要補
-        let insertComment = InsertComment(commentId: 0, articleId: articleId, userId: loginUserId, commentStatus: true, commentText: commentText)
-        var requestParam = [String: Any]()
-        requestParam["action"] = "commentInsert"
-        requestParam["comment"] = try? String(data: JSONEncoder().encode(insertComment), encoding: .utf8)
-            _ = executeTask(self.url_comment!, requestParam) { (data, response, error) in
-            if error == nil {
-                if data != nil {
-                    if let result = String(data: data!, encoding: .utf8) {
-                        if Int(result) != nil {
-                            DispatchQueue.main.async {
-                                self.getComment()
-                                self.TextButtonClicked(self.tfComment)
+        if loginUserId > 0 {
+            if commentText?.count != 0 {
+                //輸入留言資料
+                //存成類別 > userId等Blues弄完要補
+                let insertComment = InsertComment(commentId: 0, articleId: articleId, userId: loginUserId, commentStatus: true, commentText: commentText)
+                var requestParam = [String: Any]()
+                requestParam["action"] = "commentInsert"
+                requestParam["comment"] = try? String(data: JSONEncoder().encode(insertComment), encoding: .utf8)
+                    _ = executeTask(self.url_comment!, requestParam) { (data, response, error) in
+                    if error == nil {
+                        if data != nil {
+                            if let result = String(data: data!, encoding: .utf8) {
+                                if Int(result) != nil {
+                                    DispatchQueue.main.async {
+                                        self.getComment()
+                                        self.TextButtonClicked(self.tfComment)
+                                    }
+                                }
                             }
                         }
                     }
                 }
+            } else {
+                let controller = UIAlertController(title: "輸入留言", message: "說一點話吧～", preferredStyle: .alert)
+                //取消
+                let noAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+                controller.addAction(noAction)
+                present(controller, animated: true, completion: nil)
             }
-        }
         } else if (loginUserId <= 0) {
             let controller = UIAlertController(title: "請先登入", message: "你還沒登入喔！", preferredStyle: .alert)
             //取消
